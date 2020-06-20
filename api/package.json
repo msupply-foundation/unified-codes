@@ -11,5 +11,11 @@
   "dependencies": {
     "fastify": "^2.14.1",
     "fluent-schema": "^1.0.3"
-  }
+  },
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "prettier": "2.0.5",
+    "pretty-quick": "^2.0.1"
+  },
+  "config": { "husky": { "hooks": { "pre-commit": "pretty-quick --staged" } } }
 }
