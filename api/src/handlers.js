@@ -3,6 +3,11 @@ import schemas from "./schemas";
 import appData from "../package.json";
 import testData from "../data.json";
 
+const STATUS_CODES = {
+  OK: 200,
+  NOT_FOUND: 404,
+}
+
 const healthHandler = (_, reply) => {
   const [response] = Object.values(schemas.health.response);
   const responseKeys = Object.keys(response.properties);
@@ -16,11 +21,17 @@ const healthHandler = (_, reply) => {
 const itemsHandler = (request, reply) => {
   const { query } = request;
   const { code } = query;
-  const { [code]: name } = testData;
-  const statusCode = !!name ? 200 : 404;
-  const body =
-    statusCode == 200 ? { code, name } : { error: `No item with code ${code}` };
-  reply.code(statusCode).send(body);
+  if (code) {
+    const isValidCode = Object.keys(testData).includes(code);
+    const statusCode = isValidCode ? STATUS_CODES.OK : STATUS_CODES.NOT_FOUND;
+    const body =
+      isValidCode ? { code, name: testData[code] } : { error: `No item with code ${code}` };
+    reply.code(statusCode).send(body);
+  } else {
+    const statusCode = STATUS_CODES.OK;
+    const body = Object.entries(testData).map(([key, value]) => ({ code: key, name: value }));
+    reply.code(statusCode).send(body);
+  }
 };
 
 const versionHandler = (_, reply) => {
