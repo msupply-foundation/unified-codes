@@ -1,4 +1,4 @@
-const S = require("fluent-schema");
+import S from "fluent-schema";
 
 const health = {
   response: {
