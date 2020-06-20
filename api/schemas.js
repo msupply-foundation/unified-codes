@@ -15,6 +15,8 @@ const items = {
         200: S.object()
             .prop('name', S.string())
             .prop('code', S.string()),
+        404: S.object()
+            .prop('error', S.string())
     }
 };
 
