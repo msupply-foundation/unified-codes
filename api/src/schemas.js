@@ -1,12 +1,12 @@
 import S from "fluent-schema";
 
-const health = {
+const healthSchema = {
   response: {
     200: S.object().prop("mysql", S.string()).prop("api", S.string()),
   },
 };
 
-const items = {
+const itemsSchema = {
   queryString: S.object().prop("code", S.string()),
   response: {
     200: S.object().prop("name", S.string()).prop("code", S.string()),
@@ -14,7 +14,7 @@ const items = {
   },
 };
 
-const version = {
+const versionSchema = {
   response: {
     200: S.object()
       .prop("version", S.string())
@@ -22,4 +22,14 @@ const version = {
   },
 };
 
-module.exports = { health, items, version };
+export {
+  healthSchema as health,
+  itemsSchema as items,
+  versionSchema as version
+};
+
+export default {
+  health: healthSchema,
+  items: itemsSchema,
+  version: versionSchema
+};

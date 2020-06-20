@@ -3,7 +3,7 @@ import schemas from "./schemas";
 import appData from "../package.json";
 import testData from "../data.json";
 
-const health = (_, reply) => {
+const healthHandler = (_, reply) => {
   const [response] = Object.values(schemas.health.response);
   const responseKeys = Object.keys(response.properties);
   const responseValues = responseKeys.reduce(
@@ -13,7 +13,7 @@ const health = (_, reply) => {
   reply.send(responseValues);
 };
 
-const items = (request, reply) => {
+const itemsHandler = (request, reply) => {
   const { query } = request;
   const { code } = query;
   const { [code]: name } = testData;
@@ -23,11 +23,21 @@ const items = (request, reply) => {
   reply.code(statusCode).send(body);
 };
 
-const version = (_, reply) => {
-  const { version: versionName } = appData;
-  const [versionCode] = versionName.split(".");
+const versionHandler = (_, reply) => {
+  const { version } = appData;
+  const [versionCode] = version.split(".");
   const versionShort = `v${versionCode}`;
-  reply.send({ version: versionName, versionShort });
+  reply.send({ version, versionShort });
 };
 
-module.exports = { health, items, version };
+export {
+  healthHandler as health,
+  itemsHandler as items,
+  versionHandler as version
+};
+
+export default {
+  health: healthHandler,
+  items: itemsHandler,
+  version: versionHandler
+};
