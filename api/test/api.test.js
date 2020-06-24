@@ -63,3 +63,16 @@ describe("Test version endpoint", () => {
         });
     });
 });
+
+describe("Test invalid endpoint", () => {
+    test("Invalid endpoint response has status code 404", done => {
+        api.inject({
+            method: 'GET',
+            url: '/invalid'
+        }).then(response => {
+            const { statusCode } = response;
+            expect(statusCode).toBe(404);
+            done();
+        });
+    });
+});

@@ -2,12 +2,11 @@ import schemas from "./schemas";
 
 import appData from "../package.json";
 import testData from "../data.json";
+import * as HttpStatus from 'http-status-codes'
 
 import {
   FindInvalidQueryParams,
 } from './queryHelpers';
-
-var HttpStatus = require('http-status-codes');
 
 const ITEMS_PARAM_WHITELIST = [
   'code',
