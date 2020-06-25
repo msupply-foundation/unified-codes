@@ -1,6 +1,7 @@
 {
   "set": [
     {
+      "description": "Amoxicillin",
       "code": "QFWR9789",
       "type": "medicinal_product",
       "has_property": [
@@ -13,9 +14,11 @@
           "value": "6.2.1 Beta-lactam medicines"
         },
         {
+          "description": "Oral dose forms",
           "type": "form_category",
-          "has_property": [
+          "has_child": [
             {
+              "description": "Capsule",
               "type": "form",
               "has_child": [
                 {
@@ -71,6 +74,85 @@
                           "value": "0.0235"
                         }
                       ]
+                    },
+                    {
+                      "code": "DF2947TL",
+                      "type": "pack",
+                      "value": "100",
+                      "has_property": [
+                        {
+                          "type": "brand",
+                          "value": "Ambionica",
+                          "has_property": [
+                            {
+                              "type": "GS1",
+                              "value": "294719487329872"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "brand",
+                          "value": "Amofix",
+                          "has_property": [
+                            {
+                              "type": "GS1",
+                              "value": "24329472982347"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "usd_benchmark_price",
+                          "value": "0.0235"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "description": "Tablet",
+              "type": "form",
+              "has_child": [
+                {
+                  "code": "368C74BE",
+                  "type": "strength",
+                  "value": "500mg",
+                  "has_property": [
+                    {
+                      "type": "RxNorm RxCUI",
+                      "value": "C0974350"
+                    },
+                    {
+                      "type": "ddd_factor",
+                      "value": "2"
+                    }
+                  ],
+                  "has_child": [
+                    {
+                      "code": "DF2947SL",
+                      "type": "pack",
+                      "value": "30",
+                      "has_property": [
+                        {
+                          "type": "brand",
+                          "value": "Trimox",
+                          "has_property": [
+                            {
+                              "type": "manufacturer",
+                              "value": "Mapra Laboratories Pvt Ltd"
+                            },
+                            {
+                              "type": "GS1",
+                              "value": "294719487329856"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "usd_benchmark_price",
+                          "value": "0.88"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -109,6 +191,75 @@
         {
           "type": "atc_code",
           "value": "J01CA04"
+        }
+      ]
+    },
+    {
+      "description": "Paracetamol",
+      "code": "GH89P98W",
+      "type": "medicinal_product",
+      "has_property": [
+        {
+          "type": "ddd",
+          "value": "3g"
+        },
+        {
+          "type": "atc_code",
+          "value": "N02BE01"
+        },
+        {
+          "description": "Oral dose forms",
+          "type": "form_category",
+          "has_child": [
+            {
+              "description": "Tablet",
+              "type": "form",
+              "has_child": [
+                {
+                  "code": "5589F4BF",
+                  "type": "strength",
+                  "value": "300mg",
+                  "has_property": [
+                    {
+                      "type": "RxNorm RxCUI",
+                      "value": "C0974350"
+                    },
+                    {
+                      "type": "ddd_factor",
+                      "value": "2"
+                    }
+                  ],
+                  "has_child": [
+                    {
+                      "code": "DF2947SL",
+                      "type": "pack",
+                      "value": "30",
+                      "has_property": [
+                        {
+                          "type": "brand",
+                          "value": "Trimox",
+                          "has_property": [
+                            {
+                              "type": "manufacturer",
+                              "value": "Mapra Laboratories Pvt Ltd"
+                            },
+                            {
+                              "type": "GS1",
+                              "value": "294719487329856"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "usd_benchmark_price",
+                          "value": "0.88"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     }
