@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "fastify": "^2.14.1",
-    "fluent-schema": "^1.0.3"
+    "fluent-schema": "^1.0.3",
+    "http-status-codes": "^1.4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.3",

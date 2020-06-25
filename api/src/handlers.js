@@ -2,11 +2,21 @@ import schemas from "./schemas";
 
 import appData from "../package.json";
 import testData from "../data.json";
+import * as HttpStatus from 'http-status-codes'
 
-const STATUS_CODES = {
-  OK: 200,
-  NOT_FOUND: 404,
-}
+import {
+  FindInvalidQueryParams,
+} from './queryHelpers';
+
+const ITEMS_PARAM_WHITELIST = [
+  'code',
+  'exact',
+  'fields',
+  'fuzzy',
+  'inclusive',
+  'name',
+  'search',
+];
 
 const healthHandler = (_, reply) => {
   const [response] = Object.values(schemas.health.response);
@@ -21,14 +31,21 @@ const healthHandler = (_, reply) => {
 const itemsHandler = (request, reply) => {
   const { query } = request;
   const { code } = query;
-  if (code) {
+
+  const badQueryParams = FindInvalidQueryParams(query, ITEMS_PARAM_WHITELIST);
+  if (badQueryParams.length) {
+    const statusCode = HttpStatus.BAD_REQUEST;
+    const body = `There are invalid query parameters in the request URL: '${String(badQueryParams)}'`
+    reply.code(statusCode).send(body);
+  }
+  else if (code) {
     const isValidCode = Object.keys(testData).includes(code);
-    const statusCode = isValidCode ? STATUS_CODES.OK : STATUS_CODES.NOT_FOUND;
+    const statusCode = isValidCode ? HttpStatus.OK : HttpStatus.NOT_FOUND;
     const body =
       isValidCode ? { code, name: testData[code] } : { error: `No item with code ${code}` };
     reply.code(statusCode).send(body);
   } else {
-    const statusCode = STATUS_CODES.OK;
+    const statusCode = HttpStatus.OK;
     const body = Object.entries(testData).map(([key, value]) => ({ code: key, name: value }));
     reply.code(statusCode).send(body);
   }

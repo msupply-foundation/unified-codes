@@ -25,6 +25,18 @@ describe("Test items endpoint", () => {
         });
     });
 
+    test("Items endpoint with invalid params has status code 400", done => {
+        api.inject({
+            method: 'GET',
+            url: '/items',
+            query: ({ badQuery: 'invalidData' })
+        }).then(response => {
+            const { statusCode } = response;
+            expect(statusCode).toBe(400);
+            done();
+        });
+    });
+
 });
 
 describe("Test version endpoint", () => {
@@ -47,6 +59,19 @@ describe("Test version endpoint", () => {
             const body = response.json();
             expect(body).toHaveProperty('version');
             expect(body).toHaveProperty('versionShort');
+            done();
+        });
+    });
+});
+
+describe("Test invalid endpoint", () => {
+    test("Invalid endpoint response has status code 404", done => {
+        api.inject({
+            method: 'GET',
+            url: '/invalid'
+        }).then(response => {
+            const { statusCode } = response;
+            expect(statusCode).toBe(404);
             done();
         });
     });
