@@ -1,0 +1,116 @@
+{
+  "set": [
+    {
+      "code": "QFWR9789",
+      "type": "medicinal_product",
+      "has_property": [
+        {
+          "type": "ddd",
+          "value": "1g"
+        },
+        {
+          "type": "who_eml_code",
+          "value": "6.2.1 Beta-lactam medicines"
+        },
+        {
+          "type": "form_category",
+          "has_property": [
+            {
+              "type": "form",
+              "has_child": [
+                {
+                  "code": "368C74BF",
+                  "type": "strength",
+                  "value": "250mg",
+                  "has_property": [
+                    {
+                      "type": "RxNorm RxCUI",
+                      "value": "308182"
+                    },
+                    {
+                      "type": "ddd_factor",
+                      "value": "4"
+                    }
+                  ],
+                  "has_child": [
+                    {
+                      "code": "DF2947SK",
+                      "type": "pack",
+                      "value": "30",
+                      "has_property": [
+                        {
+                          "type": "brand",
+                          "value": "Wymox",
+                          "has_property": [
+                            {
+                              "type": "manufacturer",
+                              "value": "Pfizer Ltd"
+                            },
+                            {
+                              "type": "GS1",
+                              "value": "294719487329872"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "brand",
+                          "value": "Almox",
+                          "has_property": [
+                            {
+                              "type": "manufacturer",
+                              "value": "Alkem Laboratories Ltd"
+                            },
+                            {
+                              "type": "GS1",
+                              "value": "294719487329872"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "usd_benchmark_price",
+                          "value": "0.0235"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin Anhydrous"
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin trihydrate",
+          "has_property": [
+            {
+              "type": "unspc_code",
+              "value": "51281712"
+            }
+          ]
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin sodium",
+          "has_property": [
+            {
+              "type": "usfda_code",
+              "value": "544Y3K6MYH"
+            }
+          ]
+        },
+        {
+          "type": "drugbank_code",
+          "value": "DB01060"
+        },
+        {
+          "type": "atc_code",
+          "value": "J01CA04"
+        }
+      ]
+    }
+  ]
+}

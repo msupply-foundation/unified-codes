@@ -1,0 +1,19 @@
+type Entity {
+  code
+  description
+  type
+  has_property
+  has_child
+}
+
+type Property {
+  type
+  value
+}
+
+code: string @index(exact, fulltext).
+description: string @index(trigram).
+type: string .
+value: string .
+has_property: [uid] .
+has_child: [uid] .
