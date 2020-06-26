@@ -1,12 +1,15 @@
 import schemas from "./schemas";
 
 import appData from "../package.json";
-import testData from "../data.json";
 import * as HttpStatus from 'http-status-codes'
 
 import {
-  FindInvalidQueryParams,
+  FindInvalidQueryParams, 
+  PrepareDgraphItemQuery,
+  DGraphResponseMap,
 } from './queryHelpers';
+
+const dgraph = require("dgraph-js-http");
 
 const ITEMS_PARAM_WHITELIST = [
   'code',
@@ -38,16 +41,21 @@ const itemsHandler = (request, reply) => {
     const body = `There are invalid query parameters in the request URL: '${String(badQueryParams)}'`
     reply.code(statusCode).send(body);
   }
-  else if (code) {
-    const isValidCode = Object.keys(testData).includes(code);
-    const statusCode = isValidCode ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    const body =
-      isValidCode ? { code, name: testData[code] } : { error: `No item with code ${code}` };
-    reply.code(statusCode).send(body);
-  } else {
-    const statusCode = HttpStatus.OK;
-    const body = Object.entries(testData).map(([key, value]) => ({ code: key, name: value }));
-    reply.code(statusCode).send(body);
+  else {
+    const clientStub = new dgraph.DgraphClientStub(
+      "http://localhost:8080",
+      false
+    );
+    const dgraphClient = new dgraph.DgraphClient(clientStub);
+    const dGraphQuery = PrepareDgraphItemQuery(query);
+    const txn = dgraphClient.newTxn();
+  
+    const res = txn.query(dGraphQuery).then((res) => {
+      const { data }  = res;
+      const mappedResponse = DGraphResponseMap(data);
+  
+      reply.code(HttpStatus.OK).send(mappedResponse);
+    });
   }
 };
 

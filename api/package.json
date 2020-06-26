@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dgraph-js-http": "^20.7.0-rc1",
     "fastify": "^2.14.1",
     "fluent-schema": "^1.0.3",
     "http-status-codes": "^1.4.0"
