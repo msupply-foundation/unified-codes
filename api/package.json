@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d lib",
+    "start": "nodemon ./lib/server.js",
     "test": "jest"
   },
   "author": "",
@@ -22,6 +23,7 @@
     "@babel/preset-env": "^7.10.3",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
+    "nodemon": "^2.0.4",
     "prettier": "2.0.5",
     "pretty-quick": "^2.0.1",
     "supertest": "^4.0.2"
