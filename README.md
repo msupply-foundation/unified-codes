@@ -8,6 +8,8 @@
 
 ## Usage
 
+Note: Prior to running the shell scripts you may have to allow execute permission: `chmod +x alter.sh mutate.sh init.sh`
+
 ### Update graph schema
 
 ```
@@ -24,6 +26,13 @@
 
 ```
 ./query.sh ./query.gql
+```
+
+### Initialise Sample Database
+This will create a sample schema and populate data for you. Great if you want to get up and running quickly!
+
+```
+./init.sh
 ```
 
 ## Examples
