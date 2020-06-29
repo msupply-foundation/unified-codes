@@ -62,7 +62,5 @@ export const PrepareDgraphItemQuery = (queryParams) => {
  *   name: Amoxicillin & clavulanic acid 125mg &31.25mg /5mL oral liquid"
  * }
  */
-export const DGraphResponseMap = (responseData) => {
-  console.warn('responseData', responseData);
-  return [{ code: '1', name: 'test:one' }]; //Object.entries(testData).map(([key, value]) => ({ code: key, name: value }));
-};
+export const DGraphResponseMap = (responseData) =>
+  responseData?.find?.map((item) => ({ code: item.code, name: item.description })) || [];
