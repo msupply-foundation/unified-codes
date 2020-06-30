@@ -106,17 +106,14 @@ export const DGraphResponseMap = (responseData) =>
     // Second Level (Dose Forms)
     if (item.has_property)
     {
-      const doseForms = item.has_property[0].has_child;
-      for (let i = 0; i < doseForms.length; i++) {
-        // Third Level (Unit of Use)
-        const unitOfUse = item.has_property[0].has_child[i].has_child; 
-        for (let j = 0; j < unitOfUse.length; j++) {
+      item.has_property[0].has_child.forEach((doseForms) => {
+        doseForms.has_child.forEach((unitOfUse) => {
           resp.push({ 
-            code: item.has_property[0].has_child[i].has_child[j].code,
-            name: item.description.concat(' ', item.has_property[0].has_child[i].description, ' ', item.has_property[0].has_child[i].has_child[j].value)
+            code: unitOfUse.code,
+            name: item.description.concat(' ', doseForms.description, ' ', unitOfUse.value)
           });
-        }
-      }
+        });
+      });
     }
   });
   return resp;
