@@ -18,31 +18,61 @@ export const FindInvalidQueryParams = (queryParams, whiteList) =>
 export const PrepareDgraphItemQuery = (queryParams) => {
   const { code } = queryParams;
   const { search } = queryParams;
-  const fieldsToRequest = `{	
-    code
-    description
-    type
-    value
-    has_property
-    has_child
-  }`;
 
   if (code) {
     return `{
-        find_by_code(func: eq(code, ${code})) @recurse(depth: 9)
-        ${fieldsToRequest}
-      }`;
+      find(func: has(code)) @cascade
+      {	
+        description
+        has_property @filter(eq(type,"form_category")){
+          has_child @filter(eq(type,"form")) {
+            description 
+            has_child @filter(eq(code,${code})) {
+              code 
+              value
+            }
+          }
+        }
+      }
+    }`;
   } else if (search) {
+    // Currently this will only match at product level node
     return `{
-        find_by_description(func: eq(description, ${search})) @recurse(depth:9)
-        ${fieldsToRequest}
-      }`;
+      find(func: eq(description, ${search})) 
+      {	
+        code
+        description
+        has_property @filter(eq(type,"form_category")){
+          has_child @filter(eq(type,"form")) {
+            description 
+            has_child @filter(eq(type,"strength")) {
+              code 
+              value
+            }
+          }
+        }
+      }
+    }`;
   } else {
-    // Default to return all medicinal products
+    // Default to return all medicinal products that have codes
     return `{
-          find(func: has(code) ) @recurse(depth: 9) @filter(eq(type,"medicinal_product"))
-          ${fieldsToRequest}
-      }`;
+      find(func: has(code)) @filter(eq(type,"medicinal_product")) 
+      {
+        {	
+          code 
+          description
+          has_property @filter(eq(type,"form_category")){
+            has_child @filter(eq(type,"form")) {
+              description 
+              has_child @filter(eq(type,"strength")) {
+                code 
+                value
+              }
+            }
+          }
+        }
+      }
+    }`;
   }
 };
 

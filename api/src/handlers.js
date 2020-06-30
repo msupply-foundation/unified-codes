@@ -18,7 +18,6 @@ const healthHandler = (_, reply) => {
 
 const itemsHandler = (request, reply) => {
   const { query } = request;
-  const { code } = query;
   const badQueryParams = FindInvalidQueryParams(query, ITEMS_PARAM_WHITELIST);
   if (badQueryParams.length) {
     const statusCode = HttpStatus.BAD_REQUEST;
