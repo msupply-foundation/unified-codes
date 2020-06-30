@@ -25,6 +25,7 @@ export const PrepareDgraphItemQuery = (queryParams) => {
       {	
         description
         has_property @filter(eq(type,"form_category")){
+          description
           has_child @filter(eq(type,"form")) {
             description 
             has_child @filter(eq(code,${code})) {
@@ -62,6 +63,7 @@ export const PrepareDgraphItemQuery = (queryParams) => {
           code 
           description
           has_property @filter(eq(type,"form_category")){
+            description
             has_child @filter(eq(type,"form")) {
               description 
               has_child @filter(eq(type,"strength")) {
@@ -93,4 +95,29 @@ export const PrepareDgraphItemQuery = (queryParams) => {
  * }
  */
 export const DGraphResponseMap = (responseData) =>
-  responseData?.find?.map((item) => ({ code: item.code, name: item.description })) || [];
+{
+  let resp  = []; 
+  responseData?.find?.forEach((item) => {
+    // Top Level (Medicinal Product)
+    if (item.code){
+      resp.push({ code: item.code, name: item.description});
+    }
+    
+    // Second Level (Dose Forms)
+    if (item.has_property)
+    {
+      const doseForms = item.has_property[0].has_child;
+      for (let i = 0; i < doseForms.length; i++) {
+        // Third Level (Unit of Use)
+        const unitOfUse = item.has_property[0].has_child[i].has_child; 
+        for (let j = 0; j < unitOfUse.length; j++) {
+          resp.push({ 
+            code: item.has_property[0].has_child[i].has_child[j].code,
+            name: item.description.concat(' ', item.has_property[0].has_child[i].description, ' ', item.has_property[0].has_child[i].has_child[j].value)
+          });
+        }
+      }
+    }
+  });
+  return resp;
+}
