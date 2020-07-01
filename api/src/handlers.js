@@ -25,7 +25,7 @@ const itemsHandler = (request, reply) => {
     reply.code(statusCode).send(body);
   } else {
     const dgraphClient = new DgraphClient(
-      new DgraphClientStub('http://localhost:8080', false)
+      new DgraphClientStub('http://localhost:8080')
     );
     const txn = dgraphClient.newTxn();
     txn.query(mapRequest(request)).then((response) => {
