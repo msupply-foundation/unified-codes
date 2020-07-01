@@ -29,9 +29,8 @@ const itemsHandler = (request, reply) => {
       new DgraphClientStub('http://localhost:8080')
     );
     const txn = dgraphClient.newTxn();
-    txn.query(mapRequest(request)).then((response) => {
-      const { data } = response;
-      reply.code(HTTP_OK).send(mapResponse(data));
+    txn.query(mapRequest(request)).then(response => {
+      reply.code(HTTP_OK).send(mapResponse(response));
     });
   }
 };

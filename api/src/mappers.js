@@ -27,8 +27,8 @@ export const parseRequest = (request) => {
 /**
  * Map API request to GraphQL+- payload. Query parameters are assumed valid.
  *
- * @param  {Object} requestParams Request URL query params from REST api request.
- * @return {String}               GraphQL+- response from Dgraph server.
+ * @param  {Object} request REST api request.
+ * @return {String}         GraphQL+- response from Dgraph server.
  */
 export const mapRequest = (request) => {
   const { query } = request;
@@ -36,7 +36,7 @@ export const mapRequest = (request) => {
 
   if (code) {
     return `{
-      find(func: has(code)) @filter(eq(code, ${code}))
+      query(func: has(code)) @filter(eq(code, ${code}))
       {	
         code
         description
@@ -44,7 +44,7 @@ export const mapRequest = (request) => {
     }`;
   } else if (search) {
     return `{
-      find(func: has(code)) @filter(allofterms(description, "${search}")) {
+      query(func: has(code)) @filter(allofterms(description, "${search}")) {
         code
         description
       }
@@ -52,7 +52,7 @@ export const mapRequest = (request) => {
   } else {
     // Default to all unit of use entities
     return `{
-      find(func: has(code)) @filter(eq(type,"unit_of_use")) {
+      query(func: has(code)) @filter(eq(type,"unit_of_use")) {
         code
         description
       }
@@ -64,8 +64,9 @@ export const mapRequest = (request) => {
  *
  * Map Dgraph response to valid v1 API JSON payload.
  *
- * @param  {Object} responseData Dgraph GraphQL+- response.
- * @return {Object}              JSON object complying to v1 schema.
+ * @param  {Object} request  GraphQL+- request sent to Dgraph server.
+ * @param  {Object} response GraphQL+- response received from Dgraph server.
+ * @return {Object}          JSON object complying to v1 schema.
  *
  * Example response format:
  *
@@ -80,5 +81,14 @@ export const mapRequest = (request) => {
  *   }
  * ]
  */
-export const mapResponse = (responseData) =>
-  JSON.stringify(responseData?.find.map(({ code, description }) => ({ code, name: description })) ?? []);
+export const mapResponse = (response) => {
+  const { data } = response;
+  if (data.length - 1) {
+    return JSON.stringify(
+      data?.query.map(({ code, description }) => ({ code, name: description })) ?? []
+    );
+  } else {
+    const [{ code, description }] = data?.query ?? [];
+    return JSON.stringify({ code, name: description });
+  }
+};
