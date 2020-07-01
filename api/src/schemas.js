@@ -8,9 +8,8 @@ const healthSchema = {
 
 const itemsSchema = {
   queryString: S.object().prop("code", S.string()),
-  // Successful response can be object or array, but using S.oneOf() here causes 
-  // fastify to barf!
   response: {
+    200: S.object(),
     404: S.object().prop("error", S.string()),
   },
 };
