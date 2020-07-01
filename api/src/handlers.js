@@ -1,13 +1,14 @@
 import { DgraphClient, DgraphClientStub } from 'dgraph-js-http';
 import { OK as HTTP_OK, BAD_REQUEST as HTTP_BAD_REQUEST } from 'http-status-codes';
 
-import schemas from './schemas';
 import appData from '../package.json';
 
+import { health as healthSchema } from './schemas';
 import { parseRequest, mapRequest, mapResponse } from './mappers';
 
 const healthHandler = (_, reply) => {
-  const [response] = Object.values(schemas.health.response);
+  const { response: responseSchema } = healthSchema;
+  const [response] = Object.values(responseSchema);
   const responseKeys = Object.keys(response.properties);
   const responseValues = responseKeys.reduce((acc, key) => ({ ...acc, [key]: 'OK' }), {});
   reply.send(responseValues);
