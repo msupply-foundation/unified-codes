@@ -28,7 +28,7 @@ export const parseRequest = (request) => {
  * Map API request to GraphQL+- payload. Query parameters are assumed valid.
  *
  * @param  {Object} request REST api request.
- * @return {String}         GraphQL+- response from Dgraph server.
+ * @return {String}         GraphQL+- request payload for Dgraph server.
  */
 export const mapRequest = (request) => {
   const { query } = request;
@@ -64,7 +64,6 @@ export const mapRequest = (request) => {
  *
  * Map Dgraph response to valid v1 API JSON payload.
  *
- * @param  {Object} request  GraphQL+- request sent to Dgraph server.
  * @param  {Object} response GraphQL+- response received from Dgraph server.
  * @return {Object}          JSON object complying to v1 schema.
  *
