@@ -1,13 +1,10 @@
+import { DgraphClient, DgraphClientStub } from 'dgraph-js-http';
+import { OK as HTTP_OK, BAD_REQUEST as HTTP_BAD_REQUEST } from 'http-status-codes';
+
 import schemas from './schemas';
-
 import appData from '../package.json';
-import * as HttpStatus from 'http-status-codes';
 
-import { FindInvalidQueryParams, PrepareDgraphItemQuery, DGraphResponseMap } from './queryHelpers';
-
-const dgraph = require('dgraph-js-http');
-
-const ITEMS_PARAM_WHITELIST = ['code', 'exact', 'fields', 'fuzzy', 'inclusive', 'name', 'search'];
+import { parseRequest, mapRequest, mapResponse } from './mappers';
 
 const healthHandler = (_, reply) => {
   const [response] = Object.values(schemas.health.response);
@@ -17,24 +14,23 @@ const healthHandler = (_, reply) => {
 };
 
 const itemsHandler = (request, reply) => {
-  const { query } = request;
-  const badQueryParams = FindInvalidQueryParams(query, ITEMS_PARAM_WHITELIST);
-  if (badQueryParams.length) {
-    const statusCode = HttpStatus.BAD_REQUEST;
+  const { parameters } = parseRequest(request);
+  const { invalid: invalidParameters } = parameters;
+  const isValidRequest = invalidParameters.length > 0;
+  if (isValidRequest) {
+    const statusCode = HTTP_BAD_REQUEST;
     const body = `There are invalid query parameters in the request URL: '${String(
-      badQueryParams
+      invalidParameters
     )}'`;
     reply.code(statusCode).send(body);
   } else {
-    const clientStub = new dgraph.DgraphClientStub('http://localhost:8080', false);
-    const dgraphClient = new dgraph.DgraphClient(clientStub);
-    const dGraphQuery = PrepareDgraphItemQuery(query);
+    const dgraphClient = new DgraphClient(
+      new DgraphClientStub('http://localhost:8080', false)
+    );
     const txn = dgraphClient.newTxn();
-    const res = txn.query(dGraphQuery).then((res) => {
-      const { data } = res;
-      const mappedResponse = DGraphResponseMap(data);
-
-      reply.code(HttpStatus.OK).send(mappedResponse);
+    txn.query(mapRequest(request)).then((response) => {
+      const { data } = response;
+      reply.code(HTTP_OK).send(mapResponse(data));
     });
   }
 };
