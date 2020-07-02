@@ -56,8 +56,10 @@
         _:unitOfUse1 <type> "unit_of_use" .
         _:unitOfUse1 <code> "368C74BF" .
         _:pack1 <description> "Amoxicillin oral capsule 250mg x 30" .
-        _:pack1 <type> "pack_size" .
+        _:pack1 <type> "product_pack" .
         _:pack1 <code> "DF2947SK" .
+        _:packSize1 <type> "pack_size" .
+        _:packSize1 <code> "30" .
 
         _:prod1 <has_property> _:value1 .
         _:prod1 <has_property> _:prop1 .
@@ -78,6 +80,7 @@
         _:unitOfUse1 <has_property> _:prop10 .
         _:unitOfUse1 <has_child> _:pack1 .
 
+        _:pack1 <has_property> _:packSize1 .
         _:pack1 <has_property> _:prop11 .
         _:pack1 <has_property> _:brand1 .
         _:pack1 <has_property> _:brand2 .
