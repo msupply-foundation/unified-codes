@@ -82,12 +82,7 @@ export const mapRequest = (request) => {
  */
 export const mapResponse = (response) => {
   const { data } = response;
-  if (data.length - 1) {
-    return JSON.stringify(
-      data?.query.map(({ code, description }) => ({ code, name: description })) ?? []
-    );
-  } else {
-    const [{ code, description }] = data?.query ?? [];
-    return JSON.stringify({ code, name: description });
-  }
+  const { query } = data || {};
+
+  return JSON.stringify(query?.map(({ code, description }) => ({ code, name: description })) ?? []);
 };
