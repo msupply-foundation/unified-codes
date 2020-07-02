@@ -15,7 +15,13 @@
         },
         {
           "type": "drugbank_code",
-          "value": "DB01060"
+          "value": "DB01060",
+          "has_property": [
+            {
+              "type": "source",
+              "value": "https://drugbank.ca/drugs/" 
+            }
+          ]
         },
         {
           "type": "atc_code",
@@ -50,6 +56,12 @@
         {
           "description": "Amoxicillin oral",
           "type": "form_category",
+          "has_property": [
+            {
+                "value": "350162003",
+                "type": "SnoMED CT"
+            }
+          ],
           "has_child": [
             {
               "description": "Amoxicillin oral capsule",
