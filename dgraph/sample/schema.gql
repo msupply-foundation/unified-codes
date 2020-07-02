@@ -9,6 +9,7 @@ type Entity {
 type Property {
   type
   value
+  has_property 
 }
 
 code: string @index(exact, fulltext).
