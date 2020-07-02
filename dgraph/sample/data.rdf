@@ -29,6 +29,10 @@
         _:prop10 <type> "ddd_factor" .
         _:prop11 <value> "0.0235" .
         _:prop11 <type> "usd_benchmark_price" .
+        _:prop12 <value> "350162003" .
+        _:prop12 <type> "SnoMED CT" .
+        _:prop13 <value> "https://drugbank.ca/drugs/" .
+        _:prop13 <type> "source" .
 
         _:brand1 <value> "Almox" .
         _:brand1 <type> "brand" .
@@ -43,17 +47,21 @@
         _:man2 <value> "Pfizer Ltd" .
         _:man2 <type> "manufacturer" .
 
-        _:formcat1 <description> "Oral dose forms" .
+        _:formcat1 <code> "AMOX0R47" .
+        _:formcat1 <description> "Amoxicillin oral" .
         _:formcat1 <type> "form_category" .
 
-        _:form1 <description> "Capsule" .
+        _:form1 <code> "AMOX0C4P" .
+        _:form1 <description> "Amoxicillin oral capsule" .
         _:form1 <type> "form" .
-        _:strength1 <value> "250mg" .
-        _:strength1 <type> "strength" .
-        _:strength1 <code> "368C74BF" .
-        _:pack1 <value> "30" .
-        _:pack1 <type> "pack" .
+        _:unitOfUse1 <description> "Amoxicillin oral capsule 250mg" .
+        _:unitOfUse1 <type> "unit_of_use" .
+        _:unitOfUse1 <code> "368C74BF" .
+        _:pack1 <description> "Amoxicillin oral capsule 250mg x 30" .
+        _:pack1 <type> "product_pack" .
         _:pack1 <code> "DF2947SK" .
+        _:packSize1 <type> "pack_size" .
+        _:packSize1 <code> "30" .
 
         _:prod1 <has_property> _:value1 .
         _:prod1 <has_property> _:prop1 .
@@ -64,14 +72,17 @@
         _:prod1 <has_property> _:prop6 .
         _:prop4 <has_property> _:prop7 .
         _:prop5 <has_property> _:prop8 .
+        _:prop6 <has_property> _:prop13 .
 
-        _:prod1 <has_property> _:formcat1 .
-        _:formcat1 <has_property> _:form1 .
-        _:form1 <has_child> _:strength1 .
-        _:strength1 <has_property> _:prop9 .
-        _:strength1 <has_property> _:prop10 .
-        _:strength1 <has_child> _:pack1 .
+        _:prod1 <has_child> _:formcat1 .
+        _:formcat1 <has_child> _:form1 .
+        _:formcat1 <has_property> _:prop12 .
+        _:form1 <has_child> _:unitOfUse1 .
+        _:unitOfUse1 <has_property> _:prop9 .
+        _:unitOfUse1 <has_property> _:prop10 .
+        _:unitOfUse1 <has_child> _:pack1 .
 
+        _:pack1 <has_property> _:packSize1 .
         _:pack1 <has_property> _:prop11 .
         _:pack1 <has_property> _:brand1 .
         _:pack1 <has_property> _:brand2 .
