@@ -54,6 +54,7 @@
       ],
       "has_child": [
         {
+          "code": "AMOX0R47",
           "description": "Amoxicillin oral",
           "type": "form_category",
           "has_property": [
@@ -64,6 +65,7 @@
           ],
           "has_child": [
             {
+              "code": "AMOX0C4P",
               "description": "Amoxicillin oral capsule",
               "type": "form",
               "has_child": [

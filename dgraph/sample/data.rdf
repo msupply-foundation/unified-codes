@@ -47,9 +47,11 @@
         _:man2 <value> "Pfizer Ltd" .
         _:man2 <type> "manufacturer" .
 
+        _:formcat1 <code> "AMOX0R47" .
         _:formcat1 <description> "Amoxicillin oral" .
         _:formcat1 <type> "form_category" .
 
+        _:form1 <code> "AMOX0C4P" .
         _:form1 <description> "Amoxicillin oral capsule" .
         _:form1 <type> "form" .
         _:unitOfUse1 <description> "Amoxicillin oral capsule 250mg" .
