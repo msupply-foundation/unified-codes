@@ -10,18 +10,16 @@ const PARAMETERS = {
  * @return {Object}                  Object containing valid and invalid parameters.
  */
 export const parseRequest = (request) => {
-  const { url } = request;
-  const whitelist = PARAMETERS[url];
-  const { params } = request;
-  return Object.keys(params).reduce(
-    ({ parameters }, param) => {
-      const { valid: validParameters, invalid: invalidParameters } = parameters;
-      if (whitelist.includes(param))
-        return { parameters: { valid: { ...validParameters, param }, invalid: invalidParameters } };
-      return { parameters: { valid: validParameters, invalid: { ...invalidParameters, param } } };
+  const { url } = request.raw;
+  const whitelist = PARAMETERS[url.split('?')[0]];
+  const { query } = request;
+
+  return {
+    parameters: {
+      valid: Object.keys(query).filter((param) => whitelist.includes(param)),
+      invalid: Object.keys(query).filter((param) => !whitelist.includes(param)),
     },
-    { parameters: { valid: [], invalid: [] } }
-  );
+  };
 };
 
 /**
