@@ -84,5 +84,15 @@ export const mapResponse = (response) => {
   const { data } = response;
   const { query } = data || {};
 
-  return JSON.stringify(query?.map(({ code, description }) => ({ code, name: description })) ?? []);
+  if (!query || !query.length) {
+    return {};
+  }
+
+  // only return an array if there is more than one result
+  if (query.length - 1) {
+    return JSON.stringify(query.map(({ code, description }) => ({ code, name: description })));
+  }
+
+  const [{ code, description }] = query;
+  return JSON.stringify({ code, name: description });
 };

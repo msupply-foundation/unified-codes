@@ -30,7 +30,82 @@
           "value": "J01CA04"
         }
       ],
-      "has_child": []
+      "has_child": [
+        {
+          "description": "Amoxicillan oral",
+          "type": "form_category",
+          "has_property": [
+            {
+              "type": "SnoMED CT",
+              "value": "350162003"
+            }
+          ],
+          "has_child": [
+            {
+              "description": "Amoxicillan oral capsule",
+              "type": "form",
+              "has_child": [
+                {
+                  "description": "Paracetamol oral capsule, 250mg",
+                  "code": "368c74bf",
+                  "type": "unit_of_use",
+                  "has_property": [
+                    {
+                      "type": "strength",
+                      "value": "250mg"
+                    },
+                    {
+                      "type": "RxNorm RxCUI",
+                      "value": "308182"
+                    },
+                    {
+                      "type": "ddd_factor",
+                      "value": "4"
+                    }
+                  ],
+                  "has_child": [
+                    {
+                      "description": "Amoxicillan oral capsule, 250mg x 100",
+                      "code": "DF2947SK",
+                      "type": "product_pack",
+                      "has_property": [
+                        {
+                          "type": "pack_size",
+                          "value": "100"
+                        },
+                        {
+                          "type": "brand",
+                          "value": "Ambionica",
+                          "has_property": [
+                            {
+                              "type": "GS1 Code",
+                              "value": "29471948329872"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "brand",
+                          "value": "Amofix",
+                          "has_property": [
+                            {
+                              "type": "GS1",
+                              "value": "294719487329856"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "usd_benchmark_price",
+                          "value": "0.0235"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "description": "Paracetamol",
