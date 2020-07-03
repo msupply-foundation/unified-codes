@@ -11,7 +11,8 @@ const PARAMETERS = {
  */
 export const parseRequest = (request) => {
   const { url } = request.raw;
-  const whitelist = PARAMETERS[url.split('?')[0]];
+  const [baseUrl] = url.split('?');
+  const whitelist = PARAMETERS[baseUrl];
   const { query } = request;
 
   return {
