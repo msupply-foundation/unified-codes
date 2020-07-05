@@ -1,5 +1,6 @@
-import api from "../src/api";
+import { apiResponses, graphResponses, data } from './fixtures';
 
+import api from '../src/api';
 import queries from '../src/queries';
 
 describe("Test health endpoint", () => {
