@@ -19,7 +19,11 @@ describe("Test health endpoint", () => {
 });
 
 describe("Test items endpoint", () => {
-    test("Items endpoint response has status code 200", done => {
+    test("Items endpoint with no params has status code 200", done => {
+        nock("http://localhost:8080")
+          .post('/query')
+          .query(queryObject => !!queryObject.timeout)
+          .reply(200, graphResponses.items.all);
         api.inject({
             method: 'GET',
             url: '/items'
