@@ -1,5 +1,7 @@
 import api from "../src/api";
 
+import queries from '../src/queries';
+
 describe("Test health endpoint", () => {
     test("Health endpoint response has status code 200", done => {
         api.inject({
