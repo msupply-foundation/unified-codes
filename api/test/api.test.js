@@ -1,3 +1,5 @@
+import nock from 'nock';
+
 import { apiResponses, graphResponses, data } from './fixtures';
 
 import api from '../src/api';
