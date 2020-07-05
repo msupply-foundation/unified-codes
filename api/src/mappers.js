@@ -1,3 +1,5 @@
+import { items as itemQueries } from './queries';
+
 const PARAMETERS = {
   '/items': ['code', 'exact', 'fields', 'fuzzy', 'inclusive', 'name', 'search'],
 };
@@ -32,31 +34,9 @@ export const parseRequest = (request) => {
 export const mapRequest = (request) => {
   const { query } = request;
   const { code, search } = query;
-
-  if (code) {
-    return `{
-      query(func: has(code)) @filter(eq(code, ${code}))
-      {	
-        code
-        description
-      }
-    }`;
-  } else if (search) {
-    return `{
-      query(func: has(code)) @filter(allofterms(description, "${search}")) {
-        code
-        description
-      }
-    }`;
-  } else {
-    // Default to all unit of use entities
-    return `{
-      query(func: has(code)) @filter(eq(type,"unit_of_use")) {
-        code
-        description
-      }
-    }`;
-  }
+  if (code) return { query: itemQueries.get, vars: { code } };
+  else if (search) return { query: itemQueries.search, vars: { search } };
+  else return { query: itemQueries.all, vars: {} };
 };
 
 /**
