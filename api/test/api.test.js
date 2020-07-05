@@ -66,7 +66,7 @@ describe('Test items endpoint', () => {
       .reply(200, (_, requestBody) => {
         const { query, variables } = requestBody;
         const validQuery = query === queries.items.get;
-        const validVariables = variables.code === code;
+        const validVariables = variables.$code === code;
         if (validQuery && validVariables) {
           return graphResponses.items[code];
         }

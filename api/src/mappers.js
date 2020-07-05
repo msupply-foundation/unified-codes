@@ -34,8 +34,8 @@ export const parseRequest = (request) => {
 export const mapRequest = (request) => {
   const { query } = request;
   const { code, search } = query;
-  if (code) return { query: itemQueries.get, vars: { code } };
-  else if (search) return { query: itemQueries.search, vars: { search } };
+  if (code) return { query: itemQueries.get, vars: { $code: code } };
+  else if (search) return { query: itemQueries.search, vars: { $search: search } };
   else return { query: itemQueries.all, vars: {} };
 };
 
