@@ -34,6 +34,48 @@ describe("Test items endpoint", () => {
         });
     });
 
+    test("Items endpoint with no params returns all items", done => {
+        nock('http://localhost:8080')
+            .post('/query')
+            .query(queryObject => !!queryObject.timeout)
+            .reply(200, graphResponses.items.all);
+        api.inject({
+            method: 'GET',
+            url: '/items',
+        }).then(response => {
+            const { body } = response;
+            expect(body).toBe(JSON.stringify(apiResponses.items.all));
+            done();
+        });
+    });
+
+    test("Items endpoint with valid code returns matching item", done => {
+        const { items } = data;
+        const [item] = items;
+        const { code } = item;
+
+        nock("http://localhost:8080")
+            .post('/query')
+            .query(queryObject => !!queryObject.timeout)
+            .reply(200, (_, requestBody) => {
+              const { query, variables } = requestBody;
+              const validQuery = query === queries.items.get;
+              const validVariables = variables.code === code;
+              if (validQuery && validVariables) {
+                return graphResponses.items[code];
+              }
+            });
+
+        api.inject({
+            method: 'GET',
+            url: `/items?code=${code}`
+        }).then(response => {
+            const { body } = response;
+            expect(body).toBe(JSON.stringify(apiResponses.items[code]));
+            done();
+        });
+    });
+
     test("Items endpoint with invalid params has status code 400", done => {
         api.inject({
             method: 'GET',
