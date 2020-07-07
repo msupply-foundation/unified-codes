@@ -1,20 +1,13 @@
-type Entity {
-  code
-  description
-  type
-  has_property
-  has_child
+type Entity @dgraph(type: "Entity") {
+    type: String! @dgraph(pred:"type") @search(by: [exact])
+    code: String @dgraph(pred:"code") @search(by: [exact])
+    description: String! @dgraph(pred:"description") @search(by: [term, exact, trigram])
+    properties: [Property] @dgraph(pred:"has_property")
+    child: [Entity] @dgraph(pred:"has_child")
 }
 
-type Property {
-  type
-  value
-  has_property 
+type Property @dgraph(type:"Property") {
+    type: String @dgraph(pred:"type")
+    value: String @dgraph(pred:"value")
+    properties: [Property] @dgraph(pred:"has_property")
 }
-
-code: string @index(exact, fulltext).
-description: string @index(exact, term, trigram) .
-type: string @index(exact) .
-value: string .
-has_property: [uid] .
-has_child: [uid] .
