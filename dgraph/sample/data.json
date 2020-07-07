@@ -28,11 +28,36 @@
         {
           "type": "atc_code",
           "value": "J01CA04"
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin Anhydrous"
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin trihydrate",
+          "has_property": [
+            {
+              "type": "unspc_code",
+              "value": "51281712"
+            }
+          ]
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin sodium",
+          "has_property": [
+            {
+              "type": "usfda_code",
+              "value": "544Y3K6MYH"
+            }
+          ]
         }
       ],
       "has_child": [
         {
-          "description": "Amoxicillan oral",
+          "code": "AMOX0R47",
+          "description": "Amoxicillin oral",
           "type": "form_category",
           "has_property": [
             {
@@ -42,12 +67,13 @@
           ],
           "has_child": [
             {
-              "description": "Amoxicillan oral capsule",
+              "code": "AMOX0C4P",
+              "description": "Amoxicillin oral capsule",
               "type": "form",
               "has_child": [
                 {
-                  "description": "Paracetamol oral capsule, 250mg",
-                  "code": "368c74bf",
+                  "description": "Amoxicillin oral capsule, 250mg",
+                  "code": "368C74BF",
                   "type": "unit_of_use",
                   "has_property": [
                     {
@@ -65,9 +91,91 @@
                   ],
                   "has_child": [
                     {
-                      "description": "Amoxicillan oral capsule, 250mg x 100",
                       "code": "DF2947SK",
                       "type": "product_pack",
+                      "description": "Amoxicillin oral capsule, 250mg x 100",
+                      "has_property": [
+                        {
+                          "type": "pack_size",
+                          "value": "100",
+                          "has_property": [
+                            {
+                              "type": "brand",
+                              "value": "Wymox",
+                              "has_property": [
+                                {
+                                  "type": "manufacturer",
+                                  "value": "Pfizer Ltd"
+                                },
+                                {
+                                  "type": "GS1",
+                                  "value": "294719487329872"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "brand",
+                              "value": "Almox",
+                              "has_property": [
+                                {
+                                  "type": "manufacturer",
+                                  "value": "Alkem Laboratories Ltd"
+                                },
+                                {
+                                  "type": "GS1",
+                                  "value": "294719487329872"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "brand",
+                              "value": "Ambionica",
+                              "has_property": [
+                                {
+                                  "type": "GS1 Code",
+                                  "value": "29471948329872"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "usd_benchmark_price",
+                          "value": "0.0235"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "description": "Amoxicillin oral tablet",
+              "type": "form",
+              "has_child": [
+                {
+                  "code": "368C74BE",
+                  "type": "unit_of_use",
+                  "description": "Amoxicillin oral tablet 500mg",
+                  "has_property": [
+                    {
+                      "type": "strength",
+                      "value": "500mg"
+                    },
+                    {
+                      "type": "RxNorm RxCUI",
+                      "value": "C0974350"
+                    },
+                    {
+                      "type": "ddd_factor",
+                      "value": "2"
+                    }
+                  ],
+                  "has_child": [
+                    {
+                      "code": "DF2947SL",
+                      "type": "product_pack",
+                      "description": "Amoxicillin oral tablet 500mg x 100",
                       "has_property": [
                         {
                           "type": "pack_size",
@@ -75,18 +183,12 @@
                         },
                         {
                           "type": "brand",
-                          "value": "Ambionica",
+                          "value": "Trimox",
                           "has_property": [
                             {
-                              "type": "GS1 Code",
-                              "value": "29471948329872"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "brand",
-                          "value": "Amofix",
-                          "has_property": [
+                              "type": "manufacturer",
+                              "value": "Mapra Laboratories Pvt Ltd"
+                            },
                             {
                               "type": "GS1",
                               "value": "294719487329856"
@@ -95,7 +197,7 @@
                         },
                         {
                           "type": "usd_benchmark_price",
-                          "value": "0.0235"
+                          "value": "0.88"
                         }
                       ]
                     }
