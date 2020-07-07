@@ -14,16 +14,22 @@
           "value": "6.2.1 Beta-lactam medicines"
         },
         {
-          "type": "unspc_code",
-          "value": "51281712"
-        },
-        {
-          "type": "usfda_code",
-          "value": "544Y3K6MYH"
-        },
-        {
           "type": "drugbank_code",
-          "value": "DB01060"
+          "value": "DB01060",
+          "has_property": [
+            {
+              "type": "source",
+              "value": "https://drugbank.ca/drugs/" 
+            }
+          ]
+        },
+        {
+          "type": "atc_code",
+          "value": "J01CA04"
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin Anhydrous"
         },
         {
           "type": "atc_code",
