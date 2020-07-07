@@ -171,6 +171,7 @@
               ]
             },
             {
+              "code": "AMOX0T4B",
               "description": "Amoxicillin oral tablet",
               "type": "form",
               "has_child" : [
@@ -250,6 +251,7 @@
           "type": "form_category",
           "has_child": [
             {
+              "code": "P4R40T4B",
               "description": "Paracetamol oral tablet",
               "type": "form",
               "has_child": [

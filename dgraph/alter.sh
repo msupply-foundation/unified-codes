@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-curl -X POST localhost:8080/admin/schema --data-binary "@$1"
+curl -H "Content-Type: application/graphql" "localhost:8080/admin/schema" -XPOST --data-binary "@$1"

@@ -3,11 +3,11 @@ type Entity @dgraph(type: "Entity") {
     code: String @dgraph(pred:"code") @search(by: [exact])
     description: String! @dgraph(pred:"description") @search(by: [term, exact, trigram])
     properties: [Property] @dgraph(pred:"has_property")
-    child: [Entity] @dgraph(pred:"has_child")
+    children: [Entity] @dgraph(pred:"has_child")
 }
 
 type Property @dgraph(type:"Property") {
-    type: String @dgraph(pred:"type")
-    value: String @dgraph(pred:"value")
+    type: String! @dgraph(pred:"type")
+    value: String! @dgraph(pred:"value")
     properties: [Property] @dgraph(pred:"has_property")
 }
