@@ -81,12 +81,17 @@ export const mapRequest = (request) => {
  */
 export const mapResponse = (response) => {
   const { data } = response;
-  if (data.length - 1) {
-    return JSON.stringify(
-      data?.query.map(({ code, description }) => ({ code, name: description })) ?? []
-    );
-  } else {
-    const [{ code, description }] = data?.query ?? [];
-    return JSON.stringify({ code, name: description });
+  const { query } = data || {};
+
+  if (!query || !query.length) {
+    return {};
   }
+
+  // only return an array if there is more than one result
+  if (query.length - 1) {
+    return JSON.stringify(query.map(({ code, description }) => ({ code, name: description })));
+  }
+
+  const [{ code, description }] = query;
+  return JSON.stringify({ code, name: description });
 };
