@@ -2,10 +2,10 @@ const PARAMETERS = {
   '/items': ['code', 'name', 'exact'],
 };
 
-const parseBool = val => {
-  const truthyValues = [ 'true', true ];
+const parseBool = (val) => {
+  const truthyValues = ['true', true];
   return truthyValues.includes(val);
-}
+};
 
 /**
  * Parse query parameters.
@@ -66,7 +66,7 @@ export const mapRequest = (request) => {
   } else {
     // Default to all unit of use entities
     return `{
-      query(func: has(code)) @filter(eq(type,"unit_of_use")) {
+      query(func: has(code)) @filter(eq(type, "unit_of_use")) {
         code
         description
       }
@@ -97,7 +97,5 @@ export const mapRequest = (request) => {
 export const mapResponse = (response) => {
   const { data } = response ?? {};
   const { query = [] } = data ?? {};
-  return JSON.stringify(
-    query.map(({ code, description }) => ({ code, name: description })) ?? []
-  );
+  return JSON.stringify(query.map(({ code, description }) => ({ code, name: description })) ?? []);
 };
