@@ -3,85 +3,147 @@ const formCategories = [
   {
     description: 'oral',
     type: 'form_category',
+    has_child: [
+      {
+        description: 'tablet',
+        has_child: [],
+        type: 'form',
+      },
+      {
+        description: 'capsule',
+        has_child: [],
+        type: 'form',
+      },
+      {
+        description: 'oral liquid',
+        has_child: [],
+        type: 'form',
+      },
+    ],
   },
   {
     description: 'injection',
     type: 'form_category',
+    has_child: [
+      {
+        description: 'injection',
+        has_child: [],
+        type: 'form',
+      },
+    ],
   },
   {
     description: 'topical',
     type: 'form_category',
+    has_child: [
+      {
+        description: 'ointment',
+        has_child: [],
+        type: 'form',
+      },
+      {
+        description: 'cream',
+        has_child: [],
+        type: 'form',
+      },
+    ],
   },
   {
     description: 'rectal',
     type: 'form_category',
+    has_child: [
+      {
+        description: 'suppository',
+        has_child: [],
+        type: 'form',
+      },
+    ],
   },
   {
     description: 'vaginal',
     type: 'form_category',
+    has_child: [
+      {
+        description: 'pessary',
+        type: 'form',
+        has_child: [],
+      },
+    ],
   },
   {
     description: 'inhalation',
     type: 'form_category',
-  },
-];
-const forms = [
-  {
-    description: 'tablet',
-    parent: 'oral',
-    type: 'form',
-  },
-  {
-    description: 'capsule',
-    parent: 'oral',
-    type: 'form',
-  },
-  {
-    description: 'oral liquid',
-    parent: 'oral',
-    type: 'form',
-  },
-  {
-    description: 'injection',
-    parent: 'injection',
-    type: 'form',
-  },
-  {
-    description: 'ointment',
-    parent: 'topical',
-    type: 'form',
-  },
-  {
-    description: 'suppository',
-    parent: 'rectal',
-    type: 'form',
+    has_child: [
+      {
+        description: 'inhalation (aerosol)',
+        has_child: [],
+        type: 'form',
+      },
+      {
+        description: 'nasal spray',
+        has_child: [],
+        type: 'form',
+      },
+    ],
   },
 ];
 
-exports.parse = (items) => {
-  items.forEach((item) => console.log(item));
+class Parser {
+  regexp = /(.*)(\d+[^ ]+)/;
+  forms = [];
+  constructor() {
+    Object.values(formCategories).forEach((category) => this.forms.push(...category.has_child));
+  }
 
-  const set = items.map((item) => ({
+  findForm = (item) => {
+    for (let i = 0; i < this.forms.length; i++) {
+      const form = this.forms[i];
+      const re = new RegExp(`${form.description}$`);
+
+      if (item.name.match(re)) {
+        form.has_child.push(this.transform(item));
+        return form;
+      }
+    }
+    return undefined;
+  };
+
+  transform = (item) => ({
     description: item.name,
     code: item.code,
     type: 'unit_of_use',
-  }));
+  });
 
-  const result = { set };
+  parse = (items) => {
+    const set = [];
 
-  return result;
-};
+    items.forEach((item) => {
+      const form = this.findForm(item);
 
-exports.parseDirect = (items) => {
-  items.forEach((item) => console.log(item));
+      if (!form) {
+        set.push(this.transform(item));
+      }
+    });
 
-  const set = items.map((item) => ({
-    description: item.name,
-    code: item.code,
-    type: 'unit_of_use',
-  }));
+    formCategories.forEach((category) => set.push(category));
+    const result = { set };
 
-  const result = { set };
+    return result;
+  };
 
-  return result;
-};
+  parseDirect = (items) => {
+    items.forEach((item) => console.log(item));
+
+    const set = items.map((item) => ({
+      description: item.name,
+      code: item.code,
+      type: 'unit_of_use',
+    }));
+
+    const result = { set };
+
+    return result;
+  };
+}
+
+exports.parser = new Parser();

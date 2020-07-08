@@ -1,5 +1,6 @@
 const fs = require('fs').promises;
-const { parse } = require('./parser');
+const { parser } = require('./parser');
+const jsonFormat = require('json-format');
 
 const inputFilename = process.argv[2] || './data/items.json';
 const outputFilename = process.argv[3] || './result.json';
@@ -7,13 +8,13 @@ const outputFilename = process.argv[3] || './result.json';
 const parseFile = async (data) => {
   const jsonData = JSON.parse(data);
   const { item: items } = jsonData;
-  const result = parse(items);
+  const result = parser.parse(items);
 
   return new Promise((resolve) => resolve(result));
 };
 
 const writeFile = async (jsonData) => {
-  await fs.writeFile(outputFilename, JSON.stringify(jsonData));
+  await fs.writeFile(outputFilename, jsonFormat(jsonData));
 };
 
 const migrate = async () => {

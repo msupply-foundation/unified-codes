@@ -1,0 +1,5540 @@
+{
+	"set": [
+		{
+			"description": "Calamine lotion",
+			"code": "06a554bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Measles vaccine",
+			"code": "357834bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Alcohol based hand rub (ethanol) solution 80% volume/volume",
+			"code": "359704bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Albendazole 400mg tablet (chewable)",
+			"code": "360504bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Amiodarone (hydrochloride) 50mg/mL in 3mL ampoule",
+			"code": "360a24bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Artemether & lumefantrine 20mg & 120mg tablet, 6x1",
+			"code": "3645d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Artemether & lumefantrine 20mg & 120mg tablet dispersible",
+			"code": "364ae4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Amoxicillin (trihydrate) 250mg solid oral dosage form",
+			"code": "368c74bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Amoxicillin (trihydrate) 500mg solid oral dosage form",
+			"code": "3692b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Amoxicillin (trihydrate)  & clavula& 125mg tablet ",
+			"code": "369844bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Artesunate 200mg rectal dosage form",
+			"code": "36d0c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Artesunate 50mg rectal dosage form",
+			"code": "36d5b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Artesunate (anhdrous artesunic acid) 60mg with separate ampoule of 5% sodium bicarbonate solution",
+			"code": "36df14bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Acetic acid 2% in alcohol, topical",
+			"code": "36e874bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Artemether 80mg.mL in 1mL ampoule",
+			"code": "36f4d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atropine (sulfate) 0.1% eye drops solution",
+			"code": "370404bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atropine (cyclopentalate (hydrochloride)) 0.1% eye drops solution",
+			"code": "370704bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atropine (homatropine (hydrobromide)) 0.1% eye drops solution",
+			"code": "370a44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atropine (sulfate) 0.5% eye drops solution",
+			"code": "371084bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atropine  (cyclopentalate (hydrochloride))  0.5% eye drops solution",
+			"code": "371374bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atropine(homatropine (hydrobromide)) 0.5% eye drops solution",
+			"code": "371724bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atropine (sulfate) 1% eye drops solution",
+			"code": "371a54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atropine  (cyclopentalate (hydrochloride))  1% eye drops solution",
+			"code": "371d74bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atropine(homatropine (hydrobromide)) 1% eye drops solution",
+			"code": "372084bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Azathioprine  50mg tablet (scored)",
+			"code": "3723a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Azathioprine (sodium) 100mg powder for injection in vial",
+			"code": "3726a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atracurium (besylate) 10mg/mL injection ",
+			"code": "3729d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Azithromycin 1.5% eye drop solution",
+			"code": "374364bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atazanavir (sulfate) 100mg solid oral dosafe form mg",
+			"code": "3749c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atazanavir (sulfate) 150mg solid oral dosafe form ",
+			"code": "374dc4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atazanavir (sulfate) 300mg  solid oral dosafe form ",
+			"code": "375154bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Barium sulfate aqueous suspension",
+			"code": "3754f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "BCG vaccine",
+			"code": "375874bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Budesonide 100mcg inhalation (aerosol)",
+			"code": "3762a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Budesonide 200mcg inhalation (aerosol)",
+			"code": "3765f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Beclometasone (dipropionate) 50mcg inhalation (aerosol)",
+			"code": "37a2c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Beclometasone (dipropionate) 100mcg inhalation (aerosol)",
+			"code": "37a614bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Benzyl benzoate 25% lotion ",
+			"code": "37ad34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Benznidazole 50mg tablet (scored)",
+			"code": "37b384bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Benzylpenicillin (potassium) 600mg (1 million IU) potassium",
+			"code": "37b984bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Benzylpenicillin (sodium) 600mg (1 million IU) sodium",
+			"code": "37dcc4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Benzylpenicillin  (potassium)  3g (5 million IU) potassium",
+			"code": "37e114bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Benzylpenicillin (sodium) 3g (5 million IU) sodium",
+			"code": "37e4b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Biperidin (hydrochloride) 2mg talbet",
+			"code": "37eb14bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Biperidin (lactate) 5mg in 1ml ampoule",
+			"code": "37eed4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Bupivacaine 0.5% (Spinal, 4ml amp mixed with 7.5% glucose)",
+			"code": "37f244bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Bupivacaine 0.25% ",
+			"code": "37f5b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Bupivacaine 0.50%",
+			"code": "37f934bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Benzoyl peroxide 5% lotion",
+			"code": "381fc4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Benzathine benzylpenicillin 1.8g (2.4 million IU) /5mL vial",
+			"code": "382424bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Benzathine benzylpenicillin 900mg (1.2 million IU) /5mL vial ",
+			"code": "3827b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Chlorine base compound (0.1% available chlorine) powder of solution",
+			"code": "386504bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Carbamazepine 100mg tablet (chewable)",
+			"code": "386be4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Carbamazepine 100mg tablet (scored)",
+			"code": "386f24bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Carbamazepine 200mg tablet (chewable)",
+			"code": "387314bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Carbamazepine 200mg tablet (scored)",
+			"code": "387664bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Cefalexin (anhydrous) 125mg/5mL powder for reconstitution with water",
+			"code": "38ade4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Cefalexin (anhydrous) 250mg/5mL powder for reconstitution with water",
+			"code": "38b174bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Cefalexin (monohydrate) 250mg solid oral dosage form",
+			"code": "38b4e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ceftriaxone (sodium) 1g",
+			"code": "38db24bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ceftriaxone (sodium) 250mg",
+			"code": "38df44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Charcoal, activated powder",
+			"code": "38f084bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ergocholecalciferol 1.25mg (50 000IU) solid oral dosage form",
+			"code": "390dc4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Cholecalciferol 1000 IU solid oral dosage form",
+			"code": "391194bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Cholecalciferol 400IU solid oral dosage form",
+			"code": "391e34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Chlorhexidine (digluconate) 7.1% gel (delivering 4% chlorhexidine)",
+			"code": "392234bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Chlorhexidine (digluconate) 7.1% solution (delivering 4% chlorhexidine)",
+			"code": "3925f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Chlorhexidine (digluconate) 5% solution",
+			"code": "394894bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Cholera vaccine",
+			"code": "394c94bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ciprofloxacin (hydrochloride) 0.3% eye drops topical",
+			"code": "395354bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Clarithromycin 500mg solid oral dosage form",
+			"code": "39c3f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Clozapine 25mg solid oral dosage form",
+			"code": "3a0404bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Clozapine 50mg solid oral dosage form",
+			"code": "3a08d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Clozapine 100mg solid oral dosage form",
+			"code": "3a0db4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Clozapine 200mg solid oral dosage form",
+			"code": "3a2854bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Chloroquine (sulfate) 50mg/5mL oral liquid ",
+			"code": "3a3394bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Chloroquine (phosphate) 50mg/5mL oral liquid ",
+			"code": "3a3884bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Condoms, male",
+			"code": "3b3444bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Copper containing device ",
+			"code": "3b3994bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ciprofloxacin (hyclate) 2mg/mL soultion for IV infusion",
+			"code": "3b3e54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Chlorpromazine (hydrochloride) 25mg/mL in 2mL ampoule",
+			"code": "3bfad4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Carboplatin 50mg/5ml injection ",
+			"code": "3ccaa4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Carboplatin 150mg/15ml injection ",
+			"code": "3cf3f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Carboplatin 450mg/45ml injection ",
+			"code": "3d0ee4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Carboplatin 600mg/60ml injection ",
+			"code": "3d2c74bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Cycloserine (alternative may be terizidone)  250mg solid oral dosage form",
+			"code": "3d6384bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Coal tar  5% solution",
+			"code": "3d6b74bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Chloroxylenol 4.8% solution",
+			"code": "3d8f14bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Dactinomycin 500mcg in vial powder for injectio",
+			"code": "3dd304bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Dimercaprol 50mg/mL 5ml ampoule, injection in oil",
+			"code": "3e10a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Dexamethasone 0.5mg solid oral dosage form",
+			"code": "3e2b64bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Dexamethasone 0.75mg solid oral dosage form",
+			"code": "3e3064bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Dexamethasone 4mg/mL (1mL) disodium phosphate salt",
+			"code": "3e40b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Dexamethasone 1.5mg solid oral dosage form",
+			"code": "3e4ad4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Dexamethasone 4mg solid oral dosage form",
+			"code": "3e4fd4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Dextran 70 6% injectable solution",
+			"code": "3e54b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Deferoxamine (mesilate)  500mg, vial powder for injection f",
+			"code": "3e59c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Digoxin 250mcg/mL in 2mL ampoule",
+			"code": "3e6924bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diaphragm",
+			"code": "3e7314bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diptheria vaccine",
+			"code": "3e81c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Desmopressin (acetate) 4mc/mL in 1mL ampoule",
+			"code": "3e8ba4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Darunavir 75mg tablet ",
+			"code": "3e90c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Darunavir 400mg tablet ",
+			"code": "3e97a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Darunavir 600mg tablet ",
+			"code": "3e9cf4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Darunavir 800mg tablet ",
+			"code": "3ea1b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Doxycycline (hyclate) 100mg solid oral dosage form",
+			"code": "3eb054bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Doxycycline (hydrochloride) 100mg solid oral dosage form",
+			"code": "3eb544bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Doxycycline (monohydrate) tablet dispersible",
+			"code": "3eba34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Doxycycline (hyclate) 50mg solid oral dosage form",
+			"code": "3ed804bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diazepam 5mg/mL (0.5mL) gel",
+			"code": "3edeb4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diazepam 5mg/mL (0.5mL) rectal solution",
+			"code": "3ee1c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diazepam 5mg/mL (2 mL) gel",
+			"code": "3ee5a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diazepam 5mg/mL (2mL) rectal solution",
+			"code": "3eef44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diazepam 2mg tablet scored",
+			"code": "3ef344bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diazepam 2.5mg rectal solution",
+			"code": "3ef6d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diazepam 5mg/mL (4 mL) gel",
+			"code": "3efaa4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diazepam 5mg/mL (4mL) rectal solution",
+			"code": "3efe24bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diazepam 5 mg rectal solution",
+			"code": "3f0554bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diazepam 10 mg rectal solution",
+			"code": "3f08d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diazepam 5mg tablet scored",
+			"code": "3f0f94bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Eflornithine (hydrochloride) 200mg/mL  injection in 100mL bottle",
+			"code": "3f2464bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Efavirenz (EFV/EFZ) 200mg tablet scored",
+			"code": "3f5ad4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Efavirenz & emtricitabine & tefonovir (disoproxil fumarate equivalent to 245mg tenofovir disoproxil) 600mg & 200mg & 300mg",
+			"code": "3f5e44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ethambutol & isoniazid & pyrazinamide & rifampicin 275mg & 75mg & 400mg & 150mg",
+			"code": "3f6604bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ethambutol & isoniazid & rifampicin 275mg & 75mg  & 150mg",
+			"code": "3f6ad4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Erythromycin (ethyl succinate) 250mg solid oral dosage form",
+			"code": "3f9904bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Erythromycin (stearate) 250mg solid oral dosage form",
+			"code": "3f9df4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Erythromycin (estolate) 250mg solid oral dosage form",
+			"code": "3fa194bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Emtricitabine & tefonovir (disoproxil fumarate equivalent to 245mg tenofovir disoproxil) 200mg & 300mg",
+			"code": "3fb0e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Enalapril (hydrogen maleate) 2.5mg",
+			"code": "3fd444bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Enalapril (hydrogen maleate) 5mg",
+			"code": "3fd864bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Entecavir 0.05mg/mL oral liquid ",
+			"code": "3fdc04bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ephedrine 30mg/mL (1mL)",
+			"code": "3fe614bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Epinephrine (adrenaline) (hydrochloride) 2% solution eye drops",
+			"code": "3fe954bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Epinephrine(adrenaline) hydrochloride 1mg/1ml",
+			"code": "3feca4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Epinephrine(adrenaline) hydrogen tartrate 1mg/1ml",
+			"code": "3feff4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Etonogestrel-releasing implant (single rod containing 68mg of etonogestrel)",
+			"code": "3ff944bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ethanol (denatured) solution 70%",
+			"code": "401f34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ethosuximide 250mg/5mL oral liquid ",
+			"code": "4025e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Enoxaparin 100mg/1mL pre filled syringe",
+			"code": "406404bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Enoxaparin 120mg/1.2mLpre filled syringe",
+			"code": "406ff4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Enoxaparin 150mg/1.5mL pre filled syringe",
+			"code": "409604bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Enoxaparin 20mg/0.2mL pre filled syringe",
+			"code": "409d74bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Enoxaparin 40mg/0.4mL pre filled syringe",
+			"code": "40a434bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Enoxaparin 60mg/0.6mL pre filled syringe",
+			"code": "40aaa4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Enoxaparin 80mg/0.8mL pre filled syringe",
+			"code": "40c714bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Fresh frozen plasma",
+			"code": "40dad4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Flucytosine 2.5mg in 250mL  infusion",
+			"code": "4103d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Flucytosine 250mg capulse",
+			"code": "410744bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Filgastrim300mcg/mL in 1mL vial",
+			"code": "411484bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Filgastrim 480mcg/0.8mL in prefilled syringe",
+			"code": "413bb4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Filgastrim 480mg/1.6mL in 1.6mL vial",
+			"code": "414124bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Fluphenazine (decanoate) 25mg in 1mL ampoule",
+			"code": "414624bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Fluphenazine (enantate) 25mg in 1mL ampoule",
+			"code": "414ae4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Fluorescein (sodium) 1% eye drops",
+			"code": "416ed4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Fludarabine 10mg tablet ",
+			"code": "417484bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Fluoxetine 20mg solid dosage form",
+			"code": "418414bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Fomepizole  (base) 1g/mL (1.5ml) injection ",
+			"code": "41b754bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Fomepizole (sulfate) 5mg/ml (20mL)",
+			"code": "41bc64bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Furosemide 10mg/mL in 2mL ampoule",
+			"code": "41f934bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Gentamicin (sulfate) 0..3% eye drop solution",
+			"code": "4256d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Gliclazide (controlled release) 30mg solid oral dosage form ",
+			"code": "425c54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Gliclazide (controlled release) 60mg solid oral dosage form ",
+			"code": "4276c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Gliclazide (controlled release) 80mg solid oral dosage form ",
+			"code": "4281a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Gliclazide (immediate release) 80mg solid oral dosage form ",
+			"code": "42a4f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Glucose with sodium chloride 5% glucose &0.9% sodium chloride injectable solution",
+			"code": "42aa94bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Glucose with sodium chloride 5% glucose &0.18% sodium chloride injectable solution",
+			"code": "42c504bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Gutaral 2% solution",
+			"code": "42ca94bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Glucose (isotonic) 5%",
+			"code": "42f5b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Glucose (hypertonic) 10%",
+			"code": "42fb44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Glucose (hypertonic) 50%",
+			"code": "432114bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Gemcitabine 1g powder for injecton ",
+			"code": "432724bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Gemcitabine 200mg powder for injecton ",
+			"code": "434194bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Gentamicin (sulfate) 10mg/mL in 2mL vial",
+			"code": "4346e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Gentamicin (sulfate) 40mg/mL in 2mL vial",
+			"code": "4366a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Griseofulvin 125mg solid oral dosage form",
+			"code": "438fb4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Griseofulvin  250mg solid oral dosage form",
+			"code": "439514bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydrocortisone retention enema ",
+			"code": "43af34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydroxychloroquine (sulfate) 200mg solid oral dosage form",
+			"code": "449764bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hepatitis A vaccine",
+			"code": "44bad4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hepatitis B vaccine",
+			"code": "44ec84bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Haloperidol 5mg/1mL (1mL)",
+			"code": "450844bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Halothane",
+			"code": "452184bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "HPV vaccine",
+			"code": "452a74bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydrochlorothiazide 12.5mg solid oral dosage form",
+			"code": "452fe4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydrochlorothiazide 25mg solid oral dosage form",
+			"code": "4534e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydrochlorothiazide 25mg stablet scored",
+			"code": "453b34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydroxycarbamide 1g solid oral dosage form",
+			"code": "4554c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydroxycarbamide 200mg solid oral dosage form",
+			"code": "455a14bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydroxycarbamide 250mg solid oral dosage form",
+			"code": "455ee4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydroxycarbamide 300mg solid oral dosage form",
+			"code": "4563c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydroxycarbamide 400mg solid oral dosage form",
+			"code": "456884bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydroxycarbamide 500mg solid oral dosage form",
+			"code": "456d44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hyoscine hydrobromide 1mg/72 hrs transdermal patch",
+			"code": "45a554bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ivermectin 3mg tablet (scored)",
+			"code": "45cec4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Iohexol (iodine) 140mg in 5mL ampoule",
+			"code": "45e254bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Iohexol (iodine) 140mg in 10mL ampoule",
+			"code": "45e734bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Iohexol (iodine) 140mg in 20mL ampoule",
+			"code": "45ec44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Iohexol (iodine) 350mg in 5mL ampoule",
+			"code": "45f104bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Iohexol (iodine) 350mg in 10mL ampoule",
+			"code": "45f474bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Iohexol (iodine) 350mg in 20mL ampoule",
+			"code": "45f794bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Intermediate acting insulin (isophane insulin) 100IU/mL in 10mL vial",
+			"code": "4600a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Intermediate acting insulin (zinc suspension) 100IU/mL in 10mL vial",
+			"code": "4603d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Intermediate acting insulin (isophane insulin) 40IU/mL in 10mL vial",
+			"code": "460704bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Intermediate acting insulin (zinc suspension) 40IU/mL in 10mL vial",
+			"code": "460a34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Influenza vaccine",
+			"code": "460d74bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Insulin (soluble) injection 100IU/mL in 10mL vial",
+			"code": "461074bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Insulin (soluble) injection 40IU/mL in 10mL vial",
+			"code": "461394bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Iodine 0.57mL iodized oil (308mg iodine) in dispenser bottle",
+			"code": "461994bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Iodine 0.5mL iodized oil (240mg iodine) in ampoule (injectable",
+			"code": "461cb4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Iodine 0.5mL iodized oil (240mg iodine) in ampoule (oral)",
+			"code": "461fc4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Iodine 1mL iodized oil (480mg iodine) in ampoule (injectable",
+			"code": "462454bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Iodine 1mL iodized oil (480mg iodine) in ampoule (oral)",
+			"code": "4628d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Alcohol based hand rub (isopropyl) solution 75% volume/volume",
+			"code": "463484bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Intraperitoneal dialysis solution",
+			"code": "463c34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Irinotecan 100mg in 5mL vial",
+			"code": "463fd4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Irinotecan 40mg in 2mL vial",
+			"code": "464344bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Irinotecan 500mg in 25mL vial",
+			"code": "4646c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Isosorbide dinitrate 5mg sublingual tabl",
+			"code": "464a14bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Isoflurane",
+			"code": "464d84bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Isoniazid & pyrazinamide & rifampicin  150mg & 500mg & 150mg",
+			"code": "467be4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Isoniazid & pyrazinamide & rifampicin  75mg & 400mg & 150mg",
+			"code": "4682b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Isoniazid & rifampicin 150mg & 150mg",
+			"code": "4686d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Isoniazid & rifampicin 150mg & 300mg",
+			"code": "468a44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Isoniazid & rifampicin 60mg & 60mg",
+			"code": "468d54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Isoniazid & rifampicin 75mg & 150mg",
+			"code": "469064bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Japanese encephalitis vaccine",
+			"code": "469674bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ketamine (50mg/mL,10mL)",
+			"code": "469d04bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Latanoprost 50mcg/mL solution eye drops",
+			"code": "46a004bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lignocaine 5% (Spinal, 2ml amp mixed with 7.5% glucose)",
+			"code": "46d064bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lignocaine 1%",
+			"code": "46d764bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lignocaine 2%",
+			"code": "46dae4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lignocaine 2% (topical) ",
+			"code": "46de44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lignocaine4% (topical) ",
+			"code": "46e1c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lamivudine & nevirapine & stavudine 30mg & 50mg & 6mg ",
+			"code": "470b64bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lamivudine &  zidovudine 30mg  & 60mg tablet ",
+			"code": "472254bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lignocaine (hydrochloride) 1% & epinephrine (adrenaline) 1:200 000",
+			"code": "4725b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lignocaine (sulfate)  1% & epinephrine (adrenaline) 1:200 000",
+			"code": "472934bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lignocaine 2% & epinephrine 1:80 000",
+			"code": "4741a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lignocaine (hydrochloride) 2% & epinephrine (adrenaline) 1:200 000",
+			"code": "474564bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lignocaine (sulfate) 2% & epinephrine (adrenaline) 1:200 000",
+			"code": "474e34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Linezolid 2mg/mL in 300mL bag injection for intravenous administration",
+			"code": "475244bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Leuprorelin dose form",
+			"code": "475f84bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Loperamide 2mg solid dosage form",
+			"code": "476284bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lopinavr & ritonavir (LPV/r) 100mg & 25mg tablet (heat stable)",
+			"code": "4787b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lopinavr & ritonavir (LPV/r) 200mg & 50mg tablet (heat stable)",
+			"code": "478b44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lithium carbonate 300mg solid oral dosage form",
+			"code": "4798c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Levodopa & carbidopa tablet 100mg & 10mg",
+			"code": "47cb74bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Levodopa & carbidopa tablet 100mg & 25mg",
+			"code": "47cf54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Levodopa & carbidopa tablet 250mg & 25mg",
+			"code": "47d264bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Levonorgestrel-releasing implant (two rods containing 75mg of levonorgestrel each)",
+			"code": "47f6d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Levonorgestrel 750mcg tablet pack of two",
+			"code": "47fb04bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Levonorgestrel-releasing intrauterine system with reservoir containing 52mg of levonorestrel",
+			"code": "4823d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lorazapeam 2 mg/mL (1ml) parenteral formulation",
+			"code": "483d14bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lorazapeam 4 mg/mL (1ml) parenteral formulation",
+			"code": "4840e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mebendazole 100mg tablet (chewable)",
+			"code": "484444bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mebendazole 500mg tablet (chewable)",
+			"code": "484d54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Metoclopramide (hydrochloride) 10mg solid dosage form",
+			"code": "4876f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Methadone (hydrochloride) concentrate for oral liquid 5mg/mL",
+			"code": "4f9444bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Methadone (hydrochloride) concentrate for oral liquid 10mg/mL",
+			"code": "4f9824bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Metronidazole 1g suppository ",
+			"code": "4fc154bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Metronidazole 500mg in 100mL vial",
+			"code": "4fd604bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Metronidazole 500mg suppository ",
+			"code": "4ff9d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Midazolam 1mg/mLampoule for buccal administration",
+			"code": "5004b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Midazolam 5mg/mL solution for ora lmucosal administration",
+			"code": "503dc4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Midazolam 7.5mg solid dosage form",
+			"code": "5042d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Midazolam 10mg/mLampoule for buccal administration",
+			"code": "506704bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Midazolam 10mg/mL solution for ora lmucosal administration",
+			"code": "506ce4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Midazolam 15mg tablet solid dosage form",
+			"code": "5071e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mercaptopurine tablet 50mg",
+			"code": "509a94bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mesna 100mg/mL in 4mL ampoule",
+			"code": "50a144bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mesna 100mg/mL in 10mL ampoule",
+			"code": "50a634bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mifepristone-misoprostol 200mg-200mcg tablets",
+			"code": "50d804bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Miltefosine 10mg solid oral dosage form ",
+			"code": "50f6b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Miltefosine 50 mg solid oral dosage form ",
+			"code": "50fc34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Meglumine antimoniate 100mg/mL, 1 vial =30mL or 30% equivalent to approvimately 8.1% antimony (pentavelent in 5mL ampoule)",
+			"code": "510704bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Meglumine iotroxate 5g /100ml solution",
+			"code": "512a54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Meglumine iotroxate 5g /250ml solution",
+			"code": "513014bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Meglumine iotroxate 6g /100ml solution",
+			"code": "5149a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Meglumine iotroxate 6g /250ml solution",
+			"code": "514f04bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Meglumine iotroxate 7g /100ml solution",
+			"code": "516834bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Meglumine iotroxate 7g /250ml solution",
+			"code": "517334bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Meglumine iotroxate 8g /100ml solution",
+			"code": "519584bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Meglumine iotroxate 8g /250ml solution",
+			"code": "519af4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Magnesium (sulfate) 0.5g/mL (2mL) equivalent to 1g/2mL; 50%w/v",
+			"code": "51b474bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Magnesium (sulfate) 0.5g/mL (10mL) equivalent to 5g/10mL; 50%w/v",
+			"code": "51ce64bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Melarsoprol 3.6% solution, 5ml ampoul (180mg of active compound)",
+			"code": "521634bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Meningococcal menin+D963:D972gitis vaccine",
+			"code": "5230a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mannitol 10% injectable solution",
+			"code": "526454bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mannitol 20% injectable solution",
+			"code": "527e04bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Morphine (hydrochloride) 10mg/mL (1mL)",
+			"code": "52dd64bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Morphine (sulfate) 10mg/mL (1mL)",
+			"code": "52f844bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Morphine (sulfate) 20mg granules (suspension)",
+			"code": "535b54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Morphine (sulfate) 30mg granules (suspension)",
+			"code": "536054bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Morphine (sulfate) 60mg granules (suspension)",
+			"code": "536f54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Morphine (sulfate) 100mg granules (suspension)",
+			"code": "537ec4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Morphine (sulfate) 200mg granules (suspension)",
+			"code": "538e24bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Methotrexate (sodium) 2.5mg",
+			"code": "53a244bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Methylprednisolone (sodium succinate) 40mg/mL in 1mL ampoule",
+			"code": "53b684bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Methylprednisolone (sodium succinate) 40mg/mL in 5mL multi dose vial",
+			"code": "53bbe4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Methylprednisolone (sodium succinate) 80mg/mL in 1mL ampoule",
+			"code": "53c104bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mumps vaccine",
+			"code": "53c634bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Medroxyprogesterone acetate depot injection 150mg/mL in 1mL vial",
+			"code": "53d014bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Sodium chloride 0.9% isotonic injectable solution",
+			"code": "53d544bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Sodium fluoride topical formulation",
+			"code": "53dab4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Sodium hydrogen carbonate 1.4% isotonic injectiable solution",
+			"code": "53dfc4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Sodium hydrogen carbonate 8.4% in 10mL ampoule solution",
+			"code": "53e4d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Sodium lactate,compound solution (Hartmann's/Ringer-Lactate)",
+			"code": "53ea14bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Niclosamide 500mg tablet (chewable)",
+			"code": "53ef24bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Naloxone (hydrochloride) 400mcg/1mL ampoule",
+			"code": "541264bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Normal immunoglobulin 5% protein solution for intravenous administration",
+			"code": "541764bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Normal immunoglobulin 10% protein solution for intravenous administration",
+			"code": "541ce4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Normal immunoglobulin 15% protein solution for subcutaneous administration",
+			"code": "542044bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Normal immunoglobulin 16% protein solution for intramuscular administration",
+			"code": "5423a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Normal immunoglobulin 16% protein solution for subcutaneous administration",
+			"code": "542704bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Norethisterone enantate 200mg/mL in 1mL ampoule oily solution",
+			"code": "542a34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Nicotine replacemet therapry 2mg chewing gum (polacrilex)",
+			"code": "542e14bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Nicotine replacemet therapry 4mg chewing gum (polacrilex)",
+			"code": "543394bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Nicotine replacemet therapry 5mg-30mg/16hrs transdermal patch",
+			"code": "543834bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Nicotine replacemet therapry 7mg-21mg/24hrs transdermal patch",
+			"code": "543c04bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Nitrous oxide",
+			"code": "5453a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Nevirapine (NVP) 50mg tablet (dispersible)",
+			"code": "545ab4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Nystatin 100,000IU lozenge",
+			"code": "5493f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ofloxacin 0.3% eye drop solution",
+			"code": "54a084bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Omeprazole 10mg solid oral dosage form",
+			"code": "54ace4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Omeprazole 20mg solid oral dosage form",
+			"code": "54b344bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Omeprazole 40mg solid oral dosage form",
+			"code": "54dff4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oseltamivir 12mg/mL oral powder",
+			"code": "54e364bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ondansetron hydrochloride 2mg base/mL (2mL)",
+			"code": "54eb24bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ondansetron 4mg base solid dosage form",
+			"code": "54f204bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ondansetron 8mg base solid dosage form",
+			"code": "54f554bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ondansetron 24mg base solid dosage form",
+			"code": "54f8a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral rehydration salts powder for dilution in 200mL",
+			"code": "5517c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral rehydration salts powder for dilution in 500mL",
+			"code": "551c34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral rehydration salts powder for dilution in 1L",
+			"code": "551ff4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oxygen",
+			"code": "552344bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pancreatic enzymes",
+			"code": "555f54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "P-aminosalicyclic acid 4g granules",
+			"code": "5562d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Prednisolone (sodium phosphate)  0.5% solution eye drops",
+			"code": "559f14bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Podophyllum resin 10% solution",
+			"code": "55ab64bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Podophyllum resin 25% solution",
+			"code": "55ce44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pyridoxine (hydrochloride) 25mg",
+			"code": "55d2c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pertussis vaccine",
+			"code": "55d634bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Potassium ferric hexacyano-ferrate(II) - 2(H20) (Prussian Blue) posder for oral administration",
+			"code": "55d9b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pegylated interferon alpha 2a 180mcg  prefilled syringe",
+			"code": "55dd54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pegylated interferon alpha 2a 180mcg  vial",
+			"code": "55e0c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pegylated interferon alpha 2b 80mcg prefilled syringe",
+			"code": "55e434bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pegylated interferon alpha 2b 180mcg  vial",
+			"code": "55fd84bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pegylated interferon alpha 2b 100mcg prefilled syringe",
+			"code": "560274bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pegylated interferon alpha 2b 100mcg  vial",
+			"code": "560614bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Phenytoin (sodium) 25mg  solid dosage form",
+			"code": "5cec54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Phenytoin (sodium) 50mg  solid dosage form",
+			"code": "5d0484bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Phenytoin (sodium) 100mg  solid dosage form",
+			"code": "5d32f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pilocarpine (nitrate) 2% solution eye drops",
+			"code": "5d3934bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pilocarpine (hydrochloride) 2% solution eye drops",
+			"code": "5d3e34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pilocarpine (nitrate) 4% solution eye drops",
+			"code": "5d4344bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pilocarpine (hydrochloride) 4% solution eye drops",
+			"code": "5d5194bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Platelets",
+			"code": "5d76c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Penicillamine 250mg solid oral dosage form",
+			"code": "5ded04bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pneumococcal vaccine",
+			"code": "5e0d74bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Poliomyelitis vaccine",
+			"code": "5e1834bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Polygeline 3.5% injectable solution",
+			"code": "5e1cf4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Propofol (10mg/mL)",
+			"code": "5e4bd4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Propofol (50mg/mL)",
+			"code": "5e66e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pyrantel (embonate) 250mg tablet (chewable)",
+			"code": "5ea164bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pyrantel (pamoate) 250mg tablet (chewable)",
+			"code": "5ebc34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Progesterone vaginal ring (containing 2.074g of micronized progesterone)",
+			"code": "5ec194bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pyrazinamide 30mg/mL",
+			"code": "5edcb4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pyrazinamide 150mg tablet dispersible",
+			"code": "5ee7e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pyrazinamide 150mg tablet scored",
+			"code": "5f0c14bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Potassium permanganate aqueous solution 1:10 000",
+			"code": "5f62c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Potassium chloride powder for solution",
+			"code": "5f82f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Potassium chloride  solution for dilution 7.5%",
+			"code": "5fa804bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Potassium chloride  solution 11.2% in 20mL ampoule",
+			"code": "5fc384bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Potassium chloride  solution for dilution 15%",
+			"code": "5fe0e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Potassium iodide (saturated solution)",
+			"code": "605c84bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Protamine sulfate 10mg/mL in 5mL ",
+			"code": "6077e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Povidine iodine 10% (equivalent to 1%",
+			"code": "60aa34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Quinine (hydrochloride) 300mg/mL in 2mL ampoule",
+			"code": "60fde4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Rabies vaccine",
+			"code": "610194bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ribavirin 1g in 10ml phosphate buffer solution",
+			"code": "610914bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ribavirin 200mg solid oral dosage form ",
+			"code": "610c94bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ribavirin 400mg solid oral dosage form ",
+			"code": "611014bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ribavirin 600mg solid oral dosage form ",
+			"code": "613db4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ribavirin 800mg in 10ml phosphate buffer solution",
+			"code": "614244bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Red blood cells",
+			"code": "614614bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Rifampicin 150mg solid oral dosage form",
+			"code": "615054bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Rifampicin 300 mg solid oral dosage form",
+			"code": "615374bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Risperidone 0.25mg solid oral dosage form",
+			"code": "615694bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Risperidone 0.5mg solid oral dosage form",
+			"code": "615994bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Risperidone 1mg solid oral dosage form",
+			"code": "615cb4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Risperidone 2mg solid oral dosage form",
+			"code": "615fd4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Risperidone 3mg solid oral dosage form",
+			"code": "6184d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Risperidone 4mg solid oral dosage form",
+			"code": "6188a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Risperidone 5mg solid oral dosage form",
+			"code": "618c74bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Risperidone 6mg solid oral dosage form",
+			"code": "618ff4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ranitidine (hydrochloride) 25mg/mL in 2mL ampoule",
+			"code": "619684bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ritonavir 25mg tablet (heat stable)",
+			"code": "619d84bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ritonavir 100mg tablet (heat stable)",
+			"code": "61a0d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Rotavirus vaccine",
+			"code": "61c5e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Retinol (palmitate) 10 000 IU tablet (sugar coated)",
+			"code": "61cd54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Retinol (palmitate) 100 000IU water-miscible injection  in 2mL ampoule",
+			"code": "61d6f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Retinol (palmitate) 100 000 IU/mL oral oily solution in multidose dispenser",
+			"code": "61da14bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Rubella vaccine",
+			"code": "620294bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Rituximab 500mg/50mL",
+			"code": "620984bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Salicyclic acid 5% solution",
+			"code": "620ce4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Salbutamol (sulfate) 5mg respirator solution for use in nebulisers 5mg/mL",
+			"code": "621034bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Salbutamol (sulfate) 100mcg inhalation  (aerosol)",
+			"code": "621704bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Salbutamol (sulfate) 100mcg metered dose inhaler",
+			"code": "6232a4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Sodium thiosulfate 15% solution",
+			"code": "623644bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Senna 7.5mg/5mL oral liquid ",
+			"code": "624c24bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Surfactant 25mg/mL suspension for intratracheal instillation",
+			"code": "627434bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Surfactant 80mg/mL suspension for intratracheal instillation",
+			"code": "627864bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Selenium sulfide detergent based suspension 2%",
+			"code": "62a1e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Sodium calcium edetate 200mg/mL (5mL)",
+			"code": "62a544bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Sodium nitrate 30mg/mL, 10mL ampoule",
+			"code": "62b254bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Suramin sodium 1g powder for injection ",
+			"code": "62b944bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Sodium thiosulfate 250mg/mL, 50mL ampoule",
+			"code": "62be24bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Saquinavir(SQV) (mesilate) 200mgs solid oral dosage form ",
+			"code": "6395e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Sodium stibogluconate 100mg/mL, 1 vial =30mL or 30% equivalent to approvimately 8.1% antimony (pentavelent in 5mL ampoule)",
+			"code": "639b54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Sulfasalazine retention enema ",
+			"code": "63b934bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Succimer 100mg solid oral dosage form",
+			"code": "63f4b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ethambutol & isoniazid 400mg & 150mg",
+			"code": "649a94bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Tetanus vaccine",
+			"code": "64ed34bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Tioguanine 40mg solid oral dosage form",
+			"code": "654404bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Timolol (hydrogen maleate) 0.5% solution eye drops",
+			"code": "656604bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Timolol (hydrogen maleate) 0.25% solution eye drops",
+			"code": "658294bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Tick-borne encephaliitis vaccine",
+			"code": "659f44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Tranexamic acid 100mg/mL in 10mL ampoule",
+			"code": "65c144bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Trastuzumab 150mg IV vial ",
+			"code": "65e6e4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Tropicamide 0.5% eye drops",
+			"code": "6603d4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Tetracaine (hydrochloride) 0.5% solution eye drops",
+			"code": "6676c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Typhoid vaccine",
+			"code": "66e094bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Varicella vaccine",
+			"code": "6703b4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Valproic acid (sodium valproate) 100mg/mL (4mL)",
+			"code": "671694bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Valproic acid (sodium valproate) 100mg/mL (10mL)",
+			"code": "671bc4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Valproic acid (sodium valproate) 200mg tablet enteric coated",
+			"code": "672964bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Valproic acid (sodium valproate) 500mg tablet enteric coated",
+			"code": "672d04bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Verapamil (hydrochloride) 2.5mg/mL in 2mL ampoule",
+			"code": "673914bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Vinorelbine 10mg/mL in 1ml vial",
+			"code": "6741f4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Vinorelbine 50mg/mL in 5ml vial",
+			"code": "674534bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Whole blood",
+			"code": "674844bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Water for injection 2mL ampoule",
+			"code": "674b54bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Water for injection 5mL ampoule",
+			"code": "674e44bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Water for injection 10mL ampoule",
+			"code": "675694bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Yellow fever vaccine",
+			"code": "6769c4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Zinc sulfate 20mg solid oral dosage form",
+			"code": "677cf4bf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Condoms, female",
+			"code": "bf4be518",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Paracetamol oral liquid 120mg/5ml",
+			"code": "bbfcf518",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Trastuzumab 400mg IV Vial",
+			"code": "1ca24554",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Glibenclamide 5mg Tabs",
+			"code": "f9d8c620",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Jadelle Contraceptive Implant",
+			"code": "d2d28620",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Syringe, disposable, 1ml",
+			"code": "615f7cdc",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Syringe, disposable, 5ml",
+			"code": "dd586cdc",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Tenofovir/Lamivudine/Efavirenz 300/300/600mg Tablets ",
+			"code": "b3044cdc",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Artemether & lumefantrine 20mg & 120mg tablet, 6x2",
+			"code": "199ffeec",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Artemether & lumefantrine 20mg & 120mg tablet, 6x3",
+			"code": "46cfdeec",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Artemether & lumefantrine 20mg & 120mg tablet, 6x4",
+			"code": "566bceec",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Abacavir/Lamivudine 120mg/60mg Tab",
+			"code": "4502643e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Abacavir/Lamivudine 600mg/300mg Tab",
+			"code": "4695943e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Acetyl Salicylic Acid tab. 81mg",
+			"code": "46a0743e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Aminophylline 0.25g Injection",
+			"code": "46a7343e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Aminophylline 100mg Tablets",
+			"code": "46ae143e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ampicillin capsule 250mg",
+			"code": "46b3f43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ampicillin powder for suspension 125mg/5ml, Bot/60ml",
+			"code": "46b9f43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ampicillin powder for suspension 250mg/5ml, Bot/60ml",
+			"code": "46bf643e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ampicillin tablet 250mg",
+			"code": "46c4943e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Atazanavir/Ritonavir 300/100mg Tablets",
+			"code": "46ca843e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Condoms Apple",
+			"code": "46d1043e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Condoms Grape",
+			"code": "46d8143e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Condoms Rose",
+			"code": "46ddf43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Condoms Strawberry",
+			"code": "46e3d43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Dexamethazone Sodium Phosphate 4mg for Injection",
+			"code": "46e9743e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Gentamicin injection 80mg/2ml",
+			"code": "4705743e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hammock Net",
+			"code": "470d043e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "HIV Rapid Test (Determine)",
+			"code": "4712d43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Intra Uterine Device",
+			"code": "4718f43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Isoniazid 100mg Tablets",
+			"code": "471f243e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Isoniazid 300mg Tablets",
+			"code": "4726043e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Long Lasting Insecticidal Net Family Size",
+			"code": "473a843e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Magnesium Sulfate 15%/10ml for Injection",
+			"code": "4740443e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Male Latex Condoms - Free Distribution",
+			"code": "4746043e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Male Latex Condoms - Social Marketing",
+			"code": "474c743e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Medroxyprogesterone acetate 104mg/0.65ml (SAYANA Press)",
+			"code": "4752843e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Methylergometrine Maleate 0.2%/1ml Injection ",
+			"code": "4758543e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Methylergometrine maleate 0.2mg/2ml Injection",
+			"code": "475e143e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Nifedipine 20mg Tablets",
+			"code": "4764143e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral Rehydration Salt 27.9g Powder",
+			"code": "476b743e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral Rehydration Salt 27.9g Powder (Orange flavor)",
+			"code": "4771c43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral Rehydration Salt 29g Powder",
+			"code": "4777c43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral Rehydration Salt 42g",
+			"code": "477d943e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral Sol Powder 20.5g  B*20",
+			"code": "478a343e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oxytocin 5UI Ampoules",
+			"code": "4790d43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Phenobarbital 100mg/1ml Injection",
+			"code": "47aaa43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Rapid Diagnostic Tests Malaria",
+			"code": "47b2b43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Rapid G6PD",
+			"code": "47bb143e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Rifampicin 75mg/Isoniazid 50mg Tablets",
+			"code": "47c2c43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Rifampicin 75mg/Isoniazid 50mg/Pyrazinamid 150mg Tablets",
+			"code": "47ca443e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Tenofovir/Lamivudine 300/300mg Tablets",
+			"code": "47d1743e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Tenofovir/Lamivudine/Dolutegravir 300/300/50mg Tab.",
+			"code": "47d8e43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Unigold HIV Rapid Test",
+			"code": "47e0543e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Vikia HIV 1/2 Test",
+			"code": "47e8543e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Vitamin A 100.000IUCapsule",
+			"code": "47f0c43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Vitamin A 200.000IU Capsule",
+			"code": "47f8b43e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Warfarin Sodium 3mg Tabs",
+			"code": "4800543e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Penta vaccine (diphtheria, pertussis, tetanus, Hep B and HiB)",
+			"code": "40a8681d",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "TD vaccine (tetanus and diphtheria)",
+			"code": "4e6a681d",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "MR vaccine (measles and rubella)",
+			"code": "cd2d581d",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "IPV vaccine (inactivated polio)",
+			"code": "6fc9d81d",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "OPV vaccine (oral polio)",
+			"code": "7191781d",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ampicillin capsule 500mg",
+			"code": "528d0c00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Cloxacillin injection 1g",
+			"code": "3356fc00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Dexamethasone sodium phosphate 8mg/2ml",
+			"code": "6c121c00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydralazine hydrochloride 250mg/2ml",
+			"code": "a4e92c00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lopinavir/Ritonavir 80/20mg/ml Oral Solution",
+			"code": "dce44c00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Microgynon 75.18mcg Tablets",
+			"code": "4e1b0c00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral Rehydration Salt 3.3g",
+			"code": "9dd1cc00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral Rehydration Salt Orange 3.3g",
+			"code": "d55ddc00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral Rehydration Salt 5g",
+			"code": "08491c00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Zidovudine/Lamivudine 300/150mg Tablets",
+			"code": "3eb84c00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Zidovudine/Lamivudine 60/30mg Dispersible Tablets",
+			"code": "d1da5c00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Zidovudine/Lamivudine/Nevirapine 300/150/200mg Tablets",
+			"code": "0a820c00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Zidovudine/Lamivudine/Nevirapine 60/30/50mg Dispersible Tablets",
+			"code": "421dcc00",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hydralazine Hydrochloride 25mg Injection",
+			"code": "c2061c01",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mother and Child Registration Book",
+			"code": "18c19caf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Co-Trimoxazole (Trimethoprim/sulfamethoxazole) 120mg",
+			"code": "03beecaf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Co-Trimoxazole (Trimethoprim/sulfamethoxazole) 480mg",
+			"code": "9716ccaf",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Condom, male, varied",
+			"code": "a162942e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 6A",
+			"code": "bca6342e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 2A",
+			"code": "a97d742e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 2B",
+			"code": "dd7b542e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 3",
+			"code": "088a142e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 5",
+			"code": "383e142e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 6B",
+			"code": "756e542e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 7",
+			"code": "ae11242e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 8",
+			"code": "e1d4a42e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 9",
+			"code": "1193e42e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 10",
+			"code": "49d9842e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 11A",
+			"code": "7e67742e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 11B",
+			"code": "b26e342e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "UNFPA, RH kit 12",
+			"code": "e1e8342e",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Alcohol hand rub, 1000ml",
+			"code": "698385da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Alcohol hand rub, 100ml",
+			"code": "639605da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Alcohol hand rub, 300ml",
+			"code": "03d105da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Alcohol hand rub, 500ml",
+			"code": "0d9415da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Biohazard spill kit for lab",
+			"code": "a70125da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Apron, Disposable",
+			"code": "d3c2e5da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Surgical Gown, Sterile, Large, Disposable",
+			"code": "d40f75da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Surgical Gown, Sterile, Medium, Disposable",
+			"code": "8babc5da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Surgical Gown, Sterile, Small, Disposable",
+			"code": "e0c0d5da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Surgical Gown, Small, Disposable",
+			"code": "042e35da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Surgical Gown, Medium, Disposable",
+			"code": "abb465da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Surgical Gown, Large, Disposable",
+			"code": "169825da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Ethanol Solution 80%, 300ml",
+			"code": "b8f195da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Glove Examination, Extra Large",
+			"code": "c80865da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Glove Examination, Large",
+			"code": "a73555da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Glove Examination, Medium",
+			"code": "8d3625da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Glove Examination, Small",
+			"code": "ad5f65da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Googles, clear",
+			"code": "1cfdc5da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mask",
+			"code": "4b1585da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mask, N95",
+			"code": "8f2645da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Mask, face, nonwoven",
+			"code": "098885da",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Chlorhexidine obstetric cream 1%",
+			"code": "2248c5dd",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Lamivudine 150mg + Zidovudine 300mg + Efavirenz 600mg",
+			"code": "9ed445dd",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Hepatitis B Vaccine (HEP), Liquid, 1dose/ vial",
+			"code": "5f74d5e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Human Papillomavirus Vaccine (HPV), Ninevalent, Liquid, 1 dose/ vial",
+			"code": "98b875e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Inactivated Polio Vaccine (IPV), Liquid, 5 doses/ vial",
+			"code": "4d7fb5e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Japanese Encephalitis Vaccine (JEV), Live, Lyophilised, 5 doses/ vial",
+			"code": "804d85e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Measles and Rubella Vaccine (MR), Lyophilised, 10 doses/ vial",
+			"code": "85ea65e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Measles and Rubella Vaccine (MR), Lyophilised, 5 doses/ vial",
+			"code": "f8cf15e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral Polio Vaccine (OPV), Bivalent, Liquid, 10 doses/ vial",
+			"code": "637d65e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Oral Polio Vaccine (OPV), Bivalent, Liquid, 20 doses/ vial",
+			"code": "54c1a5e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Pneumococcal Conjugate Vaccine (PCV), 13 valent, Liquid, 4 doses/ vial",
+			"code": "358ad5e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "BCG Vaccine, Lyophilised, 20 doses/ ampoule",
+			"code": "9db7d5e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diptheria, Tetanus, Pertussis, Hepatitis B and Haemophilus influenza (PENTA)",
+			"code": "945ab5e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "Diphtheria-Tenanus Toxoid (reduced antigen content) (DT), Liquid, 10 doses/ vial",
+			"code": "246f85e9",
+			"type": "unit_of_use"
+		},
+		{
+			"description": "oral",
+			"type": "form_category",
+			"has_child": [
+				{
+					"description": "tablet",
+					"has_child": [
+						{
+							"description": "Abacavir (ABC) (sulfate) 300mg tablet",
+							"code": "3590a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Acetylsalicylic acid 100mg tablet",
+							"code": "35d384bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Acetylsalicylic acid 300mg tablet",
+							"code": "35de24bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Acetylsalicylic acid 500mg tablet",
+							"code": "35e654bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Aciclovir 200mg tablet",
+							"code": "35f0b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amodiaquine (hydrochloride) 153mg tablet",
+							"code": "35fa94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amodiaquine (hydrochloride) 200mg tablet",
+							"code": "35ff74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amiodarone(hydrochloride)100mg tablet",
+							"code": "360f14bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amiloride (hydrochloride) 5mg tablet",
+							"code": "3640b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amlodipine (maleate) 5mg tablet",
+							"code": "365004bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amlodipine (mesylate) 5mg tablet",
+							"code": "365e84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amlodipine (besylate) 5mg tablet",
+							"code": "366394bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amitriptyline 10mg tablet",
+							"code": "366864bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amitriptyline 25mg tablet",
+							"code": "366d74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amitriptyline 75mg tablet",
+							"code": "367264bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Artesunate & amodiaquine100mg & 270mg tablet",
+							"code": "369d84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Artesunate & amodiaquine 25mg & 67.5mg tablet",
+							"code": "36a284bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Artesunate & amodiaquine 50mg & 135mg tablet",
+							"code": "36af94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Anastrozole 1mg tablet",
+							"code": "36b514bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Allopurinol 100mg tablet",
+							"code": "36bad4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Allopurinol 300mg tablet",
+							"code": "36bfd4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Artesunate 50mg tablet",
+							"code": "36da64bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ascorbic acid 50mg tablet",
+							"code": "36eba4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Artesunate & mefloquine 100mg & 220mg tablet",
+							"code": "36eeb4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Artesunate & mefloquine 25mg & 55mg tablet",
+							"code": "36f1c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Atenolol 50mg tablet",
+							"code": "36f7d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Atenolol 100mg tablet",
+							"code": "36fad4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Abacavir (sulfate) & lamuvidine 60mg & 30mg dispersible,scored tablet",
+							"code": "373004bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Acetazolamide 250mg tablet",
+							"code": "373324bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Bicalutamide 50mg tablet",
+							"code": "375be4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Bedaquiline 100mg tablet",
+							"code": "3798d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Bisoprolol 1.25mg tablet",
+							"code": "379c44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Bisoprolol 5 mg tablet",
+							"code": "379fb4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Benznidazole 12.5mg tablet",
+							"code": "37b074bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Benznidazole 100mg tablet",
+							"code": "37b684bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Calcium folinate 15mg tablet",
+							"code": "382df4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Calcium (elemental) 500mg tablet",
+							"code": "385a64bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Capecitabine 150mg tablet",
+							"code": "385e74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Capecitabine 500mg tablet",
+							"code": "3861d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Codeine (phosphate) 30mg tablet",
+							"code": "388fb4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cyclizine 50mg tablet",
+							"code": "395d64bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clomifene (citrate) 50mg tablet",
+							"code": "399054bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chloroquine (sulfate) 100mg tablet",
+							"code": "3a3da4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chloroquine (phosphate) 100mg tablet",
+							"code": "3a61d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chloroquine (sulfate) 150mg tablet",
+							"code": "3a6764bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chloroquine (phosphate) 150mg tablet",
+							"code": "3a6c44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chlorambucil 2mg tablet",
+							"code": "3abfd4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ciprofloxacin (hydrochloride) 250mg tablet",
+							"code": "3b64a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clopidogrel 75mg tablet",
+							"code": "3b88a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clopidogrel 300mg tablet",
+							"code": "3b8e44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chlorpromazine (hydrochloride) 10mg tablet",
+							"code": "3bdf54bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chlorpromazine (hydrochloride) 25mg tablet",
+							"code": "3c4194bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chlorpromazine (hydrochloride) 50mg tablet",
+							"code": "3c5f24bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chlorpromazine (hydrochloride) 100mg tablet",
+							"code": "3c7a34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Carvedilol 25mg tablet",
+							"code": "3d7124bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Carvedilol 12.5mg tablet",
+							"code": "3d79b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Carvedilol 6.25mg tablet",
+							"code": "3d7f74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Carvedilol 3.125mg tablet",
+							"code": "3d84a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cyclophosphamide 25mg tablet",
+							"code": "3d9944bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Dapsone 25mg tablet",
+							"code": "3da324bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Dapsone 50mg tablet",
+							"code": "3da814bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Dapsone 100mg tablet",
+							"code": "3dacf4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Dasabuvir 250mg tablet",
+							"code": "3db9f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Diethylcarbmazine (dihydrogen citrate) 50mg tablet",
+							"code": "3dbed4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Diethylcarbmazine (dihydrogen citrate) 100mg tablet",
+							"code": "3dc3e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Dexamethasone 2mg tablet",
+							"code": "3e3ae4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Dexamethasone 4mg tablet",
+							"code": "3e45d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Digoxin 62.5mcg tablet",
+							"code": "3e63e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Digoxin 250mcg tablet",
+							"code": "3e6e24bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Delamanid 50mg tablet",
+							"code": "3e86c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Diloxanide (furoate) 500mg tablet",
+							"code": "3edb74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Diazepam 5mg tablet",
+							"code": "3f0c34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Diazepam 10mg tablet",
+							"code": "3f12e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Efavirenz (EFV/EFZ) 600mg tablet",
+							"code": "3f4ed4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ethionamide (protionamide my be alternative) 125mg tablet",
+							"code": "3fa804bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ethionamide (protionamide my be alternative) 250mg tablet",
+							"code": "3fada4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Entecavir 0.5mg tablet",
+							"code": "3fdf54bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Entecavir 1 mg tablet",
+							"code": "3fe2b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ethinylestradiol  & levonorgestrel 30mcg & 150mcg tablet",
+							"code": "402924bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ethambutol (hydrochloride)  100 mg tablet",
+							"code": "403004bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ethambutol (hydrochloride)  200 mg tablet",
+							"code": "403354bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ethambutol (hydrochloride)  400 mg tablet",
+							"code": "403694bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ethinylestradiol  & norethisterone 35mcg & 1mg tablet",
+							"code": "404fb4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Fludrocortisone (acetate) 100mcg tablet",
+							"code": "410aa4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Folic acid  1mg tablet",
+							"code": "418984bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Folic acid  5mg tablet",
+							"code": "41ace4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Folic acid  400mcg tablet",
+							"code": "41b264bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ferrous salt equivalent to 60 mg tablet",
+							"code": "41e9d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ferrous salt equivalent to 60 mg iron tablet and folic acid  400mcg tablet",
+							"code": "41f354bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Furosemide 10mg tablet",
+							"code": "41fe24bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Furosemide 20mg tablet",
+							"code": "421884bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Furosemide 40mg tablet",
+							"code": "422364bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Glyceryl trinitrate 500mcg sublingual tablet",
+							"code": "42e4c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydrocortisone 5mg tablet",
+							"code": "440c34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydrocortisone 10mg tablet",
+							"code": "442684bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydrocortisone 20mg tablet",
+							"code": "4440c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Haloperidol 0.5mg tablet",
+							"code": "450d84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Haloperidol 2mg tablet",
+							"code": "4517b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Haloperidol 5mg tablet",
+							"code": "451c94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydralazine (hydrochloride) 25mg  tablet",
+							"code": "457bf4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydralazine (hydrochloride) 50mg  tablet",
+							"code": "458134bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ibuprofen 200mg tablet",
+							"code": "45bfa4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ibuprofen 400mg tablet",
+							"code": "45c474bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ibuprofen 600mg tablet",
+							"code": "45c9b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Imatinib 100mg tablet",
+							"code": "45fa84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Imatinib 400mg tablet",
+							"code": "45fdb4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Levofloxacin (ofloxacin and moxifloxacin may be alternatives) 250mg tablet",
+							"code": "46c494bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Levofloxacin (ofloxacin and moxifloxacin may be alternatives) 500mg tablet",
+							"code": "46c904bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Levofloxacin (ofloxacin and moxifloxacin may be alternatives) 750mg tablet",
+							"code": "46cc84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Lamivudine & nevirapine & stavudine 150mg & 200mg & 30 mg tablet",
+							"code": "46ea44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Lamivudine & nevirapine & zidovudine 150mg & 200mg & 300 mg tablet",
+							"code": "470fa4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Lamivudine & nevirapine & zidovudine 30mg & 50mg & 60mg tablet",
+							"code": "471474bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Lamuvidine (3TC) 50mg tablet",
+							"code": "471814bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Lamivudine &  zidovudine 150mg & 300 mg tablet",
+							"code": "471ef4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Linezolid 400mg tablet",
+							"code": "475974bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Linezolid 600mg tablet",
+							"code": "475c84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ledipasvir & sofosbuvir 90mg & 400mg tablet",
+							"code": "4783a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Loratadine 10mg tablet",
+							"code": "479554bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Levothyroxine (sodium salt) 25mcg tablet",
+							"code": "479c34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Levothyroxine (sodium salt) 50mcg tablet",
+							"code": "47b464bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Levothyroxine (sodium salt) 100mcg tablet",
+							"code": "47bd14bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Levonorgestrel 30mcg tablet",
+							"code": "47d584bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Levonorgestrel 1.5mg tablet",
+							"code": "47fe44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Levamisole (hydrochloride) 50mg tablet",
+							"code": "480194bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Levamisole (hydrochloride) 150mg tablet",
+							"code": "481e44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Methyldopa 250mg tablet",
+							"code": "4fb394bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Metronidazole 200mg tablet",
+							"code": "4fcca4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Metronidazole 400mg tablet",
+							"code": "4fd164bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Metronidazole 500mg tablet",
+							"code": "4fffc4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Midazolam 7.5mg tablet",
+							"code": "5047e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Midazolam 15mg tablet",
+							"code": "5094e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Mesna 400mg tablet",
+							"code": "50cd74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Mesna 600mg tablet",
+							"code": "50d334bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Mefloquine (hydrochloride) 250mg tablet",
+							"code": "50dd04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Misoprostol 25mcg vaginal tablet",
+							"code": "51e824bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Misoprostol 200mcg tablet",
+							"code": "51f324bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (hydrochloride) 10mg IR tablet",
+							"code": "532904bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (sulfate) 10mg IR tablet",
+							"code": "533194bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (hydrochloride) 10mg SR tablet",
+							"code": "534684bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (sulfate) 10mg SR tablet",
+							"code": "534b94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (hydrochloride) 15mg SR tablet",
+							"code": "535134bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (sulfate) 15mg SR tablet",
+							"code": "535634bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (hydrochloride) 30mg SR tablet",
+							"code": "536554bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (sulfate) 30mg SR tablet",
+							"code": "536a64bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (hydrochloride) 60mg SR tablet",
+							"code": "537474bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (sulfate)60mg SR tablet",
+							"code": "5379b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (hydrochloride) 100mg SR tablet",
+							"code": "538404bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (sulfate) 100mg SR tablet",
+							"code": "538924bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (hydrochloride) 200mg SR tablet",
+							"code": "5392f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (sulfate) 200mg SR tablet",
+							"code": "5397f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Metformin (hydrochloride) 500mg tablet",
+							"code": "539cd4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Metoprolol 50mg tablet",
+							"code": "53ac84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Metoprolol 100mg tablet",
+							"code": "53b164bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Medroxyprogesterone acetate 5mg tablet",
+							"code": "53cb14bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nicotinamide 50mg tablet",
+							"code": "53f404bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nifurtimox 30mg tablet",
+							"code": "5401b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nifurtimox 120mg tablet",
+							"code": "5406a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nifurtimox 250mg tablet",
+							"code": "540d54bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Neostigmine (bromide) 15mg tablet",
+							"code": "544364bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nitrofurantoin 100mg tablet",
+							"code": "545014bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nevirapine (NVP) 200mg tablet",
+							"code": "545e34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nystatin 100,000 IU tablet",
+							"code": "548af4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nystatin 500,000 IU tablet",
+							"code": "549d54bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ombitasvir & paritaprevir & ritonavir 12.5mg & 75mg & 50mg tablet",
+							"code": "54e6f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "P-aminosalicyclic acid 500mg tablet",
+							"code": "556634bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Paracetamol 300mg tablet",
+							"code": "5589f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Paracetamol 400mg tablet",
+							"code": "558e84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Paracetamol 500mg tablet",
+							"code": "559794bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Prednisolone 5mg tablet",
+							"code": "55a584bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Prednisolone 25mg tablet",
+							"code": "55a884bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Proguanil (hydrochloride) 100mg tablet",
+							"code": "560ef4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenobarbital 15mg tablet",
+							"code": "5612e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenobarbital 60mg tablet",
+							"code": "5645a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenobarbital 100mg tablet",
+							"code": "564984bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenobarbital 200mg tablet",
+							"code": "5cc974bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenytoin 50mg chewable tablet",
+							"code": "5d0994bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Pentamidine (isethionate) 200mg tablet",
+							"code": "5d8774bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Pentamidine (isethionate) 300mg tablet",
+							"code": "5da294bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenoxymethylpenicillin (potassium) 250mg tablet",
+							"code": "5ddd04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Primaquine (diphosphate) 7.5mg tablet",
+							"code": "5de2a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Primaquine (diphosphate) 15mg tablet",
+							"code": "5de7d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Potassium iodide 60mg tablet",
+							"code": "5e1364bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Propranolol (hydrochloride) 20 mg tablet",
+							"code": "5e4134bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Propranolol (hydrochloride) 40 mg tablet",
+							"code": "5e46d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Pyrimethamine 25mg tablet",
+							"code": "5e7224bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Pyrazinamide 400mg tablet",
+							"code": "5f11b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Propylthiouracil 50mg tablet",
+							"code": "5ffc54bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Pydiostigmine (bromide) 60mg tablet",
+							"code": "60e374bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Praziquantal 150mg tablet",
+							"code": "60ef34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Praziquantal 600mg tablet",
+							"code": "60f2f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Quinine (bisulfate) 300mg tablet",
+							"code": "60f694bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Quinine (sulfate) 300mg tablet",
+							"code": "60fa34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Riboflavin 5mg tablet",
+							"code": "610574bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ranitidine (hydrochloride)150mg tablet",
+							"code": "619354bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Rifapentine 150mg tablet",
+							"code": "61c9b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Senna (sennosides) 7.5 mg tablet",
+							"code": "627034bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sofosbuvir 400mg tablet",
+							"code": "627f54bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sulfadiazine 500mg tablet",
+							"code": "6282f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sulfadoxine & pyrimethamine 500mg & 25mg tablet",
+							"code": "629e34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Simvastatin 5mg tablet",
+							"code": "630474bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Simvastatin 10mg tablet",
+							"code": "630bc4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Simvastatin 20mg tablet",
+							"code": "6310a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Simvastatin 40mg tablet",
+							"code": "631744bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Spironolactone 25mg tablet",
+							"code": "636544bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sulfasalazine 500mg tablet",
+							"code": "63c474bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sulfamethoxazole & trimethoprim 100mg & 20mg tablet",
+							"code": "641c44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sulfamethoxazole & trimethoprim 400mg & 80mg tablet",
+							"code": "642694bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sulfamethoxazole & trimethoprim 800mg & 160mg tablet",
+							"code": "6473b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Triclabendazole 250mg tablet",
+							"code": "64ca94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Tenofovir disoproxo 245mg tablet",
+							"code": "651454bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Tenofovir disoproxol fumarate (TDF) 300mg tablet",
+							"code": "653ec4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Thiamine (hydrochloride) 50mg tablet",
+							"code": "6560b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Trimethoprim 100mg tablet",
+							"code": "663d84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Trimethoprim 200mg tablet",
+							"code": "665a34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Tamoxifen (citrate) 10mg tablet",
+							"code": "66a554bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Tamoxifen (citrate) 25mg tablet",
+							"code": "66d964bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Valganciclovir 450mg tablet",
+							"code": "6710f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Valproic acid (sodium valproate) 100mg crushable tablet",
+							"code": "6720d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Verapamil (hydrochloride) 40mg tablet",
+							"code": "673c04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Verapamil (hydrochloride) 80mg tablet",
+							"code": "673f04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Warfarin (sodium) 0.5mg tablet",
+							"code": "675a24bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Warfarin (sodium) 1mg tablet",
+							"code": "675d44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Warfarin (sodium) 2mg tablet",
+							"code": "676054bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Warfarin (sodium) 5mg tablet",
+							"code": "676354bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Zidovudine (ZDV/AZT) 300mg tablet",
+							"code": "677a04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Captopril 25mg tablet",
+							"code": "9ee3e553",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Pyrazinamide 500mg tablet",
+							"code": "292735dd",
+							"type": "unit_of_use"
+						}
+					],
+					"type": "form"
+				},
+				{
+					"description": "capsule",
+					"has_child": [
+						{
+							"description": "All trans retinoid acid (ATRA) 10mg capsule",
+							"code": "36e4c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Azithromycin (anhydrous) 250mg capsule",
+							"code": "373ad4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Azithromycin (anhydrous) 500mg capsule",
+							"code": "373f64bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cefixime (trihydrate) 400mg capsule",
+							"code": "38b814bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ciclosporin 25mg capsule",
+							"code": "395004bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clofazimine 50mg capsule",
+							"code": "396294bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clofazimine 100mg capsule",
+							"code": "3983b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clindamycin (hydrochloride) 150mg capsule",
+							"code": "399514bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cloxacillin (sodium) 1g capsule",
+							"code": "3a7134bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cloxacillin (sodium) 500mg capsule",
+							"code": "3a96e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clomipramine (hydrochloride) 10mg capsule",
+							"code": "3aca94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clomipramine (hydrochloride) 25mg capsule",
+							"code": "3af014bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chloramphenicol 250mg capsule",
+							"code": "3b1934bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Daclatasvir (hydrochloride) 30mg capsule",
+							"code": "3dcdf4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Docusate sodium 100mg capsule",
+							"code": "3e2144bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Doxycycline (hyclate) 100mg capsule",
+							"code": "3ea664bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Doxycycline (hydrochloride) 100mg capsule",
+							"code": "3eab64bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Efavirenz (EFV/EFZ) 50mg capsule",
+							"code": "3f2ad4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Efavirenz (EFV/EFZ) 100mg capsule",
+							"code": "3f53c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Efavirenz (EFV/EFZ) 200mg capsule",
+							"code": "3f5764bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ethosuximide 250mg capsule",
+							"code": "402284bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Etoposide 100mg capsule",
+							"code": "405c74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Fluconazole 50mg capsule",
+							"code": "40d364bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Iodine 200mg capsule",
+							"code": "461684bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nifedipine 10mg immediate release capsule",
+							"code": "53fc34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Oseltamivir (phosphate) 30mg capsule",
+							"code": "54a394bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Oseltamivir (phosphate) 45mg capsule",
+							"code": "54a6c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Oseltamivir (phosphate) 70mg capsule",
+							"code": "54a9c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Oxamniquine 250mg capsule",
+							"code": "552974bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Procarbaine (hydrochloride) 50mg capsule",
+							"code": "556984bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Rifabutin 150mg capsule",
+							"code": "6149b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Retinol (palmitate) 50 000 IU capsule",
+							"code": "61d0a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Retinol (palmitate) 100 000 IU capsule",
+							"code": "61d3f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Retinol (palmitate) 200 000 IU capsule",
+							"code": "61fe94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Stavudine (d4T) 15mg capsule",
+							"code": "6242a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Stavudine (d4T) 20mg capsule",
+							"code": "624614bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Stavudine (d4T) 30mg capsule",
+							"code": "624934bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Simeprevir 150mg capsule",
+							"code": "639054bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Zidovudine (ZDV/AZT) 100mg capsule",
+							"code": "6773e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Zidovudine (ZDV/AZT) 250mg capsule",
+							"code": "6776f4bf",
+							"type": "unit_of_use"
+						}
+					],
+					"type": "form"
+				},
+				{
+					"description": "oral liquid",
+					"has_child": [
+						{
+							"description": "Abacavir (ABC) (sulfate) 100mg/5mL oral liquid",
+							"code": "358b04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Acetylcysteine 10 % oral liquid",
+							"code": "35a214bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Acetylcysteine 20 % oral liquid",
+							"code": "35a724bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Aciclovir 200mg/5mL oral liquid",
+							"code": "35ebd4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amoxicillin & clavulanic acid 125mg &31.25mg /5mL oral liquid",
+							"code": "367734bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amoxicillin (trihydrate) 125mg/5ml powder for oral liquid",
+							"code": "367c44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amoxicillin & clavulanic acid 250mg &62.5mg /5mL oral liquid",
+							"code": "368154bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amoxicillin (trihydrate)  250mg/5ml powder for oral liquid",
+							"code": "368674bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Azithromycin 200mg/5mL oral liquid",
+							"code": "373654bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Caffeine citrate 20mg/mL (equivalent to 10mg caffeine base/mL) oral liquid",
+							"code": "383444bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Carbamazepine 100mg/5mL oral liquid",
+							"code": "386864bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ergocholecalciferol 250mcg/mL (10000IU/mL)  oral liquid",
+							"code": "38f414bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cholecalciferol 400IU/mL oral liquid",
+							"code": "391504bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clindamycin (palmitate)  75mg/5mL oral liquid",
+							"code": "39be44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cloxacillin (sodium) 125mg/5mL powder for oral liquid",
+							"code": "3a9134bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chloramphenicol (palmitate) 150mg/5mL oral liquid",
+							"code": "3b1394bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ciprofloxacin (anhydrous) 250mg/5mL oral liquid",
+							"code": "3b5964bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chlorpromazine (hydrochloride) 25mg/5mL oral liquid",
+							"code": "3c1d04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Docusate sodium 50mg/5mL oral liquid",
+							"code": "3e1b94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Dexamethasone 2mg/5mL oral liquid",
+							"code": "3e3574bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Digoxin 50mcg/mL oral liquid",
+							"code": "3e5ee4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Doxycycline (anhydrous) 25mg/5mL oral liquid",
+							"code": "3ece24bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Doxycycline (anhydrous) 50mg/5mL oral liquid",
+							"code": "3ed304bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Diazepam 2mg/5mL oral liquid",
+							"code": "3eea94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Erythromycin(ethyl succinate) 125mg/5mL powder for oral liquid",
+							"code": "3f6e74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Erythromycin(stearate) 125mg/5mL powder for oral liquid",
+							"code": "3f8804bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Erythromycin(estolate) 125mg/5mL powder for oral liquid",
+							"code": "3f9194bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ethambutol 25mg/mL oral liquid",
+							"code": "402cb4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Fluconazole 50mg/5mL oral liquid",
+							"code": "40d6e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ferrous salt equivalent to 25mg iron (sulfate)/mL oral liquid",
+							"code": "41c664bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Furosemide 20mg/5mL oral liquid",
+							"code": "4228d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Griseofulvin 125mg/mL oral liquid",
+							"code": "436c74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Haloperidol 2mg/mL oral liquid",
+							"code": "451294bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydrochlorothiazide 50mg/mL oral liquid",
+							"code": "454094bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ibuprofen 200mg/5mL oral liquid",
+							"code": "45bad4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Isoniazid 50mg/5mL oral liquid",
+							"code": "469364bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Lactulose 3.1-3.7g/5mL oral liquid",
+							"code": "46a314bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Lamivudine(3TC) 50mg/mL oral liquid",
+							"code": "471b94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Linezolid 100mg/5mL powder for oral liquid",
+							"code": "4755d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Lopinavr & ritonavir (LPV/r)  400mg & 100mg/5mL oral liquid",
+							"code": "478ea4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Loratadine 1mg/mL oral liquid",
+							"code": "479214bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Lugol's solution 130mg (total iodide)/mL oral liquid",
+							"code": "47c104bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Metoclopramide 5mg/5mL oral liquid",
+							"code": "485584bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Metronidazole (benzoate) 200mg/5mL oral liquid",
+							"code": "4fc7a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Midazolam 2mg/mL oral liquid",
+							"code": "501524bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (hydrochloride) 10mg/5mL oral liquid",
+							"code": "533734bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine (sulfate) 10mg/5mL oral liquid",
+							"code": "5340d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nitrofurantoin 25mg/5mL oral liquid",
+							"code": "544c74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nevirapine (NVP) 50mg/5mL oral liquid",
+							"code": "545714bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nystatin 50mg/mL oral liquid",
+							"code": "549034bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Nystatin 100,000 IU oral liquid",
+							"code": "549744bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Omeprazole 20mg  powder for oral liquid",
+							"code": "54b034bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Omeprazole 40mg  powder for oral liquid",
+							"code": "54da44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ondansetron 4mg base/5mL oral liquid",
+							"code": "54eea4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Oxamniquine 50mg/5mL oral liquid",
+							"code": "552674bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Prednisolone 5mg/mL oral liquid",
+							"code": "55a274bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenobarbital 25mg/30mL oral liquid",
+							"code": "561694bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenobarbital 30mg/30mL oral liquid",
+							"code": "563be4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenytoin 25mg/30mL oral liquid",
+							"code": "5ccfd4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenytoin 30mg/30mL oral liquid",
+							"code": "5cfa04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenoxymethylpenicillin (potassium) 250mg/5mL powder for oral liquid",
+							"code": "5db8a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Pyrantel (embonate) 50mg/mL oral liquid",
+							"code": "5e7734bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Pyrantel (pamoate) 50mg/mL oral liquid",
+							"code": "5e9b44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Rifampicin 20mg/mL oral liquid",
+							"code": "614ce4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ranitidine (hydrochloride) 75mg/5mL oral liquid",
+							"code": "619a04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ritonavir 400mg/5mL oral liquid",
+							"code": "61bc84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Stavudine (d4T) 5mg/5mL powder for oral liquid",
+							"code": "623ec4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Spironolactone 10mg/5mL oral liquid",
+							"code": "635694bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Spironolactone 25mg/5mL oral liquid",
+							"code": "635b84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Spironolactone 5mg/5mL oral liquid",
+							"code": "636054bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sulfamethoxazole & trimethoprim 200mg & 40mg / 5mL oral liquid",
+							"code": "642184bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Trimethoprim 50mg/5mL oral liquid",
+							"code": "6620a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Valproic acid (sodium valproate) 200mg/5mL oral liquid",
+							"code": "672614bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Zidovudine (ZDV/AZT) 50mg/5mL oral liquid",
+							"code": "6770b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Morphine 10mg/ml oral liquid",
+							"code": "ab6105dd",
+							"type": "unit_of_use"
+						}
+					],
+					"type": "form"
+				}
+			]
+		},
+		{
+			"description": "injection",
+			"type": "form_category",
+			"has_child": [
+				{
+					"description": "injection",
+					"has_child": [
+						{
+							"description": "Asparaginase 10,000 IU in vial powder for injection",
+							"code": "355614bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Bendamustine 180mg/2mL injection",
+							"code": "356b14bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Bendamustine 45mg/0.5mL injection",
+							"code": "357294bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Anti-rabies immunoglobulin 150IU/mL in vial injection",
+							"code": "357d94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Anti-D immunoglobulin 250mcg injection",
+							"code": "358324bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Acetylcysteine 200mg/mL in 10mL ampoule, injection",
+							"code": "35c2f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Aciclovir (sodium) 250mg powder for injection",
+							"code": "35f594bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amidotrizoate (iodine meglumine) 140mg/mL in 20mL ampoule injection",
+							"code": "3613d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amidotrizoate (iodine sodium) 140mg/mL in 20mL ampoule injection",
+							"code": "3618c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amidotrizoate (iodinemeglumine) 280mg/mL in 20mL ampoule injection",
+							"code": "361dc4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amidotrizoate (iodine sodium) 280mg/mL in 20mL ampoule injection",
+							"code": "3622c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amidotrizoate (iodine meglumine) 420mg/mL in 20mL ampoule injection",
+							"code": "3627c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amidotrizoate (iodine sodium) 420mg/mL in 20mL ampoule injection",
+							"code": "362cc4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amikacin (sulfate) 1g powder for injection",
+							"code": "363194bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amikacin (sulfate) 100mg powder for injection",
+							"code": "3636e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amikacin (sulfate) 500mg powder for injection",
+							"code": "363bd4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ampicillin (sodium)1g powder for injection",
+							"code": "3654d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ampicillin (sodium) 500mg powder for injection",
+							"code": "3659b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amphotericin B (sodium deoxycholate) 50mg powder for injection",
+							"code": "36c694bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Amphotericin B (liposomal complex) 50mg powder for injection",
+							"code": "36cc04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Atropine (sulfate) 1mg/mL (1mL) injection",
+							"code": "370d64bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Anti-venom immunoglobulin injection",
+							"code": "372ce4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Bleomycin (sulfate) 15mg powder for injection",
+							"code": "37a954bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Bevacizumab 25mg/mL injection",
+							"code": "37fc84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Calcium folinate 3mg/mL in 10 ml amploule injection",
+							"code": "382ae4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Caffeine citrate 20mg/mL (equivalent to 10mg caffeine base/mL) injection",
+							"code": "383114bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Calcium gluconate 100mg/mL, 10 ml ampoule, injection",
+							"code": "3837b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Coagulation factor IX 500IU/ vial powder for injection",
+							"code": "38a3b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Coagulation factor IX 1000IU/ vial powder for injection",
+							"code": "38aa24bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ceftazidime (pentahydrate) 1g powder for injection",
+							"code": "38e2a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ceftazidime (pentahydrate) 250mg powder for injection",
+							"code": "38e924bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cefazolin (sodium) 1g powder for injection",
+							"code": "38ed14bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cyclizine 50mg/mL injection",
+							"code": "3956b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Calcium gluconate 100mg/mL in 10mL ampoule injection",
+							"code": "398ac4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clindamycin (phosphate) 150mg/mL injection",
+							"code": "3999f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cloxacillin (sodium) 500mg powder for injection",
+							"code": "3a9b74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chloramphenicol (sodium succinate) 0.5g/mL in 2ml ampoule oily suspenson for injection",
+							"code": "3ac564bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Chloramphenicol (sodium succinate) 1g powder for injection",
+							"code": "3ae534bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Capreomycin (sulfate) powder for injection",
+							"code": "3bd684bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cisplatin 100mg/100ml injection",
+							"code": "3c94f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cisplatin 50mg/50ml injection",
+							"code": "3cafc4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cefotaxime (sodium) 250mg powder for injection",
+							"code": "3d89c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cytarabine 100mg powder for injection",
+							"code": "3d9414bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Cyclophosphamide 500mg powder for injection",
+							"code": "3d9e44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Daunorubicin (hydrochloride) 50 mg in vial powder for injection",
+							"code": "3db474bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Dacarbazine 100mg in vial powder for injection",
+							"code": "3dc8f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Docetaxel 20mg/ml injection",
+							"code": "3e2644bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Diphtheria antitoxin 10 000 IU injection",
+							"code": "3e77f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Diphtheria antitoxin 20 000 IU injection",
+							"code": "3e7d04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Doxorubicin (hydrochloride) 10mg powder for injection",
+							"code": "3ebf54bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Doxorubicin (hydrochloride) 50mg powder for injection",
+							"code": "3ec444bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Dopamine (hydrochloiride) 40mg/mL in 5mL vial injection",
+							"code": "3ec934bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Diazepam 5mg/mL injection",
+							"code": "3f01c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ergometrine (hydrogen maleate) 200mcg in 1mL ampoule injection",
+							"code": "3f6264bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Erythromycin (lactobionate) 500mg powder for injection",
+							"code": "3fa4d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Estradiol cypionate & medroxyprogesterone acetate 5mg &25 mg injection",
+							"code": "401b34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Etoposide 20mg/mL in 5mL ampoule injection",
+							"code": "4053a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Enoxaparin 100mg/1mL ampoule injection",
+							"code": "406044bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Enoxaparin 120mg/1.2mL ampoule injection",
+							"code": "406744bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Enoxaparin 150mg/1.5mL ampoule injection",
+							"code": "407374bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Enoxaparin 20mg/0.2mL ampoule injection",
+							"code": "4099f4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Enoxaparin 40mg/0.4mL ampoule injection",
+							"code": "40a0c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Enoxaparin 60mg/0.6mL ampoule injection",
+							"code": "40a774bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Enoxaparin 80mg/0.8mL ampoule injection",
+							"code": "40c374bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Fluconazole 2mg/mL injection",
+							"code": "40cfb4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Fluorouracil 50mg/mL in 5mL ampoule injection",
+							"code": "40ffe4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Filgastrim 120mcg/0.2mL injection",
+							"code": "410e64bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Filgastrim 300mcg/0.5mL injection",
+							"code": "412f14bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Fludarabine (phosphate) 50mg powder for injection",
+							"code": "417964bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Coagulation factor VIII 500IU/vial powder for injection",
+							"code": "422dc4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Glucagon 1mg/mL injection",
+							"code": "425124bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydrocortisone (sodium succinate) 100mg powder for injection",
+							"code": "4477a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Heparin (sodium) 1000IU/mL injection",
+							"code": "44f3b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Heparin (sodium) 10000IU/mL injection",
+							"code": "44f924bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Heparin (sodium) 20,000IU/mL injection",
+							"code": "450254bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydroxocobalamin (acetate) 1mg in 1ml ampoule injection",
+							"code": "454584bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydroxocobalamin (hydrochloride) 1mg in 1ml ampoule injection",
+							"code": "454a84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydroxocobalamin (sulfate) 1mg in 1ml ampoule injection",
+							"code": "454fc4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hyoscine buytlbromide 20g/mL injection",
+							"code": "457204bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydralazine (hydrochloride) 20mg powder for injection",
+							"code": "4576d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hyoscine hydrobromide 400mcg/mL injection",
+							"code": "45ac04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hyoscine hydrobromide 600mcg/mL injection",
+							"code": "45b114bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ibuprofen 5mg/mL solution for injection",
+							"code": "45b5e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ifosfamide 1g vial powder for injection",
+							"code": "45d3a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ifosfamide 2g vial powder for injection",
+							"code": "45d884bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Ifosfamide 500mg vial powder for injection",
+							"code": "45dd64bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Imipendem (monohydrate) & cilastatin (sodium) 250mg & 250mg powder for injection",
+							"code": "462c74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Imipendem (monohydrate) & cilastatin (sodium) 500mg & 500mg powder for injection",
+							"code": "463034bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Kanamycin (sulfate) 1g powder for injection",
+							"code": "4699e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Lignocaine (hydrochloride) 20mg/mL in 5mL ampoule injection",
+							"code": "46d3e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Metoclopramide (hydrochloride) 5mg/2mL injection",
+							"code": "4851d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Midazolam 1mg/mL injection",
+							"code": "500f74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Midazolam 5mg/mL injection",
+							"code": "503834bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Methyloninium chloride (methylene blue) 10mg/mL, ampoule injection",
+							"code": "524a84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Methotrexate (sodium) 50mg powder for injection",
+							"code": "53a774bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Neostigmine (metilsulfate) 2.5mg in 1mL ampoule injection",
+							"code": "543fc4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Neostigmine 500mcg in 1mL ampoule injection",
+							"code": "544884bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Omeprazole 40mg in vial powder for injection",
+							"code": "54d634bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Oxaliplatin 50mg in 10mL vial injection",
+							"code": "552c94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Oxaliplatin 50mg powder for injection",
+							"code": "552f94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Oxaliplatin 100mg powder for injection",
+							"code": "553294bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Oxaliplatin 100mg in 20mL vial injection",
+							"code": "553584bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Oxaliplatin 200mg in 40mL vial injection",
+							"code": "5557e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Oxytocin 10IU/1mL injection",
+							"code": "555c04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Procaine benzylpenicillin 1g (1 million IU) powder for injection",
+							"code": "556ce4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Procaine benzylpenicillin 3g (3 million IU) powder for injection",
+							"code": "557054bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Paclitaxel 6mg/mL powder for injection",
+							"code": "559b84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenobarbital (sodium) 200mg/mL injection",
+							"code": "5cc1a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phenytoin (sodium) 50mg/5mL injection",
+							"code": "5cff94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Paromomycin base (sulfate)  750mg solution for intramuscular injection",
+							"code": "5d7c64bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Pentamidine (isethionate) 200mg powder for injection",
+							"code": "5d81c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phytomenadione 1mg/mL injection",
+							"code": "5dadc4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Phytomenadione 10mg/mL in 5mL ampoule  injection",
+							"code": "5db3a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Prostaglandin E1, 0.5mg/mL in alcohol solution for injection",
+							"code": "5f2c74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Prostaglandin E2, 1mg/mL solution for injection",
+							"code": "5f47b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Pyidostigmine 1mg in 1mL ampoule injection",
+							"code": "60eae4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Rituximab 100mg/10ml injection",
+							"code": "620614bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Salbutamol (sulfate) 50mcg/mL in 5mL ampoule injection",
+							"code": "6213a4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sodium nitroprusside 50mg powder for injection",
+							"code": "6321d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Streptomycin (sulfate) 1g powder for injection",
+							"code": "632834bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Spectinomycin (hydrochloride) 2g powder for injection",
+							"code": "635074bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Streptokinase 1.5 million IU in vial powder for injection",
+							"code": "63ceb4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Suxamethonium (chloride) 50mg/mL in 2mL ampoule injection",
+							"code": "63fa14bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Suxamethonium (chloride) 50mg powder for injection",
+							"code": "63ff84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sulfamethoxazole & trimethoprim 80mg & 16mg in 5mL ampoule injection",
+							"code": "645124bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sulfamethoxazole & trimethoprim 80mg & 16mg in 10mL ampoule injection",
+							"code": "6456c4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Tuberculins, purified protien derivative (PPD) injection",
+							"code": "64a4e4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Testosterone (enanthate) 200mg in 1 ml ampoule injection",
+							"code": "64d064bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Anti-tetanus immunoglobulin 500IU injection",
+							"code": "64f284bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Vancomycin (hydrochloride) 250mg powder for injection",
+							"code": "66fe94bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Vecuronium (bromide) 10mg powder for injection",
+							"code": "6708b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Vinblastine (sulfate) 10mg powder for injection",
+							"code": "673004bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Vincristine (sulfate) 1mg powder for injection",
+							"code": "673324bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Vincristine (sulfate) 5mg powder for injection",
+							"code": "673614bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Zidovudine (ZDV/AZT) 10mg/mL in 20mL vial solution of IV infusion injection",
+							"code": "676cd4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Magnesium sulfate 50% / 10ml for injection",
+							"code": "152e5c00",
+							"type": "unit_of_use"
+						}
+					],
+					"type": "form"
+				}
+			]
+		},
+		{
+			"description": "topical",
+			"type": "form_category",
+			"has_child": [
+				{
+					"description": "ointment",
+					"has_child": [
+						{
+							"description": "Aciclovir 3% ointment",
+							"code": "359d04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Betamethasone (valerate) 0.1% ointment",
+							"code": "379474bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Fluorouracol 5% ointment",
+							"code": "40de04bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydrocortisone (acetate) 1% ointment",
+							"code": "43e914bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Miconazole (nitrate) 2% ointment",
+							"code": "4f8aa4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Mupirocin 2% ointment",
+							"code": "52bf34bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Permehtrin 1% ointment",
+							"code": "601744bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Terbinafine (hydrochloride) 1% ointment",
+							"code": "647df4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Tetracycline (hydrochloride) 1% eye ointment",
+							"code": "650f14bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Urea 5% ointment",
+							"code": "66ef44bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Urea 10% ointment",
+							"code": "66f994bf",
+							"type": "unit_of_use"
+						}
+					],
+					"type": "form"
+				},
+				{
+					"description": "cream",
+					"has_child": [
+						{
+							"description": "Betamethasone (valerate) 0.1% cream",
+							"code": "376954bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Benzoyl peroxide 5% cream",
+							"code": "37ffd4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clotrimazole 1% vaginal cream",
+							"code": "39c8d4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clotrimazole 10% vaginal cream",
+							"code": "39d324bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clotimazole 100mg vaginal cream",
+							"code": "39da14bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Clotimazole 500mg vaginal cream",
+							"code": "39fe84bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydrocortisone (acetate) 1% cream",
+							"code": "43c994bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Miconazole (nitrate) 2% cream",
+							"code": "487b14bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Mupirocin (calcium)  2% cream",
+							"code": "52a514bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Permehtrin 5% cream",
+							"code": "6032b4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Silver sulfadiazine 1% cream",
+							"code": "627bf4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Terbinafine (hydrochloride) 1% cream",
+							"code": "647904bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Urea 5% cream",
+							"code": "66e944bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Urea 10% cream",
+							"code": "66f494bf",
+							"type": "unit_of_use"
+						}
+					],
+					"type": "form"
+				}
+			]
+		},
+		{
+			"description": "rectal",
+			"type": "form_category",
+			"has_child": [
+				{
+					"description": "suppository",
+					"has_child": [
+						{
+							"description": "Acetylsalicylic acid 50mg suppository",
+							"code": "35c954bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Acetylsalicylic acid 100mg suppository",
+							"code": "35ce74bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Acetylsalicylic acid 150mg suppository",
+							"code": "35d934bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Hydrocortisone (acetate) 25mg suppository",
+							"code": "445cd4bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Sulfasalazine 500mg suppository",
+							"code": "63be84bf",
+							"type": "unit_of_use"
+						}
+					],
+					"type": "form"
+				}
+			]
+		},
+		{
+			"description": "vaginal",
+			"type": "form_category",
+			"has_child": [
+				{
+					"description": "pessary",
+					"type": "form",
+					"has_child": [
+						{
+							"description": "Nystatin 100,000 IU pessary",
+							"code": "549a54bf",
+							"type": "unit_of_use"
+						}
+					]
+				}
+			]
+		},
+		{
+			"description": "inhalation",
+			"type": "form_category",
+			"has_child": [
+				{
+					"description": "inhalation (aerosol)",
+					"has_child": [
+						{
+							"description": "Ipratropium bromide 20mcg/dose inhalation aerosol",
+							"code": "463874bf",
+							"type": "unit_of_use"
+						}
+					],
+					"type": "form"
+				},
+				{
+					"description": "nasal spray",
+					"has_child": [
+						{
+							"description": "Budesonide 100mcg per dose nasal spray",
+							"code": "375f54bf",
+							"type": "unit_of_use"
+						},
+						{
+							"description": "Xylometazoline 0.05% nasal spray",
+							"code": "6766a4bf",
+							"type": "unit_of_use"
+						}
+					],
+					"type": "form"
+				}
+			]
+		}
+	]
+}
