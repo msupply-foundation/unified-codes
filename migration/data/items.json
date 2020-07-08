@@ -1,0 +1,6532 @@
+{
+  "item": [
+    {
+      "id": 1,
+      "name": "Calamine lotion",
+      "structuredCode": "CALA0000LTN000",
+      "code": "06a554bf"
+    },
+    {
+      "id": 2,
+      "name": "Asparaginase 10,000 IU in vial powder for injection",
+      "structuredCode": "ASPA1000PFI000",
+      "code": "355614bf"
+    },
+    {
+      "id": 3,
+      "name": "Bendamustine 180mg/2mL injection",
+      "structuredCode": "BEND1802INJ000",
+      "code": "356b14bf"
+    },
+    {
+      "id": 4,
+      "name": "Bendamustine 45mg/0.5mL injection",
+      "structuredCode": "BEND4505INJ000",
+      "code": "357294bf"
+    },
+    {
+      "id": 5,
+      "name": "Measles vaccine",
+      "structuredCode": "MEAS0000VAC000",
+      "code": "357834bf"
+    },
+    {
+      "id": 6,
+      "name": "Anti-rabies immunoglobulin 150IU/mL in vial injection",
+      "structuredCode": "RABI1500INJ000",
+      "code": "357d94bf"
+    },
+    {
+      "id": 7,
+      "name": "Anti-D immunoglobulin 250mcg injection",
+      "structuredCode": "ANTD2500INJ000",
+      "code": "358324bf"
+    },
+    {
+      "id": 8,
+      "name": "Abacavir (ABC) (sulfate) 100mg/5mL oral liquid",
+      "structuredCode": "ABCR1000ORL002",
+      "code": "358b04bf"
+    },
+    {
+      "id": 9,
+      "name": "Abacavir (ABC) (sulfate) 300mg tablet",
+      "structuredCode": "ABCR3000TAB000",
+      "code": "3590a4bf"
+    },
+    {
+      "id": 10,
+      "name": "Alcohol based hand rub (ethanol) solution 80% volume/volume",
+      "structuredCode": "ABHR0080SLN000",
+      "code": "359704bf"
+    },
+    {
+      "id": 11,
+      "name": "Aciclovir 3% ointment",
+      "structuredCode": "ACIC0003OIN000",
+      "code": "359d04bf"
+    },
+    {
+      "id": 12,
+      "name": "Acetylcysteine 10 % oral liquid",
+      "structuredCode": "ACLN0010ORL000",
+      "code": "35a214bf"
+    },
+    {
+      "id": 13,
+      "name": "Acetylcysteine 20 % oral liquid",
+      "structuredCode": "ACLN0020ORL000",
+      "code": "35a724bf"
+    },
+    {
+      "id": 14,
+      "name": "Acetylcysteine 200mg/mL in 10mL ampoule, injection",
+      "structuredCode": "ACLN0200INJ000",
+      "code": "35c2f4bf"
+    },
+    {
+      "id": 15,
+      "name": "Acetylsalicylic acid 50mg suppository",
+      "structuredCode": "ACSA0500SUP000",
+      "code": "35c954bf"
+    },
+    {
+      "id": 16,
+      "name": "Acetylsalicylic acid 100mg suppository",
+      "structuredCode": "ACSA1000SUP000",
+      "code": "35ce74bf"
+    },
+    {
+      "id": 17,
+      "name": "Acetylsalicylic acid 100mg tablet",
+      "structuredCode": "ACSA1000TAB000",
+      "code": "35d384bf"
+    },
+    {
+      "id": 18,
+      "name": "Acetylsalicylic acid 150mg suppository",
+      "structuredCode": "ACSA1500SUP000",
+      "code": "35d934bf"
+    },
+    {
+      "id": 19,
+      "name": "Acetylsalicylic acid 300mg tablet",
+      "structuredCode": "ACSA3000TAB000",
+      "code": "35de24bf"
+    },
+    {
+      "id": 20,
+      "name": "Acetylsalicylic acid 500mg tablet",
+      "structuredCode": "ACSA5000TAB000",
+      "code": "35e654bf"
+    },
+    {
+      "id": 21,
+      "name": "Aciclovir 200mg/5mL oral liquid",
+      "structuredCode": "ACVR2000ORL000",
+      "code": "35ebd4bf"
+    },
+    {
+      "id": 22,
+      "name": "Aciclovir 200mg tablet",
+      "structuredCode": "ACVR2000TAB000",
+      "code": "35f0b4bf"
+    },
+    {
+      "id": 23,
+      "name": "Aciclovir (sodium) 250mg powder for injection",
+      "structuredCode": "ACVR2500PFI004",
+      "code": "35f594bf"
+    },
+    {
+      "id": 24,
+      "name": "Amodiaquine (hydrochloride) 153mg tablet",
+      "structuredCode": "ADQN1530TAB001",
+      "code": "35fa94bf"
+    },
+    {
+      "id": 25,
+      "name": "Amodiaquine (hydrochloride) 200mg tablet",
+      "structuredCode": "ADQN2000TAB001",
+      "code": "35ff74bf"
+    },
+    {
+      "id": 26,
+      "name": "Albendazole 400mg tablet (chewable)",
+      "structuredCode": "ADZL4000TCW000",
+      "code": "360504bf"
+    },
+    {
+      "id": 27,
+      "name": "Amiodarone (hydrochloride) 50mg/mL in 3mL ampoule",
+      "structuredCode": "AMDN0050INJ001",
+      "code": "360a24bf"
+    },
+    {
+      "id": 28,
+      "name": "Amiodarone(hydrochloride)100mg tablet",
+      "structuredCode": "AMDN0100TAB001",
+      "code": "360f14bf"
+    },
+    {
+      "id": 29,
+      "name": "Amidotrizoate (iodine meglumine) 140mg/mL in 20mL ampoule injection",
+      "structuredCode": "AMDT0140INJ000",
+      "code": "3613d4bf"
+    },
+    {
+      "id": 30,
+      "name": "Amidotrizoate (iodine sodium) 140mg/mL in 20mL ampoule injection",
+      "structuredCode": "AMDT0140INJ004",
+      "code": "3618c4bf"
+    },
+    {
+      "id": 31,
+      "name": "Amidotrizoate (iodinemeglumine) 280mg/mL in 20mL ampoule injection",
+      "structuredCode": "AMDT0280INJ000",
+      "code": "361dc4bf"
+    },
+    {
+      "id": 32,
+      "name": "Amidotrizoate (iodine sodium) 280mg/mL in 20mL ampoule injection",
+      "structuredCode": "AMDT0280INJ004",
+      "code": "3622c4bf"
+    },
+    {
+      "id": 33,
+      "name": "Amidotrizoate (iodine meglumine) 420mg/mL in 20mL ampoule injection",
+      "structuredCode": "AMDT0420INJ000",
+      "code": "3627c4bf"
+    },
+    {
+      "id": 34,
+      "name": "Amidotrizoate (iodine sodium) 420mg/mL in 20mL ampoule injection",
+      "structuredCode": "AMDT0420INJ004",
+      "code": "362cc4bf"
+    },
+    {
+      "id": 35,
+      "name": "Amikacin (sulfate) 1g powder for injection",
+      "structuredCode": "AMKN0010PFI002",
+      "code": "363194bf"
+    },
+    {
+      "id": 36,
+      "name": "Amikacin (sulfate) 100mg powder for injection",
+      "structuredCode": "AMKN0100PFI002",
+      "code": "3636e4bf"
+    },
+    {
+      "id": 37,
+      "name": "Amikacin (sulfate) 500mg powder for injection",
+      "structuredCode": "AMKN0500PFI002",
+      "code": "363bd4bf"
+    },
+    {
+      "id": 38,
+      "name": "Amiloride (hydrochloride) 5mg tablet",
+      "structuredCode": "AMLD0005TAB001",
+      "code": "3640b4bf"
+    },
+    {
+      "id": 39,
+      "name": "Artemether & lumefantrine 20mg & 120mg tablet, 6x1",
+      "structuredCode": "AMLM2012TAB000",
+      "code": "3645d4bf"
+    },
+    {
+      "id": 40,
+      "name": "Artemether & lumefantrine 20mg & 120mg tablet dispersible",
+      "structuredCode": "AMLM2012TDS000",
+      "code": "364ae4bf"
+    },
+    {
+      "id": 41,
+      "name": "Amlodipine (maleate) 5mg tablet",
+      "structuredCode": "AMLP0005TAB020",
+      "code": "365004bf"
+    },
+    {
+      "id": 42,
+      "name": "Ampicillin (sodium)1g powder for injection",
+      "structuredCode": "AMPC0010PFI004",
+      "code": "3654d4bf"
+    },
+    {
+      "id": 43,
+      "name": "Ampicillin (sodium) 500mg powder for injection",
+      "structuredCode": "AMPC5000PFI004",
+      "code": "3659b4bf"
+    },
+    {
+      "id": 44,
+      "name": "Amlodipine (mesylate) 5mg tablet",
+      "structuredCode": "AMPL0005TAB021",
+      "code": "365e84bf"
+    },
+    {
+      "id": 45,
+      "name": "Amlodipine (besylate) 5mg tablet",
+      "structuredCode": "AMPL0005TAB022",
+      "code": "366394bf"
+    },
+    {
+      "id": 46,
+      "name": "Amitriptyline 10mg tablet",
+      "structuredCode": "AMPN0100TAB000",
+      "code": "366864bf"
+    },
+    {
+      "id": 47,
+      "name": "Amitriptyline 25mg tablet",
+      "structuredCode": "AMPN0250TAB000",
+      "code": "366d74bf"
+    },
+    {
+      "id": 48,
+      "name": "Amitriptyline 75mg tablet",
+      "structuredCode": "AMPN0750TAB000",
+      "code": "367264bf"
+    },
+    {
+      "id": 49,
+      "name": "Amoxicillin & clavulanic acid 125mg &31.25mg /5mL oral liquid",
+      "structuredCode": "AMXC1250ORL000",
+      "code": "367734bf"
+    },
+    {
+      "id": 50,
+      "name": "Amoxicillin (trihydrate) 125mg/5ml powder for oral liquid",
+      "structuredCode": "AMXC1250POL005",
+      "code": "367c44bf"
+    },
+    {
+      "id": 51,
+      "name": "Amoxicillin & clavulanic acid 250mg &62.5mg /5mL oral liquid",
+      "structuredCode": "AMXC2500ORL000",
+      "code": "368154bf"
+    },
+    {
+      "id": 52,
+      "name": "Amoxicillin (trihydrate)  250mg/5ml powder for oral liquid",
+      "structuredCode": "AMXC2500POL005",
+      "code": "368674bf"
+    },
+    {
+      "id": 53,
+      "name": "Amoxicillin (trihydrate) 250mg solid oral dosage form",
+      "structuredCode": "AMXC2500SOD000",
+      "code": "368c74bf"
+    },
+    {
+      "id": 54,
+      "name": "Amoxicillin (trihydrate) 500mg solid oral dosage form",
+      "structuredCode": "AMXC5000SOD000",
+      "code": "3692b4bf"
+    },
+    {
+      "id": 55,
+      "name": "Amoxicillin (trihydrate)  & clavula& 125mg tablet ",
+      "structuredCode": "AMXC5000TAB000",
+      "code": "369844bf"
+    },
+    {
+      "id": 56,
+      "name": "Artesunate & amodiaquine100mg & 270mg tablet",
+      "structuredCode": "ANAM1027TAB000",
+      "code": "369d84bf"
+    },
+    {
+      "id": 57,
+      "name": "Artesunate & amodiaquine 25mg & 67.5mg tablet",
+      "structuredCode": "ANAM2567TAB000",
+      "code": "36a284bf"
+    },
+    {
+      "id": 58,
+      "name": "Artesunate & amodiaquine 50mg & 135mg tablet",
+      "structuredCode": "ANAM5013TAB000",
+      "code": "36af94bf"
+    },
+    {
+      "id": 59,
+      "name": "Anastrozole 1mg tablet",
+      "structuredCode": "ANZL0010TAB000",
+      "code": "36b514bf"
+    },
+    {
+      "id": 60,
+      "name": "Allopurinol 100mg tablet",
+      "structuredCode": "APNL1000TAB000",
+      "code": "36bad4bf"
+    },
+    {
+      "id": 61,
+      "name": "Allopurinol 300mg tablet",
+      "structuredCode": "APNL3000TAB000",
+      "code": "36bfd4bf"
+    },
+    {
+      "id": 62,
+      "name": "Amphotericin B (sodium deoxycholate) 50mg powder for injection",
+      "structuredCode": "APTN0500PFI000",
+      "code": "36c694bf"
+    },
+    {
+      "id": 63,
+      "name": "Amphotericin B (liposomal complex) 50mg powder for injection",
+      "structuredCode": "APTN0500PFI001",
+      "code": "36cc04bf"
+    },
+    {
+      "id": 64,
+      "name": "Artesunate 200mg rectal dosage form",
+      "structuredCode": "ARSN0200RDF000",
+      "code": "36d0c4bf"
+    },
+    {
+      "id": 65,
+      "name": "Artesunate 50mg rectal dosage form",
+      "structuredCode": "ARSN0500RDF000",
+      "code": "36d5b4bf"
+    },
+    {
+      "id": 66,
+      "name": "Artesunate 50mg tablet",
+      "structuredCode": "ARSN0500TAB000",
+      "code": "36da64bf"
+    },
+    {
+      "id": 67,
+      "name": "Artesunate (anhdrous artesunic acid) 60mg with separate ampoule of 5% sodium bicarbonate solution",
+      "structuredCode": "ARSN0600INJ000",
+      "code": "36df14bf"
+    },
+    {
+      "id": 68,
+      "name": "All trans retinoid acid (ATRA) 10mg capsule",
+      "structuredCode": "ARTA0100CAP000",
+      "code": "36e4c4bf"
+    },
+    {
+      "id": 69,
+      "name": "Acetic acid 2% in alcohol, topical",
+      "structuredCode": "ASCA0002TOP000",
+      "code": "36e874bf"
+    },
+    {
+      "id": 70,
+      "name": "Ascorbic acid 50mg tablet",
+      "structuredCode": "ASCA0050TAB000",
+      "code": "36eba4bf"
+    },
+    {
+      "id": 71,
+      "name": "Artesunate & mefloquine 100mg & 220mg tablet",
+      "structuredCode": "ASMF1022TAB000",
+      "code": "36eeb4bf"
+    },
+    {
+      "id": 72,
+      "name": "Artesunate & mefloquine 25mg & 55mg tablet",
+      "structuredCode": "ASMF2555TAB000",
+      "code": "36f1c4bf"
+    },
+    {
+      "id": 73,
+      "name": "Artemether 80mg.mL in 1mL ampoule",
+      "structuredCode": "ATMT0800INJ000",
+      "code": "36f4d4bf"
+    },
+    {
+      "id": 74,
+      "name": "Atenolol 50mg tablet",
+      "structuredCode": "ATNL0005TAB000",
+      "code": "36f7d4bf"
+    },
+    {
+      "id": 75,
+      "name": "Atenolol 100mg tablet",
+      "structuredCode": "ATNL0010TAB000",
+      "code": "36fad4bf"
+    },
+    {
+      "id": 78,
+      "name": "Atropine (sulfate) 0.1% eye drops solution",
+      "structuredCode": "ATPN0001EDP002",
+      "code": "370404bf"
+    },
+    {
+      "id": 79,
+      "name": "Atropine (cyclopentalate (hydrochloride)) 0.1% eye drops solution",
+      "structuredCode": "ATPN0001EDP011",
+      "code": "370704bf"
+    },
+    {
+      "id": 80,
+      "name": "Atropine (homatropine (hydrobromide)) 0.1% eye drops solution",
+      "structuredCode": "ATPN0001EDP019",
+      "code": "370a44bf"
+    },
+    {
+      "id": 81,
+      "name": "Atropine (sulfate) 1mg/mL (1mL) injection",
+      "structuredCode": "ATPN0001INJ002",
+      "code": "370d64bf"
+    },
+    {
+      "id": 82,
+      "name": "Atropine (sulfate) 0.5% eye drops solution",
+      "structuredCode": "ATPN0005EDP002",
+      "code": "371084bf"
+    },
+    {
+      "id": 83,
+      "name": "Atropine  (cyclopentalate (hydrochloride))  0.5% eye drops solution",
+      "structuredCode": "ATPN0005EDP011",
+      "code": "371374bf"
+    },
+    {
+      "id": 84,
+      "name": "Atropine(homatropine (hydrobromide)) 0.5% eye drops solution",
+      "structuredCode": "ATPN0005EDP019",
+      "code": "371724bf"
+    },
+    {
+      "id": 85,
+      "name": "Atropine (sulfate) 1% eye drops solution",
+      "structuredCode": "ATPN0010EDP002",
+      "code": "371a54bf"
+    },
+    {
+      "id": 86,
+      "name": "Atropine  (cyclopentalate (hydrochloride))  1% eye drops solution",
+      "structuredCode": "ATPN0010EDP011",
+      "code": "371d74bf"
+    },
+    {
+      "id": 87,
+      "name": "Atropine(homatropine (hydrobromide)) 1% eye drops solution",
+      "structuredCode": "ATPN0010EDP019",
+      "code": "372084bf"
+    },
+    {
+      "id": 88,
+      "name": "Azathioprine  50mg tablet (scored)",
+      "structuredCode": "ATPN0500TSC000",
+      "code": "3723a4bf"
+    },
+    {
+      "id": 89,
+      "name": "Azathioprine (sodium) 100mg powder for injection in vial",
+      "structuredCode": "ATPN1000PFI004",
+      "code": "3726a4bf"
+    },
+    {
+      "id": 90,
+      "name": "Atracurium (besylate) 10mg/mL injection ",
+      "structuredCode": "ATRA0010INJ000",
+      "code": "3729d4bf"
+    },
+    {
+      "id": 91,
+      "name": "Anti-venom immunoglobulin injection",
+      "structuredCode": "AVIG0000INJ000",
+      "code": "372ce4bf"
+    },
+    {
+      "id": 92,
+      "name": "Abacavir (sulfate) & lamuvidine 60mg & 30mg dispersible,scored tablet",
+      "structuredCode": "AVLV6030TDS000",
+      "code": "373004bf"
+    },
+    {
+      "id": 93,
+      "name": "Acetazolamide 250mg tablet",
+      "structuredCode": "AZLM0250TAB000",
+      "code": "373324bf"
+    },
+    {
+      "id": 94,
+      "name": "Azithromycin 200mg/5mL oral liquid",
+      "structuredCode": "AZMN2000ORL000",
+      "code": "373654bf"
+    },
+    {
+      "id": 95,
+      "name": "Azithromycin (anhydrous) 250mg capsule",
+      "structuredCode": "AZMN2500CAP000",
+      "code": "373ad4bf"
+    },
+    {
+      "id": 96,
+      "name": "Azithromycin (anhydrous) 500mg capsule",
+      "structuredCode": "AZMN5000CAP000",
+      "code": "373f64bf"
+    },
+    {
+      "id": 97,
+      "name": "Azithromycin 1.5% eye drop solution",
+      "structuredCode": "AZTH0015EDP000",
+      "code": "374364bf"
+    },
+    {
+      "id": 98,
+      "name": "Atazanavir (sulfate) 100mg solid oral dosafe form mg",
+      "structuredCode": "AZVR0100SOD000",
+      "code": "3749c4bf"
+    },
+    {
+      "id": 99,
+      "name": "Atazanavir (sulfate) 150mg solid oral dosafe form ",
+      "structuredCode": "AZVR0150SOD000",
+      "code": "374dc4bf"
+    },
+    {
+      "id": 100,
+      "name": "Atazanavir (sulfate) 300mg  solid oral dosafe form ",
+      "structuredCode": "AZVR0300SOD000",
+      "code": "375154bf"
+    },
+    {
+      "id": 101,
+      "name": "Barium sulfate aqueous suspension",
+      "structuredCode": "BARM0000SPN000",
+      "code": "3754f4bf"
+    },
+    {
+      "id": 102,
+      "name": "BCG vaccine",
+      "structuredCode": "BCGV0000VAC000",
+      "code": "375874bf"
+    },
+    {
+      "id": 103,
+      "name": "Bicalutamide 50mg tablet",
+      "structuredCode": "BCLM0050TAB000",
+      "code": "375be4bf"
+    },
+    {
+      "id": 104,
+      "name": "Budesonide 100mcg per dose nasal spray",
+      "structuredCode": "BDNS0100NSL000",
+      "code": "375f54bf"
+    },
+    {
+      "id": 105,
+      "name": "Budesonide 100mcg inhalation (aerosol)",
+      "structuredCode": "BDNS1000INH000",
+      "code": "3762a4bf"
+    },
+    {
+      "id": 106,
+      "name": "Budesonide 200mcg inhalation (aerosol)",
+      "structuredCode": "BDNS2000INH000",
+      "code": "3765f4bf"
+    },
+    {
+      "id": 107,
+      "name": "Betamethasone (valerate) 0.1% cream",
+      "structuredCode": "BETA0001CRM000",
+      "code": "376954bf"
+    },
+    {
+      "id": 108,
+      "name": "Betamethasone (valerate) 0.1% ointment",
+      "structuredCode": "BETA0001OIN000",
+      "code": "379474bf"
+    },
+    {
+      "id": 109,
+      "name": "Bedaquiline 100mg tablet",
+      "structuredCode": "BGLN1000TAB000",
+      "code": "3798d4bf"
+    },
+    {
+      "id": 110,
+      "name": "Bisoprolol 1.25mg tablet",
+      "structuredCode": "BISP0012TAB000",
+      "code": "379c44bf"
+    },
+    {
+      "id": 111,
+      "name": "Bisoprolol 5 mg tablet",
+      "structuredCode": "BISP0050TAB000",
+      "code": "379fb4bf"
+    },
+    {
+      "id": 112,
+      "name": "Beclometasone (dipropionate) 50mcg inhalation (aerosol)",
+      "structuredCode": "BLCM0500INH000",
+      "code": "37a2c4bf"
+    },
+    {
+      "id": 113,
+      "name": "Beclometasone (dipropionate) 100mcg inhalation (aerosol)",
+      "structuredCode": "BLCM1000INH000",
+      "code": "37a614bf"
+    },
+    {
+      "id": 114,
+      "name": "Bleomycin (sulfate) 15mg powder for injection",
+      "structuredCode": "BLEO0150INJ002",
+      "code": "37a954bf"
+    },
+    {
+      "id": 115,
+      "name": "Benzyl benzoate 25% lotion ",
+      "structuredCode": "BNZL0025LTN000",
+      "code": "37ad34bf"
+    },
+    {
+      "id": 116,
+      "name": "Benznidazole 12.5mg tablet",
+      "structuredCode": "BNZL0125TAB000",
+      "code": "37b074bf"
+    },
+    {
+      "id": 117,
+      "name": "Benznidazole 50mg tablet (scored)",
+      "structuredCode": "BNZL0125TSC000",
+      "code": "37b384bf"
+    },
+    {
+      "id": 118,
+      "name": "Benznidazole 100mg tablet",
+      "structuredCode": "BNZL1000TAB000",
+      "code": "37b684bf"
+    },
+    {
+      "id": 119,
+      "name": "Benzylpenicillin (potassium) 600mg (1 million IU) potassium",
+      "structuredCode": "BNZP0600PFI000",
+      "code": "37b984bf"
+    },
+    {
+      "id": 120,
+      "name": "Benzylpenicillin (sodium) 600mg (1 million IU) sodium",
+      "structuredCode": "BNZP0600PFI004",
+      "code": "37dcc4bf"
+    },
+    {
+      "id": 121,
+      "name": "Benzylpenicillin  (potassium)  3g (5 million IU) potassium",
+      "structuredCode": "BNZP3000PFI000",
+      "code": "37e114bf"
+    },
+    {
+      "id": 122,
+      "name": "Benzylpenicillin (sodium) 3g (5 million IU) sodium",
+      "structuredCode": "BNZP3000PFI004",
+      "code": "37e4b4bf"
+    },
+    {
+      "id": 123,
+      "name": "Biperidin (hydrochloride) 2mg talbet",
+      "structuredCode": "BPDN0020TAB000",
+      "code": "37eb14bf"
+    },
+    {
+      "id": 124,
+      "name": "Biperidin (lactate) 5mg in 1ml ampoule",
+      "structuredCode": "BPDN0050INJ000",
+      "code": "37eed4bf"
+    },
+    {
+      "id": 125,
+      "name": "Bupivacaine 0.5% (Spinal, 4ml amp mixed with 7.5% glucose)",
+      "structuredCode": "BPSP0050INJ001",
+      "code": "37f244bf"
+    },
+    {
+      "id": 126,
+      "name": "Bupivacaine 0.25% ",
+      "structuredCode": "BPVC0025INJ001",
+      "code": "37f5b4bf"
+    },
+    {
+      "id": 127,
+      "name": "Bupivacaine 0.50%",
+      "structuredCode": "BPVC0050INJ001",
+      "code": "37f934bf"
+    },
+    {
+      "id": 128,
+      "name": "Bevacizumab 25mg/mL injection",
+      "structuredCode": "BVCZ0025INJ000",
+      "code": "37fc84bf"
+    },
+    {
+      "id": 129,
+      "name": "Benzoyl peroxide 5% cream",
+      "structuredCode": "BZPL0005CRM000",
+      "code": "37ffd4bf"
+    },
+    {
+      "id": 130,
+      "name": "Benzoyl peroxide 5% lotion",
+      "structuredCode": "BZPL0005LTN000",
+      "code": "381fc4bf"
+    },
+    {
+      "id": 131,
+      "name": "Benzathine benzylpenicillin 1.8g (2.4 million IU) /5mL vial",
+      "structuredCode": "BZPN1440PFI000",
+      "code": "382424bf"
+    },
+    {
+      "id": 132,
+      "name": "Benzathine benzylpenicillin 900mg (1.2 million IU) /5mL vial ",
+      "structuredCode": "BZPN9000PFI000",
+      "code": "3827b4bf"
+    },
+    {
+      "id": 133,
+      "name": "Calcium folinate 3mg/mL in 10 ml amploule injection",
+      "structuredCode": "CAFL0003INJ000",
+      "code": "382ae4bf"
+    },
+    {
+      "id": 134,
+      "name": "Calcium folinate 15mg tablet",
+      "structuredCode": "CAFL0150TAB000",
+      "code": "382df4bf"
+    },
+    {
+      "id": 135,
+      "name": "Caffeine citrate 20mg/mL (equivalent to 10mg caffeine base/mL) injection",
+      "structuredCode": "CAFN0020INJ000",
+      "code": "383114bf"
+    },
+    {
+      "id": 136,
+      "name": "Caffeine citrate 20mg/mL (equivalent to 10mg caffeine base/mL) oral liquid",
+      "structuredCode": "CAFN0020ORL000",
+      "code": "383444bf"
+    },
+    {
+      "id": 137,
+      "name": "Calcium gluconate 100mg/mL, 10 ml ampoule, injection",
+      "structuredCode": "CAGN0100INJ000",
+      "code": "3837b4bf"
+    },
+    {
+      "id": 138,
+      "name": "Calcium (elemental) 500mg tablet",
+      "structuredCode": "CALC5000TAB000",
+      "code": "385a64bf"
+    },
+    {
+      "id": 139,
+      "name": "Capecitabine 150mg tablet",
+      "structuredCode": "CAPE1500TAB000",
+      "code": "385e74bf"
+    },
+    {
+      "id": 140,
+      "name": "Capecitabine 500mg tablet",
+      "structuredCode": "CAPE5000TAB000",
+      "code": "3861d4bf"
+    },
+    {
+      "id": 141,
+      "name": "Chlorine base compound (0.1% available chlorine) powder of solution",
+      "structuredCode": "CBZP0001PFS000",
+      "code": "386504bf"
+    },
+    {
+      "id": 142,
+      "name": "Carbamazepine 100mg/5mL oral liquid",
+      "structuredCode": "CBZP0100ORL000",
+      "code": "386864bf"
+    },
+    {
+      "id": 143,
+      "name": "Carbamazepine 100mg tablet (chewable)",
+      "structuredCode": "CBZP0100TCW000",
+      "code": "386be4bf"
+    },
+    {
+      "id": 144,
+      "name": "Carbamazepine 100mg tablet (scored)",
+      "structuredCode": "CBZP0100TSC000",
+      "code": "386f24bf"
+    },
+    {
+      "id": 145,
+      "name": "Carbamazepine 200mg tablet (chewable)",
+      "structuredCode": "CBZP0200TCW000",
+      "code": "387314bf"
+    },
+    {
+      "id": 146,
+      "name": "Carbamazepine 200mg tablet (scored)",
+      "structuredCode": "CBZP0200TSC000",
+      "code": "387664bf"
+    },
+    {
+      "id": 147,
+      "name": "Codeine (phosphate) 30mg tablet",
+      "structuredCode": "CDNE0300TAB003",
+      "code": "388fb4bf"
+    },
+    {
+      "id": 148,
+      "name": "Coagulation factor IX 500IU/ vial powder for injection",
+      "structuredCode": "CFIX0500PFI000",
+      "code": "38a3b4bf"
+    },
+    {
+      "id": 149,
+      "name": "Coagulation factor IX 1000IU/ vial powder for injection",
+      "structuredCode": "CFIX1000PFI000",
+      "code": "38aa24bf"
+    },
+    {
+      "id": 150,
+      "name": "Cefalexin (anhydrous) 125mg/5mL powder for reconstitution with water",
+      "structuredCode": "CFLX1250PRW000",
+      "code": "38ade4bf"
+    },
+    {
+      "id": 151,
+      "name": "Cefalexin (anhydrous) 250mg/5mL powder for reconstitution with water",
+      "structuredCode": "CFLX2500PRW000",
+      "code": "38b174bf"
+    },
+    {
+      "id": 152,
+      "name": "Cefalexin (monohydrate) 250mg solid oral dosage form",
+      "structuredCode": "CFLX2500SOD000",
+      "code": "38b4e4bf"
+    },
+    {
+      "id": 153,
+      "name": "Cefixime (trihydrate) 400mg capsule",
+      "structuredCode": "CFXM4000CAP000",
+      "code": "38b814bf"
+    },
+    {
+      "id": 154,
+      "name": "Ceftriaxone (sodium) 1g",
+      "structuredCode": "CFXN0010PFI000",
+      "code": "38db24bf"
+    },
+    {
+      "id": 155,
+      "name": "Ceftriaxone (sodium) 250mg",
+      "structuredCode": "CFXN2500PFI000",
+      "code": "38df44bf"
+    },
+    {
+      "id": 156,
+      "name": "Ceftazidime (pentahydrate) 1g powder for injection",
+      "structuredCode": "CFZM0010PFI000",
+      "code": "38e2a4bf"
+    },
+    {
+      "id": 157,
+      "name": "Ceftazidime (pentahydrate) 250mg powder for injection",
+      "structuredCode": "CFZM2500PFI000",
+      "code": "38e924bf"
+    },
+    {
+      "id": 158,
+      "name": "Cefazolin (sodium) 1g powder for injection",
+      "structuredCode": "CFZN1000PFI000",
+      "code": "38ed14bf"
+    },
+    {
+      "id": 159,
+      "name": "Charcoal, activated powder",
+      "structuredCode": "CHAR0000POW000",
+      "code": "38f084bf"
+    },
+    {
+      "id": 160,
+      "name": "Ergocholecalciferol 250mcg/mL (10000IU/mL)  oral liquid",
+      "structuredCode": "CHL00400ORL000",
+      "code": "38f414bf"
+    },
+    {
+      "id": 161,
+      "name": "Ergocholecalciferol 1.25mg (50 000IU) solid oral dosage form",
+      "structuredCode": "CHL00400SOD000",
+      "code": "390dc4bf"
+    },
+    {
+      "id": 162,
+      "name": "Cholecalciferol 1000 IU solid oral dosage form",
+      "structuredCode": "CHLC0001SOD000",
+      "code": "391194bf"
+    },
+    {
+      "id": 163,
+      "name": "Cholecalciferol 400IU/mL oral liquid",
+      "structuredCode": "CHLC4000ORL000",
+      "code": "391504bf"
+    },
+    {
+      "id": 164,
+      "name": "Cholecalciferol 400IU solid oral dosage form",
+      "structuredCode": "CHLC4000SOD000",
+      "code": "391e34bf"
+    },
+    {
+      "id": 165,
+      "name": "Chlorhexidine (digluconate) 7.1% gel (delivering 4% chlorhexidine)",
+      "structuredCode": "CHLR0710GEL000",
+      "code": "392234bf"
+    },
+    {
+      "id": 166,
+      "name": "Chlorhexidine (digluconate) 7.1% solution (delivering 4% chlorhexidine)",
+      "structuredCode": "CHLR0710SLN000",
+      "code": "3925f4bf"
+    },
+    {
+      "id": 167,
+      "name": "Chlorhexidine (digluconate) 5% solution",
+      "structuredCode": "CHLX0005SLN000",
+      "code": "394894bf"
+    },
+    {
+      "id": 168,
+      "name": "Cholera vaccine",
+      "structuredCode": "CHOR0000VAC000",
+      "code": "394c94bf"
+    },
+    {
+      "id": 169,
+      "name": "Ciclosporin 25mg capsule",
+      "structuredCode": "CICL0250CAP000",
+      "code": "395004bf"
+    },
+    {
+      "id": 170,
+      "name": "Ciprofloxacin (hydrochloride) 0.3% eye drops topical",
+      "structuredCode": "CIPR0003EYD000",
+      "code": "395354bf"
+    },
+    {
+      "id": 171,
+      "name": "Cyclizine 50mg/mL injection",
+      "structuredCode": "CLCZ0500INJ000",
+      "code": "3956b4bf"
+    },
+    {
+      "id": 172,
+      "name": "Cyclizine 50mg tablet",
+      "structuredCode": "CLCZ0500TAB000",
+      "code": "395d64bf"
+    },
+    {
+      "id": 173,
+      "name": "Clofazimine 50mg capsule",
+      "structuredCode": "CLFZ0500CAP000",
+      "code": "396294bf"
+    },
+    {
+      "id": 174,
+      "name": "Clofazimine 100mg capsule",
+      "structuredCode": "CLFZ1000CAP000",
+      "code": "3983b4bf"
+    },
+    {
+      "id": 175,
+      "name": "Calcium gluconate 100mg/mL in 10mL ampoule injection",
+      "structuredCode": "CLGC1000INJ000",
+      "code": "398ac4bf"
+    },
+    {
+      "id": 176,
+      "name": "Clomifene (citrate) 50mg tablet",
+      "structuredCode": "CLMF0050TAB000",
+      "code": "399054bf"
+    },
+    {
+      "id": 177,
+      "name": "Clindamycin (hydrochloride) 150mg capsule",
+      "structuredCode": "CLMN0150CAP001",
+      "code": "399514bf"
+    },
+    {
+      "id": 178,
+      "name": "Clindamycin (phosphate) 150mg/mL injection",
+      "structuredCode": "CLMN0150INJ000",
+      "code": "3999f4bf"
+    },
+    {
+      "id": 179,
+      "name": "Clindamycin (palmitate)  75mg/5mL oral liquid",
+      "structuredCode": "CLMN0750ORL000",
+      "code": "39be44bf"
+    },
+    {
+      "id": 180,
+      "name": "Clarithromycin 500mg solid oral dosage form",
+      "structuredCode": "CLMN5000SOD000",
+      "code": "39c3f4bf"
+    },
+    {
+      "id": 181,
+      "name": "Clotrimazole 1% vaginal cream",
+      "structuredCode": "CLOT0001VCM000",
+      "code": "39c8d4bf"
+    },
+    {
+      "id": 182,
+      "name": "Clotrimazole 10% vaginal cream",
+      "structuredCode": "CLOT0010VCM000",
+      "code": "39d324bf"
+    },
+    {
+      "id": 183,
+      "name": "Clotimazole 100mg vaginal cream",
+      "structuredCode": "CLOT1000VCM000",
+      "code": "39da14bf"
+    },
+    {
+      "id": 184,
+      "name": "Clotimazole 500mg vaginal cream",
+      "structuredCode": "CLOT5000VCM000",
+      "code": "39fe84bf"
+    },
+    {
+      "id": 185,
+      "name": "Clozapine 25mg solid oral dosage form",
+      "structuredCode": "CLOZ0025SOD000",
+      "code": "3a0404bf"
+    },
+    {
+      "id": 186,
+      "name": "Clozapine 50mg solid oral dosage form",
+      "structuredCode": "CLOZ0050SOD000",
+      "code": "3a08d4bf"
+    },
+    {
+      "id": 187,
+      "name": "Clozapine 100mg solid oral dosage form",
+      "structuredCode": "CLOZ0100SOD000",
+      "code": "3a0db4bf"
+    },
+    {
+      "id": 188,
+      "name": "Clozapine 200mg solid oral dosage form",
+      "structuredCode": "CLOZ0200SOD000",
+      "code": "3a2854bf"
+    },
+    {
+      "id": 189,
+      "name": "Chloroquine (sulfate) 50mg/5mL oral liquid ",
+      "structuredCode": "CLQN0500ORL002",
+      "code": "3a3394bf"
+    },
+    {
+      "id": 190,
+      "name": "Chloroquine (phosphate) 50mg/5mL oral liquid ",
+      "structuredCode": "CLQN0500ORL003",
+      "code": "3a3884bf"
+    },
+    {
+      "id": 191,
+      "name": "Chloroquine (sulfate) 100mg tablet",
+      "structuredCode": "CLQN1000TAB002",
+      "code": "3a3da4bf"
+    },
+    {
+      "id": 192,
+      "name": "Chloroquine (phosphate) 100mg tablet",
+      "structuredCode": "CLQN1000TAB003",
+      "code": "3a61d4bf"
+    },
+    {
+      "id": 193,
+      "name": "Chloroquine (sulfate) 150mg tablet",
+      "structuredCode": "CLQN1500TAB002",
+      "code": "3a6764bf"
+    },
+    {
+      "id": 194,
+      "name": "Chloroquine (phosphate) 150mg tablet",
+      "structuredCode": "CLQN1500TAB003",
+      "code": "3a6c44bf"
+    },
+    {
+      "id": 195,
+      "name": "Cloxacillin (sodium) 1g capsule",
+      "structuredCode": "CLXN0010CAP004",
+      "code": "3a7134bf"
+    },
+    {
+      "id": 196,
+      "name": "Cloxacillin (sodium) 125mg/5mL powder for oral liquid",
+      "structuredCode": "CLXN1250POL005",
+      "code": "3a9134bf"
+    },
+    {
+      "id": 197,
+      "name": "Cloxacillin (sodium) 500mg capsule",
+      "structuredCode": "CLXN5000CAP004",
+      "code": "3a96e4bf"
+    },
+    {
+      "id": 198,
+      "name": "Cloxacillin (sodium) 500mg powder for injection",
+      "structuredCode": "CLXN5000PFI004",
+      "code": "3a9b74bf"
+    },
+    {
+      "id": 199,
+      "name": "Chlorambucil 2mg tablet",
+      "structuredCode": "CMBL0020TAB000",
+      "code": "3abfd4bf"
+    },
+    {
+      "id": 200,
+      "name": "Chloramphenicol (sodium succinate) 0.5g/mL in 2ml ampoule oily suspenson for injection",
+      "structuredCode": "CMPL0005OSI012",
+      "code": "3ac564bf"
+    },
+    {
+      "id": 201,
+      "name": "Clomipramine (hydrochloride) 10mg capsule",
+      "structuredCode": "CMPL0010CAP001",
+      "code": "3aca94bf"
+    },
+    {
+      "id": 202,
+      "name": "Chloramphenicol (sodium succinate) 1g powder for injection",
+      "structuredCode": "CMPL0010PFI012",
+      "code": "3ae534bf"
+    },
+    {
+      "id": 203,
+      "name": "Clomipramine (hydrochloride) 25mg capsule",
+      "structuredCode": "CMPL0025CAP001",
+      "code": "3af014bf"
+    },
+    {
+      "id": 204,
+      "name": "Chloramphenicol (palmitate) 150mg/5mL oral liquid",
+      "structuredCode": "CMPL1500ORL007",
+      "code": "3b1394bf"
+    },
+    {
+      "id": 205,
+      "name": "Chloramphenicol 250mg capsule",
+      "structuredCode": "CMPL2500CAP000",
+      "code": "3b1934bf"
+    },
+    {
+      "id": 206,
+      "name": "Condoms, male",
+      "structuredCode": "CNDM0000CDM000",
+      "code": "3b3444bf"
+    },
+    {
+      "id": 207,
+      "name": "Copper containing device ",
+      "structuredCode": "COPP0000DEV000",
+      "code": "3b3994bf"
+    },
+    {
+      "id": 208,
+      "name": "Ciprofloxacin (hyclate) 2mg/mL soultion for IV infusion",
+      "structuredCode": "CPFN0020SII000",
+      "code": "3b3e54bf"
+    },
+    {
+      "id": 209,
+      "name": "Ciprofloxacin (anhydrous) 250mg/5mL oral liquid",
+      "structuredCode": "CPFN2500ORL000",
+      "code": "3b5964bf"
+    },
+    {
+      "id": 210,
+      "name": "Ciprofloxacin (hydrochloride) 250mg tablet",
+      "structuredCode": "CPFN2500TAB001",
+      "code": "3b64a4bf"
+    },
+    {
+      "id": 211,
+      "name": "Clopidogrel 75mg tablet",
+      "structuredCode": "CPGL0075TAB000",
+      "code": "3b88a4bf"
+    },
+    {
+      "id": 212,
+      "name": "Clopidogrel 300mg tablet",
+      "structuredCode": "CPGL0300TAB000",
+      "code": "3b8e44bf"
+    },
+    {
+      "id": 213,
+      "name": "Capreomycin (sulfate) powder for injection",
+      "structuredCode": "CPMN0010PFI002",
+      "code": "3bd684bf"
+    },
+    {
+      "id": 214,
+      "name": "Chlorpromazine (hydrochloride) 10mg tablet",
+      "structuredCode": "CPMZ0010TAB001",
+      "code": "3bdf54bf"
+    },
+    {
+      "id": 215,
+      "name": "Chlorpromazine (hydrochloride) 25mg/mL in 2mL ampoule",
+      "structuredCode": "CPMZ0025INJ000",
+      "code": "3bfad4bf"
+    },
+    {
+      "id": 216,
+      "name": "Chlorpromazine (hydrochloride) 25mg/5mL oral liquid",
+      "structuredCode": "CPMZ0025ORL001",
+      "code": "3c1d04bf"
+    },
+    {
+      "id": 217,
+      "name": "Chlorpromazine (hydrochloride) 25mg tablet",
+      "structuredCode": "CPMZ0025TAB001",
+      "code": "3c4194bf"
+    },
+    {
+      "id": 218,
+      "name": "Chlorpromazine (hydrochloride) 50mg tablet",
+      "structuredCode": "CPMZ0050TAB001",
+      "code": "3c5f24bf"
+    },
+    {
+      "id": 219,
+      "name": "Chlorpromazine (hydrochloride) 100mg tablet",
+      "structuredCode": "CPMZ0100TAB001",
+      "code": "3c7a34bf"
+    },
+    {
+      "id": 220,
+      "name": "Cisplatin 100mg/100ml injection",
+      "structuredCode": "CPTN1000INJ000",
+      "code": "3c94f4bf"
+    },
+    {
+      "id": 221,
+      "name": "Cisplatin 50mg/50ml injection",
+      "structuredCode": "CPTN5000INJ000",
+      "code": "3cafc4bf"
+    },
+    {
+      "id": 222,
+      "name": "Carboplatin 50mg/5ml injection ",
+      "structuredCode": "CRBO0500INJ000",
+      "code": "3ccaa4bf"
+    },
+    {
+      "id": 223,
+      "name": "Carboplatin 150mg/15ml injection ",
+      "structuredCode": "CRBO1515INJ000",
+      "code": "3cf3f4bf"
+    },
+    {
+      "id": 224,
+      "name": "Carboplatin 450mg/45ml injection ",
+      "structuredCode": "CRBO4545INJ000",
+      "code": "3d0ee4bf"
+    },
+    {
+      "id": 225,
+      "name": "Carboplatin 600mg/60ml injection ",
+      "structuredCode": "CRBO6060INJ000",
+      "code": "3d2c74bf"
+    },
+    {
+      "id": 226,
+      "name": "Cycloserine (alternative may be terizidone)  250mg solid oral dosage form",
+      "structuredCode": "CSNE2500SOD000",
+      "code": "3d6384bf"
+    },
+    {
+      "id": 227,
+      "name": "Coal tar  5% solution",
+      "structuredCode": "CTAT0005SLN000",
+      "code": "3d6b74bf"
+    },
+    {
+      "id": 228,
+      "name": "Carvedilol 25mg tablet",
+      "structuredCode": "CVDL0025TAB000",
+      "code": "3d7124bf"
+    },
+    {
+      "id": 229,
+      "name": "Carvedilol 12.5mg tablet",
+      "structuredCode": "CVDL0125TAB000",
+      "code": "3d79b4bf"
+    },
+    {
+      "id": 230,
+      "name": "Carvedilol 6.25mg tablet",
+      "structuredCode": "CVDL0625TAB000",
+      "code": "3d7f74bf"
+    },
+    {
+      "id": 231,
+      "name": "Carvedilol 3.125mg tablet",
+      "structuredCode": "CVDL3125TAB000",
+      "code": "3d84a4bf"
+    },
+    {
+      "id": 232,
+      "name": "Cefotaxime (sodium) 250mg powder for injection",
+      "structuredCode": "CXME2500PFI000",
+      "code": "3d89c4bf"
+    },
+    {
+      "id": 233,
+      "name": "Chloroxylenol 4.8% solution",
+      "structuredCode": "CXYL0048SLN000",
+      "code": "3d8f14bf"
+    },
+    {
+      "id": 234,
+      "name": "Cytarabine 100mg powder for injection",
+      "structuredCode": "CYBN0100PFI000",
+      "code": "3d9414bf"
+    },
+    {
+      "id": 235,
+      "name": "Cyclophosphamide 25mg tablet",
+      "structuredCode": "CYCL0025TAB000",
+      "code": "3d9944bf"
+    },
+    {
+      "id": 236,
+      "name": "Cyclophosphamide 500mg powder for injection",
+      "structuredCode": "CYCL5000PFI000",
+      "code": "3d9e44bf"
+    },
+    {
+      "id": 237,
+      "name": "Dapsone 25mg tablet",
+      "structuredCode": "DAPS0250TAB000",
+      "code": "3da324bf"
+    },
+    {
+      "id": 238,
+      "name": "Dapsone 50mg tablet",
+      "structuredCode": "DAPS0500TAB000",
+      "code": "3da814bf"
+    },
+    {
+      "id": 239,
+      "name": "Dapsone 100mg tablet",
+      "structuredCode": "DAPS1000TAB000",
+      "code": "3dacf4bf"
+    },
+    {
+      "id": 240,
+      "name": "Daunorubicin (hydrochloride) 50 mg in vial powder for injection",
+      "structuredCode": "DAUN0500PFI000",
+      "code": "3db474bf"
+    },
+    {
+      "id": 241,
+      "name": "Dasabuvir 250mg tablet",
+      "structuredCode": "DBVR2500TAB000",
+      "code": "3db9f4bf"
+    },
+    {
+      "id": 242,
+      "name": "Diethylcarbmazine (dihydrogen citrate) 50mg tablet",
+      "structuredCode": "DCBM0500TAB000",
+      "code": "3dbed4bf"
+    },
+    {
+      "id": 243,
+      "name": "Diethylcarbmazine (dihydrogen citrate) 100mg tablet",
+      "structuredCode": "DCBM1000TAB000",
+      "code": "3dc3e4bf"
+    },
+    {
+      "id": 244,
+      "name": "Dacarbazine 100mg in vial powder for injection",
+      "structuredCode": "DCBZ0100PFI000",
+      "code": "3dc8f4bf"
+    },
+    {
+      "id": 245,
+      "name": "Daclatasvir (hydrochloride) 30mg capsule",
+      "structuredCode": "DCLR0300TAB000",
+      "code": "3dcdf4bf"
+    },
+    {
+      "id": 246,
+      "name": "Dactinomycin 500mcg in vial powder for injectio",
+      "structuredCode": "DCNM5000PFI000",
+      "code": "3dd304bf"
+    },
+    {
+      "id": 247,
+      "name": "Dimercaprol 50mg/mL 5ml ampoule, injection in oil",
+      "structuredCode": "DCPL0050IIO000",
+      "code": "3e10a4bf"
+    },
+    {
+      "id": 248,
+      "name": "Docusate sodium 50mg/5mL oral liquid",
+      "structuredCode": "DCSM0500ORL005",
+      "code": "3e1b94bf"
+    },
+    {
+      "id": 249,
+      "name": "Docusate sodium 100mg capsule",
+      "structuredCode": "DCSM1000CAP000",
+      "code": "3e2144bf"
+    },
+    {
+      "id": 250,
+      "name": "Docetaxel 20mg/ml injection",
+      "structuredCode": "DCXL0200INJ000",
+      "code": "3e2644bf"
+    },
+    {
+      "id": 251,
+      "name": "Dexamethasone 0.5mg solid oral dosage form",
+      "structuredCode": "DEXA0005SOD000",
+      "code": "3e2b64bf"
+    },
+    {
+      "id": 252,
+      "name": "Dexamethasone 0.75mg solid oral dosage form",
+      "structuredCode": "DEXA0007SOD000",
+      "code": "3e3064bf"
+    },
+    {
+      "id": 253,
+      "name": "Dexamethasone 2mg/5mL oral liquid",
+      "structuredCode": "DEXA0020ORL005",
+      "code": "3e3574bf"
+    },
+    {
+      "id": 254,
+      "name": "Dexamethasone 2mg tablet",
+      "structuredCode": "DEXA0020TAB000",
+      "code": "3e3ae4bf"
+    },
+    {
+      "id": 255,
+      "name": "Dexamethasone 4mg/mL (1mL) disodium phosphate salt",
+      "structuredCode": "DEXA0040INJ006",
+      "code": "3e40b4bf"
+    },
+    {
+      "id": 256,
+      "name": "Dexamethasone 4mg tablet",
+      "structuredCode": "DEXA0040TAB000",
+      "code": "3e45d4bf"
+    },
+    {
+      "id": 257,
+      "name": "Dexamethasone 1.5mg solid oral dosage form",
+      "structuredCode": "DEXA0150SOD000",
+      "code": "3e4ad4bf"
+    },
+    {
+      "id": 258,
+      "name": "Dexamethasone 4mg solid oral dosage form",
+      "structuredCode": "DEXA0400SOD000",
+      "code": "3e4fd4bf"
+    },
+    {
+      "id": 259,
+      "name": "Dextran 70 6% injectable solution",
+      "structuredCode": "DEXT7006INJ000",
+      "code": "3e54b4bf"
+    },
+    {
+      "id": 260,
+      "name": "Deferoxamine (mesilate)  500mg, vial powder for injection f",
+      "structuredCode": "DFXM0500PFI000",
+      "code": "3e59c4bf"
+    },
+    {
+      "id": 261,
+      "name": "Digoxin 50mcg/mL oral liquid",
+      "structuredCode": "DGXN0050ORL000",
+      "code": "3e5ee4bf"
+    },
+    {
+      "id": 262,
+      "name": "Digoxin 62.5mcg tablet",
+      "structuredCode": "DGXN0625TAB000",
+      "code": "3e63e4bf"
+    },
+    {
+      "id": 263,
+      "name": "Digoxin 250mcg/mL in 2mL ampoule",
+      "structuredCode": "DGXN2500INJ000",
+      "code": "3e6924bf"
+    },
+    {
+      "id": 264,
+      "name": "Digoxin 250mcg tablet",
+      "structuredCode": "DGXN2500TAB000",
+      "code": "3e6e24bf"
+    },
+    {
+      "id": 265,
+      "name": "Diaphragm",
+      "structuredCode": "DIAP0000DIA000",
+      "code": "3e7314bf"
+    },
+    {
+      "id": 266,
+      "name": "Diphtheria antitoxin 10 000 IU injection",
+      "structuredCode": "DIPA1000INJ000",
+      "code": "3e77f4bf"
+    },
+    {
+      "id": 267,
+      "name": "Diphtheria antitoxin 20 000 IU injection",
+      "structuredCode": "DIPA2000INJ000",
+      "code": "3e7d04bf"
+    },
+    {
+      "id": 268,
+      "name": "Diptheria vaccine",
+      "structuredCode": "DIPT0000VAC000",
+      "code": "3e81c4bf"
+    },
+    {
+      "id": 269,
+      "name": "Delamanid 50mg tablet",
+      "structuredCode": "DLMD0050TAB000",
+      "code": "3e86c4bf"
+    },
+    {
+      "id": 270,
+      "name": "Desmopressin (acetate) 4mc/mL in 1mL ampoule",
+      "structuredCode": "DMPN0004INJ000",
+      "code": "3e8ba4bf"
+    },
+    {
+      "id": 271,
+      "name": "Darunavir 75mg tablet ",
+      "structuredCode": "DNVR0750TAB000",
+      "code": "3e90c4bf"
+    },
+    {
+      "id": 272,
+      "name": "Darunavir 400mg tablet ",
+      "structuredCode": "DNVR4000TAB000",
+      "code": "3e97a4bf"
+    },
+    {
+      "id": 273,
+      "name": "Darunavir 600mg tablet ",
+      "structuredCode": "DNVR6000TAB000",
+      "code": "3e9cf4bf"
+    },
+    {
+      "id": 274,
+      "name": "Darunavir 800mg tablet ",
+      "structuredCode": "DNVR8000TAB000",
+      "code": "3ea1b4bf"
+    },
+    {
+      "id": 275,
+      "name": "Doxycycline (hyclate) 100mg capsule",
+      "structuredCode": "DOXN1000CAP000",
+      "code": "3ea664bf"
+    },
+    {
+      "id": 276,
+      "name": "Doxycycline (hydrochloride) 100mg capsule",
+      "structuredCode": "DOXN1000CAP001",
+      "code": "3eab64bf"
+    },
+    {
+      "id": 277,
+      "name": "Doxycycline (hyclate) 100mg solid oral dosage form",
+      "structuredCode": "DOXN1000SOD000",
+      "code": "3eb054bf"
+    },
+    {
+      "id": 278,
+      "name": "Doxycycline (hydrochloride) 100mg solid oral dosage form",
+      "structuredCode": "DOXN1000SOD001",
+      "code": "3eb544bf"
+    },
+    {
+      "id": 279,
+      "name": "Doxycycline (monohydrate) tablet dispersible",
+      "structuredCode": "DOXN1000TDS000",
+      "code": "3eba34bf"
+    },
+    {
+      "id": 280,
+      "name": "Doxorubicin (hydrochloride) 10mg powder for injection",
+      "structuredCode": "DOXO0100PFI001",
+      "code": "3ebf54bf"
+    },
+    {
+      "id": 281,
+      "name": "Doxorubicin (hydrochloride) 50mg powder for injection",
+      "structuredCode": "DOXO0500PFI001",
+      "code": "3ec444bf"
+    },
+    {
+      "id": 282,
+      "name": "Dopamine (hydrochloiride) 40mg/mL in 5mL vial injection",
+      "structuredCode": "DPMN0040INJ001",
+      "code": "3ec934bf"
+    },
+    {
+      "id": 283,
+      "name": "Doxycycline (anhydrous) 25mg/5mL oral liquid",
+      "structuredCode": "DOXN0250ORL000",
+      "code": "3ece24bf"
+    },
+    {
+      "id": 284,
+      "name": "Doxycycline (anhydrous) 50mg/5mL oral liquid",
+      "structuredCode": "DOXN0500ORL000",
+      "code": "3ed304bf"
+    },
+    {
+      "id": 285,
+      "name": "Doxycycline (hyclate) 50mg solid oral dosage form",
+      "structuredCode": "DOXN0500SOD000",
+      "code": "3ed804bf"
+    },
+    {
+      "id": 286,
+      "name": "Diloxanide (furoate) 500mg tablet",
+      "structuredCode": "DXND5000TAB000",
+      "code": "3edb74bf"
+    },
+    {
+      "id": 287,
+      "name": "Diazepam 5mg/mL (0.5mL) gel",
+      "structuredCode": "DZPM0005GEL000",
+      "code": "3edeb4bf"
+    },
+    {
+      "id": 288,
+      "name": "Diazepam 5mg/mL (0.5mL) rectal solution",
+      "structuredCode": "DZPM0005RCS000",
+      "code": "3ee1c4bf"
+    },
+    {
+      "id": 289,
+      "name": "Diazepam 5mg/mL (2 mL) gel",
+      "structuredCode": "DZPM0020GEL000",
+      "code": "3ee5a4bf"
+    },
+    {
+      "id": 290,
+      "name": "Diazepam 2mg/5mL oral liquid",
+      "structuredCode": "DZPM0020ORL005",
+      "code": "3eea94bf"
+    },
+    {
+      "id": 291,
+      "name": "Diazepam 5mg/mL (2mL) rectal solution",
+      "structuredCode": "DZPM0020RCS000",
+      "code": "3eef44bf"
+    },
+    {
+      "id": 292,
+      "name": "Diazepam 2mg tablet scored",
+      "structuredCode": "DZPM0020TSC000",
+      "code": "3ef344bf"
+    },
+    {
+      "id": 293,
+      "name": "Diazepam 2.5mg rectal solution",
+      "structuredCode": "DZPM0025RTS000",
+      "code": "3ef6d4bf"
+    },
+    {
+      "id": 294,
+      "name": "Diazepam 5mg/mL (4 mL) gel",
+      "structuredCode": "DZPM0040GEL000",
+      "code": "3efaa4bf"
+    },
+    {
+      "id": 295,
+      "name": "Diazepam 5mg/mL (4mL) rectal solution",
+      "structuredCode": "DZPM0040RCS000",
+      "code": "3efe24bf"
+    },
+    {
+      "id": 296,
+      "name": "Diazepam 5mg/mL injection",
+      "structuredCode": "DZPM0050INJ000",
+      "code": "3f01c4bf"
+    },
+    {
+      "id": 297,
+      "name": "Diazepam 5 mg rectal solution",
+      "structuredCode": "DZPM0050RTS000",
+      "code": "3f0554bf"
+    },
+    {
+      "id": 298,
+      "name": "Diazepam 10 mg rectal solution",
+      "structuredCode": "DZPM0050RTS001",
+      "code": "3f08d4bf"
+    },
+    {
+      "id": 299,
+      "name": "Diazepam 5mg tablet",
+      "structuredCode": "DZPM0050TAB000",
+      "code": "3f0c34bf"
+    },
+    {
+      "id": 300,
+      "name": "Diazepam 5mg tablet scored",
+      "structuredCode": "DZPM0050TSC000",
+      "code": "3f0f94bf"
+    },
+    {
+      "id": 301,
+      "name": "Diazepam 10mg tablet",
+      "structuredCode": "DZPM0100TAB000",
+      "code": "3f12e4bf"
+    },
+    {
+      "id": 302,
+      "name": "Eflornithine (hydrochloride) 200mg/mL  injection in 100mL bottle",
+      "structuredCode": "EFLN2000INJ000",
+      "code": "3f2464bf"
+    },
+    {
+      "id": 303,
+      "name": "Efavirenz (EFV/EFZ) 50mg capsule",
+      "structuredCode": "EFVZ0500CAP000",
+      "code": "3f2ad4bf"
+    },
+    {
+      "id": 304,
+      "name": "Efavirenz (EFV/EFZ) 600mg tablet",
+      "structuredCode": "EFVZ0600TAB000",
+      "code": "3f4ed4bf"
+    },
+    {
+      "id": 305,
+      "name": "Efavirenz (EFV/EFZ) 100mg capsule",
+      "structuredCode": "EFVZ1000CAP000",
+      "code": "3f53c4bf"
+    },
+    {
+      "id": 306,
+      "name": "Efavirenz (EFV/EFZ) 200mg capsule",
+      "structuredCode": "EFVZ2000CAP000",
+      "code": "3f5764bf"
+    },
+    {
+      "id": 307,
+      "name": "Efavirenz (EFV/EFZ) 200mg tablet scored",
+      "structuredCode": "EFVZ2000TSC000",
+      "code": "3f5ad4bf"
+    },
+    {
+      "id": 308,
+      "name": "Efavirenz & emtricitabine & tefonovir (disoproxil fumarate equivalent to 245mg tenofovir disoproxil) 600mg & 200mg & 300mg",
+      "structuredCode": "EFVZ6230TAB000",
+      "code": "3f5e44bf"
+    },
+    {
+      "id": 309,
+      "name": "Ergometrine (hydrogen maleate) 200mcg in 1mL ampoule injection",
+      "structuredCode": "EGMN0200INJ000",
+      "code": "3f6264bf"
+    },
+    {
+      "id": 310,
+      "name": "Ethambutol & isoniazid & pyrazinamide & rifampicin 275mg & 75mg & 400mg & 150mg",
+      "structuredCode": "EIPR2750TAB000",
+      "code": "3f6604bf"
+    },
+    {
+      "id": 311,
+      "name": "Ethambutol & isoniazid & rifampicin 275mg & 75mg  & 150mg",
+      "structuredCode": "EIRI2750TAB000",
+      "code": "3f6ad4bf"
+    },
+    {
+      "id": 312,
+      "name": "Erythromycin(ethyl succinate) 125mg/5mL powder for oral liquid",
+      "structuredCode": "EMCN1250POL005",
+      "code": "3f6e74bf"
+    },
+    {
+      "id": 313,
+      "name": "Erythromycin(stearate) 125mg/5mL powder for oral liquid",
+      "structuredCode": "EMCN1250POL013",
+      "code": "3f8804bf"
+    },
+    {
+      "id": 314,
+      "name": "Erythromycin(estolate) 125mg/5mL powder for oral liquid",
+      "structuredCode": "EMCN1250POL014",
+      "code": "3f9194bf"
+    },
+    {
+      "id": 315,
+      "name": "Erythromycin (ethyl succinate) 250mg solid oral dosage form",
+      "structuredCode": "EMCN2500SOD000",
+      "code": "3f9904bf"
+    },
+    {
+      "id": 316,
+      "name": "Erythromycin (stearate) 250mg solid oral dosage form",
+      "structuredCode": "EMCN2500SOD013",
+      "code": "3f9df4bf"
+    },
+    {
+      "id": 317,
+      "name": "Erythromycin (estolate) 250mg solid oral dosage form",
+      "structuredCode": "EMCN2500SOD014",
+      "code": "3fa194bf"
+    },
+    {
+      "id": 318,
+      "name": "Erythromycin (lactobionate) 500mg powder for injection",
+      "structuredCode": "EMCN5000PFI000",
+      "code": "3fa4d4bf"
+    },
+    {
+      "id": 319,
+      "name": "Ethionamide (protionamide my be alternative) 125mg tablet",
+      "structuredCode": "EMDE1250TAB000",
+      "code": "3fa804bf"
+    },
+    {
+      "id": 320,
+      "name": "Ethionamide (protionamide my be alternative) 250mg tablet",
+      "structuredCode": "EMDE2550TAB000",
+      "code": "3fada4bf"
+    },
+    {
+      "id": 321,
+      "name": "Emtricitabine & tefonovir (disoproxil fumarate equivalent to 245mg tenofovir disoproxil) 200mg & 300mg",
+      "structuredCode": "EMTC2030TAB000",
+      "code": "3fb0e4bf"
+    },
+    {
+      "id": 322,
+      "name": "Enalapril (hydrogen maleate) 2.5mg",
+      "structuredCode": "ENPL0025TAB000",
+      "code": "3fd444bf"
+    },
+    {
+      "id": 323,
+      "name": "Enalapril (hydrogen maleate) 5mg",
+      "structuredCode": "ENPL0050TAB000",
+      "code": "3fd864bf"
+    },
+    {
+      "id": 324,
+      "name": "Entecavir 0.05mg/mL oral liquid ",
+      "structuredCode": "ENVR0005ORL000",
+      "code": "3fdc04bf"
+    },
+    {
+      "id": 325,
+      "name": "Entecavir 0.5mg tablet",
+      "structuredCode": "ENVR0005TAB000",
+      "code": "3fdf54bf"
+    },
+    {
+      "id": 326,
+      "name": "Entecavir 1 mg tablet",
+      "structuredCode": "ENVR0010TAB000",
+      "code": "3fe2b4bf"
+    },
+    {
+      "id": 327,
+      "name": "Ephedrine 30mg/mL (1mL)",
+      "structuredCode": "EPHD0300INJ000",
+      "code": "3fe614bf"
+    },
+    {
+      "id": 328,
+      "name": "Epinephrine (adrenaline) (hydrochloride) 2% solution eye drops",
+      "structuredCode": "EPHN0002EDP000",
+      "code": "3fe954bf"
+    },
+    {
+      "id": 329,
+      "name": "Epinephrine(adrenaline) hydrochloride 1mg/1ml",
+      "structuredCode": "EPHN0010INJ001",
+      "code": "3feca4bf"
+    },
+    {
+      "id": 330,
+      "name": "Epinephrine(adrenaline) hydrogen tartrate 1mg/1ml",
+      "structuredCode": "EPHN0010INJ008",
+      "code": "3feff4bf"
+    },
+    {
+      "id": 331,
+      "name": "Etonogestrel-releasing implant (single rod containing 68mg of etonogestrel)",
+      "structuredCode": "ERIM0068ROD000",
+      "code": "3ff944bf"
+    },
+    {
+      "id": 332,
+      "name": "Estradiol cypionate & medroxyprogesterone acetate 5mg &25 mg injection",
+      "structuredCode": "ESMD0525INJ000",
+      "code": "401b34bf"
+    },
+    {
+      "id": 333,
+      "name": "Ethanol (denatured) solution 70%",
+      "structuredCode": "ETHL0700SLN000",
+      "code": "401f34bf"
+    },
+    {
+      "id": 334,
+      "name": "Ethosuximide 250mg capsule",
+      "structuredCode": "ETHX2500CAP000",
+      "code": "402284bf"
+    },
+    {
+      "id": 335,
+      "name": "Ethosuximide 250mg/5mL oral liquid ",
+      "structuredCode": "ETHX2500ORL005",
+      "code": "4025e4bf"
+    },
+    {
+      "id": 336,
+      "name": "Ethinylestradiol  & levonorgestrel 30mcg & 150mcg tablet",
+      "structuredCode": "ETLE1530TAB000",
+      "code": "402924bf"
+    },
+    {
+      "id": 337,
+      "name": "Ethambutol 25mg/mL oral liquid",
+      "structuredCode": "ETML0250ORL000",
+      "code": "402cb4bf"
+    },
+    {
+      "id": 338,
+      "name": "Ethambutol (hydrochloride)  100 mg tablet",
+      "structuredCode": "ETML1000TAB001",
+      "code": "403004bf"
+    },
+    {
+      "id": 339,
+      "name": "Ethambutol (hydrochloride)  200 mg tablet",
+      "structuredCode": "ETML2000TAB001",
+      "code": "403354bf"
+    },
+    {
+      "id": 340,
+      "name": "Ethambutol (hydrochloride)  400 mg tablet",
+      "structuredCode": "ETML4000TAB001",
+      "code": "403694bf"
+    },
+    {
+      "id": 341,
+      "name": "Ethinylestradiol  & norethisterone 35mcg & 1mg tablet",
+      "structuredCode": "ETNH3501TAB000",
+      "code": "404fb4bf"
+    },
+    {
+      "id": 342,
+      "name": "Etoposide 20mg/mL in 5mL ampoule injection",
+      "structuredCode": "ETOP0200INJ000",
+      "code": "4053a4bf"
+    },
+    {
+      "id": 343,
+      "name": "Etoposide 100mg capsule",
+      "structuredCode": "ETOP1000CAP000",
+      "code": "405c74bf"
+    },
+    {
+      "id": 344,
+      "name": "Enoxaparin 100mg/1mL ampoule injection",
+      "structuredCode": "EXPN1001INJ000",
+      "code": "406044bf"
+    },
+    {
+      "id": 345,
+      "name": "Enoxaparin 100mg/1mL pre filled syringe",
+      "structuredCode": "EXPN1001PFS000",
+      "code": "406404bf"
+    },
+    {
+      "id": 346,
+      "name": "Enoxaparin 120mg/1.2mL ampoule injection",
+      "structuredCode": "EXPN1212INJ000",
+      "code": "406744bf"
+    },
+    {
+      "id": 347,
+      "name": "Enoxaparin 120mg/1.2mLpre filled syringe",
+      "structuredCode": "EXPN1212PFS000",
+      "code": "406ff4bf"
+    },
+    {
+      "id": 348,
+      "name": "Enoxaparin 150mg/1.5mL ampoule injection",
+      "structuredCode": "EXPN1515INJ000",
+      "code": "407374bf"
+    },
+    {
+      "id": 349,
+      "name": "Enoxaparin 150mg/1.5mL pre filled syringe",
+      "structuredCode": "EXPN1515PFS000",
+      "code": "409604bf"
+    },
+    {
+      "id": 350,
+      "name": "Enoxaparin 20mg/0.2mL ampoule injection",
+      "structuredCode": "EXPN2020INJ000",
+      "code": "4099f4bf"
+    },
+    {
+      "id": 351,
+      "name": "Enoxaparin 20mg/0.2mL pre filled syringe",
+      "structuredCode": "EXPN2020PFS000",
+      "code": "409d74bf"
+    },
+    {
+      "id": 352,
+      "name": "Enoxaparin 40mg/0.4mL ampoule injection",
+      "structuredCode": "EXPN4004INJ000",
+      "code": "40a0c4bf"
+    },
+    {
+      "id": 353,
+      "name": "Enoxaparin 40mg/0.4mL pre filled syringe",
+      "structuredCode": "EXPN4004PFS000",
+      "code": "40a434bf"
+    },
+    {
+      "id": 354,
+      "name": "Enoxaparin 60mg/0.6mL ampoule injection",
+      "structuredCode": "EXPN6060INJ000",
+      "code": "40a774bf"
+    },
+    {
+      "id": 355,
+      "name": "Enoxaparin 60mg/0.6mL pre filled syringe",
+      "structuredCode": "EXPN6060PFS000",
+      "code": "40aaa4bf"
+    },
+    {
+      "id": 356,
+      "name": "Enoxaparin 80mg/0.8mL ampoule injection",
+      "structuredCode": "EXPN8080INJ000",
+      "code": "40c374bf"
+    },
+    {
+      "id": 357,
+      "name": "Enoxaparin 80mg/0.8mL pre filled syringe",
+      "structuredCode": "EXPN8080PFS000",
+      "code": "40c714bf"
+    },
+    {
+      "id": 358,
+      "name": "Fluconazole 2mg/mL injection",
+      "structuredCode": "FCZL0020INJ000",
+      "code": "40cfb4bf"
+    },
+    {
+      "id": 359,
+      "name": "Fluconazole 50mg capsule",
+      "structuredCode": "FCZL0500CAP000",
+      "code": "40d364bf"
+    },
+    {
+      "id": 360,
+      "name": "Fluconazole 50mg/5mL oral liquid",
+      "structuredCode": "FCZL0500ORL000",
+      "code": "40d6e4bf"
+    },
+    {
+      "id": 361,
+      "name": "Fresh frozen plasma",
+      "structuredCode": "FFPL0000BCP000",
+      "code": "40dad4bf"
+    },
+    {
+      "id": 362,
+      "name": "Fluorouracol 5% ointment",
+      "structuredCode": "FLCL0005OIN000",
+      "code": "40de04bf"
+    },
+    {
+      "id": 363,
+      "name": "Fluorouracil 50mg/mL in 5mL ampoule injection",
+      "structuredCode": "FLCL0500INJ000",
+      "code": "40ffe4bf"
+    },
+    {
+      "id": 364,
+      "name": "Flucytosine 2.5mg in 250mL  infusion",
+      "structuredCode": "FLCY0025INF000",
+      "code": "4103d4bf"
+    },
+    {
+      "id": 365,
+      "name": "Flucytosine 250mg capulse",
+      "structuredCode": "FLCY2500CAP000",
+      "code": "410744bf"
+    },
+    {
+      "id": 366,
+      "name": "Fludrocortisone (acetate) 100mcg tablet",
+      "structuredCode": "FLDN0100TAB000",
+      "code": "410aa4bf"
+    },
+    {
+      "id": 367,
+      "name": "Filgastrim 120mcg/0.2mL injection",
+      "structuredCode": "FLGM1202INJ000",
+      "code": "410e64bf"
+    },
+    {
+      "id": 368,
+      "name": "Filgastrim300mcg/mL in 1mL vial",
+      "structuredCode": "FLGM3001INJ000",
+      "code": "411484bf"
+    },
+    {
+      "id": 369,
+      "name": "Filgastrim 300mcg/0.5mL injection",
+      "structuredCode": "FLGM3005INJ000",
+      "code": "412f14bf"
+    },
+    {
+      "id": 370,
+      "name": "Filgastrim 480mcg/0.8mL in prefilled syringe",
+      "structuredCode": "FLGM4800PFS000",
+      "code": "413bb4bf"
+    },
+    {
+      "id": 371,
+      "name": "Filgastrim 480mg/1.6mL in 1.6mL vial",
+      "structuredCode": "FLGM4816INJ000",
+      "code": "414124bf"
+    },
+    {
+      "id": 372,
+      "name": "Fluphenazine (decanoate) 25mg in 1mL ampoule",
+      "structuredCode": "FLPH0025INJ008",
+      "code": "414624bf"
+    },
+    {
+      "id": 373,
+      "name": "Fluphenazine (enantate) 25mg in 1mL ampoule",
+      "structuredCode": "FLPH0025INJ009",
+      "code": "414ae4bf"
+    },
+    {
+      "id": 374,
+      "name": "Fluorescein (sodium) 1% eye drops",
+      "structuredCode": "FLSN0001EDP000",
+      "code": "416ed4bf"
+    },
+    {
+      "id": 375,
+      "name": "Fludarabine 10mg tablet ",
+      "structuredCode": "FLUD0010TAB000",
+      "code": "417484bf"
+    },
+    {
+      "id": 376,
+      "name": "Fludarabine (phosphate) 50mg powder for injection",
+      "structuredCode": "FLUD0500INJ003",
+      "code": "417964bf"
+    },
+    {
+      "id": 377,
+      "name": "Fluoxetine 20mg solid dosage form",
+      "structuredCode": "FLXN0200SOD000",
+      "code": "418414bf"
+    },
+    {
+      "id": 378,
+      "name": "Folic acid  1mg tablet",
+      "structuredCode": "FOLC0001TAB000",
+      "code": "418984bf"
+    },
+    {
+      "id": 379,
+      "name": "Folic acid  5mg tablet",
+      "structuredCode": "FOLC0005TAB000",
+      "code": "41ace4bf"
+    },
+    {
+      "id": 380,
+      "name": "Folic acid  400mcg tablet",
+      "structuredCode": "FOLC4000TAB000",
+      "code": "41b264bf"
+    },
+    {
+      "id": 381,
+      "name": "Fomepizole  (base) 1g/mL (1.5ml) injection ",
+      "structuredCode": "FPZL0005INJ000",
+      "code": "41b754bf"
+    },
+    {
+      "id": 382,
+      "name": "Fomepizole (sulfate) 5mg/ml (20mL)",
+      "structuredCode": "FPZL0005INJ002",
+      "code": "41bc64bf"
+    },
+    {
+      "id": 383,
+      "name": "Ferrous salt equivalent to 25mg iron (sulfate)/mL oral liquid",
+      "structuredCode": "FRRS0250ORL000",
+      "code": "41c664bf"
+    },
+    {
+      "id": 384,
+      "name": "Ferrous salt equivalent to 60 mg tablet",
+      "structuredCode": "FRRS0600TAB000",
+      "code": "41e9d4bf"
+    },
+    {
+      "id": 385,
+      "name": "Ferrous salt equivalent to 60 mg iron tablet and folic acid  400mcg tablet",
+      "structuredCode": "FRSF4060TAB000",
+      "code": "41f354bf"
+    },
+    {
+      "id": 386,
+      "name": "Furosemide 10mg/mL in 2mL ampoule",
+      "structuredCode": "FSMD0010INJ000",
+      "code": "41f934bf"
+    },
+    {
+      "id": 387,
+      "name": "Furosemide 10mg tablet",
+      "structuredCode": "FSMD0100TAB000",
+      "code": "41fe24bf"
+    },
+    {
+      "id": 388,
+      "name": "Furosemide 20mg tablet",
+      "structuredCode": "FSMD0200TAB000",
+      "code": "421884bf"
+    },
+    {
+      "id": 389,
+      "name": "Furosemide 40mg tablet",
+      "structuredCode": "FSMD0400TAB000",
+      "code": "422364bf"
+    },
+    {
+      "id": 390,
+      "name": "Furosemide 20mg/5mL oral liquid",
+      "structuredCode": "FSMD2005ORL000",
+      "code": "4228d4bf"
+    },
+    {
+      "id": 391,
+      "name": "Coagulation factor VIII 500IU/vial powder for injection",
+      "structuredCode": "FVII0500PFI000",
+      "code": "422dc4bf"
+    },
+    {
+      "id": 392,
+      "name": "Glucagon 1mg/mL injection",
+      "structuredCode": "GCGN0001INJ000",
+      "code": "425124bf"
+    },
+    {
+      "id": 393,
+      "name": "Gentamicin (sulfate) 0..3% eye drop solution",
+      "structuredCode": "GENT0003EDP000",
+      "code": "4256d4bf"
+    },
+    {
+      "id": 394,
+      "name": "Gliclazide (controlled release) 30mg solid oral dosage form ",
+      "structuredCode": "GLIZ0030TCR000",
+      "code": "425c54bf"
+    },
+    {
+      "id": 395,
+      "name": "Gliclazide (controlled release) 60mg solid oral dosage form ",
+      "structuredCode": "GLIZ0060TCR000",
+      "code": "4276c4bf"
+    },
+    {
+      "id": 396,
+      "name": "Gliclazide (controlled release) 80mg solid oral dosage form ",
+      "structuredCode": "GLIZ0080TCR000",
+      "code": "4281a4bf"
+    },
+    {
+      "id": 397,
+      "name": "Gliclazide (immediate release) 80mg solid oral dosage form ",
+      "structuredCode": "GLIZ0080TIR000",
+      "code": "42a4f4bf"
+    },
+    {
+      "id": 398,
+      "name": "Glucose with sodium chloride 5% glucose &0.9% sodium chloride injectable solution",
+      "structuredCode": "GLNA5009INS000",
+      "code": "42aa94bf"
+    },
+    {
+      "id": 399,
+      "name": "Glucose with sodium chloride 5% glucose &0.18% sodium chloride injectable solution",
+      "structuredCode": "GLNA5018INJ000",
+      "code": "42c504bf"
+    },
+    {
+      "id": 400,
+      "name": "Gutaral 2% solution",
+      "structuredCode": "GLTL0002SLN000",
+      "code": "42ca94bf"
+    },
+    {
+      "id": 401,
+      "name": "Glyceryl trinitrate 500mcg sublingual tablet",
+      "structuredCode": "GLTN0500TSL000",
+      "code": "42e4c4bf"
+    },
+    {
+      "id": 402,
+      "name": "Glucose (isotonic) 5%",
+      "structuredCode": "GLUC0005INS000",
+      "code": "42f5b4bf"
+    },
+    {
+      "id": 403,
+      "name": "Glucose (hypertonic) 10%",
+      "structuredCode": "GLUC0010INS000",
+      "code": "42fb44bf"
+    },
+    {
+      "id": 404,
+      "name": "Glucose (hypertonic) 50%",
+      "structuredCode": "GLUC0050INS000",
+      "code": "432114bf"
+    },
+    {
+      "id": 405,
+      "name": "Gemcitabine 1g powder for injecton ",
+      "structuredCode": "GMBN0010PFI000",
+      "code": "432724bf"
+    },
+    {
+      "id": 406,
+      "name": "Gemcitabine 200mg powder for injecton ",
+      "structuredCode": "GMBN2000PFI000",
+      "code": "434194bf"
+    },
+    {
+      "id": 407,
+      "name": "Gentamicin (sulfate) 10mg/mL in 2mL vial",
+      "structuredCode": "GMCN0010INJ002",
+      "code": "4346e4bf"
+    },
+    {
+      "id": 408,
+      "name": "Gentamicin (sulfate) 40mg/mL in 2mL vial",
+      "structuredCode": "GMCN0040INJ002",
+      "code": "4366a4bf"
+    },
+    {
+      "id": 409,
+      "name": "Griseofulvin 125mg/mL oral liquid",
+      "structuredCode": "GSFV1250ORL000",
+      "code": "436c74bf"
+    },
+    {
+      "id": 410,
+      "name": "Griseofulvin 125mg solid oral dosage form",
+      "structuredCode": "GSFV1250SOD000",
+      "code": "438fb4bf"
+    },
+    {
+      "id": 411,
+      "name": "Griseofulvin  250mg solid oral dosage form",
+      "structuredCode": "GSFV2500SOD000",
+      "code": "439514bf"
+    },
+    {
+      "id": 412,
+      "name": "Hydrocortisone retention enema ",
+      "structuredCode": "HDCN0000REN000",
+      "code": "43af34bf"
+    },
+    {
+      "id": 413,
+      "name": "Hydrocortisone (acetate) 1% cream",
+      "structuredCode": "HDCN0001CRM000",
+      "code": "43c994bf"
+    },
+    {
+      "id": 414,
+      "name": "Hydrocortisone (acetate) 1% ointment",
+      "structuredCode": "HDCN0001OIN000",
+      "code": "43e914bf"
+    },
+    {
+      "id": 415,
+      "name": "Hydrocortisone 5mg tablet",
+      "structuredCode": "HDCN0005TAB000",
+      "code": "440c34bf"
+    },
+    {
+      "id": 416,
+      "name": "Hydrocortisone 10mg tablet",
+      "structuredCode": "HDCN0010TAB000",
+      "code": "442684bf"
+    },
+    {
+      "id": 417,
+      "name": "Hydrocortisone 20mg tablet",
+      "structuredCode": "HDCN0020TAB000",
+      "code": "4440c4bf"
+    },
+    {
+      "id": 418,
+      "name": "Hydrocortisone (acetate) 25mg suppository",
+      "structuredCode": "HDCN0025SUP000",
+      "code": "445cd4bf"
+    },
+    {
+      "id": 419,
+      "name": "Hydrocortisone (sodium succinate) 100mg powder for injection",
+      "structuredCode": "HDCN1000PFI012",
+      "code": "4477a4bf"
+    },
+    {
+      "id": 420,
+      "name": "Hydroxychloroquine (sulfate) 200mg solid oral dosage form",
+      "structuredCode": "HDXC0200SOD002",
+      "code": "449764bf"
+    },
+    {
+      "id": 421,
+      "name": "Hepatitis A vaccine",
+      "structuredCode": "HEPA0000VAC000",
+      "code": "44bad4bf"
+    },
+    {
+      "id": 422,
+      "name": "Hepatitis B vaccine",
+      "structuredCode": "HEPB0000VAC000",
+      "code": "44ec84bf"
+    },
+    {
+      "id": 423,
+      "name": "Heparin (sodium) 1000IU/mL injection",
+      "structuredCode": "HEPN0100INJ000",
+      "code": "44f3b4bf"
+    },
+    {
+      "id": 424,
+      "name": "Heparin (sodium) 10000IU/mL injection",
+      "structuredCode": "HEPN1000INJ000",
+      "code": "44f924bf"
+    },
+    {
+      "id": 425,
+      "name": "Heparin (sodium) 20,000IU/mL injection",
+      "structuredCode": "HEPN2000INJ000",
+      "code": "450254bf"
+    },
+    {
+      "id": 426,
+      "name": "Haloperidol 5mg/1mL (1mL)",
+      "structuredCode": "HLPL0005INJ000",
+      "code": "450844bf"
+    },
+    {
+      "id": 427,
+      "name": "Haloperidol 0.5mg tablet",
+      "structuredCode": "HLPL0005TAB000",
+      "code": "450d84bf"
+    },
+    {
+      "id": 428,
+      "name": "Haloperidol 2mg/mL oral liquid",
+      "structuredCode": "HLPL0020ORL000",
+      "code": "451294bf"
+    },
+    {
+      "id": 429,
+      "name": "Haloperidol 2mg tablet",
+      "structuredCode": "HLPL0020TAB000",
+      "code": "4517b4bf"
+    },
+    {
+      "id": 430,
+      "name": "Haloperidol 5mg tablet",
+      "structuredCode": "HLPL0050TAB000",
+      "code": "451c94bf"
+    },
+    {
+      "id": 431,
+      "name": "Halothane",
+      "structuredCode": "HLTH0000GAS000",
+      "code": "452184bf"
+    },
+    {
+      "id": 432,
+      "name": "HPV vaccine",
+      "structuredCode": "HPVV0000VAC000",
+      "code": "452a74bf"
+    },
+    {
+      "id": 433,
+      "name": "Hydrochlorothiazide 12.5mg solid oral dosage form",
+      "structuredCode": "HTHZ0125SOD000",
+      "code": "452fe4bf"
+    },
+    {
+      "id": 434,
+      "name": "Hydrochlorothiazide 25mg solid oral dosage form",
+      "structuredCode": "HTHZ0250SOD000",
+      "code": "4534e4bf"
+    },
+    {
+      "id": 435,
+      "name": "Hydrochlorothiazide 25mg stablet scored",
+      "structuredCode": "HTHZ0250TSC000",
+      "code": "453b34bf"
+    },
+    {
+      "id": 436,
+      "name": "Hydrochlorothiazide 50mg/mL oral liquid",
+      "structuredCode": "HTHZ0500ORL000",
+      "code": "454094bf"
+    },
+    {
+      "id": 437,
+      "name": "Hydroxocobalamin (acetate) 1mg in 1ml ampoule injection",
+      "structuredCode": "HXBN0010INJ000",
+      "code": "454584bf"
+    },
+    {
+      "id": 438,
+      "name": "Hydroxocobalamin (hydrochloride) 1mg in 1ml ampoule injection",
+      "structuredCode": "HXBN0010INJ001",
+      "code": "454a84bf"
+    },
+    {
+      "id": 439,
+      "name": "Hydroxocobalamin (sulfate) 1mg in 1ml ampoule injection",
+      "structuredCode": "HXBN0010INJ002",
+      "code": "454fc4bf"
+    },
+    {
+      "id": 440,
+      "name": "Hydroxycarbamide 1g solid oral dosage form",
+      "structuredCode": "HXCM0010SOD000",
+      "code": "4554c4bf"
+    },
+    {
+      "id": 441,
+      "name": "Hydroxycarbamide 200mg solid oral dosage form",
+      "structuredCode": "HXCM2000SOD000",
+      "code": "455a14bf"
+    },
+    {
+      "id": 442,
+      "name": "Hydroxycarbamide 250mg solid oral dosage form",
+      "structuredCode": "HXCM2500SOD000",
+      "code": "455ee4bf"
+    },
+    {
+      "id": 443,
+      "name": "Hydroxycarbamide 300mg solid oral dosage form",
+      "structuredCode": "HXCM3000SOD000",
+      "code": "4563c4bf"
+    },
+    {
+      "id": 444,
+      "name": "Hydroxycarbamide 400mg solid oral dosage form",
+      "structuredCode": "HXCM4000SOD000",
+      "code": "456884bf"
+    },
+    {
+      "id": 445,
+      "name": "Hydroxycarbamide 500mg solid oral dosage form",
+      "structuredCode": "HXCM5000SOD000",
+      "code": "456d44bf"
+    },
+    {
+      "id": 446,
+      "name": "Hyoscine buytlbromide 20g/mL injection",
+      "structuredCode": "HYBB0200INJ000",
+      "code": "457204bf"
+    },
+    {
+      "id": 447,
+      "name": "Hydralazine (hydrochloride) 20mg powder for injection",
+      "structuredCode": "HYDZ0020PFI001",
+      "code": "4576d4bf"
+    },
+    {
+      "id": 448,
+      "name": "Hydralazine (hydrochloride) 25mg  tablet",
+      "structuredCode": "HYDZ0250TAB001",
+      "code": "457bf4bf"
+    },
+    {
+      "id": 449,
+      "name": "Hydralazine (hydrochloride) 50mg  tablet",
+      "structuredCode": "HYDZ0500TAB001",
+      "code": "458134bf"
+    },
+    {
+      "id": 450,
+      "name": "Hyoscine hydrobromide 1mg/72 hrs transdermal patch",
+      "structuredCode": "HYHB0001TDP072",
+      "code": "45a554bf"
+    },
+    {
+      "id": 451,
+      "name": "Hyoscine hydrobromide 400mcg/mL injection",
+      "structuredCode": "HYHB4000INJ000",
+      "code": "45ac04bf"
+    },
+    {
+      "id": 452,
+      "name": "Hyoscine hydrobromide 600mcg/mL injection",
+      "structuredCode": "HYHB6000INJ000",
+      "code": "45b114bf"
+    },
+    {
+      "id": 453,
+      "name": "Ibuprofen 5mg/mL solution for injection",
+      "structuredCode": "IBFN0005SLN000",
+      "code": "45b5e4bf"
+    },
+    {
+      "id": 454,
+      "name": "Ibuprofen 200mg/5mL oral liquid",
+      "structuredCode": "IBFN2000ORL005",
+      "code": "45bad4bf"
+    },
+    {
+      "id": 455,
+      "name": "Ibuprofen 200mg tablet",
+      "structuredCode": "IBFN2000TAB000",
+      "code": "45bfa4bf"
+    },
+    {
+      "id": 456,
+      "name": "Ibuprofen 400mg tablet",
+      "structuredCode": "IBFN4000TAB000",
+      "code": "45c474bf"
+    },
+    {
+      "id": 457,
+      "name": "Ibuprofen 600mg tablet",
+      "structuredCode": "IBFN6000TAB000",
+      "code": "45c9b4bf"
+    },
+    {
+      "id": 458,
+      "name": "Ivermectin 3mg tablet (scored)",
+      "structuredCode": "ICMT0030TSC000",
+      "code": "45cec4bf"
+    },
+    {
+      "id": 459,
+      "name": "Ifosfamide 1g vial powder for injection",
+      "structuredCode": "IFOS0010PFI000",
+      "code": "45d3a4bf"
+    },
+    {
+      "id": 460,
+      "name": "Ifosfamide 2g vial powder for injection",
+      "structuredCode": "IFOS0020PFI000",
+      "code": "45d884bf"
+    },
+    {
+      "id": 461,
+      "name": "Ifosfamide 500mg vial powder for injection",
+      "structuredCode": "IFOS5000PFI000",
+      "code": "45dd64bf"
+    },
+    {
+      "id": 462,
+      "name": "Iohexol (iodine) 140mg in 5mL ampoule",
+      "structuredCode": "IHXL1405INJ000",
+      "code": "45e254bf"
+    },
+    {
+      "id": 463,
+      "name": "Iohexol (iodine) 140mg in 10mL ampoule",
+      "structuredCode": "IHXL1410INJ000",
+      "code": "45e734bf"
+    },
+    {
+      "id": 464,
+      "name": "Iohexol (iodine) 140mg in 20mL ampoule",
+      "structuredCode": "IHXL1420INJ000",
+      "code": "45ec44bf"
+    },
+    {
+      "id": 465,
+      "name": "Iohexol (iodine) 350mg in 5mL ampoule",
+      "structuredCode": "IHXL3505INJ000",
+      "code": "45f104bf"
+    },
+    {
+      "id": 466,
+      "name": "Iohexol (iodine) 350mg in 10mL ampoule",
+      "structuredCode": "IHXL3510INJ000",
+      "code": "45f474bf"
+    },
+    {
+      "id": 467,
+      "name": "Iohexol (iodine) 350mg in 20mL ampoule",
+      "structuredCode": "IHXL3520INJ000",
+      "code": "45f794bf"
+    },
+    {
+      "id": 468,
+      "name": "Imatinib 100mg tablet",
+      "structuredCode": "IMAT1000TAB000",
+      "code": "45fa84bf"
+    },
+    {
+      "id": 469,
+      "name": "Imatinib 400mg tablet",
+      "structuredCode": "IMAT4000TAB000",
+      "code": "45fdb4bf"
+    },
+    {
+      "id": 470,
+      "name": "Intermediate acting insulin (isophane insulin) 100IU/mL in 10mL vial",
+      "structuredCode": "IMIN0100INJ023",
+      "code": "4600a4bf"
+    },
+    {
+      "id": 471,
+      "name": "Intermediate acting insulin (zinc suspension) 100IU/mL in 10mL vial",
+      "structuredCode": "IMIN0100INJ024",
+      "code": "4603d4bf"
+    },
+    {
+      "id": 472,
+      "name": "Intermediate acting insulin (isophane insulin) 40IU/mL in 10mL vial",
+      "structuredCode": "IMIN0400INJ023",
+      "code": "460704bf"
+    },
+    {
+      "id": 473,
+      "name": "Intermediate acting insulin (zinc suspension) 40IU/mL in 10mL vial",
+      "structuredCode": "IMIN0400INJ024",
+      "code": "460a34bf"
+    },
+    {
+      "id": 474,
+      "name": "Influenza vaccine",
+      "structuredCode": "INFL0000VAC000",
+      "code": "460d74bf"
+    },
+    {
+      "id": 475,
+      "name": "Insulin (soluble) injection 100IU/mL in 10mL vial",
+      "structuredCode": "INSN1010INJ000",
+      "code": "461074bf"
+    },
+    {
+      "id": 476,
+      "name": "Insulin (soluble) injection 40IU/mL in 10mL vial",
+      "structuredCode": "INSN4010INJ000",
+      "code": "461394bf"
+    },
+    {
+      "id": 477,
+      "name": "Iodine 200mg capsule",
+      "structuredCode": "IODN0200CAP000",
+      "code": "461684bf"
+    },
+    {
+      "id": 478,
+      "name": "Iodine 0.57mL iodized oil (308mg iodine) in dispenser bottle",
+      "structuredCode": "IODN0308DSB000",
+      "code": "461994bf"
+    },
+    {
+      "id": 479,
+      "name": "Iodine 0.5mL iodized oil (240mg iodine) in ampoule (injectable",
+      "structuredCode": "IODN2405INJ000",
+      "code": "461cb4bf"
+    },
+    {
+      "id": 480,
+      "name": "Iodine 0.5mL iodized oil (240mg iodine) in ampoule (oral)",
+      "structuredCode": "IODN2405ORL000",
+      "code": "461fc4bf"
+    },
+    {
+      "id": 481,
+      "name": "Iodine 1mL iodized oil (480mg iodine) in ampoule (injectable",
+      "structuredCode": "IODN4801INJ000",
+      "code": "462454bf"
+    },
+    {
+      "id": 482,
+      "name": "Iodine 1mL iodized oil (480mg iodine) in ampoule (oral)",
+      "structuredCode": "IODN4801ORL000",
+      "code": "4628d4bf"
+    },
+    {
+      "id": 483,
+      "name": "Imipendem (monohydrate) & cilastatin (sodium) 250mg & 250mg powder for injection",
+      "structuredCode": "IPCL2500PFIIMI",
+      "code": "462c74bf"
+    },
+    {
+      "id": 484,
+      "name": "Imipendem (monohydrate) & cilastatin (sodium) 500mg & 500mg powder for injection",
+      "structuredCode": "IPCL5000PFIIMI",
+      "code": "463034bf"
+    },
+    {
+      "id": 485,
+      "name": "Alcohol based hand rub (isopropyl) solution 75% volume/volume",
+      "structuredCode": "IPRA0075SLN000",
+      "code": "463484bf"
+    },
+    {
+      "id": 486,
+      "name": "Ipratropium bromide 20mcg/dose inhalation aerosol",
+      "structuredCode": "IPRA0200INH000",
+      "code": "463874bf"
+    },
+    {
+      "id": 487,
+      "name": "Intraperitoneal dialysis solution",
+      "structuredCode": "IPRN0000PRN000",
+      "code": "463c34bf"
+    },
+    {
+      "id": 488,
+      "name": "Irinotecan 100mg in 5mL vial",
+      "structuredCode": "IRIN1005INJ000",
+      "code": "463fd4bf"
+    },
+    {
+      "id": 489,
+      "name": "Irinotecan 40mg in 2mL vial",
+      "structuredCode": "IRIN4002INJ000",
+      "code": "464344bf"
+    },
+    {
+      "id": 490,
+      "name": "Irinotecan 500mg in 25mL vial",
+      "structuredCode": "IRIN5025INJ000",
+      "code": "4646c4bf"
+    },
+    {
+      "id": 491,
+      "name": "Isosorbide dinitrate 5mg sublingual tabl",
+      "structuredCode": "ISDN0050TSL000",
+      "code": "464a14bf"
+    },
+    {
+      "id": 492,
+      "name": "Isoflurane",
+      "structuredCode": "ISFL0000GAS000",
+      "code": "464d84bf"
+    },
+    {
+      "id": 493,
+      "name": "Isoniazid & pyrazinamide & rifampicin  150mg & 500mg & 150mg",
+      "structuredCode": "ISPR0150TAB000",
+      "code": "467be4bf"
+    },
+    {
+      "id": 494,
+      "name": "Isoniazid & pyrazinamide & rifampicin  75mg & 400mg & 150mg",
+      "structuredCode": "ISPR0750TAB000",
+      "code": "4682b4bf"
+    },
+    {
+      "id": 495,
+      "name": "Isoniazid & rifampicin 150mg & 150mg",
+      "structuredCode": "ISRF1515TAB000",
+      "code": "4686d4bf"
+    },
+    {
+      "id": 496,
+      "name": "Isoniazid & rifampicin 150mg & 300mg",
+      "structuredCode": "ISRF1530TAB000",
+      "code": "468a44bf"
+    },
+    {
+      "id": 497,
+      "name": "Isoniazid & rifampicin 60mg & 60mg",
+      "structuredCode": "ISRF6060TAB000",
+      "code": "468d54bf"
+    },
+    {
+      "id": 498,
+      "name": "Isoniazid & rifampicin 75mg & 150mg",
+      "structuredCode": "ISRF7515TAB000",
+      "code": "469064bf"
+    },
+    {
+      "id": 499,
+      "name": "Isoniazid 50mg/5mL oral liquid",
+      "structuredCode": "ISZD0500ORL000",
+      "code": "469364bf"
+    },
+    {
+      "id": 500,
+      "name": "Japanese encephalitis vaccine",
+      "structuredCode": "JPEN0000VAC000",
+      "code": "469674bf"
+    },
+    {
+      "id": 501,
+      "name": "Kanamycin (sulfate) 1g powder for injection",
+      "structuredCode": "KMCN0100PFI002",
+      "code": "4699e4bf"
+    },
+    {
+      "id": 502,
+      "name": "Ketamine (50mg/mL,10mL)",
+      "structuredCode": "KTMN0050INJ000",
+      "code": "469d04bf"
+    },
+    {
+      "id": 503,
+      "name": "Latanoprost 50mcg/mL solution eye drops",
+      "structuredCode": "LATN0050EDP000",
+      "code": "46a004bf"
+    },
+    {
+      "id": 504,
+      "name": "Lactulose 3.1-3.7g/5mL oral liquid",
+      "structuredCode": "LCLS3137ORL005",
+      "code": "46a314bf"
+    },
+    {
+      "id": 505,
+      "name": "Levofloxacin (ofloxacin and moxifloxacin may be alternatives) 250mg tablet",
+      "structuredCode": "LEVO2500TAB000",
+      "code": "46c494bf"
+    },
+    {
+      "id": 506,
+      "name": "Levofloxacin (ofloxacin and moxifloxacin may be alternatives) 500mg tablet",
+      "structuredCode": "LEVO5000TAB000",
+      "code": "46c904bf"
+    },
+    {
+      "id": 507,
+      "name": "Levofloxacin (ofloxacin and moxifloxacin may be alternatives) 750mg tablet",
+      "structuredCode": "LEVO7500TAB000",
+      "code": "46cc84bf"
+    },
+    {
+      "id": 508,
+      "name": "Lignocaine 5% (Spinal, 2ml amp mixed with 7.5% glucose)",
+      "structuredCode": "LGCG0500INJ001",
+      "code": "46d064bf"
+    },
+    {
+      "id": 509,
+      "name": "Lignocaine (hydrochloride) 20mg/mL in 5mL ampoule injection",
+      "structuredCode": "LGCN0020INJ000",
+      "code": "46d3e4bf"
+    },
+    {
+      "id": 510,
+      "name": "Lignocaine 1%",
+      "structuredCode": "LGCN0100INJ001",
+      "code": "46d764bf"
+    },
+    {
+      "id": 511,
+      "name": "Lignocaine 2%",
+      "structuredCode": "LGCN0200INJ001",
+      "code": "46dae4bf"
+    },
+    {
+      "id": 512,
+      "name": "Lignocaine 2% (topical) ",
+      "structuredCode": "LGCN0200TOP000",
+      "code": "46de44bf"
+    },
+    {
+      "id": 513,
+      "name": "Lignocaine4% (topical) ",
+      "structuredCode": "LGCN0400TOP000",
+      "code": "46e1c4bf"
+    },
+    {
+      "id": 514,
+      "name": "Lamivudine & nevirapine & stavudine 150mg & 200mg & 30 mg tablet",
+      "structuredCode": "LMNS1523TAB000",
+      "code": "46ea44bf"
+    },
+    {
+      "id": 515,
+      "name": "Lamivudine & nevirapine & stavudine 30mg & 50mg & 6mg ",
+      "structuredCode": "LMNS3560TDS000",
+      "code": "470b64bf"
+    },
+    {
+      "id": 516,
+      "name": "Lamivudine & nevirapine & zidovudine 150mg & 200mg & 300 mg tablet",
+      "structuredCode": "LMNZ1523TAB000",
+      "code": "470fa4bf"
+    },
+    {
+      "id": 517,
+      "name": "Lamivudine & nevirapine & zidovudine 30mg & 50mg & 60mg tablet",
+      "structuredCode": "LMNZ3560TAB000",
+      "code": "471474bf"
+    },
+    {
+      "id": 518,
+      "name": "Lamuvidine (3TC) 50mg tablet",
+      "structuredCode": "LMVD0150TAB000",
+      "code": "471814bf"
+    },
+    {
+      "id": 519,
+      "name": "Lamivudine(3TC) 50mg/mL oral liquid",
+      "structuredCode": "LMVD0500ORL000",
+      "code": "471b94bf"
+    },
+    {
+      "id": 520,
+      "name": "Lamivudine &  zidovudine 150mg & 300 mg tablet",
+      "structuredCode": "LMZD3015TAB000",
+      "code": "471ef4bf"
+    },
+    {
+      "id": 521,
+      "name": "Lamivudine &  zidovudine 30mg  & 60mg tablet ",
+      "structuredCode": "LMZD3060TAB000",
+      "code": "472254bf"
+    },
+    {
+      "id": 522,
+      "name": "Lignocaine (hydrochloride) 1% & epinephrine (adrenaline) 1:200 000",
+      "structuredCode": "LNEP0100INJ001",
+      "code": "4725b4bf"
+    },
+    {
+      "id": 523,
+      "name": "Lignocaine (sulfate)  1% & epinephrine (adrenaline) 1:200 000",
+      "structuredCode": "LNEP0100INJ002",
+      "code": "472934bf"
+    },
+    {
+      "id": 524,
+      "name": "Lignocaine 2% & epinephrine 1:80 000",
+      "structuredCode": "LNEP0200INJ000",
+      "code": "4741a4bf"
+    },
+    {
+      "id": 525,
+      "name": "Lignocaine (hydrochloride) 2% & epinephrine (adrenaline) 1:200 000",
+      "structuredCode": "LNEP0200INJ001",
+      "code": "474564bf"
+    },
+    {
+      "id": 526,
+      "name": "Lignocaine (sulfate) 2% & epinephrine (adrenaline) 1:200 000",
+      "structuredCode": "LNEP0200INJ002",
+      "code": "474e34bf"
+    },
+    {
+      "id": 527,
+      "name": "Linezolid 2mg/mL in 300mL bag injection for intravenous administration",
+      "structuredCode": "LNZD0020IVA000",
+      "code": "475244bf"
+    },
+    {
+      "id": 528,
+      "name": "Linezolid 100mg/5mL powder for oral liquid",
+      "structuredCode": "LNZD1000POL005",
+      "code": "4755d4bf"
+    },
+    {
+      "id": 529,
+      "name": "Linezolid 400mg tablet",
+      "structuredCode": "LNZD4000TAB000",
+      "code": "475974bf"
+    },
+    {
+      "id": 530,
+      "name": "Linezolid 600mg tablet",
+      "structuredCode": "LNZD6000TAB000",
+      "code": "475c84bf"
+    },
+    {
+      "id": 531,
+      "name": "Leuprorelin dose form",
+      "structuredCode": "LPLN0000SOD000",
+      "code": "475f84bf"
+    },
+    {
+      "id": 532,
+      "name": "Loperamide 2mg solid dosage form",
+      "structuredCode": "LPMD0020SOD000",
+      "code": "476284bf"
+    },
+    {
+      "id": 533,
+      "name": "Ledipasvir & sofosbuvir 90mg & 400mg tablet",
+      "structuredCode": "LPSS4900TAB000",
+      "code": "4783a4bf"
+    },
+    {
+      "id": 534,
+      "name": "Lopinavr & ritonavir (LPV/r) 100mg & 25mg tablet (heat stable)",
+      "structuredCode": "LPVR1250TAB000",
+      "code": "4787b4bf"
+    },
+    {
+      "id": 535,
+      "name": "Lopinavr & ritonavir (LPV/r) 200mg & 50mg tablet (heat stable)",
+      "structuredCode": "LPVR2500TAB000",
+      "code": "478b44bf"
+    },
+    {
+      "id": 536,
+      "name": "Lopinavr & ritonavir (LPV/r)  400mg & 100mg/5mL oral liquid",
+      "structuredCode": "LPVR4000ORL000",
+      "code": "478ea4bf"
+    },
+    {
+      "id": 537,
+      "name": "Loratadine 1mg/mL oral liquid",
+      "structuredCode": "LTDN0010ORL000",
+      "code": "479214bf"
+    },
+    {
+      "id": 538,
+      "name": "Loratadine 10mg tablet",
+      "structuredCode": "LTDN0100TAB000",
+      "code": "479554bf"
+    },
+    {
+      "id": 539,
+      "name": "Lithium carbonate 300mg solid oral dosage form",
+      "structuredCode": "LTHC3000SOD000",
+      "code": "4798c4bf"
+    },
+    {
+      "id": 540,
+      "name": "Levothyroxine (sodium salt) 25mcg tablet",
+      "structuredCode": "LTHY0250TAB000",
+      "code": "479c34bf"
+    },
+    {
+      "id": 541,
+      "name": "Levothyroxine (sodium salt) 50mcg tablet",
+      "structuredCode": "LTHY0500TAB004",
+      "code": "47b464bf"
+    },
+    {
+      "id": 542,
+      "name": "Levothyroxine (sodium salt) 100mcg tablet",
+      "structuredCode": "LTHY1000TAB004",
+      "code": "47bd14bf"
+    },
+    {
+      "id": 543,
+      "name": "Lugol's solution 130mg (total iodide)/mL oral liquid",
+      "structuredCode": "LUGL0130ORL000",
+      "code": "47c104bf"
+    },
+    {
+      "id": 544,
+      "name": "Levodopa & carbidopa tablet 100mg & 10mg",
+      "structuredCode": "LVCD1010TAB000",
+      "code": "47cb74bf"
+    },
+    {
+      "id": 545,
+      "name": "Levodopa & carbidopa tablet 100mg & 25mg",
+      "structuredCode": "LVCD1025TAB000",
+      "code": "47cf54bf"
+    },
+    {
+      "id": 546,
+      "name": "Levodopa & carbidopa tablet 250mg & 25mg",
+      "structuredCode": "LVCD2525TAB000",
+      "code": "47d264bf"
+    },
+    {
+      "id": 547,
+      "name": "Levonorgestrel 30mcg tablet",
+      "structuredCode": "LVGL0030TAB000",
+      "code": "47d584bf"
+    },
+    {
+      "id": 548,
+      "name": "Levonorgestrel-releasing implant (two rods containing 75mg of levonorgestrel each)",
+      "structuredCode": "LVGL0750ROD000",
+      "code": "47f6d4bf"
+    },
+    {
+      "id": 549,
+      "name": "Levonorgestrel 750mcg tablet pack of two",
+      "structuredCode": "LVGL0750TAB000",
+      "code": "47fb04bf"
+    },
+    {
+      "id": 550,
+      "name": "Levonorgestrel 1.5mg tablet",
+      "structuredCode": "LVGL1500TAB000",
+      "code": "47fe44bf"
+    },
+    {
+      "id": 551,
+      "name": "Levamisole (hydrochloride) 50mg tablet",
+      "structuredCode": "LVMS0050TAB000",
+      "code": "480194bf"
+    },
+    {
+      "id": 552,
+      "name": "Levamisole (hydrochloride) 150mg tablet",
+      "structuredCode": "LVMS0150TAB000",
+      "code": "481e44bf"
+    },
+    {
+      "id": 553,
+      "name": "Levonorgestrel-releasing intrauterine system with reservoir containing 52mg of levonorestrel",
+      "structuredCode": "LVRD0520IUD000",
+      "code": "4823d4bf"
+    },
+    {
+      "id": 554,
+      "name": "Lorazapeam 2 mg/mL (1ml) parenteral formulation",
+      "structuredCode": "LZPM0020PNT000",
+      "code": "483d14bf"
+    },
+    {
+      "id": 555,
+      "name": "Lorazapeam 4 mg/mL (1ml) parenteral formulation",
+      "structuredCode": "LZPM0040PNT000",
+      "code": "4840e4bf"
+    },
+    {
+      "id": 556,
+      "name": "Mebendazole 100mg tablet (chewable)",
+      "structuredCode": "MBZL1000TCW000",
+      "code": "484444bf"
+    },
+    {
+      "id": 557,
+      "name": "Mebendazole 500mg tablet (chewable)",
+      "structuredCode": "MBZL5000TCW000",
+      "code": "484d54bf"
+    },
+    {
+      "id": 558,
+      "name": "Metoclopramide (hydrochloride) 5mg/2mL injection",
+      "structuredCode": "MCPD0050INJ001",
+      "code": "4851d4bf"
+    },
+    {
+      "id": 559,
+      "name": "Metoclopramide 5mg/5mL oral liquid",
+      "structuredCode": "MCPD0050ORL000",
+      "code": "485584bf"
+    },
+    {
+      "id": 560,
+      "name": "Metoclopramide (hydrochloride) 10mg solid dosage form",
+      "structuredCode": "MCPD0100SOD001",
+      "code": "4876f4bf"
+    },
+    {
+      "id": 561,
+      "name": "Miconazole (nitrate) 2% cream",
+      "structuredCode": "MCZL0002CRM000",
+      "code": "487b14bf"
+    },
+    {
+      "id": 562,
+      "name": "Miconazole (nitrate) 2% ointment",
+      "structuredCode": "MCZL0002OIN000",
+      "code": "4f8aa4bf"
+    },
+    {
+      "id": 563,
+      "name": "Methadone (hydrochloride) concentrate for oral liquid 5mg/mL",
+      "structuredCode": "MDNE0050COL000",
+      "code": "4f9444bf"
+    },
+    {
+      "id": 564,
+      "name": "Methadone (hydrochloride) concentrate for oral liquid 10mg/mL",
+      "structuredCode": "MDNE0100COL000",
+      "code": "4f9824bf"
+    },
+    {
+      "id": 565,
+      "name": "Methyldopa 250mg tablet",
+      "structuredCode": "MDPA2500TAB000",
+      "code": "4fb394bf"
+    },
+    {
+      "id": 566,
+      "name": "Metronidazole 1g suppository ",
+      "structuredCode": "MDZL0010SUP000",
+      "code": "4fc154bf"
+    },
+    {
+      "id": 567,
+      "name": "Metronidazole (benzoate) 200mg/5mL oral liquid",
+      "structuredCode": "MDZL2000ORL000",
+      "code": "4fc7a4bf"
+    },
+    {
+      "id": 568,
+      "name": "Metronidazole 200mg tablet",
+      "structuredCode": "MDZL2000TAB000",
+      "code": "4fcca4bf"
+    },
+    {
+      "id": 569,
+      "name": "Metronidazole 400mg tablet",
+      "structuredCode": "MDZL4000TAB000",
+      "code": "4fd164bf"
+    },
+    {
+      "id": 570,
+      "name": "Metronidazole 500mg in 100mL vial",
+      "structuredCode": "MDZL5000INJ000",
+      "code": "4fd604bf"
+    },
+    {
+      "id": 571,
+      "name": "Metronidazole 500mg suppository ",
+      "structuredCode": "MDZL5000SUP000",
+      "code": "4ff9d4bf"
+    },
+    {
+      "id": 572,
+      "name": "Metronidazole 500mg tablet",
+      "structuredCode": "MDZL5000TAB000",
+      "code": "4fffc4bf"
+    },
+    {
+      "id": 573,
+      "name": "Midazolam 1mg/mLampoule for buccal administration",
+      "structuredCode": "MDZM0010BUC000",
+      "code": "5004b4bf"
+    },
+    {
+      "id": 574,
+      "name": "Midazolam 1mg/mL injection",
+      "structuredCode": "MDZM0010INJ000",
+      "code": "500f74bf"
+    },
+    {
+      "id": 575,
+      "name": "Midazolam 2mg/mL oral liquid",
+      "structuredCode": "MDZM0020ORL000",
+      "code": "501524bf"
+    },
+    {
+      "id": 576,
+      "name": "Midazolam 5mg/mL injection",
+      "structuredCode": "MDZM0050INJ000",
+      "code": "503834bf"
+    },
+    {
+      "id": 577,
+      "name": "Midazolam 5mg/mL solution for ora lmucosal administration",
+      "structuredCode": "MDZM0050OMA000",
+      "code": "503dc4bf"
+    },
+    {
+      "id": 578,
+      "name": "Midazolam 7.5mg solid dosage form",
+      "structuredCode": "MDZM0075SOD000",
+      "code": "5042d4bf"
+    },
+    {
+      "id": 579,
+      "name": "Midazolam 7.5mg tablet",
+      "structuredCode": "MDZM0075TAB000",
+      "code": "5047e4bf"
+    },
+    {
+      "id": 580,
+      "name": "Midazolam 10mg/mLampoule for buccal administration",
+      "structuredCode": "MDZM0100BUC000",
+      "code": "506704bf"
+    },
+    {
+      "id": 581,
+      "name": "Midazolam 10mg/mL solution for ora lmucosal administration",
+      "structuredCode": "MDZM0100OMA000",
+      "code": "506ce4bf"
+    },
+    {
+      "id": 582,
+      "name": "Midazolam 15mg tablet solid dosage form",
+      "structuredCode": "MDZM0150SOD000",
+      "code": "5071e4bf"
+    },
+    {
+      "id": 583,
+      "name": "Midazolam 15mg tablet",
+      "structuredCode": "MDZM0150TAB000",
+      "code": "5094e4bf"
+    },
+    {
+      "id": 584,
+      "name": "Mercaptopurine tablet 50mg",
+      "structuredCode": "MERC0050TAB000",
+      "code": "509a94bf"
+    },
+    {
+      "id": 585,
+      "name": "Mesna 100mg/mL in 4mL ampoule",
+      "structuredCode": "MESN1004INJ000",
+      "code": "50a144bf"
+    },
+    {
+      "id": 586,
+      "name": "Mesna 100mg/mL in 10mL ampoule",
+      "structuredCode": "MESN1010INJ000",
+      "code": "50a634bf"
+    },
+    {
+      "id": 587,
+      "name": "Mesna 400mg tablet",
+      "structuredCode": "MESN4000TAB000",
+      "code": "50cd74bf"
+    },
+    {
+      "id": 588,
+      "name": "Mesna 600mg tablet",
+      "structuredCode": "MESN6000TAB000",
+      "code": "50d334bf"
+    },
+    {
+      "id": 589,
+      "name": "Mifepristone-misoprostol 200mg-200mcg tablets",
+      "structuredCode": "MFMI2020TAB000",
+      "code": "50d804bf"
+    },
+    {
+      "id": 590,
+      "name": "Mefloquine (hydrochloride) 250mg tablet",
+      "structuredCode": "MFQN2500TAB001",
+      "code": "50dd04bf"
+    },
+    {
+      "id": 591,
+      "name": "Miltefosine 10mg solid oral dosage form ",
+      "structuredCode": "MFSN0100SOD000",
+      "code": "50f6b4bf"
+    },
+    {
+      "id": 592,
+      "name": "Miltefosine 50 mg solid oral dosage form ",
+      "structuredCode": "MFSN0500SOD000",
+      "code": "50fc34bf"
+    },
+    {
+      "id": 593,
+      "name": "Meglumine antimoniate 100mg/mL, 1 vial =30mL or 30% equivalent to approvimately 8.1% antimony (pentavelent in 5mL ampoule)",
+      "structuredCode": "MGAM1000INJ000",
+      "code": "510704bf"
+    },
+    {
+      "id": 594,
+      "name": "Meglumine iotroxate 5g /100ml solution",
+      "structuredCode": "MGIO5100SLN000",
+      "code": "512a54bf"
+    },
+    {
+      "id": 595,
+      "name": "Meglumine iotroxate 5g /250ml solution",
+      "structuredCode": "MGIO5250SLN000",
+      "code": "513014bf"
+    },
+    {
+      "id": 596,
+      "name": "Meglumine iotroxate 6g /100ml solution",
+      "structuredCode": "MGIO6100SLN000",
+      "code": "5149a4bf"
+    },
+    {
+      "id": 597,
+      "name": "Meglumine iotroxate 6g /250ml solution",
+      "structuredCode": "MGIO6250SLN000",
+      "code": "514f04bf"
+    },
+    {
+      "id": 598,
+      "name": "Meglumine iotroxate 7g /100ml solution",
+      "structuredCode": "MGIO7100SLN000",
+      "code": "516834bf"
+    },
+    {
+      "id": 599,
+      "name": "Meglumine iotroxate 7g /250ml solution",
+      "structuredCode": "MGIO7250SLN000",
+      "code": "517334bf"
+    },
+    {
+      "id": 600,
+      "name": "Meglumine iotroxate 8g /100ml solution",
+      "structuredCode": "MGIO8100SLN000",
+      "code": "519584bf"
+    },
+    {
+      "id": 601,
+      "name": "Meglumine iotroxate 8g /250ml solution",
+      "structuredCode": "MGIO8250SLN000",
+      "code": "519af4bf"
+    },
+    {
+      "id": 602,
+      "name": "Magnesium (sulfate) 0.5g/mL (2mL) equivalent to 1g/2mL; 50%w/v",
+      "structuredCode": "MGSF0005INJ002",
+      "code": "51b474bf"
+    },
+    {
+      "id": 603,
+      "name": "Magnesium (sulfate) 0.5g/mL (10mL) equivalent to 5g/10mL; 50%w/v",
+      "structuredCode": "MGSF0050INJ002",
+      "code": "51ce64bf"
+    },
+    {
+      "id": 604,
+      "name": "Misoprostol 25mcg vaginal tablet",
+      "structuredCode": "MISO0025TVG000",
+      "code": "51e824bf"
+    },
+    {
+      "id": 605,
+      "name": "Misoprostol 200mcg tablet",
+      "structuredCode": "MISO0200TAB000",
+      "code": "51f324bf"
+    },
+    {
+      "id": 606,
+      "name": "Melarsoprol 3.6% solution, 5ml ampoul (180mg of active compound)",
+      "structuredCode": "MLSP0026INJ000",
+      "code": "521634bf"
+    },
+    {
+      "id": 607,
+      "name": "Meningococcal menin+D963:D972gitis vaccine",
+      "structuredCode": "MNGM0000VAC000",
+      "code": "5230a4bf"
+    },
+    {
+      "id": 608,
+      "name": "Methyloninium chloride (methylene blue) 10mg/mL, ampoule injection",
+      "structuredCode": "MNLM0010INJ000",
+      "code": "524a84bf"
+    },
+    {
+      "id": 609,
+      "name": "Mannitol 10% injectable solution",
+      "structuredCode": "MNTL0010INJSLN",
+      "code": "526454bf"
+    },
+    {
+      "id": 610,
+      "name": "Mannitol 20% injectable solution",
+      "structuredCode": "MNTL0020INJSLN",
+      "code": "527e04bf"
+    },
+    {
+      "id": 611,
+      "name": "Mupirocin (calcium)  2% cream",
+      "structuredCode": "MPCN0002CRM000",
+      "code": "52a514bf"
+    },
+    {
+      "id": 612,
+      "name": "Mupirocin 2% ointment",
+      "structuredCode": "MPCN0002OIN000",
+      "code": "52bf34bf"
+    },
+    {
+      "id": 613,
+      "name": "Morphine (hydrochloride) 10mg/mL (1mL)",
+      "structuredCode": "MPHN0100INJ001",
+      "code": "52dd64bf"
+    },
+    {
+      "id": 614,
+      "name": "Morphine (sulfate) 10mg/mL (1mL)",
+      "structuredCode": "MPHN0100INJ002",
+      "code": "52f844bf"
+    },
+    {
+      "id": 615,
+      "name": "Morphine (hydrochloride) 10mg IR tablet",
+      "structuredCode": "MPHN0100IRT001",
+      "code": "532904bf"
+    },
+    {
+      "id": 616,
+      "name": "Morphine (sulfate) 10mg IR tablet",
+      "structuredCode": "MPHN0100IRT002",
+      "code": "533194bf"
+    },
+    {
+      "id": 617,
+      "name": "Morphine (hydrochloride) 10mg/5mL oral liquid",
+      "structuredCode": "MPHN0100ORL001",
+      "code": "533734bf"
+    },
+    {
+      "id": 618,
+      "name": "Morphine (sulfate) 10mg/5mL oral liquid",
+      "structuredCode": "MPHN0100ORL002",
+      "code": "5340d4bf"
+    },
+    {
+      "id": 619,
+      "name": "Morphine (hydrochloride) 10mg SR tablet",
+      "structuredCode": "MPHN0100SRT001",
+      "code": "534684bf"
+    },
+    {
+      "id": 620,
+      "name": "Morphine (sulfate) 10mg SR tablet",
+      "structuredCode": "MPHN0100SRT002",
+      "code": "534b94bf"
+    },
+    {
+      "id": 621,
+      "name": "Morphine (hydrochloride) 15mg SR tablet",
+      "structuredCode": "MPHN0150SRT001",
+      "code": "535134bf"
+    },
+    {
+      "id": 622,
+      "name": "Morphine (sulfate) 15mg SR tablet",
+      "structuredCode": "MPHN0150SRT002",
+      "code": "535634bf"
+    },
+    {
+      "id": 623,
+      "name": "Morphine (sulfate) 20mg granules (suspension)",
+      "structuredCode": "MPHN0200GRN002",
+      "code": "535b54bf"
+    },
+    {
+      "id": 624,
+      "name": "Morphine (sulfate) 30mg granules (suspension)",
+      "structuredCode": "MPHN0300GRN002",
+      "code": "536054bf"
+    },
+    {
+      "id": 625,
+      "name": "Morphine (hydrochloride) 30mg SR tablet",
+      "structuredCode": "MPHN0300SRT001",
+      "code": "536554bf"
+    },
+    {
+      "id": 626,
+      "name": "Morphine (sulfate) 30mg SR tablet",
+      "structuredCode": "MPHN0300SRT002",
+      "code": "536a64bf"
+    },
+    {
+      "id": 627,
+      "name": "Morphine (sulfate) 60mg granules (suspension)",
+      "structuredCode": "MPHN0600GRN002",
+      "code": "536f54bf"
+    },
+    {
+      "id": 628,
+      "name": "Morphine (hydrochloride) 60mg SR tablet",
+      "structuredCode": "MPHN0600SRT001",
+      "code": "537474bf"
+    },
+    {
+      "id": 629,
+      "name": "Morphine (sulfate)60mg SR tablet",
+      "structuredCode": "MPHN0600SRT002",
+      "code": "5379b4bf"
+    },
+    {
+      "id": 630,
+      "name": "Morphine (sulfate) 100mg granules (suspension)",
+      "structuredCode": "MPHN1000GRN002",
+      "code": "537ec4bf"
+    },
+    {
+      "id": 631,
+      "name": "Morphine (hydrochloride) 100mg SR tablet",
+      "structuredCode": "MPHN1000SRT001",
+      "code": "538404bf"
+    },
+    {
+      "id": 632,
+      "name": "Morphine (sulfate) 100mg SR tablet",
+      "structuredCode": "MPHN1000SRT002",
+      "code": "538924bf"
+    },
+    {
+      "id": 633,
+      "name": "Morphine (sulfate) 200mg granules (suspension)",
+      "structuredCode": "MPHN2000GRN002",
+      "code": "538e24bf"
+    },
+    {
+      "id": 634,
+      "name": "Morphine (hydrochloride) 200mg SR tablet",
+      "structuredCode": "MPHN2000SRT001",
+      "code": "5392f4bf"
+    },
+    {
+      "id": 635,
+      "name": "Morphine (sulfate) 200mg SR tablet",
+      "structuredCode": "MPHN2000SRT002",
+      "code": "5397f4bf"
+    },
+    {
+      "id": 636,
+      "name": "Metformin (hydrochloride) 500mg tablet",
+      "structuredCode": "MTFN0500TAB001",
+      "code": "539cd4bf"
+    },
+    {
+      "id": 637,
+      "name": "Methotrexate (sodium) 2.5mg",
+      "structuredCode": "MTHX0025TAB004",
+      "code": "53a244bf"
+    },
+    {
+      "id": 638,
+      "name": "Methotrexate (sodium) 50mg powder for injection",
+      "structuredCode": "MTHX0050PFI004",
+      "code": "53a774bf"
+    },
+    {
+      "id": 639,
+      "name": "Metoprolol 50mg tablet",
+      "structuredCode": "MTPL0050TAB000",
+      "code": "53ac84bf"
+    },
+    {
+      "id": 640,
+      "name": "Metoprolol 100mg tablet",
+      "structuredCode": "MTPL0100TAB000",
+      "code": "53b164bf"
+    },
+    {
+      "id": 641,
+      "name": "Methylprednisolone (sodium succinate) 40mg/mL in 1mL ampoule",
+      "structuredCode": "MTPN0400INJ000",
+      "code": "53b684bf"
+    },
+    {
+      "id": 642,
+      "name": "Methylprednisolone (sodium succinate) 40mg/mL in 5mL multi dose vial",
+      "structuredCode": "MTPN0405INJ000",
+      "code": "53bbe4bf"
+    },
+    {
+      "id": 643,
+      "name": "Methylprednisolone (sodium succinate) 80mg/mL in 1mL ampoule",
+      "structuredCode": "MTPN0800INJ000",
+      "code": "53c104bf"
+    },
+    {
+      "id": 644,
+      "name": "Mumps vaccine",
+      "structuredCode": "MUMP0000VAC000",
+      "code": "53c634bf"
+    },
+    {
+      "id": 645,
+      "name": "Medroxyprogesterone acetate 5mg tablet",
+      "structuredCode": "MXPA0005TAB000",
+      "code": "53cb14bf"
+    },
+    {
+      "id": 646,
+      "name": "Medroxyprogesterone acetate depot injection 150mg/mL in 1mL vial",
+      "structuredCode": "MXPA1500INJ000",
+      "code": "53d014bf"
+    },
+    {
+      "id": 647,
+      "name": "Sodium chloride 0.9% isotonic injectable solution",
+      "structuredCode": "NACL0009INS000",
+      "code": "53d544bf"
+    },
+    {
+      "id": 648,
+      "name": "Sodium fluoride topical formulation",
+      "structuredCode": "NAFL0000TOP000",
+      "code": "53dab4bf"
+    },
+    {
+      "id": 649,
+      "name": "Sodium hydrogen carbonate 1.4% isotonic injectiable solution",
+      "structuredCode": "NAHC0014INS000",
+      "code": "53dfc4bf"
+    },
+    {
+      "id": 650,
+      "name": "Sodium hydrogen carbonate 8.4% in 10mL ampoule solution",
+      "structuredCode": "NAHC0084INS000",
+      "code": "53e4d4bf"
+    },
+    {
+      "id": 651,
+      "name": "Sodium lactate,compound solution (Hartmann's/Ringer-Lactate)",
+      "structuredCode": "NALC0000INS000",
+      "code": "53ea14bf"
+    },
+    {
+      "id": 652,
+      "name": "Niclosamide 500mg tablet (chewable)",
+      "structuredCode": "NCLS5000TCW000",
+      "code": "53ef24bf"
+    },
+    {
+      "id": 653,
+      "name": "Nicotinamide 50mg tablet",
+      "structuredCode": "NCTN0050TAB000",
+      "code": "53f404bf"
+    },
+    {
+      "id": 654,
+      "name": "Nifedipine 10mg immediate release capsule",
+      "structuredCode": "NFPN0010CIR000",
+      "code": "53fc34bf"
+    },
+    {
+      "id": 655,
+      "name": "Nifurtimox 30mg tablet",
+      "structuredCode": "NFTX0300TAB000",
+      "code": "5401b4bf"
+    },
+    {
+      "id": 656,
+      "name": "Nifurtimox 120mg tablet",
+      "structuredCode": "NFTX1200TAB000",
+      "code": "5406a4bf"
+    },
+    {
+      "id": 657,
+      "name": "Nifurtimox 250mg tablet",
+      "structuredCode": "NFTX2500TAB000",
+      "code": "540d54bf"
+    },
+    {
+      "id": 658,
+      "name": "Naloxone (hydrochloride) 400mcg/1mL ampoule",
+      "structuredCode": "NLXN0400INJ001",
+      "code": "541264bf"
+    },
+    {
+      "id": 659,
+      "name": "Normal immunoglobulin 5% protein solution for intravenous administration",
+      "structuredCode": "NMIG0005IVA000",
+      "code": "541764bf"
+    },
+    {
+      "id": 660,
+      "name": "Normal immunoglobulin 10% protein solution for intravenous administration",
+      "structuredCode": "NMIG0010IVA000",
+      "code": "541ce4bf"
+    },
+    {
+      "id": 661,
+      "name": "Normal immunoglobulin 15% protein solution for subcutaneous administration",
+      "structuredCode": "NMIG0015ISC000",
+      "code": "542044bf"
+    },
+    {
+      "id": 662,
+      "name": "Normal immunoglobulin 16% protein solution for intramuscular administration",
+      "structuredCode": "NMIG0016IMA000",
+      "code": "5423a4bf"
+    },
+    {
+      "id": 663,
+      "name": "Normal immunoglobulin 16% protein solution for subcutaneous administration",
+      "structuredCode": "NMIG0016ISC000",
+      "code": "542704bf"
+    },
+    {
+      "id": 664,
+      "name": "Norethisterone enantate 200mg/mL in 1mL ampoule oily solution",
+      "structuredCode": "NOEN2000OSN000",
+      "code": "542a34bf"
+    },
+    {
+      "id": 665,
+      "name": "Nicotine replacemet therapry 2mg chewing gum (polacrilex)",
+      "structuredCode": "NRPT0002GUM000",
+      "code": "542e14bf"
+    },
+    {
+      "id": 666,
+      "name": "Nicotine replacemet therapry 4mg chewing gum (polacrilex)",
+      "structuredCode": "NRPT0004CHW000",
+      "code": "543394bf"
+    },
+    {
+      "id": 667,
+      "name": "Nicotine replacemet therapry 5mg-30mg/16hrs transdermal patch",
+      "structuredCode": "NRPT0530TDP016",
+      "code": "543834bf"
+    },
+    {
+      "id": 668,
+      "name": "Nicotine replacemet therapry 7mg-21mg/24hrs transdermal patch",
+      "structuredCode": "NRPT0721TDP024",
+      "code": "543c04bf"
+    },
+    {
+      "id": 669,
+      "name": "Neostigmine (metilsulfate) 2.5mg in 1mL ampoule injection",
+      "structuredCode": "NSTG0025INJ000",
+      "code": "543fc4bf"
+    },
+    {
+      "id": 670,
+      "name": "Neostigmine (bromide) 15mg tablet",
+      "structuredCode": "NSTG0150TAB000",
+      "code": "544364bf"
+    },
+    {
+      "id": 671,
+      "name": "Neostigmine 500mcg in 1mL ampoule injection",
+      "structuredCode": "NSTG0500INJ000",
+      "code": "544884bf"
+    },
+    {
+      "id": 672,
+      "name": "Nitrofurantoin 25mg/5mL oral liquid",
+      "structuredCode": "NTFN0250ORL000",
+      "code": "544c74bf"
+    },
+    {
+      "id": 673,
+      "name": "Nitrofurantoin 100mg tablet",
+      "structuredCode": "NTFN1000TAB000",
+      "code": "545014bf"
+    },
+    {
+      "id": 674,
+      "name": "Nitrous oxide",
+      "structuredCode": "NTOX0000GAS000",
+      "code": "5453a4bf"
+    },
+    {
+      "id": 675,
+      "name": "Nevirapine (NVP) 50mg/5mL oral liquid",
+      "structuredCode": "NVPN0500ORL000",
+      "code": "545714bf"
+    },
+    {
+      "id": 676,
+      "name": "Nevirapine (NVP) 50mg tablet (dispersible)",
+      "structuredCode": "NVPN0500TDS000",
+      "code": "545ab4bf"
+    },
+    {
+      "id": 677,
+      "name": "Nevirapine (NVP) 200mg tablet",
+      "structuredCode": "NVPN2000TAB000",
+      "code": "545e34bf"
+    },
+    {
+      "id": 678,
+      "name": "Nystatin 100,000 IU tablet",
+      "structuredCode": "NYST0001TAB000",
+      "code": "548af4bf"
+    },
+    {
+      "id": 679,
+      "name": "Nystatin 50mg/mL oral liquid",
+      "structuredCode": "NYST0500ORL000",
+      "code": "549034bf"
+    },
+    {
+      "id": 680,
+      "name": "Nystatin 100,000IU lozenge",
+      "structuredCode": "NYST1000LOZ000",
+      "code": "5493f4bf"
+    },
+    {
+      "id": 681,
+      "name": "Nystatin 100,000 IU oral liquid",
+      "structuredCode": "NYST1000ORL000",
+      "code": "549744bf"
+    },
+    {
+      "id": 682,
+      "name": "Nystatin 100,000 IU pessary",
+      "structuredCode": "NYST1000PES000",
+      "code": "549a54bf"
+    },
+    {
+      "id": 683,
+      "name": "Nystatin 500,000 IU tablet",
+      "structuredCode": "NYST5000TAB000",
+      "code": "549d54bf"
+    },
+    {
+      "id": 684,
+      "name": "Ofloxacin 0.3% eye drop solution",
+      "structuredCode": "OFLO0003EDP000",
+      "code": "54a084bf"
+    },
+    {
+      "id": 685,
+      "name": "Oseltamivir (phosphate) 30mg capsule",
+      "structuredCode": "OLMR0300CAP003",
+      "code": "54a394bf"
+    },
+    {
+      "id": 686,
+      "name": "Oseltamivir (phosphate) 45mg capsule",
+      "structuredCode": "OLMR0400CAP003",
+      "code": "54a6c4bf"
+    },
+    {
+      "id": 687,
+      "name": "Oseltamivir (phosphate) 70mg capsule",
+      "structuredCode": "OLMR0700CAP003",
+      "code": "54a9c4bf"
+    },
+    {
+      "id": 688,
+      "name": "Omeprazole 10mg solid oral dosage form",
+      "structuredCode": "OMEP0010SOD000",
+      "code": "54ace4bf"
+    },
+    {
+      "id": 689,
+      "name": "Omeprazole 20mg  powder for oral liquid",
+      "structuredCode": "OMEP0020POL000",
+      "code": "54b034bf"
+    },
+    {
+      "id": 690,
+      "name": "Omeprazole 20mg solid oral dosage form",
+      "structuredCode": "OMEP0020SOD000",
+      "code": "54b344bf"
+    },
+    {
+      "id": 691,
+      "name": "Omeprazole 40mg in vial powder for injection",
+      "structuredCode": "OMEP0040PFI000",
+      "code": "54d634bf"
+    },
+    {
+      "id": 692,
+      "name": "Omeprazole 40mg  powder for oral liquid",
+      "structuredCode": "OMEP0040POL000",
+      "code": "54da44bf"
+    },
+    {
+      "id": 693,
+      "name": "Omeprazole 40mg solid oral dosage form",
+      "structuredCode": "OMEP0040SOD000",
+      "code": "54dff4bf"
+    },
+    {
+      "id": 694,
+      "name": "Oseltamivir 12mg/mL oral powder",
+      "structuredCode": "OMLR0120POW000",
+      "code": "54e364bf"
+    },
+    {
+      "id": 695,
+      "name": "Ombitasvir & paritaprevir & ritonavir 12.5mg & 75mg & 50mg tablet",
+      "structuredCode": "OMPR1275TAB000",
+      "code": "54e6f4bf"
+    },
+    {
+      "id": 696,
+      "name": "Ondansetron hydrochloride 2mg base/mL (2mL)",
+      "structuredCode": "ONDN0020INJ000",
+      "code": "54eb24bf"
+    },
+    {
+      "id": 697,
+      "name": "Ondansetron 4mg base/5mL oral liquid",
+      "structuredCode": "ONDN0040ORL000",
+      "code": "54eea4bf"
+    },
+    {
+      "id": 698,
+      "name": "Ondansetron 4mg base solid dosage form",
+      "structuredCode": "ONDN0040SOD000",
+      "code": "54f204bf"
+    },
+    {
+      "id": 699,
+      "name": "Ondansetron 8mg base solid dosage form",
+      "structuredCode": "ONDN0080SOD000",
+      "code": "54f554bf"
+    },
+    {
+      "id": 700,
+      "name": "Ondansetron 24mg base solid dosage form",
+      "structuredCode": "ONDN0240SOD000",
+      "code": "54f8a4bf"
+    },
+    {
+      "id": 701,
+      "name": "Oral rehydration salts powder for dilution in 200mL",
+      "structuredCode": "ORHS0200PFD000",
+      "code": "5517c4bf"
+    },
+    {
+      "id": 702,
+      "name": "Oral rehydration salts powder for dilution in 500mL",
+      "structuredCode": "ORHS0500PFD000",
+      "code": "551c34bf"
+    },
+    {
+      "id": 703,
+      "name": "Oral rehydration salts powder for dilution in 1L",
+      "structuredCode": "ORHS1000PFD000",
+      "code": "551ff4bf"
+    },
+    {
+      "id": 704,
+      "name": "Oxygen",
+      "structuredCode": "OXGN0000GAS000",
+      "code": "552344bf"
+    },
+    {
+      "id": 705,
+      "name": "Oxamniquine 50mg/5mL oral liquid",
+      "structuredCode": "OXNQ0500ORL005",
+      "code": "552674bf"
+    },
+    {
+      "id": 706,
+      "name": "Oxamniquine 250mg capsule",
+      "structuredCode": "OXNQ2500CAPOXA",
+      "code": "552974bf"
+    },
+    {
+      "id": 707,
+      "name": "Oxaliplatin 50mg in 10mL vial injection",
+      "structuredCode": "OXPN0050INJ000",
+      "code": "552c94bf"
+    },
+    {
+      "id": 708,
+      "name": "Oxaliplatin 50mg powder for injection",
+      "structuredCode": "OXPN0050PFI000",
+      "code": "552f94bf"
+    },
+    {
+      "id": 709,
+      "name": "Oxaliplatin 100mg powder for injection",
+      "structuredCode": "OXPN1000PFI000",
+      "code": "553294bf"
+    },
+    {
+      "id": 710,
+      "name": "Oxaliplatin 100mg in 20mL vial injection",
+      "structuredCode": "OXPN1020INJ000",
+      "code": "553584bf"
+    },
+    {
+      "id": 711,
+      "name": "Oxaliplatin 200mg in 40mL vial injection",
+      "structuredCode": "OXPN2040INJ000",
+      "code": "5557e4bf"
+    },
+    {
+      "id": 712,
+      "name": "Oxytocin 10IU/1mL injection",
+      "structuredCode": "OXYT0010INJ000",
+      "code": "555c04bf"
+    },
+    {
+      "id": 713,
+      "name": "Pancreatic enzymes",
+      "structuredCode": "PANC0000ENZ000",
+      "code": "555f54bf"
+    },
+    {
+      "id": 714,
+      "name": "P-aminosalicyclic acid 4g granules",
+      "structuredCode": "PASA0040GRN000",
+      "code": "5562d4bf"
+    },
+    {
+      "id": 715,
+      "name": "P-aminosalicyclic acid 500mg tablet",
+      "structuredCode": "PASA5000TAB000",
+      "code": "556634bf"
+    },
+    {
+      "id": 716,
+      "name": "Procarbaine (hydrochloride) 50mg capsule",
+      "structuredCode": "PCBN0050CAP000",
+      "code": "556984bf"
+    },
+    {
+      "id": 717,
+      "name": "Procaine benzylpenicillin 1g (1 million IU) powder for injection",
+      "structuredCode": "PCBZ0010PFI000",
+      "code": "556ce4bf"
+    },
+    {
+      "id": 718,
+      "name": "Procaine benzylpenicillin 3g (3 million IU) powder for injection",
+      "structuredCode": "PCBZ0030PFIPRO",
+      "code": "557054bf"
+    },
+    {
+      "id": 719,
+      "name": "Paracetamol 300mg tablet",
+      "structuredCode": "PCML3000TAB000",
+      "code": "5589f4bf"
+    },
+    {
+      "id": 720,
+      "name": "Paracetamol 400mg tablet",
+      "structuredCode": "PCML4000TAB000",
+      "code": "558e84bf"
+    },
+    {
+      "id": 721,
+      "name": "Paracetamol 500mg tablet",
+      "structuredCode": "PCML5000TAB000",
+      "code": "559794bf"
+    },
+    {
+      "id": 722,
+      "name": "Paclitaxel 6mg/mL powder for injection",
+      "structuredCode": "PCXL0060PFI000",
+      "code": "559b84bf"
+    },
+    {
+      "id": 723,
+      "name": "Prednisolone (sodium phosphate)  0.5% solution eye drops",
+      "structuredCode": "PDNS0005EDP000",
+      "code": "559f14bf"
+    },
+    {
+      "id": 724,
+      "name": "Prednisolone 5mg/mL oral liquid",
+      "structuredCode": "PDNS0050ORL000",
+      "code": "55a274bf"
+    },
+    {
+      "id": 725,
+      "name": "Prednisolone 5mg tablet",
+      "structuredCode": "PDNS0050TAB000",
+      "code": "55a584bf"
+    },
+    {
+      "id": 726,
+      "name": "Prednisolone 25mg tablet",
+      "structuredCode": "PDNS0250TAB000",
+      "code": "55a884bf"
+    },
+    {
+      "id": 727,
+      "name": "Podophyllum resin 10% solution",
+      "structuredCode": "PDOP0010SLN000",
+      "code": "55ab64bf"
+    },
+    {
+      "id": 728,
+      "name": "Podophyllum resin 25% solution",
+      "structuredCode": "PDOP0025SLN000",
+      "code": "55ce44bf"
+    },
+    {
+      "id": 729,
+      "name": "Pyridoxine (hydrochloride) 25mg",
+      "structuredCode": "PDXN0250TAB001",
+      "code": "55d2c4bf"
+    },
+    {
+      "id": 730,
+      "name": "Pertussis vaccine",
+      "structuredCode": "PERT0000VAC000",
+      "code": "55d634bf"
+    },
+    {
+      "id": 731,
+      "name": "Potassium ferric hexacyano-ferrate(II) - 2(H20) (Prussian Blue) posder for oral administration",
+      "structuredCode": "PFHF0000PFA000",
+      "code": "55d9b4bf"
+    },
+    {
+      "id": 732,
+      "name": "Pegylated interferon alpha 2a 180mcg  prefilled syringe",
+      "structuredCode": "PGIA1800PFS000",
+      "code": "55dd54bf"
+    },
+    {
+      "id": 733,
+      "name": "Pegylated interferon alpha 2a 180mcg  vial",
+      "structuredCode": "PGIA1800VIL000",
+      "code": "55e0c4bf"
+    },
+    {
+      "id": 734,
+      "name": "Pegylated interferon alpha 2b 80mcg prefilled syringe",
+      "structuredCode": "PGIB0800PFS000",
+      "code": "55e434bf"
+    },
+    {
+      "id": 735,
+      "name": "Pegylated interferon alpha 2b 180mcg  vial",
+      "structuredCode": "PGIB0800VIL000",
+      "code": "55fd84bf"
+    },
+    {
+      "id": 736,
+      "name": "Pegylated interferon alpha 2b 100mcg prefilled syringe",
+      "structuredCode": "PGIB1000PFS000",
+      "code": "560274bf"
+    },
+    {
+      "id": 737,
+      "name": "Pegylated interferon alpha 2b 100mcg  vial",
+      "structuredCode": "PGIB1000VIL000",
+      "code": "560614bf"
+    },
+    {
+      "id": 738,
+      "name": "Proguanil (hydrochloride) 100mg tablet",
+      "structuredCode": "PGNL1000TAB001",
+      "code": "560ef4bf"
+    },
+    {
+      "id": 739,
+      "name": "Phenobarbital 15mg tablet",
+      "structuredCode": "PHBL0150TAB000",
+      "code": "5612e4bf"
+    },
+    {
+      "id": 740,
+      "name": "Phenobarbital 25mg/30mL oral liquid",
+      "structuredCode": "PHBL0250ORL030",
+      "code": "561694bf"
+    },
+    {
+      "id": 741,
+      "name": "Phenobarbital 30mg/30mL oral liquid",
+      "structuredCode": "PHBL0300ORL030",
+      "code": "563be4bf"
+    },
+    {
+      "id": 742,
+      "name": "Phenobarbital 60mg tablet",
+      "structuredCode": "PHBL0600TAB000",
+      "code": "5645a4bf"
+    },
+    {
+      "id": 743,
+      "name": "Phenobarbital 100mg tablet",
+      "structuredCode": "PHBL1000TAB000",
+      "code": "564984bf"
+    },
+    {
+      "id": 744,
+      "name": "Phenobarbital (sodium) 200mg/mL injection",
+      "structuredCode": "PHBL2000INJ004",
+      "code": "5cc1a4bf"
+    },
+    {
+      "id": 745,
+      "name": "Phenobarbital 200mg tablet",
+      "structuredCode": "PHBL2000TAB000",
+      "code": "5cc974bf"
+    },
+    {
+      "id": 746,
+      "name": "Phenytoin 25mg/30mL oral liquid",
+      "structuredCode": "PHTN0250ORL000",
+      "code": "5ccfd4bf"
+    },
+    {
+      "id": 747,
+      "name": "Phenytoin (sodium) 25mg  solid dosage form",
+      "structuredCode": "PHTN0250SOD004",
+      "code": "5cec54bf"
+    },
+    {
+      "id": 748,
+      "name": "Phenytoin 30mg/30mL oral liquid",
+      "structuredCode": "PHTN0300ORL000",
+      "code": "5cfa04bf"
+    },
+    {
+      "id": 749,
+      "name": "Phenytoin (sodium) 50mg/5mL injection",
+      "structuredCode": "PHTN0500INJ005",
+      "code": "5cff94bf"
+    },
+    {
+      "id": 750,
+      "name": "Phenytoin (sodium) 50mg  solid dosage form",
+      "structuredCode": "PHTN0500SOD004",
+      "code": "5d0484bf"
+    },
+    {
+      "id": 751,
+      "name": "Phenytoin 50mg chewable tablet",
+      "structuredCode": "PHTN0500TCW000",
+      "code": "5d0994bf"
+    },
+    {
+      "id": 752,
+      "name": "Phenytoin (sodium) 100mg  solid dosage form",
+      "structuredCode": "PHTN1000SOD004",
+      "code": "5d32f4bf"
+    },
+    {
+      "id": 753,
+      "name": "Pilocarpine (nitrate) 2% solution eye drops",
+      "structuredCode": "PLPN0020EDP000",
+      "code": "5d3934bf"
+    },
+    {
+      "id": 754,
+      "name": "Pilocarpine (hydrochloride) 2% solution eye drops",
+      "structuredCode": "PLPN0020EDP001",
+      "code": "5d3e34bf"
+    },
+    {
+      "id": 755,
+      "name": "Pilocarpine (nitrate) 4% solution eye drops",
+      "structuredCode": "PLPN0040EDP000",
+      "code": "5d4344bf"
+    },
+    {
+      "id": 756,
+      "name": "Pilocarpine (hydrochloride) 4% solution eye drops",
+      "structuredCode": "PLPN0040EDP001",
+      "code": "5d5194bf"
+    },
+    {
+      "id": 757,
+      "name": "Platelets",
+      "structuredCode": "PLTL0000BCP000",
+      "code": "5d76c4bf"
+    },
+    {
+      "id": 758,
+      "name": "Paromomycin base (sulfate)  750mg solution for intramuscular injection",
+      "structuredCode": "PMCN7500SIM002",
+      "code": "5d7c64bf"
+    },
+    {
+      "id": 759,
+      "name": "Pentamidine (isethionate) 200mg powder for injection",
+      "structuredCode": "PMDN2000PFI000",
+      "code": "5d81c4bf"
+    },
+    {
+      "id": 760,
+      "name": "Pentamidine (isethionate) 200mg tablet",
+      "structuredCode": "PMDN2000TAB000",
+      "code": "5d8774bf"
+    },
+    {
+      "id": 761,
+      "name": "Pentamidine (isethionate) 300mg tablet",
+      "structuredCode": "PMDN3000TAB000",
+      "code": "5da294bf"
+    },
+    {
+      "id": 762,
+      "name": "Phytomenadione 1mg/mL injection",
+      "structuredCode": "PMND0010INJ000",
+      "code": "5dadc4bf"
+    },
+    {
+      "id": 763,
+      "name": "Phytomenadione 10mg/mL in 5mL ampoule  injection",
+      "structuredCode": "PMND1050INJ000",
+      "code": "5db3a4bf"
+    },
+    {
+      "id": 764,
+      "name": "Phenoxymethylpenicillin (potassium) 250mg/5mL powder for oral liquid",
+      "structuredCode": "PMPN2500POL005",
+      "code": "5db8a4bf"
+    },
+    {
+      "id": 765,
+      "name": "Phenoxymethylpenicillin (potassium) 250mg tablet",
+      "structuredCode": "PMPN2500TAB000",
+      "code": "5ddd04bf"
+    },
+    {
+      "id": 766,
+      "name": "Primaquine (diphosphate) 7.5mg tablet",
+      "structuredCode": "PMQN0075TAB000",
+      "code": "5de2a4bf"
+    },
+    {
+      "id": 767,
+      "name": "Primaquine (diphosphate) 15mg tablet",
+      "structuredCode": "PMQN0150TAB000",
+      "code": "5de7d4bf"
+    },
+    {
+      "id": 768,
+      "name": "Penicillamine 250mg solid oral dosage form",
+      "structuredCode": "PNCM0250SOD000",
+      "code": "5ded04bf"
+    },
+    {
+      "id": 769,
+      "name": "Pneumococcal vaccine",
+      "structuredCode": "PNEU0000VAC000",
+      "code": "5e0d74bf"
+    },
+    {
+      "id": 770,
+      "name": "Potassium iodide 60mg tablet",
+      "structuredCode": "POID0060TAB000",
+      "code": "5e1364bf"
+    },
+    {
+      "id": 771,
+      "name": "Poliomyelitis vaccine",
+      "structuredCode": "POLI0000VAC000",
+      "code": "5e1834bf"
+    },
+    {
+      "id": 772,
+      "name": "Polygeline 3.5% injectable solution",
+      "structuredCode": "POLY0035INJ000",
+      "code": "5e1cf4bf"
+    },
+    {
+      "id": 773,
+      "name": "Propranolol (hydrochloride) 20 mg tablet",
+      "structuredCode": "PPNL0200TAB000",
+      "code": "5e4134bf"
+    },
+    {
+      "id": 774,
+      "name": "Propranolol (hydrochloride) 40 mg tablet",
+      "structuredCode": "PPNL0400TAB000",
+      "code": "5e46d4bf"
+    },
+    {
+      "id": 775,
+      "name": "Propofol (10mg/mL)",
+      "structuredCode": "PRFL0100INJ000",
+      "code": "5e4bd4bf"
+    },
+    {
+      "id": 776,
+      "name": "Propofol (50mg/mL)",
+      "structuredCode": "PRFL0500INJ000",
+      "code": "5e66e4bf"
+    },
+    {
+      "id": 777,
+      "name": "Pyrimethamine 25mg tablet",
+      "structuredCode": "PRMN0250TAB000",
+      "code": "5e7224bf"
+    },
+    {
+      "id": 778,
+      "name": "Pyrantel (embonate) 50mg/mL oral liquid",
+      "structuredCode": "PRNL0500ORL017",
+      "code": "5e7734bf"
+    },
+    {
+      "id": 779,
+      "name": "Pyrantel (pamoate) 50mg/mL oral liquid",
+      "structuredCode": "PRNL0500ORL018",
+      "code": "5e9b44bf"
+    },
+    {
+      "id": 780,
+      "name": "Pyrantel (embonate) 250mg tablet (chewable)",
+      "structuredCode": "PRNL2500TCW017",
+      "code": "5ea164bf"
+    },
+    {
+      "id": 781,
+      "name": "Pyrantel (pamoate) 250mg tablet (chewable)",
+      "structuredCode": "PRNL2500TCW018",
+      "code": "5ebc34bf"
+    },
+    {
+      "id": 782,
+      "name": "Progesterone vaginal ring (containing 2.074g of micronized progesterone)",
+      "structuredCode": "PROG2074VRG000",
+      "code": "5ec194bf"
+    },
+    {
+      "id": 783,
+      "name": "Pyrazinamide 30mg/mL",
+      "structuredCode": "PRZD0300ORL000",
+      "code": "5edcb4bf"
+    },
+    {
+      "id": 784,
+      "name": "Pyrazinamide 150mg tablet dispersible",
+      "structuredCode": "PRZD1500TDS000",
+      "code": "5ee7e4bf"
+    },
+    {
+      "id": 785,
+      "name": "Pyrazinamide 150mg tablet scored",
+      "structuredCode": "PRZD1500TSC000",
+      "code": "5f0c14bf"
+    },
+    {
+      "id": 786,
+      "name": "Pyrazinamide 400mg tablet",
+      "structuredCode": "PRZD4000TAB000",
+      "code": "5f11b4bf"
+    },
+    {
+      "id": 787,
+      "name": "Prostaglandin E1, 0.5mg/mL in alcohol solution for injection",
+      "structuredCode": "PSEO0005SLN000",
+      "code": "5f2c74bf"
+    },
+    {
+      "id": 788,
+      "name": "Prostaglandin E2, 1mg/mL solution for injection",
+      "structuredCode": "PSET0010SLN000",
+      "code": "5f47b4bf"
+    },
+    {
+      "id": 789,
+      "name": "Potassium permanganate aqueous solution 1:10 000",
+      "structuredCode": "PSPM1000AQS000",
+      "code": "5f62c4bf"
+    },
+    {
+      "id": 790,
+      "name": "Potassium chloride powder for solution",
+      "structuredCode": "PTCL0000PFS000",
+      "code": "5f82f4bf"
+    },
+    {
+      "id": 791,
+      "name": "Potassium chloride  solution for dilution 7.5%",
+      "structuredCode": "PTCL0075INS000",
+      "code": "5fa804bf"
+    },
+    {
+      "id": 792,
+      "name": "Potassium chloride  solution 11.2% in 20mL ampoule",
+      "structuredCode": "PTCL0112INS000",
+      "code": "5fc384bf"
+    },
+    {
+      "id": 793,
+      "name": "Potassium chloride  solution for dilution 15%",
+      "structuredCode": "PTCL0150INS000",
+      "code": "5fe0e4bf"
+    },
+    {
+      "id": 794,
+      "name": "Propylthiouracil 50mg tablet",
+      "structuredCode": "PTHC0050TAB000",
+      "code": "5ffc54bf"
+    },
+    {
+      "id": 795,
+      "name": "Permehtrin 1% ointment",
+      "structuredCode": "PTHN0001LTN000",
+      "code": "601744bf"
+    },
+    {
+      "id": 796,
+      "name": "Permehtrin 5% cream",
+      "structuredCode": "PTHN0005CRM000",
+      "code": "6032b4bf"
+    },
+    {
+      "id": 797,
+      "name": "Potassium iodide (saturated solution)",
+      "structuredCode": "PTID0000SAT000",
+      "code": "605c84bf"
+    },
+    {
+      "id": 798,
+      "name": "Protamine sulfate 10mg/mL in 5mL ",
+      "structuredCode": "PTMN0010INJ000",
+      "code": "6077e4bf"
+    },
+    {
+      "id": 799,
+      "name": "Povidine iodine 10% (equivalent to 1%",
+      "structuredCode": "PVID0010SLN000",
+      "code": "60aa34bf"
+    },
+    {
+      "id": 800,
+      "name": "Pydiostigmine (bromide) 60mg tablet",
+      "structuredCode": "PYID0060TAB000",
+      "code": "60e374bf"
+    },
+    {
+      "id": 801,
+      "name": "Pyidostigmine 1mg in 1mL ampoule injection",
+      "structuredCode": "PYID0101INJ000",
+      "code": "60eae4bf"
+    },
+    {
+      "id": 802,
+      "name": "Praziquantal 150mg tablet",
+      "structuredCode": "PZGL1500TAB000",
+      "code": "60ef34bf"
+    },
+    {
+      "id": 803,
+      "name": "Praziquantal 600mg tablet",
+      "structuredCode": "PZGL6000TAB000",
+      "code": "60f2f4bf"
+    },
+    {
+      "id": 804,
+      "name": "Quinine (bisulfate) 300mg tablet",
+      "structuredCode": "QNNE0300TAB000",
+      "code": "60f694bf"
+    },
+    {
+      "id": 805,
+      "name": "Quinine (sulfate) 300mg tablet",
+      "structuredCode": "QNNE0300TAB002",
+      "code": "60fa34bf"
+    },
+    {
+      "id": 806,
+      "name": "Quinine (hydrochloride) 300mg/mL in 2mL ampoule",
+      "structuredCode": "QNNE3000INJ001",
+      "code": "60fde4bf"
+    },
+    {
+      "id": 807,
+      "name": "Rabies vaccine",
+      "structuredCode": "RABI0000VAC000",
+      "code": "610194bf"
+    },
+    {
+      "id": 808,
+      "name": "Riboflavin 5mg tablet",
+      "structuredCode": "RBFL0005TAB000",
+      "code": "610574bf"
+    },
+    {
+      "id": 809,
+      "name": "Ribavirin 1g in 10ml phosphate buffer solution",
+      "structuredCode": "RBVN0010IIA000",
+      "code": "610914bf"
+    },
+    {
+      "id": 810,
+      "name": "Ribavirin 200mg solid oral dosage form ",
+      "structuredCode": "RBVN2000SOD000",
+      "code": "610c94bf"
+    },
+    {
+      "id": 811,
+      "name": "Ribavirin 400mg solid oral dosage form ",
+      "structuredCode": "RBVN4000SOD000",
+      "code": "611014bf"
+    },
+    {
+      "id": 812,
+      "name": "Ribavirin 600mg solid oral dosage form ",
+      "structuredCode": "RBVN6000SOD000",
+      "code": "613db4bf"
+    },
+    {
+      "id": 813,
+      "name": "Ribavirin 800mg in 10ml phosphate buffer solution",
+      "structuredCode": "RBVN8000IIA000",
+      "code": "614244bf"
+    },
+    {
+      "id": 814,
+      "name": "Red blood cells",
+      "structuredCode": "RDBCL000BCP000",
+      "code": "614614bf"
+    },
+    {
+      "id": 815,
+      "name": "Rifabutin 150mg capsule",
+      "structuredCode": "RFBN1500CAP000",
+      "code": "6149b4bf"
+    },
+    {
+      "id": 816,
+      "name": "Rifampicin 20mg/mL oral liquid",
+      "structuredCode": "RFMP0200ORL000",
+      "code": "614ce4bf"
+    },
+    {
+      "id": 817,
+      "name": "Rifampicin 150mg solid oral dosage form",
+      "structuredCode": "RFMP1500SOD000",
+      "code": "615054bf"
+    },
+    {
+      "id": 818,
+      "name": "Rifampicin 300 mg solid oral dosage form",
+      "structuredCode": "RFMP3000SOD000",
+      "code": "615374bf"
+    },
+    {
+      "id": 819,
+      "name": "Risperidone 0.25mg solid oral dosage form",
+      "structuredCode": "RISP0025CAP000",
+      "code": "615694bf"
+    },
+    {
+      "id": 820,
+      "name": "Risperidone 0.5mg solid oral dosage form",
+      "structuredCode": "RISP0050CAP000",
+      "code": "615994bf"
+    },
+    {
+      "id": 821,
+      "name": "Risperidone 1mg solid oral dosage form",
+      "structuredCode": "RISP0100CAP000",
+      "code": "615cb4bf"
+    },
+    {
+      "id": 822,
+      "name": "Risperidone 2mg solid oral dosage form",
+      "structuredCode": "RISP0200CAP000",
+      "code": "615fd4bf"
+    },
+    {
+      "id": 823,
+      "name": "Risperidone 3mg solid oral dosage form",
+      "structuredCode": "RISP0300CAP000",
+      "code": "6184d4bf"
+    },
+    {
+      "id": 824,
+      "name": "Risperidone 4mg solid oral dosage form",
+      "structuredCode": "RISP0400CAP000",
+      "code": "6188a4bf"
+    },
+    {
+      "id": 825,
+      "name": "Risperidone 5mg solid oral dosage form",
+      "structuredCode": "RISP0500CAP000",
+      "code": "618c74bf"
+    },
+    {
+      "id": 826,
+      "name": "Risperidone 6mg solid oral dosage form",
+      "structuredCode": "RISP0600CAP000",
+      "code": "618ff4bf"
+    },
+    {
+      "id": 827,
+      "name": "Ranitidine (hydrochloride)150mg tablet",
+      "structuredCode": "RNDN0150TAB000",
+      "code": "619354bf"
+    },
+    {
+      "id": 828,
+      "name": "Ranitidine (hydrochloride) 25mg/mL in 2mL ampoule",
+      "structuredCode": "RNDN0250INJ001",
+      "code": "619684bf"
+    },
+    {
+      "id": 829,
+      "name": "Ranitidine (hydrochloride) 75mg/5mL oral liquid",
+      "structuredCode": "RNDN7505ORL000",
+      "code": "619a04bf"
+    },
+    {
+      "id": 830,
+      "name": "Ritonavir 25mg tablet (heat stable)",
+      "structuredCode": "RNVR0250TAB000",
+      "code": "619d84bf"
+    },
+    {
+      "id": 831,
+      "name": "Ritonavir 100mg tablet (heat stable)",
+      "structuredCode": "RNVR1000TAB000",
+      "code": "61a0d4bf"
+    },
+    {
+      "id": 832,
+      "name": "Ritonavir 400mg/5mL oral liquid",
+      "structuredCode": "RNVR4000ORL005",
+      "code": "61bc84bf"
+    },
+    {
+      "id": 833,
+      "name": "Rotavirus vaccine",
+      "structuredCode": "ROTA0000VAC000",
+      "code": "61c5e4bf"
+    },
+    {
+      "id": 834,
+      "name": "Rifapentine 150mg tablet",
+      "structuredCode": "RPNE0150TAB000",
+      "code": "61c9b4bf"
+    },
+    {
+      "id": 835,
+      "name": "Retinol (palmitate) 10 000 IU tablet (sugar coated)",
+      "structuredCode": "RTNL0100TSC000",
+      "code": "61cd54bf"
+    },
+    {
+      "id": 836,
+      "name": "Retinol (palmitate) 50 000 IU capsule",
+      "structuredCode": "RTNL0500CAP007",
+      "code": "61d0a4bf"
+    },
+    {
+      "id": 837,
+      "name": "Retinol (palmitate) 100 000 IU capsule",
+      "structuredCode": "RTNL1000CAP007",
+      "code": "61d3f4bf"
+    },
+    {
+      "id": 838,
+      "name": "Retinol (palmitate) 100 000IU water-miscible injection  in 2mL ampoule",
+      "structuredCode": "RTNL1000INJ000",
+      "code": "61d6f4bf"
+    },
+    {
+      "id": 839,
+      "name": "Retinol (palmitate) 100 000 IU/mL oral oily solution in multidose dispenser",
+      "structuredCode": "RTNL1000OOS000",
+      "code": "61da14bf"
+    },
+    {
+      "id": 840,
+      "name": "Retinol (palmitate) 200 000 IU capsule",
+      "structuredCode": "RTNL2000CAP007",
+      "code": "61fe94bf"
+    },
+    {
+      "id": 841,
+      "name": "Rubella vaccine",
+      "structuredCode": "RUBECLOMVAC000",
+      "code": "620294bf"
+    },
+    {
+      "id": 842,
+      "name": "Rituximab 100mg/10ml injection",
+      "structuredCode": "RXMB1000INJ010",
+      "code": "620614bf"
+    },
+    {
+      "id": 843,
+      "name": "Rituximab 500mg/50mL",
+      "structuredCode": "RXMB5050INJ050",
+      "code": "620984bf"
+    },
+    {
+      "id": 844,
+      "name": "Salicyclic acid 5% solution",
+      "structuredCode": "SALI0005SLN000",
+      "code": "620ce4bf"
+    },
+    {
+      "id": 845,
+      "name": "Salbutamol (sulfate) 5mg respirator solution for use in nebulisers 5mg/mL",
+      "structuredCode": "SBML0005RSP002",
+      "code": "621034bf"
+    },
+    {
+      "id": 846,
+      "name": "Salbutamol (sulfate) 50mcg/mL in 5mL ampoule injection",
+      "structuredCode": "SBML0050INJ002",
+      "code": "6213a4bf"
+    },
+    {
+      "id": 847,
+      "name": "Salbutamol (sulfate) 100mcg inhalation  (aerosol)",
+      "structuredCode": "SBML1000INH002",
+      "code": "621704bf"
+    },
+    {
+      "id": 848,
+      "name": "Salbutamol (sulfate) 100mcg metered dose inhaler",
+      "structuredCode": "SBML1000MDI002",
+      "code": "6232a4bf"
+    },
+    {
+      "id": 849,
+      "name": "Sodium thiosulfate 15% solution",
+      "structuredCode": "SDTH0015SLN004",
+      "code": "623644bf"
+    },
+    {
+      "id": 850,
+      "name": "Stavudine (d4T) 5mg/5mL powder for oral liquid",
+      "structuredCode": "SDVN0050POL005",
+      "code": "623ec4bf"
+    },
+    {
+      "id": 851,
+      "name": "Stavudine (d4T) 15mg capsule",
+      "structuredCode": "SDVN0150CAP000",
+      "code": "6242a4bf"
+    },
+    {
+      "id": 852,
+      "name": "Stavudine (d4T) 20mg capsule",
+      "structuredCode": "SDVN0200CAP000",
+      "code": "624614bf"
+    },
+    {
+      "id": 853,
+      "name": "Stavudine (d4T) 30mg capsule",
+      "structuredCode": "SDVN0300CAP000",
+      "code": "624934bf"
+    },
+    {
+      "id": 854,
+      "name": "Senna 7.5mg/5mL oral liquid ",
+      "structuredCode": "SENA0075ORL000",
+      "code": "624c24bf"
+    },
+    {
+      "id": 855,
+      "name": "Senna (sennosides) 7.5 mg tablet",
+      "structuredCode": "SENA0075TAB000",
+      "code": "627034bf"
+    },
+    {
+      "id": 856,
+      "name": "Surfactant 25mg/mL suspension for intratracheal instillation",
+      "structuredCode": "SFCT0025SIT000",
+      "code": "627434bf"
+    },
+    {
+      "id": 857,
+      "name": "Surfactant 80mg/mL suspension for intratracheal instillation",
+      "structuredCode": "SFCT0080SIT000",
+      "code": "627864bf"
+    },
+    {
+      "id": 858,
+      "name": "Silver sulfadiazine 1% cream",
+      "structuredCode": "SFLZ0001CRM000",
+      "code": "627bf4bf"
+    },
+    {
+      "id": 859,
+      "name": "Sofosbuvir 400mg tablet",
+      "structuredCode": "SFSB4000TAB000",
+      "code": "627f54bf"
+    },
+    {
+      "id": 860,
+      "name": "Sulfadiazine 500mg tablet",
+      "structuredCode": "SFZN5000TAB000",
+      "code": "6282f4bf"
+    },
+    {
+      "id": 861,
+      "name": "Sulfadoxine & pyrimethamine 500mg & 25mg tablet",
+      "structuredCode": "SLPM5025TAB000",
+      "code": "629e34bf"
+    },
+    {
+      "id": 862,
+      "name": "Selenium sulfide detergent based suspension 2%",
+      "structuredCode": "SLSF0002DBS000",
+      "code": "62a1e4bf"
+    },
+    {
+      "id": 863,
+      "name": "Sodium calcium edetate 200mg/mL (5mL)",
+      "structuredCode": "SMCE0200INJ004",
+      "code": "62a544bf"
+    },
+    {
+      "id": 864,
+      "name": "Sodium nitrate 30mg/mL, 10mL ampoule",
+      "structuredCode": "SMNT0030INJ004",
+      "code": "62b254bf"
+    },
+    {
+      "id": 865,
+      "name": "Suramin sodium 1g powder for injection ",
+      "structuredCode": "SMSD0010PFI000",
+      "code": "62b944bf"
+    },
+    {
+      "id": 866,
+      "name": "Sodium thiosulfate 250mg/mL, 50mL ampoule",
+      "structuredCode": "SMTS0250INJ004",
+      "code": "62be24bf"
+    },
+    {
+      "id": 867,
+      "name": "Simvastatin 5mg tablet",
+      "structuredCode": "SMVN0005TAB000",
+      "code": "630474bf"
+    },
+    {
+      "id": 868,
+      "name": "Simvastatin 10mg tablet",
+      "structuredCode": "SMVN0010TAB000",
+      "code": "630bc4bf"
+    },
+    {
+      "id": 869,
+      "name": "Simvastatin 20mg tablet",
+      "structuredCode": "SMVN0020TAB000",
+      "code": "6310a4bf"
+    },
+    {
+      "id": 870,
+      "name": "Simvastatin 40mg tablet",
+      "structuredCode": "SMVN0040TAB000",
+      "code": "631744bf"
+    },
+    {
+      "id": 871,
+      "name": "Sodium nitroprusside 50mg powder for injection",
+      "structuredCode": "SNPS0050PFI004",
+      "code": "6321d4bf"
+    },
+    {
+      "id": 872,
+      "name": "Streptomycin (sulfate) 1g powder for injection",
+      "structuredCode": "SPMN0010PFI000",
+      "code": "632834bf"
+    },
+    {
+      "id": 873,
+      "name": "Spectinomycin (hydrochloride) 2g powder for injection",
+      "structuredCode": "SPMN0020PFI000",
+      "code": "635074bf"
+    },
+    {
+      "id": 874,
+      "name": "Spironolactone 10mg/5mL oral liquid",
+      "structuredCode": "SPNL0010ORL005",
+      "code": "635694bf"
+    },
+    {
+      "id": 875,
+      "name": "Spironolactone 25mg/5mL oral liquid",
+      "structuredCode": "SPNL0025ORL005",
+      "code": "635b84bf"
+    },
+    {
+      "id": 876,
+      "name": "Spironolactone 5mg/5mL oral liquid",
+      "structuredCode": "SPNL0050ORL005",
+      "code": "636054bf"
+    },
+    {
+      "id": 877,
+      "name": "Spironolactone 25mg tablet",
+      "structuredCode": "SPNL0250TAB000",
+      "code": "636544bf"
+    },
+    {
+      "id": 878,
+      "name": "Simeprevir 150mg capsule",
+      "structuredCode": "SPVR0150CAP000",
+      "code": "639054bf"
+    },
+    {
+      "id": 879,
+      "name": "Saquinavir(SQV) (mesilate) 200mgs solid oral dosage form ",
+      "structuredCode": "SQVR2000SOD000",
+      "code": "6395e4bf"
+    },
+    {
+      "id": 880,
+      "name": "Sodium stibogluconate 100mg/mL, 1 vial =30mL or 30% equivalent to approvimately 8.1% antimony (pentavelent in 5mL ampoule)",
+      "structuredCode": "SSBC1000INJ004",
+      "code": "639b54bf"
+    },
+    {
+      "id": 881,
+      "name": "Sulfasalazine retention enema ",
+      "structuredCode": "SSLZ0000REN000",
+      "code": "63b934bf"
+    },
+    {
+      "id": 882,
+      "name": "Sulfasalazine 500mg suppository",
+      "structuredCode": "SSLZ0500SUP000",
+      "code": "63be84bf"
+    },
+    {
+      "id": 883,
+      "name": "Sulfasalazine 500mg tablet",
+      "structuredCode": "SSLZ0500TAB000",
+      "code": "63c474bf"
+    },
+    {
+      "id": 884,
+      "name": "Streptokinase 1.5 million IU in vial powder for injection",
+      "structuredCode": "STPK0150PFI000",
+      "code": "63ceb4bf"
+    },
+    {
+      "id": 885,
+      "name": "Succimer 100mg solid oral dosage form",
+      "structuredCode": "SUCM0100SOD000",
+      "code": "63f4b4bf"
+    },
+    {
+      "id": 886,
+      "name": "Suxamethonium (chloride) 50mg/mL in 2mL ampoule injection",
+      "structuredCode": "SUXA0050INJ000",
+      "code": "63fa14bf"
+    },
+    {
+      "id": 887,
+      "name": "Suxamethonium (chloride) 50mg powder for injection",
+      "structuredCode": "SUXA0050PFI000",
+      "code": "63ff84bf"
+    },
+    {
+      "id": 888,
+      "name": "Sulfamethoxazole & trimethoprim 100mg & 20mg tablet",
+      "structuredCode": "SXTP1002TAB000",
+      "code": "641c44bf"
+    },
+    {
+      "id": 889,
+      "name": "Sulfamethoxazole & trimethoprim 200mg & 40mg / 5mL oral liquid",
+      "structuredCode": "SXTP2005ORL000",
+      "code": "642184bf"
+    },
+    {
+      "id": 890,
+      "name": "Sulfamethoxazole & trimethoprim 400mg & 80mg tablet",
+      "structuredCode": "SXTP4008TAB000",
+      "code": "642694bf"
+    },
+    {
+      "id": 891,
+      "name": "Sulfamethoxazole & trimethoprim 80mg & 16mg in 5mL ampoule injection",
+      "structuredCode": "SXTP8016INJ005",
+      "code": "645124bf"
+    },
+    {
+      "id": 892,
+      "name": "Sulfamethoxazole & trimethoprim 80mg & 16mg in 10mL ampoule injection",
+      "structuredCode": "SXTP8016INJ010",
+      "code": "6456c4bf"
+    },
+    {
+      "id": 893,
+      "name": "Sulfamethoxazole & trimethoprim 800mg & 160mg tablet",
+      "structuredCode": "SXTP8160TAB000",
+      "code": "6473b4bf"
+    },
+    {
+      "id": 894,
+      "name": "Terbinafine (hydrochloride) 1% cream",
+      "structuredCode": "TBFN0001CRM000",
+      "code": "647904bf"
+    },
+    {
+      "id": 895,
+      "name": "Terbinafine (hydrochloride) 1% ointment",
+      "structuredCode": "TBFN0001OIN000",
+      "code": "647df4bf"
+    },
+    {
+      "id": 896,
+      "name": "Ethambutol & isoniazid 400mg & 150mg",
+      "structuredCode": "TBIZ4015TAB000",
+      "code": "649a94bf"
+    },
+    {
+      "id": 897,
+      "name": "Tuberculins, purified protien derivative (PPD) injection",
+      "structuredCode": "TBPP0000INJ000",
+      "code": "64a4e4bf"
+    },
+    {
+      "id": 898,
+      "name": "Triclabendazole 250mg tablet",
+      "structuredCode": "TBZL2500TAB000",
+      "code": "64ca94bf"
+    },
+    {
+      "id": 899,
+      "name": "Testosterone (enanthate) 200mg in 1 ml ampoule injection",
+      "structuredCode": "TEST2000INJ000",
+      "code": "64d064bf"
+    },
+    {
+      "id": 900,
+      "name": "Tetanus vaccine",
+      "structuredCode": "TETN0000VAC000",
+      "code": "64ed34bf"
+    },
+    {
+      "id": 901,
+      "name": "Anti-tetanus immunoglobulin 500IU injection",
+      "structuredCode": "TETN5000INJ000",
+      "code": "64f284bf"
+    },
+    {
+      "id": 902,
+      "name": "Tetracycline (hydrochloride) 1% eye ointment",
+      "structuredCode": "TETR0001OIN001",
+      "code": "650f14bf"
+    },
+    {
+      "id": 903,
+      "name": "Tenofovir disoproxo 245mg tablet",
+      "structuredCode": "TFVD2450TAB000",
+      "code": "651454bf"
+    },
+    {
+      "id": 904,
+      "name": "Tenofovir disoproxol fumarate (TDF) 300mg tablet",
+      "structuredCode": "TFVF3000TAB000",
+      "code": "653ec4bf"
+    },
+    {
+      "id": 905,
+      "name": "Tioguanine 40mg solid oral dosage form",
+      "structuredCode": "TGNN0400SOD000",
+      "code": "654404bf"
+    },
+    {
+      "id": 906,
+      "name": "Thiamine (hydrochloride) 50mg tablet",
+      "structuredCode": "THMN0050TAB000",
+      "code": "6560b4bf"
+    },
+    {
+      "id": 907,
+      "name": "Timolol (hydrogen maleate) 0.5% solution eye drops",
+      "structuredCode": "TIML0005EDP000",
+      "code": "656604bf"
+    },
+    {
+      "id": 908,
+      "name": "Timolol (hydrogen maleate) 0.25% solution eye drops",
+      "structuredCode": "TIML0025EDP000",
+      "code": "658294bf"
+    },
+    {
+      "id": 909,
+      "name": "Tick-borne encephaliitis vaccine",
+      "structuredCode": "TKEN0000VAC000",
+      "code": "659f44bf"
+    },
+    {
+      "id": 910,
+      "name": "Tranexamic acid 100mg/mL in 10mL ampoule",
+      "structuredCode": "TNXC1000INJ000",
+      "code": "65c144bf"
+    },
+    {
+      "id": 911,
+      "name": "Trastuzumab 150mg IV vial ",
+      "structuredCode": "TRAS0000SOD000",
+      "code": "65e6e4bf"
+    },
+    {
+      "id": 912,
+      "name": "Tropicamide 0.5% eye drops",
+      "structuredCode": "TROP0005EDP000",
+      "code": "6603d4bf"
+    },
+    {
+      "id": 913,
+      "name": "Trimethoprim 50mg/5mL oral liquid",
+      "structuredCode": "TRPM0500ORL000",
+      "code": "6620a4bf"
+    },
+    {
+      "id": 914,
+      "name": "Trimethoprim 100mg tablet",
+      "structuredCode": "TRPM1000TAB000",
+      "code": "663d84bf"
+    },
+    {
+      "id": 915,
+      "name": "Trimethoprim 200mg tablet",
+      "structuredCode": "TRPM2000TAB000",
+      "code": "665a34bf"
+    },
+    {
+      "id": 916,
+      "name": "Tetracaine (hydrochloride) 0.5% solution eye drops",
+      "structuredCode": "TTRA0005EDP000",
+      "code": "6676c4bf"
+    },
+    {
+      "id": 917,
+      "name": "Tamoxifen (citrate) 10mg tablet",
+      "structuredCode": "TXFN0100TAB000",
+      "code": "66a554bf"
+    },
+    {
+      "id": 918,
+      "name": "Tamoxifen (citrate) 25mg tablet",
+      "structuredCode": "TXFN0250TAB000",
+      "code": "66d964bf"
+    },
+    {
+      "id": 919,
+      "name": "Typhoid vaccine",
+      "structuredCode": "TYPH0000VAC000",
+      "code": "66e094bf"
+    },
+    {
+      "id": 920,
+      "name": "Urea 5% cream",
+      "structuredCode": "UREA0005CRM000",
+      "code": "66e944bf"
+    },
+    {
+      "id": 921,
+      "name": "Urea 5% ointment",
+      "structuredCode": "UREA0005OIN000",
+      "code": "66ef44bf"
+    },
+    {
+      "id": 922,
+      "name": "Urea 10% cream",
+      "structuredCode": "UREA0010CRM000",
+      "code": "66f494bf"
+    },
+    {
+      "id": 923,
+      "name": "Urea 10% ointment",
+      "structuredCode": "UREA0010OIN000",
+      "code": "66f994bf"
+    },
+    {
+      "id": 924,
+      "name": "Vancomycin (hydrochloride) 250mg powder for injection",
+      "structuredCode": "VANC2500PFI001",
+      "code": "66fe94bf"
+    },
+    {
+      "id": 925,
+      "name": "Varicella vaccine",
+      "structuredCode": "VARI0000VAC000",
+      "code": "6703b4bf"
+    },
+    {
+      "id": 926,
+      "name": "Vecuronium (bromide) 10mg powder for injection",
+      "structuredCode": "VECU0010PFI000",
+      "code": "6708b4bf"
+    },
+    {
+      "id": 927,
+      "name": "Valganciclovir 450mg tablet",
+      "structuredCode": "VLGN0450TAB000",
+      "code": "6710f4bf"
+    },
+    {
+      "id": 928,
+      "name": "Valproic acid (sodium valproate) 100mg/mL (4mL)",
+      "structuredCode": "VLPA1000INJ004",
+      "code": "671694bf"
+    },
+    {
+      "id": 929,
+      "name": "Valproic acid (sodium valproate) 100mg/mL (10mL)",
+      "structuredCode": "VLPA1000INJ010",
+      "code": "671bc4bf"
+    },
+    {
+      "id": 930,
+      "name": "Valproic acid (sodium valproate) 100mg crushable tablet",
+      "structuredCode": "VLPA1000TCH000",
+      "code": "6720d4bf"
+    },
+    {
+      "id": 931,
+      "name": "Valproic acid (sodium valproate) 200mg/5mL oral liquid",
+      "structuredCode": "VLPA2000ORL000",
+      "code": "672614bf"
+    },
+    {
+      "id": 932,
+      "name": "Valproic acid (sodium valproate) 200mg tablet enteric coated",
+      "structuredCode": "VLPA2000TEC000",
+      "code": "672964bf"
+    },
+    {
+      "id": 933,
+      "name": "Valproic acid (sodium valproate) 500mg tablet enteric coated",
+      "structuredCode": "VLPA5000TEC000",
+      "code": "672d04bf"
+    },
+    {
+      "id": 934,
+      "name": "Vinblastine (sulfate) 10mg powder for injection",
+      "structuredCode": "VNBL0010PFI000",
+      "code": "673004bf"
+    },
+    {
+      "id": 935,
+      "name": "Vincristine (sulfate) 1mg powder for injection",
+      "structuredCode": "VNCN0010PFI002",
+      "code": "673324bf"
+    },
+    {
+      "id": 936,
+      "name": "Vincristine (sulfate) 5mg powder for injection",
+      "structuredCode": "VNCN0050PFI002",
+      "code": "673614bf"
+    },
+    {
+      "id": 937,
+      "name": "Verapamil (hydrochloride) 2.5mg/mL in 2mL ampoule",
+      "structuredCode": "VPML0025INJ001",
+      "code": "673914bf"
+    },
+    {
+      "id": 938,
+      "name": "Verapamil (hydrochloride) 40mg tablet",
+      "structuredCode": "VPML0040TAB001",
+      "code": "673c04bf"
+    },
+    {
+      "id": 939,
+      "name": "Verapamil (hydrochloride) 80mg tablet",
+      "structuredCode": "VPML0080TAB001",
+      "code": "673f04bf"
+    },
+    {
+      "id": 940,
+      "name": "Vinorelbine 10mg/mL in 1ml vial",
+      "structuredCode": "VRLB0100INJ000",
+      "code": "6741f4bf"
+    },
+    {
+      "id": 941,
+      "name": "Vinorelbine 50mg/mL in 5ml vial",
+      "structuredCode": "VRLB0500INJ000",
+      "code": "674534bf"
+    },
+    {
+      "id": 942,
+      "name": "Whole blood",
+      "structuredCode": "WBLDL000BCP000",
+      "code": "674844bf"
+    },
+    {
+      "id": 943,
+      "name": "Water for injection 2mL ampoule",
+      "structuredCode": "WFIN0002INJ000",
+      "code": "674b54bf"
+    },
+    {
+      "id": 944,
+      "name": "Water for injection 5mL ampoule",
+      "structuredCode": "WFIN0005INJ000",
+      "code": "674e44bf"
+    },
+    {
+      "id": 945,
+      "name": "Water for injection 10mL ampoule",
+      "structuredCode": "WFIN0010INJ000",
+      "code": "675694bf"
+    },
+    {
+      "id": 946,
+      "name": "Warfarin (sodium) 0.5mg tablet",
+      "structuredCode": "WRFN0005TAB004",
+      "code": "675a24bf"
+    },
+    {
+      "id": 947,
+      "name": "Warfarin (sodium) 1mg tablet",
+      "structuredCode": "WRFN0010TAB004",
+      "code": "675d44bf"
+    },
+    {
+      "id": 948,
+      "name": "Warfarin (sodium) 2mg tablet",
+      "structuredCode": "WRFN0020TAB004",
+      "code": "676054bf"
+    },
+    {
+      "id": 949,
+      "name": "Warfarin (sodium) 5mg tablet",
+      "structuredCode": "WRFN0050TAB004",
+      "code": "676354bf"
+    },
+    {
+      "id": 950,
+      "name": "Xylometazoline 0.05% nasal spray",
+      "structuredCode": "XYLO0005NSL000",
+      "code": "6766a4bf"
+    },
+    {
+      "id": 951,
+      "name": "Yellow fever vaccine",
+      "structuredCode": "YLWF0000VAC000",
+      "code": "6769c4bf"
+    },
+    {
+      "id": 952,
+      "name": "Zidovudine (ZDV/AZT) 10mg/mL in 20mL vial solution of IV infusion injection",
+      "structuredCode": "ZDVN0100SII000",
+      "code": "676cd4bf"
+    },
+    {
+      "id": 953,
+      "name": "Zidovudine (ZDV/AZT) 50mg/5mL oral liquid",
+      "structuredCode": "ZDVN0500ORL000",
+      "code": "6770b4bf"
+    },
+    {
+      "id": 954,
+      "name": "Zidovudine (ZDV/AZT) 100mg capsule",
+      "structuredCode": "ZDVN1000CAP000",
+      "code": "6773e4bf"
+    },
+    {
+      "id": 955,
+      "name": "Zidovudine (ZDV/AZT) 250mg capsule",
+      "structuredCode": "ZDVN2500CAP000",
+      "code": "6776f4bf"
+    },
+    {
+      "id": 956,
+      "name": "Zidovudine (ZDV/AZT) 300mg tablet",
+      "structuredCode": "ZDVN3000TAB000",
+      "code": "677a04bf"
+    },
+    {
+      "id": 957,
+      "name": "Zinc sulfate 20mg solid oral dosage form",
+      "structuredCode": "ZNSF0020SOD000",
+      "code": "677cf4bf"
+    },
+    {
+      "id": 958,
+      "name": "Condoms, female",
+      "structuredCode": "CONF0000CDM000",
+      "code": "bf4be518"
+    },
+    {
+      "id": 959,
+      "name": "Paracetamol oral liquid 120mg/5ml",
+      "structuredCode": "PARS0120SYR000",
+      "code": "bbfcf518"
+    },
+    {
+      "id": 960,
+      "name": "Captopril 25mg tablet",
+      "structuredCode": "CAPT0025TAB000",
+      "code": "9ee3e553"
+    },
+    {
+      "id": 961,
+      "name": "Trastuzumab 400mg IV Vial",
+      "structuredCode": "TRAS0400INJ000",
+      "code": "1ca24554"
+    },
+    {
+      "id": 964,
+      "name": "Glibenclamide 5mg Tabs",
+      "structuredCode": null,
+      "code": "f9d8c620"
+    },
+    {
+      "id": 966,
+      "name": "Jadelle Contraceptive Implant",
+      "structuredCode": null,
+      "code": "d2d28620"
+    },
+    {
+      "id": 968,
+      "name": "Syringe, disposable, 1ml",
+      "structuredCode": null,
+      "code": "615f7cdc"
+    },
+    {
+      "id": 970,
+      "name": "Syringe, disposable, 5ml",
+      "structuredCode": null,
+      "code": "dd586cdc"
+    },
+    {
+      "id": 971,
+      "name": "Tenofovir/Lamivudine/Efavirenz 300/300/600mg Tablets ",
+      "structuredCode": null,
+      "code": "b3044cdc"
+    },
+    {
+      "id": 972,
+      "name": "Artemether & lumefantrine 20mg & 120mg tablet, 6x2",
+      "structuredCode": null,
+      "code": "199ffeec"
+    },
+    {
+      "id": 976,
+      "name": "Artemether & lumefantrine 20mg & 120mg tablet, 6x3",
+      "structuredCode": null,
+      "code": "46cfdeec"
+    },
+    {
+      "id": 977,
+      "name": "Artemether & lumefantrine 20mg & 120mg tablet, 6x4",
+      "structuredCode": null,
+      "code": "566bceec"
+    },
+    {
+      "id": 1025,
+      "name": "Abacavir/Lamivudine 120mg/60mg Tab",
+      "structuredCode": null,
+      "code": "4502643e"
+    },
+    {
+      "id": 1026,
+      "name": "Abacavir/Lamivudine 600mg/300mg Tab",
+      "structuredCode": null,
+      "code": "4695943e"
+    },
+    {
+      "id": 1027,
+      "name": "Acetyl Salicylic Acid tab. 81mg",
+      "structuredCode": null,
+      "code": "46a0743e"
+    },
+    {
+      "id": 1028,
+      "name": "Aminophylline 0.25g Injection",
+      "structuredCode": null,
+      "code": "46a7343e"
+    },
+    {
+      "id": 1029,
+      "name": "Aminophylline 100mg Tablets",
+      "structuredCode": null,
+      "code": "46ae143e"
+    },
+    {
+      "id": 1030,
+      "name": "Ampicillin capsule 250mg",
+      "structuredCode": null,
+      "code": "46b3f43e"
+    },
+    {
+      "id": 1031,
+      "name": "Ampicillin powder for suspension 125mg/5ml, Bot/60ml",
+      "structuredCode": null,
+      "code": "46b9f43e"
+    },
+    {
+      "id": 1032,
+      "name": "Ampicillin powder for suspension 250mg/5ml, Bot/60ml",
+      "structuredCode": null,
+      "code": "46bf643e"
+    },
+    {
+      "id": 1033,
+      "name": "Ampicillin tablet 250mg",
+      "structuredCode": null,
+      "code": "46c4943e"
+    },
+    {
+      "id": 1034,
+      "name": "Atazanavir/Ritonavir 300/100mg Tablets",
+      "structuredCode": null,
+      "code": "46ca843e"
+    },
+    {
+      "id": 1035,
+      "name": "Condoms Apple",
+      "structuredCode": null,
+      "code": "46d1043e"
+    },
+    {
+      "id": 1036,
+      "name": "Condoms Grape",
+      "structuredCode": null,
+      "code": "46d8143e"
+    },
+    {
+      "id": 1037,
+      "name": "Condoms Rose",
+      "structuredCode": null,
+      "code": "46ddf43e"
+    },
+    {
+      "id": 1038,
+      "name": "Condoms Strawberry",
+      "structuredCode": null,
+      "code": "46e3d43e"
+    },
+    {
+      "id": 1039,
+      "name": "Dexamethazone Sodium Phosphate 4mg for Injection",
+      "structuredCode": null,
+      "code": "46e9743e"
+    },
+    {
+      "id": 1040,
+      "name": "Gentamicin injection 80mg/2ml",
+      "structuredCode": null,
+      "code": "4705743e"
+    },
+    {
+      "id": 1041,
+      "name": "Hammock Net",
+      "structuredCode": null,
+      "code": "470d043e"
+    },
+    {
+      "id": 1042,
+      "name": "HIV Rapid Test (Determine)",
+      "structuredCode": null,
+      "code": "4712d43e"
+    },
+    {
+      "id": 1043,
+      "name": "Intra Uterine Device",
+      "structuredCode": null,
+      "code": "4718f43e"
+    },
+    {
+      "id": 1044,
+      "name": "Isoniazid 100mg Tablets",
+      "structuredCode": null,
+      "code": "471f243e"
+    },
+    {
+      "id": 1045,
+      "name": "Isoniazid 300mg Tablets",
+      "structuredCode": null,
+      "code": "4726043e"
+    },
+    {
+      "id": 1046,
+      "name": "Long Lasting Insecticidal Net Family Size",
+      "structuredCode": null,
+      "code": "473a843e"
+    },
+    {
+      "id": 1047,
+      "name": "Magnesium Sulfate 15%/10ml for Injection",
+      "structuredCode": null,
+      "code": "4740443e"
+    },
+    {
+      "id": 1048,
+      "name": "Male Latex Condoms - Free Distribution",
+      "structuredCode": null,
+      "code": "4746043e"
+    },
+    {
+      "id": 1049,
+      "name": "Male Latex Condoms - Social Marketing",
+      "structuredCode": null,
+      "code": "474c743e"
+    },
+    {
+      "id": 1050,
+      "name": "Medroxyprogesterone acetate 104mg/0.65ml (SAYANA Press)",
+      "structuredCode": null,
+      "code": "4752843e"
+    },
+    {
+      "id": 1051,
+      "name": "Methylergometrine Maleate 0.2%/1ml Injection ",
+      "structuredCode": null,
+      "code": "4758543e"
+    },
+    {
+      "id": 1052,
+      "name": "Methylergometrine maleate 0.2mg/2ml Injection",
+      "structuredCode": null,
+      "code": "475e143e"
+    },
+    {
+      "id": 1053,
+      "name": "Nifedipine 20mg Tablets",
+      "structuredCode": null,
+      "code": "4764143e"
+    },
+    {
+      "id": 1054,
+      "name": "Oral Rehydration Salt 27.9g Powder",
+      "structuredCode": null,
+      "code": "476b743e"
+    },
+    {
+      "id": 1055,
+      "name": "Oral Rehydration Salt 27.9g Powder (Orange flavor)",
+      "structuredCode": null,
+      "code": "4771c43e"
+    },
+    {
+      "id": 1056,
+      "name": "Oral Rehydration Salt 29g Powder",
+      "structuredCode": null,
+      "code": "4777c43e"
+    },
+    {
+      "id": 1057,
+      "name": "Oral Rehydration Salt 42g",
+      "structuredCode": null,
+      "code": "477d943e"
+    },
+    {
+      "id": 1058,
+      "name": "Oral Sol Powder 20.5g  B*20",
+      "structuredCode": null,
+      "code": "478a343e"
+    },
+    {
+      "id": 1059,
+      "name": "Oxytocin 5UI Ampoules",
+      "structuredCode": null,
+      "code": "4790d43e"
+    },
+    {
+      "id": 1060,
+      "name": "Phenobarbital 100mg/1ml Injection",
+      "structuredCode": null,
+      "code": "47aaa43e"
+    },
+    {
+      "id": 1061,
+      "name": "Rapid Diagnostic Tests Malaria",
+      "structuredCode": null,
+      "code": "47b2b43e"
+    },
+    {
+      "id": 1062,
+      "name": "Rapid G6PD",
+      "structuredCode": null,
+      "code": "47bb143e"
+    },
+    {
+      "id": 1063,
+      "name": "Rifampicin 75mg/Isoniazid 50mg Tablets",
+      "structuredCode": null,
+      "code": "47c2c43e"
+    },
+    {
+      "id": 1064,
+      "name": "Rifampicin 75mg/Isoniazid 50mg/Pyrazinamid 150mg Tablets",
+      "structuredCode": null,
+      "code": "47ca443e"
+    },
+    {
+      "id": 1065,
+      "name": "Tenofovir/Lamivudine 300/300mg Tablets",
+      "structuredCode": null,
+      "code": "47d1743e"
+    },
+    {
+      "id": 1066,
+      "name": "Tenofovir/Lamivudine/Dolutegravir 300/300/50mg Tab.",
+      "structuredCode": null,
+      "code": "47d8e43e"
+    },
+    {
+      "id": 1067,
+      "name": "Unigold HIV Rapid Test",
+      "structuredCode": null,
+      "code": "47e0543e"
+    },
+    {
+      "id": 1068,
+      "name": "Vikia HIV 1/2 Test",
+      "structuredCode": null,
+      "code": "47e8543e"
+    },
+    {
+      "id": 1069,
+      "name": "Vitamin A 100.000IUCapsule",
+      "structuredCode": null,
+      "code": "47f0c43e"
+    },
+    {
+      "id": 1070,
+      "name": "Vitamin A 200.000IU Capsule",
+      "structuredCode": null,
+      "code": "47f8b43e"
+    },
+    {
+      "id": 1071,
+      "name": "Warfarin Sodium 3mg Tabs",
+      "structuredCode": null,
+      "code": "4800543e"
+    },
+    {
+      "id": 1072,
+      "name": "Penta vaccine (diphtheria, pertussis, tetanus, Hep B and HiB)",
+      "structuredCode": null,
+      "code": "40a8681d"
+    },
+    {
+      "id": 1073,
+      "name": "TD vaccine (tetanus and diphtheria)",
+      "structuredCode": null,
+      "code": "4e6a681d"
+    },
+    {
+      "id": 1074,
+      "name": "MR vaccine (measles and rubella)",
+      "structuredCode": null,
+      "code": "cd2d581d"
+    },
+    {
+      "id": 1075,
+      "name": "IPV vaccine (inactivated polio)",
+      "structuredCode": null,
+      "code": "6fc9d81d"
+    },
+    {
+      "id": 1076,
+      "name": "OPV vaccine (oral polio)",
+      "structuredCode": null,
+      "code": "7191781d"
+    },
+    {
+      "id": 1077,
+      "name": "Ampicillin capsule 500mg",
+      "structuredCode": null,
+      "code": "528d0c00"
+    },
+    {
+      "id": 1078,
+      "name": "Cloxacillin injection 1g",
+      "structuredCode": null,
+      "code": "3356fc00"
+    },
+    {
+      "id": 1079,
+      "name": "Dexamethasone sodium phosphate 8mg/2ml",
+      "structuredCode": null,
+      "code": "6c121c00"
+    },
+    {
+      "id": 1080,
+      "name": "Hydralazine hydrochloride 250mg/2ml",
+      "structuredCode": null,
+      "code": "a4e92c00"
+    },
+    {
+      "id": 1081,
+      "name": "Lopinavir/Ritonavir 80/20mg/ml Oral Solution",
+      "structuredCode": null,
+      "code": "dce44c00"
+    },
+    {
+      "id": 1082,
+      "name": "Magnesium sulfate 50% / 10ml for injection",
+      "structuredCode": null,
+      "code": "152e5c00"
+    },
+    {
+      "id": 1083,
+      "name": "Microgynon 75.18mcg Tablets",
+      "structuredCode": null,
+      "code": "4e1b0c00"
+    },
+    {
+      "id": 1084,
+      "name": "Oral Rehydration Salt 3.3g",
+      "structuredCode": null,
+      "code": "9dd1cc00"
+    },
+    {
+      "id": 1085,
+      "name": "Oral Rehydration Salt Orange 3.3g",
+      "structuredCode": null,
+      "code": "d55ddc00"
+    },
+    {
+      "id": 1086,
+      "name": "Oral Rehydration Salt 5g",
+      "structuredCode": null,
+      "code": "08491c00"
+    },
+    {
+      "id": 1087,
+      "name": "Zidovudine/Lamivudine 300/150mg Tablets",
+      "structuredCode": null,
+      "code": "3eb84c00"
+    },
+    {
+      "id": 1089,
+      "name": "Zidovudine/Lamivudine 60/30mg Dispersible Tablets",
+      "structuredCode": null,
+      "code": "d1da5c00"
+    },
+    {
+      "id": 1090,
+      "name": "Zidovudine/Lamivudine/Nevirapine 300/150/200mg Tablets",
+      "structuredCode": null,
+      "code": "0a820c00"
+    },
+    {
+      "id": 1091,
+      "name": "Zidovudine/Lamivudine/Nevirapine 60/30/50mg Dispersible Tablets",
+      "structuredCode": null,
+      "code": "421dcc00"
+    },
+    {
+      "id": 1092,
+      "name": "Hydralazine Hydrochloride 25mg Injection",
+      "structuredCode": null,
+      "code": "c2061c01"
+    },
+    {
+      "id": 1093,
+      "name": "Mother and Child Registration Book",
+      "structuredCode": null,
+      "code": "18c19caf"
+    },
+    {
+      "id": 1094,
+      "name": "Co-Trimoxazole (Trimethoprim/sulfamethoxazole) 120mg",
+      "structuredCode": null,
+      "code": "03beecaf"
+    },
+    {
+      "id": 1095,
+      "name": "Co-Trimoxazole (Trimethoprim/sulfamethoxazole) 480mg",
+      "structuredCode": null,
+      "code": "9716ccaf"
+    },
+    {
+      "id": 1096,
+      "name": "Condom, male, varied",
+      "structuredCode": null,
+      "code": "a162942e"
+    },
+    {
+      "id": 1097,
+      "name": "UNFPA, RH kit 6A",
+      "structuredCode": null,
+      "code": "bca6342e"
+    },
+    {
+      "id": 1098,
+      "name": "UNFPA, RH kit 2A",
+      "structuredCode": null,
+      "code": "a97d742e"
+    },
+    {
+      "id": 1099,
+      "name": "UNFPA, RH kit 2B",
+      "structuredCode": null,
+      "code": "dd7b542e"
+    },
+    {
+      "id": 1100,
+      "name": "UNFPA, RH kit 3",
+      "structuredCode": null,
+      "code": "088a142e"
+    },
+    {
+      "id": 1101,
+      "name": "UNFPA, RH kit 5",
+      "structuredCode": null,
+      "code": "383e142e"
+    },
+    {
+      "id": 1102,
+      "name": "UNFPA, RH kit 6B",
+      "structuredCode": null,
+      "code": "756e542e"
+    },
+    {
+      "id": 1103,
+      "name": "UNFPA, RH kit 7",
+      "structuredCode": null,
+      "code": "ae11242e"
+    },
+    {
+      "id": 1104,
+      "name": "UNFPA, RH kit 8",
+      "structuredCode": null,
+      "code": "e1d4a42e"
+    },
+    {
+      "id": 1105,
+      "name": "UNFPA, RH kit 9",
+      "structuredCode": null,
+      "code": "1193e42e"
+    },
+    {
+      "id": 1106,
+      "name": "UNFPA, RH kit 10",
+      "structuredCode": null,
+      "code": "49d9842e"
+    },
+    {
+      "id": 1107,
+      "name": "UNFPA, RH kit 11A",
+      "structuredCode": null,
+      "code": "7e67742e"
+    },
+    {
+      "id": 1108,
+      "name": "UNFPA, RH kit 11B",
+      "structuredCode": null,
+      "code": "b26e342e"
+    },
+    {
+      "id": 1109,
+      "name": "UNFPA, RH kit 12",
+      "structuredCode": null,
+      "code": "e1e8342e"
+    },
+    {
+      "id": 1110,
+      "name": "Alcohol hand rub, 1000ml",
+      "structuredCode": null,
+      "code": "698385da"
+    },
+    {
+      "id": 1111,
+      "name": "Alcohol hand rub, 100ml",
+      "structuredCode": null,
+      "code": "639605da"
+    },
+    {
+      "id": 1112,
+      "name": "Alcohol hand rub, 300ml",
+      "structuredCode": null,
+      "code": "03d105da"
+    },
+    {
+      "id": 1113,
+      "name": "Alcohol hand rub, 500ml",
+      "structuredCode": null,
+      "code": "0d9415da"
+    },
+    {
+      "id": 1114,
+      "name": "Biohazard spill kit for lab",
+      "structuredCode": null,
+      "code": "a70125da"
+    },
+    {
+      "id": 1115,
+      "name": "Apron, Disposable",
+      "structuredCode": null,
+      "code": "d3c2e5da"
+    },
+    {
+      "id": 1116,
+      "name": "Surgical Gown, Sterile, Large, Disposable",
+      "structuredCode": null,
+      "code": "d40f75da"
+    },
+    {
+      "id": 1117,
+      "name": "Surgical Gown, Sterile, Medium, Disposable",
+      "structuredCode": null,
+      "code": "8babc5da"
+    },
+    {
+      "id": 1118,
+      "name": "Surgical Gown, Sterile, Small, Disposable",
+      "structuredCode": null,
+      "code": "e0c0d5da"
+    },
+    {
+      "id": 1119,
+      "name": "Surgical Gown, Small, Disposable",
+      "structuredCode": null,
+      "code": "042e35da"
+    },
+    {
+      "id": 1120,
+      "name": "Surgical Gown, Medium, Disposable",
+      "structuredCode": null,
+      "code": "abb465da"
+    },
+    {
+      "id": 1121,
+      "name": "Surgical Gown, Large, Disposable",
+      "structuredCode": null,
+      "code": "169825da"
+    },
+    {
+      "id": 1122,
+      "name": "Ethanol Solution 80%, 300ml",
+      "structuredCode": null,
+      "code": "b8f195da"
+    },
+    {
+      "id": 1123,
+      "name": "Glove Examination, Extra Large",
+      "structuredCode": null,
+      "code": "c80865da"
+    },
+    {
+      "id": 1124,
+      "name": "Glove Examination, Large",
+      "structuredCode": null,
+      "code": "a73555da"
+    },
+    {
+      "id": 1125,
+      "name": "Glove Examination, Medium",
+      "structuredCode": null,
+      "code": "8d3625da"
+    },
+    {
+      "id": 1126,
+      "name": "Glove Examination, Small",
+      "structuredCode": null,
+      "code": "ad5f65da"
+    },
+    {
+      "id": 1127,
+      "name": "Googles, clear",
+      "structuredCode": null,
+      "code": "1cfdc5da"
+    },
+    {
+      "id": 1128,
+      "name": "Mask",
+      "structuredCode": null,
+      "code": "4b1585da"
+    },
+    {
+      "id": 1129,
+      "name": "Mask, N95",
+      "structuredCode": null,
+      "code": "8f2645da"
+    },
+    {
+      "id": 1130,
+      "name": "Mask, face, nonwoven",
+      "structuredCode": null,
+      "code": "098885da"
+    },
+    {
+      "id": 1131,
+      "name": "Chlorhexidine obstetric cream 1%",
+      "structuredCode": null,
+      "code": "2248c5dd"
+    },
+    {
+      "id": 1132,
+      "name": "Lamivudine 150mg + Zidovudine 300mg + Efavirenz 600mg",
+      "structuredCode": null,
+      "code": "9ed445dd"
+    },
+    {
+      "id": 1133,
+      "name": "Morphine 10mg/ml oral liquid",
+      "structuredCode": null,
+      "code": "ab6105dd"
+    },
+    {
+      "id": 1134,
+      "name": "Pyrazinamide 500mg tablet",
+      "structuredCode": null,
+      "code": "292735dd"
+    },
+    {
+      "id": 1135,
+      "name": "Hepatitis B Vaccine (HEP), Liquid, 1dose/ vial",
+      "structuredCode": null,
+      "code": "5f74d5e9"
+    },
+    {
+      "id": 1136,
+      "name": "Human Papillomavirus Vaccine (HPV), Ninevalent, Liquid, 1 dose/ vial",
+      "structuredCode": null,
+      "code": "98b875e9"
+    },
+    {
+      "id": 1137,
+      "name": "Inactivated Polio Vaccine (IPV), Liquid, 5 doses/ vial",
+      "structuredCode": null,
+      "code": "4d7fb5e9"
+    },
+    {
+      "id": 1138,
+      "name": "Japanese Encephalitis Vaccine (JEV), Live, Lyophilised, 5 doses/ vial",
+      "structuredCode": null,
+      "code": "804d85e9"
+    },
+    {
+      "id": 1139,
+      "name": "Measles and Rubella Vaccine (MR), Lyophilised, 10 doses/ vial",
+      "structuredCode": null,
+      "code": "85ea65e9"
+    },
+    {
+      "id": 1140,
+      "name": "Measles and Rubella Vaccine (MR), Lyophilised, 5 doses/ vial",
+      "structuredCode": null,
+      "code": "f8cf15e9"
+    },
+    {
+      "id": 1141,
+      "name": "Oral Polio Vaccine (OPV), Bivalent, Liquid, 10 doses/ vial",
+      "structuredCode": null,
+      "code": "637d65e9"
+    },
+    {
+      "id": 1142,
+      "name": "Oral Polio Vaccine (OPV), Bivalent, Liquid, 20 doses/ vial",
+      "structuredCode": null,
+      "code": "54c1a5e9"
+    },
+    {
+      "id": 1143,
+      "name": "Pneumococcal Conjugate Vaccine (PCV), 13 valent, Liquid, 4 doses/ vial",
+      "structuredCode": null,
+      "code": "358ad5e9"
+    },
+    {
+      "id": 1144,
+      "name": "BCG Vaccine, Lyophilised, 20 doses/ ampoule",
+      "structuredCode": null,
+      "code": "9db7d5e9"
+    },
+    {
+      "id": 1145,
+      "name": "Diptheria, Tetanus, Pertussis, Hepatitis B and Haemophilus influenza (PENTA)",
+      "structuredCode": null,
+      "code": "945ab5e9"
+    },
+    {
+      "id": 1146,
+      "name": "Diphtheria-Tenanus Toxoid (reduced antigen content) (DT), Liquid, 10 doses/ vial",
+      "structuredCode": null,
+      "code": "246f85e9"
+    }
+  ]
+}
