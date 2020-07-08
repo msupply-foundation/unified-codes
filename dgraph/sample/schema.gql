@@ -1,7 +1,7 @@
 type Entity @dgraph(type: "Entity") {
     type: String! @dgraph(pred:"type") @search(by: [exact])
     code: String @dgraph(pred:"code") @search(by: [exact])
-    description: String! @dgraph(pred:"description") @search(by: [term, exact, trigram])
+    description: String! @dgraph(pred:"description") @search(by: [fulltext, exact])
     properties: [Property] @dgraph(pred:"has_property")
     children: [Entity] @dgraph(pred:"has_child")
 }
