@@ -1,5 +1,10 @@
 const PARAMETERS = {
-  '/items': ['code', 'exact', 'fields', 'fuzzy', 'inclusive', 'name', 'search'],
+  '/items': ['code', 'name', 'exact'],
+};
+
+const parseBool = (val) => {
+  const truthyValues = ['true', true];
+  return truthyValues.includes(val);
 };
 
 /**
@@ -31,7 +36,8 @@ export const parseRequest = (request) => {
  */
 export const mapRequest = (request) => {
   const { query } = request;
-  const { code, search } = query;
+  const { code, name } = query;
+  const exact = parseBool(query.exact);
 
   if (code) {
     return `{
@@ -41,17 +47,26 @@ export const mapRequest = (request) => {
         description
       }
     }`;
-  } else if (search) {
-    return `{
-      query(func: has(code)) @filter(allofterms(description, "${search}")) {
-        code
-        description
-      }
-    }`;
+  } else if (name) {
+    if (exact) {
+      return `{
+        query(func: has(code)) @filter(eq(description, ${name}) AND eq(type, "unit_of_use")) {
+          code
+          description
+        }
+      }`;
+    } else {
+      return `{
+        query(func: has(code)) @filter(regexp(description, "^${name}.*$", "i") AND eq(type, "unit_of_use")) {
+          code
+          description
+        }
+      }`;
+    }
   } else {
     // Default to all unit of use entities
     return `{
-      query(func: has(code)) @filter(eq(type,"unit_of_use")) {
+      query(func: has(code)) @filter(eq(type, "unit_of_use")) {
         code
         description
       }
@@ -80,18 +95,7 @@ export const mapRequest = (request) => {
  * ]
  */
 export const mapResponse = (response) => {
-  const { data } = response;
-  const { query } = data || {};
-
-  if (!query || !query.length) {
-    return {};
-  }
-
-  // only return an array if there is more than one result
-  if (query.length - 1) {
-    return JSON.stringify(query.map(({ code, description }) => ({ code, name: description })));
-  }
-
-  const [{ code, description }] = query;
-  return JSON.stringify({ code, name: description });
+  const { data } = response ?? {};
+  const { query = [] } = data ?? {};
+  return JSON.stringify(query.map(({ code, description }) => ({ code, name: description })) ?? []);
 };

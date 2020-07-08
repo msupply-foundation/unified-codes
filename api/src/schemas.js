@@ -7,7 +7,7 @@ const healthSchema = {
 };
 
 const itemsSchema = {
-  queryString: S.object().prop("code", S.string()),
+  queryString: S.object().prop("code", S.string()).prop("name", S.string()).prop("exact", S.boolean()),
   response: {
     200: S.object(),
     404: S.object().prop("error", S.string()),
