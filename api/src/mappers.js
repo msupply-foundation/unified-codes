@@ -49,12 +49,20 @@ export const mapRequest = (request) => {
     }`;
   } else if (name) {
     if (exact) {
-    return `{
-      query(func: has(code)) @filter(allofterms(description, "${search}")) {
-        code
-        description
-      }
-    }`;
+      return `{
+        query(func: has(code)) @filter(eq(description, ${name}) AND eq(type, "unit_of_use")) {
+          code
+          description
+        }
+      }`;
+    } else {
+      return `{
+        query(func: has(code)) @filter(regexp(description, "^${name}.*$", "i") AND eq(type, "unit_of_use")) {
+          code
+          description
+        }
+      }`;
+    }
   } else {
     // Default to all unit of use entities
     return `{
