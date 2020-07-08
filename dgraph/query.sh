@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-curl -s -H "Content-Type: application/graphql" "localhost:8080/graphql" -XPOST --data-binary "@$1"
+curl -s -H "Content-Type: application/json" "localhost:8080/graphql" -XPOST -d "@$1"
