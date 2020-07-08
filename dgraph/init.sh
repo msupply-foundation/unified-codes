@@ -2,4 +2,4 @@
 
 ./clean.sh
 ./alter.sh ./sample/schema.gql
-./query.sh ./sample/insert.json
+./query.sh ./sample/insertMutation.json
