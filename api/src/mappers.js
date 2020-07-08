@@ -2,6 +2,11 @@ const PARAMETERS = {
   '/items': ['code', 'name', 'exact'],
 };
 
+const parseBool = val => {
+  const truthyValues = [ 'true', true ];
+  return truthyValues.includes(val);
+}
+
 /**
  * Parse query parameters.
  *
