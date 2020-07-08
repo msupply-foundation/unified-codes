@@ -1,5 +1,5 @@
 const PARAMETERS = {
-  '/items': ['code', 'exact', 'fields', 'fuzzy', 'inclusive', 'name', 'search'],
+  '/items': ['code', 'name', 'exact'],
 };
 
 /**
@@ -31,7 +31,8 @@ export const parseRequest = (request) => {
  */
 export const mapRequest = (request) => {
   const { query } = request;
-  const { code, search } = query;
+  const { code, name } = query;
+  const exact = parseBool(query.exact);
 
   if (code) {
     return `{
@@ -41,7 +42,8 @@ export const mapRequest = (request) => {
         description
       }
     }`;
-  } else if (search) {
+  } else if (name) {
+    if (exact) {
     return `{
       query(func: has(code)) @filter(allofterms(description, "${search}")) {
         code
