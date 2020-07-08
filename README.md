@@ -19,7 +19,7 @@ Note: Prior to running the shell scripts you may have to allow execute permissio
 ### Add/update data
 
 ```
-./mutate.sh ./data.json
+./query.sh ./insert.gql
 ```
 
 ### Query graph
@@ -102,13 +102,10 @@ has_child: [uid]
 ```
 # query.gql
 
-{
-    amoxicillin(func: eq(description, "Amoxicillin"))  {
+query {
+    queryEntity (filter: { type: { eq: "unit_of_use" } }) {
         code
-        has_property {
-            type
-            value
-        }
+        description
     }
 }
 ```
