@@ -25,11 +25,10 @@ const itemsHandler = (request, reply) => {
     )}'`;
     reply.code(statusCode).send(body);
   } else {
-    const dgraphClient = new DgraphClient(
-      new DgraphClientStub('http://localhost:8080')
-    );
+    const dgraphClient = new DgraphClient(new DgraphClientStub('http://localhost:8080'));
     const txn = dgraphClient.newTxn();
-    txn.query(mapRequest(request)).then(response => {
+    const { query, vars } = mapRequest(request);
+    txn.queryWithVars(query, vars).then((response) => {
       reply.code(HTTP_OK).send(mapResponse(response));
     });
   }

@@ -156,13 +156,14 @@
               ]
             },
             {
+              "code": "AMOX0T4B",
               "description": "Amoxicillin oral tablet",
               "type": "form",
               "has_child": [
                 {
                   "code": "368C74BE",
                   "type": "unit_of_use",
-                  "description": "Amoxicillin oral tablet 500mg",
+                  "description": "Amoxicillin oral tablet, 500mg",
                   "has_property": [
                     {
                       "type": "strength",
@@ -181,7 +182,7 @@
                     {
                       "code": "DF2947SL",
                       "type": "product_pack",
-                      "description": "Amoxicillin oral tablet 500mg x 100",
+                      "description": "Amoxicillin oral tablet, 500mg x 100",
                       "has_property": [
                         {
                           "type": "pack_size",
@@ -235,6 +236,7 @@
           "type": "form_category",
           "has_child": [
             {
+              "code": "P4R40T4B",
               "description": "Paracetamol oral tablet",
               "type": "form",
               "has_child": [

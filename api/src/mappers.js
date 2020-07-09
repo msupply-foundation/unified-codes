@@ -1,5 +1,12 @@
+import { items as itemQueries } from './queries';
+
 const PARAMETERS = {
-  '/items': ['code', 'exact', 'fields', 'fuzzy', 'inclusive', 'name', 'search'],
+  '/items': ['code', 'name', 'exact'],
+};
+
+const parseBool = (val) => {
+  const truthyValues = ['true', true];
+  return truthyValues.includes(val);
 };
 
 /**
@@ -31,32 +38,13 @@ export const parseRequest = (request) => {
  */
 export const mapRequest = (request) => {
   const { query } = request;
-  const { code, search } = query;
-
-  if (code) {
-    return `{
-      query(func: has(code)) @filter(eq(code, ${code}))
-      {	
-        code
-        description
-      }
-    }`;
-  } else if (search) {
-    return `{
-      query(func: has(code)) @filter(allofterms(description, "${search}")) {
-        code
-        description
-      }
-    }`;
-  } else {
-    // Default to all unit of use entities
-    return `{
-      query(func: has(code)) @filter(eq(type,"unit_of_use")) {
-        code
-        description
-      }
-    }`;
-  }
+  const { code, name } = query;
+  const exact = parseBool(query.exact);
+  if (code) return { query: itemQueries.get, vars: { $code: code } };
+  else if (name) {
+    if (exact) return { query: itemQueries.searchExact, vars: { $name: name } };
+    else return { query: itemQueries.search, vars: { $name: name } };
+  } else return { query: itemQueries.all, vars: {} };
 };
 
 /**
@@ -80,18 +68,7 @@ export const mapRequest = (request) => {
  * ]
  */
 export const mapResponse = (response) => {
-  const { data } = response;
-  const { query } = data || {};
-
-  if (!query || !query.length) {
-    return {};
-  }
-
-  // only return an array if there is more than one result
-  if (query.length - 1) {
-    return JSON.stringify(query.map(({ code, description }) => ({ code, name: description })));
-  }
-
-  const [{ code, description }] = query;
-  return JSON.stringify({ code, name: description });
+  const { data } = response ?? {};
+  const { query = [] } = data ?? {};
+  return JSON.stringify(query.map(({ code, description }) => ({ code, name: description })) ?? []);
 };
