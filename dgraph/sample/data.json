@@ -32,6 +32,14 @@
           "value": "Amoxicillin Anhydrous"
         },
         {
+          "type": "atc_code",
+          "value": "J01CA04"
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin Anhydrous"
+        },
+        {
           "type": "synonym",
           "value": "Amoxicillin trihydrate",
           "has_property": [
@@ -59,8 +67,8 @@
           "type": "form_category",
           "has_property": [
             {
-                "value": "350162003",
-                "type": "SnoMED CT"
+              "type": "SnoMED CT",
+              "value": "350162003"
             }
           ],
           "has_child": [
@@ -75,6 +83,10 @@
                   "type": "unit_of_use",
                   "has_property": [
                     {
+                      "type": "strength",
+                      "value": "250mg"
+                    },
+                    {
                       "type": "RxNorm RxCUI",
                       "value": "308182"
                     },
@@ -87,11 +99,11 @@
                     {
                       "code": "DF2947SK",
                       "type": "product_pack",
-                      "description": "Amoxicillin oral capsule, 250mg x 30",
+                      "description": "Amoxicillin oral capsule, 250mg x 100",
                       "has_property": [
                         {
                           "type": "pack_size",
-                          "value": "30",
+                          "value": "100",
                           "has_property": [
                             {
                               "type": "brand",
@@ -120,41 +132,14 @@
                                   "value": "294719487329872"
                                 }
                               ]
-                            }
-                          ]
-                        },
-                        {
-                          "type": "usd_benchmark_price",
-                          "value": "0.0235"
-                        }
-                      ]
-                    },
-                    {
-                      "code": "DF2947TL",
-                      "type": "product_pack",
-                      "description": "Amoxicillin oral capsule, 250mg x 100",
-                      "has_property": [
-                        {
-                          "type": "pack_size",
-                          "value": "100",
-                          "has_property": [
+                            },
                             {
                               "type": "brand",
                               "value": "Ambionica",
                               "has_property": [
                                 {
-                                  "type": "GS1",
-                                  "value": "294719487329872"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "brand",
-                              "value": "Amofix",
-                              "has_property": [
-                                {
-                                  "type": "GS1",
-                                  "value": "24329472982347"
+                                  "type": "GS1 Code",
+                                  "value": "29471948329872"
                                 }
                               ]
                             }
@@ -171,13 +156,14 @@
               ]
             },
             {
+              "code": "AMOX0T4B",
               "description": "Amoxicillin oral tablet",
               "type": "form",
-              "has_child" : [
+              "has_child": [
                 {
                   "code": "368C74BE",
                   "type": "unit_of_use",
-                  "description": "Amoxicillin oral tablet 500mg",
+                  "description": "Amoxicillin oral tablet, 500mg",
                   "has_property": [
                     {
                       "type": "strength",
@@ -196,7 +182,7 @@
                     {
                       "code": "DF2947SL",
                       "type": "product_pack",
-                      "description": "Amoxicillin oral tablet 500mg x 100",
+                      "description": "Amoxicillin oral tablet, 500mg x 100",
                       "has_property": [
                         {
                           "type": "pack_size",
@@ -250,6 +236,7 @@
           "type": "form_category",
           "has_child": [
             {
+              "code": "P4R40T4B",
               "description": "Paracetamol oral tablet",
               "type": "form",
               "has_child": [
