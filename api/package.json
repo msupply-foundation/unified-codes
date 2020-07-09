@@ -8,7 +8,8 @@
     "start": "node ./lib/server.js",
     "debug": "babel-watch ./src/server.js --inspect 5998",
     "watch": "babel-watch ./src/server.js",
-    "test": "jest"
+    "test-api": "jest",
+    "test-dgraph": "env NOCK_OFF=true jest"
   },
   "author": "",
   "license": "ISC",
