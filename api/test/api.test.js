@@ -84,6 +84,79 @@ describe('Test items endpoint', () => {
       });
   });
 
+  test('Items endpoint with exact name search returns matching item', (done) => {
+    const { items } = data;
+    const [item] = items;
+    const { code, name } = item;
+
+    nock('http://localhost:8080')
+      .post('/query')
+      .query((queryObject) => !!queryObject.timeout)
+      .reply(200, (_, requestBody) => {
+        const { query, variables } = requestBody;
+        const validQuery = query === queries.items.searchExact;
+        const validVariables = variables.$name === name;
+        if (validQuery && validVariables) {
+          return graphResponses.items[code];
+        }
+      });
+
+    api
+      .inject({
+        method: 'GET',
+        url: `/items?name=${name}&exact=true`,
+      })
+      .then((response) => {
+        const { body } = response;
+        expect(body).toBe(JSON.stringify(apiResponses.items[code]));
+        done();
+      });
+  });
+
+  test('Items endpoint with non-exact name search returns matching items', (done) => {
+    const { items } = data;
+    const [item] = items;
+    const { code, name } = item;
+
+    const searchName = name.substring(0, 3);
+    const searchCodes = items.filter(item => item.name.startsWith(searchName)).map(item => item.code);
+
+    const apiResponse = Object.entries(apiResponses.items).reduce((acc, [key, value]) => {
+      if (searchCodes.includes(key)) {
+        return acc.concat(value);
+      }
+      return acc;
+    }, []);
+
+    const graphResponse = Object.entries(graphResponses.items).reduce((acc, [key, value]) => {
+      if (key != code && searchCodes.includes(key)) acc.data.query.concat(value.data.query);
+      return acc;
+    }, graphResponses.items[code]);
+
+    nock('http://localhost:8080')
+      .post('/query')
+      .query((queryObject) => !!queryObject.timeout)
+      .reply(200, (_, requestBody) => {
+        const { query, variables } = requestBody;
+        const validQuery = query === queries.items.search;
+        const validVariables = variables.$name === searchName;
+        if (validQuery && validVariables) {
+          return graphResponse;
+        }
+      });
+
+    api
+      .inject({
+        method: 'GET',
+        url: `/items?name=${searchName}&exact=false`,
+      })
+      .then((response) => {
+        const { body } = response;
+        expect(body).toBe(JSON.stringify(apiResponse));
+        done();
+      });
+  });
+
   test('Items endpoint with invalid params has status code 400', (done) => {
     api
       .inject({
