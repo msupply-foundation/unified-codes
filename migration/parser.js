@@ -10,6 +10,26 @@ const formCategories = [
         type: 'form',
       },
       {
+        description: 'tablet (chewable)',
+        has_child: [],
+        type: 'form',
+      },
+      {
+        description: 'tablet (scored)',
+        has_child: [],
+        type: 'form',
+      },
+      {
+        description: 'tablet scored',
+        has_child: [],
+        type: 'form',
+      },
+      {
+        description: 'tablet dispersible',
+        has_child: [],
+        type: 'form',
+      },
+      {
         description: 'capsule',
         has_child: [],
         type: 'form',
@@ -30,6 +50,11 @@ const formCategories = [
         has_child: [],
         type: 'form',
       },
+      {
+        description: 'pre filled syringe',
+        has_child: [],
+        type: 'form',
+      },
     ],
   },
   {
@@ -43,6 +68,11 @@ const formCategories = [
       },
       {
         description: 'cream',
+        has_child: [],
+        type: 'form',
+      },
+      {
+        description: 'lotion',
         has_child: [],
         type: 'form',
       },
@@ -86,26 +116,123 @@ const formCategories = [
       },
     ],
   },
+  {
+    description: 'To the eye',
+    type: 'form_category',
+    has_child: [
+      {
+        description: 'eye drops solution',
+        has_child: [],
+        type: 'form',
+      },
+      {
+        description: 'eye drops',
+        has_child: [],
+        type: 'form',
+      },
+    ],
+  },
 ];
 
 class Parser {
-  regexp = /(.*)(\d+[^ ]+)/;
+  regexp = /(.*)( \d+[^ ]+)/;
   forms = [];
+  itemsWithNoFormCount = 0;
+
   constructor() {
     Object.values(formCategories).forEach((category) => this.forms.push(...category.has_child));
   }
 
-  findForm = (item) => {
-    for (let i = 0; i < this.forms.length; i++) {
-      const form = this.forms[i];
-      const re = new RegExp(`${form.description}$`);
+  generateCode = () => {
+    return 'ABCDEF';
+  };
 
-      if (item.name.match(re)) {
-        form.has_child.push(this.transform(item));
-        return form;
+  renderProperty = (type, value) => ({
+    value,
+    type,
+  });
+
+  clone = (obj) => {
+    //return Object.assign({}, obj);
+    return JSON.parse(JSON.stringify(obj));
+  };
+
+  findForm = (item) => {
+    for (let i = 0; i < formCategories.length; i++) {
+      const category = formCategories[i];
+      for (let j = 0; j < category.has_child.length; j++) {
+        const form = this.forms[j];
+        const formDescription = form.description.replace('(', '\\x28').replace(')', '\\x29');
+        const re = new RegExp(`${formDescription}$`, 'i');
+        const itemName = item.name.trim();
+
+        if (itemName.match(re)) {
+          // form.has_child.push(this.transform(item));
+          // return a shallow copy of the form and category
+          return { category: this.clone(category), form: this.clone(form) };
+        }
       }
     }
     return undefined;
+  };
+
+  matchProduct = (item, parent) => {
+    let product;
+    const match = this.regexp.exec(item.name);
+    if (!match) return product;
+    if (!match[1]) return product;
+
+    const { form, category } = parent || {};
+    const productName = (match[1] || '').trim();
+    const strength = (match[2] || '').trim();
+    const node = this.transform(item); // form ? form.has_child.find((n) => n.code === item.code) : this.transform(item);
+    //    if (!node) return product;
+
+    if (strength) {
+      if (!node.has_property) {
+        node.has_property = [];
+      }
+      node.has_property.push(this.renderProperty('strength', strength));
+    }
+
+    // console.info(
+    //   `product: ${productName}, strength: ${strength}, products: ${medicinalProducts.length}`
+    // );
+
+    product = medicinalProducts.find((p) => p.description === productName);
+    if (!product) {
+      console.info(`couldn't find product: ${productName}, strength: ${strength}`);
+
+      product = {
+        code: this.generateCode(),
+        description: productName,
+        type: 'medicinal_product',
+        has_child: [],
+      };
+
+      medicinalProducts.push(product);
+    }
+
+    if (parent) {
+      let currentCategory = product.has_child.find((x) => x.description === category.description);
+      if (!currentCategory) {
+        currentCategory = category;
+        product.has_child.push(currentCategory);
+      }
+      let currentForm = currentCategory.has_child.find((x) => x.description === form.description);
+      if (!currentForm) {
+        currentForm = form;
+        currentCategory.has_child.push(currentForm);
+      }
+      currentForm.has_child.push(node);
+      product.has_child.push(form);
+    } else {
+      product.has_child.push(node);
+      this.itemsWithNoFormCount++;
+      // console.info(`no form? product: ${item.name}`);
+    }
+
+    return product;
   };
 
   transform = (item) => ({
@@ -116,17 +243,26 @@ class Parser {
 
   parse = (items) => {
     const set = [];
+    let itemsWithNoProductCount = 0;
 
     items.forEach((item) => {
       const form = this.findForm(item);
+      const product = this.matchProduct(item, form);
 
-      if (!form) {
+      if (!product) {
+        itemsWithNoProductCount++;
         set.push(this.transform(item));
       }
     });
-
-    formCategories.forEach((category) => set.push(category));
+    medicinalProducts.forEach((product) => set.push(product));
+    //    formCategories.forEach((category) => set.push(category));
     const result = { set };
+
+    console.info();
+    console.info(` - Number of items with no product: ${itemsWithNoProductCount}`);
+    console.info(` - Number of items with no form: ${this.itemsWithNoFormCount}`);
+    console.info(` - Total number of items: ${items.length}`);
+    console.info();
 
     return result;
   };

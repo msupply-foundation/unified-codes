@@ -1,0 +1,594 @@
+{
+	"set": [
+		{
+			"code": "ABCDEF",
+			"description": "Amoxicillin & clavulanic acid",
+			"type": "medicinal_product",
+			"has_child": [
+				{
+					"description": "oral",
+					"type": "form_category",
+					"has_child": [
+						{
+							"description": "tablet",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet (chewable)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet (scored)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet scored",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet dispersible",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "capsule",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "oral liquid",
+							"has_child": [
+								{
+									"description": "Amoxicillin & clavulanic acid 125mg &31.25mg /5mL oral liquid",
+									"code": "367734bf",
+									"type": "unit_of_use",
+									"has_property": [
+										{
+											"value": "125mg",
+											"type": "strength"
+										}
+									]
+								},
+								{
+									"description": "Amoxicillin & clavulanic acid 250mg &62.5mg /5mL oral liquid",
+									"code": "368154bf",
+									"type": "unit_of_use",
+									"has_property": [
+										{
+											"value": "250mg",
+											"type": "strength"
+										}
+									]
+								}
+							],
+							"type": "form"
+						}
+					]
+				},
+				{
+					"description": "oral liquid",
+					"has_child": [],
+					"type": "form"
+				},
+				{
+					"description": "oral liquid",
+					"has_child": [],
+					"type": "form"
+				}
+			]
+		},
+		{
+			"code": "ABCDEF",
+			"description": "Amoxicillin (trihydrate)",
+			"type": "medicinal_product",
+			"has_child": [
+				{
+					"description": "oral",
+					"type": "form_category",
+					"has_child": [
+						{
+							"description": "tablet",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet (chewable)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet (scored)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet scored",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet dispersible",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "capsule",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "oral liquid",
+							"has_child": [
+								{
+									"description": "Amoxicillin (trihydrate) 125mg/5ml powder for oral liquid",
+									"code": "367c44bf",
+									"type": "unit_of_use",
+									"has_property": [
+										{
+											"value": "125mg/5ml",
+											"type": "strength"
+										}
+									]
+								},
+								{
+									"description": "Amoxicillin (trihydrate)  250mg/5ml powder for oral liquid",
+									"code": "368674bf",
+									"type": "unit_of_use",
+									"has_property": [
+										{
+											"value": "250mg/5ml",
+											"type": "strength"
+										}
+									]
+								}
+							],
+							"type": "form"
+						}
+					]
+				},
+				{
+					"description": "oral liquid",
+					"has_child": [],
+					"type": "form"
+				},
+				{
+					"description": "oral liquid",
+					"has_child": [],
+					"type": "form"
+				},
+				{
+					"description": "Amoxicillin (trihydrate) 250mg solid oral dosage form",
+					"code": "368c74bf",
+					"type": "unit_of_use",
+					"has_property": [
+						{
+							"value": "250mg",
+							"type": "strength"
+						}
+					]
+				},
+				{
+					"description": "Amoxicillin (trihydrate) 500mg solid oral dosage form",
+					"code": "3692b4bf",
+					"type": "unit_of_use",
+					"has_property": [
+						{
+							"value": "500mg",
+							"type": "strength"
+						}
+					]
+				}
+			]
+		},
+		{
+			"code": "ABCDEF",
+			"description": "Amoxicillin (trihydrate)  & clavula&",
+			"type": "medicinal_product",
+			"has_child": [
+				{
+					"description": "oral",
+					"type": "form_category",
+					"has_child": [
+						{
+							"description": "tablet",
+							"has_child": [
+								{
+									"description": "Amoxicillin (trihydrate)  & clavula& 125mg tablet ",
+									"code": "369844bf",
+									"type": "unit_of_use",
+									"has_property": [
+										{
+											"value": "125mg",
+											"type": "strength"
+										}
+									]
+								}
+							],
+							"type": "form"
+						},
+						{
+							"description": "tablet (chewable)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet (scored)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet scored",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet dispersible",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "capsule",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "oral liquid",
+							"has_child": [],
+							"type": "form"
+						}
+					]
+				},
+				{
+					"description": "tablet",
+					"has_child": [],
+					"type": "form"
+				}
+			]
+		},
+		{
+			"code": "ABCDEF",
+			"description": "Artesunate & amodiaquine100mg &",
+			"type": "medicinal_product",
+			"has_child": [
+				{
+					"description": "oral",
+					"type": "form_category",
+					"has_child": [
+						{
+							"description": "tablet",
+							"has_child": [
+								{
+									"description": "Artesunate & amodiaquine100mg & 270mg tablet",
+									"code": "369d84bf",
+									"type": "unit_of_use",
+									"has_property": [
+										{
+											"value": "270mg",
+											"type": "strength"
+										}
+									]
+								}
+							],
+							"type": "form"
+						},
+						{
+							"description": "tablet (chewable)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet (scored)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet scored",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet dispersible",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "capsule",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "oral liquid",
+							"has_child": [],
+							"type": "form"
+						}
+					]
+				},
+				{
+					"description": "tablet",
+					"has_child": [],
+					"type": "form"
+				}
+			]
+		},
+		{
+			"code": "ABCDEF",
+			"description": "Artesunate & amodiaquine 25mg &",
+			"type": "medicinal_product",
+			"has_child": [
+				{
+					"description": "oral",
+					"type": "form_category",
+					"has_child": [
+						{
+							"description": "tablet",
+							"has_child": [
+								{
+									"description": "Artesunate & amodiaquine 25mg & 67.5mg tablet",
+									"code": "36a284bf",
+									"type": "unit_of_use",
+									"has_property": [
+										{
+											"value": "67.5mg",
+											"type": "strength"
+										}
+									]
+								}
+							],
+							"type": "form"
+						},
+						{
+							"description": "tablet (chewable)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet (scored)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet scored",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet dispersible",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "capsule",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "oral liquid",
+							"has_child": [],
+							"type": "form"
+						}
+					]
+				},
+				{
+					"description": "tablet",
+					"has_child": [],
+					"type": "form"
+				}
+			]
+		},
+		{
+			"code": "ABCDEF",
+			"description": "Artesunate & amodiaquine 50mg &",
+			"type": "medicinal_product",
+			"has_child": [
+				{
+					"description": "oral",
+					"type": "form_category",
+					"has_child": [
+						{
+							"description": "tablet",
+							"has_child": [
+								{
+									"description": "Artesunate & amodiaquine 50mg & 135mg tablet",
+									"code": "36af94bf",
+									"type": "unit_of_use",
+									"has_property": [
+										{
+											"value": "135mg",
+											"type": "strength"
+										}
+									]
+								}
+							],
+							"type": "form"
+						},
+						{
+							"description": "tablet (chewable)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet (scored)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet scored",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet dispersible",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "capsule",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "oral liquid",
+							"has_child": [],
+							"type": "form"
+						}
+					]
+				},
+				{
+					"description": "tablet",
+					"has_child": [],
+					"type": "form"
+				}
+			]
+		},
+		{
+			"code": "ABCDEF",
+			"description": "Anastrozole",
+			"type": "medicinal_product",
+			"has_child": [
+				{
+					"description": "oral",
+					"type": "form_category",
+					"has_child": [
+						{
+							"description": "tablet",
+							"has_child": [
+								{
+									"description": "Anastrozole 1mg tablet",
+									"code": "36b514bf",
+									"type": "unit_of_use",
+									"has_property": [
+										{
+											"value": "1mg",
+											"type": "strength"
+										}
+									]
+								}
+							],
+							"type": "form"
+						},
+						{
+							"description": "tablet (chewable)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet (scored)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet scored",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet dispersible",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "capsule",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "oral liquid",
+							"has_child": [],
+							"type": "form"
+						}
+					]
+				},
+				{
+					"description": "tablet",
+					"has_child": [],
+					"type": "form"
+				}
+			]
+		},
+		{
+			"code": "ABCDEF",
+			"description": "Allopurinol",
+			"type": "medicinal_product",
+			"has_child": [
+				{
+					"description": "oral",
+					"type": "form_category",
+					"has_child": [
+						{
+							"description": "tablet",
+							"has_child": [
+								{
+									"description": "Allopurinol 100mg tablet",
+									"code": "36bad4bf",
+									"type": "unit_of_use",
+									"has_property": [
+										{
+											"value": "100mg",
+											"type": "strength"
+										}
+									]
+								},
+								{
+									"description": "Allopurinol 300mg tablet",
+									"code": "36bfd4bf",
+									"type": "unit_of_use",
+									"has_property": [
+										{
+											"value": "300mg",
+											"type": "strength"
+										}
+									]
+								}
+							],
+							"type": "form"
+						},
+						{
+							"description": "tablet (chewable)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet (scored)",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet scored",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "tablet dispersible",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "capsule",
+							"has_child": [],
+							"type": "form"
+						},
+						{
+							"description": "oral liquid",
+							"has_child": [],
+							"type": "form"
+						}
+					]
+				},
+				{
+					"description": "tablet",
+					"has_child": [],
+					"type": "form"
+				},
+				{
+					"description": "tablet",
+					"has_child": [],
+					"type": "form"
+				}
+			]
+		}
+	]
+}
