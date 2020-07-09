@@ -5,14 +5,14 @@ const items = {
       description
     }
   }`,
-  search: `query vars($name: string) {
-    query(func: has(code)) @filter(eq(description, $name) AND eq(type, "unit_of_use")) {
+  search: `query vars($term: string) {
+    query(func: has(code)) @filter(regexp(description, $term) AND eq(type, "unit_of_use")) {
       code
       description
     }
   }`,
   searchExact: `query vars($name: string) {
-    query(func: has(code)) @filter(regexp(description, "^$name.*$", "i") AND eq(type, "unit_of_use")) {
+    query(func: has(code)) @filter(eq(description, $name) AND eq(type, "unit_of_use")) {
       code
       description
     }

@@ -43,7 +43,7 @@ export const mapRequest = (request) => {
   if (code) return { query: itemQueries.get, vars: { $code: code } };
   else if (name) {
     if (exact) return { query: itemQueries.searchExact, vars: { $name: name } };
-    else return { query: itemQueries.search, vars: { $name: name } };
+    else return { query: itemQueries.search, vars: { $term: `/^${name}.*$/i` } };
   } else return { query: itemQueries.all, vars: {} };
 };
 
