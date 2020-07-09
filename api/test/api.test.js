@@ -127,7 +127,9 @@ describe('Test items endpoint', () => {
     const { code, name } = item;
 
     const searchName = name.substring(0, 3);
-    const searchCodes = items.filter(item => item.name.startsWith(searchName)).map(item => item.code);
+    const searchCodes = items
+      .filter((item) => item.name.startsWith(searchName))
+      .map((item) => item.code);
 
     const apiResponse = Object.entries(apiResponses.items).reduce((acc, [key, value]) => {
       if (searchCodes.includes(key)) {
