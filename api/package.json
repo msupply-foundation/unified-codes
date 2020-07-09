@@ -8,7 +8,8 @@
     "start": "node ./lib/server.js",
     "debug": "babel-watch ./src/server.js --inspect 5998",
     "watch": "babel-watch ./src/server.js",
-    "test": "jest"
+    "test-api": "jest",
+    "test-dgraph": "env NOCK_OFF=true jest"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +27,7 @@
     "babel-watch": "^7.0.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
+    "nock": "^13.0.2",
     "prettier": "2.0.5",
     "pretty-quick": "^2.0.1",
     "supertest": "^4.0.2"
