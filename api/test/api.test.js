@@ -115,8 +115,8 @@ describe('Test items endpoint', () => {
         url: `/items?name=${name}&exact=true`,
       })
       .then((response) => {
-        const { body } = response;
-        expect(body).toBe(JSON.stringify(apiResponses.items[code]));
+        const body = JSON.parse(response.body);
+        expect(body).toMatchObject(apiResponses.items[code]);
         done();
       });
   });
@@ -149,7 +149,7 @@ describe('Test items endpoint', () => {
       .reply(200, (_, requestBody) => {
         const { query, variables } = requestBody;
         const validQuery = query === queries.items.search;
-        const validVariables = variables.$name === searchName;
+        const validVariables = variables.$term.includes(searchName);
         if (validQuery && validVariables) {
           return graphResponse;
         }
@@ -161,8 +161,8 @@ describe('Test items endpoint', () => {
         url: `/items?name=${searchName}&exact=false`,
       })
       .then((response) => {
-        const { body } = response;
-        expect(body).toBe(JSON.stringify(apiResponse));
+        const body = JSON.parse(response.body);
+        expect(body).toMatchObject(apiResponse);
         done();
       });
   });
