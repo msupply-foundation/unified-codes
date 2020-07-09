@@ -40,40 +40,11 @@ export const mapRequest = (request) => {
   const { query } = request;
   const { code, name } = query;
   const exact = parseBool(query.exact);
-
-  if (code) {
-    return `{
-      query(func: has(code)) @filter(eq(code, ${code}))
-      {	
-        code
-        description
-      }
-    }`;
-  } else if (name) {
-    if (exact) {
-      return `{
-        query(func: has(code)) @filter(eq(description, ${name}) AND eq(type, "unit_of_use")) {
-          code
-          description
-        }
-      }`;
-    } else {
-      return `{
-        query(func: has(code)) @filter(regexp(description, "^${name}.*$", "i") AND eq(type, "unit_of_use")) {
-          code
-          description
-        }
-      }`;
-    }
-  } else {
-    // Default to all unit of use entities
-    return `{
-      query(func: has(code)) @filter(eq(type, "unit_of_use")) {
-        code
-        description
-      }
-    }`;
-  }
+  if (code) return { query: itemQueries.get, vars: { $code: code } };
+  else if (name) {
+    if (exact) return { query: itemQueries.searchExact, vars: { $name: name } };
+    else return { query: itemQueries.search, vars: { $name: name } };
+  } else return { query: itemQueries.all, vars: {} };
 };
 
 /**
