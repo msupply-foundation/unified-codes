@@ -5,6 +5,14 @@ import { apiResponses, graphResponses, data } from './fixtures';
 import api from '../src/api';
 import queries from '../src/queries';
 
+const sortItems = (items) => {
+  return items.concat().sort((itemA, itemB) => {
+    if (itemA.code < itemB.code) return 1;
+    else if (itemA.code === itemB.code) return 0;
+    else return -1;
+  });
+};
+
 describe('Test health endpoint', () => {
   test('Health endpoint response has status code 200', (done) => {
     api
@@ -49,8 +57,8 @@ describe('Test items endpoint', () => {
         url: '/items',
       })
       .then((response) => {
-        const { body } = response;
-        expect(body).toBe(JSON.stringify(apiResponses.items.all));
+        const body = JSON.parse(response.body);
+        expect(sortItems(body)).toMatchObject(sortItems(apiResponses.items.all));
         done();
       });
   });
