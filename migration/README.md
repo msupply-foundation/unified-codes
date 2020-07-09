@@ -14,5 +14,6 @@ e.g. `node migrate.js ./data/items.json ./data/data.v2.json`
 You can use the project in the `dgraph` folder to clean and import the results
 ```
 ../dgraph/clean.sh
+../dgraph/alter.sh ../dgraph/sample/schema.gql 
 ../dgraph/mutate.sh ./data/data.v2.json
 ```

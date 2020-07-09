@@ -136,12 +136,7 @@ const formCategories = [
 
 class Parser {
   regexp = /(.*)( \d+[^ ]+)/;
-  forms = [];
   itemsWithNoFormCount = 0;
-
-  constructor() {
-    Object.values(formCategories).forEach((category) => this.forms.push(...category.has_child));
-  }
 
   generateCode = () => {
     return 'ABCDEF';
@@ -153,7 +148,6 @@ class Parser {
   });
 
   clone = (obj) => {
-    //return Object.assign({}, obj);
     return JSON.parse(JSON.stringify(obj));
   };
 
@@ -161,14 +155,13 @@ class Parser {
     for (let i = 0; i < formCategories.length; i++) {
       const category = formCategories[i];
       for (let j = 0; j < category.has_child.length; j++) {
-        const form = this.forms[j];
+        const form = category.has_child[j];
         const formDescription = form.description.replace('(', '\\x28').replace(')', '\\x29');
         const re = new RegExp(`${formDescription}$`, 'i');
         const itemName = item.name.trim();
 
         if (itemName.match(re)) {
-          // form.has_child.push(this.transform(item));
-          // return a shallow copy of the form and category
+          // return a copy of the form and category
           return { category: this.clone(category), form: this.clone(form) };
         }
       }
@@ -185,8 +178,7 @@ class Parser {
     const { form, category } = parent || {};
     const productName = (match[1] || '').trim();
     const strength = (match[2] || '').trim();
-    const node = this.transform(item); // form ? form.has_child.find((n) => n.code === item.code) : this.transform(item);
-    //    if (!node) return product;
+    const node = this.transform(item);
 
     if (strength) {
       if (!node.has_property) {
@@ -195,14 +187,8 @@ class Parser {
       node.has_property.push(this.renderProperty('strength', strength));
     }
 
-    // console.info(
-    //   `product: ${productName}, strength: ${strength}, products: ${medicinalProducts.length}`
-    // );
-
     product = medicinalProducts.find((p) => p.description === productName);
     if (!product) {
-      console.info(`couldn't find product: ${productName}, strength: ${strength}`);
-
       product = {
         code: this.generateCode(),
         description: productName,
@@ -254,8 +240,9 @@ class Parser {
         set.push(this.transform(item));
       }
     });
+
     medicinalProducts.forEach((product) => set.push(product));
-    //    formCategories.forEach((category) => set.push(category));
+
     const result = { set };
 
     console.info();

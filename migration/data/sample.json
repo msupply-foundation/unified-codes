@@ -1,82 +1,34 @@
 {
   "item": [
     {
-      "id": 49,
-      "name": "Amoxicillin & clavulanic acid 125mg &31.25mg /5mL oral liquid",
-      "structuredCode": "AMXC1250ORL000",
-      "code": "367734bf"
+      "id": 1087,
+      "name": "Zidovudine/Lamivudine 300/150mg Tablets",
+      "structuredCode": null,
+      "code": "3eb84c00"
     },
     {
-      "id": 50,
-      "name": "Amoxicillin (trihydrate) 125mg/5ml powder for oral liquid",
-      "structuredCode": "AMXC1250POL005",
-      "code": "367c44bf"
+      "id": 1089,
+      "name": "Zidovudine/Lamivudine 60/30mg Dispersible Tablets",
+      "structuredCode": null,
+      "code": "d1da5c00"
     },
     {
-      "id": 51,
-      "name": "Amoxicillin & clavulanic acid 250mg &62.5mg /5mL oral liquid",
-      "structuredCode": "AMXC2500ORL000",
-      "code": "368154bf"
+      "id": 1090,
+      "name": "Zidovudine/Lamivudine/Nevirapine 300/150/200mg Tablets",
+      "structuredCode": null,
+      "code": "0a820c00"
     },
     {
-      "id": 52,
-      "name": "Amoxicillin (trihydrate)  250mg/5ml powder for oral liquid",
-      "structuredCode": "AMXC2500POL005",
-      "code": "368674bf"
+      "id": 1091,
+      "name": "Zidovudine/Lamivudine/Nevirapine 60/30/50mg Dispersible Tablets",
+      "structuredCode": null,
+      "code": "421dcc00"
     },
     {
-      "id": 53,
-      "name": "Amoxicillin (trihydrate) 250mg solid oral dosage form",
-      "structuredCode": "AMXC2500SOD000",
-      "code": "368c74bf"
-    },
-    {
-      "id": 54,
-      "name": "Amoxicillin (trihydrate) 500mg solid oral dosage form",
-      "structuredCode": "AMXC5000SOD000",
-      "code": "3692b4bf"
-    },
-    {
-      "id": 55,
-      "name": "Amoxicillin (trihydrate)  & clavula& 125mg tablet ",
-      "structuredCode": "AMXC5000TAB000",
-      "code": "369844bf"
-    },
-    {
-      "id": 56,
-      "name": "Artesunate & amodiaquine100mg & 270mg tablet",
-      "structuredCode": "ANAM1027TAB000",
-      "code": "369d84bf"
-    },
-    {
-      "id": 57,
-      "name": "Artesunate & amodiaquine 25mg & 67.5mg tablet",
-      "structuredCode": "ANAM2567TAB000",
-      "code": "36a284bf"
-    },
-    {
-      "id": 58,
-      "name": "Artesunate & amodiaquine 50mg & 135mg tablet",
-      "structuredCode": "ANAM5013TAB000",
-      "code": "36af94bf"
-    },
-    {
-      "id": 59,
-      "name": "Anastrozole 1mg tablet",
-      "structuredCode": "ANZL0010TAB000",
-      "code": "36b514bf"
-    },
-    {
-      "id": 60,
-      "name": "Allopurinol 100mg tablet",
-      "structuredCode": "APNL1000TAB000",
-      "code": "36bad4bf"
-    },
-    {
-      "id": 61,
-      "name": "Allopurinol 300mg tablet",
-      "structuredCode": "APNL3000TAB000",
-      "code": "36bfd4bf"
+      "id": 1092,
+      "name": "Hydralazine Hydrochloride 25mg Injection",
+      "structuredCode": null,
+      "code": "c2061c01"
     }
   ]
 }

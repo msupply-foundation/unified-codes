@@ -3518,7 +3518,7 @@
     },
     {
       "id": 589,
-      "name": "Mifepristone-misoprostol 200mg-200mcg tablets",
+      "name": "Mifepristone-misoprostol 200mg-200mcg tablet",
       "structuredCode": "MFMI2020TAB000",
       "code": "50d804bf"
     },
@@ -5780,7 +5780,7 @@
     },
     {
       "id": 971,
-      "name": "Tenofovir/Lamivudine/Efavirenz 300/300/600mg Tablets ",
+      "name": "Tenofovir/Lamivudine/Efavirenz 300/300/600mg Tablet",
       "structuredCode": null,
       "code": "b3044cdc"
     },
@@ -5828,7 +5828,7 @@
     },
     {
       "id": 1029,
-      "name": "Aminophylline 100mg Tablets",
+      "name": "Aminophylline 100mg Tablet",
       "structuredCode": null,
       "code": "46ae143e"
     },
@@ -5858,7 +5858,7 @@
     },
     {
       "id": 1034,
-      "name": "Atazanavir/Ritonavir 300/100mg Tablets",
+      "name": "Atazanavir/Ritonavir 300/100mg Tablet",
       "structuredCode": null,
       "code": "46ca843e"
     },
@@ -5918,13 +5918,13 @@
     },
     {
       "id": 1044,
-      "name": "Isoniazid 100mg Tablets",
+      "name": "Isoniazid 100mg Tablet",
       "structuredCode": null,
       "code": "471f243e"
     },
     {
       "id": 1045,
-      "name": "Isoniazid 300mg Tablets",
+      "name": "Isoniazid 300mg Tablet",
       "structuredCode": null,
       "code": "4726043e"
     },
@@ -5972,7 +5972,7 @@
     },
     {
       "id": 1053,
-      "name": "Nifedipine 20mg Tablets",
+      "name": "Nifedipine 20mg Tablet",
       "structuredCode": null,
       "code": "4764143e"
     },
@@ -6032,19 +6032,19 @@
     },
     {
       "id": 1063,
-      "name": "Rifampicin 75mg/Isoniazid 50mg Tablets",
+      "name": "Rifampicin 75mg/Isoniazid 50mg Tablet",
       "structuredCode": null,
       "code": "47c2c43e"
     },
     {
       "id": 1064,
-      "name": "Rifampicin 75mg/Isoniazid 50mg/Pyrazinamid 150mg Tablets",
+      "name": "Rifampicin 75mg/Isoniazid 50mg/Pyrazinamid 150mg Tablet",
       "structuredCode": null,
       "code": "47ca443e"
     },
     {
       "id": 1065,
-      "name": "Tenofovir/Lamivudine 300/300mg Tablets",
+      "name": "Tenofovir/Lamivudine 300/300mg Tablet",
       "structuredCode": null,
       "code": "47d1743e"
     },
@@ -6152,7 +6152,7 @@
     },
     {
       "id": 1083,
-      "name": "Microgynon 75.18mcg Tablets",
+      "name": "Microgynon 75.18mcg Tablet",
       "structuredCode": null,
       "code": "4e1b0c00"
     },
@@ -6176,25 +6176,25 @@
     },
     {
       "id": 1087,
-      "name": "Zidovudine/Lamivudine 300/150mg Tablets",
+      "name": "Zidovudine/Lamivudine 300/150mg Tablet",
       "structuredCode": null,
       "code": "3eb84c00"
     },
     {
       "id": 1089,
-      "name": "Zidovudine/Lamivudine 60/30mg Dispersible Tablets",
+      "name": "Zidovudine/Lamivudine 60/30mg Dispersible Tablet",
       "structuredCode": null,
       "code": "d1da5c00"
     },
     {
       "id": 1090,
-      "name": "Zidovudine/Lamivudine/Nevirapine 300/150/200mg Tablets",
+      "name": "Zidovudine/Lamivudine/Nevirapine 300/150/200mg Tablet",
       "structuredCode": null,
       "code": "0a820c00"
     },
     {
       "id": 1091,
-      "name": "Zidovudine/Lamivudine/Nevirapine 60/30/50mg Dispersible Tablets",
+      "name": "Zidovudine/Lamivudine/Nevirapine 60/30/50mg Dispersible Tablet",
       "structuredCode": null,
       "code": "421dcc00"
     },
