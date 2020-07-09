@@ -1,7 +1,19 @@
 name: CI
 on: push
 jobs:
-  build:
+  test-api:
+    runs-on: ubuntu-latest
+    env:
+      api-directory: ./api
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: npm install
+      working-directory: ${{env.api-directory}}
+    - name: Run api tests
+      run: npm run test-api 
+      working-directory: ${{env.api-directory}}
+  test-dgraph:
     runs-on: ubuntu-latest
     env:
       api-directory: ./api
@@ -19,9 +31,6 @@ jobs:
     - name: Initialise data
       run: bash ./init.sh
       working-directory: ${{env.dgraph-directory}}
-    - name: Run api tests
-      run: npm run test-api 
-      working-directory: ${{env.api-directory}}
     - name: Run dgraph tests
       run: npm run test-dgraph
       working-directory: ${{env.api-directory}}
