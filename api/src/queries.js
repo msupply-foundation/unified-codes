@@ -1,18 +1,18 @@
 const items = {
-  get: `{
-    query(func: has(code)) @filter(eq(code, $code)) {	
+  get: `query vars($code: string) {
+    query (func: has(code)) @filter(eq(code, $code)) {	
       code
       description
     }
   }`,
-  search: `{
+  search: `query vars($term: string) {
+    query(func: has(code)) @filter(regexp(description, $term) AND eq(type, "unit_of_use")) {
+      code
+      description
+    }
+  }`,
+  searchExact: `query vars($name: string) {
     query(func: has(code)) @filter(eq(description, $name) AND eq(type, "unit_of_use")) {
-      code
-      description
-    }
-  }`,
-  searchExact: `{
-    query(func: has(code)) @filter(regexp(description, "^$name.*$", "i") AND eq(type, "unit_of_use")) {
       code
       description
     }
@@ -28,4 +28,3 @@ const items = {
 export { items };
 
 export default { items };
-

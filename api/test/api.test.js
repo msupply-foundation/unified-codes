@@ -5,6 +5,14 @@ import { apiResponses, graphResponses, data } from './fixtures';
 import api from '../src/api';
 import queries from '../src/queries';
 
+const sortItems = (items) => {
+  return items.concat().sort((itemA, itemB) => {
+    if (itemA.code < itemB.code) return 1;
+    else if (itemA.code === itemB.code) return 0;
+    else return -1;
+  });
+};
+
 describe('Test health endpoint', () => {
   test('Health endpoint response has status code 200', (done) => {
     api
@@ -49,8 +57,8 @@ describe('Test items endpoint', () => {
         url: '/items',
       })
       .then((response) => {
-        const { body } = response;
-        expect(body).toBe(JSON.stringify(apiResponses.items.all));
+        const body = JSON.parse(response.body);
+        expect(sortItems(body)).toMatchObject(sortItems(apiResponses.items.all));
         done();
       });
   });
@@ -107,8 +115,8 @@ describe('Test items endpoint', () => {
         url: `/items?name=${name}&exact=true`,
       })
       .then((response) => {
-        const { body } = response;
-        expect(body).toBe(JSON.stringify(apiResponses.items[code]));
+        const body = JSON.parse(response.body);
+        expect(body).toMatchObject(apiResponses.items[code]);
         done();
       });
   });
@@ -119,7 +127,9 @@ describe('Test items endpoint', () => {
     const { code, name } = item;
 
     const searchName = name.substring(0, 3);
-    const searchCodes = items.filter(item => item.name.startsWith(searchName)).map(item => item.code);
+    const searchCodes = items
+      .filter((item) => item.name.startsWith(searchName))
+      .map((item) => item.code);
 
     const apiResponse = Object.entries(apiResponses.items).reduce((acc, [key, value]) => {
       if (searchCodes.includes(key)) {
@@ -139,7 +149,7 @@ describe('Test items endpoint', () => {
       .reply(200, (_, requestBody) => {
         const { query, variables } = requestBody;
         const validQuery = query === queries.items.search;
-        const validVariables = variables.$name === searchName;
+        const validVariables = variables.$term.includes(searchName);
         if (validQuery && validVariables) {
           return graphResponse;
         }
@@ -151,8 +161,8 @@ describe('Test items endpoint', () => {
         url: `/items?name=${searchName}&exact=false`,
       })
       .then((response) => {
-        const { body } = response;
-        expect(body).toBe(JSON.stringify(apiResponse));
+        const body = JSON.parse(response.body);
+        expect(body).toMatchObject(apiResponse);
         done();
       });
   });
