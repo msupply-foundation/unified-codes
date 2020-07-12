@@ -1,6 +1,4 @@
-import { DgraphClient, DgraphClientStub, Txn, Response } from 'dgraph-js-http';
-import { FastifyRequest, FastifyReply, RequestHandler } from 'fastify';
-import { ServerResponse } from 'http';
+import { DgraphClient, DgraphClientStub, Txn } from 'dgraph-js-http';
 import { OK as HTTP_OK, BAD_REQUEST as HTTP_BAD_REQUEST } from 'http-status-codes';
 
 import appData from '../package.json';
@@ -8,7 +6,9 @@ import appData from '../package.json';
 import { health as healthSchema } from './schemas';
 import { parseRequest, mapRequest, mapResponse } from './mappers';
 
-const healthHandler: RequestHandler = (_: FastifyRequest, reply: FastifyReply<ServerResponse>) => {
+import { DgraphResponse, Handler, Request, Reply } from './types';
+
+const healthHandler: Handler = (_: Request, reply: Reply) => {
   const { response: responseSchema }: { response: { [key: string]: object } } = healthSchema;
   const [{ properties: responseProperties }]: { properties: object }[] = Object.values(
     responseSchema
@@ -21,10 +21,7 @@ const healthHandler: RequestHandler = (_: FastifyRequest, reply: FastifyReply<Se
   reply.send(responseValues);
 };
 
-const itemsHandler: RequestHandler = (
-  request: FastifyRequest,
-  reply: FastifyReply<ServerResponse>
-) => {
+const itemsHandler: Handler = (request: Request, reply: Reply) => {
   const { parameters }: { parameters: { valid: string[]; invalid: string[] } } = parseRequest(
     request
   );
@@ -41,14 +38,14 @@ const itemsHandler: RequestHandler = (
     const dgraphClient: DgraphClient = new DgraphClient(dgraphClientStub);
     const txn: Txn = dgraphClient.newTxn();
     const { query, vars }: { query: string; vars: object } = mapRequest(request);
-    txn.queryWithVars(query, vars).then((response: Response) => {
+    txn.queryWithVars(query, vars).then((response: DgraphResponse) => {
       const jsonResponse = mapResponse(response);
       reply.code(HTTP_OK).send(jsonResponse);
     });
   }
 };
 
-const versionHandler: RequestHandler = (_: FastifyRequest, reply: FastifyReply<ServerResponse>) => {
+const versionHandler: Handler = (_: Request, reply: Reply) => {
   const { version }: { version: string } = appData;
   const [versionCode]: string[] = version.split('.');
   const versionShort: string = `v${versionCode}`;

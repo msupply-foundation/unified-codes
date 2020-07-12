@@ -1,15 +1,10 @@
 import { items as itemQueries } from './queries';
-import { FastifyRequest, DefaultQuery } from 'fastify';
-import { IncomingMessage } from 'http';
-import { Response } from 'dgraph-js-http';
 
-type GraphResponse = Response & { data: { query: [] }};
+import { Request, Query, DgraphResponse } from './types';
 
 const PARAMETERS: { [key: string]: string[] } = {
   '/items': ['code', 'name', 'exact'],
 };
-
-const parseBool = (val?: string): boolean => val?.toLowerCase() == 'true';
 
 /**
  * Parse query parameters.
@@ -18,12 +13,12 @@ const parseBool = (val?: string): boolean => val?.toLowerCase() == 'true';
  * @return {Object}                 Object containing valid, invalid parameters.
  */
 export const parseRequest = (
-  request: FastifyRequest
+  request: Request
 ): { parameters: { valid: string[]; invalid: string[] } } => {
-  const { url }: { url: string } = request.raw as IncomingMessage & { url: string };
+  const { url }: { url?: string } = request.raw;
   const [baseUrl]: string[] = url.split('?') as string[];
   const whitelist: string[] = PARAMETERS[baseUrl];
-  const { query }: { query: DefaultQuery } = request;
+  const { query }: { query: Query } = request;
 
   return {
     parameters: {
@@ -39,10 +34,9 @@ export const parseRequest = (
  * @param  {FastifyRequest} request REST api request.
  * @return {Object}                 Object containing GraphQL+- request payload and variables.
  */
-export const mapRequest = (request: FastifyRequest): { query: string; vars: object } => {
-  const { query }: { query: DefaultQuery } = request;
-  const { code, name }: { code: string; name: string } = query as { code: string; name: string };
-  const exact: boolean = parseBool(query.exact);
+export const mapRequest = (request: Request): { query: string; vars: object } => {
+  const { query }: { query: Query } = request;
+  const { code, name, exact }: { code?: string; name?: string; exact?: boolean } = query;
   if (code) return { query: itemQueries.get, vars: { $code: code } };
   else if (name) {
     if (exact) return { query: itemQueries.searchExact, vars: { $name: name } };
@@ -70,8 +64,8 @@ export const mapRequest = (request: FastifyRequest): { query: string; vars: obje
  *   }
  * ]
  */
-export const mapResponse = (response: Response): string => {
-  const { data }: { data?: { query: [] }} = (response as GraphResponse) ?? {};
+export const mapResponse = (response: DgraphResponse): string => {
+  const { data }: { data?: { query: [] } } = response ?? {};
   const { query }: { query?: [] } = data ?? {};
   return JSON.stringify(query?.map(({ code, description }) => ({ code, name: description })) ?? []);
 };

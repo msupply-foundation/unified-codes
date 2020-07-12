@@ -1,20 +1,14 @@
 import S from 'fluent-schema';
-import { RouteSchema, JSONSchema } from 'fastify';
 
-type EndpointSchema = RouteSchema & {
-  response: {
-    [code: number]: JSONSchema;
-    [code: string]: JSONSchema;
-  };
-};
+import { Schema } from './types';
 
-const healthSchema: EndpointSchema = {
+const healthSchema: Schema = {
   response: {
     200: S.object().prop('mysql', S.string()).prop('api', S.string()),
   },
 };
 
-const itemsSchema: EndpointSchema = {
+const itemsSchema: Schema = {
   querystring: S.object()
     .prop('code', S.string())
     .prop('name', S.string())
@@ -25,7 +19,7 @@ const itemsSchema: EndpointSchema = {
   },
 };
 
-const versionSchema: EndpointSchema = {
+const versionSchema: Schema = {
   response: {
     200: S.object().prop('version', S.string()).prop('versionShort', S.string()),
   },
