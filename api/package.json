@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel src -d lib --extensions .ts",
     "start": "node ./lib/server.js",
     "debug": "babel-watch ./src/server.js --inspect 5998",
     "watch": "babel-watch ./src/server.js",
-    "tsc": "tsc",
+    "check-types": "tsc",
     "test-api": "jest",
     "test-dgraph": "env NOCK_OFF=true jest"
   },

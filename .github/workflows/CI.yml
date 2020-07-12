@@ -1,6 +1,18 @@
 name: CI
 on: push
 jobs:
+  check-types:
+    runs-on: ubuntu-latest
+    env:
+      api-directory: ./api
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: npm install
+      working-directory: ${{env.api-directory}}
+    - name: Run api type check
+      run: npm run check-types
+      working-directory: ${{env.api-directory}}
   test-api:
     runs-on: ubuntu-latest
     env:
