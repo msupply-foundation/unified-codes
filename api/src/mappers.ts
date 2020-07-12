@@ -1,26 +1,29 @@
 import { items as itemQueries } from './queries';
+import { FastifyRequest, DefaultQuery } from 'fastify';
+import { IncomingMessage } from 'http';
+import { Response } from 'dgraph-js-http';
 
-const PARAMETERS = {
+type GraphResponse = Response & { data: { query: [] }};
+
+const PARAMETERS: { [key: string]: string[] } = {
   '/items': ['code', 'name', 'exact'],
 };
 
-const parseBool = (val) => {
-  const truthyValues = ['true', true];
-  return truthyValues.includes(val);
-};
+const parseBool = (val?: string): boolean => val?.toLowerCase() == 'true';
 
 /**
  * Parse query parameters.
  *
- * @param  {Object}        params    Request query parameters.
- * @param  {Array<String>} whiteList Valid parameters per implementation.
- * @return {Object}                  Object containing valid and invalid parameters.
+ * @param  {FastifyRequest} request Request object.
+ * @return {Object}                 Object containing valid, invalid parameters.
  */
-export const parseRequest = (request) => {
-  const { url } = request.raw;
-  const [baseUrl] = url.split('?');
-  const whitelist = PARAMETERS[baseUrl];
-  const { query } = request;
+export const parseRequest = (
+  request: FastifyRequest
+): { parameters: { valid: string[]; invalid: string[] } } => {
+  const { url }: { url: string } = request.raw as IncomingMessage & { url: string };
+  const [baseUrl]: string[] = url.split('?') as string[];
+  const whitelist: string[] = PARAMETERS[baseUrl];
+  const { query }: { query: DefaultQuery } = request;
 
   return {
     parameters: {
@@ -33,13 +36,13 @@ export const parseRequest = (request) => {
 /**
  * Map API request to GraphQL+- payload. Query parameters are assumed valid.
  *
- * @param  {Object} request REST api request.
- * @return {String}         GraphQL+- request payload for Dgraph server.
+ * @param  {FastifyRequest} request REST api request.
+ * @return {Object}                 Object containing GraphQL+- request payload and variables.
  */
-export const mapRequest = (request) => {
-  const { query } = request;
-  const { code, name } = query;
-  const exact = parseBool(query.exact);
+export const mapRequest = (request: FastifyRequest): { query: string; vars: object } => {
+  const { query }: { query: DefaultQuery } = request;
+  const { code, name }: { code: string; name: string } = query as { code: string; name: string };
+  const exact: boolean = parseBool(query.exact);
   if (code) return { query: itemQueries.get, vars: { $code: code } };
   else if (name) {
     if (exact) return { query: itemQueries.searchExact, vars: { $name: name } };
@@ -52,7 +55,7 @@ export const mapRequest = (request) => {
  * Map Dgraph response to valid v1 API JSON payload.
  *
  * @param  {Object} response GraphQL+- response received from Dgraph server.
- * @return {Object}          JSON object complying to v1 schema.
+ * @return {String}          Stringified JSON object complying to v1 schema.
  *
  * Example response format:
  *
@@ -67,8 +70,8 @@ export const mapRequest = (request) => {
  *   }
  * ]
  */
-export const mapResponse = (response) => {
-  const { data } = response ?? {};
-  const { query = [] } = data ?? {};
-  return JSON.stringify(query.map(({ code, description }) => ({ code, name: description })) ?? []);
+export const mapResponse = (response: Response): string => {
+  const { data }: { data?: { query: [] }} = (response as GraphResponse) ?? {};
+  const { query }: { query?: [] } = data ?? {};
+  return JSON.stringify(query?.map(({ code, description }) => ({ code, name: description })) ?? []);
 };

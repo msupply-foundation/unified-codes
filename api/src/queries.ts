@@ -1,4 +1,4 @@
-const items = {
+const items: { [key: string]: string } = {
   get: `query vars($code: string) {
     query (func: has(code)) @filter(eq(code, $code)) {	
       code
