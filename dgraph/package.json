@@ -1,0 +1,16 @@
+{
+  "name": "graphql-api",
+  "version": "1.0.0",
+  "description": "GraphQL API layer over Dgraph",
+  "main": "server.js",
+  "dependencies": {
+    "apollo-server-fastify": "^2.15.1",
+    "graphql": "^15.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
