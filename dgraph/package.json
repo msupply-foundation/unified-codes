@@ -2,13 +2,21 @@
   "name": "graphql-api",
   "version": "1.0.0",
   "description": "GraphQL API layer over Dgraph",
-  "main": "server.js",
+  "main": "graphql/server.js",
   "dependencies": {
     "apollo-server-fastify": "^2.15.1",
+    "fastify": "^3.0.2",
     "graphql": "^15.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
+    "@babel/preset-env": "^7.10.4"
+  },
   "scripts": {
+    "build": "babel graphql/src -d graphql/lib",
+    "start": "node graphql/lib/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
