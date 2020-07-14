@@ -1,29 +1,10 @@
-import { ApolloServer, gql } from 'apollo-server-fastify';
+import { ApolloServer } from 'apollo-server-fastify';
+import { typeDefs } from './schema'
 import fastify from 'fastify';
-
-const typeDefs = gql`
-  type Entity {
-      type: String! 
-      code: String
-      description: String!
-      properties: [Property] 
-      children: [Entity]
-  }
-
-  type Property {
-      type: String! 
-      value: String! 
-      properties: [Property]
-  }
-
-  type Query {
-    search: [Entity]
-  },
-`;
 
 const resolvers = {
   Query: {
-    search: () => {
+    searchByName: (parent, args, context, info) => {
       return [
         { code: 'ABC', description: 'test1' },
         { code: 'DEF', description: 'test2' }
