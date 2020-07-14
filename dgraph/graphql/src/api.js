@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server-fastify';
 import fastify from 'fastify';
-import { typeDefs } from './schema'
+import { typeDefs } from './schema';
 import { dgraph } from './data';
 
 const resolvers = {
@@ -14,7 +14,7 @@ const resolvers = {
       }`;
       const resp = await dataSources.dgraphDataSource.postQuery(dgraphQuery);
       return resp.data.query;
-    }
+    },
   },
 };
 
@@ -23,9 +23,9 @@ const server = new ApolloServer({
   resolvers,
   dataSources: () => {
     return {
-      dgraphDataSource: new dgraph()
-    }
-  }
+      dgraphDataSource: new dgraph(),
+    };
+  },
 });
 
 const graphApi = fastify({ logger: true });
