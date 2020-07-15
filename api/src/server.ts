@@ -1,6 +1,6 @@
 import api from './api.js';
 
-const start = async () => {
+const start = async (): Promise<void> => {
   try {
     await api.listen(3000);
   } catch (err) {
