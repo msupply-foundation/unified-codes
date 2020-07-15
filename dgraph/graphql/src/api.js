@@ -7,7 +7,7 @@ const resolvers = {
   Query: {
     searchByName: async (_source, _args, { dataSources }) => {
       const dgraphQuery = `{
-        query(func: has(code)) @filter(regexp(description, /^${_args.text}.*$/i) AND eq(type, "unit_of_use")) {
+        query(func: regexp(description, /^${_args.text}/i)) @filter(has(code) AND eq(type, "unit_of_use")) {
           code
           description
         }
