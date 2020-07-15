@@ -16,16 +16,14 @@ Fixes #.
 
 Tick below if one of the following applies:
 
-1. Documentation has been added to cover changes introduced by this PR.
-2. This PR requires no changes to documentation.
-
+- [ ] Documentation has been added to cover changes introduced by this PR.
+- [ ] This PR requires no changes to documentation.
 - [ ] Documentation OK.
 
 ### Tests:
 
 Tick below if one of the following applies:
 
-1. Tests have been added to cover changes introduced by this PR.
-2. This PR requires no new tests.
-
+- [ ] Tests have been added to cover changes introduced by this PR.
+- [ ] This PR requires no new tests.
 - [ ] Tests OK.
