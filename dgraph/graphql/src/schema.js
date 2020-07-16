@@ -16,8 +16,8 @@ const typeDefs = gql`
   }
 
   type Query {
-    searchByName(text: String): [Entity]
-    getDrugInteractions(code: String): [DrugInteraction]
+    searchByName(text: String!): [Entity]
+    getDrugInteractions(code: String!): [DrugInteraction]
   }
 
   type DrugInteraction {
