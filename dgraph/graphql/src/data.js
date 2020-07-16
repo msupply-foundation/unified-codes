@@ -16,3 +16,17 @@ export class DgraphDataSource extends RESTDataSource {
     return this.post(this.paths.query, query);
   }
 }
+
+export class RxNavDataSource extends RESTDataSource {
+  constructor() {
+    super();
+    this.baseURL = 'https://rxnav.nlm.nih.gov/REST';
+    this.paths = { interactions: 'interaction/interaction.json' }
+  }
+  
+  async getInteractions(rxCui) {
+    const resp = this.get(this.paths.interactions, { rxcui: rxCui });
+    
+    return resp;
+  }
+}

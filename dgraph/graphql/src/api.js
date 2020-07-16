@@ -1,22 +1,8 @@
 import { ApolloServer } from 'apollo-server-fastify';
 import fastify from 'fastify';
 import { typeDefs } from './schema';
-import { DgraphDataSource } from './data';
-
-const resolvers = {
-  Query: {
-    searchByName: async (_source, _args, { dataSources }) => {
-      const dgraphQuery = `{
-        query(func: regexp(description, /^${_args.text}/i)) @filter(has(code) AND eq(type, "unit_of_use")) {
-          code
-          description
-        }
-      }`;
-      const resp = await dataSources.dgraphDataSource.postQuery(dgraphQuery);
-      return resp.data.query;
-    },
-  },
-};
+import { DgraphDataSource, RxNavDataSource } from './data';
+import { resolvers } from './resolvers'
 
 const server = new ApolloServer({
   typeDefs,
@@ -24,6 +10,7 @@ const server = new ApolloServer({
   dataSources: () => {
     return {
       dgraphDataSource: new DgraphDataSource(),
+      rxNavDataSource: new RxNavDataSource()
     };
   },
 });
