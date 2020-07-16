@@ -1,3 +1,5 @@
+import { UserInputError } from 'apollo-server-fastify';
+
 const resolvers = {
   Query: {
     searchByName: async (_source, _args, { dataSources }) => {
@@ -7,12 +9,29 @@ const resolvers = {
           description
         }
       }`;
-      const resp = await dataSources.dgraphDataSource.postQuery(dgraphQuery);
-      return resp.data.query;
+      const response = await dataSources.dgraphDataSource.postQuery(dgraphQuery);
+      return response.data.query;
     },
     getDrugInteractions: async (_source, _args, { dataSources }) => {
-      const resp = await dataSources.rxNavDataSource.getInteractions(_args.rxCui);
-      return [{ name: 'fakeDrug', description: 'fakeInteraction', severity: 'high' }];
+      // Query Dgraph for RxCui
+      const dgraphQuery = `{
+        query(func: eq(code, ${_args.code}))
+        {
+            description
+            has_property @filter(eq(type, "RxNorm RxCUI")) {
+              value
+            }
+        }
+      }`;
+      const response = await dataSources.dgraphDataSource.postQuery(dgraphQuery);
+
+      // If RxCui found - Query RxNav for Interactions 
+      if (response.data.query.length) {
+        const rxCui = response.data.query[0].has_property.value;
+        const rxNavResponse = await dataSources.rxNavDataSource.getInteractions(rxCui);
+        return [{ name: 'fakeDrug', description: 'fakeInteraction', severity: 'high' }];
+      }
+      throw new UserInputError(`No RxCUI found for product with code ${_args.code}`);
     }
   },
 };
