@@ -1,6 +1,8 @@
 import { gql } from 'apollo-server-fastify';
 
 const typeDefs = gql`
+  scalar JSON
+  
   type Entity {
     type: String!
     code: String
@@ -17,13 +19,7 @@ const typeDefs = gql`
 
   type Query {
     searchByName(text: String!): [Entity]
-    getDrugInteractions(code: String!): [DrugInteraction]
-  }
-
-  type DrugInteraction {
-    name: String
-    description: String
-    severity: String
+    getDrugInteractions(code: String!): JSON
   }
 `;
 

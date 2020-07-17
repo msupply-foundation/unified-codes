@@ -25,8 +25,6 @@ export class RxNavDataSource extends RESTDataSource {
   }
   
   async getInteractions(rxCui) {
-    const resp = this.get(this.paths.interactions, { rxcui: rxCui });
-    
-    return resp;
+    return this.get(this.paths.interactions, { rxcui: rxCui });
   }
 }
