@@ -7,20 +7,28 @@ const typeDefs = gql`
     type: String!
     code: String
     description: String!
-    properties: [Property]
-    children: [Entity]
+    has_property: [Property]
+    has_child: [Entity]
   }
 
   type Property {
     type: String!
     value: String!
-    properties: [Property]
+    has_property: [Property]
   }
 
   type Query {
-    searchByName(text: String!): [Entity]
+    entities(type: String): [Entity]
     getDrugInteractions(code: String!): JSON
   }
+
+  enum ExternalCode {
+    rx_cui
+    who_eml
+    atc
+    drugbank_code
+  }
+
 `;
 
 export { typeDefs };
