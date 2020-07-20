@@ -1,17 +1,22 @@
 import * as React from 'react'
-import { TableCell, TableHeadProps, TableRowProps } from '../../atoms';
-import { TableHeader, TableHeaderProps } from '../../molecules';
+import { TableCell, TableCellProps, TableHead, TableHeadProps, TableRow, TableRowProps } from '../../atoms';
 
-export interface EntityTableHeaderProps extends TableHeaderProps {};
+export interface EntityTableHeaderProps {
+    headProps?: TableHeadProps,
+    rowProps?: TableRowProps,
+    cellProps?: TableCellProps,
+};
 
 export type EntityTableHeader = React.FunctionComponent<EntityTableHeaderProps>;
 
-export const EntityTableHeader: EntityTableHeader = ({ headProps, rowProps }: { headProps: TableHeadProps, rowProps: TableRowProps }) => {
+export const EntityTableHeader: EntityTableHeader = ({ headProps, rowProps, cellProps }: { headProps: TableHeadProps, rowProps: TableRowProps, cellProps: TableCellProps }) => {
     return (
-        <TableHeader headProps={headProps} rowProps={rowProps}>
-            <TableCell>Code</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Type</TableCell>
-        </TableHeader>
+        <TableHead {...headProps}>
+            <TableRow {...rowProps}>
+                <TableCell {...cellProps}>Code</TableCell>
+                <TableCell {...cellProps}>Description</TableCell>
+                <TableCell {...cellProps}>Type</TableCell>
+            </TableRow>
+        </TableHead>
     );
 };

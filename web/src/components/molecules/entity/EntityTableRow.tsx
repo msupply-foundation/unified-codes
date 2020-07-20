@@ -1,20 +1,22 @@
 import * as React from 'react'
-import { TableRow, TableCell } from '../../atoms';
+import { TableCell, TableCellProps, TableRow, TableRowProps } from '../../atoms';
 import { Entity } from '../../../types';
 
 export interface EntityTableRowProps {
+    rowProps?: TableRowProps,
+    cellProps?: TableCellProps,
     entity: Entity,
 };
 
 export type EntityTableRow = React.FunctionComponent<EntityTableRowProps>;
 
-export const EntityTableRow: EntityTableRow = ({ entity }) => {
+export const EntityTableRow: EntityTableRow = ({ rowProps, cellProps, entity }) => {
     const { code, description, type } = entity;
     return (
-     <TableRow>
-         <TableCell>{code}</TableCell>
-         <TableCell>{description}</TableCell>
-         <TableCell>{type}</TableCell>
+     <TableRow {...rowProps}>
+         <TableCell {...cellProps}>{code}</TableCell>
+         <TableCell {...cellProps}>{description}</TableCell>
+         <TableCell {...cellProps}>{type}</TableCell>
      </TableRow>
     );
 };
