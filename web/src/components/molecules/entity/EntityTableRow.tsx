@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { TableRow, TableCell } from '@material-ui/core';
-import { Entity } from '../types';
+import { TableRow, TableCell } from '../../atoms';
+import { Entity } from '../../../types';
 
-interface EntityTableRowProps {
+export interface EntityTableRowProps {
     entity: Entity,
 };
 

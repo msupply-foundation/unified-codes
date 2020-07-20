@@ -1,1 +1,1 @@
-export { EntityTableRow } from './EntityTableRow';
+export { EntityTableRow } from './molecules/entity/EntityTableRow';
