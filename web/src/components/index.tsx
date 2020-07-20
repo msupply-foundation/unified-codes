@@ -1,0 +1,1 @@
+export { EntityTableRow } from './EntityTableRow';
