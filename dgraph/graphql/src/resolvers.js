@@ -18,7 +18,6 @@ const resolvers = {
       const dgraphQuery = `{
         query(func: eq(code, ${_args.code}))
         {
-            description
             has_property @filter(eq(type, "RxNorm RxCUI")) {
               value
             }
