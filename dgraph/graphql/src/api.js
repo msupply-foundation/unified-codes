@@ -9,8 +9,8 @@ const server = new ApolloServer({
   resolvers,
   dataSources: () => {
     return {
-      dgraphDataSource: new DgraphDataSource(),
-      rxNavDataSource: new RxNavDataSource()
+      dgraph: new DgraphDataSource(),
+      rxNav: new RxNavDataSource()
     };
   },
 });
