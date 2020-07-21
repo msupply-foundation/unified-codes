@@ -21,14 +21,6 @@ const typeDefs = gql`
     entities(type: String): [Entity]
     getDrugInteractions(code: String!): JSON
   }
-
-  enum ExternalCode {
-    rx_cui
-    who_eml
-    atc
-    drugbank_code
-  }
-
 `;
 
 export { typeDefs };
