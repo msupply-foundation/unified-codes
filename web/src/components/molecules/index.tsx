@@ -1,1 +1,2 @@
-export { EntityTableHeader, EntityTableRow } from './entity';
+export { EntityTableHeader, EntityTableHeaderProps } from './entity';
+export { EntityTableRow, EntityTableRowProps } from './entity';

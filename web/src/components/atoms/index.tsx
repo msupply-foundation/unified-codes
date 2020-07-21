@@ -1,3 +1,4 @@
+export { Table, TableProps } from './core';
 export { TableBody, TableBodyProps } from './core';
 export { TableCell, TableCellProps } from './core';
 export { TableHead, TableHeadProps } from './core';
