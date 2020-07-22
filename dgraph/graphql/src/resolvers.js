@@ -11,7 +11,7 @@ const resolvers = {
     entities: async (_source, _args, { dataSources }) => {
       const { filter } = _args;
       const { type } = filter;
-      const dgraphQuery = queries.entities(type ?? "medicinal_product");
+      const dgraphQuery = queries.entities(type ?? 'medicinal_product');
       const response = await dataSources.dgraph.postQuery(dgraphQuery);
       return response.data.query;
     },

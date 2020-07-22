@@ -1,7 +1,6 @@
 import { gql } from 'apollo-server-fastify';
 
 const typeDefs = gql`
- 
   type Entity {
     type: String!
     code: String
@@ -18,9 +17,9 @@ const typeDefs = gql`
 
   type Query {
     "Request an entity by code"
-    entity (code: String!): Entity
+    entity(code: String!): Entity
     "Request all entities with optional filter - Default behaviour: return all medicinal_products"
-    entities (filter: SearchFilter): [Entity]
+    entities(filter: SearchFilter): [Entity]
   }
 
   input SearchFilter {
