@@ -6,7 +6,8 @@ const resolvers = {
       const { code } = _args;
       const dgraphQuery = queries.entity(code);
       const response = await dataSources.dgraph.postQuery(dgraphQuery);
-      return response.data.query;
+      const [entity] = response.data.query;
+      return entity;
     },
     entities: async (_source, _args, { dataSources }) => {
       const type = _args.filter?.type;
