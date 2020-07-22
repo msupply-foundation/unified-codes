@@ -7,8 +7,7 @@
     "apollo-datasource-rest": "^0.9.3",
     "apollo-server-fastify": "^2.15.1",
     "fastify": "^3.0.2",
-    "graphql": "^15.3.0",
-    "graphql-type-json": "^0.3.2"
+    "graphql": "^15.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",

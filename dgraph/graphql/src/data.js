@@ -5,7 +5,7 @@ export class DgraphDataSource extends RESTDataSource {
     super();
     this.baseURL = 'http://localhost:8080';
     this.headers = { 'Content-Type': 'application/graphql+-' };
-    this.paths = { query: 'query' };
+    this.paths = { query: 'query', mutate: 'mutate' };
   };
   
   willSendRequest(request) {
@@ -14,6 +14,10 @@ export class DgraphDataSource extends RESTDataSource {
   
   async postQuery(query) {
     return this.post(this.paths.query, query);
+  }
+
+  async mutate(mutation) {
+    return this.post(this.paths.mutate, mutation);
   }
 }
 
