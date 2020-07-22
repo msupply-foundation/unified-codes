@@ -13,7 +13,7 @@ export const queries = {
   },
   entities: (type) => {
     return `{
-      query(func: has(code)) @filter(eq(type, ${type})) @recurse(loop: false)  {
+      query(func: eq(type, ${type})) @filter(has(code)) @recurse(loop: false)  {
         code
         description
         type
