@@ -1,10 +1,19 @@
 export const queries = {
-  entities: (filter) => {
-    const type = filter?.type ?? "medicinal_product";
-    const codeFilter = filter?.code ? `@filter(eq(code, "${filter.code}"))` : ``;
-
+  entity: (code) => {  
+      return `{
+        query(func: eq(code, ${code})) @recurse(loop: false)  {
+          code
+          description
+          type
+          value
+          has_child
+          has_property
+        }
+      }`
+    },
+  entities: (type) => {
     return `{
-      query(func: eq(type, ${type})) ${codeFilter} @recurse(loop: false)  {
+      query(func: has(code)) @filter(eq(type, ${type})) @recurse(loop: false)  {
         code
         description
         type

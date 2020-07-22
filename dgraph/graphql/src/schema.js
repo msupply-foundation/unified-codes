@@ -17,11 +17,14 @@ const typeDefs = gql`
   }
 
   type Query {
+    "Request an entity by code"
+    entity (code: String!): Entity
+    "Request all entities with optional filter - Default behaviour: return all medicinal_products"
     entities (filter: SearchFilter): [Entity]
   }
 
   input SearchFilter {
-    code: String
+    "Search by Level in Product Hierarchy"
     type: String
   }
 `;
