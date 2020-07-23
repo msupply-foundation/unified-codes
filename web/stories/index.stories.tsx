@@ -1,5 +1,5 @@
 import * as React from 'react';
-import HomePage from '../src/pages/HomePage';
+import MainPage from '../src/pages/MainPage';
 
 export default {
     title: 'Pages',
@@ -8,4 +8,4 @@ export default {
     },
 };
 
-export const Home = () => <HomePage/>;
+export const Main = () => <MainPage/>;

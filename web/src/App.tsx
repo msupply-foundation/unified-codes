@@ -1,5 +1,5 @@
 import * as React from "react";
 
-import { HomePage } from "./pages/HomePage";
+import { MainPage } from "./pages";
 
-export const App = () => <HomePage/>;
+export const App = () => <MainPage/>;
