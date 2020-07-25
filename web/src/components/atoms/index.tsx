@@ -1,3 +1,4 @@
+export { Button, ButtonProps } from './core';
 export { Input, InputProps } from './core';
 export { Table, TableProps } from './core';
 export { TableBody, TableBodyProps } from './core';

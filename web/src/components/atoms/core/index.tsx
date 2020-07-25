@@ -1,3 +1,4 @@
+export { Button, ButtonProps } from './Button';
 export { Input, InputProps } from './Input';
 export { Table, TableProps } from './Table';
 export { TableBody, TableBodyProps } from './TableBody';
