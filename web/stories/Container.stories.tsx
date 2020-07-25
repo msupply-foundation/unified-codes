@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Container } from '../src/components';
 import { styled } from '@material-ui/core';
-import { flexContainerStyle, flexRowStyle, flexColumnStyle } from '../src/styles';
+import { flexStyle, flexRowStyle, flexColumnStyle } from '../src/styles';
 
 export default { title: 'Container' };
 
@@ -33,7 +33,7 @@ const styles = {
     rowContainer: flexRowStyle,
     columnContainer: flexColumnStyle,
     childContainer: {
-        ...flexContainerStyle,
+        ...flexStyle,
         borderStyle: 'dotted',
         borderWidth: 'thin',
     }

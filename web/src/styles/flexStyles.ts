@@ -12,18 +12,14 @@ export const flexStyle: { display: FlexDisplay } = {
     display: 'flex',
 };
 
-export const flexContainerStyle: { display: FlexDisplay, flexGrow: FlexGrow } = {
-    ...flexStyle,
-    flexGrow: 1,
-}
 
 export const flexRowStyle: { display: FlexDisplay, flexDirection: FlexDirection } = {
-    ...flexContainerStyle,
+    ...flexStyle,
     flexDirection: 'row',
 };
 
 export const flexColumnStyle: { display: FlexDisplay, flexDirection: FlexDirection } = {
-    ...flexContainerStyle,
+    ...flexStyle,
     flexDirection: 'column',
 };
 
