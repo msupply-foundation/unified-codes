@@ -6,3 +6,4 @@ export { Input, InputProps } from './atoms';
 export { SearchButton, SearchButtonProps } from './atoms';
 export { SearchIcon, SearchIconProps } from './atoms';
 export { InputField, InputFieldProps } from './molecules';
+export { SearchBar, SearchBarProps } from './molecules';
