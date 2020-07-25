@@ -36,12 +36,12 @@ jobs:
       run: npm install
       working-directory: ${{env.api-directory}}
     - name: Start docker
-      run: bash ./docker.sh &
+      run: sudo bash ./docker.sh &
       working-directory: ${{env.database-directory}}
     - name: Sleep
       run: sleep 20
     - name: Initialise data
-      run: bash ./init.sh
+      run: sudo bash ./init.sh
       working-directory: ${{env.database-directory}}
     - name: Run dgraph tests
       run: npm run test-dgraph

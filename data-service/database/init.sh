@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-./clean.sh
-./alter.sh ./data/schema.gql
-./mutate.sh ./data/demo.json
+bash ./clean.sh
+bash ./alter.sh ./data/schema.gql
+bash ./mutate.sh ./data/demo.json
