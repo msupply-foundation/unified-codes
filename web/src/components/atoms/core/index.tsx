@@ -1,3 +1,4 @@
+export { Input, InputProps } from './Input';
 export { Table, TableProps } from './Table';
 export { TableBody, TableBodyProps } from './TableBody';
 export { TableCell, TableCellProps } from './TableCell';
