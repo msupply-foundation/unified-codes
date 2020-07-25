@@ -18,5 +18,5 @@ const entities: Entity[] = [
 export default { title: 'EntityTable' };
 
 export const withAmoxicillinAndParacetamol = () => {
-    return <EntityTable entities={entities}/>;
+    return <EntityTable data={entities}/>;
 }
