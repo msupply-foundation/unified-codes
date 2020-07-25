@@ -25,11 +25,11 @@ jobs:
     - name: Run api tests
       run: npm run test-api 
       working-directory: ${{env.api-directory}}
-  test-dgraph:
+  test-data-service:
     runs-on: ubuntu-latest
     env:
       api-directory: ./api
-      dgraph-directory: ./dgraph
+      database-directory: ./data-service/database
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
@@ -37,12 +37,12 @@ jobs:
       working-directory: ${{env.api-directory}}
     - name: Start docker
       run: bash ./docker.sh &
-      working-directory: ${{env.dgraph-directory}}
+      working-directory: ${{env.database-directory}}
     - name: Sleep
       run: sleep 20
     - name: Initialise data
       run: bash ./init.sh
-      working-directory: ${{env.dgraph-directory}}
+      working-directory: ${{env.database-directory}}
     - name: Run dgraph tests
       run: npm run test-dgraph
       working-directory: ${{env.api-directory}}
