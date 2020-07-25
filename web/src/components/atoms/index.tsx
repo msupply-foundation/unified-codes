@@ -1,6 +1,7 @@
 export { Button, ButtonProps } from './core';
 export { ClearButton, ClearButtonProps } from './core';
 export { ClearIcon, ClearIconProps } from './core';
+export { Container, ContainerProps } from './core';
 export { Input, InputProps } from './core';
 export { SearchButton, SearchButtonProps } from './core';
 export { SearchIcon, SearchIconProps } from './core';
