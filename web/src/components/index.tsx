@@ -1,5 +1,5 @@
-export { EntityTable } from './organisms/entity/EntityTable';
-export { EntityTableRow } from './molecules/entity/EntityTableRow'; 
+export { Button, ButtonProps } from './atoms';
+export { ClearButton, ClearButtonProps } from './atoms';
 export { ClearIcon, ClearIconProps } from './atoms';
 export { Input, InputProps } from './atoms';
 export { SearchButton, SearchButtonProps } from './atoms';

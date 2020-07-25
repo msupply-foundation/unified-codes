@@ -1,6 +1,9 @@
 export { Button, ButtonProps } from './Button';
 export { ClearButton, ClearButtonProps } from './ClearButton';
+export { ClearIcon, ClearIconProps } from './ClearIcon';
 export { Input, InputProps } from './Input';
+export { SearchButton, SearchButtonProps } from './SearchButton';
+export { SearchIcon, SearchIconProps } from './SearchIcon';
 export { Table, TableProps } from './Table';
 export { TableBody, TableBodyProps } from './TableBody';
 export { TableCell, TableCellProps } from './TableCell';
