@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Entity } from '../src/types';
+import { Entity, EntityNode } from '../src/types';
 import { EntityTable } from '../src/components';
 
-const entities: Entity[] = [
+const entities: EntityNode[] = [
     {
         "code": "QFWR9789",
         "description": "Amoxicillin",
@@ -18,5 +18,6 @@ const entities: Entity[] = [
 export default { title: 'EntityTable' };
 
 export const withAmoxicillinAndParacetamol = () => {
-    return <EntityTable data={entities}/>;
+    const data = entities.map(entityNode => new Entity(entityNode));
+    return <EntityTable data={data}/>;
 }
