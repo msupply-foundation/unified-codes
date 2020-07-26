@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { Container as MContainer, ContainerProps as MContainerProps } from '@material-ui/core';
 
-export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {};
+export interface ContainerProps extends MContainerProps {};
 
 export type Container = React.FunctionComponent<ContainerProps>;
 
-export const Container: Container = ({ className, style, children }) => <div className={className} style={style}>{children}</div>;
+export const Container: Container = ({ children, ...props }) => <MContainer {...props}>{children}</MContainer>;
