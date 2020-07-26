@@ -1,48 +1,30 @@
 import * as React from "react";
-import { EntityTable, Container, SearchBar } from '../components';
-import { Entity } from '../types';
-import { flexColumnStyle } from "../styles";
-import { styled } from "@material-ui/core/styles";
+import { useQuery, gql } from '@apollo/client';
 
-const entities: Entity[] = [
-    {
-        "code": "QFWR9789",
-        "description": "Amoxicillin",
-        "type": "medicinal_product",
-    },
-    {
-        "code": "GH89P98W",
-        "description": "Paracetamol",
-        "type": "medicinal_product",
+import {Container, EntityBrowser } from '../components';
+import { Entity, EntityNode } from "../types";
+
+const query = gql`
+    query allEntities {
+        entities {
+            code,
+            description,
+            type
+        }
     }
-];
+`;
 
 export const MainPage = () => {  
-    const [input, setInput] = React.useState("");
-    const [data, setData] = React.useState(entities);
+    const { loading, error, data } = useQuery(query);
 
-    const resetInput = React.useCallback(() => setInput(""), []);
-    const resetData = React.useCallback(() => setData(entities), []);
+    if (loading) return <Container>Loading...</Container>;
+    if (error) return <Container>Error :(</Container>;
+    if (data) {
+        const entities = data.entities.map((entityNode: EntityNode) => new Entity(entityNode));
+        return <EntityBrowser entities={entities}/>;
+    } 
 
-    const onChange = React.useCallback(event => { setInput(event.target.value) }, []);
-    const onClear = React.useCallback(() => { resetInput(); resetData(); }, []);
-    const onSearch = React.useCallback(() => {
-        if (!input) resetData();
-        setData(entities.filter((entity: Entity) => entity.code.toLowerCase().includes(input.toLowerCase()) || entity.description.toLowerCase().includes(input.toLowerCase())));
-    }, [input]);
-        
-    const FlexContainer = React.useMemo(() => styled(({ ...props }) => <Container {...props}/>)(styles.flexContainer), []);
-
-    return (
-        <FlexContainer>
-            <SearchBar input={input} onChange={onChange} onClear={onClear} onSearch={onSearch}/>
-            <EntityTable data={data}/>
-        </FlexContainer>
-    );
+    return null;
 };
-
-const styles = {
-    flexContainer: {...flexColumnStyle, margin: '5%' }
-} 
 
 export default MainPage;
