@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Table, TableProps, TableHead, TableHeadProps, TableBody, TableBodyProps } from '../../atoms';
-import { EntityTableHeader, EntityTableHeaderProps, EntityTableRow, EntityTableRowProps } from '../../molecules';
+import { EntityTableHeader, EntityTableHeaderProps, EntityTableRow, EntityTableRowProps } from '..';
 import { Entity } from '../../../types';
 
 export interface EntityTableProps {
