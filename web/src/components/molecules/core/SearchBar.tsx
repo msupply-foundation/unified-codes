@@ -2,14 +2,14 @@ import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
 import { ClearIcon, SearchButton, Container } from '../../atoms';
 import { InputField } from '../../molecules';
-import { OnChangeHandler, OnClickHandler } from '../../../types';
+import { OnChange, InputChangeElement, OnClick, ButtonClickElement } from '../../../types';
 import { flexStyle, flexRowStyle } from '../../../styles';
 
 export interface SearchBarProps {
     input?: string;
-    onChange?: OnChangeHandler;
-    onClear?: OnClickHandler;
-    onSearch?: OnClickHandler;
+    onChange?: OnChange<InputChangeElement>;
+    onClear?: OnClick<ButtonClickElement>;
+    onSearch?: OnClick<ButtonClickElement>;
   };
   
 export type SearchBar = React.FunctionComponent<SearchBarProps>;

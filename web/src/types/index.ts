@@ -1,4 +1,3 @@
 export { Entity } from './Entity';
-export { OnChangeHandler } from './OnChangeHandler';
-export { OnClickHandler } from './OnClickHandler';
+export { OnEvent, OnChange, OnClick, ButtonClickElement, InputChangeElement } from './OnEvent';
 export { Property } from './Property';

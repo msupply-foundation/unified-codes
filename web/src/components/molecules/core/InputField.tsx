@@ -2,13 +2,13 @@ import * as React from "react";
 import { styled } from '@material-ui/core/styles';
 import { Input, Button, ClearIcon, SearchIcon, Container } from "../../atoms";
 import { flexStyle, flexRowStyle } from "../../../styles";
-import { OnChangeHandler, OnClickHandler } from '../../../types';
+import { OnChange, OnClick, InputChangeElement, ButtonClickElement } from '../../../types';
 
 export interface InputFieldProps  {
   input?: string;
   icon: ClearIcon | SearchIcon;
-  onChange?: OnChangeHandler;
-  onClick?: OnClickHandler;
+  onChange?: OnChange<InputChangeElement>;
+  onClick?: OnClick<ButtonClickElement>;
   className?: string,
 }
 
