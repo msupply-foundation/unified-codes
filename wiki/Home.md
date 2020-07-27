@@ -21,6 +21,6 @@ Welcome to the unified-codes wiki!
 * [[Development Configurations|development-configurations]]
 
 ## API Docs
-There are two APIs exposed which provide access to universal codes data. See below links for docs and sample requests. 
+There are two APIs exposed (REST and GraphQL) which both provide access to universal codes data. See below links for docs and sample requests. 
 * Postman public documentation link:  https://documenter.getpostman.com/view/11696795/T1DpBxR9?version=latest
 * Postman public collection link : https://www.getpostman.com/collections/cd36b9af86a19c4f1592
