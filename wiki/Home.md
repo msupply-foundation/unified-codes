@@ -1,7 +1,9 @@
 
 Welcome to the unified-codes wiki!
 
-"unified-codes" is the second version, and a replacement for the original universal drug codes server, currently located at https://sussol.github.io/universal-drug-codes-server/. 
+"unified-codes" is intended to complately replace the original universal drug codes server. 
+* The "original" universal drug codes server is currently located at https://sussol.github.io/universal-drug-codes-server/.
+* "unified-codes" (aka V2) is not yet deployed.
 
 ## System Overview/Design [TO COMPLETE]
 <!-- This is quite high level - A diagram may be useful -->
