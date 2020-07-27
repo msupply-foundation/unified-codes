@@ -17,7 +17,6 @@ Welcome to the unified-codes wiki!
 
 ## Development Tools/Resources
 * [[Development Configurations|development-configurations]]
-* Building and Running
 
 ## API Docs
 There are two APIs exposed which provide access to universal codes data. See below links for docs and sample requests. 
