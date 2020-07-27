@@ -3,3 +3,6 @@ node_modules
 
 # babel
 lib
+
+# vscode specific settings
+.vscode
