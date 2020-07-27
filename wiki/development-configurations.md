@@ -1,6 +1,7 @@
 ## VS Code
 
-### Debug Config Sample for REST API (unified-codes/api/.vscode/launch.json)
+### Debug Config Sample for REST API (place here: unified-codes/api/.vscode/launch.json)
+More information on debugging node.js in VSCode is available here: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
 <pre>
 {
 	// Use IntelliSense to learn about possible attributes.
