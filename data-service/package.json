@@ -8,7 +8,8 @@
     "apollo-server-fastify": "^2.15.1",
     "fastify": "^3.0.2",
     "fastify-cors": "^4.1.0",
-    "graphql": "^15.3.0"
+    "graphql": "^15.3.0",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
@@ -18,6 +19,7 @@
   },
   "scripts": {
     "build": "babel server/src -d server/lib",
+    "go": "npm run build & npm run start",
     "start": "node server/lib/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   }

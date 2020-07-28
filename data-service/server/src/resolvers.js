@@ -40,6 +40,12 @@ export const resolvers = {
       const response = await dataSources.dgraph.postQuery(query);
       return response.data.query;
     },
+    user: async (_parent, _args, { user }) => {
+      if (!user) {
+        // throw new Error('Not authenticated');
+      }
+      return user;
+    },
   },
 };
 
