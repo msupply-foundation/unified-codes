@@ -42,7 +42,7 @@ export const resolvers = {
     },
     user: async (_parent, _args, { user }) => {
       if (!user) {
-        // throw new Error('Not authenticated');
+        throw new Error('Not authenticated');
       }
       return user;
     },

@@ -9,7 +9,7 @@
     "fastify": "^3.0.2",
     "fastify-cors": "^4.1.0",
     "graphql": "^15.3.0",
-    "jsonwebtoken": "^8.5.1"
+    "keycloak-auth-utils": "^3.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
