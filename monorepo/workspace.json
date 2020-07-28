@@ -11,8 +11,8 @@
         "build": {
           "builder": "@nrwl/node:build",
           "options": {
-            "outputPath": "dist/apps/api",
-            "main": "apps/api/src/server.ts",
+            "outputPath": "dist/apps/api/app",
+            "main": "apps/api/src/app/server.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
             "assets": [
               "apps/api/src/assets"
@@ -43,8 +43,8 @@
           "options": {
             "linter": "eslint",
             "tsConfig": [
-              "apps/api/tsconfig.app.json",
-              "apps/api/tsconfig.spec.json"
+              "apps/api/app/tsconfig.app.json",
+              "apps/api/app/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",

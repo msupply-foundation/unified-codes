@@ -1,7 +1,7 @@
 import { DgraphClient, DgraphClientStub, Txn } from 'dgraph-js-http';
 import { OK as HTTP_OK, BAD_REQUEST as HTTP_BAD_REQUEST } from 'http-status-codes';
 
-import appData from '../../../package.json';
+import appData from '../../../../package.json';
 
 import { health as healthSchema } from './schemas';
 import { parseRequest, mapRequest, mapResponse } from './mappers';
