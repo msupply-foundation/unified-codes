@@ -16,14 +16,14 @@ jobs:
   test-api:
     runs-on: ubuntu-latest
     env:
-      api-directory: ./api
+      api-directory: ./monorepo
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
       run: npm install
       working-directory: ${{env.api-directory}}
     - name: Run api tests
-      run: npm run test-api 
+      run: nx test api
       working-directory: ${{env.api-directory}}
   test-dgraph:
     runs-on: ubuntu-latest
