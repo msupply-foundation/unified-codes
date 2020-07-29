@@ -23,12 +23,12 @@ jobs:
       run: npm install
       working-directory: ${{env.api-directory}}
     - name: Run api tests
-      run: nx test api
+      run: npm run nx test api
       working-directory: ${{env.api-directory}}
   test-dgraph:
     runs-on: ubuntu-latest
     env:
-      api-directory: ./api
+      api-directory: ./monorepo
       dgraph-directory: ./dgraph
     steps:
     - uses: actions/checkout@v2
