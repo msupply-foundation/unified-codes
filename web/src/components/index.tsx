@@ -13,3 +13,4 @@ export { InputField, InputFieldProps } from './molecules';
 export { SearchBar, SearchBarProps } from './molecules';
 
 export { EntityBrowser, EntityBrowserProps } from './organisms';
+export { LoginButton, LoginButtonProps } from './organisms';
