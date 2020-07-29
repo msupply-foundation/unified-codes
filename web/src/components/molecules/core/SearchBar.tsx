@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
-import { ClearIcon, SearchButton, Container } from '../../atoms';
-import { InputField } from '../../molecules';
+import { ClearIcon, Container } from '../../atoms';
+import { InputField, SearchButton } from '../../molecules';
 import { OnChangeHandler, OnClickHandler } from '../../../types';
 import { flexStyle, flexRowStyle } from '../../../styles';
 
