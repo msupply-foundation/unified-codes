@@ -1,1 +1,1 @@
-export { EntityTable, EntityTableProps } from './entity';
+export * from './entity';
