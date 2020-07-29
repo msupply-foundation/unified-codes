@@ -1,1 +1,1 @@
-export { flexStyle, flexRowStyle, flexColumnStyle } from './flexStyles';
+export { flexStyle, flexRowStyle, flexColumnStyle } from "./flexStyles";
