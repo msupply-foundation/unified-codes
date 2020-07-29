@@ -43,8 +43,8 @@
           "options": {
             "linter": "eslint",
             "tsConfig": [
-              "apps/api/app/tsconfig.app.json",
-              "apps/api/app/tsconfig.spec.json"
+              "apps/api/tsconfig.app.json",
+              "apps/api/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",

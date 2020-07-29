@@ -4,7 +4,8 @@
   "include": [],
   "compilerOptions": {
     "noEmit": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "references": [
     {
