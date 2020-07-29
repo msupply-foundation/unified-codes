@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Input } from '../src/components';
+import * as React from "react";
+import { Input } from "../src/components";
 
-export default { title: 'Input' };
+export default { title: "Input" };
 
 export const withNoProps = () => {
-    return <Input/>;
-}
+  return <Input />;
+};

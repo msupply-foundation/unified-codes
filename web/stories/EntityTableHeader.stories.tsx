@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { EntityTableHeader } from '../src/components';
+import * as React from "react";
+import { EntityTableHeader } from "../src/components";
 
-export default { title: 'EntityTableHeader' };
+export default { title: "EntityTableHeader" };
 
 export const withNoProps = () => {
-    return <EntityTableHeader/>;
-}
+  return <EntityTableHeader />;
+};
