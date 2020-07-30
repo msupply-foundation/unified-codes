@@ -1,14 +1,8 @@
 import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
-<<<<<<< HEAD
-import { ClearIcon, SearchButton, Container } from '../../atoms';
-import { InputField } from '../../molecules';
-import { OnChange, InputChangeElement, OnClick, ButtonClickElement } from '../../../types';
-=======
 import { ClearIcon, Container } from '../../atoms';
-import { InputField, SearchButton } from '../../molecules';
-import { OnChangeHandler, OnClickHandler } from '../../../types';
->>>>>>> master
+import { InputField, SearchButton} from '../../molecules';
+import { OnChange, InputChangeElement, OnClick, ButtonClickElement } from '../../../types';
 import { flexStyle, flexRowStyle } from '../../../styles';
 
 export interface SearchBarProps {
