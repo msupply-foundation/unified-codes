@@ -15,7 +15,7 @@ Welcome to the unified-codes wiki!
 * Web UI 
   * [React](https://reactjs.org/docs)
 * Authentication
-  * TBC
+  * Integration with an open ID compliant server, using JSON web tokens. Currently implemented using Keycloak as the authentication server ( see the data-service sub-folder for the 'get-you-up-and-running' docker implementation )
 
 ## Development Tools/Resources
 * [[Development Configurations|development-configurations]]
