@@ -9,17 +9,17 @@ export interface EntityTableProps {
     headerProps?: EntityTableHeaderProps,
     bodyProps?: TableBodyProps,
     rowProps?: EntityTableRowProps,
-    entities: Entity[],
+    data: Entity[],
 };
 
 export type EntityTable = React.FunctionComponent<EntityTableProps>;
 
-export const EntityTable: EntityTable = ({ tableProps, headProps, headerProps, bodyProps, rowProps, entities }: { tableProps: TableProps, headProps: TableHeadProps, headerProps: EntityTableHeaderProps, bodyProps: TableBodyProps, rowProps: EntityTableRowProps, entities: Entity[] }) => {
+export const EntityTable: EntityTable = ({ tableProps, headProps, headerProps, bodyProps, rowProps, data }: { tableProps: TableProps, headProps: TableHeadProps, headerProps: EntityTableHeaderProps, bodyProps: TableBodyProps, rowProps: EntityTableRowProps, data: Entity[] }) => {
     const mapEntity = (entity: Entity) => <EntityTableRow {...{...rowProps, entity}}></EntityTableRow>;
     
     const EntityTableRows = React.useCallback(() => (
-        <React.Fragment>{entities.map(mapEntity)}</React.Fragment>
-    ), [rowProps, entities]);
+        <React.Fragment>{data.map(mapEntity)}</React.Fragment>
+    ), [rowProps, data]);
     
     return (
         <Table {...tableProps}>
