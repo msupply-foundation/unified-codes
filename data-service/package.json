@@ -1,12 +1,13 @@
 {
-  "name": "graphql-api",
+  "name": "unified-codes-data-service",
   "version": "1.0.0",
-  "description": "GraphQL API layer over Dgraph",
-  "main": "graphql/server.js",
+  "description": "",
+  "main": "index.js",
   "dependencies": {
     "apollo-datasource-rest": "^0.9.3",
     "apollo-server-fastify": "^2.15.1",
     "fastify": "^3.0.2",
+    "fastify-cors": "^4.1.0",
     "graphql": "^15.3.0"
   },
   "devDependencies": {
@@ -16,10 +17,8 @@
     "@babel/preset-env": "^7.10.4"
   },
   "scripts": {
-    "build": "babel graphql/src -d graphql/lib",
-    "start": "node graphql/lib/server.js",
+    "build": "babel server/src -d server/lib",
+    "start": "node server/lib/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "mSupply Foundation",
-  "license": "ISC"
+  }
 }

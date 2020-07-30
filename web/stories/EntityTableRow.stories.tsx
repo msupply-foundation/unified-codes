@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { EntityTableRow } from '../src/components';
+import { Entity, EntityNode } from '../src/types';
 
-const entities = {
+const entities: { [key: string]: EntityNode } = {
     "amoxicillin": {
         "code": "QFWR9789",
         "description": "Amoxicillin",
@@ -20,10 +21,12 @@ export default { title: 'EntityTableRow' };
 
 export const withAmoxicillin = () => {
     const { amoxicillin } = entities;
-    return <EntityTableRow entity={amoxicillin}/>;
+    const entity = new Entity(amoxicillin);
+    return <EntityTableRow entity={entity}/>;
 }
 
 export const withParacetamol = () => {
     const { paracetamol } = entities;
-    return <EntityTableRow entity={paracetamol}/>;
+    const entity = new Entity(paracetamol);
+    return <EntityTableRow entity={entity}/>;
 }
