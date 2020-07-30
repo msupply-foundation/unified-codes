@@ -1,12 +1,1 @@
-export { Button, ButtonProps } from './core';
-export { ClearButton, ClearButtonProps } from './core';
-export { ClearIcon, ClearIconProps } from './core';
-export { Container, ContainerProps } from './core';
-export { Input, InputProps } from './core';
-export { SearchButton, SearchButtonProps } from './core';
-export { SearchIcon, SearchIconProps } from './core';
-export { Table, TableProps } from './core';
-export { TableBody, TableBodyProps } from './core';
-export { TableCell, TableCellProps } from './core';
-export { TableHead, TableHeadProps } from './core';
-export { TableRow, TableRowProps } from './core';
+export * from './core';

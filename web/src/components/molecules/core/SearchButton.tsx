@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Button, ButtonProps } from './Button';
-import { SearchIcon } from './SearchIcon';
+import { Button, ButtonProps, SearchIcon } from '../../atoms';
 
 export interface SearchButtonProps extends ButtonProps {};
 
