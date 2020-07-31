@@ -1,8 +1,1 @@
-import * as React from "react";
-import { Clear } from "@material-ui/icons";
-
-export interface ClearIconProps {}
-
-export type ClearIcon = React.FunctionComponent<ClearIconProps>;
-
-export const ClearIcon: ClearIcon = () => <Clear />;
+export { Clear as ClearIcon } from "@material-ui/icons";
