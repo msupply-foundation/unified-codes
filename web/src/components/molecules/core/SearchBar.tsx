@@ -1,8 +1,7 @@
-<<<<<<< HEAD
+
 import * as React from "react";
 import { styled } from "@material-ui/core/styles";
-import { ClearIcon, SearchButton, Container } from "../../atoms";
-import { InputField } from "../../molecules";
+import { Button, ClearIcon, Container, InputAdornment, SearchIcon, TextField } from "../../atoms";
 import {
   OnChange,
   InputChangeElement,
@@ -10,20 +9,6 @@ import {
   ButtonClickElement,
 } from "../../../types";
 import { flexStyle, flexRowStyle } from "../../../styles";
-=======
-import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-<<<<<<< HEAD
-import { ClearIcon, SearchButton, Container } from '../../atoms';
-import { InputField } from '../../molecules';
-import { OnChange, InputChangeElement, OnClick, ButtonClickElement } from '../../../types';
-=======
-import { ClearIcon, Container } from '../../atoms';
-import { InputField, SearchButton } from '../../molecules';
-import { OnChangeHandler, OnClickHandler } from '../../../types';
->>>>>>> master
-import { flexStyle, flexRowStyle } from '../../../styles';
->>>>>>> master
 
 export interface SearchBarProps {
   input?: string;
@@ -46,16 +31,16 @@ export const SearchBar: SearchBar = ({
       styled(({ ...props }) => <Container {...props} />)(styles.flexContainer),
     []
   );
-  const FlexInputField = React.useMemo(
+  const FlexTextField = React.useMemo(
     () =>
-      styled(({ ...props }) => <InputField {...props} />)(
-        styles.flexInputField
-      ),
-    []
-  );
+    styled(({ ...props }) => <TextField {...props} />)(
+      styles.flexTextField
+    ),
+  []
+  )
   const FlexSearchButton = React.useMemo(
     () =>
-      styled(({ ...props }) => <SearchButton {...props} />)(
+      styled(({ ...props }) => <Button startIcon={<SearchIcon/>} {...props} />)(
         styles.flexSearchButton
       ),
     []
@@ -63,11 +48,9 @@ export const SearchBar: SearchBar = ({
 
   return (
     <FlexContainer {...other}>
-      <FlexInputField
-        input={input}
-        icon={ClearIcon}
-        onChange={onChange}
-        onClick={onClear}
+      <FlexTextField
+        value={input}
+  InputProps={{ endAdornment: <InputAdornment position="end"><Button startIcon={<ClearIcon/>} onClick={onClear}/></InputAdornment>}}
       />
       <FlexSearchButton onClick={onSearch} />
     </FlexContainer>
@@ -76,6 +59,6 @@ export const SearchBar: SearchBar = ({
 
 const styles = {
   flexContainer: flexRowStyle,
-  flexInputField: { ...flexStyle, flexGrow: 95 },
+  flexTextField: { ...flexStyle, flexGrow: 95 },
   flexSearchButton: { ...flexStyle, flexGrow: 5 },
 };
