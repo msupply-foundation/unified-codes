@@ -29,6 +29,9 @@
   "projects": {
     "api": {
       "tags": []
+    },
+    "data-service": {
+      "tags": []
     }
   }
 }
