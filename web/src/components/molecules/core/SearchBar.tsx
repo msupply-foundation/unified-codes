@@ -2,19 +2,13 @@
 import * as React from "react";
 import { styled } from "@material-ui/core/styles";
 import { Button, ClearIcon, Container, InputAdornment, SearchIcon, TextField } from "../../atoms";
-import {
-  OnChange,
-  InputChangeElement,
-  OnClick,
-  ButtonClickElement,
-} from "../../../types";
 import { flexStyle, flexRowStyle } from "../../../styles";
 
 export interface SearchBarProps {
   input?: string;
-  onChange?: OnChange<InputChangeElement>;
-  onClear?: OnClick<ButtonClickElement>;
-  onSearch?: OnClick<ButtonClickElement>;
+  onChange?: (input: string) => void;
+  onClear?: () => void;
+  onSearch?: () => void;
 }
 
 export type SearchBar = React.FunctionComponent<SearchBarProps>;
@@ -46,10 +40,13 @@ export const SearchBar: SearchBar = ({
     []
   );
 
+  const onChangeText = React.useCallback(event => onChange ? onChange(event.target.value) : null, [onChange]);
+
   return (
     <FlexContainer {...other}>
       <FlexTextField
         value={input}
+        onChange={onChangeText}
   InputProps={{ endAdornment: <InputAdornment position="end"><Button startIcon={<ClearIcon/>} onClick={onClear}/></InputAdornment>}}
       />
       <FlexSearchButton onClick={onSearch} />
