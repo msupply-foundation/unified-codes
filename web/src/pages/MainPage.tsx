@@ -1,8 +1,23 @@
 import * as React from "react";
 import { useQuery, gql } from "@apollo/client";
 
-import { Container, EntityBrowser } from "../components";
+import { Container, EntityBrowser, Grid } from "../components";
 import { Entity, EntityNode } from "../types";
+
+const mockData: { entities: EntityNode[] } = { 
+  entities: [
+    {
+      code: "QFWR9789",
+      description: "Amoxicillin",
+      type: "medicinal_product",
+    },
+    {
+      code: "GH89P98W",
+      description: "Paracetamol",
+      type: "medicinal_product",
+    },
+  ]
+};
 
 const query = gql`
   query allEntities {
@@ -15,15 +30,35 @@ const query = gql`
 `;
 
 export const MainPage = () => {
+  const [ entities, setEntities ] = React.useState([]);
   const { loading, error, data } = useQuery(query);
 
-  if (loading) return <Container>Loading...</Container>;
-  if (error) return <Container>Error :(</Container>;
-  if (data) {
-    const entities = data.entities.map(
+  if (entities.length) {
+    return (
+      <Container>
+        <Grid container justify="center">
+          <EntityBrowser entities={entities} />
+        </Grid>
+      </Container>
+    )
+  }
+
+  if (loading) {
+    return (
+      <Container>
+        <Grid container justify="center">
+          Loading...
+        </Grid>
+      </Container>
+    );
+  }
+
+  if (data || error) {
+    const entityData = data ?? mockData;
+    const entities = entityData.entities.map(
       (entityNode: EntityNode) => new Entity(entityNode)
     );
-    return <EntityBrowser entities={entities} />;
+    setEntities(entities);
   }
 
   return null;

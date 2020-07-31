@@ -1,8 +1,6 @@
 
 import * as React from "react";
-import { styled } from "@material-ui/core/styles";
-import { Button, ClearIcon, Container, InputAdornment, SearchIcon, TextField } from "../../atoms";
-import { flexStyle, flexRowStyle } from "../../../styles";
+import { Button, ClearIcon, Grid, InputAdornment, SearchIcon, TextField } from "../../atoms";
 
 export interface SearchBarProps {
   input?: string;
@@ -18,44 +16,22 @@ export const SearchBar: SearchBar = ({
   onChange,
   onClear,
   onSearch,
-  ...other
 }) => {
-  const FlexContainer = React.useMemo(
-    () =>
-      styled(({ ...props }) => <Container {...props} />)(styles.flexContainer),
-    []
-  );
-  const FlexTextField = React.useMemo(
-    () =>
-    styled(({ ...props }) => <TextField {...props} />)(
-      styles.flexTextField
-    ),
-  []
-  )
-  const FlexSearchButton = React.useMemo(
-    () =>
-      styled(({ ...props }) => <Button startIcon={<SearchIcon/>} {...props} />)(
-        styles.flexSearchButton
-      ),
-    []
-  );
-
   const onChangeText = React.useCallback(event => onChange ? onChange(event.target.value) : null, [onChange]);
 
   return (
-    <FlexContainer {...other}>
-      <FlexTextField
-        value={input}
-        onChange={onChangeText}
-  InputProps={{ endAdornment: <InputAdornment position="end"><Button startIcon={<ClearIcon/>} onClick={onClear}/></InputAdornment>}}
-      />
-      <FlexSearchButton onClick={onSearch} />
-    </FlexContainer>
+    <Grid container >
+      <Grid item xs={11}>
+        <TextField
+          fullWidth
+          value={input}
+          onChange={onChangeText}
+    InputProps={{ endAdornment: <InputAdornment position="end"><Button startIcon={<ClearIcon/>} onClick={onClear}/></InputAdornment>}}
+        />
+      </Grid>
+      <Grid item xs={1}>
+        <Button fullWidth startIcon={<SearchIcon/>}  onClick={onSearch}/>
+      </Grid>
+    </Grid>
   );
-};
-
-const styles = {
-  flexContainer: flexRowStyle,
-  flexTextField: { ...flexStyle, flexGrow: 95 },
-  flexSearchButton: { ...flexStyle, flexGrow: 5 },
 };

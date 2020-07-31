@@ -1,6 +1,7 @@
 export { Button, ButtonProps } from './Button';
 export { ClearIcon } from './ClearIcon';
 export { Container, ContainerProps } from './Container';
+export { Grid, GridProps } from './Grid';
 export { InputAdornment, InputAdornmentProps } from './InputAdornment';
 export { SearchIcon } from './SearchIcon';
 export { Table, TableProps } from './Table';
