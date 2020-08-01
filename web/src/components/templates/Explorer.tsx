@@ -1,8 +1,9 @@
 import * as React from "react";
 import { useQuery, gql } from "@apollo/client";
 
-import { Container, EntityBrowser, Grid } from "../components";
-import { Entity, EntityNode } from "../types";
+import { Grid } from "../atoms";
+import { EntityBrowser } from "../organisms";
+import { Entity, EntityNode } from "../../types";
 
 const mockData: { entities: EntityNode[] } = { 
   entities: [
@@ -29,27 +30,23 @@ const query = gql`
   }
 `;
 
-export const MainPage = () => {
+export const Explorer = () => {
   const [ entities, setEntities ] = React.useState([]);
   const { loading, error, data } = useQuery(query);
 
   if (entities.length) {
     return (
-      <Container>
-        <Grid container justify="center">
-          <EntityBrowser entities={entities} />
-        </Grid>
-      </Container>
+      <Grid container justify="center">
+        <EntityBrowser entities={entities} />
+      </Grid>
     )
   }
 
   if (loading) {
     return (
-      <Container>
-        <Grid container justify="center">
-          Loading...
-        </Grid>
-      </Container>
+      <Grid container justify="center">
+        Loading...
+      </Grid>
     );
   }
 
@@ -64,4 +61,4 @@ export const MainPage = () => {
   return null;
 };
 
-export default MainPage;
+export default Explorer;
