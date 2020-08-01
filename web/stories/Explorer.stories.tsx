@@ -1,9 +1,9 @@
 import * as React from "react";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
-import { MainPage } from "../src/pages";
+import { Explorer } from "../src/components/templates";
 
-export default { title: "MainPage" };
+export default { title: "Explorer" };
 
 export const withNoProps = () => {
     const client = new ApolloClient({
@@ -13,7 +13,7 @@ export const withNoProps = () => {
 
       return (
         <ApolloProvider client={client}>
-            <MainPage/>
+            <Explorer/>
         </ApolloProvider>
       );
 } 
