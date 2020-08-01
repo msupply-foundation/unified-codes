@@ -1,1 +1,1 @@
-export { IconButton, IconButtonProps } from '@material-ui/core';
+export { IconButton, IconButtonProps } from "@material-ui/core";

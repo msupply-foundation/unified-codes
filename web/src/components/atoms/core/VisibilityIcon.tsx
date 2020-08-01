@@ -1,1 +1,1 @@
-export { Visibility as VisibilityIcon } from '@material-ui/icons';
+export { Visibility as VisibilityIcon } from "@material-ui/icons";

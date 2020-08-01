@@ -1,1 +1,1 @@
-export { SearchBar, SearchBarProps } from './SearchBar';
+export { SearchBar, SearchBarProps } from "./SearchBar";

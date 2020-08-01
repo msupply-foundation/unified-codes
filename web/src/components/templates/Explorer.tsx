@@ -5,7 +5,7 @@ import { Grid } from "../atoms";
 import { EntityBrowser } from "../organisms";
 import { Entity, EntityNode } from "../../types";
 
-const mockData: { entities: EntityNode[] } = { 
+const mockData: { entities: EntityNode[] } = {
   entities: [
     {
       code: "QFWR9789",
@@ -17,7 +17,7 @@ const mockData: { entities: EntityNode[] } = {
       description: "Paracetamol",
       type: "medicinal_product",
     },
-  ]
+  ],
 };
 
 const query = gql`
@@ -31,7 +31,7 @@ const query = gql`
 `;
 
 export const Explorer = () => {
-  const [ entities, setEntities ] = React.useState([]);
+  const [entities, setEntities] = React.useState([]);
   const { loading, error, data } = useQuery(query);
 
   if (entities.length) {
@@ -39,7 +39,7 @@ export const Explorer = () => {
       <Grid container justify="center">
         <EntityBrowser entities={entities} />
       </Grid>
-    )
+    );
   }
 
   if (loading) {

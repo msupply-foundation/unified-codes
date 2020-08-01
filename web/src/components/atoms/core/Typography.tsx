@@ -1,1 +1,1 @@
-export { Typography, TypographyProps } from '@material-ui/core';
+export { Typography, TypographyProps } from "@material-ui/core";

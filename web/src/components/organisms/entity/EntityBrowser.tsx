@@ -16,7 +16,7 @@ export const EntityBrowser: EntityBrowser = ({ entities }) => {
   const resetInput = React.useCallback(() => setInput(""), []);
   const resetData = React.useCallback(() => setData(entities), []);
 
-  const onChange = React.useCallback(value => setInput(value), []);
+  const onChange = React.useCallback((value) => setInput(value), []);
   const onClear = React.useCallback(() => {
     resetInput();
     resetData();
@@ -36,7 +36,7 @@ export const EntityBrowser: EntityBrowser = ({ entities }) => {
         />
       </Grid>
       <Grid item>
-        <EntityTable data={data}/>
+        <EntityTable data={data} />
       </Grid>
     </Grid>
   );

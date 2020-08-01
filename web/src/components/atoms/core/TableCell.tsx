@@ -1,1 +1,1 @@
-export { TableCell,  TableCellProps } from "@material-ui/core";
+export { TableCell, TableCellProps } from "@material-ui/core";

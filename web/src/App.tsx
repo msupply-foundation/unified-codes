@@ -6,9 +6,18 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
-import { AppBar, Button, Grid, Container, IconButton, Toolbar, Typography, VisibilityIcon } from "./components/atoms";
+import {
+  AppBar,
+  Button,
+  Grid,
+  Container,
+  IconButton,
+  Toolbar,
+  Typography,
+  VisibilityIcon,
+} from "./components/atoms";
 import { Explorer, Login } from "./components/templates";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -28,29 +37,41 @@ export const App = () => {
   return (
     <Router>
       <Container>
-        <Grid container spacing={3} direction="column" justify="space-between" alignItems="stretch">
+        <Grid
+          container
+          spacing={3}
+          direction="column"
+          justify="space-between"
+          alignItems="stretch"
+        >
           <Grid container item>
             <AppBar position="static">
               <Toolbar>
                 <Grid container alignItems="center">
-                    <Grid container item xs={11} alignItems="center">
-                      <Grid item>
-                        <Link to="/explorer" className={classes.link}>
-                          <IconButton edge="start" color="inherit" aria-label="menu">
-                            <VisibilityIcon/>
-                          </IconButton>
-                        </Link>
-                      </Grid>
-                      <Grid item>
-                        <Typography variant="h6">
-                          Explorer
-                        </Typography>
-                      </Grid>
+                  <Grid container item xs={11} alignItems="center">
+                    <Grid item>
+                      <Link to="/explorer" className={classes.link}>
+                        <IconButton
+                          edge="start"
+                          color="inherit"
+                          aria-label="menu"
+                        >
+                          <VisibilityIcon />
+                        </IconButton>
+                      </Link>
                     </Grid>
-                    <Grid container item xs={1} alignItems="center">
-                      <Button color="inherit" aria-label="login"><Link to="/login" className={classes.link}>Login</Link></Button>
+                    <Grid item>
+                      <Typography variant="h6">Explorer</Typography>
                     </Grid>
                   </Grid>
+                  <Grid container item xs={1} alignItems="center">
+                    <Button color="inherit" aria-label="login">
+                      <Link to="/login" className={classes.link}>
+                        Login
+                      </Link>
+                    </Button>
+                  </Grid>
+                </Grid>
               </Toolbar>
             </AppBar>
           </Grid>
@@ -58,16 +79,16 @@ export const App = () => {
             <Switch>
               <Route exact path="/explorer">
                 <ApolloProvider client={client}>
-                    <Explorer/>
+                  <Explorer />
                 </ApolloProvider>
               </Route>
               <Route exact path="/login">
                 <ApolloProvider client={client}>
-                    <Login/>
+                  <Login />
                 </ApolloProvider>
               </Route>
               <Route>
-                <Redirect to="/explorer"/>
+                <Redirect to="/explorer" />
               </Route>
             </Switch>
           </Grid>

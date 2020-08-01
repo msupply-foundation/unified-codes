@@ -1,6 +1,12 @@
-
 import * as React from "react";
-import { Button, ClearIcon, Grid, InputAdornment, SearchIcon, TextField } from "../../atoms";
+import {
+  Button,
+  ClearIcon,
+  Grid,
+  InputAdornment,
+  SearchIcon,
+  TextField,
+} from "../../atoms";
 
 export interface SearchBarProps {
   input?: string;
@@ -17,20 +23,29 @@ export const SearchBar: SearchBar = ({
   onClear,
   onSearch,
 }) => {
-  const onChangeText = React.useCallback(event => onChange ? onChange(event.target.value) : null, [onChange]);
+  const onChangeText = React.useCallback(
+    (event) => (onChange ? onChange(event.target.value) : null),
+    [onChange]
+  );
 
   return (
-    <Grid container >
+    <Grid container>
       <Grid item xs={11}>
         <TextField
           fullWidth
           value={input}
           onChange={onChangeText}
-    InputProps={{ endAdornment: <InputAdornment position="end"><Button startIcon={<ClearIcon/>} onClick={onClear}/></InputAdornment>}}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <Button startIcon={<ClearIcon />} onClick={onClear} />
+              </InputAdornment>
+            ),
+          }}
         />
       </Grid>
       <Grid item xs={1}>
-        <Button fullWidth startIcon={<SearchIcon/>}  onClick={onSearch}/>
+        <Button fullWidth startIcon={<SearchIcon />} onClick={onSearch} />
       </Grid>
     </Grid>
   );
