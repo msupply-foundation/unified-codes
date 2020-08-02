@@ -10,7 +10,7 @@ export const withNoProps = () => {
 export const withControlProps = () => {
   const [input, setInput] = React.useState("");
 
-  const updateInput = React.useCallback(value => setInput(value), []);
+  const updateInput = React.useCallback((value) => setInput(value), []);
   const resetInput = React.useCallback(() => setInput(""), []);
   const alertInput = React.useCallback(() => alert(input), [input]);
 
