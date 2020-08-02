@@ -21,7 +21,8 @@
           "build",
           "lint",
           "test",
-          "e2e"
+          "e2e",
+          "build-storybook"
         ]
       }
     }
@@ -32,6 +33,15 @@
     },
     "data-service": {
       "tags": []
+    },
+    "web": {
+      "tags": []
+    },
+    "web-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "web"
+      ]
     }
   }
 }
