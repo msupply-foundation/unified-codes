@@ -1,3 +1,4 @@
+export { PersonIcon } from "./PersonIcon";
 export { AppBar, AppBarProps } from "./AppBar";
 export { Box, BoxProps } from "./Box";
 export { Button, ButtonProps } from "./Button";
@@ -6,6 +7,7 @@ export { Container, ContainerProps } from "./Container";
 export { Grid, GridProps } from "./Grid";
 export { IconButton, IconButtonProps } from "./IconButton";
 export { InputAdornment, InputAdornmentProps } from "./InputAdornment";
+export { KeyIcon } from "./KeyIcon";
 export { Menu, MenuProps } from "./Menu";
 export { MenuIcon } from "./MenuIcon";
 export { MenuItem, MenuItemProps } from "./MenuItem";
