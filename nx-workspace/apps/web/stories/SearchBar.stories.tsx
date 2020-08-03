@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SearchBar } from '../src/components';
-import { InputChangeElement, OnChange, OnClick, ButtonClickElement } from 'types';
+import { InputChangeElement, OnChange, OnClick, ButtonClickElement } from '../src/types';
 
 export default { title: 'SearchBar' };
 

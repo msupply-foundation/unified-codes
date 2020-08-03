@@ -120,11 +120,11 @@
           "builder": "@nrwl/web:build",
           "options": {
             "outputPath": "dist/apps/web",
-            "index": "apps/web/src/index.tsx",
+            "index": "apps/web/src/index.html",
             "main": "apps/web/src/App.tsx",
-            "polyfills": ["apps/web/src/polyfills.ts"],
+            "polyfills": "apps/web/src/polyfills.ts",
             "tsConfig": "apps/web/tsconfig.app.json",
-            "assets": [],
+            "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
             "styles": [],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
