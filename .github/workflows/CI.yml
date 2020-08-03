@@ -4,19 +4,19 @@ jobs:
   check-types:
     runs-on: ubuntu-latest
     env:
-      api-directory: ./api
+      api-directory: ./nx-workspace
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
       run: npm install
       working-directory: ${{env.api-directory}}
     - name: Run api type check
-      run: npm run check-types
+      run: npm run nx build api
       working-directory: ${{env.api-directory}}
   test-api:
     runs-on: ubuntu-latest
     env:
-      api-directory: ./monorepo
+      api-directory: ./nx-workspace
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
@@ -28,8 +28,8 @@ jobs:
   test-data-service:
     runs-on: ubuntu-latest
     env:
-      api-directory: ./monorepo
-      database-directory: ./data-service/database
+      api-directory: ./nx-workspace
+      database-directory: ./nx-workspace/apps/data-service/src/app/database
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
