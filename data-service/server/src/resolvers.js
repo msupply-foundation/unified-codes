@@ -1,3 +1,5 @@
+const ADMIN_ROLE = 'ADMIN';
+
 const queries = {
   entity: (code) => {
     return `{
@@ -24,6 +26,11 @@ const queries = {
     }`;
   },
 };
+const userHasRole = (user, role) => {
+  if (!user?.roles?.length) return false;
+
+  return user.roles.some((r) => r === role);
+};
 
 export const resolvers = {
   Query: {
@@ -39,6 +46,13 @@ export const resolvers = {
       const query = queries.entities(type);
       const response = await dataSources.dgraph.postQuery(query);
       return response.data.query;
+    },
+    user: async (_parent, _args, context) => {
+      const { user } = context;
+      if (!user || !user.hasRole(ADMIN_ROLE)) {
+        throw new Error('Not authenticated');
+      }
+      return user;
     },
   },
 };
