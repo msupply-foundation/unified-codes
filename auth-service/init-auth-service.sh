@@ -28,10 +28,10 @@ curl -v http://localhost:9990/auth/admin/realms/unified-codes/roles -H "Content-
 
 echo
 echo " * user creation"
-curl -v http://localhost:9990/auth/admin/realms/unified-codes/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN"   --data '{"username": "demo-admin", "firstName":"Demo", "lastName":"Admin", "attributes": {}, "email":"demo-admin@msupply.foundation", "emailVerified": true, "enabled":"true", "credentials": [{"type": "password", "value": "pass", "temporary": false}], "realmRoles": ["ADMIN"] }'
+curl -v http://localhost:9990/auth/admin/realms/unified-codes/users -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN"   --data '{"username": "demo-admin", "firstName":"Demo", "lastName":"Admin", "attributes": {}, "email":"demo-admin@msupply.foundation", "emailVerified": true, "enabled":"true", "credentials": [{"type": "password", "value": "pass", "temporary": false}], "realmRoles": ["ADMIN"] }'
 
 echo
 echo " * client creation"
-curl -v http://localhost:9990/auth/admin/realms/unified-codes/users -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN"   --data '"attributes": {}, "clientId": "unified-codes-data", "enabled": true, "protocol": "openid-connect", "redirectUris": [], "rootUrl": "http://localhost:4000"'
+curl -v http://localhost:9990/auth/admin/realms/unified-codes/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN"   --data '{"clientId": "unified-codes-data", "enabled": true, "protocol": "openid-connect", "redirectUris": [], "rootUrl": "http://localhost:4000", "authorizationServicesEnabled": true, "bearerOnly": false, "clientAuthenticatorType": "client-secret", "publicClient": false, "serviceAccountsEnabled": true }'
 
 open "http://localhost:9990/auth/admin/master/console/#/realms/unified-codes"
