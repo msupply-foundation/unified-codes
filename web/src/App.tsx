@@ -1,33 +1,27 @@
 import * as React from "react";
 import {
   BrowserRouter as Router,
-  Link,
   Route,
+  Link,
   Switch,
   Redirect,
 } from "react-router-dom";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import {
   AppBar,
-  Button,
-  Grid,
   Container,
-  IconButton,
+  Explorer,
+  Grid,
+  Login,
+  MenuBar,
+  MenuItem,
   Toolbar,
-  Typography,
-  VisibilityIcon,
-} from "./components/atoms";
-import { Explorer, Login } from "./components/templates";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    link: { color: "white" },
-  })
-);
+} from "./components";
 
 export const App = () => {
-  const classes = useStyles();
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const onClick = React.useCallback(() => setIsOpen(true), [setIsOpen]);
+  const onClose = React.useCallback(() => setIsOpen(false), [setIsOpen]);
 
   const client = new ApolloClient({
     uri: "http://localhost:4000/graphql",
@@ -44,34 +38,13 @@ export const App = () => {
           justify="space-between"
           alignItems="stretch"
         >
-          <Grid container item>
+          <Grid item>
             <AppBar position="static">
               <Toolbar>
-                <Grid container alignItems="center">
-                  <Grid container item xs={11} alignItems="center">
-                    <Grid item>
-                      <Link to="/explorer" className={classes.link}>
-                        <IconButton
-                          edge="start"
-                          color="inherit"
-                          aria-label="menu"
-                        >
-                          <VisibilityIcon />
-                        </IconButton>
-                      </Link>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="h6">Explorer</Typography>
-                    </Grid>
-                  </Grid>
-                  <Grid container item xs={1} alignItems="center">
-                    <Button color="inherit" aria-label="login">
-                      <Link to="/login" className={classes.link}>
-                        Login
-                      </Link>
-                    </Button>
-                  </Grid>
-                </Grid>
+                <MenuBar open={isOpen} onClick={onClick} onClose={onClose}>
+                  <MenuItem onClick={onClose}><Link to="/explorer" >Browse</Link></MenuItem>
+                  <MenuItem onClick={onClose}><Link to="/login">Admin</Link></MenuItem>
+                </MenuBar>
               </Toolbar>
             </AppBar>
           </Grid>
