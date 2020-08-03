@@ -1,6 +1,5 @@
 import * as React from "react";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
-
 import { Login } from "../src/components/templates";
 
 export default { title: "Login" };
