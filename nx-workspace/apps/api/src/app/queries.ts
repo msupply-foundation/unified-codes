@@ -1,18 +1,18 @@
 const items: { [key: string]: string } = {
   get: `query vars($code: string) {
-    query (func: has(code)) @filter(eq(code, $code)) {	
+    query (func: eq(code, $code)) {	
       code
       description
     }
   }`,
   search: `query vars($term: string) {
-    query(func: has(code)) @filter(regexp(description, $term) AND eq(type, "unit_of_use")) {
+    query(func: regexp(description, $term)) @filter(eq(type, "unit_of_use")) {
       code
       description
     }
   }`,
   searchExact: `query vars($name: string) {
-    query(func: has(code)) @filter(eq(description, $name) AND eq(type, "unit_of_use")) {
+    query(func: eq(description, $name)) @filter(eq(type, "unit_of_use")) {
       code
       description
     }
