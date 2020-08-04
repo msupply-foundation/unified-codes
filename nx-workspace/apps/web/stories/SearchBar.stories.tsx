@@ -1,14 +1,5 @@
 import * as React from "react";
 import { SearchBar } from "../src/components";
-<<<<<<< HEAD:web/stories/SearchBar.stories.tsx
-=======
-import {
-  InputChangeElement,
-  OnChange,
-  OnClick,
-  ButtonClickElement,
-} from "../src/types";
->>>>>>> master:nx-workspace/apps/web/stories/SearchBar.stories.tsx
 
 export default { title: "SearchBar" };
 
