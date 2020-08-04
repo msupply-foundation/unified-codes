@@ -1,1 +1,1 @@
-export { EntityBrowser, EntityBrowserProps } from './EntityBrowser';
+export { EntityBrowser, EntityBrowserProps } from "./EntityBrowser";

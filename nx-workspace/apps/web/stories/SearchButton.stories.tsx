@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { SearchButton } from '../src/components';
+import * as React from "react";
+import { SearchButton } from "../src/components";
 
-export default { title: 'SearchButton' };
+export default { title: "SearchButton" };
 
 export const withNoProps = () => {
-    return <SearchButton/>;
-}
+  return <SearchButton />;
+};

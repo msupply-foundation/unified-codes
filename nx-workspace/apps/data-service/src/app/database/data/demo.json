@@ -19,7 +19,7 @@
           "has_property": [
             {
               "type": "source",
-              "value": "https://drugbank.ca/drugs/" 
+              "value": "https://drugbank.ca/drugs/"
             }
           ]
         },
