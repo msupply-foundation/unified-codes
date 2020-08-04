@@ -46,6 +46,7 @@
     "http-status-codes": "^1.4.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-router-dom": "^5.2.0",
     "typescript": "^3.9.6"
   },
   "devDependencies": {

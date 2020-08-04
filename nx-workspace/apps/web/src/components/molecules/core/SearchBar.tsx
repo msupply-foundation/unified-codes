@@ -1,25 +1,10 @@
 import * as React from "react";
-<<<<<<< HEAD:web/src/components/molecules/core/SearchBar.tsx
+import { Grid } from "../../atoms";
+
 import {
-  Button,
-  ClearIcon,
-  Grid,
-  InputAdornment,
-  SearchIcon,
-  TextField,
-} from "../../atoms";
-=======
-import { styled } from "@material-ui/core/styles";
-import { ClearIcon, Container } from "../../atoms";
-import { InputField, SearchButton } from "../../molecules";
-import {
-  OnChange,
-  InputChangeElement,
-  OnClick,
-  ButtonClickElement,
-} from "../../../types";
-import { flexStyle, flexRowStyle } from "../../../styles";
->>>>>>> master:nx-workspace/apps/web/src/components/molecules/core/SearchBar.tsx
+  ClearInput,
+  SearchButton,
+} from "../../molecules";
 
 export interface SearchBarProps {
   input?: string;
@@ -44,21 +29,15 @@ export const SearchBar: SearchBar = ({
   return (
     <Grid container>
       <Grid item xs={11}>
-        <TextField
+        <ClearInput
           fullWidth
           value={input}
           onChange={onChangeText}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Button startIcon={<ClearIcon />} onClick={onClear} />
-              </InputAdornment>
-            ),
-          }}
+          onClear={onClear}
         />
       </Grid>
       <Grid item xs={1}>
-        <Button fullWidth startIcon={<SearchIcon />} onClick={onSearch} />
+        <SearchButton fullWidth onClick={onSearch} />
       </Grid>
     </Grid>
   );
