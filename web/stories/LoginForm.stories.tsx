@@ -1,8 +1,12 @@
 import * as React from "react";
-import { LoginForm } from "../src/components";
+import { Dialog, DialogContent, LoginForm } from "../src/components";
 
 export default { title: "LoginForm" };
 
-export const withNoProps = () => {
-  return <LoginForm />
-};
+export const withDialog = () => (
+  <Dialog open={true}>
+    <DialogContent dividers>
+      <LoginForm />
+    </DialogContent>
+  </Dialog>
+);
