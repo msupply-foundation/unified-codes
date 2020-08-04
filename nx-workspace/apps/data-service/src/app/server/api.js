@@ -35,8 +35,8 @@ const server = new ApolloServer({
       rxNav: new RxNavDataSource(),
     };
   },
-  context: async ({ req }) => {
-    const token = getToken(req?.headers || {});
+  context: async ({ request }) => {
+    const token = getToken(request?.headers || {});
     const publicKey = await getPublicKey();
     const user = new User(token, publicKey);
 
