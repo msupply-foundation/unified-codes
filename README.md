@@ -3,23 +3,24 @@
 ## Getting started
 
 1. Install docker [here](https://docs.docker.com/get-docker/).
-2. Run standalone dgraph instance: `dgraph/docker.sh`.
+2. Run standalone dgraph instance: `/nx-workspace/apps/data-service/src/app/database/docker.sh`.
 3. Dgraph is now running, you can access Ratel at http://localhost:8000.
 
 ## Usage
 
+Scripts subdirectory: `/nx-workspace/apps/data-service/src/app/database/`
 Note: Prior to running the shell scripts you may have to allow execute permission: `chmod +x alter.sh mutate.sh init.sh`
 
 ### Update graph schema
 
 ```
-./alter.sh ./schema.gql
+./alter.sh ../data/schema.gql
 ```
 
 ### Add/update data
 
 ```
-./mutate.sh ./data.json
+./mutate.sh ../data/demo.json
 ```
 
 ### Query graph

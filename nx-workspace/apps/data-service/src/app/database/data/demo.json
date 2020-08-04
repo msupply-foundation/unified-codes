@@ -1,0 +1,300 @@
+{
+  "set": [
+    {
+      "description": "Amoxicillin",
+      "code": "QFWR9789",
+      "type": "medicinal_product",
+      "has_property": [
+        {
+          "type": "ddd",
+          "value": "1g"
+        },
+        {
+          "type": "who_eml_code",
+          "value": "6.2.1 Beta-lactam medicines"
+        },
+        {
+          "type": "drugbank_code",
+          "value": "DB01060",
+          "has_property": [
+            {
+              "type": "source",
+              "value": "https://drugbank.ca/drugs/"
+            }
+          ]
+        },
+        {
+          "type": "atc_code",
+          "value": "J01CA04"
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin Anhydrous"
+        },
+        {
+          "type": "atc_code",
+          "value": "J01CA04"
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin Anhydrous"
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin trihydrate",
+          "has_property": [
+            {
+              "type": "unspc_code",
+              "value": "51281712"
+            }
+          ]
+        },
+        {
+          "type": "synonym",
+          "value": "Amoxicillin sodium",
+          "has_property": [
+            {
+              "type": "usfda_code",
+              "value": "544Y3K6MYH"
+            }
+          ]
+        }
+      ],
+      "has_child": [
+        {
+          "code": "AMOX0R47",
+          "description": "Amoxicillin oral",
+          "type": "form_category",
+          "has_property": [
+            {
+              "type": "SnoMED CT",
+              "value": "350162003"
+            }
+          ],
+          "has_child": [
+            {
+              "code": "AMOX0C4P",
+              "description": "Amoxicillin oral capsule",
+              "type": "form",
+              "has_child": [
+                {
+                  "description": "Amoxicillin oral capsule, 250mg",
+                  "code": "368C74BF",
+                  "type": "unit_of_use",
+                  "has_property": [
+                    {
+                      "type": "strength",
+                      "value": "250mg"
+                    },
+                    {
+                      "type": "RxNorm RxCUI",
+                      "value": "308182"
+                    },
+                    {
+                      "type": "ddd_factor",
+                      "value": "4"
+                    }
+                  ],
+                  "has_child": [
+                    {
+                      "code": "DF2947SK",
+                      "type": "product_pack",
+                      "description": "Amoxicillin oral capsule, 250mg x 100",
+                      "has_property": [
+                        {
+                          "type": "pack_size",
+                          "value": "100",
+                          "has_property": [
+                            {
+                              "type": "brand",
+                              "value": "Wymox",
+                              "has_property": [
+                                {
+                                  "type": "manufacturer",
+                                  "value": "Pfizer Ltd"
+                                },
+                                {
+                                  "type": "GS1",
+                                  "value": "294719487329872"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "brand",
+                              "value": "Almox",
+                              "has_property": [
+                                {
+                                  "type": "manufacturer",
+                                  "value": "Alkem Laboratories Ltd"
+                                },
+                                {
+                                  "type": "GS1",
+                                  "value": "294719487329872"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "brand",
+                              "value": "Ambionica",
+                              "has_property": [
+                                {
+                                  "type": "GS1 Code",
+                                  "value": "29471948329872"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "usd_benchmark_price",
+                          "value": "0.0235"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "AMOX0T4B",
+              "description": "Amoxicillin oral tablet",
+              "type": "form",
+              "has_child": [
+                {
+                  "code": "368C74BE",
+                  "type": "unit_of_use",
+                  "description": "Amoxicillin oral tablet, 500mg",
+                  "has_property": [
+                    {
+                      "type": "strength",
+                      "value": "500mg"
+                    },
+                    {
+                      "type": "RxNorm RxCUI",
+                      "value": "C0974350"
+                    },
+                    {
+                      "type": "ddd_factor",
+                      "value": "2"
+                    }
+                  ],
+                  "has_child": [
+                    {
+                      "code": "DF2947SL",
+                      "type": "product_pack",
+                      "description": "Amoxicillin oral tablet, 500mg x 100",
+                      "has_property": [
+                        {
+                          "type": "pack_size",
+                          "value": "100"
+                        },
+                        {
+                          "type": "brand",
+                          "value": "Trimox",
+                          "has_property": [
+                            {
+                              "type": "manufacturer",
+                              "value": "Mapra Laboratories Pvt Ltd"
+                            },
+                            {
+                              "type": "GS1",
+                              "value": "294719487329856"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "usd_benchmark_price",
+                          "value": "0.88"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Paracetamol",
+      "code": "GH89P98W",
+      "type": "medicinal_product",
+      "has_property": [
+        {
+          "type": "ddd",
+          "value": "3g"
+        },
+        {
+          "type": "atc_code",
+          "value": "N02BE01"
+        }
+      ],
+      "has_child": [
+        {
+          "description": "Paracetamol oral",
+          "type": "form_category",
+          "has_child": [
+            {
+              "code": "P4R40T4B",
+              "description": "Paracetamol oral tablet",
+              "type": "form",
+              "has_child": [
+                {
+                  "description": "Paracetamol oral tablet, 300mg",
+                  "code": "5589F4BF",
+                  "type": "unit_of_use",
+                  "has_property": [
+                    {
+                      "type": "strength",
+                      "value": "300mg"
+                    },
+                    {
+                      "type": "RxNorm RxCUI",
+                      "value": "C0974350"
+                    },
+                    {
+                      "type": "ddd_factor",
+                      "value": "2"
+                    }
+                  ],
+                  "has_child": [
+                    {
+                      "description": "Paracetamol oral tablet, 300mg x 30",
+                      "code": "DF2947SL",
+                      "type": "product_pack",
+                      "has_property": [
+                        {
+                          "type": "pack_size",
+                          "value": "30"
+                        },
+                        {
+                          "type": "brand",
+                          "value": "Trimox",
+                          "has_property": [
+                            {
+                              "type": "manufacturer",
+                              "value": "Mapra Laboratories Pvt Ltd"
+                            },
+                            {
+                              "type": "GS1",
+                              "value": "294719487329856"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "usd_benchmark_price",
+                          "value": "0.88"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
