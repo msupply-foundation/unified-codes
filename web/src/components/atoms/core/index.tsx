@@ -20,7 +20,6 @@ export { TableBody, TableBodyProps } from "./TableBody";
 export { TableCell, TableCellProps } from "./TableCell";
 export { TableHead, TableHeadProps } from "./TableHead";
 export { TableRow, TableRowProps } from "./TableRow";
-export { TextField, TextFieldProps } from "./TextField";
 export { TextField, TextFieldProps, StandardTextFieldProps, FilledTextFieldProps, OutlinedTextFieldProps } from "./TextField";
 export { Toolbar, ToolbarProps } from "./Toolbar";
 export { Typography, TypographyProps } from "./Typography";
