@@ -4,6 +4,8 @@ export { Box, BoxProps } from "./Box";
 export { Button, ButtonProps } from "./Button";
 export { ClearIcon } from "./ClearIcon";
 export { Container, ContainerProps } from "./Container";
+export { Dialog, DialogProps } from "./Dialog";
+export { DialogContent, DialogContentProps } from "./DialogContent";
 export { Grid, GridProps } from "./Grid";
 export { IconButton, IconButtonProps } from "./IconButton";
 export { InputAdornment, InputAdornmentProps } from "./InputAdornment";

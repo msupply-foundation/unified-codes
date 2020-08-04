@@ -1,0 +1,1 @@
+export { DialogContent, DialogContentProps } from "@material-ui/core";
