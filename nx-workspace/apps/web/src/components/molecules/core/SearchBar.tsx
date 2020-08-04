@@ -1,20 +1,16 @@
 import * as React from "react";
-import { styled } from "@material-ui/core/styles";
-import { ClearIcon, Container } from "../../atoms";
-import { InputField, SearchButton } from "../../molecules";
+import { Grid } from "../../atoms";
+
 import {
-  OnChange,
-  InputChangeElement,
-  OnClick,
-  ButtonClickElement,
-} from "../../../types";
-import { flexStyle, flexRowStyle } from "../../../styles";
+  ClearInput,
+  SearchButton,
+} from "../../molecules";
 
 export interface SearchBarProps {
   input?: string;
-  onChange?: OnChange<InputChangeElement>;
-  onClear?: OnClick<ButtonClickElement>;
-  onSearch?: OnClick<ButtonClickElement>;
+  onChange?: (input: string) => void;
+  onClear?: () => void;
+  onSearch?: () => void;
 }
 
 export type SearchBar = React.FunctionComponent<SearchBarProps>;
@@ -24,43 +20,25 @@ export const SearchBar: SearchBar = ({
   onChange,
   onClear,
   onSearch,
-  ...other
 }) => {
-  const FlexContainer = React.useMemo(
-    () =>
-      styled(({ ...props }) => <Container {...props} />)(styles.flexContainer),
-    []
-  );
-  const FlexInputField = React.useMemo(
-    () =>
-      styled(({ ...props }) => <InputField {...props} />)(
-        styles.flexInputField
-      ),
-    []
-  );
-  const FlexSearchButton = React.useMemo(
-    () =>
-      styled(({ ...props }) => <SearchButton {...props} />)(
-        styles.flexSearchButton
-      ),
-    []
+  const onChangeText = React.useCallback(
+    (event) => (onChange ? onChange(event.target.value) : null),
+    [onChange]
   );
 
   return (
-    <FlexContainer {...other}>
-      <FlexInputField
-        input={input}
-        icon={ClearIcon}
-        onChange={onChange}
-        onClick={onClear}
-      />
-      <FlexSearchButton onClick={onSearch} />
-    </FlexContainer>
+    <Grid container>
+      <Grid item xs={11}>
+        <ClearInput
+          fullWidth
+          value={input}
+          onChange={onChangeText}
+          onClear={onClear}
+        />
+      </Grid>
+      <Grid item xs={1}>
+        <SearchButton fullWidth onClick={onSearch} />
+      </Grid>
+    </Grid>
   );
-};
-
-const styles = {
-  flexContainer: flexRowStyle,
-  flexInputField: { ...flexStyle, flexGrow: 95 },
-  flexSearchButton: { ...flexStyle, flexGrow: 5 },
 };

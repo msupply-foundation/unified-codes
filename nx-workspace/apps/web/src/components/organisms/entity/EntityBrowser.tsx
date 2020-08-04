@@ -1,11 +1,6 @@
 import * as React from "react";
-import { styled } from "@material-ui/core/styles";
-
-import { Container } from "../../atoms";
+import { Grid } from "../../atoms";
 import { SearchBar, EntityTable } from "../../molecules";
-
-import { flexColumnStyle } from "../../../styles";
-
 import { Entity } from "../../../types";
 
 export interface EntityBrowserProps {
@@ -21,9 +16,7 @@ export const EntityBrowser: EntityBrowser = ({ entities }) => {
   const resetInput = React.useCallback(() => setInput(""), []);
   const resetData = React.useCallback(() => setData(entities), []);
 
-  const onChange = React.useCallback((event) => {
-    setInput(event.target.value);
-  }, []);
+  const onChange = React.useCallback((value) => setInput(value), []);
   const onClear = React.useCallback(() => {
     resetInput();
     resetData();
@@ -32,25 +25,19 @@ export const EntityBrowser: EntityBrowser = ({ entities }) => {
     setData(entities.filter((entity) => entity.matches(input)));
   }, [input]);
 
-  const FlexContainer = React.useMemo(
-    () =>
-      styled(({ ...props }) => <Container {...props} />)(styles.flexContainer),
-    []
-  );
-
   return (
-    <FlexContainer>
-      <SearchBar
-        input={input}
-        onChange={onChange}
-        onClear={onClear}
-        onSearch={onSearch}
-      />
-      <EntityTable data={data} />
-    </FlexContainer>
+    <Grid container direction="column">
+      <Grid item>
+        <SearchBar
+          input={input}
+          onChange={onChange}
+          onClear={onClear}
+          onSearch={onSearch}
+        />
+      </Grid>
+      <Grid item>
+        <EntityTable data={data} />
+      </Grid>
+    </Grid>
   );
-};
-
-const styles = {
-  flexContainer: flexColumnStyle,
 };
