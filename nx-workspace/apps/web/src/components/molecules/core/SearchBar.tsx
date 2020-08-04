@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 import * as React from "react";
 import { styled } from "@material-ui/core/styles";
-import { ClearIcon, SearchButton, Container } from "../../atoms";
-import { InputField } from "../../molecules";
+import { ClearIcon, Container } from "../../atoms";
+import { InputField, SearchButton } from "../../molecules";
 import {
   OnChange,
   InputChangeElement,
@@ -10,14 +9,6 @@ import {
   ButtonClickElement,
 } from "../../../types";
 import { flexStyle, flexRowStyle } from "../../../styles";
-=======
-import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import { ClearIcon, Container } from '../../atoms';
-import { InputField, SearchButton } from '../../molecules';
-import { OnChange, InputChangeElement, OnClick, ButtonClickElement } from '../../../types';
-import { flexStyle, flexRowStyle } from '../../../styles';
->>>>>>> master
 
 export interface SearchBarProps {
   input?: string;
