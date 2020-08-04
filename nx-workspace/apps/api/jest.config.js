@@ -4,8 +4,8 @@ module.exports = {
   globals: {
     'ts-jest': {
       tsConfig: '<rootDir>/tsconfig.spec.json',
-      allowJs: 'true'
-    }
+      allowJs: 'true',
+    },
   },
   coverageDirectory: '../../coverage/apps/api',
 };
