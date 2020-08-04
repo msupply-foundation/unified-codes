@@ -26,11 +26,6 @@ const queries = {
     }`;
   },
 };
-const userHasRole = (user, role) => {
-  if (!user?.roles?.length) return false;
-
-  return user.roles.some((r) => r === role);
-};
 
 export const resolvers = {
   Query: {
@@ -49,7 +44,8 @@ export const resolvers = {
     },
     user: async (_parent, _args, context) => {
       const { user } = context;
-      if (!user || !user.hasRole(ADMIN_ROLE)) {
+
+      if (!user?.hasRole(ADMIN_ROLE)) {
         throw new Error('Not authenticated');
       }
       return user;
