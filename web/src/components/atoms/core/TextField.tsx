@@ -1,1 +1,1 @@
-export { TextField, TextFieldProps } from "@material-ui/core";
+export { TextField, TextFieldProps, StandardTextFieldProps, FilledTextFieldProps, OutlinedTextFieldProps } from "@material-ui/core";
