@@ -5,7 +5,9 @@ import { typeDefs } from './schema';
 import { DgraphDataSource, RxNavDataSource } from './data';
 import { resolvers } from './resolvers';
 import { User } from './classes/user';
-// import fetch from 'node-fetch';
+import fetch from 'node-fetch';
+
+const AUTH_URL = 'http://127.0.0.1:9990/auth/realms/unified-codes';
 
 const getToken = (headers) => {
   const tokenWithBearer = headers.authorization || '';
@@ -14,23 +16,15 @@ const getToken = (headers) => {
   return token;
 };
 
-const getUser = (request) => {
-  const token = getToken(request.headers);
-  const user = new User(token);
+const getPublicKey = async () => {
+  const response = await fetch(AUTH_URL);
+  const openIdDetails = await response.json();
+  const publicKey = `-----BEGIN PUBLIC KEY-----
+${openIdDetails?.public_key}
+-----END PUBLIC KEY-----`;
 
-  return user;
+  return publicKey;
 };
-
-// const fetchPublicKey = async () => {
-//   const response = await fetch(AUTH_BASE_URL);
-//   const authConfig = await response.json();
-
-//   return `-----BEGIN PUBLIC KEY-----
-// ${authConfig.public_key}
-// -----END PUBLIC KEY-----`;
-// };
-
-//const publicKey = await fetchPublicKey();
 
 const server = new ApolloServer({
   typeDefs,
@@ -41,8 +35,10 @@ const server = new ApolloServer({
       rxNav: new RxNavDataSource(),
     };
   },
-  context: ({ req }) => {
-    const user = getUser(req);
+  context: async ({ req }) => {
+    const token = getToken(req.headers);
+    const publicKey = await getPublicKey();
+    const user = new User(token, publicKey);
 
     return { user };
   },
