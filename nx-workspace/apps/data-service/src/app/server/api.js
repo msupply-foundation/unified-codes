@@ -10,7 +10,7 @@ import fetch from 'node-fetch';
 const AUTH_URL = 'http://127.0.0.1:9990/auth/realms/unified-codes';
 
 const getToken = (headers) => {
-  const tokenWithBearer = headers.authorization || '';
+  const tokenWithBearer = headers?.authorization || '';
   const token = tokenWithBearer.split(' ')[1];
 
   return token;
@@ -36,7 +36,7 @@ const server = new ApolloServer({
     };
   },
   context: async ({ req }) => {
-    const token = getToken(req.headers);
+    const token = getToken(req?.headers || {});
     const publicKey = await getPublicKey();
     const user = new User(token, publicKey);
 
