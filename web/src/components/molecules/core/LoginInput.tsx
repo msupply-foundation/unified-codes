@@ -1,25 +1,20 @@
 import * as React from "react";
 
-import { Grid, KeyIcon, PersonIcon, TextField } from "../../atoms";
+import { Grid } from "../../atoms";
+import { UsernameInput, PasswordInput } from "../../molecules";
 
-export const LoginInput = () => (
+export interface LoginInputProps {
+    username?: string,
+    password?: string,
+    onChange?: ({ username, password }: { username?: string, password?: string }) => void
+}
+
+export type LoginInput = React.FunctionComponent<LoginInputProps>;
+
+export const LoginInput: LoginInput = ({ username = "", password = "", onChange = () => null }) => (
     <Grid container direction="column">
-        <Grid container spacing={1} alignItems="flex-end">
-            <Grid item>
-                <PersonIcon/>
-            </Grid> 
-            <Grid item>
-                <TextField label="Username" />
-            </Grid> 
-        </Grid>
-        <Grid container spacing={1} alignItems="flex-end">
-            <Grid item>
-                <KeyIcon/>
-            </Grid> 
-            <Grid item>
-                <TextField label="Password" type="password"/>
-            </Grid> 
-        </Grid>
+        <UsernameInput input={username} onChange={value => onChange({ username: value, password })} />
+        <PasswordInput input={password} onChange={value => onChange({ username, password: value })} />
     </Grid>
 );
 
