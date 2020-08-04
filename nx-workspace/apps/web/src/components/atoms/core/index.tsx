@@ -1,8 +1,10 @@
+export { Alert, AlertProps } from "./Alert";
 export { Button, ButtonProps } from "./Button";
 export { ClearIcon, ClearIconProps } from "./ClearIcon";
 export { Container, ContainerProps } from "./Container";
 export { Input, InputProps } from "./Input";
 export { SearchIcon, SearchIconProps } from "./SearchIcon";
+export { Snackbar, SnackbarProps } from "./Snackbar";
 export { Table, TableProps } from "./Table";
 export { TableBody, TableBodyProps } from "./TableBody";
 export { TableCell, TableCellProps } from "./TableCell";

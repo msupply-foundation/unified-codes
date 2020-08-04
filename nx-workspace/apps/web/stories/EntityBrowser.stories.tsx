@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { EntityNode, Entity } from "../src/types";
-import { EntityBrowser } from "../src/components";
+import { Alert, AlertProps, EntityBrowser, Snackbar } from "../src/components";
 
 export default { title: "EntityBrowser" };
 
@@ -23,6 +23,12 @@ export const withMockData = () => {
 };
 
 export const withApolloData = () => {
+  type UserAlert = {
+    severity: AlertProps["Color"];
+    show: boolean;
+    text: string;
+  };
+  const defaultAlert: UserAlert = { show: false, text: "", severity: "info" };
   const client = new ApolloClient({
     uri: "http://localhost:4000/graphql",
     cache: new InMemoryCache(),
@@ -38,7 +44,17 @@ export const withApolloData = () => {
     }
   `;
 
+  const hideAlert = () => {
+    setAlert(defaultAlert);
+  };
+
+  const showAlert = (text: string, severity: AlertProps["Color"]) => {
+    const newAlert: UserAlert = { show: true, text, severity };
+    setAlert(newAlert);
+  };
+
   const [data, setData] = React.useState([]);
+  const [alert, setAlert] = React.useState(defaultAlert);
 
   if (data.length) {
     const entities = data.map(
@@ -46,12 +62,23 @@ export const withApolloData = () => {
     );
     return <EntityBrowser entities={entities} />;
   } else {
-    client
-      .query({ query })
-      .then((response) => {
-        setData(response?.data?.entities ?? []);
-      })
-      .catch((error) => console.log(error));
-    return null;
+    if (!alert.show) {
+      showAlert("Fetching...", "info");
+      client
+        .query({ query })
+        .then((response) => {
+          setData(response?.data?.entities ?? []);
+        })
+        .catch((error) => {
+          showAlert(error.message, "error");
+        });
+    }
+    return (
+      <Snackbar open={alert.show} autoHideDuration={6000} onClose={hideAlert}>
+        <Alert onClose={hideAlert} severity={alert.severity}>
+          {alert.text}
+        </Alert>
+      </Snackbar>
+    );
   }
 };
