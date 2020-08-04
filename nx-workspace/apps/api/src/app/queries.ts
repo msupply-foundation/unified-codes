@@ -18,7 +18,7 @@ const items: { [key: string]: string } = {
     }
   }`,
   all: `{
-    query(func: has(code)) @filter(eq(type,"unit_of_use")) {
+    query(func: eq(type,"unit_of_use")) @filter(has(code)) {
       code
       description
     }
