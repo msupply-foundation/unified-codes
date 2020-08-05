@@ -1,4 +1,4 @@
-export { Alert, AlertProps } from "./Alert";
+export { Alert, AlertProps, Severity } from "./Alert";
 export { AppBar, AppBarProps } from "./AppBar";
 export { Box, BoxProps } from "./Box";
 export { Button, ButtonProps } from "./Button";

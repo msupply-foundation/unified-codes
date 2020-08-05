@@ -1,7 +1,13 @@
 import * as React from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { EntityNode, Entity } from "../src/types";
-import { Alert, AlertProps, EntityBrowser, Snackbar } from "../src/components";
+import {
+  Alert,
+  AlertProps,
+  EntityBrowser,
+  Severity,
+  Snackbar,
+} from "../src/components";
 
 export default { title: "EntityBrowser" };
 
@@ -24,7 +30,7 @@ export const withMockData = () => {
 
 export const withApolloData = () => {
   type UserAlert = {
-    severity: AlertProps["Color"];
+    severity: Severity;
     show: boolean;
     text: string;
   };
@@ -48,7 +54,7 @@ export const withApolloData = () => {
     setAlert(defaultAlert);
   };
 
-  const showAlert = (text: string, severity: AlertProps["Color"]) => {
+  const showAlert = (text: string, severity: Severity) => {
     const newAlert: UserAlert = { show: true, text, severity };
     setAlert(newAlert);
   };
