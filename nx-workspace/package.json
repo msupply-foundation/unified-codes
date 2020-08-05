@@ -35,6 +35,7 @@
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "apollo-datasource-rest": "^0.9.3",
     "apollo-server-fastify": "^2.15.1",
     "dgraph-js-http": "^20.7.0-rc1",
