@@ -59,7 +59,7 @@ export const withCloseIcon = () => {
       action={
         <React.Fragment>
           <Button color="secondary" size="small" onClick={() => setOpen(false)}>
-            CLOSE
+            close
           </Button>
           <ClearButton
             size="small"
@@ -88,7 +88,7 @@ export const autoClose = () => {
       action={
         <React.Fragment>
           <Button color="secondary" size="small" onClick={() => setOpen(false)}>
-            CLOSE
+            close
           </Button>
           <ClearButton
             size="small"
@@ -111,7 +111,7 @@ export const withAlert = () => {
       onClose={() => setOpen(false)}
     >
       <Alert severity="success" onClose={() => setOpen(false)}>
-        Succesfully displayed snackbar!
+        Successfully displayed snackbar!
       </Alert>
     </Snackbar>
   );
