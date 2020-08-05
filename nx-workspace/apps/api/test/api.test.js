@@ -167,6 +167,29 @@ describe('Test items endpoint', () => {
       });
   });
 
+  test('Items endpoint with short search term returns results', (done) => {
+    const { items } = data;
+    const [item] = items;
+    const { code, name } = item;
+    const searchName = name.substring(0, 2);
+
+    nock('http://localhost:8080')
+      .post('/query')
+      .query((queryObject) => !!queryObject.timeout)
+      .reply(200, graphResponses.items.all);
+
+    api
+      .inject({
+        method: 'GET',
+        url: `/items?name=${searchName}&exact=false`,
+      })
+      .then((response) => {
+        const { statusCode } = response;
+        expect(statusCode).toBe(200);
+        done();
+      });
+  })
+
   test('Items endpoint with invalid params has status code 400', (done) => {
     api
       .inject({
