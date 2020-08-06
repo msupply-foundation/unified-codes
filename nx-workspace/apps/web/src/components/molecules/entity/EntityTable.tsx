@@ -38,7 +38,10 @@ export const EntityTable: EntityTable = ({
   data: Entity[];
 }) => {
   const mapEntity = (entity: Entity) => (
-    <EntityTableRow {...{ ...rowProps, entity }}></EntityTableRow>
+    <EntityTableRow
+      key={entity.code}
+      {...{ ...rowProps, entity }}
+    ></EntityTableRow>
   );
 
   const EntityTableRows = React.useCallback(
