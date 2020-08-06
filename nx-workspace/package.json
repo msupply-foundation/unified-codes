@@ -36,9 +36,6 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
-    "@reduxjs/toolkit": "^1.4.0",
-    "@types/react-redux": "^7.1.9",
-    "@types/react-router-dom": "^5.1.5",
     "apollo-datasource-rest": "^0.9.3",
     "apollo-server-fastify": "^2.15.1",
     "dgraph-js-http": "^20.7.0-rc1",
@@ -51,7 +48,6 @@
     "node-fetch": "^2.6.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "typescript": "^3.9.6"
   },
