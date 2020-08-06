@@ -7,12 +7,8 @@ import {
   TableBody,
   TableBodyProps,
 } from "../../atoms";
-import {
-  EntityTableHeader,
-  EntityTableHeaderProps,
-  EntityTableRow,
-  EntityTableRowProps,
-} from "..";
+import { EntityTableHeader, EntityTableHeaderProps } from "./EntityTableHeader";
+import { EntityTableRow, EntityTableRowProps } from "./EntityTableRow";
 import { Entity } from "../../../types";
 
 export interface EntityTableProps {

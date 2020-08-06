@@ -1,2 +1,2 @@
-export { Entity, EntityNode } from "./Entity";
-export { Property } from "./Property";
+export * from "./Entity";
+export * from "./Property";
