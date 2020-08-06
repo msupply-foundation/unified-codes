@@ -4,7 +4,14 @@ import { SearchBar } from "../src/components";
 export default { title: "SearchBar" };
 
 export const withNoProps = () => {
-  return <SearchBar />;
+  const returnVoid = () => null;
+  return (
+    <SearchBar
+      onChange={returnVoid}
+      onClear={returnVoid}
+      onSearch={returnVoid}
+    />
+  );
 };
 
 export const withControlProps = () => {

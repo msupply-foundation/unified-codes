@@ -7,12 +7,8 @@ import {
   TableBody,
   TableBodyProps,
 } from "../../atoms";
-import {
-  EntityTableHeader,
-  EntityTableHeaderProps,
-  EntityTableRow,
-  EntityTableRowProps,
-} from "..";
+import { EntityTableHeader, EntityTableHeaderProps } from "./EntityTableHeader";
+import { EntityTableRow, EntityTableRowProps } from "./EntityTableRow";
 import { Entity } from "../../../types";
 
 export interface EntityTableProps {
@@ -42,7 +38,10 @@ export const EntityTable: EntityTable = ({
   data: Entity[];
 }) => {
   const mapEntity = (entity: Entity) => (
-    <EntityTableRow {...{ ...rowProps, entity }}></EntityTableRow>
+    <EntityTableRow
+      key={entity.code}
+      {...{ ...rowProps, entity }}
+    ></EntityTableRow>
   );
 
   const EntityTableRows = React.useCallback(
