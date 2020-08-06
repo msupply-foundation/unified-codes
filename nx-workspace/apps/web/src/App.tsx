@@ -1,4 +1,7 @@
 import * as React from "react";
+import { connect } from "react-redux";
+import { State, IUser } from "./types";
+import PropTypes from "prop-types";
 import {
   BrowserRouter as Router,
   Route,
@@ -18,7 +21,12 @@ import {
   Toolbar,
 } from "./components";
 
-export const App = () => {
+interface AppProps {
+  user?: IUser;
+}
+type App = React.FunctionComponent<AppProps>;
+
+const _App: App = ({ user }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const onClick = React.useCallback(() => setIsOpen(true), [setIsOpen]);
   const onClose = React.useCallback(() => setIsOpen(false), [setIsOpen]);
@@ -40,6 +48,7 @@ export const App = () => {
         >
           <Grid item>
             <AppBar position="static">
+              {user && user.isValid && `Welcome ${user.name}`}
               <Toolbar>
                 <MenuBar open={isOpen} onClick={onClick} onClose={onClose}>
                   <MenuItem onClick={onClose}>
@@ -75,4 +84,11 @@ export const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state: State) => {
+  const { user } = state;
+
+  return {
+    user,
+  };
+};
+export const App = connect(mapStateToProps)(_App);
