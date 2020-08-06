@@ -6,9 +6,9 @@ import { SearchButton } from "./SearchButton";
 
 export interface SearchBarProps {
   input?: string;
-  onChange?: (input: string) => void;
-  onClear?: () => void;
-  onSearch?: () => void;
+  onChange: (input: string) => void;
+  onClear: () => void;
+  onSearch: () => void;
 }
 
 export type SearchBar = React.FunctionComponent<SearchBarProps>;
