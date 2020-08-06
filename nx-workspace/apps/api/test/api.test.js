@@ -173,10 +173,19 @@ describe('Test items endpoint', () => {
     const { code, name } = item;
     const searchName = name.substring(0, 2);
 
+    const searchCodes = items
+      .filter((item) => item.name.startsWith(searchName))
+      .map((item) => item.code);
+
+    const graphResponse = Object.entries(graphResponses.items).reduce((acc, [key, value]) => {
+      if (key != code && searchCodes.includes(key)) acc.data.query.concat(value.data.query);
+      return acc;
+    }, graphResponses.items[code]);
+
     nock('http://localhost:8080')
       .post('/query')
       .query((queryObject) => !!queryObject.timeout)
-      .reply(200, graphResponses.items.all);
+      .reply(200, graphResponse);
 
     api
       .inject({
