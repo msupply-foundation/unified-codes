@@ -16,7 +16,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@monorepo/ui": ["libs/ui/src/index.ts"]
+    },
     "allowSyntheticDefaultImports": true
   },
   "exclude": ["node_modules", "tmp"]
