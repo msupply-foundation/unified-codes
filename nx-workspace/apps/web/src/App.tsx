@@ -32,7 +32,7 @@ const _App: App = ({ user }) => {
   const onClose = React.useCallback(() => setIsOpen(false), [setIsOpen]);
 
   const client = new ApolloClient({
-    uri: "http://localhost:4000/graphql",
+    uri: process.env.NX_DATA_SERVICE,
     cache: new InMemoryCache(),
   });
 
