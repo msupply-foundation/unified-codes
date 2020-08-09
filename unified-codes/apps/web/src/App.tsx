@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -6,16 +7,21 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+
 import {
   AppBar,
   Container,
-  Explorer,
   Grid,
-  Login,
   MenuBar,
   MenuItem,
   Toolbar,
+} from "@unified-codes/ui";
+
+import { 
+  Explorer,
+  Login,
 } from "./components";
 
 export const App = () => {

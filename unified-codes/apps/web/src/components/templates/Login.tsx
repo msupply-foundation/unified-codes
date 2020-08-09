@@ -1,7 +1,6 @@
 import * as React from "react";
 
-import { Dialog, DialogContent } from "../atoms";
-import { LoginForm } from "../organisms";
+import { Dialog, DialogContent, LoginForm } from "@unified-codes/ui";
 
 export const Login = () => {
     const [isOpen, setIsOpen] = React.useState<boolean>(true);

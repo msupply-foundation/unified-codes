@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useQuery, gql } from "@apollo/client";
 
-import { Grid } from "../atoms";
-import { EntityBrowser } from "../organisms";
-import { Entity, EntityNode } from "../../types";
+import { Grid } from "@unified-codes/ui";
+import { EntityBrowser } from "@unified-codes/feature";
+import { Entity, EntityNode } from "@unified-codes/util";
 
 const mockData: { entities: EntityNode[] } = {
   entities: [

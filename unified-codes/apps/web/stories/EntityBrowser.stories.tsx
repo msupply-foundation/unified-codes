@@ -1,13 +1,17 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import * as React from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { EntityNode, Entity } from "../src/types";
+import { EntityNode, Entity } from "@unified-codes/util";
+
 import {
   Alert,
-  AlertProps,
-  EntityBrowser,
   Severity,
   Snackbar,
-} from "../src/components";
+} from "@unified-codes/ui";
+
+import {
+  EntityBrowser
+} from "@unified-codes/feature";
 
 export default { title: "EntityBrowser" };
 
