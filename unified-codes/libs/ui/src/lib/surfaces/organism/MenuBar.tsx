@@ -1,5 +1,9 @@
 import * as React from "react";
-import { Box, IconButton, Menu, MenuProps, MenuIcon } from "../../atoms";
+
+import Box from "../../layout/atoms/Box";
+import IconButton from "../../inputs/atoms/IconButton";
+import Menu, { MenuProps } from "../../navigation/atoms/Menu";
+import MenuIcon from "../../icons/atoms/MenuIcon";
 
 export interface MenuBarProps extends Omit<MenuProps, "onClick"> {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -40,3 +44,5 @@ export const MenuBar: MenuBar = ({
     </Box>
   );
 };
+
+export default MenuBar;
