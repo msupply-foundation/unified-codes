@@ -31,3 +31,5 @@ export const EntityTableRow: EntityTableRow = ({
     </TableRow>
   );
 };
+
+export default EntityTableRow;

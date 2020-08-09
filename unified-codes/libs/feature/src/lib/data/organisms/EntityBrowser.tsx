@@ -3,7 +3,7 @@ import * as React from "react";
 import { Grid, SearchBar } from "@unified-codes/ui";
 import { Entity } from "@unified-codes/util";
 
-import { EntityTable } from "../molecules";
+import EntityTable from "../molecules/EntityTable";
 
 export interface EntityBrowserProps {
   entities: Entity[];
@@ -44,3 +44,5 @@ export const EntityBrowser: EntityBrowser = ({ entities }) => {
     </Grid>
   );
 };
+
+export default EntityBrowser;

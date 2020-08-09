@@ -29,3 +29,5 @@ export const EntityTableHeader: EntityTableHeader = ({
     </TableRow>
   );
 };
+
+export default EntityTableHeader;

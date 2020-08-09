@@ -12,9 +12,12 @@ import {
 import {
   EntityTableHeader,
   EntityTableHeaderProps,
+} from "./EntityTableHeader";
+
+import {
   EntityTableRow,
   EntityTableRowProps,
-} from "@unified-codes/feature"
+} from "./EntityTableRow";
 
 import { Entity } from "@unified-codes/util";
 
@@ -64,3 +67,5 @@ export const EntityTable: EntityTable = ({
     </Table>
   );
 };
+
+export default EntityTable;
