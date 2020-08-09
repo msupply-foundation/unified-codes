@@ -1,7 +1,14 @@
-import * as React from "react";
-import { Alert } from "../src/components";
+import React from 'react';
+import { Alert } from './Alert';
 
-export default { title: "Alert" };
+export default {
+  component: Alert,
+  title: 'Alert',
+};
+
+export const primary = () => {
+  return <Alert />;
+};
 
 export const errorAlert = () => {
   return <Alert severity="error">This is an error message!</Alert>;

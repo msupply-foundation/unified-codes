@@ -1,7 +1,20 @@
-import * as React from "react";
-import { Alert, Button, ClearButton, Snackbar } from "../src/components";
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react/jsx-no-useless-fragment */
+import * as React from 'react';
 
-export default { title: "Snackbar" };
+import Alert from "./Alert";
+import Button from "../../inputs/atoms/Button";
+import ClearButton from "../../inputs/molecules/ClearButton";
+import Snackbar from './Snackbar';
+
+export default {
+  component: Snackbar,
+  title: 'Snackbar',
+};
+
+export const primary = () => {
+  return <Snackbar />;
+};
 
 export const bottomLeft = () => {
   return (
