@@ -1,8 +1,7 @@
-import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid } from "../src/components";
+import * as React from 'react';
+import { makeStyles } from "@material-ui/core";
 
-export default { title: "Grid" };
+import Grid from './Grid';
 
 const useStyles = makeStyles(() => ({
   parent: {
@@ -15,7 +14,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+export default {
+  component: Grid,
+  title: 'Grid',
+};
+
+export const primary = () => {
+  return <Grid>Hello Grid!</Grid>;
+};
+
 export const withDirectionRow = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes = useStyles();
 
   return (
@@ -34,6 +43,7 @@ export const withDirectionRow = () => {
 };
 
 export const withDirectionColumn = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes = useStyles();
 
   return (
