@@ -1,9 +1,10 @@
 import * as React from "react";
 
-import { Grid, SearchBar } from "@unified-codes/ui";
 import { Entity } from "@unified-codes/util";
 
 import EntityTable from "../molecules/EntityTable";
+import Grid from "../../layout/atoms/Grid";
+import SearchBar from "../../inputs/molecules/SearchBar";
 
 export interface EntityBrowserProps {
   entities: Entity[];
