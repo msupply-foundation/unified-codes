@@ -20,13 +20,3 @@ export const UsernameInput: UsernameInput = ({ input, onChange }) => {
 }
 
 export default UsernameInput;
-  return (
-    <IconInput
-      icon={PersonIcon}
-      fullWidth
-      label="Username"
-      value={input}
-      onChange={onChangeText}
-    />
-  );
-};

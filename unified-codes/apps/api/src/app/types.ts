@@ -1,6 +1,6 @@
 import Dgraph from 'dgraph-js-http';
 import * as Fastify from 'fastify';
-import Http, { ServerResponse } from 'http';
+import Http from 'http';
 import { JSONSchema } from 'fluent-schema';
 
 export type Api = Fastify.FastifyInstance<Http.Server, Http.IncomingMessage, Http.ServerResponse>;
