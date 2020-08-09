@@ -1,9 +1,14 @@
-import * as React from "react";
-import { SearchBar } from "../src/components";
+/* eslint-disable react-hooks/rules-of-hooks */
+import React from 'react';
 
-export default { title: "SearchBar" };
+import SearchBar from './SearchBar';
 
-export const withNoProps = () => {
+export default {
+  component: SearchBar,
+  title: 'SearchBar',
+};
+
+export const primary = () => {
   return <SearchBar />;
 };
 

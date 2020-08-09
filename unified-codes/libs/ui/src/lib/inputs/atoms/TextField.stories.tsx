@@ -1,12 +1,18 @@
-import * as React from "react";
-import {
-  ClearIcon,
-  InputAdornment,
-  SearchIcon,
-  TextField,
-} from "../src/components";
+import React from 'react';
 
-export default { title: "TextField" };
+import ClearIcon from "../../icons/atoms/ClearIcon";
+import InputAdornment from "./InputAdornment";
+import SearchIcon from "../../icons/atoms/SearchIcon";
+import TextField from './TextField';
+
+export default {
+  component: TextField,
+  title: 'TextField',
+};
+
+export const primary = () => {
+  return <TextField />;
+};
 
 export const withClearIcon = () => (
   <TextField
