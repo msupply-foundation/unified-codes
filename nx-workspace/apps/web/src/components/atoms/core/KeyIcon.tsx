@@ -1,1 +1,0 @@
-export { VpnKey as KeyIcon } from "@material-ui/icons";

@@ -1,1 +1,0 @@
-export { Dialog, DialogProps } from "@material-ui/core";

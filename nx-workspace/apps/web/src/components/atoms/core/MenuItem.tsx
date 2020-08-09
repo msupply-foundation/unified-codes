@@ -1,1 +1,0 @@
-export { MenuItem, MenuItemProps } from "@material-ui/core";
