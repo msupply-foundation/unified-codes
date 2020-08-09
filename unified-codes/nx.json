@@ -1,5 +1,5 @@
 {
-  "npmScope": "monorepo",
+  "npmScope": "unified-codes",
   "affected": {
     "defaultBase": "master"
   },
@@ -36,6 +36,12 @@
       "implicitDependencies": ["web"]
     },
     "ui": {
+      "tags": []
+    },
+    "feature": {
+      "tags": []
+    },
+    "util": {
       "tags": []
     }
   }
