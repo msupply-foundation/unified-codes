@@ -1,7 +1,9 @@
 import * as React from "react";
-import { Grid } from "../../atoms";
-import { SearchBar, EntityTable } from "../../molecules";
-import { Entity } from "../../../types";
+
+import { Grid, SearchBar } from "@unified-codes/ui";
+import { Entity } from "@unified-codes/util";
+
+import { EntityTable } from "../molecules";
 
 export interface EntityBrowserProps {
   entities: Entity[];
@@ -14,16 +16,17 @@ export const EntityBrowser: EntityBrowser = ({ entities }) => {
   const [data, setData] = React.useState(entities);
 
   const resetInput = React.useCallback(() => setInput(""), []);
-  const resetData = React.useCallback(() => setData(entities), []);
+  const resetData = React.useCallback(() => setData(entities), [entities]);
 
   const onChange = React.useCallback((value) => setInput(value), []);
   const onClear = React.useCallback(() => {
     resetInput();
     resetData();
-  }, []);
+  }, [resetData, resetInput]);
+
   const onSearch = React.useCallback(() => {
-    setData(entities.filter((entity) => entity.matches(input)));
-  }, [input]);
+    setData(entities.filter((entity) => entity.matchesCode(input) || entity.matchesDescription(input)));
+  }, [entities, input]);
 
   return (
     <Grid container direction="column">

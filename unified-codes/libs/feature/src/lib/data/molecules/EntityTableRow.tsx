@@ -1,11 +1,13 @@
 import * as React from "react";
+
 import {
   TableCell,
   TableCellProps,
   TableRow,
   TableRowProps,
-} from "../../atoms";
-import { Entity } from "../../../types";
+} from "@unified-codes/ui";
+
+import { Entity } from "@unified-codes/util";
 
 export interface EntityTableRowProps {
   rowProps?: TableRowProps;

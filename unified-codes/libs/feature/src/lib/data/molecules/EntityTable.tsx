@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Table,
   TableProps,
@@ -6,14 +7,16 @@ import {
   TableHeadProps,
   TableBody,
   TableBodyProps,
-} from "../../atoms";
+} from "@unified-codes/ui";
+
 import {
   EntityTableHeader,
   EntityTableHeaderProps,
   EntityTableRow,
   EntityTableRowProps,
-} from "..";
-import { Entity } from "../../../types";
+} from "@unified-codes/feature"
+
+import { Entity } from "@unified-codes/util";
 
 export interface EntityTableProps {
   tableProps?: TableProps;
