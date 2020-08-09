@@ -1,7 +1,17 @@
-import * as React from "react";
-import { MenuBar, MenuItem } from "../src/components";
+/* eslint-disable react-hooks/rules-of-hooks */
+import * as React from 'react';
 
-export default { title: "MenuBar" };
+import MenuBar from './MenuBar';
+import MenuItem from "../../navigation/atoms/MenuItem";
+
+export default {
+  component: MenuBar,
+  title: 'MenuBar',
+};
+
+export const primary = () => {
+  return <MenuBar open={true} />;
+};
 
 export const withNoProps = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
