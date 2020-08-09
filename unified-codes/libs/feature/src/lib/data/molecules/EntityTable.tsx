@@ -9,18 +9,10 @@ import {
   TableBodyProps,
 } from "@unified-codes/ui";
 
-import {
-  EntityTableHeader,
-  EntityTableHeaderProps,
-} from "./EntityTableHeader";
-
-import {
-  EntityTableRow,
-  EntityTableRowProps,
-} from "./EntityTableRow";
-
 import { Entity } from "@unified-codes/util";
 
+import EntityTableHeader, { EntityTableHeaderProps } from "./EntityTableHeader";
+import EntityTableRow, { EntityTableRowProps } from "./EntityTableRow";
 export interface EntityTableProps {
   tableProps?: TableProps;
   headProps?: TableHeadProps;
@@ -48,7 +40,10 @@ export const EntityTable: EntityTable = ({
   data: Entity[];
 }) => {
   const mapEntity = (entity: Entity) => (
-    <EntityTableRow {...{ ...rowProps, entity }}></EntityTableRow>
+    <EntityTableRow
+      key={entity.code}
+      {...{ ...rowProps, entity }}
+    ></EntityTableRow>
   );
 
   const EntityTableRows = React.useCallback(

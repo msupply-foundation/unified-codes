@@ -48,8 +48,12 @@ export const App = () => {
             <AppBar position="static">
               <Toolbar>
                 <MenuBar open={isOpen} onClick={onClick} onClose={onClose}>
-                  <MenuItem onClick={onClose}><Link to="/explorer" >Browse</Link></MenuItem>
-                  <MenuItem onClick={onClose}><Link to="/login">Admin</Link></MenuItem>
+                  <MenuItem onClick={onClose}>
+                    <Link to="/explorer">Browse</Link>
+                  </MenuItem>
+                  <MenuItem onClick={onClose}>
+                    <Link to="/login">Admin</Link>
+                  </MenuItem>
                 </MenuBar>
               </Toolbar>
             </AppBar>

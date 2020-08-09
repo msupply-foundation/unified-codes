@@ -10,6 +10,17 @@ export default {
 
 export const primary = () => {
   return <SearchBar />;
+}
+
+export const withNoProps = () => {
+  const returnVoid = () => null;
+  return (
+    <SearchBar
+      onChange={returnVoid}
+      onClear={returnVoid}
+      onSearch={returnVoid}
+    />
+  );
 };
 
 export const withControlProps = () => {

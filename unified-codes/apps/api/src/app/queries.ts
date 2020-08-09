@@ -6,7 +6,7 @@ const items: { [key: string]: string } = {
     }
   }`,
   search: `query vars($term: string) {
-    query(func: regexp(description, $term)) @filter(eq(type, "unit_of_use")) {
+    query(func: eq(type, "unit_of_use")) @filter(regexp(description, $term)) {
       code
       description
     }

@@ -167,6 +167,38 @@ describe('Test items endpoint', () => {
       });
   });
 
+  test('Items endpoint with short search term returns results', (done) => {
+    const { items } = data;
+    const [item] = items;
+    const { code, name } = item;
+    const searchName = name.substring(0, 2);
+
+    const searchCodes = items
+      .filter((item) => item.name.startsWith(searchName))
+      .map((item) => item.code);
+
+    const graphResponse = Object.entries(graphResponses.items).reduce((acc, [key, value]) => {
+      if (key != code && searchCodes.includes(key)) acc.data.query.concat(value.data.query);
+      return acc;
+    }, graphResponses.items[code]);
+
+    nock('http://localhost:8080')
+      .post('/query')
+      .query((queryObject) => !!queryObject.timeout)
+      .reply(200, graphResponse);
+
+    api
+      .inject({
+        method: 'GET',
+        url: `/items?name=${searchName}&exact=false`,
+      })
+      .then((response) => {
+        const { statusCode } = response;
+        expect(statusCode).toBe(200);
+        done();
+      });
+  })
+
   test('Items endpoint with invalid params has status code 400', (done) => {
     api
       .inject({
