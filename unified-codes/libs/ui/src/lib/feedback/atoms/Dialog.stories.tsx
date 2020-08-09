@@ -6,6 +6,4 @@ export default {
   title: 'Dialog',
 };
 
-export const primary = () => {
-  return <Dialog open={true}/>;
-};
+export const primary = () => <Dialog open={true}/>;
