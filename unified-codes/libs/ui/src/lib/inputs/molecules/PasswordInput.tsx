@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { KeyIcon } from "../../atoms";
-import { IconInput } from "./IconInput";
+import IconInput from "./IconInput";
+import VpnKeyIcon from "../../icons/atoms/VpnKeyIcon";
 
 export interface PasswordInputProps {
     input?: string;
@@ -16,5 +16,7 @@ export const PasswordInput: PasswordInput = ({ input, onChange }) => {
         [onChange]
       );
 
-    return <IconInput icon={KeyIcon} fullWidth label="Password" type="password" value={input} onChange={onChangeText} />;
+    return <IconInput fullWidth icon={VpnKeyIcon} label="Password" type="password" value={input} onChange={onChangeText}></IconInput>;
 }
+
+export default PasswordInput;

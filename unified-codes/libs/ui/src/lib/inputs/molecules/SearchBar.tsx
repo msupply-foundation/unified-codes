@@ -1,10 +1,8 @@
 import * as React from "react";
-import { Grid } from "../../atoms";
 
-import {
-  ClearInput,
-  SearchButton,
-} from "../../molecules";
+import ClearInput from "./ClearInput";
+import Grid from "../../layout/atoms/Grid";
+import SearchButton from "./SearchButton";
 
 export interface SearchBarProps {
   input?: string;
@@ -42,3 +40,5 @@ export const SearchBar: SearchBar = ({
     </Grid>
   );
 };
+
+export default SearchBar;

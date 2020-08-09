@@ -1,7 +1,9 @@
 import * as React from "react";
 
-import { Button, Grid, Typography } from "../../atoms"
-import { LoginInput } from "../../molecules";
+import Button from "../atoms/Button";
+import Grid from "../../layout/atoms/Grid";
+import LoginInput from "../molecules/LoginInput";
+import Typography from "../../data/atoms/Typography";
 
 export interface LoginFormProps {
     onSubmit?: (username: string, password: string) => void;

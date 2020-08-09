@@ -1,7 +1,8 @@
 import * as React from "react";
 
-import { Grid } from "../../atoms";
-import { UsernameInput, PasswordInput } from "../../molecules";
+import Grid from "../../layout/atoms/Grid";
+import PasswordInput from "./PasswordInput";
+import UsernameInput from "./UsernameInput";
 
 export interface LoginInputProps {
     username?: string,

@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { PersonIcon } from "../../atoms";
-import { IconInput } from "./IconInput";
+import IconInput from "./IconInput";
+import PersonIcon from "../../icons/atoms/PersonIcon";
 
 export interface UsernameInputProps {
     input?: string;
@@ -16,5 +16,7 @@ export const UsernameInput: UsernameInput = ({ input, onChange }) => {
         [onChange]
       );
 
-    return <IconInput icon={PersonIcon} fullWidth label="Username" value={input} onChange={onChangeText} />;
+    return <IconInput icon={PersonIcon} fullWidth label="Username" value={input} onChange={onChangeText}></IconInput>;
 }
+
+export default UsernameInput;
