@@ -1,11 +1,5 @@
+import { EntityNode } from "./EntityNode";
 import { Property } from "./Property";
-
-export type EntityNode = {
-  code: string;
-  description: string;
-  type: string;
-  properties?: Property[];
-};
 
 export class Entity {
   private _code: string;
@@ -36,11 +30,20 @@ export class Entity {
     return this._properties;
   }
 
-  matches(pattern: string) {
-    const texts = [this._code, this._description];
-    return texts.some((text) =>
-      text.toLowerCase().includes(pattern.toLowerCase())
-    );
+  matchesCode(pattern: string) {
+    return this.code.toLowerCase().includes(pattern.toLowerCase());
+  }
+
+  matchesDescription(pattern: string) {
+    return this.description.toLowerCase().includes(pattern.toLowerCase());
+  }
+
+  matchesType(pattern: string) {
+    return this.type.toLowerCase().includes(pattern.toLowerCase());
+  }
+
+  matchesProperty(property: Property) {
+    return this.properties.includes(property);
   }
 }
 
