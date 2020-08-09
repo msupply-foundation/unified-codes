@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Ui from './ui';
+import Typography from './Typography';
 
-describe(' Ui', () => {
+describe(' Typography', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Ui />);
+    const { baseElement } = render(<Typography />);
     expect(baseElement).toBeTruthy();
   });
 });
