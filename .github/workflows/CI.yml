@@ -4,37 +4,37 @@ jobs:
   check-types:
     runs-on: ubuntu-latest
     env:
-      api-directory: ./nx-workspace
+      legacy-api-directory: ./unified-codes
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
       run: npm install
       working-directory: ${{env.api-directory}}
-    - name: Run api type check
-      run: npm run nx build api
-      working-directory: ${{env.api-directory}}
+    - name: Run legacy-api-directory type check
+      run: npm run nx build legacy-api
+      working-directory: ${{env.legacy-api-directory}}
   test-api:
     runs-on: ubuntu-latest
     env:
-      api-directory: ./nx-workspace
+      api-directory: ./unified-codes
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
       run: npm install
-      working-directory: ${{env.api-directory}}
+      working-directory: ${{env.legacy-api-directory}}
     - name: Run api tests
       run: npm run nx test api
-      working-directory: ${{env.api-directory}}
+      working-directory: ${{env.legacy-api-directory}}
   test-data-service:
     runs-on: ubuntu-latest
     env:
-      api-directory: ./nx-workspace
-      database-directory: ./nx-workspace/apps/data-service/src/app/database
+      legacy-api-directory: ./unified-codes
+      database-directory: ./unified-codes/apps/data-service/src/app/database
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
       run: npm install
-      working-directory: ${{env.api-directory}}
+      working-directory: ${{env.legacy-api-directory}}
     - name: Start docker
       run: sudo bash ./docker.sh &
       working-directory: ${{env.database-directory}}
@@ -45,4 +45,4 @@ jobs:
       working-directory: ${{env.database-directory}}
     - name: Run dgraph tests
       run: npm run test-dgraph
-      working-directory: ${{env.api-directory}}
+      working-directory: ${{env.legacy-api-directory}}
