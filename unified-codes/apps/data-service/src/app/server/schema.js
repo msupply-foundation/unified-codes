@@ -16,7 +16,11 @@ const typeDefs = gql`
   }
 
   type User {
+    familyName: String
+    givenName: String
+    isValid: Boolean!
     name: String!
+    roles: [String]
   }
 
   type Query {

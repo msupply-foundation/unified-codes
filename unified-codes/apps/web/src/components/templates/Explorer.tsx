@@ -1,8 +1,7 @@
 import * as React from "react";
 import { useQuery, gql } from "@apollo/client";
 
-import { Grid } from "@unified-codes/ui";
-import { EntityBrowser } from "@unified-codes/feature";
+import { EntityBrowser, Grid } from "@unified-codes/ui";
 import { Entity, EntityNode } from "@unified-codes/data";
 
 const mockData: { entities: EntityNode[] } = {

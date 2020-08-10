@@ -5,13 +5,10 @@ import { EntityNode, Entity } from "@unified-codes/data";
 
 import {
   Alert,
+  EntityBrowser,
   Severity,
   Snackbar,
 } from "@unified-codes/ui";
-
-import {
-  EntityBrowser
-} from "@unified-codes/feature";
 
 export default { title: "EntityBrowser" };
 
@@ -40,7 +37,7 @@ export const withApolloData = () => {
   };
   const defaultAlert: UserAlert = { show: false, text: "", severity: "info" };
   const client = new ApolloClient({
-    uri: "http://localhost:4000/graphql",
+    uri: process.env.NX_DATA_SERVICE,
     cache: new InMemoryCache(),
   });
 
