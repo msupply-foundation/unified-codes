@@ -5,13 +5,10 @@ import { EntityNode, Entity } from "@unified-codes/data";
 
 import {
   Alert,
+  EntityBrowser,
   Severity,
   Snackbar,
 } from "@unified-codes/ui";
-
-import {
-  EntityBrowser
-} from "@unified-codes/feature";
 
 export default { title: "EntityBrowser" };
 
