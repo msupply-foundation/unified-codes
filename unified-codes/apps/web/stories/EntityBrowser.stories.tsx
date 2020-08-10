@@ -37,7 +37,7 @@ export const withApolloData = () => {
   };
   const defaultAlert: UserAlert = { show: false, text: "", severity: "info" };
   const client = new ApolloClient({
-    uri: "http://localhost:4000/graphql",
+    uri: process.env.NX_DATA_SERVICE,
     cache: new InMemoryCache(),
   });
 
