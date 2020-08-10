@@ -1,17 +1,8 @@
+/* eslint-disable no-undef */
 import nock from 'nock';
 
-import { apiResponses, graphResponses, data } from './fixtures';
-
-import api from '../api/src/app/api';
-import queries from '../api/src/app/queries';
-
-const sortItems = (items) => {
-  return items.concat().sort((itemA, itemB) => {
-    if (itemA.code < itemB.code) return 1;
-    else if (itemA.code === itemB.code) return 0;
-    else return -1;
-  });
-};
+import api from './api';
+import queries from './queries';
 
 describe('Test health endpoint', () => {
   test('Health endpoint response has status code 200', (done) => {
@@ -29,11 +20,35 @@ describe('Test health endpoint', () => {
 });
 
 describe('Test items endpoint', () => {
+  const dgraphResponse = {
+    "data": {
+      "query": [
+        {
+          "code": "5589F4BF",
+          "description": "Paracetamol oral tablet, 300mg"
+        },
+        {
+          "code": "368C74BE",
+          "description": "Amoxicillin oral tablet, 500mg"
+        },
+        {
+          "code": "368C74BF",
+          "description": "Amoxicillin oral capsule, 250mg"
+        }
+      ]
+    },
+    "extensions": {
+      "txn": {
+        "start_ts": 1
+      }
+    }
+  };
+
   test('Items endpoint with no params has status code 200', (done) => {
     nock('http://localhost:8080')
       .post('/query')
       .query((queryObject) => !!queryObject.timeout)
-      .reply(200, graphResponses.items.all);
+      .reply(200, dgraphResponse);
     api
       .inject({
         method: 'GET',
@@ -47,10 +62,57 @@ describe('Test items endpoint', () => {
   });
 
   test('Items endpoint with no params returns all items', (done) => {
+    const sortItems = (items) => {
+      return items.concat().sort((itemA, itemB) => {
+        if (itemA.code < itemB.code) return 1;
+        else if (itemA.code === itemB.code) return 0;
+        else return -1;
+      });
+    };
+
+    const items = [
+      {
+        "code": "5589F4BF",
+        "name": "Paracetamol oral tablet, 300mg"
+      },
+      {
+        "code": "368C74BE",
+        "name": "Amoxicillin oral tablet, 500mg"
+      },
+      {
+        "code": "368C74BF",
+        "name": "Amoxicillin oral capsule, 250mg"
+      }
+    ];
+
+    const dgraphResponse = {
+      "data": {
+        "query": [
+          {
+            "code": "5589F4BF",
+            "description": "Paracetamol oral tablet, 300mg"
+          },
+          {
+            "code": "368C74BE",
+            "description": "Amoxicillin oral tablet, 500mg"
+          },
+          {
+            "code": "368C74BF",
+            "description": "Amoxicillin oral capsule, 250mg"
+          }
+        ]
+      },
+      "extensions": {
+        "txn": {
+          "start_ts": 1
+        }
+      }
+    };
+    
     nock('http://localhost:8080')
       .post('/query')
       .query((queryObject) => !!queryObject.timeout)
-      .reply(200, graphResponses.items.all);
+      .reply(200, dgraphResponse);
     api
       .inject({
         method: 'GET',
@@ -58,15 +120,36 @@ describe('Test items endpoint', () => {
       })
       .then((response) => {
         const body = JSON.parse(response.body);
-        expect(sortItems(body)).toMatchObject(sortItems(apiResponses.items.all));
+        expect(sortItems(body)).toMatchObject(sortItems(items));
         done();
       });
   });
 
   test('Items endpoint with valid code returns matching item', (done) => {
-    const { items } = data;
-    const [item] = items;
-    const { code } = item;
+    const code = "5589F4BF";
+
+    const graphResponse = {
+      "data": {
+        "query": [
+          {
+            "code": "5589F4BF",
+            "description": "Paracetamol oral tablet, 300mg"
+          }
+        ]
+      },
+      "extensions": {
+        "txn": {
+          "start_ts": 1
+        }
+      }
+    };
+
+    const apiResponse = [
+      {
+        "code": "5589F4BF",
+        "name": "Paracetamol oral tablet, 300mg"
+      }
+    ];
 
     nock('http://localhost:8080')
       .post('/query')
@@ -76,7 +159,7 @@ describe('Test items endpoint', () => {
         const validQuery = query === queries.items.get;
         const validVariables = variables.$code === code;
         if (validQuery && validVariables) {
-          return graphResponses.items[code];
+          return graphResponse;
         }
       });
 
@@ -87,15 +170,36 @@ describe('Test items endpoint', () => {
       })
       .then((response) => {
         const { body } = response;
-        expect(body).toBe(JSON.stringify(apiResponses.items[code]));
+        expect(body).toBe(JSON.stringify(apiResponse));
         done();
       });
   });
 
   test('Items endpoint with exact name search returns matching item', (done) => {
-    const { items } = data;
-    const [item] = items;
-    const { code, name } = item;
+    const name = "Paracetamol oral tablet, 300mg";
+
+    const graphResponse = {
+      "data": {
+        "query": [
+          {
+            "code": "5589F4BF",
+            "description": "Paracetamol oral tablet, 300mg"
+          }
+        ]
+      },
+      "extensions": {
+        "txn": {
+          "start_ts": 1
+        }
+      }
+    };
+    
+    const apiResponse = [
+      {
+        "code": "5589F4BF",
+        "name": "Paracetamol oral tablet, 300mg"
+      }
+    ];
 
     nock('http://localhost:8080')
       .post('/query')
@@ -105,7 +209,7 @@ describe('Test items endpoint', () => {
         const validQuery = query === queries.items.searchExact;
         const validVariables = variables.$name === name;
         if (validQuery && validVariables) {
-          return graphResponses.items[code];
+          return graphResponse;
         }
       });
 
@@ -116,32 +220,44 @@ describe('Test items endpoint', () => {
       })
       .then((response) => {
         const body = JSON.parse(response.body);
-        expect(body).toMatchObject(apiResponses.items[code]);
+        expect(body).toMatchObject(apiResponse);
         done();
       });
   });
 
   test('Items endpoint with non-exact name search returns matching items', (done) => {
-    const { items } = data;
-    const [item] = items;
-    const { code, name } = item;
+    const searchName = "Amox";
 
-    const searchName = name.substring(0, 3);
-    const searchCodes = items
-      .filter((item) => item.name.startsWith(searchName))
-      .map((item) => item.code);
-
-    const apiResponse = Object.entries(apiResponses.items).reduce((acc, [key, value]) => {
-      if (searchCodes.includes(key)) {
-        return acc.concat(value);
+    const graphResponse = {
+      "data": {
+        "query": [
+          {
+            "code": "368C74BE",
+            "description": "Amoxicillin oral tablet, 500mg"
+          },
+          {
+            "code": "368C74BF",
+            "description": "Amoxicillin oral capsule, 250mg"
+          }
+        ]
+      },
+      "extensions": {
+        "txn": {
+          "start_ts": 1
+        }
       }
-      return acc;
-    }, []);
+    };
 
-    const graphResponse = Object.entries(graphResponses.items).reduce((acc, [key, value]) => {
-      if (key != code && searchCodes.includes(key)) acc.data.query.concat(value.data.query);
-      return acc;
-    }, graphResponses.items[code]);
+    const apiResponse = [
+      {
+        "code": "368C74BE",
+        "name": "Amoxicillin oral tablet, 500mg"
+      },
+      {
+        "code": "368C74BF",
+        "name": "Amoxicillin oral capsule, 250mg"
+      }
+    ]
 
     nock('http://localhost:8080')
       .post('/query')
@@ -167,26 +283,44 @@ describe('Test items endpoint', () => {
       });
   });
 
-  test('Items endpoint with short search term returns results', (done) => {
-    const { items } = data;
-    const [item] = items;
-    const { code, name } = item;
-    const searchName = name.substring(0, 2);
+  test('Items endpoint with non-exact short name search returns results', (done) => {
+    const searchName = "Am";
 
-    const searchCodes = items
-      .filter((item) => item.name.startsWith(searchName))
-      .map((item) => item.code);
+    const graphResponse = {
+      "data": {
+        "query": [
+          {
+            "code": "368C74BE",
+            "name": "Amoxicillin oral tablet 500mg"
+          },
+          {
+            "code": "368C74BF",
+            "name": "Amoxicillin oral capsule, 250mg"
+          }
+        ]
+      },
+      "extensions": {
+        "txn": {
+          "start_ts": 1
+        }
+      }
+    };
 
-    const graphResponse = Object.entries(graphResponses.items).reduce((acc, [key, value]) => {
-      if (key != code && searchCodes.includes(key)) acc.data.query.concat(value.data.query);
-      return acc;
-    }, graphResponses.items[code]);
+    const apiResponse = [
+      {
+        "code": "368C74BE",
+        "name": "Amoxicillin oral tablet, 500mg"
+      },
+      {
+        "code": "368C74BF",
+        "name": "Amoxicillin oral capsule, 250mg"
+      }
+    ]
 
     nock('http://localhost:8080')
       .post('/query')
       .query((queryObject) => !!queryObject.timeout)
       .reply(200, graphResponse);
-
     api
       .inject({
         method: 'GET',
