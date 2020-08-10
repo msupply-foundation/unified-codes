@@ -22,7 +22,7 @@
     }
   },
   "projects": {
-    "api": {
+    "legacy-api": {
       "tags": []
     },
     "data-service": {
