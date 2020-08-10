@@ -3,7 +3,7 @@ import { useQuery, gql } from "@apollo/client";
 
 import { Grid } from "@unified-codes/ui";
 import { EntityBrowser } from "@unified-codes/feature";
-import { Entity, EntityNode } from "@unified-codes/util";
+import { Entity, EntityNode } from "@unified-codes/data";
 
 const mockData: { entities: EntityNode[] } = {
   entities: [

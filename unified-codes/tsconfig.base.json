@@ -18,8 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@unified-codes/ui": ["libs/ui/src/index.ts"],
-      "@unified-codes/feature": ["libs/feature/src/index.ts"],
-      "@unified-codes/util": ["libs/util/src/index.ts"],
+      "@unified-codes/data": ["libs/data/src/index.ts"],
     },
     "allowSyntheticDefaultImports": true
   },

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Entity } from "@unified-codes/util";
+import { Entity } from "@unified-codes/data";
 
 import EntityTable from "../molecules/EntityTable";
 import Grid from "../../layout/atoms/Grid";

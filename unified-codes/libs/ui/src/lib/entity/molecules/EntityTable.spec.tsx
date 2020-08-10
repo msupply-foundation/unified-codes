@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { Entity, EntityNode } from "@unified-codes/util";
+import { Entity, EntityNode } from "@unified-codes/data";
 
 import EntityTable from './EntityTable';
 

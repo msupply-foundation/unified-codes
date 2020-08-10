@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import * as React from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { EntityNode, Entity } from "@unified-codes/util";
+import { EntityNode, Entity } from "@unified-codes/data";
 
 import {
   Alert,

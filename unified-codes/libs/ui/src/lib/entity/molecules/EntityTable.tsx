@@ -9,7 +9,7 @@ import {
   TableBodyProps,
 } from "@unified-codes/ui";
 
-import { Entity } from "@unified-codes/util";
+import { Entity } from "@unified-codes/data";
 
 import EntityTableHeader, { EntityTableHeaderProps } from "./EntityTableHeader";
 import EntityTableRow, { EntityTableRowProps } from "./EntityTableRow";

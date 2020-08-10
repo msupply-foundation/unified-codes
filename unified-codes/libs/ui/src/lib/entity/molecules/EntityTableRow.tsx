@@ -7,7 +7,7 @@ import {
   TableRowProps,
 } from "@unified-codes/ui";
 
-import { Entity } from "@unified-codes/util";
+import { Entity } from "@unified-codes/data";
 
 export interface EntityTableRowProps {
   rowProps?: TableRowProps;

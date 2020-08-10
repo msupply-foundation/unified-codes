@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Entity, EntityNode } from "@unified-codes/util";
+import { Entity, EntityNode } from "@unified-codes/data";
 
 import { EntityBrowser } from './EntityBrowser';
 
