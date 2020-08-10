@@ -36,3 +36,5 @@ export class User {
     return this.roles.some((r) => r === role);
   }
 }
+
+export default User;
