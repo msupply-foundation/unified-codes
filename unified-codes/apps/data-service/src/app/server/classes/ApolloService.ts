@@ -1,18 +1,17 @@
 import { ApolloServer, Config } from 'apollo-server-fastify';
 
-import UserAuthenticator from "./UserAuthenticator";
+import User from './User';
+import JWT from './JWT';
 
 export class ApolloService {
     typeDefs: Config["typeDefs"];
     resolvers: Config["resolvers"];
     dataSources: Config["dataSources"];
-    authenticator: UserAuthenticator;
 
     constructor(typeDefs, resolvers, dataSources, authenticator) {
         this.typeDefs = typeDefs;
         this.resolvers = resolvers;
         this.dataSources = dataSources;
-        this.authenticator = authenticator;
     }
 
     getServer() {
@@ -21,7 +20,8 @@ export class ApolloService {
             resolvers: this.resolvers,
             dataSources: this.dataSources,
             context: async ({ request }) => {
-                const user = await this.authenticator.getUser(request);
+                const token = JWT.parseRequest(request);
+                const user = new User(token);
                 return { user };
             },
           });
