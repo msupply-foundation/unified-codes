@@ -1,6 +1,6 @@
 # Dgraph
 
-Tools for setting up the unified codes [Dgraph](http://dgraph.io) service. 
+Tools for setting up the unified codes [Dgraph](http://dgraph.io) service.
 
 ## Getting started
 

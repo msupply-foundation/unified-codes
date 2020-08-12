@@ -1,6 +1,6 @@
 # Keycloak
 
-Tools for setting up the unified codes [keycloak](https://www.keycloak.org/) service. 
+Tools for setting up the unified codes [keycloak](https://www.keycloak.org/) service.
 
 ## Getting started
 
