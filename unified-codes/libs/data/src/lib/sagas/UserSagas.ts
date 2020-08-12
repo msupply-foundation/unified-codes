@@ -1,10 +1,6 @@
-import { call, put, takeEvery, all } from "redux-saga/effects";
-import {
-  UserActions,
-  USER_ACTIONS,
-  IUserAuthenticationAction,
-} from "../actions";
-import { authenticate } from "../api";
+import { call, put, takeEvery, all } from 'redux-saga/effects';
+import { UserActions, USER_ACTIONS, IUserAuthenticationAction } from '../actions';
+import { authenticate } from '../api';
 
 function* login(action: IUserAuthenticationAction) {
   try {

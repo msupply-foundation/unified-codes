@@ -1,9 +1,9 @@
-import { Action } from "redux";
-import { IMessage } from "../types";
+import { Action } from 'redux';
+import { IMessage } from '../types';
 
 export const MESSAGE_ACTIONS = {
-  HIDE: "messageActions/hide",
-  SHOW: "messageActions/show",
+  HIDE: 'messageActions/hide',
+  SHOW: 'messageActions/show',
 };
 
 export interface IMessageAction extends Action<string> {
