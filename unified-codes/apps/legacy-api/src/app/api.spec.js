@@ -24,27 +24,27 @@ describe('Test health endpoint', () => {
 describe('Test items endpoint', () => {
   test('Items endpoint with no params has status code 200', (done) => {
     const dgraphResponse = {
-      "data": {
-        "query": [
+      data: {
+        query: [
           {
-            "code": "5589F4BF",
-            "description": "Paracetamol oral tablet, 300mg"
+            code: '5589F4BF',
+            description: 'Paracetamol oral tablet, 300mg',
           },
           {
-            "code": "368C74BE",
-            "description": "Amoxicillin oral tablet, 500mg"
+            code: '368C74BE',
+            description: 'Amoxicillin oral tablet, 500mg',
           },
           {
-            "code": "368C74BF",
-            "description": "Amoxicillin oral capsule, 250mg"
-          }
-        ]
+            code: '368C74BF',
+            description: 'Amoxicillin oral capsule, 250mg',
+          },
+        ],
       },
-      "extensions": {
-        "txn": {
-          "start_ts": 1
-        }
-      }
+      extensions: {
+        txn: {
+          start_ts: 1,
+        },
+      },
     };
 
     nock('http://localhost:8080')
@@ -74,43 +74,43 @@ describe('Test items endpoint', () => {
 
     const items = [
       {
-        "code": "5589F4BF",
-        "name": "Paracetamol oral tablet, 300mg"
+        code: '5589F4BF',
+        name: 'Paracetamol oral tablet, 300mg',
       },
       {
-        "code": "368C74BE",
-        "name": "Amoxicillin oral tablet, 500mg"
+        code: '368C74BE',
+        name: 'Amoxicillin oral tablet, 500mg',
       },
       {
-        "code": "368C74BF",
-        "name": "Amoxicillin oral capsule, 250mg"
-      }
+        code: '368C74BF',
+        name: 'Amoxicillin oral capsule, 250mg',
+      },
     ];
 
     const dgraphResponse = {
-      "data": {
-        "query": [
+      data: {
+        query: [
           {
-            "code": "5589F4BF",
-            "description": "Paracetamol oral tablet, 300mg"
+            code: '5589F4BF',
+            description: 'Paracetamol oral tablet, 300mg',
           },
           {
-            "code": "368C74BE",
-            "description": "Amoxicillin oral tablet, 500mg"
+            code: '368C74BE',
+            description: 'Amoxicillin oral tablet, 500mg',
           },
           {
-            "code": "368C74BF",
-            "description": "Amoxicillin oral capsule, 250mg"
-          }
-        ]
+            code: '368C74BF',
+            description: 'Amoxicillin oral capsule, 250mg',
+          },
+        ],
       },
-      "extensions": {
-        "txn": {
-          "start_ts": 1
-        }
-      }
+      extensions: {
+        txn: {
+          start_ts: 1,
+        },
+      },
     };
-    
+
     nock('http://localhost:8080')
       .post('/query')
       .query((queryObject) => !!queryObject.timeout)
@@ -128,29 +128,29 @@ describe('Test items endpoint', () => {
   });
 
   test('Items endpoint with valid code returns matching item', (done) => {
-    const code = "5589F4BF";
+    const code = '5589F4BF';
 
     const graphResponse = {
-      "data": {
-        "query": [
+      data: {
+        query: [
           {
-            "code": "5589F4BF",
-            "description": "Paracetamol oral tablet, 300mg"
-          }
-        ]
+            code: '5589F4BF',
+            description: 'Paracetamol oral tablet, 300mg',
+          },
+        ],
       },
-      "extensions": {
-        "txn": {
-          "start_ts": 1
-        }
-      }
+      extensions: {
+        txn: {
+          start_ts: 1,
+        },
+      },
     };
 
     const apiResponse = [
       {
-        "code": "5589F4BF",
-        "name": "Paracetamol oral tablet, 300mg"
-      }
+        code: '5589F4BF',
+        name: 'Paracetamol oral tablet, 300mg',
+      },
     ];
 
     nock('http://localhost:8080')
@@ -177,29 +177,29 @@ describe('Test items endpoint', () => {
   });
 
   test('Items endpoint with exact name search returns matching item', (done) => {
-    const name = "Paracetamol oral tablet, 300mg";
+    const name = 'Paracetamol oral tablet, 300mg';
 
     const graphResponse = {
-      "data": {
-        "query": [
+      data: {
+        query: [
           {
-            "code": "5589F4BF",
-            "description": "Paracetamol oral tablet, 300mg"
-          }
-        ]
+            code: '5589F4BF',
+            description: 'Paracetamol oral tablet, 300mg',
+          },
+        ],
       },
-      "extensions": {
-        "txn": {
-          "start_ts": 1
-        }
-      }
+      extensions: {
+        txn: {
+          start_ts: 1,
+        },
+      },
     };
-    
+
     const apiResponse = [
       {
-        "code": "5589F4BF",
-        "name": "Paracetamol oral tablet, 300mg"
-      }
+        code: '5589F4BF',
+        name: 'Paracetamol oral tablet, 300mg',
+      },
     ];
 
     nock('http://localhost:8080')
@@ -226,38 +226,38 @@ describe('Test items endpoint', () => {
   });
 
   test('Items endpoint with non-exact name search returns matching items', (done) => {
-    const searchName = "Amox";
+    const searchName = 'Amox';
 
     const graphResponse = {
-      "data": {
-        "query": [
+      data: {
+        query: [
           {
-            "code": "368C74BE",
-            "description": "Amoxicillin oral tablet, 500mg"
+            code: '368C74BE',
+            description: 'Amoxicillin oral tablet, 500mg',
           },
           {
-            "code": "368C74BF",
-            "description": "Amoxicillin oral capsule, 250mg"
-          }
-        ]
+            code: '368C74BF',
+            description: 'Amoxicillin oral capsule, 250mg',
+          },
+        ],
       },
-      "extensions": {
-        "txn": {
-          "start_ts": 1
-        }
-      }
+      extensions: {
+        txn: {
+          start_ts: 1,
+        },
+      },
     };
 
     const apiResponse = [
       {
-        "code": "368C74BE",
-        "name": "Amoxicillin oral tablet, 500mg"
+        code: '368C74BE',
+        name: 'Amoxicillin oral tablet, 500mg',
       },
       {
-        "code": "368C74BF",
-        "name": "Amoxicillin oral capsule, 250mg"
-      }
-    ]
+        code: '368C74BF',
+        name: 'Amoxicillin oral capsule, 250mg',
+      },
+    ];
 
     nock('http://localhost:8080')
       .post('/query')
@@ -283,38 +283,38 @@ describe('Test items endpoint', () => {
   });
 
   test('Items endpoint with non-exact short name search returns results', (done) => {
-    const searchName = "Am";
+    const searchName = 'Am';
 
     const graphResponse = {
-      "data": {
-        "query": [
+      data: {
+        query: [
           {
-            "code": "368C74BE",
-            "name": "Amoxicillin oral tablet 500mg"
+            code: '368C74BE',
+            name: 'Amoxicillin oral tablet 500mg',
           },
           {
-            "code": "368C74BF",
-            "name": "Amoxicillin oral capsule, 250mg"
-          }
-        ]
+            code: '368C74BF',
+            name: 'Amoxicillin oral capsule, 250mg',
+          },
+        ],
       },
-      "extensions": {
-        "txn": {
-          "start_ts": 1
-        }
-      }
+      extensions: {
+        txn: {
+          start_ts: 1,
+        },
+      },
     };
 
     const apiResponse = [
       {
-        "code": "368C74BE",
-        "name": "Amoxicillin oral tablet, 500mg"
+        code: '368C74BE',
+        name: 'Amoxicillin oral tablet, 500mg',
       },
       {
-        "code": "368C74BF",
-        "name": "Amoxicillin oral capsule, 250mg"
-      }
-    ]
+        code: '368C74BF',
+        name: 'Amoxicillin oral capsule, 250mg',
+      },
+    ];
 
     nock('http://localhost:8080')
       .post('/query')
@@ -330,7 +330,7 @@ describe('Test items endpoint', () => {
         expect(statusCode).toBe(200);
         done();
       });
-  })
+  });
 
   test('Items endpoint with invalid params has status code 400', (done) => {
     server
