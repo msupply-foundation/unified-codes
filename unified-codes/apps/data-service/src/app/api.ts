@@ -5,8 +5,8 @@ import * as Schema from './schema';
 import * as Data from './data';
 import * as Resolvers from './resolvers';
 
-import ApolloService from './classes/ApolloService';
-import { KeyCloakIdentityProvider } from './classes/IdentityProvider';
+import ApolloService from './ApolloService';
+import { KeyCloakIdentityProvider } from './IdentityProvider';
 
 export const createApolloServer = (_typeDefs, _resolvers, _dataSources, _authenticator) => {
   const AUTH_URL = 'http://127.0.0.1:9990/auth/realms/unified-codes';
