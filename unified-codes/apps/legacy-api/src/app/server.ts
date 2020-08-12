@@ -1,10 +1,13 @@
-import api from './api';
+import createLegacyApiServer from './api';
+import { Server } from './types';
 
 const start = async (): Promise<void> => {
+  let server: Server;
   try {
-    await api.listen(3000);
+    server = createLegacyApiServer({ logger: true });
+    await server.listen(3000);
   } catch (err) {
-    api.log.error(err);
+    server.log.error(err);
     process.exit(1);
   }
 };
