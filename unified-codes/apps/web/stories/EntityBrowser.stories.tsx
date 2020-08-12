@@ -3,12 +3,7 @@ import * as React from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { EntityNode, Entity } from "@unified-codes/data";
 
-import {
-  Alert,
-  EntityBrowser,
-  Severity,
-  Snackbar,
-} from "@unified-codes/ui";
+import { Alert, EntityBrowser, Severity, Snackbar } from "@unified-codes/ui";
 
 export default { title: "EntityBrowser" };
 

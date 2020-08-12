@@ -19,10 +19,7 @@ import {
   Toolbar,
 } from "@unified-codes/ui";
 
-import { 
-  Explorer,
-  Login,
-} from "./components";
+import { Explorer, Login } from "./components";
 
 export const App = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
