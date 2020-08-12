@@ -45,7 +45,7 @@ export const resolvers = {
       const response = await dataSources.dgraph.postQuery(query);
       return response.data.query;
     },
-    user: async (_parent, _args, context) => {      
+    user: async (_parent, _args, context) => {
       const { user, authenticationService, authorisationService } = context;
 
       // TODO: use auth services to validate/verify whatever is going on!
