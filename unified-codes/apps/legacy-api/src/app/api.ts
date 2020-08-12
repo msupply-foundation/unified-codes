@@ -1,14 +1,25 @@
-import fastify from 'fastify';
+import fastify, { FastifyServerOptions, RouteShorthandOptionsWithHandler } from 'fastify';
 
 import schemas from './schemas';
 import handlers from './handlers';
 
-import { Api } from './types';
+import { Server, Route, Options } from './types';
 
-const api: Api = fastify({ logger: true });
+export const createServer = (routes: Route[], opts?: Options) => {
+    const server: Server = fastify(opts);
+    routes.forEach(route => server.get(route.path, route.opts));
+    return server;
+}
 
-api.get('/health', { schema: schemas.health, handler: handlers.health });
-api.get('/items', { schema: schemas.items, handler: handlers.items });
-api.get('/version', { schema: schemas.version, handler: handlers.version });
+export const createLegacyApiServer = (opts?: Options) => {
+    const routes = [
+        { path: '/health', opts: { schema: schemas.health, handler: handlers.health }},
+        { path: '/items', opts: { schema: schemas.items, handler: handlers.items }},
+        { path: '/version', opts: { schema: schemas.version, handler: handlers.version }}
+    ];
+    return createServer(routes, opts);
+}
 
-export default api;
+
+
+export default createLegacyApiServer;

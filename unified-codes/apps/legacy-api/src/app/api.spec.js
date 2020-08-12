@@ -1,12 +1,14 @@
 /* eslint-disable no-undef */
 import nock from 'nock';
 
-import api from './api';
+import createLegacyApiServer from './api';
 import queries from './queries';
+
+const server = createLegacyApiServer();
 
 describe('Test health endpoint', () => {
   test('Health endpoint response has status code 200', (done) => {
-    api
+    server
       .inject({
         method: 'GET',
         url: '/health',
@@ -20,36 +22,36 @@ describe('Test health endpoint', () => {
 });
 
 describe('Test items endpoint', () => {
-  const dgraphResponse = {
-    "data": {
-      "query": [
-        {
-          "code": "5589F4BF",
-          "description": "Paracetamol oral tablet, 300mg"
-        },
-        {
-          "code": "368C74BE",
-          "description": "Amoxicillin oral tablet, 500mg"
-        },
-        {
-          "code": "368C74BF",
-          "description": "Amoxicillin oral capsule, 250mg"
-        }
-      ]
-    },
-    "extensions": {
-      "txn": {
-        "start_ts": 1
-      }
-    }
-  };
-
   test('Items endpoint with no params has status code 200', (done) => {
+    const dgraphResponse = {
+      "data": {
+        "query": [
+          {
+            "code": "5589F4BF",
+            "description": "Paracetamol oral tablet, 300mg"
+          },
+          {
+            "code": "368C74BE",
+            "description": "Amoxicillin oral tablet, 500mg"
+          },
+          {
+            "code": "368C74BF",
+            "description": "Amoxicillin oral capsule, 250mg"
+          }
+        ]
+      },
+      "extensions": {
+        "txn": {
+          "start_ts": 1
+        }
+      }
+    };
+
     nock('http://localhost:8080')
       .post('/query')
       .query((queryObject) => !!queryObject.timeout)
       .reply(200, dgraphResponse);
-    api
+    server
       .inject({
         method: 'GET',
         url: '/items',
@@ -113,7 +115,7 @@ describe('Test items endpoint', () => {
       .post('/query')
       .query((queryObject) => !!queryObject.timeout)
       .reply(200, dgraphResponse);
-    api
+    server
       .inject({
         method: 'GET',
         url: '/items',
@@ -162,8 +164,7 @@ describe('Test items endpoint', () => {
           return graphResponse;
         }
       });
-
-    api
+    server
       .inject({
         method: 'GET',
         url: `/items?code=${code}`,
@@ -212,8 +213,7 @@ describe('Test items endpoint', () => {
           return graphResponse;
         }
       });
-
-    api
+    server
       .inject({
         method: 'GET',
         url: `/items?name=${name}&exact=true`,
@@ -270,8 +270,7 @@ describe('Test items endpoint', () => {
           return graphResponse;
         }
       });
-
-    api
+    server
       .inject({
         method: 'GET',
         url: `/items?name=${searchName}&exact=false`,
@@ -321,7 +320,7 @@ describe('Test items endpoint', () => {
       .post('/query')
       .query((queryObject) => !!queryObject.timeout)
       .reply(200, graphResponse);
-    api
+    server
       .inject({
         method: 'GET',
         url: `/items?name=${searchName}&exact=false`,
@@ -334,7 +333,7 @@ describe('Test items endpoint', () => {
   })
 
   test('Items endpoint with invalid params has status code 400', (done) => {
-    api
+    server
       .inject({
         method: 'GET',
         url: '/items',
@@ -350,7 +349,7 @@ describe('Test items endpoint', () => {
 
 describe('Test version endpoint', () => {
   test('Version endpoint response has status code 200', (done) => {
-    api
+    server
       .inject({
         method: 'GET',
         url: '/version',
@@ -363,7 +362,7 @@ describe('Test version endpoint', () => {
   });
 
   test('Version endpoint response has body with version properties', (done) => {
-    api
+    server
       .inject({
         method: 'GET',
         url: '/version',
@@ -379,7 +378,7 @@ describe('Test version endpoint', () => {
 
 describe('Test invalid endpoint', () => {
   test('Invalid endpoint response has status code 404', (done) => {
-    api
+    server
       .inject({
         method: 'GET',
         url: '/invalid',
