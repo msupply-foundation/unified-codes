@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
-import Button, { ButtonProps } from "../atoms/Button";
-import ClearIcon from "../../icons/atoms/ClearIcon";
+import Button, { ButtonProps } from '../atoms/Button';
+import ClearIcon from '../../icons/atoms/ClearIcon';
 
 export type ClearButtonProps = ButtonProps;
 

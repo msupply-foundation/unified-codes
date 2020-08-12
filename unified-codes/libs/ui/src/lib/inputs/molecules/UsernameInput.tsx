@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
-import IconInput from "./IconInput";
-import PersonIcon from "../../icons/atoms/PersonIcon";
+import IconInput from './IconInput';
+import PersonIcon from '../../icons/atoms/PersonIcon';
 
 export interface UsernameInputProps {
   input?: string;
@@ -16,7 +16,15 @@ export const UsernameInput: UsernameInput = ({ input, onChange }) => {
     [onChange]
   );
 
-  return <IconInput icon={PersonIcon} fullWidth label="Username" value={input} onChange={onChangeText}></IconInput>;
-}
+  return (
+    <IconInput
+      icon={PersonIcon}
+      fullWidth
+      label="Username"
+      value={input}
+      onChange={onChangeText}
+    ></IconInput>
+  );
+};
 
 export default UsernameInput;

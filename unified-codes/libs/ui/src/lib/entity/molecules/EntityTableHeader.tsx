@@ -1,11 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 
-import {
-  TableCell,
-  TableCellProps,
-  TableRow,
-  TableRowProps,
-} from "@unified-codes/ui";
+import { TableCell, TableCellProps, TableRow, TableRowProps } from '@unified-codes/ui';
 
 export interface EntityTableHeaderProps {
   rowProps?: TableRowProps;

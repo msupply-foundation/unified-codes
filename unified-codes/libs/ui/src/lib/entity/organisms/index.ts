@@ -1,1 +1,1 @@
-export * from "./EntityBrowser";
+export * from './EntityBrowser';

@@ -2,9 +2,9 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import * as React from 'react';
 
-import Alert from "./Alert";
-import Button from "../../inputs/atoms/Button";
-import ClearButton from "../../inputs/molecules/ClearButton";
+import Alert from './Alert';
+import Button from '../../inputs/atoms/Button';
+import ClearButton from '../../inputs/molecules/ClearButton';
 import Snackbar from './Snackbar';
 
 export default {
@@ -20,8 +20,8 @@ export const bottomLeft = () => {
   return (
     <Snackbar
       anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "left",
+        vertical: 'bottom',
+        horizontal: 'left',
       }}
       open={true}
       message="Sample Simple Snackbar"
@@ -34,8 +34,8 @@ export const bottomCenter = () => {
   return (
     <Snackbar
       anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "center",
+        vertical: 'bottom',
+        horizontal: 'center',
       }}
       open={true}
       message="Sample Simple Snackbar"
@@ -48,8 +48,8 @@ export const bottomRight = () => {
   return (
     <Snackbar
       anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "right",
+        vertical: 'bottom',
+        horizontal: 'right',
       }}
       open={true}
       message="Sample Simple Snackbar"
@@ -63,8 +63,8 @@ export const withCloseIcon = () => {
   return (
     <Snackbar
       anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "center",
+        vertical: 'bottom',
+        horizontal: 'center',
       }}
       open={open}
       onClose={() => setOpen(false)}
@@ -91,8 +91,8 @@ export const autoClose = () => {
   return (
     <Snackbar
       anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "center",
+        vertical: 'bottom',
+        horizontal: 'center',
       }}
       open={open}
       autoHideDuration={5000}
@@ -118,11 +118,7 @@ export const autoClose = () => {
 export const withAlert = () => {
   const [open, setOpen] = React.useState(true);
   return (
-    <Snackbar
-      open={open}
-      autoHideDuration={5000}
-      onClose={() => setOpen(false)}
-    >
+    <Snackbar open={open} autoHideDuration={5000} onClose={() => setOpen(false)}>
       <Alert severity="success" onClose={() => setOpen(false)}>
         Successfully displayed snackbar!
       </Alert>

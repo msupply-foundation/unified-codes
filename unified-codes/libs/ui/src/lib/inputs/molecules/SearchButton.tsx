@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
-import Button, { ButtonProps } from "../atoms/Button";
-import SearchIcon from "../../icons/atoms/SearchIcon";
+import Button, { ButtonProps } from '../atoms/Button';
+import SearchIcon from '../../icons/atoms/SearchIcon';
 
 export type SearchButtonProps = ButtonProps;
 
