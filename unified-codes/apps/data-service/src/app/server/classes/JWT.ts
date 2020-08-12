@@ -1,21 +1,19 @@
-import jwt, { DecodeOptions, JsonWebTokenError, NotBeforeError, Secret, TokenExpiredError, VerifyOptions } from 'jsonwebtoken';
+import JsonWebToken, { DecodeOptions, JsonWebTokenError, NotBeforeError, Secret, TokenExpiredError, VerifyOptions } from 'jsonwebtoken';
 
 export class JWTToken {    
     private token: string;
-    private options: VerifyOptions;
 
-    constructor(token: string, options?: VerifyOptions) {
+    constructor(token: string) {
         this.token = token;
-        this.options = options ?? { algorithms: ['RS256'] };
     }
 
     get header() {
-        const decoded = this.decode({ complete: true }) as { [key: string]: any };
+        const decoded = JsonWebToken.decode(this.token, { complete: true }) as { [key: string]: any };
         return decoded?.header;
     }
 
     get payload() {
-        const decoded = this.decode({ complete: true }) as { [key: string]: any };
+        const decoded = JsonWebToken.decode(this.token, { complete: true }) as { [key: string]: any };
         return decoded?.payload;
     }
 
@@ -23,13 +21,28 @@ export class JWTToken {
         return this.payload?.[key];
     }
 
-    decode(options: DecodeOptions) {
-        return jwt.decode(this.token, options);
+    toString() {
+        return this.token;
+    }
+}
+
+export class JWT {
+    private static defaultOptions: VerifyOptions = { algorithms: ['RS256'] };
+
+    static validateToken(token: JWTToken) {
+        const headerPattern = '[A-Za-z0-9-_=]+';
+        const payloadPattern = '[A-Za-z0-9-_=]+';
+        const signaturePattern = '?[A-Za-z0-9-_.+/=]*';
+        const jwtExpected = `^${headerPattern}\.${payloadPattern}\.${signaturePattern}$`;
+        const jwtActual = token.toString();
+        const regex = new RegExp(jwtExpected);
+        return regex.test(jwtActual);
     }
 
-    verify(secret: Secret) {
+    static verifyToken(token: JWTToken, secret: string, options?: VerifyOptions) {
         try { 
-            const payload = jwt.verify(this.token, secret, this.options);
+            const jwt = token.toString();
+            const payload = JsonWebToken.verify(jwt, secret, options ?? JWT.defaultOptions);
             return !!payload;
         }
         catch (err) {
@@ -39,21 +52,10 @@ export class JWTToken {
             throw err;
         } 
     }
-}
-
-export class JWT {
-    private static isValid(token: string) {
-        const headerPattern = '[A-Za-z0-9-_=]+';
-        const payloadPattern = '[A-Za-z0-9-_=]+';
-        const signaturePattern = '?[A-Za-z0-9-_.+/=]*';
-        const jwtPattern = `^${headerPattern}\.${payloadPattern}\.${signaturePattern}$`;
-        const regex = new RegExp(jwtPattern);
-        return regex.test(token);
-    }
 
     static parseAuthorisation(authorisation) {
         const [_,token] = authorisation.split(' ');
-        if (!JWT.isValid(token)) throw new JsonWebTokenError('jwt malformed'); 
+        if (!JWT.validateToken(token)) throw new JsonWebTokenError('jwt malformed'); 
         return new JWTToken(token);
     }
 
@@ -66,6 +68,7 @@ export class JWT {
         const { authorization = {} } = response;
         return JWT.parseAuthorisation(authorization);
     }
+
 }
 
 

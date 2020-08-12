@@ -7,8 +7,8 @@ export class UserError extends Error {
 }
 
 export class User {
-    private token: JWTToken;
-    private roles: string[];
+    token: JWTToken;
+    roles: string[];
 
     constructor(token: JWTToken) {
         this.token = token;
@@ -28,10 +28,6 @@ export class User {
 
     hasRole(role: string) {
         return this.roles.includes(role);
-    }
-
-    verify(secret: string) {
-        return this.token.verify(secret);
     }
 }
 

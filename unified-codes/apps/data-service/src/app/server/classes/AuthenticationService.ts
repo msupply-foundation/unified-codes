@@ -1,5 +1,6 @@
 
 import JWT, { JWTToken } from "./JWT";
+import IdentityProvider from "./IdentityProvider";
 import User from "./User";
 
 export interface IUserCredentials {
@@ -7,21 +8,16 @@ export interface IUserCredentials {
     password: string;
 }
 
-export interface IAuthenticationConfig {
-    baseUrl: string,
-}
-
 export class AuthenticationService {
-    config: IAuthenticationConfig;
+    provider: IdentityProvider;
 
-    constructor(config: IAuthenticationConfig) {
-        this.config = config;
+    constructor(provider: IdentityProvider) {
+        this.provider = provider;
     }
 
+    // TODO: add headers or whatever we need to pass the credentials?
     async authenticate(credentials: IUserCredentials) {
-        // Get user JWT from keycloak, add headers or whatever we need to pass the credentials?
-        const response = await fetch(this.config.baseUrl);
-        const token: JWTToken = JWT.parseResponse(response);
+        const token: JWTToken = await this.provider.getIdentityToken(credentials);
         return new User(token);
     }
 }

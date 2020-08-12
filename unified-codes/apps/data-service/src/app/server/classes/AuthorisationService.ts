@@ -1,5 +1,6 @@
 import User from './User';
 import JWT, { JWTToken } from './JWT';
+import IdentityProvider from './IdentityProvider';
 
 export interface IAuthorisationConfig {
     baseUrl: string,
@@ -12,29 +13,15 @@ export class AuthorisationError extends Error {
 }
 
 export class AuthorisationService {
-    private config: IAuthorisationConfig;
-    private secret: string | null;
+    private provider: IdentityProvider;
 
-    constructor(config: IAuthorisationConfig) {
-        this.config = config;
+    constructor(provider: IdentityProvider) {
+        this.provider = provider;
     }
 
-    async init() {
-        const response = await fetch(this.config.baseUrl);
-        const payload = await response.json();
-        this.secret = `
-            -----BEGIN PUBLIC KEY-----
-            ${payload?.public_key ?? ''}
-            -----END PUBLIC KEY-----`;
-    }
-
-    async refresh() {
-        this.init();
-    }
     // TODO: add permissions, e.g. authorise(user: User, permission: Permission)
-    authorise(user: User) {
-        if (!this.secret) throw new AuthorisationError('public key not found');
-        if (!user.verify(this.secret)) return false;
+    async authorise(user: User) {
+        return this.provider.verifyIdentityToken(user.token);
     }
 }
 
