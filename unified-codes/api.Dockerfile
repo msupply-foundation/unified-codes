@@ -1,8 +1,6 @@
-# docker build --tag api:0.1 -f api.Dockerfile .
-
 FROM node:current-slim
 
-WORKDIR /usr
+WORKDIR /usr/unified-codes
 
 EXPOSE 3000
 
@@ -10,6 +8,6 @@ COPY . .
 
 RUN npm install
 
-WORKDIR /usr/dist/apps/api/app
+WORKDIR /usr/unified-codes/dist/apps/api/app
 
 CMD [ "node", "main.js" ]
