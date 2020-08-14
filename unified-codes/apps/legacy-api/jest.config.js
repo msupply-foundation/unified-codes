@@ -5,7 +5,7 @@ module.exports = {
     'ts-jest': {
       tsConfig: '<rootDir>/tsconfig.spec.json',
       allowJs: 'true',
-    }
+    },
   },
   coverageDirectory: '../../coverage/apps/api',
 };

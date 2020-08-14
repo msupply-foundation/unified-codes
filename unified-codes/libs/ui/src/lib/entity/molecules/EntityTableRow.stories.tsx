@@ -10,10 +10,10 @@ export default {
 
 export const primary = () => {
   const data: EntityNode = {
-    code: "QFWR9789",
-    description: "Amoxicillin",
-    type: "medicinal_product",
+    code: 'QFWR9789',
+    description: 'Amoxicillin',
+    type: 'medicinal_product',
   };
   const entity = new Entity(data);
-  return <EntityTableRow entity={entity}/>;
+  return <EntityTableRow entity={entity} />;
 };

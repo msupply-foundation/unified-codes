@@ -1,10 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { Entity } from "@unified-codes/data";
+import { Entity } from '@unified-codes/data';
 
-import EntityTable from "../molecules/EntityTable";
-import Grid from "../../layout/atoms/Grid";
-import SearchBar from "../../inputs/molecules/SearchBar";
+import EntityTable from '../molecules/EntityTable';
+import Grid from '../../layout/atoms/Grid';
+import SearchBar from '../../inputs/molecules/SearchBar';
 
 export interface EntityBrowserProps {
   entities: Entity[];
@@ -13,10 +13,10 @@ export interface EntityBrowserProps {
 export type EntityBrowser = React.FunctionComponent<EntityBrowserProps>;
 
 export const EntityBrowser: EntityBrowser = ({ entities }) => {
-  const [input, setInput] = React.useState("");
+  const [input, setInput] = React.useState('');
   const [data, setData] = React.useState(entities);
 
-  const resetInput = React.useCallback(() => setInput(""), []);
+  const resetInput = React.useCallback(() => setInput(''), []);
   const resetData = React.useCallback(() => setData(entities), [entities]);
 
   const onChange = React.useCallback((value) => setInput(value), []);
@@ -26,18 +26,15 @@ export const EntityBrowser: EntityBrowser = ({ entities }) => {
   }, [resetData, resetInput]);
 
   const onSearch = React.useCallback(() => {
-    setData(entities.filter((entity) => entity.matchesCode(input) || entity.matchesDescription(input)));
+    setData(
+      entities.filter((entity) => entity.matchesCode(input) || entity.matchesDescription(input))
+    );
   }, [entities, input]);
 
   return (
     <Grid container direction="column">
       <Grid item>
-        <SearchBar
-          input={input}
-          onChange={onChange}
-          onClear={onClear}
-          onSearch={onSearch}
-        />
+        <SearchBar input={input} onChange={onChange} onClear={onClear} onSearch={onSearch} />
       </Grid>
       <Grid item>
         <EntityTable data={data} />

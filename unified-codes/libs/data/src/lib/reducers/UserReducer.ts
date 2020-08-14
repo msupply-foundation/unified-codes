@@ -1,11 +1,11 @@
-import { IUser } from "../types";
-import { IUserAction, USER_ACTIONS } from "../actions/UserActions";
+import { IUser } from '../types';
+import { IUserAction, USER_ACTIONS } from '../actions/UserActions';
 
 const initialState = () => {
   return {
     isValid: false,
     loggingIn: false,
-    name: "",
+    name: '',
     roles: [] as string[],
   } as IUser;
 };

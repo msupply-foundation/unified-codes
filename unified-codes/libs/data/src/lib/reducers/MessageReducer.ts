@@ -1,18 +1,15 @@
-import { IMessage } from "../types";
-import { IMessageAction, MESSAGE_ACTIONS } from "../actions/MessageActions";
+import { IMessage } from '../types';
+import { IMessageAction, MESSAGE_ACTIONS } from '../actions/MessageActions';
 
 const initialState = () => {
   return {
-    severity: "info",
-    text: "",
+    severity: 'info',
+    text: '',
     visible: false,
   } as IMessage;
 };
 
-export const MessageReducer = (
-  state = initialState(),
-  action: IMessageAction
-) => {
+export const MessageReducer = (state = initialState(), action: IMessageAction) => {
   const { type } = action;
 
   switch (type) {

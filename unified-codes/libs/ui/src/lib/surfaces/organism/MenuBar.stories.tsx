@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 import MenuBar from './MenuBar';
-import MenuItem from "../../navigation/atoms/MenuItem";
+import MenuItem from '../../navigation/atoms/MenuItem';
 
 export default {
   component: MenuBar,

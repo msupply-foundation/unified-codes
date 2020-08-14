@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Dialog from "../../feedback/atoms/Dialog";
-import DialogContent from "../../feedback/atoms/DialogContent";
+import Dialog from '../../feedback/atoms/Dialog';
+import DialogContent from '../../feedback/atoms/DialogContent';
 import LoginForm from './LoginForm';
 
 export default {

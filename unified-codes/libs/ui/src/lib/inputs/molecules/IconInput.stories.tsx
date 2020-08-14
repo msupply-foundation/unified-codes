@@ -11,13 +11,13 @@ export default {
 };
 
 export const primary = () => {
-  return <IconInput icon={SvgIcon}/>;
+  return <IconInput icon={SvgIcon} />;
 };
 
 export const withClearIcon = () => {
-  return <IconInput icon={ClearIcon}/>;
+  return <IconInput icon={ClearIcon} />;
 };
 
 export const withSearchIcon = () => {
-  return <IconInput icon={SearchIcon}/>;
+  return <IconInput icon={SearchIcon} />;
 };

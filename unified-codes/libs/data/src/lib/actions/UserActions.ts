@@ -1,11 +1,11 @@
-import { Action } from "redux";
-import { IUser, IUserAuthentication, IMessage } from "../types";
+import { Action } from 'redux';
+import { IUser, IUserAuthentication, IMessage } from '../types';
 
 export const USER_ACTIONS = {
-  LOG_IN: "userActions/login",
-  LOG_IN_SUCCESS: "userActions/loginSuccess",
-  LOG_IN_FAILURE: "userActions/loginFailure",
-  LOG_OUT: "userActions/logout",
+  LOG_IN: 'userActions/login',
+  LOG_IN_SUCCESS: 'userActions/loginSuccess',
+  LOG_IN_FAILURE: 'userActions/loginFailure',
+  LOG_OUT: 'userActions/logout',
 };
 
 export interface IUserAction extends Action<string> {
@@ -27,7 +27,7 @@ const loginSuccess = (user: IUser) => ({
 
 const loginFailure = (message: string) => {
   const action: IMessage = {
-    severity: "error",
+    severity: 'error',
     text: message,
   };
   return {
