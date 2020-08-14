@@ -1,3 +1,4 @@
+// TODO: should make roles an enum?
 const ADMIN_ROLE = 'ADMIN';
 
 const queries = {
@@ -29,22 +30,25 @@ const queries = {
 
 export const resolvers = {
   Query: {
-    entity: async (_source, _args, { dataSources }) => {
+    entity: async (_source, _args, context) => {
+      const { dataSources } = context;
       const { code } = _args;
       const query = queries.entity(code);
       const response = await dataSources.dgraph.postQuery(query);
       const [entity] = response.data.query;
       return entity;
     },
-    entities: async (_source, _args, { dataSources }) => {
+    entities: async (_source, _args, context) => {
+      const { dataSources } = context;
       const { type = 'medicinal_product' } = _args?.filter ?? {};
       const query = queries.entities(type);
       const response = await dataSources.dgraph.postQuery(query);
       return response.data.query;
     },
-    user: async (_parent, _args, context) => {
-      const { user } = context;
+    user: async (_parent, _args, context) => {      
+      const { user, authenticationService, authorisationService } = context;
 
+      // TODO: use auth services to validate/verify whatever is going on!
       if (!user?.hasRole(ADMIN_ROLE)) {
         throw new Error('Not authenticated');
       }

@@ -1,20 +1,20 @@
 {
   "version": 1,
   "projects": {
-    "api": {
-      "root": "apps/api",
-      "sourceRoot": "apps/api/src",
+    "legacy-api": {
+      "root": "apps/legacy-api",
+      "sourceRoot": "apps/legacy-api/src",
       "projectType": "application",
-      "prefix": "api",
+      "prefix": "legacy-api",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
           "options": {
-            "outputPath": "dist/apps/api/app",
-            "main": "apps/api/src/app/server.ts",
-            "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
+            "outputPath": "dist/apps/legacy-api/app",
+            "main": "apps/legacy-api/src/app/server.ts",
+            "tsConfig": "apps/legacy-api/tsconfig.app.json",
+            "assets": ["apps/legacy-api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -23,8 +23,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/api/src/environments/environment.ts",
-                  "with": "apps/api/src/environments/environment.prod.ts"
+                  "replace": "apps/legacy-api/src/environments/environment.ts",
+                  "with": "apps/legacy-api/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -33,22 +33,22 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "api:build"
+            "buildTarget": "legacy-api:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "tsConfig": ["apps/api/tsconfig.app.json", "apps/api/tsconfig.spec.json"],
+            "tsConfig": ["apps/legacy-api/tsconfig.app.json", "apps/legacy-api/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!apps/api/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/api/jest.config.js",
-            "tsConfig": "apps/api/tsconfig.spec.json",
+            "jestConfig": "apps/legacy-api/jest.config.js",
+            "tsConfig": "apps/legacy-api/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -388,5 +388,5 @@
       }
     }
   },
-  "defaultProject": "api"
+  "defaultProject": "legacy-api"
 }

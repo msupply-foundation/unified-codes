@@ -1,8 +1,9 @@
-import graphApi from './api.js';
+import { createApolloServer, createFastifyServer } from './api';
 
 const start = async () => {
   try {
-    await graphApi.listen(4000);
+    const fastifyServer = createFastifyServer(createApolloServer());
+    await fastifyServer.listen(4000);
   } catch (err) {
     graphApi.log.error(err);
     process.exit(1);

@@ -36,6 +36,8 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/react-redux": "^7.1.9",
     "apollo-datasource-rest": "^0.9.3",
     "apollo-server-fastify": "^2.15.1",
     "dgraph-js-http": "^20.7.0-rc1",
