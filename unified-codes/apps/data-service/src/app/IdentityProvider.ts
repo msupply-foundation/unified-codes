@@ -42,11 +42,8 @@ export class KeyCloakIdentityProvider extends IdentityProvider {
 
     if (!publicKey) throw new IdentityProviderError('public key not found');
 
-    const secret = `
-            -----BEGIN PUBLIC KEY-----
-            ${publicKey}
-            -----END PUBLIC KEY-----
-        `;
+    const secret = `-----BEGIN PUBLIC KEY-----\n${publicKey}\n-----END PUBLIC KEY-----`;
+
     return JWT.verifyToken(token, secret);
   }
 }
