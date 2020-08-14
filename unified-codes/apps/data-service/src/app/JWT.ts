@@ -1,7 +1,6 @@
 import JsonWebToken, {
   JsonWebTokenError,
   NotBeforeError,
-  Secret,
   TokenExpiredError,
   VerifyOptions,
 } from 'jsonwebtoken';
