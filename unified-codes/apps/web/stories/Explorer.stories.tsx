@@ -1,9 +1,9 @@
-import * as React from "react";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import * as React from 'react';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
-import { Explorer } from "../src/components/templates";
+import { Explorer } from '../src/components/templates';
 
-export default { title: "Explorer" };
+export default { title: 'Explorer' };
 
 export const withNoProps = () => {
   const client = new ApolloClient({
