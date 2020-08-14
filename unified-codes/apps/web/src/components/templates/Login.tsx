@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { Dialog, DialogContent, LoginForm } from "@unified-codes/ui";
-import { UserActions, IUserAuthentication, IUserAuthenticationAction } from "@unified-codes/data";
+import {
+  UserActions,
+  IUserAuthentication,
+  IUserAuthenticationAction,
+} from "@unified-codes/data";
 
 export interface LoginProps {
   onLogin?: (auth: IUserAuthentication) => void;

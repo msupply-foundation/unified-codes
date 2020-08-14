@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core';
 
 import Grid from './Grid';
 
 const useStyles = makeStyles(() => ({
   parent: {
-    borderStyle: "dashed",
-    borderWidth: "thin",
+    borderStyle: 'dashed',
+    borderWidth: 'thin',
   },
   child: {
-    borderStyle: "dotted",
-    borderWidth: "thin",
+    borderStyle: 'dotted',
+    borderWidth: 'thin',
   },
 }));
 

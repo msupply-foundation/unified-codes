@@ -10,32 +10,21 @@ export default {
 
 export const primary = () => {
   return <SearchBar />;
-}
+};
 
 export const withNoProps = () => {
   const returnVoid = () => null;
-  return (
-    <SearchBar
-      onChange={returnVoid}
-      onClear={returnVoid}
-      onSearch={returnVoid}
-    />
-  );
+  return <SearchBar onChange={returnVoid} onClear={returnVoid} onSearch={returnVoid} />;
 };
 
 export const withControlProps = () => {
-  const [input, setInput] = React.useState("");
+  const [input, setInput] = React.useState('');
 
   const updateInput = React.useCallback((value) => setInput(value), []);
-  const resetInput = React.useCallback(() => setInput(""), []);
+  const resetInput = React.useCallback(() => setInput(''), []);
   const alertInput = React.useCallback(() => alert(input), [input]);
 
   return (
-    <SearchBar
-      input={input}
-      onChange={updateInput}
-      onClear={resetInput}
-      onSearch={alertInput}
-    />
+    <SearchBar input={input} onChange={updateInput} onClear={resetInput} onSearch={alertInput} />
   );
 };

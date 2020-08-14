@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Button from './Button';
-import ClearIcon from "../../icons/atoms/ClearIcon";
-import SearchIcon from "../../icons/atoms/SearchIcon";
+import ClearIcon from '../../icons/atoms/ClearIcon';
+import SearchIcon from '../../icons/atoms/SearchIcon';
 
 export default {
   component: Button,

@@ -1,13 +1,8 @@
-import * as React from "react";
+import * as React from 'react';
 
-import {
-  TableCell,
-  TableCellProps,
-  TableRow,
-  TableRowProps,
-} from "@unified-codes/ui";
+import { TableCell, TableCellProps, TableRow, TableRowProps } from '@unified-codes/ui';
 
-import { Entity } from "@unified-codes/data";
+import { Entity } from '@unified-codes/data';
 
 export interface EntityTableRowProps {
   rowProps?: TableRowProps;
@@ -17,11 +12,7 @@ export interface EntityTableRowProps {
 
 export type EntityTableRow = React.FunctionComponent<EntityTableRowProps>;
 
-export const EntityTableRow: EntityTableRow = ({
-  rowProps,
-  cellProps,
-  entity,
-}) => {
+export const EntityTableRow: EntityTableRow = ({ rowProps, cellProps, entity }) => {
   const { code, description, type } = entity;
   return (
     <TableRow {...rowProps}>

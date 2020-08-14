@@ -1,4 +1,4 @@
-import { Color as t_Color } from "@material-ui/lab/Alert";
+import { Color as t_Color } from '@material-ui/lab/Alert';
 
 export type Severity = t_Color;
 

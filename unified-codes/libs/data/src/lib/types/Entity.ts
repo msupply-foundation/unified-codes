@@ -1,5 +1,5 @@
-import { EntityNode } from "./EntityNode";
-import { Property } from "./Property";
+import { EntityNode } from './EntityNode';
+import { Property } from './Property';
 
 export class Entity {
   private _code: string;

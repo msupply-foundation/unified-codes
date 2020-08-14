@@ -1,48 +1,27 @@
 name: CI
 on: push
 jobs:
-  check-types:
+  check-types-legacy-api:
     runs-on: ubuntu-latest
     env:
-      api-directory: ./nx-workspace
+      workspace-directory: ./unified-codes
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
       run: npm install
-      working-directory: ${{env.api-directory}}
-    - name: Run api type check
-      run: npm run nx build api
-      working-directory: ${{env.api-directory}}
-  test-api:
+      working-directory: ${{env.workspace-directory}}
+    - name: Run legacy-api type check
+      run: npx nx build legacy-api
+      working-directory: ${{env.workspace-directory}}
+  test-legacy-api:
     runs-on: ubuntu-latest
     env:
-      api-directory: ./nx-workspace
+      workspace-directory: ./unified-codes
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
       run: npm install
-      working-directory: ${{env.api-directory}}
-    - name: Run api tests
-      run: npm run nx test api
-      working-directory: ${{env.api-directory}}
-  test-data-service:
-    runs-on: ubuntu-latest
-    env:
-      api-directory: ./nx-workspace
-      database-directory: ./nx-workspace/apps/data-service/src/app/database
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: npm install
-      working-directory: ${{env.api-directory}}
-    - name: Start docker
-      run: sudo bash ./docker.sh &
-      working-directory: ${{env.database-directory}}
-    - name: Sleep
-      run: sleep 20
-    - name: Initialise data
-      run: sudo bash ./init.sh
-      working-directory: ${{env.database-directory}}
-    - name: Run dgraph tests
-      run: npm run test-dgraph
-      working-directory: ${{env.api-directory}}
+      working-directory: ${{env.workspace-directory}}
+    - name: Run legacy-api tests
+      run: npx nx test legacy-api
+      working-directory: ${{env.workspace-directory}}

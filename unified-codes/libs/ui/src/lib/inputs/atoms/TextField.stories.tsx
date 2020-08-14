@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ClearIcon from "../../icons/atoms/ClearIcon";
-import InputAdornment from "./InputAdornment";
-import SearchIcon from "../../icons/atoms/SearchIcon";
+import ClearIcon from '../../icons/atoms/ClearIcon';
+import InputAdornment from './InputAdornment';
+import SearchIcon from '../../icons/atoms/SearchIcon';
 import TextField from './TextField';
 
 export default {
