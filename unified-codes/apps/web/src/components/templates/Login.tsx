@@ -1,13 +1,9 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { Dialog, DialogContent, LoginForm } from "@unified-codes/ui";
-import {
-  UserActions,
-  IUserAuthentication,
-  IUserAuthenticationAction,
-} from "@unified-codes/data";
+import { Dialog, DialogContent, LoginForm } from '@unified-codes/ui';
+import { UserActions, IUserAuthentication, IUserAuthenticationAction } from '@unified-codes/data';
 
 export interface LoginProps {
   onLogin?: (auth: IUserAuthentication) => void;
@@ -39,11 +35,8 @@ _Login.propTypes = {
 };
 
 const mapStateToProps = () => ({});
-const mapDispatchToProps = (
-  dispatch: React.Dispatch<IUserAuthenticationAction>
-) => {
-  const onLogin = (auth: IUserAuthentication) =>
-    dispatch(UserActions.login(auth));
+const mapDispatchToProps = (dispatch: React.Dispatch<IUserAuthenticationAction>) => {
+  const onLogin = (auth: IUserAuthentication) => dispatch(UserActions.login(auth));
 
   return { onLogin };
 };

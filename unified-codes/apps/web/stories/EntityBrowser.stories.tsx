@@ -1,23 +1,23 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import * as React from "react";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { EntityNode, Entity } from "@unified-codes/data";
+import * as React from 'react';
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { EntityNode, Entity } from '@unified-codes/data';
 
-import { Alert, EntityBrowser, Severity, Snackbar } from "@unified-codes/ui";
+import { Alert, EntityBrowser, Severity, Snackbar } from '@unified-codes/ui';
 
-export default { title: "EntityBrowser" };
+export default { title: 'EntityBrowser' };
 
 export const withMockData = () => {
   const data: EntityNode[] = [
     {
-      code: "QFWR9789",
-      description: "Amoxicillin",
-      type: "medicinal_product",
+      code: 'QFWR9789',
+      description: 'Amoxicillin',
+      type: 'medicinal_product',
     },
     {
-      code: "GH89P98W",
-      description: "Paracetamol",
-      type: "medicinal_product",
+      code: 'GH89P98W',
+      description: 'Paracetamol',
+      type: 'medicinal_product',
     },
   ];
   const entities = data.map((entityNode: EntityNode) => new Entity(entityNode));
@@ -30,7 +30,7 @@ export const withApolloData = () => {
     show: boolean;
     text: string;
   };
-  const defaultAlert: UserAlert = { show: false, text: "", severity: "info" };
+  const defaultAlert: UserAlert = { show: false, text: '', severity: 'info' };
   const client = new ApolloClient({
     uri: process.env.NX_DATA_SERVICE,
     cache: new InMemoryCache(),
@@ -59,20 +59,18 @@ export const withApolloData = () => {
   const [alert, setAlert] = React.useState(defaultAlert);
 
   if (data.length) {
-    const entities = data.map(
-      (entityNode: EntityNode) => new Entity(entityNode)
-    );
+    const entities = data.map((entityNode: EntityNode) => new Entity(entityNode));
     return <EntityBrowser entities={entities} />;
   } else {
     if (!alert.show) {
-      showAlert("Fetching...", "info");
+      showAlert('Fetching...', 'info');
       client
         .query({ query })
         .then((response) => {
           setData(response?.data?.entities ?? []);
         })
         .catch((error) => {
-          showAlert(error.message, "error");
+          showAlert(error.message, 'error');
         });
     }
     return (

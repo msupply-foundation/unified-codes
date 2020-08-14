@@ -1,25 +1,12 @@
-import * as React from "react";
+import * as React from 'react';
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
 
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
-import {
-  AppBar,
-  Container,
-  Grid,
-  MenuBar,
-  MenuItem,
-  Toolbar,
-} from "@unified-codes/ui";
+import { AppBar, Container, Grid, MenuBar, MenuItem, Toolbar } from '@unified-codes/ui';
 
-import { Explorer, Login } from "./components";
+import { Explorer, Login } from './components';
 
 export const App = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -34,13 +21,7 @@ export const App = () => {
   return (
     <Router>
       <Container>
-        <Grid
-          container
-          spacing={3}
-          direction="column"
-          justify="space-between"
-          alignItems="stretch"
-        >
+        <Grid container spacing={3} direction="column" justify="space-between" alignItems="stretch">
           <Grid item>
             <AppBar position="static">
               <Toolbar>
