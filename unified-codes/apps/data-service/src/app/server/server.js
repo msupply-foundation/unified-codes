@@ -1,11 +1,14 @@
 import { createApolloServer, createFastifyServer } from './api';
 
 const start = async () => {
+  let fastifyServer;
   try {
-    const fastifyServer = createFastifyServer(createApolloServer());
+    fastifyServer = createFastifyServer(createApolloServer());
     await fastifyServer.listen(4000);
   } catch (err) {
-    graphApi.log.error(err);
+    if (fastifyServer) {
+      fastifyServer.log.error(err);
+    }
     process.exit(1);
   }
 };
