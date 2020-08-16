@@ -8,6 +8,6 @@ COPY . .
 
 RUN npm install
 
-WORKDIR /usr/unified-codes/dist/apps/api/app
+WORKDIR /usr/unified-codes/dist/apps/legacy-api/app
 
 CMD [ "node", "main.js" ]
