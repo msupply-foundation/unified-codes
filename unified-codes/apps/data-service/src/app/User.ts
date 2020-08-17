@@ -12,6 +12,10 @@ export class User {
 
   constructor(token: JWTToken) {
     this.token = token;
+    if (!token) {
+      this.roles = [];
+      return;
+    }
 
     const family_name = token.getProperty('family_name');
     const given_name = token.getProperty('given_name');

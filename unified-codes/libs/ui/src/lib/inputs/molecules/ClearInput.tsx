@@ -23,7 +23,7 @@ export type ClearInput = React.FunctionComponent<
 >;
 
 export const ClearInput: ClearInput = ({ onClear, ...other }) => {
-  const onClick = React.useMemo(() => onClear ?? null, [onClear]);
+  const onClick = React.useMemo(() => onClear ?? undefined, [onClear]);
   return (
     <TextField
       InputProps={{
