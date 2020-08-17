@@ -12,8 +12,8 @@ export const createApolloServer = (_typeDefs, _resolvers, _dataSources, _authent
   const AUTH_URL = 'http://127.0.0.1:9990/auth/realms/unified-codes';
 
   const getDataSources = () => ({
-    DgraphDataSource: new Data.DgraphDataSource(),
-    RxNavDataSource: new Data.RxNavDataSource(),
+    dgraph: new Data.DgraphDataSource(),
+    rxnav: new Data.RxNavDataSource(),
   });
   const typeDefs = _typeDefs ?? Schema.typeDefs;
   const resolvers = _resolvers ?? Resolvers.resolvers;

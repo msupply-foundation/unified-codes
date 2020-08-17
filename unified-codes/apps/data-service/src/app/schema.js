@@ -18,7 +18,7 @@ const typeDefs = gql`
   type User {
     familyName: String
     givenName: String
-    isValid: Boolean!
+    isAuthenticated: Boolean!
     name: String!
     roles: [String]
   }

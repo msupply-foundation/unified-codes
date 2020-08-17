@@ -34,16 +34,15 @@ export const resolvers = {
       const { dataSources } = context;
       const { code } = _args;
       const query = queries.entity(code);
-      const response = await dataSources.DgraphDataSource.postQuery(query);
+      const response = await dataSources.dgraph.postQuery(query);
       const [entity] = response.data.query;
       return entity;
     },
     entities: async (_source, _args, context) => {
       const { dataSources } = context;
-      console.warn(dataSources);
       const { type = 'medicinal_product' } = _args?.filter ?? {};
       const query = queries.entities(type);
-      const response = await dataSources.DgraphDataSource.postQuery(query);
+      const response = await dataSources.dgraph.postQuery(query);
       return response.data.query;
     },
     user: async (_parent, _args, context) => {
