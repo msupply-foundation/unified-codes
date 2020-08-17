@@ -66,7 +66,6 @@ export class JWT {
 
   static parseRequest(request) {
     const { authorisation = '' } = request;
-
     return JWT.parseAuthorisation(authorisation);
   }
 
