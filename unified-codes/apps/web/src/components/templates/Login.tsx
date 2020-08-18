@@ -11,7 +11,7 @@ export interface LoginProps {
 
 export type Login = React.FunctionComponent<LoginProps>;
 
-const _Login: Login = ({ onLogin }) => {
+export const LoginComponent: Login = ({ onLogin }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(true);
   const closeDialog = React.useCallback(() => setIsOpen(false), []);
   const onSubmit = React.useCallback((username, password) => {
@@ -30,14 +30,11 @@ const _Login: Login = ({ onLogin }) => {
   );
 };
 
-_Login.propTypes = {
-  onLogin: PropTypes.func,
-};
-
-const mapStateToProps = () => ({});
 const mapDispatchToProps = (dispatch: React.Dispatch<IUserAuthenticationAction>) => {
   const onLogin = (auth: IUserAuthentication) => dispatch(UserActions.login(auth));
-
   return { onLogin };
 };
-export const Login = connect(mapStateToProps, mapDispatchToProps)(_Login);
+
+export const Login = connect(null, mapDispatchToProps)(LoginComponent);
+
+export default Login;
