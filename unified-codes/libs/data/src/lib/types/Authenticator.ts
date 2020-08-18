@@ -1,24 +1,25 @@
 import { JWTToken } from './JWT';
 import IdentityProvider from './IdentityProvider';
-import User from './User';
+import User, { IUserCredentials } from './User';
 
-export interface IUserCredentials {
-  username: string;
-  password: string;
+export interface IAuthenticator {
+  isAuthenticating: boolean,
 }
 
-export class AuthenticationService {
+export class Authenticator implements IAuthenticator {
   provider: IdentityProvider;
+  isAuthenticating: boolean;
 
   constructor(provider: IdentityProvider) {
     this.provider = provider;
   }
 
-  // TODO: add headers or whatever we need to pass the credentials?
   async authenticate(credentials: IUserCredentials) {
+    this.isAuthenticating = true;
     const token: JWTToken = await this.provider.getIdentityToken(credentials);
+    this.isAuthenticating = false;
     return new User(token);
   }
 }
 
-export default AuthenticationService;
+export default Authenticator;
