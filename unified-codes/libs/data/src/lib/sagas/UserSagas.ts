@@ -7,7 +7,7 @@ function* login(action: IUserAuthenticationAction) {
     const { auth } = action;
     const response = yield call(authenticate, auth);
     const user = {
-      isValid: true,
+      isAuthenticated: true,
       loggingIn: false,
       name: response.access_token,
       roles: [],

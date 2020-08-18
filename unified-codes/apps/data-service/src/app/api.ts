@@ -11,12 +11,13 @@ import { KeyCloakIdentityProvider } from './IdentityProvider';
 export const createApolloServer = (_typeDefs, _resolvers, _dataSources, _authenticator) => {
   const AUTH_URL = 'http://127.0.0.1:9990/auth/realms/unified-codes';
 
+  const getDataSources = () => ({
+    dgraph: new Data.DgraphDataSource(),
+    rxnav: new Data.RxNavDataSource(),
+  });
   const typeDefs = _typeDefs ?? Schema.typeDefs;
   const resolvers = _resolvers ?? Resolvers.resolvers;
-  const dataSources = _dataSources ?? {
-    DgraphDataSource: Data.DgraphDataSource,
-    RxNavDataSource: Data.RxNavDataSource,
-  };
+  const dataSources = _dataSources ?? getDataSources;
 
   const identityProviderConfig = { baseUrl: AUTH_URL };
   const identityProvider = new KeyCloakIdentityProvider(identityProviderConfig);

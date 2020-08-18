@@ -58,19 +58,20 @@ export class JWT {
   }
 
   static parseAuthorisation(authorisation) {
+    if (!authorisation) return;
     const [_, token] = authorisation.split(' ');
     if (!JWT.validateToken(token)) throw new JsonWebTokenError('jwt malformed');
     return new JWTToken(token);
   }
 
   static parseRequest(request) {
-    const { authorization = {} } = request;
-    return JWT.parseAuthorisation(authorization);
+    const { authorisation = '' } = request;
+    return JWT.parseAuthorisation(authorisation);
   }
 
   static parseResponse(response) {
-    const { authorization = {} } = response;
-    return JWT.parseAuthorisation(authorization);
+    const { authorisation = '' } = response;
+    return JWT.parseAuthorisation(authorisation);
   }
 }
 

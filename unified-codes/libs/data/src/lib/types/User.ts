@@ -1,5 +1,5 @@
 export interface IUser {
-  isValid: boolean;
+  isAuthenticated: boolean;
   loggingIn: boolean;
   name: string;
   roles: string[];

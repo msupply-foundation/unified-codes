@@ -7,7 +7,7 @@ import {
   TableHeadProps,
   TableBody,
   TableBodyProps,
-} from '@unified-codes/ui';
+} from '../../data';
 
 import { Entity } from '@unified-codes/data';
 

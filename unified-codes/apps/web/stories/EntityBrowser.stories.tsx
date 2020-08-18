@@ -61,8 +61,11 @@ export const withApolloData = () => {
   if (data.length) {
     const entities = data.map((entityNode: EntityNode) => new Entity(entityNode));
     return <EntityBrowser entities={entities} />;
-  } else {
-    if (!alert.show) {
+  }
+  const validUrl = !!process.env.NX_DATA_SERVICE;
+  const messageDisplayed = alert.show;
+  if (!messageDisplayed) {
+    if (validUrl) {
       showAlert('Fetching...', 'info');
       client
         .query({ query })
@@ -72,13 +75,16 @@ export const withApolloData = () => {
         .catch((error) => {
           showAlert(error.message, 'error');
         });
+    } else {
+      showAlert('Unable to load, no data service URL specified', 'error');
     }
-    return (
-      <Snackbar open={alert.show} autoHideDuration={6000} onClose={hideAlert}>
-        <Alert onClose={hideAlert} severity={alert.severity}>
-          {alert.text}
-        </Alert>
-      </Snackbar>
-    );
   }
+
+  return (
+    <Snackbar open={alert.show} autoHideDuration={6000} onClose={hideAlert}>
+      <Alert onClose={hideAlert} severity={alert.severity}>
+        {alert.text}
+      </Alert>
+    </Snackbar>
+  );
 };
