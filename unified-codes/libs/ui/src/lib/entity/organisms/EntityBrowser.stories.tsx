@@ -1,4 +1,6 @@
-import React from 'react';
+import * as React from 'react';
+
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 import { Entity, EntityNode } from '@unified-codes/data';
 
