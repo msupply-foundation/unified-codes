@@ -1,9 +1,7 @@
 import * as React from 'react';
-
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-
 import { AppBar, Container, Grid, MenuBar, MenuItem, Toolbar } from '@unified-codes/ui';
 
 import { Explorer, Login } from './components';
@@ -19,7 +17,7 @@ export const App = () => {
   });
 
   return (
-    <Router>
+    <BrowserRouter>
       <Container>
         <Grid container spacing={3} direction="column" justify="space-between" alignItems="stretch">
           <Grid item>
@@ -55,7 +53,7 @@ export const App = () => {
           </Grid>
         </Grid>
       </Container>
-    </Router>
+    </BrowserRouter>
   );
 };
 
