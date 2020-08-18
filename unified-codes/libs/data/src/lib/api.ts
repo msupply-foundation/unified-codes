@@ -30,7 +30,7 @@ export const fetchUser = async (): Promise<IAuthenticationResponse> => {
   const query = gql`
     query allEntities {
       user {
-        isValid
+        isAuthenticated
         name
         roles
       }

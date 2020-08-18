@@ -10,9 +10,14 @@ export class User {
   token: JWTToken;
   roles: string[];
 
-  constructor(token: JWTToken) {
-    this.token = token;
+  constructor(token?: JWTToken) {
+    const roles = token ? this.parseToken(token) : [];
 
+    this.roles = roles;
+    this.token = token;
+  }
+
+  parseToken(token: JWTToken): string[] {
     const family_name = token.getProperty('family_name');
     const given_name = token.getProperty('given_name');
     const name = token.getProperty('name');
@@ -23,7 +28,7 @@ export class User {
       throw new UserError('malformed user jwt token');
     }
 
-    this.roles = roles;
+    return roles;
   }
 
   hasRole(role: string) {

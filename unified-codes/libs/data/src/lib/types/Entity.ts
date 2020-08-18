@@ -43,7 +43,7 @@ export class Entity {
   }
 
   matchesProperty(property: Property) {
-    return this.properties.includes(property);
+    return this.properties?.includes(property);
   }
 }
 

@@ -1,20 +1,20 @@
-import * as React from "react";
-import { useQuery, gql } from "@apollo/client";
+import * as React from 'react';
+import { useQuery, gql } from '@apollo/client';
 
-import { EntityBrowser, Grid } from "@unified-codes/ui";
-import { Entity, EntityNode } from "@unified-codes/data";
+import { EntityBrowser, Grid } from '@unified-codes/ui';
+import { Entity, EntityNode } from '@unified-codes/data';
 
 const mockData: { entities: EntityNode[] } = {
   entities: [
     {
-      code: "QFWR9789",
-      description: "Amoxicillin",
-      type: "medicinal_product",
+      code: 'QFWR9789',
+      description: 'Amoxicillin',
+      type: 'medicinal_product',
     },
     {
-      code: "GH89P98W",
-      description: "Paracetamol",
-      type: "medicinal_product",
+      code: 'GH89P98W',
+      description: 'Paracetamol',
+      type: 'medicinal_product',
     },
   ],
 };
@@ -51,9 +51,7 @@ export const Explorer = () => {
 
   if (data || error) {
     const entityData = data ?? mockData;
-    const entities = entityData.entities.map(
-      (entityNode: EntityNode) => new Entity(entityNode)
-    );
+    const entities = entityData.entities.map((entityNode: EntityNode) => new Entity(entityNode));
     setEntities(entities);
   }
 
