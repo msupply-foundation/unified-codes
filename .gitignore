@@ -1,3 +1,4 @@
 .DS_Store
 .vscode/
 nx-workspace/apps/web/.local.env
+**/.local.env

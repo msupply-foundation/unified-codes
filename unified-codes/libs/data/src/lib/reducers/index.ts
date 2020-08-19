@@ -1,2 +1,5 @@
-export { MessageReducer } from './MessageReducer';
-export { UserReducer } from './UserReducer';
+import { combineReducers } from 'redux';
+import { MessageReducer } from './MessageReducer';
+import { UserReducer } from './UserReducer';
+
+export const reducers = combineReducers({ message: MessageReducer, user: UserReducer });

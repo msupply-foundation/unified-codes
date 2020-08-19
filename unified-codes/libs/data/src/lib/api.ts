@@ -19,6 +19,8 @@ export const authenticate = async (auth: IUserAuthentication) => {
     credentials: 'include',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
+      'Cache-Control': 'no-cache',
+      Accept: '*/*',
     },
     body: formData,
   });
