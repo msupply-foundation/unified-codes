@@ -6,15 +6,18 @@ import IdentityProvider from './IdentityProvider';
 import JWT, { JWTToken } from './JWT';
 import User from './User';
 
+type TypeDefs = Config['typeDefs'];
+type Resolvers = Config['resolvers'];
+type DataSources = Config['dataSources'];
 export class ApolloService {
-  typeDefs: Config['typeDefs'];
-  resolvers: Config['resolvers'];
-  dataSources: Config['dataSources'];
+  typeDefs: TypeDefs;
+  resolvers: Resolvers;
+  dataSources: DataSources;
 
   authenticator: Authenticator;
   authorisationService: AuthorisationService;
 
-  constructor(typeDefs, resolvers, dataSources, identityProvider: IdentityProvider) {
+  constructor(typeDefs: TypeDefs, resolvers: Resolvers, dataSources: DataSources, identityProvider: IdentityProvider) {
     this.typeDefs = typeDefs;
     this.resolvers = resolvers;
     this.dataSources = dataSources;
