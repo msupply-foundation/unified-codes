@@ -17,6 +17,8 @@ const updateEntities = (data: { entities: IEntity[] }) => ({
   data,
 });
 
-export default {
+export const EntityActions = {
   updateEntities,
 };
+
+export default EntityActions;

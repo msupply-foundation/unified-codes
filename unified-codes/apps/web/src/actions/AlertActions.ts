@@ -24,7 +24,9 @@ const showAlert = (alert: IAlert) => ({
   alert,
 });
 
-export default {
+export const AlertActions = {
   hideAlert,
   showAlert,
 };
+
+export default AlertActions;

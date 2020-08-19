@@ -39,8 +39,10 @@ const authenticationFailure = (error: string) => {
   };
 };
 
-export default {
+export const AuthenticatorActions = {
   authenticate,
   authenticationSuccess,
   authenticationFailure,
 };
+
+export default AuthenticatorActions;
