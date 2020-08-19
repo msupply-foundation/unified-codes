@@ -1,0 +1,25 @@
+version: '3'
+services:
+  legacy-api:
+    image: unified-codes/legacy-api
+    build: ../..
+    ports:
+    - "3000:3000"
+    volumes:
+      - ../../dist/apps/legacy-api:/usr/unified-codes/dist/apps/legacy-api
+  data-service:
+    image: unified-codes/data-service
+    ports:
+      - "4000:4000"
+    volumes:
+      - ../../dist/apps/data-service:/usr/unified-codes/dist/apps/data-service
+  dgraph-standalone:
+    image: dgraph/standalone:v20.03.0
+    ports: 
+      - 8080:8080
+      - 9080:9080
+      - 8000:8000
+    volumes:
+      - ~/dgraph:/dgraph
+volumes:
+  logvolume01: {}
