@@ -6,6 +6,7 @@ const initialState = () => {
   const authentication: IAuthenticator = {
     isAuthenticating: false,
   }
+  return authentication;
 };
 
 export const AuthenticatorReducer = (state = initialState(), action: IAuthenticatorAction) => {
