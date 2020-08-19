@@ -14,8 +14,6 @@ export const EntityReducer = (state = initialState(), action: IEntityAction) => 
     case ENTITY_ACTIONS.UPDATE: {
       const { data } = action;
       const { entities } = data;
-      console.log(entities);
-
       return entities;
     }
     
