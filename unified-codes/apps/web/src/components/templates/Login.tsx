@@ -4,14 +4,15 @@ import { connect } from 'react-redux';
 
 import { Dialog, DialogContent, LoginForm } from '@unified-codes/ui';
 import { UserActions, IUserAuthentication, IUserAuthenticationAction } from '@unified-codes/data';
+import { IUserCredentials } from '@unified-codes/data';
 
 export interface LoginProps {
-  onLogin?: (auth: IUserAuthentication) => void;
+  onLogin?: (credentials: IUserCredentials) => void;
 }
 
 export type Login = React.FunctionComponent<LoginProps>;
 
-export const LoginComponent: Login = ({ onLogin }) => {
+export const LoginComponent: Login = ({ onLogin = () => null }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(true);
   const closeDialog = React.useCallback(() => setIsOpen(false), []);
   const onSubmit = React.useCallback((username, password) => {
