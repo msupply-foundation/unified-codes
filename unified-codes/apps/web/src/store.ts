@@ -7,7 +7,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({ alert: AlertReducer, user: UserReducer, entities: EntityReducer, authenticator: AuthenticatorReducer });
 
-const store = createStore(reducers, applyMiddleware(sagaMiddleware));
+export const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(rootSaga);
 
