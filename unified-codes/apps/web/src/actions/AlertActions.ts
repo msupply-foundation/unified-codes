@@ -7,9 +7,13 @@ export const ALERT_ACTIONS = {
   SHOW: 'alertActions/show',
 };
 
-export interface IAlertAction extends Action<string> {
+export interface IAlertHideAction extends Action<string> {};
+
+export interface IAlertShowAction extends Action<string> {
   alert: IAlert;
 }
+
+export type IAlertAction = IAlertHideAction | IAlertShowAction;
 
 const hideAlert = () => ({
   type: ALERT_ACTIONS.HIDE,
