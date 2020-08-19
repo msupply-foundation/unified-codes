@@ -1,5 +1,5 @@
 import { IAlert, AlertSeverity } from '@unified-codes/data';
-import { IAlertAction, ALERT_ACTIONS } from '../actions/AlertActions';
+import { IAlertAction, ALERT_ACTIONS, IAlertShowAction } from '../actions/AlertActions';
 
 const initialState = () => {
   const alert: IAlert = {
@@ -15,7 +15,7 @@ export const AlertReducer = (state = initialState(), action: IAlertAction) => {
 
   switch (type) {
     case ALERT_ACTIONS.SHOW: {
-      const { alert } = action;
+      const { alert } = action as IAlertShowAction;
       return alert;
     }
 
