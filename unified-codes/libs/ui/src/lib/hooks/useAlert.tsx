@@ -8,14 +8,17 @@ export const useAlert = (initialState: IAlert = defaultAlert) => {
   const [alert, setAlert] = React.useState(initialState);
 
   const resetAlert = React.useCallback(() => setAlert(defaultAlert), [setAlert]);
+
   const setAlertIsVisible = React.useCallback(
     (isVisible: boolean) => setAlert({ ...alert, isVisible }),
     [setAlert]
   );
+
   const setAlertSeverity = React.useCallback(
     (severity: AlertSeverity) => setAlert({ ...alert, severity }),
     [setAlert]
   );
+
   const setAlertText = React.useCallback((text: string) => setAlert({ ...alert, text }), [
     setAlert,
   ]);

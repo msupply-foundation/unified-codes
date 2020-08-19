@@ -13,6 +13,8 @@ export interface EntityBrowserProps {
 export type EntityBrowser = React.FunctionComponent<EntityBrowserProps>;
 
 export const EntityBrowser: EntityBrowser = ({ entities }) => {
+  // TODO: lift callbacks out for reduxification!
+
   const [input, setInput] = React.useState('');
   const [data, setData] = React.useState<Entity[]>(entities);
 
@@ -37,7 +39,7 @@ export const EntityBrowser: EntityBrowser = ({ entities }) => {
         <SearchBar input={input} onChange={onChange} onClear={onClear} onSearch={onSearch} />
       </Grid>
       <Grid item>
-        <EntityTable data={data} />
+        <EntityTable data={entities} />
       </Grid>
     </Grid>
   );
