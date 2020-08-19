@@ -57,19 +57,19 @@ export class JWT {
     }
   }
 
-  static parseAuthorisation(authorisation) {
-    if (!authorisation) return;
-    const [_, token] = authorisation.split(' ');
+  static parseAuthorisation(authorisation: string): JWTToken {
+    const [_, jwt] = authorisation.split(' ');
+    const token = new JWTToken(jwt);
     if (!JWT.validateToken(token)) throw new JsonWebTokenError('jwt malformed');
-    return new JWTToken(token);
+    return token;
   }
 
-  static parseRequest(request) {
+  static parseRequest(request: any) {
     const { authorisation = '' } = request;
     return JWT.parseAuthorisation(authorisation);
   }
 
-  static parseResponse(response) {
+  static parseResponse(response: any) {
     const { authorisation = '' } = response;
     return JWT.parseAuthorisation(authorisation);
   }
