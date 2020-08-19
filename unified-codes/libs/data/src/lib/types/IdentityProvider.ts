@@ -24,7 +24,7 @@ export class IdentityProviderError extends Error {
 
 export abstract class IdentityProvider {
   abstract async getIdentityToken(credentials: IUserCredentials): Promise<JWTToken>;
-  abstract async verifyIdentityToken(token: JWTToken);
+  abstract async verifyIdentityToken(token: JWTToken): Promise<boolean>;
 }
 
 export class KeyCloakIdentityProvider extends IdentityProvider {
@@ -35,7 +35,7 @@ export class KeyCloakIdentityProvider extends IdentityProvider {
     this.config = config;
   }
 
-  async getIdentityToken(credentials: IUserCredentials) {
+  async getIdentityToken(credentials: IUserCredentials): Promise<JWTToken> {
     const { username, password } = credentials;    
     const { baseUrl, clientId, clientSecret, grantType } = this.config;
 
@@ -47,7 +47,7 @@ export class KeyCloakIdentityProvider extends IdentityProvider {
     formData.append('password', password);
 
     const response = await fetch(baseUrl, {
-      method: 'POST',
+      method: 'POSTJWT',
       mode: 'cors',
       cache: 'no-cache',
       credentials: 'include',
@@ -61,7 +61,7 @@ export class KeyCloakIdentityProvider extends IdentityProvider {
     return token;
   }
 
-  async verifyIdentityToken(token: JWTToken) {
+  async verifyIdentityToken(token: JWTToken): Promise<boolean> {
     const response = await fetch(this.config.baseUrl);
     const payload = await response.json();
     const { public_key: publicKey } = payload ?? {};
