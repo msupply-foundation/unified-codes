@@ -8,6 +8,18 @@ export interface IAlert {
   isVisible: boolean;
 }
 
+export class Alert implements IAlert {
+  severity: AlertSeverity;
+  text: string;
+  isVisible: boolean;
+
+  constructor(alert: IAlert) {
+    this.severity = alert.severity;
+    this.text = alert.text;
+    this.isVisible = alert.isVisible;
+  }
+}
+
 export const AlertSeverity: { [key: string]: AlertSeverity } = {
   success: 'success',
   info: 'info',
