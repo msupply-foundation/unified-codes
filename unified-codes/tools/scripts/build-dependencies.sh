@@ -1,0 +1,1 @@
+docker build --tag unified-codes/dependencies:latest -f ../dockerfiles/dependencies.Dockerfile ../..
