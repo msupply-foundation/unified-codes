@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Dialog, DialogContent, LoginForm } from '@unified-codes/ui';
-import { UserActions, IUserAuthentication, IUserAuthenticationAction } from '@unified-codes/data';
+import { AuthenticatorActions, IAuthenticatorAction } from '../../actions';
 import { IUserCredentials } from '@unified-codes/data';
 
 export interface LoginProps {
@@ -31,8 +31,8 @@ export const LoginComponent: Login = ({ onLogin = () => null }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: React.Dispatch<IUserAuthenticationAction>) => {
-  const onLogin = (auth: IUserAuthentication) => dispatch(UserActions.login(auth));
+const mapDispatchToProps = (dispatch: React.Dispatch<IAuthenticatorAction>) => {
+  const onLogin = (credentials: IUserCredentials) => dispatch(AuthenticatorActions.authenticate(credentials));
   return { onLogin };
 };
 
