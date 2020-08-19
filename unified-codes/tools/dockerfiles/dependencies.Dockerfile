@@ -7,5 +7,3 @@ WORKDIR /usr/unified-codes
 COPY package.json .
 
 RUN npm install
-
-COPY . .
