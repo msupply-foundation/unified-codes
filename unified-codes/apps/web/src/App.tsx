@@ -1,20 +1,28 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-import { AppBar, Container, Grid, MenuBar, MenuItem, Toolbar } from '@unified-codes/ui';
 
+import { AppBar, Container, Grid, MenuBar, MenuItem, Toolbar, AlertBar } from '@unified-codes/ui';
+import { IAlert } from '@unified-codes/data';
+ 
+import { AlertActions } from './actions';
 import { Explorer, Login } from './components';
 
-export const App = () => {
+export interface AppProps {
+  alert: IAlert,
+  hideAlert: () => void,
+};
+
+export type App = React.FunctionComponent<AppProps>;
+
+export const AppComponent: App = ({ alert, hideAlert }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const onClick = React.useCallback(() => setIsOpen(true), [setIsOpen]);
   const onClose = React.useCallback(() => setIsOpen(false), [setIsOpen]);
 
-  const client = new ApolloClient({
-    uri: process.env.NX_DATA_SERVICE,
-    cache: new InMemoryCache(),
-  });
 
   return (
     <BrowserRouter>
@@ -37,24 +45,33 @@ export const App = () => {
           <Grid container item>
             <Switch>
               <Route exact path="/explorer">
-                <ApolloProvider client={client}>
                   <Explorer />
-                </ApolloProvider>
               </Route>
               <Route exact path="/login">
-                <ApolloProvider client={client}>
                   <Login />
-                </ApolloProvider>
               </Route>
               <Route>
                 <Redirect to="/explorer" />
               </Route>
             </Switch>
           </Grid>
+          <AlertBar isVisible={alert.isVisible} text={alert.text} severity={alert.severity} onClose={hideAlert}/>
         </Grid>
       </Container>
     </BrowserRouter>
   );
 };
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  const hideAlert = () => dispatch(AlertActions.hideAlert());
+  return { hideAlert };
+};
+
+const mapStateToProps = (state: any) => {
+  const { alert, entities } = state;
+  return { alert, entities };
+}
+
+export const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
 
 export default App;
