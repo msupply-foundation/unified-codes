@@ -12,5 +12,12 @@ module.exports = async ({ config, mode }) => {
       presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
     },
   });
+
+  config.node = {
+    global: true,
+    console: true,
+    fs: 'empty',
+  }
+
   return config;
 };
