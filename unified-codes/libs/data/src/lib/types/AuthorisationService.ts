@@ -1,16 +1,6 @@
 import User from './User';
 import IdentityProvider from './IdentityProvider';
 
-export interface IAuthorisationConfig {
-  baseUrl: string;
-}
-
-export class AuthorisationError extends Error {
-  constructor(message: string) {
-    super(message);
-  }
-}
-
 export class AuthorisationService {
   private provider: IdentityProvider;
 

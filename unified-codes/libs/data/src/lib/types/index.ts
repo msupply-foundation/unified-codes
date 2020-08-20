@@ -1,5 +1,6 @@
 export * from './ApolloService';
-export * from './Authenticator';
+export * from './AuthenticationService';
+export * from './AuthorisationService';
 export * from './IdentityProvider';
 export * from './Entity';
 export * from './EntityNode';

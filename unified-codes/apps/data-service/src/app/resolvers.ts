@@ -1,6 +1,3 @@
-// TODO: should make roles an enum?
-const ADMIN_ROLE = 'ADMIN';
-
 const queries = {
   entity: (code) => {
     return `{
@@ -31,7 +28,12 @@ const queries = {
 export const resolvers = {
   Query: {
     entity: async (_source, _args, context) => {
-      const { dataSources } = context;
+      const { user, authoriser, dataSources } = context;
+
+      // TODO: add authorisation logic for any protected entities.
+      const isAuthorised = user && authoriser.authorise(user);
+      console.log(`Entity requested by ${isAuthorised ? 'authorised' : 'unauthorised'} user.`)
+
       const { code } = _args;
       const query = queries.entity(code);
       const response = await dataSources.dgraph.postQuery(query);
@@ -39,20 +41,19 @@ export const resolvers = {
       return entity;
     },
     entities: async (_source, _args, context) => {
-      const { dataSources } = context;
+      const { user, authoriser, dataSources } = context;
+
+      // TODO: add authorisation logic for any protected entities.
+      if (!user) console.log('Entity requested by anonymous user.');
+      else {
+        const isAuthorised = user && authoriser.authorise(user);
+        console.log(`Entity requested by ${isAuthorised ? 'authorised' : 'unauthorised'} user.`)
+      }
+
       const { type = 'medicinal_product' } = _args?.filter ?? {};
       const query = queries.entities(type);
       const response = await dataSources.dgraph.postQuery(query);
       return response.data.query;
-    },
-    user: async (_parent, _args, context) => {
-      const { user, authenticationService, authorisationService } = context;
-
-      // TODO: use auth services to validate/verify whatever is going on!
-      if (!user?.hasRole(ADMIN_ROLE)) {
-        throw new Error('Not authenticated');
-      }
-      return user;
     },
   },
 };
