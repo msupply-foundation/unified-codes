@@ -10,7 +10,8 @@ export class AuthorisationService {
 
   // TODO: add permissions, e.g. authorise(user: User, permission: Permission)
   async authorise(user: User) {
-    return this.provider.verifyIdentityToken(user.token);
+    const { token } = user;
+    return this.provider.verifyIdentityToken(token);
   }
 }
 
