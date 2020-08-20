@@ -4,7 +4,7 @@ const start = async () => {
   let fastifyServer;
   try {
     fastifyServer = createFastifyServer(createApolloServer());
-    await fastifyServer.listen(4000);
+    await fastifyServer.listen(4000, '0.0.0.0');
   } catch (err) {
     if (fastifyServer) {
       fastifyServer.log.error(err);
