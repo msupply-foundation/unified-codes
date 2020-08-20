@@ -1,6 +1,5 @@
-import { IUserAction } from '../actions/UserActions';
-
 import { IAuthenticatorAction, IAuthenticationSuccessAction, AUTHENTICATOR_ACTIONS } from '../actions/AuthenticatorActions';
+import { IUserAction } from '../actions/UserActions';
 
 const initialState = () => {
   return {};

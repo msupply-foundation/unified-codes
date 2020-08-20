@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 
-import { Authenticator, IdentityProvider, IKeyCloakConfig, KeyCloakIdentityProvider, User } from '@unified-codes/data';
+import { AuthenticationService, IdentityProvider, IKeyCloakConfig, KeyCloakIdentityProvider, User } from '@unified-codes/data';
 
 import AuthenticatorActions, { IAuthenticateAction, AUTHENTICATOR_ACTIONS } from '../actions/AuthenticatorActions';
 
@@ -17,8 +17,8 @@ function* authenticate(action: IAuthenticateAction) {
     }
 
     const identityProvider: IdentityProvider = new KeyCloakIdentityProvider(keycloakConfig);
-    const authenticator: Authenticator = new Authenticator(identityProvider);    
-    const user: User = yield call(authenticator.authenticate, credentials);
+    const authenticator: AuthenticationService = new AuthenticationService(identityProvider);    
+    const user: User = yield call(authenticator.login, credentials);
 
     yield put(AuthenticatorActions.authenticationSuccess(user));
   } catch (error) {

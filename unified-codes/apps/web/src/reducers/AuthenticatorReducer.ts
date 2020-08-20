@@ -1,9 +1,7 @@
-import { IAuthenticator } from '@unified-codes/data';
-
 import { IAuthenticatorAction, AUTHENTICATOR_ACTIONS } from '../actions/AuthenticatorActions';
 
 const initialState = () => {
-  const authentication: IAuthenticator = {
+  const authentication: { isAuthenticating: boolean } = {
     isAuthenticating: false,
   }
   return authentication;
