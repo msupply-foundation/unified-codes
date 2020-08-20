@@ -59,6 +59,7 @@ export class JWT {
 
   static parseAuthorisation(authorisation: string): JWTToken {
     const [_, jwt] = authorisation.split(' ');
+    if (!jwt) throw new JsonWebTokenError('authorisation header malformed');
     const token = new JWTToken(jwt);
     if (!JWT.validateToken(token)) throw new JsonWebTokenError('jwt malformed');
     return token;
