@@ -4,6 +4,6 @@ FROM node:10.15
 
 WORKDIR /usr/unified-codes
 
-COPY package.json .
+COPY package.json package-lock.json ./
 
-RUN npm install
+RUN npm ci
