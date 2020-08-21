@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import ClearInput from './ClearInput';
+import ClearInput, { ClearInputProps } from './ClearInput';
 import Grid from '../../layout/atoms/Grid';
 import SearchButton from './SearchButton';
 
@@ -19,10 +19,14 @@ export const SearchBar: SearchBar = ({ input, onChange, onClear, onSearch }) => 
     [onChange]
   );
 
+  const SearchInput = input 
+    ? (props: ClearInputProps) => <ClearInput {...props} value={input} onChange={onChangeText} onClear={onClear} />
+    : (props: ClearInputProps) =>  <ClearInput {...props} />
+
   return (
     <Grid container>
       <Grid item xs={11}>
-        <ClearInput fullWidth value={input} onChange={onChangeText} onClear={onClear} />
+        <SearchInput fullWidth onChange={onChangeText} onClear={onClear}/>
       </Grid>
       <Grid item xs={1}>
         <SearchButton fullWidth onClick={onSearch} />
