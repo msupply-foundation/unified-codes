@@ -4,7 +4,7 @@ import Link from '@material-ui/core/Link';
 import { Theme, withStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
-import { AppBar, Grid, UCIcon, Typography } from '@unified-codes/ui';
+import { AppBar, Avatar, Grid, UCIcon } from '@unified-codes/ui';
 
 export interface HeaderProps {
   classes: ClassNameMap<any>;
@@ -76,7 +76,7 @@ const _Header: Header = ({ classes }) => {
         </Grid>
       </Grid>
       <Grid item justify="flex-end">
-        AVATAR
+        <Avatar />
       </Grid>
     </AppBar>
   );
