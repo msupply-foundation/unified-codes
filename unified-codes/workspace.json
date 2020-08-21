@@ -51,7 +51,7 @@
             "tsConfig": "apps/legacy-api/tsconfig.spec.json",
             "passWithNoTests": true
           }
-        },
+        }
       }
     },
     "data-service": {
