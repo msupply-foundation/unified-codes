@@ -18,6 +18,9 @@ services:
     image: unified-codes/data-service:latest
     ports:
       - "4000:4000"
+    environment:
+      - NX_DGRAPH_ENDPOINT=http://dgraph-standalone:8080
+      - NX_AUTHENTICATION_URL=http://keycloak:9990/auth/realms/unified-codes
     volumes:
       - ../../dist/apps/data-service:/usr/unified-codes/dist/apps/data-service
   dgraph-standalone:

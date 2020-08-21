@@ -3,8 +3,7 @@ import { RESTDataSource } from 'apollo-datasource-rest';
 export class DgraphDataSource extends RESTDataSource {
   constructor() {
     super();
-    // TODO: lift this value out
-    this.baseURL = 'http://localhost:8080';
+    this.baseURL = process.env.NX_DGRAPH_ENDPOINT;
     this.headers = { 'Content-Type': 'application/graphql+-' };
     this.paths = { query: 'query' };
   }

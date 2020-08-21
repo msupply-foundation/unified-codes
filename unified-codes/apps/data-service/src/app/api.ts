@@ -9,7 +9,7 @@ import ApolloService from './ApolloService';
 import { KeyCloakIdentityProvider } from './IdentityProvider';
 
 export const createApolloServer = (_typeDefs, _resolvers, _dataSources, _authenticator) => {
-  const AUTH_URL = 'http://127.0.0.1:9990/auth/realms/unified-codes';
+  const AUTH_URL = process.env.NX_AUTHENTICATION_URL;
 
   const getDataSources = () => ({
     dgraph: new Data.DgraphDataSource(),
