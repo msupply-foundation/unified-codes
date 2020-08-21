@@ -52,16 +52,6 @@
             "passWithNoTests": true
           }
         },
-        "docker": {
-          "builder": "@gperdomor/nx-docker:build",
-          "options": {
-            "repository": "unified-codes/legacy-api",
-            "dockerfile": "tools/dockerfiles/legacy-api.Dockerfile",
-            "tags": "latest",
-            "socket": "/var/run/docker.sock",
-            "push": false
-          }
-        }
       }
     },
     "data-service": {
@@ -116,16 +106,6 @@
             "jestConfig": "apps/data-service/jest.config.js",
             "tsConfig": "apps/data-service/tsconfig.spec.json",
             "passWithNoTests": true
-          }
-        },
-        "docker": {
-          "builder": "@gperdomor/nx-docker:build",
-          "options": {
-            "repository": "unified-codes/data-service",
-            "dockerfile": "tools/dockerfiles/data-service.Dockerfile",
-            "tags": "latest",
-            "socket": "/var/run/docker.sock",
-            "push": false
           }
         }
       }
