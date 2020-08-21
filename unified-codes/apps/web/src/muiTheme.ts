@@ -7,6 +7,10 @@ const theme: Theme = createMuiTheme({
       paper: 'white',
     },
     divider: '#253240',
+    text: {
+      primary: 'rgba(0,0,0,0.83)',
+      hint: 'rgba(0,0,0,0.6)',
+    },
   },
   typography: {
     body1: {
@@ -21,8 +25,17 @@ const theme: Theme = createMuiTheme({
       fontSize: 13,
       fontWeight: 700,
       letterSpacing: 0.12,
-      lineHeight: 15,
-      textAlign: 'right',
+      lineHeight: '15px',
+      textTransform: 'uppercase',
+    },
+    subtitle2: {
+      color: '#C4EADC',
+      fontFamily: 'roboto',
+      fontSize: 13,
+      fontWeight: 700,
+      letterSpacing: 0.12,
+      lineHeight: '15px',
+      textTransform: 'uppercase',
     },
   },
 });

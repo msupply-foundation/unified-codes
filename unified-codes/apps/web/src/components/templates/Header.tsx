@@ -14,27 +14,35 @@ type textAlignment = 'center' | 'left' | 'right';
 const getStyles = (theme: Theme) => ({
   root: {
     backgroundColor: theme.palette.divider,
+    padding: 24,
+    paddingTop: 29,
   },
   body: theme.typography.body1,
   logo: {
     fontWeight: 700,
   },
   menu: {
-    display: 'inline-block',
-    height: 60,
-    marginLeft: 250,
+    marginLeft: 50,
+    '& div': {
+      paddingRight: 15,
+    },
     '& a': {
-      height: 16,
-      width: 55,
       color: 'rgba(255,255,255,0.83)',
-      display: 'inline-block',
       fontSize: 14,
-      fontWeight: 500,
-      letterSpacing: 0.13,
-      lineHeight: 16,
-      textAlign: 'center' as textAlignment,
       textTransform: 'uppercase',
     },
+  },
+  title1: {
+    paddingRight: '0!important',
+    ...theme.typography.subtitle1,
+  },
+  title2: {
+    paddingLeft: '3px!important',
+    ...theme.typography.subtitle2,
+  },
+  wrapper: {
+    height: 60,
+    justifyContent: 'space-evenly',
   },
 });
 
@@ -47,25 +55,36 @@ const _Header: Header = ({ classes }) => {
         container
         spacing={3}
         direction="column"
-        justify="space-between"
-        alignItems="stretch"
-        className={classes.menu}
+        alignContent="flex-start"
+        alignItems="center"
+        className={classes.wrapper}
       >
-        <Grid item>
+        <Grid item className={classes.title1}>
+          Universal Drug
+        </Grid>
+        <Grid item style={{ paddingLeft: 0, paddingRight: 0 }}>
           <UCIcon />
         </Grid>
-        <Typography className={classes.menu}>
-          <Grid item>
-            <Link component={RouterLink} to="/">
-              Browse
-            </Link>
+        <Grid item className={classes.title2}>
+          Code Database
+        </Grid>
+        <Grid item>
+          <Grid container className={classes.menu}>
+            <Grid item>
+              <Link component={RouterLink} to="/">
+                Browse
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link component={RouterLink} to="/login">
+                Admin
+              </Link>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Link component={RouterLink} to="/login">
-              Admin
-            </Link>
-          </Grid>
-        </Typography>
+        </Grid>
+        <Grid item justify="flex-end">
+          AVATAR
+        </Grid>
       </Grid>
     </AppBar>
   );

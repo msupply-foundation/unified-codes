@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './muiTheme';
 
 import App from './App';
@@ -18,7 +19,9 @@ ReactDOM.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <App />
+        <CssBaseline>
+          <App />
+        </CssBaseline>
       </ThemeProvider>
     </Provider>
   </ApolloProvider>,
