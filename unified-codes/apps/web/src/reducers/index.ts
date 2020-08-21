@@ -1,4 +1,4 @@
-export { AlertReducer } from './AlertReducer';
-export { AuthenticatorReducer } from './AuthenticatorReducer';
-export { EntityReducer } from './EntityReducer';
-export { UserReducer } from './UserReducer';
+export * from './AlertReducer';
+export * from './AuthenticatorReducer';
+export * from './ExplorerReducer';
+export * from './UserReducer';
