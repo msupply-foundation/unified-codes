@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-import ClearInput, { ClearInputProps } from './ClearInput';
+import ClearInput from './ClearInput';
 import Grid from '../../layout/atoms/Grid';
 import SearchButton from './SearchButton';
 
 export interface SearchBarProps {
-  input?: string;
+  input: string;
   onChange?: (input: string) => void;
   onClear?: () => void;
-  onSearch?: () => void;
+  onSearch?: (input: string) => void;
 }
 
 export type SearchBar = React.FunctionComponent<SearchBarProps>;
@@ -19,17 +19,15 @@ export const SearchBar: SearchBar = ({ input, onChange, onClear, onSearch }) => 
     [onChange]
   );
 
-  const SearchInput = input 
-    ? (props: ClearInputProps) => <ClearInput {...props} value={input} onChange={onChangeText} onClear={onClear} />
-    : (props: ClearInputProps) =>  <ClearInput {...props} />
+  const onClick = React.useCallback(() => onSearch && onSearch(input), [input, onSearch]);
 
   return (
     <Grid container>
       <Grid item xs={11}>
-        <SearchInput fullWidth onChange={onChangeText} onClear={onClear}/>
+        <ClearInput fullWidth value={input} onChange={onChangeText} onClear={onClear}/>
       </Grid>
       <Grid item xs={1}>
-        <SearchButton fullWidth onClick={onSearch} />
+        <SearchButton fullWidth onClick={onClick} />
       </Grid>
     </Grid>
   );
