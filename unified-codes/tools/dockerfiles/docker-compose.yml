@@ -8,6 +8,8 @@ services:
     image: unified-codes/legacy-api:latest
     ports:
       - "3000:3000"
+    environment:
+      - NX_DGRAPH_ENDPOINT=http://dgraph-standalone:8080
     volumes:
       - ../../dist/apps/legacy-api:/usr/unified-codes/dist/apps/legacy-api
   data-service:

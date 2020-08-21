@@ -34,7 +34,8 @@ const itemsHandler: Handler = (request: Request, reply: Reply) => {
     )}'`;
     reply.code(statusCode).send(body);
   } else {
-    const dgraphClientStub: DgraphClientStub = new DgraphClientStub('http://localhost:8080');
+    const dgraphUrl = process.env.NX_DGRAPH_ENDPOINT;
+    const dgraphClientStub: DgraphClientStub = new DgraphClientStub(dgraphUrl);
     const dgraphClient: DgraphClient = new DgraphClient(dgraphClientStub);
     const txn: Txn = dgraphClient.newTxn();
     const { query, vars }: { query: string; vars: object } = mapRequest(request);
