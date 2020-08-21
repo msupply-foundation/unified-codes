@@ -18,7 +18,12 @@ export class ApolloService {
   authenticator: Authenticator;
   authorisationService: AuthorisationService;
 
-  constructor(typeDefs: TypeDefs, resolvers: Resolvers, dataSources: DataSources, identityProvider: IdentityProvider) {
+  constructor(
+    typeDefs: TypeDefs,
+    resolvers: Resolvers,
+    dataSources: DataSources,
+    identityProvider: IdentityProvider
+  ) {
     this.typeDefs = typeDefs;
     this.resolvers = resolvers;
     this.dataSources = dataSources;
@@ -31,7 +36,7 @@ export class ApolloService {
     return new ApolloServer({
       typeDefs: this.typeDefs,
       resolvers: this.resolvers,
-      dataSources: this.dataSources
+      dataSources: this.dataSources,
     });
   }
 }
@@ -39,10 +44,10 @@ export class ApolloService {
 export default ApolloService;
 
 //context: async ({ request }: { request: any }) => {
-  //const token: JWTToken = JWT.parseRequest(request);
-  //const user: User = new User(token);
-  //return {
-  //  authenticator: this.authenticator,
-  //  authorisationService: this.authorisationService,
-    //user,
-  //};
+//const token: JWTToken = JWT.parseRequest(request);
+//const user: User = new User(token);
+//return {
+//  authenticator: this.authenticator,
+//  authorisationService: this.authorisationService,
+//user,
+//};

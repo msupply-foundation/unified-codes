@@ -1,61 +1,57 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Theme, withStyles } from '@material-ui/core/styles';
+import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-
-import { AppBar, Container, Grid, MenuBar, MenuItem, Toolbar, AlertBar } from '@unified-codes/ui';
+import { Container, Grid, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
- 
+
 import { AlertActions } from './actions';
-import { Explorer, Login } from './components';
+import { Explorer, Header, Login } from './components';
 
 export interface AppProps {
-  alert: IAlert,
-  hideAlert: () => void,
-};
+  alert: IAlert;
+  classes: ClassNameMap<any>;
+  hideAlert: () => void;
+}
+
+const getStyles = (theme: Theme) => ({
+  body: theme.typography.body1,
+});
 
 export type App = React.FunctionComponent<AppProps>;
 
-export const AppComponent: App = ({ alert, hideAlert }) => {
+const _App: App = ({ alert, classes, hideAlert }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const onClick = React.useCallback(() => setIsOpen(true), [setIsOpen]);
   const onClose = React.useCallback(() => setIsOpen(false), [setIsOpen]);
-
 
   return (
     <BrowserRouter>
       <Container>
         <Grid container spacing={3} direction="column" justify="space-between" alignItems="stretch">
-          <Grid item>
-            <AppBar position="static">
-              <Toolbar>
-                <MenuBar open={isOpen} onClick={onClick} onClose={onClose}>
-                  <MenuItem onClick={onClose}>
-                    <Link to="/explorer">Browse</Link>
-                  </MenuItem>
-                  <MenuItem onClick={onClose}>
-                    <Link to="/login">Admin</Link>
-                  </MenuItem>
-                </MenuBar>
-              </Toolbar>
-            </AppBar>
-          </Grid>
-          <Grid container item>
-            <Switch>
-              <Route exact path="/explorer">
-                  <Explorer />
-              </Route>
-              <Route exact path="/login">
-                  <Login />
-              </Route>
-              <Route>
-                <Redirect to="/explorer" />
-              </Route>
-            </Switch>
-          </Grid>
-          <AlertBar isVisible={alert.isVisible} text={alert.text} severity={alert.severity} onClose={hideAlert}/>
+          <Header />
+          <AlertBar
+            isVisible={alert.isVisible}
+            text={alert.text}
+            severity={alert.severity}
+            onClose={hideAlert}
+          />
+        </Grid>
+        <Grid container item>
+          <Switch>
+            <Route exact path="/explorer">
+              <Explorer />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route>
+              <Redirect to="/explorer" />
+            </Route>
+          </Switch>
         </Grid>
       </Container>
     </BrowserRouter>
@@ -70,8 +66,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 const mapStateToProps = (state: any) => {
   const { alert, entities } = state;
   return { alert, entities };
-}
+};
 
+export const AppComponent = withStyles(getStyles)(_App);
 export const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
 
 export default App;
