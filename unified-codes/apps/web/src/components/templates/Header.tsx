@@ -10,20 +10,25 @@ export interface HeaderProps {
   classes: ClassNameMap<any>;
 }
 
-type textAlignment = 'center' | 'left' | 'right';
+type flexDirection = 'column' | 'row';
 const getStyles = (theme: Theme) => ({
   root: {
+    alignItems: 'center',
     backgroundColor: theme.palette.divider,
-    padding: 24,
+    flexDirection: 'row' as flexDirection,
+    padding: 12,
     paddingTop: 29,
+    ' & div': {
+      flex: '0 1 0%',
+    },
   },
   body: theme.typography.body1,
   logo: {
     fontWeight: 700,
   },
   menu: {
-    marginLeft: 50,
-    '& div': {
+    marginLeft: 150,
+    '& div ': {
       paddingRight: 15,
     },
     '& a': {
@@ -40,10 +45,6 @@ const getStyles = (theme: Theme) => ({
     paddingLeft: '3px!important',
     ...theme.typography.subtitle2,
   },
-  wrapper: {
-    height: 60,
-    justifyContent: 'space-evenly',
-  },
 });
 
 export type Header = React.FunctionComponent<HeaderProps>;
@@ -51,40 +52,31 @@ export type Header = React.FunctionComponent<HeaderProps>;
 const _Header: Header = ({ classes }) => {
   return (
     <AppBar position="static" className={classes.root}>
-      <Grid
-        container
-        spacing={3}
-        direction="column"
-        alignContent="flex-start"
-        alignItems="center"
-        className={classes.wrapper}
-      >
-        <Grid item className={classes.title1}>
-          Universal Drug
-        </Grid>
-        <Grid item style={{ paddingLeft: 0, paddingRight: 0 }}>
-          <UCIcon />
-        </Grid>
-        <Grid item className={classes.title2}>
-          Code Database
-        </Grid>
-        <Grid item>
-          <Grid container className={classes.menu}>
-            <Grid item>
-              <Link component={RouterLink} to="/">
-                Browse
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link component={RouterLink} to="/login">
-                Admin
-              </Link>
-            </Grid>
+      <Grid item className={classes.title1}>
+        Universal&nbsp;Drug
+      </Grid>
+      <Grid item style={{ paddingLeft: 0, paddingRight: 0 }}>
+        <UCIcon />
+      </Grid>
+      <Grid item className={classes.title2}>
+        Code&nbsp;Database
+      </Grid>
+      <Grid item style={{ flex: 1 }}>
+        <Grid container className={classes.menu}>
+          <Grid item>
+            <Link component={RouterLink} to="/">
+              Browse
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link component={RouterLink} to="/login">
+              Admin
+            </Link>
           </Grid>
         </Grid>
-        <Grid item justify="flex-end">
-          AVATAR
-        </Grid>
+      </Grid>
+      <Grid item justify="flex-end">
+        AVATAR
       </Grid>
     </AppBar>
   );
