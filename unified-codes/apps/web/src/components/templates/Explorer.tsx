@@ -31,10 +31,10 @@ const query = gql`
 `;
 
 export interface ExplorerProps {
-  entities: Entity[],
-  onData: (data: { entities: IEntity[] }) => void,
-  onError: () => void,
-  onLoading: () => void
+  entities: Entity[];
+  onData: (data: { entities: IEntity[] }) => void;
+  onError: () => void;
+  onLoading: () => void;
 }
 
 export type Explorer = React.FunctionComponent<ExplorerProps>;
@@ -51,7 +51,7 @@ export const ExplorerComponent: Explorer = ({ entities, onData, onError, onLoadi
       } else if (loading) {
         onLoading();
       }
-    } 
+    }
   }, [entities, loading, error, data]);
 
   return (
@@ -65,9 +65,9 @@ const mapStateToProps = (state: { entities: IEntity[] }) => {
   const { entities: entityNodes } = state;
   const entities = entityNodes.map((entityNode: IEntity) => new Entity(entityNode)) ?? [];
   return { entities };
-}
+};
 
-const mapDispatchToProps = (dispatch: Dispatch)  => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   const alertError: IAlert = {
     isVisible: true,
     severity: ALERT_SEVERITY.ERROR,
@@ -85,7 +85,7 @@ const mapDispatchToProps = (dispatch: Dispatch)  => {
   const onLoading = () => dispatch(AlertActions.showAlert(alertFetch));
 
   return { onData, onError, onLoading };
-}
+};
 
 export const Explorer = connect(mapStateToProps, mapDispatchToProps)(ExplorerComponent);
 

@@ -75,7 +75,7 @@ const _Header: Header = ({ classes }) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item justify="flex-end">
+      <Grid item>
         <Avatar />
       </Grid>
     </AppBar>
