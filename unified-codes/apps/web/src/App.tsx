@@ -13,16 +13,15 @@ import { Explorer, Login } from './components';
 
 export interface AppProps {
   alert: IAlert,
-  hideAlert: () => void,
+  resetAlert: () => void,
 };
 
 export type App = React.FunctionComponent<AppProps>;
 
-export const AppComponent: App = ({ alert, hideAlert }) => {
+export const AppComponent: App = ({ alert, resetAlert }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const onClick = React.useCallback(() => setIsOpen(true), [setIsOpen]);
   const onClose = React.useCallback(() => setIsOpen(false), [setIsOpen]);
-
 
   return (
     <BrowserRouter>
@@ -55,7 +54,7 @@ export const AppComponent: App = ({ alert, hideAlert }) => {
               </Route>
             </Switch>
           </Grid>
-          <AlertBar isVisible={alert.isVisible} text={alert.text} severity={alert.severity} onClose={hideAlert}/>
+          <AlertBar isVisible={alert.isVisible} text={alert.text} severity={alert.severity} onClose={resetAlert}/>
         </Grid>
       </Container>
     </BrowserRouter>
@@ -63,8 +62,8 @@ export const AppComponent: App = ({ alert, hideAlert }) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
-  const hideAlert = () => dispatch(AlertActions.hideAlert());
-  return { hideAlert };
+  const resetAlert = () => dispatch(AlertActions.resetAlert());
+  return { resetAlert };
 };
 
 const mapStateToProps = (state: any) => {

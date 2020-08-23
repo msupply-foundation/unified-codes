@@ -53,17 +53,17 @@ const getEntities = async (url: string): Promise<IEntity[]> => {
 }
 
 function* fetchData() {
-    yield put(AlertActions.showAlert(alertFetch));
+    yield put(AlertActions.raiseAlert(alertFetch));
 
     try {
       const url: string | undefined = process.env.NX_DATA_SERVICE;
       if (url) {
         const data: IEntity[] = yield call(getEntities, url);
-        yield put(AlertActions.hideAlert());
+        yield put(AlertActions.resetAlert());
         yield put(ExplorerActions.fetchSuccess(data));
       }
     } catch (error) {
-      yield put(AlertActions.showAlert(alertError));
+      yield put(AlertActions.raiseAlert(alertError));
       yield put(ExplorerActions.fetchFailure(error));
     }
   }
