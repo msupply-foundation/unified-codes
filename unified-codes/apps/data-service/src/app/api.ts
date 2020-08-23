@@ -5,8 +5,7 @@ import * as Schema from './schema';
 import * as Data from './data';
 import * as Resolvers from './resolvers';
 
-import ApolloService from './ApolloService';
-import { KeyCloakIdentityProvider } from './IdentityProvider';
+import { ApolloService, KeyCloakIdentityProvider } from '@unified-codes/data';
 
 export const createApolloServer = (_typeDefs, _resolvers, _dataSources, _authenticator) => {
   const AUTH_URL = 'http://127.0.0.1:9990/auth/realms/unified-codes';
@@ -15,13 +14,20 @@ export const createApolloServer = (_typeDefs, _resolvers, _dataSources, _authent
     dgraph: new Data.DgraphDataSource(),
     rxnav: new Data.RxNavDataSource(),
   });
+
   const typeDefs = _typeDefs ?? Schema.typeDefs;
   const resolvers = _resolvers ?? Resolvers.resolvers;
   const dataSources = _dataSources ?? getDataSources;
 
-  const identityProviderConfig = { baseUrl: AUTH_URL };
-  const identityProvider = new KeyCloakIdentityProvider(identityProviderConfig);
+  // TODO: get from .env.
+  const identityProviderConfig = { 
+    baseUrl: AUTH_URL,
+    clientId: '',
+    clientSecret: '',
+    grantType: ''
+  };
 
+  const identityProvider = new KeyCloakIdentityProvider(identityProviderConfig);
   const apolloService = new ApolloService(typeDefs, resolvers, dataSources, identityProvider);
   const apolloServer = apolloService.getServer();
 

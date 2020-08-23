@@ -1,17 +1,24 @@
-import { EntityNode } from './EntityNode';
 import { Property } from './Property';
 
-export class Entity {
+export interface IEntity {
+  code: string;
+  description: string;
+  type: string;
+  properties?: Property[];
+};
+
+
+export class Entity implements IEntity {
   private _code: string;
   private _description: string;
   private _type: string;
   private _properties?: Property[];
 
-  constructor(entityNode: EntityNode) {
-    this._code = entityNode.code;
-    this._description = entityNode.description;
-    this._type = entityNode.type;
-    this._properties = entityNode.properties;
+  constructor(entity: IEntity) {
+    this._code = entity.code;
+    this._description = entity.description;
+    this._type = entity.type;
+    this._properties = entity.properties;
   }
 
   get code(): string {

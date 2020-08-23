@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Dialog, DialogContent, LoginForm } from '@unified-codes/ui';
-import { UserActions, IUserAuthentication, IUserAuthenticationAction } from '@unified-codes/data';
+import { AuthenticatorActions, IAuthenticatorAction } from '../../actions';
+import { IUserCredentials } from '@unified-codes/data';
 
 export interface LoginProps {
-  onLogin?: (auth: IUserAuthentication) => void;
+  onLogin?: (credentials: IUserCredentials) => void;
 }
 
 export type Login = React.FunctionComponent<LoginProps>;
 
-const _Login: Login = ({ onLogin }) => {
+export const LoginComponent: Login = ({ onLogin = () => null }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(true);
   const closeDialog = React.useCallback(() => setIsOpen(false), []);
   const onSubmit = React.useCallback((username, password) => {
@@ -30,14 +31,11 @@ const _Login: Login = ({ onLogin }) => {
   );
 };
 
-_Login.propTypes = {
-  onLogin: PropTypes.func,
-};
-
-const mapStateToProps = () => ({});
-const mapDispatchToProps = (dispatch: React.Dispatch<IUserAuthenticationAction>) => {
-  const onLogin = (auth: IUserAuthentication) => dispatch(UserActions.login(auth));
-
+const mapDispatchToProps = (dispatch: React.Dispatch<IAuthenticatorAction>) => {
+  const onLogin = (credentials: IUserCredentials) => dispatch(AuthenticatorActions.authenticate(credentials));
   return { onLogin };
 };
-export const Login = connect(mapStateToProps, mapDispatchToProps)(_Login);
+
+export const Login = connect(null, mapDispatchToProps)(LoginComponent);
+
+export default Login;
