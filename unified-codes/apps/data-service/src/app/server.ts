@@ -1,5 +1,5 @@
 import fastify from 'fastify';
-import fastifyCors from 'fastify-cors';
+import { ApolloServer } from 'apollo-server-fastify';
 
 import * as Schema from './schema';
 import * as Data from './data';
@@ -7,17 +7,15 @@ import * as Resolvers from './resolvers';
 
 import { ApolloService, KeyCloakIdentityProvider } from '@unified-codes/data';
 
-export const createApolloServer = (_typeDefs, _resolvers, _dataSources, _authenticator) => {
+export const createApolloServer = (typeDefs?, resolvers?, dataSources?): ApolloServer => {
   const AUTH_URL = 'http://127.0.0.1:9990/auth/realms/unified-codes';
 
-  const getDataSources = () => ({
+  const _typeDefs = typeDefs ?? Schema.typeDefs;
+  const _resolvers = resolvers ?? Resolvers.resolvers;
+  const _dataSources = dataSources ?? (() => ({
     dgraph: new Data.DgraphDataSource(),
     rxnav: new Data.RxNavDataSource(),
-  });
-
-  const typeDefs = _typeDefs ?? Schema.typeDefs;
-  const resolvers = _resolvers ?? Resolvers.resolvers;
-  const dataSources = _dataSources ?? getDataSources;
+  }));
 
   // TODO: get from .env.
   const identityProviderConfig = {
@@ -28,21 +26,17 @@ export const createApolloServer = (_typeDefs, _resolvers, _dataSources, _authent
   };
 
   const identityProvider = new KeyCloakIdentityProvider(identityProviderConfig);
-  const apolloService = new ApolloService(typeDefs, resolvers, dataSources, identityProvider);
+  const apolloService = new ApolloService(_typeDefs, _resolvers, _dataSources, identityProvider);
   const apolloServer = apolloService.getServer();
 
   return apolloServer;
 };
 
-export const createFastifyServer = (apolloServer, _plugins) => {
-  const apolloPlugin = apolloServer.createHandler();
-  const plugins = _plugins ?? [fastifyCors];
-
-  const fastifyServer = fastify({ logger: true });
-
-  [apolloPlugin, ...plugins].forEach((plugin) => {
+export const createFastifyServer = (config, plugins?) => {
+  const fastifyServer = fastify(config);
+  plugins.forEach((plugin) => {
     fastifyServer.register(plugin);
   });
-
   return fastifyServer;
 };
+

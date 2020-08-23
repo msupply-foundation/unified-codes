@@ -1,6 +1,9 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
 export class DgraphDataSource extends RESTDataSource {
+  headers: { [key: string]: string };
+  paths: { [key: string]: string };
+
   constructor() {
     super();
     // TODO: lift this value out
@@ -19,6 +22,8 @@ export class DgraphDataSource extends RESTDataSource {
 }
 
 export class RxNavDataSource extends RESTDataSource {
+  paths: { [key: string]: string };
+
   constructor() {
     super();
     this.baseURL = 'https://rxnav.nlm.nih.gov/REST';
