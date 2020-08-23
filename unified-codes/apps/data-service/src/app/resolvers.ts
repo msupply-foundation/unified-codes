@@ -38,9 +38,9 @@ export const resolvers = {
       if (token) {
         const user: User = await authenticator.authenticate(token);
         const isAuthorised = await authoriser.authorise(user);
-        console.log(`Entity requested by ${isAuthorised ? 'authorised' : 'unauthorised'} user.`)
+        console.log(`Entity requested by ${isAuthorised ? 'authorised' : 'unauthorised'} user.`);
       } else {
-        console.log(`Entity requested by anonymous user.`)
+        console.log(`Entity requested by anonymous user.`);
       }
 
       const { code } = _args;
@@ -53,13 +53,13 @@ export const resolvers = {
       const { token, authenticator, authoriser, dataSources } = context;
       const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
 
-       // TODO: add authorisation logic for any protected entities.
-       if (token) {
+      // TODO: add authorisation logic for any protected entities.
+      if (token) {
         const user: User = await authenticator.authenticate(token);
         const isAuthorised = await authoriser.authorise(user);
-        console.log(`Entity requested by ${isAuthorised ? 'authorised' : 'unauthorised'} user.`)
+        console.log(`Entity requested by ${isAuthorised ? 'authorised' : 'unauthorised'} user.`);
       } else {
-        console.log(`Entity requested by anonymous user.`)
+        console.log(`Entity requested by anonymous user.`);
       }
 
       const { type = 'medicinal_product' } = _args?.filter ?? {};

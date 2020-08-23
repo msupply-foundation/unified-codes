@@ -20,11 +20,11 @@ export const createApolloServer = (_typeDefs, _resolvers, _dataSources, _authent
   const dataSources = _dataSources ?? getDataSources;
 
   // TODO: get from .env.
-  const identityProviderConfig = { 
+  const identityProviderConfig = {
     baseUrl: AUTH_URL,
     clientId: '',
     clientSecret: '',
-    grantType: ''
+    grantType: '',
   };
 
   const identityProvider = new KeyCloakIdentityProvider(identityProviderConfig);
