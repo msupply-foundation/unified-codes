@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { EntityBrowser, Grid } from '@unified-codes/ui';
-import { AlertSeverity, Entity } from '@unified-codes/data';
+import { Entity } from '@unified-codes/data';
 
 import { ExplorerActions } from '../../actions';
 import { IState } from '../../types';

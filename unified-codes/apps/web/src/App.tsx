@@ -3,8 +3,6 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-
 import { AppBar, Container, Grid, MenuBar, MenuItem, Toolbar, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
  

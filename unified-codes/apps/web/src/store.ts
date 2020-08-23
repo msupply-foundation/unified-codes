@@ -1,4 +1,4 @@
-import { Store, Reducer, StoreEnhancer, CombinedState, applyMiddleware, createStore, compose, combineReducers } from 'redux';
+import { Store, Reducer, CombinedState, applyMiddleware, createStore, compose, combineReducers } from 'redux';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 
 import { AlertReducer, AuthenticatorReducer, ExplorerReducer, UserReducer } from './reducers';

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Dialog, DialogContent, LoginForm } from '@unified-codes/ui';
-import { AuthenticatorActions, IAuthenticatorAction } from '../../actions';
 import { IUserCredentials } from '@unified-codes/data';
+
+import { AuthenticatorActions, IAuthenticatorAction } from '../../actions';
 
 export interface LoginProps {
   onLogin?: (credentials: IUserCredentials) => void;
