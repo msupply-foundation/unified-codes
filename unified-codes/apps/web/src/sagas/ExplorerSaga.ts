@@ -40,34 +40,33 @@ const alertFetch: IAlert = {
 const getEntities = async (url: string): Promise<IEntity[]> => {
   const response = await fetch(url, {
     method: 'POST',
-    headers:{
+    headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json',
     },
     body: JSON.stringify({ query: GET_ENTITIES }),
   });
   const json = await response.json();
-  const { data }: { data: { entities: IEntity[] }} = json;
+  const { data }: { data: { entities: IEntity[] } } = json;
   const { entities }: { entities: IEntity[] } = data;
   return entities;
-}
+};
 
 function* fetchData() {
-    yield put(AlertActions.raiseAlert(alertFetch));
+  yield put(AlertActions.raiseAlert(alertFetch));
 
-    try {
-      const url: string | undefined = process.env.NX_DATA_SERVICE;
-      if (url) {
-        const data: IEntity[] = yield call(getEntities, url);
-        yield put(AlertActions.resetAlert());
-        yield put(ExplorerActions.fetchSuccess(data));
-      }
-    } catch (error) {
-      yield put(AlertActions.raiseAlert(alertError));
-      yield put(ExplorerActions.fetchFailure(error));
+  try {
+    const url: string | undefined = process.env.NX_DATA_SERVICE;
+    if (url) {
+      const data: IEntity[] = yield call(getEntities, url);
+      yield put(AlertActions.resetAlert());
+      yield put(ExplorerActions.fetchSuccess(data));
     }
+  } catch (error) {
+    yield put(AlertActions.raiseAlert(alertError));
+    yield put(ExplorerActions.fetchFailure(error));
   }
-
+}
 
 function* fetchDataSaga() {
   yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.FETCH_DATA, fetchData);

@@ -5,14 +5,14 @@ import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 
 import { AppBar, Container, Grid, MenuBar, MenuItem, Toolbar, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
- 
+
 import { AlertActions } from './actions';
 import { Explorer, Login } from './components';
 
 export interface AppProps {
-  alert: IAlert,
-  resetAlert: () => void,
-};
+  alert: IAlert;
+  resetAlert: () => void;
+}
 
 export type App = React.FunctionComponent<AppProps>;
 
@@ -42,17 +42,22 @@ export const AppComponent: App = ({ alert, resetAlert }) => {
           <Grid container item>
             <Switch>
               <Route exact path="/explorer">
-                  <Explorer />
+                <Explorer />
               </Route>
               <Route exact path="/login">
-                  <Login />
+                <Login />
               </Route>
               <Route>
                 <Redirect to="/explorer" />
               </Route>
             </Switch>
           </Grid>
-          <AlertBar isVisible={alert.isVisible} text={alert.text} severity={alert.severity} onClose={resetAlert}/>
+          <AlertBar
+            isVisible={alert.isVisible}
+            text={alert.text}
+            severity={alert.severity}
+            onClose={resetAlert}
+          />
         </Grid>
       </Container>
     </BrowserRouter>
@@ -67,7 +72,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 const mapStateToProps = (state: any) => {
   const { alert, entities } = state;
   return { alert, entities };
-}
+};
 
 export const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
 

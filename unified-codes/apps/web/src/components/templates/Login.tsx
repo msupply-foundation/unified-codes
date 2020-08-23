@@ -32,7 +32,8 @@ export const LoginComponent: Login = ({ onLogin = () => null }) => {
 };
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IAuthenticatorAction>) => {
-  const onLogin = (credentials: IUserCredentials) => dispatch(AuthenticatorActions.authenticate(credentials));
+  const onLogin = (credentials: IUserCredentials) =>
+    dispatch(AuthenticatorActions.authenticate(credentials));
   return { onLogin };
 };
 
