@@ -24,7 +24,7 @@ export const SearchBar: SearchBar = ({ input, onChange, onClear, onSearch }) => 
   return (
     <Grid container>
       <Grid item xs={11}>
-        <ClearInput fullWidth value={input} onChange={onChangeText} onClear={onClear}/>
+        <ClearInput fullWidth value={input} onChange={onChangeText} onClear={onClear} />
       </Grid>
       <Grid item xs={1}>
         <SearchButton fullWidth onClick={onClick} />

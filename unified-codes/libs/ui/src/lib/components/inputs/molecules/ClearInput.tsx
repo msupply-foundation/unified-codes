@@ -18,7 +18,10 @@ export interface OutlinedClearInputProps extends OutlinedTextFieldProps {
   onClear?: () => void;
 }
 
-export type ClearInputProps = StandardClearInputProps | FilledClearInputProps | OutlinedClearInputProps
+export type ClearInputProps =
+  | StandardClearInputProps
+  | FilledClearInputProps
+  | OutlinedClearInputProps;
 
 export type ClearInput = React.FunctionComponent<ClearInputProps>;
 
