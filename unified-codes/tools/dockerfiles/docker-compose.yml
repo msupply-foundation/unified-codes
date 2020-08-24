@@ -25,6 +25,7 @@ services:
       - NX_DGRAPH_ENDPOINT=http://dgraph-standalone:8080
       - NX_AUTHENTICATION_URL=http://keycloak:9990/auth/realms/unified-codes
       - NX_DATA_SERVICE_PORT=4000
+      - NX_RXNAV_ENDPOINT=https://rxnav.nlm.nih.gov/REST
     volumes:
       - ../../dist/apps/data-service:/usr/unified-codes/dist/apps/data-service
   dgraph-standalone:

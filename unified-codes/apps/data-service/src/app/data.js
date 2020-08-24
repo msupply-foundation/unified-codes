@@ -20,7 +20,7 @@ export class DgraphDataSource extends RESTDataSource {
 export class RxNavDataSource extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'https://rxnav.nlm.nih.gov/REST';
+    this.baseURL = process.env.NX_RXNAV_ENDPOINT;
     this.paths = { interactions: 'interaction/interaction.json' };
   }
 
