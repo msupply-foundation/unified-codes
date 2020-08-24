@@ -18,9 +18,9 @@ export interface OutlinedClearInputProps extends OutlinedTextFieldProps {
   onClear?: () => void;
 }
 
-export type ClearInput = React.FunctionComponent<
-  StandardClearInputProps | FilledClearInputProps | OutlinedClearInputProps
->;
+export type ClearInputProps = StandardClearInputProps | FilledClearInputProps | OutlinedClearInputProps
+
+export type ClearInput = React.FunctionComponent<ClearInputProps>;
 
 export const ClearInput: ClearInput = ({ onClear, ...other }) => {
   const onClick = React.useMemo(() => onClear ?? undefined, [onClear]);
