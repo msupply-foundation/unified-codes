@@ -10,10 +10,10 @@ import { IState } from '../../types';
 import { ExplorerSelectors } from '../../selectors';
 
 export interface ExplorerProps {
-  entities: Entity[],
-  onReady: () => void,
-  onClear: () => void,
-  onSearch: (input: string) => void,
+  entities: Entity[];
+  onReady: () => void;
+  onClear: () => void;
+  onSearch: (input: string) => void;
 }
 
 export type Explorer = React.FunctionComponent<ExplorerProps>;
@@ -30,19 +30,34 @@ export const ExplorerComponent: Explorer = ({ entities, onReady, onClear, onSear
   );
 };
 
-
 const mapStateToProps = (state: IState) => {
   const entities = ExplorerSelectors.entitiesSelector(state);
   return { entities };
-}
+};
 
-const mapDispatchToProps = (dispatch: Dispatch)  => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   const onClear = () => dispatch(ExplorerActions.resetVariables());
   const onReady = () => dispatch(ExplorerActions.fetchData());
-  const onSearch = (input: string) => dispatch(ExplorerActions.updateVariables({ code: input, description: input }))
+  const onSearch = (input: string) =>
+    dispatch(ExplorerActions.updateVariables({ code: input, description: input }));
   return { onClear, onReady, onSearch };
-}
+};
 
 export const Explorer = connect(mapStateToProps, mapDispatchToProps)(ExplorerComponent);
 
 export default Explorer;
+
+// const resetInput = React.useCallback(() => setInput(''), []);
+// const resetData = React.useCallback(() => setData(entities), [entities]);
+
+// const onChange = React.useCallback((value) => setInput(value), []);
+// const onClear = React.useCallback(() => {
+//   resetInput();
+//   resetData();
+// }, [resetData, resetInput]);
+
+// const onSearch = React.useCallback(() => {
+//   setData(
+//     entities.filter((entity) => entity.matchesCode(input) || entity.matchesDescription(input))
+//   );
+// }, [entities, input]);
