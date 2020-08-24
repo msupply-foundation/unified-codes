@@ -8,35 +8,28 @@ import SearchBar from '../../inputs/molecules/SearchBar';
 
 export interface EntityBrowserProps {
   entities: Entity[];
+  onChange?: (value: string) => void;
+  onClear?: () => void;
+  onSearch?: (value: string) => void;
 }
 
 export type EntityBrowser = React.FunctionComponent<EntityBrowserProps>;
 
-export const EntityBrowser: EntityBrowser = ({ entities }) => {
-  // TODO: lift callbacks out for reduxification!
-
+export const EntityBrowser: EntityBrowser = ({ entities, onChange, onClear, onSearch }) => {
   const [input, setInput] = React.useState('');
-  const [data, setData] = React.useState<Entity[]>(entities);
 
-  const resetInput = React.useCallback(() => setInput(''), []);
-  const resetData = React.useCallback(() => setData(entities), [entities]);
-
-  const onChange = React.useCallback((value) => setInput(value), []);
-  const onClear = React.useCallback(() => {
-    resetInput();
-    resetData();
-  }, [resetData, resetInput]);
-
-  const onSearch = React.useCallback(() => {
-    setData(
-      entities.filter((entity) => entity.matchesCode(input) || entity.matchesDescription(input))
-    );
-  }, [entities, input]);
+  const onChangeInput = React.useCallback(
+    (input: string) => {
+      setInput(input);
+      onChange && onChange(input);
+    },
+    [setInput]
+  );
 
   return (
     <Grid container direction="column">
       <Grid item>
-        <SearchBar input={input} onChange={onChange} onClear={onClear} onSearch={onSearch} />
+        <SearchBar input={input} onChange={onChangeInput} onClear={onClear} onSearch={onSearch} />
       </Grid>
       <Grid item>
         <EntityTable data={entities} />

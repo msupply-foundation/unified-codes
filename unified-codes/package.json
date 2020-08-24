@@ -40,6 +40,7 @@
     "@types/react-redux": "^7.1.9",
     "apollo-datasource-rest": "^0.9.3",
     "apollo-server-fastify": "^2.15.1",
+    "cross-fetch": "^3.0.5",
     "dgraph-js-http": "^20.7.0-rc1",
     "document-register-element": "1.13.1",
     "fastify": "^3.0.2",

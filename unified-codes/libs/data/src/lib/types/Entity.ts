@@ -5,8 +5,7 @@ export interface IEntity {
   description: string;
   type: string;
   properties?: Property[];
-};
-
+}
 
 export class Entity implements IEntity {
   private _code: string;

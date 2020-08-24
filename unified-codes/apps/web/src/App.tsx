@@ -3,7 +3,6 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Theme, withStyles } from '@material-ui/core/styles';
-import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import { Container, Grid, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
@@ -13,8 +12,7 @@ import { Explorer, Header, Login } from './components';
 
 export interface AppProps {
   alert: IAlert;
-  classes: ClassNameMap<any>;
-  hideAlert: () => void;
+  resetAlert: () => void;
 }
 
 const getStyles = (theme: Theme) => ({
@@ -23,11 +21,7 @@ const getStyles = (theme: Theme) => ({
 
 export type App = React.FunctionComponent<AppProps>;
 
-const _App: App = ({ alert, classes, hideAlert }) => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const onClick = React.useCallback(() => setIsOpen(true), [setIsOpen]);
-  const onClose = React.useCallback(() => setIsOpen(false), [setIsOpen]);
-
+const _App: App = ({ alert, resetAlert }) => {
   return (
     <BrowserRouter>
       <Container>
@@ -37,7 +31,7 @@ const _App: App = ({ alert, classes, hideAlert }) => {
             isVisible={alert.isVisible}
             text={alert.text}
             severity={alert.severity}
-            onClose={hideAlert}
+            onClose={resetAlert}
           />
         </Grid>
         <Grid container item>
@@ -59,8 +53,8 @@ const _App: App = ({ alert, classes, hideAlert }) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
-  const hideAlert = () => dispatch(AlertActions.hideAlert());
-  return { hideAlert };
+  const resetAlert = () => dispatch(AlertActions.resetAlert());
+  return { resetAlert };
 };
 
 const mapStateToProps = (state: any) => {

@@ -1,16 +1,6 @@
 import User from './User';
 import IdentityProvider from './IdentityProvider';
 
-export interface IAuthorisationConfig {
-  baseUrl: string;
-}
-
-export class AuthorisationError extends Error {
-  constructor(message: string) {
-    super(message);
-  }
-}
-
 export class AuthorisationService {
   private provider: IdentityProvider;
 
@@ -20,7 +10,8 @@ export class AuthorisationService {
 
   // TODO: add permissions, e.g. authorise(user: User, permission: Permission)
   async authorise(user: User) {
-    return this.provider.verifyIdentityToken(user.token);
+    const { token } = user;
+    return this.provider.verifyIdentityToken(token);
   }
 }
 

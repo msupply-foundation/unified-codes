@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-
-import { Entity, EntityNode } from '@unified-codes/data';
+import { Entity, IEntity } from '@unified-codes/data';
 
 import { EntityBrowser } from './EntityBrowser';
 
@@ -12,7 +10,7 @@ export default {
 };
 
 export const primary = () => {
-  const data: EntityNode[] = [
+  const data: IEntity[] = [
     {
       code: 'QFWR9789',
       description: 'Amoxicillin',
@@ -24,6 +22,6 @@ export const primary = () => {
       type: 'medicinal_product',
     },
   ];
-  const entities = data.map((entityNode: EntityNode) => new Entity(entityNode));
+  const entities = data.map((entityNode: IEntity) => new Entity(entityNode));
   return <EntityBrowser entities={entities} />;
 };

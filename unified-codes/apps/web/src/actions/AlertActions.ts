@@ -3,30 +3,30 @@ import { Action } from 'redux';
 import { IAlert } from '@unified-codes/data';
 
 export const ALERT_ACTIONS = {
-  HIDE: 'alertActions/hide',
-  SHOW: 'alertActions/show',
+  RAISE: 'alertActions/raise',
+  RESET: 'alertActions/reset',
 };
 
-export interface IAlertHideAction extends Action<string> {};
-
-export interface IAlertShowAction extends Action<string> {
+export interface IAlertRaiseAction extends Action<string> {
   alert: IAlert;
 }
 
-export type IAlertAction = IAlertHideAction | IAlertShowAction;
+export interface IAlertResetAction extends Action<string> {}
 
-const hideAlert = () => ({
-  type: ALERT_ACTIONS.HIDE,
-});
+export type IAlertAction = IAlertResetAction | IAlertRaiseAction;
 
-const showAlert = (alert: IAlert) => ({
-  type: ALERT_ACTIONS.SHOW,
+const raiseAlert = (alert: IAlert) => ({
+  type: ALERT_ACTIONS.RAISE,
   alert,
 });
 
+const resetAlert = () => ({
+  type: ALERT_ACTIONS.RESET,
+});
+
 export const AlertActions = {
-  hideAlert,
-  showAlert,
+  raiseAlert,
+  resetAlert,
 };
 
 export default AlertActions;

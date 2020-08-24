@@ -1,17 +1,19 @@
+import fetch from 'cross-fetch';
+
 import JWT, { JWTToken } from './JWT';
 import { IUserCredentials } from './User';
 
 export interface IKeyCloakConfig {
   baseUrl: string;
-  clientId: string,
-  clientSecret: string,
-  grantType: string
+  clientId: string;
+  clientSecret: string;
+  grantType: string;
 }
 
 export interface IKeyCloakCredentials extends IUserCredentials {
-  clientId: string,
-  clientSecret: string,
-  grantType: string,
+  clientId: string;
+  clientSecret: string;
+  grantType: string;
   username: string;
   password: string;
 }
@@ -36,7 +38,7 @@ export class KeyCloakIdentityProvider extends IdentityProvider {
   }
 
   async getIdentityToken(credentials: IUserCredentials): Promise<JWTToken> {
-    const { username, password } = credentials;    
+    const { username, password } = credentials;
     const { baseUrl, clientId, clientSecret, grantType } = this.config;
 
     const formData = new FormData();
@@ -62,15 +64,19 @@ export class KeyCloakIdentityProvider extends IdentityProvider {
   }
 
   async verifyIdentityToken(token: JWTToken): Promise<boolean> {
-    const response = await fetch(this.config.baseUrl);
-    const payload = await response.json();
-    const { public_key: publicKey } = payload ?? {};
+    try {
+      const response = await fetch(this.config.baseUrl);
+      const payload = await response.json();
+      const { public_key: publicKey } = payload ?? {};
 
-    if (!publicKey) throw new IdentityProviderError('public key not found');
+      if (!publicKey) throw new IdentityProviderError('public key not found');
 
-    const secret = `-----BEGIN PUBLIC KEY-----\n${publicKey}\n-----END PUBLIC KEY-----`;
+      const secret = `-----BEGIN PUBLIC KEY-----\n${publicKey}\n-----END PUBLIC KEY-----`;
 
-    return JWT.verifyToken(token, secret);
+      return JWT.verifyToken(token, secret);
+    } catch (err) {
+      return false;
+    }
   }
 }
 
