@@ -1,9 +1,9 @@
 import { JWTToken } from './JWT';
 
 export interface IUser {
-  token: JWTToken,
-  roles: string[]
-};
+  token: JWTToken;
+  roles: string[];
+}
 
 export interface IUserCredentials {
   password: string;

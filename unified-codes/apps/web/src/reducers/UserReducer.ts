@@ -1,11 +1,19 @@
-import { IAuthenticatorAction, IAuthenticationSuccessAction, IUserAction, AUTHENTICATOR_ACTIONS } from '../actions';
+import {
+  IAuthenticatorAction,
+  IAuthenticationSuccessAction,
+  IUserAction,
+  AUTHENTICATOR_ACTIONS,
+} from '../actions';
 import { IUserState } from '../types';
 
 const initialState = () => {
   return {};
 };
 
-export const UserReducer = (state: IUserState = initialState(), action: IUserAction | IAuthenticatorAction) => {
+export const UserReducer = (
+  state: IUserState = initialState(),
+  action: IUserAction | IAuthenticatorAction
+) => {
   const { type } = action;
 
   switch (type) {

@@ -17,7 +17,7 @@ module.exports = async ({ config, mode }) => {
     global: true,
     console: true,
     fs: 'empty',
-  }
+  };
 
   return config;
 };

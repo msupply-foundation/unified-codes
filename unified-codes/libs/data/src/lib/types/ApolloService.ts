@@ -11,10 +11,10 @@ type Resolvers = Config['resolvers'];
 type DataSources = Config['dataSources'];
 
 export interface IApolloServiceContext {
-  token?: JWTToken,
-  authenticator: AuthenticationService,
-  authoriser: AuthorisationService,
-  dataSources: { [key: string]: DataSource<object> },
+  token?: JWTToken;
+  authenticator: AuthenticationService;
+  authoriser: AuthorisationService;
+  dataSources: { [key: string]: DataSource<object> };
 }
 
 export class ApolloService {
@@ -24,7 +24,12 @@ export class ApolloService {
   authenticator: AuthenticationService;
   authoriser: AuthorisationService;
 
-  constructor(typeDefs: TypeDefs, resolvers: Resolvers, dataSources: DataSources, identityProvider: IdentityProvider) {
+  constructor(
+    typeDefs: TypeDefs,
+    resolvers: Resolvers,
+    dataSources: DataSources,
+    identityProvider: IdentityProvider
+  ) {
     this.typeDefs = typeDefs;
     this.resolvers = resolvers;
     this.dataSources = dataSources;
@@ -44,10 +49,9 @@ export class ApolloService {
         } catch (err) {
           return { authenticator: this.authenticator, authoriser: this.authoriser };
         }
-      }
+      },
     });
   }
 }
 
 export default ApolloService;
-

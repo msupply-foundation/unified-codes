@@ -7,12 +7,11 @@ export const ALERT_ACTIONS = {
   RESET: 'alertActions/reset',
 };
 
-
 export interface IAlertRaiseAction extends Action<string> {
   alert: IAlert;
 }
 
-export interface IAlertResetAction extends Action<string> {};
+export interface IAlertResetAction extends Action<string> {}
 
 export type IAlertAction = IAlertResetAction | IAlertRaiseAction;
 
@@ -25,10 +24,9 @@ const resetAlert = () => ({
   type: ALERT_ACTIONS.RESET,
 });
 
-
 export const AlertActions = {
   raiseAlert,
-  resetAlert
+  resetAlert,
 };
 
 export default AlertActions;

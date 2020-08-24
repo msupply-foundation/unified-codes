@@ -1,11 +1,17 @@
-import { EXPLORER_ACTIONS, IExplorerAction, IExplorerUpdateVariablesAction, IExplorerFetchFailureAction, IExplorerFetchSuccessAction } from '../actions';
+import {
+  EXPLORER_ACTIONS,
+  IExplorerAction,
+  IExplorerUpdateVariablesAction,
+  IExplorerFetchFailureAction,
+  IExplorerFetchSuccessAction,
+} from '../actions';
 import { IExplorerState } from '../types';
 
 const initialState = (): IExplorerState => {
   return {
     loading: false,
     variables: {},
-  }
+  };
 };
 
 export const ExplorerReducer = (state = initialState(), action: IExplorerAction) => {
@@ -34,11 +40,11 @@ export const ExplorerReducer = (state = initialState(), action: IExplorerAction)
       const { variables } = action as IExplorerUpdateVariablesAction;
       return { ...state, variables };
     }
-    
+
     case EXPLORER_ACTIONS.RESET_VARIABLES: {
-      return { ...state, variables: {}};
+      return { ...state, variables: {} };
     }
-    
+
     default:
       return state;
   }

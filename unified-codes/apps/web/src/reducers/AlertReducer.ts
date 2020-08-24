@@ -5,10 +5,10 @@ import { IAlertState } from '../types';
 
 const initialState = (): IAlertState => {
   const alert: IAlert = {
-    isVisible: false, 
+    isVisible: false,
     severity: AlertSeverity.info,
     text: '',
-  }
+  };
   return alert;
 };
 
@@ -24,7 +24,7 @@ export const AlertReducer = (state: IAlertState = initialState(), action: IAlert
     case ALERT_ACTIONS.RESET: {
       return initialState();
     }
-    
+
     default:
       return state;
   }

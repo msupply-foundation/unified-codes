@@ -3,11 +3,14 @@ import { IAuthenticatorState } from '../types';
 
 const initialState = (): IAuthenticatorState => {
   return {
-    isAuthenticating: false
+    isAuthenticating: false,
   };
 };
 
-export const AuthenticatorReducer = (state: IAuthenticatorState = initialState(), action: IAuthenticatorAction) => {
+export const AuthenticatorReducer = (
+  state: IAuthenticatorState = initialState(),
+  action: IAuthenticatorAction
+) => {
   const { type } = action;
 
   switch (type) {
