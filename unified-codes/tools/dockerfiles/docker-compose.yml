@@ -10,6 +10,7 @@ services:
       - "3000:3000"
     environment:
       - NX_DGRAPH_ENDPOINT=http://dgraph-standalone:8080
+      - NX_LEGACY_API_PORT=3000
     volumes:
       - ../../dist/apps/legacy-api:/usr/unified-codes/dist/apps/legacy-api
   data-service:
@@ -23,6 +24,7 @@ services:
     environment:
       - NX_DGRAPH_ENDPOINT=http://dgraph-standalone:8080
       - NX_AUTHENTICATION_URL=http://keycloak:9990/auth/realms/unified-codes
+      - NX_DATA_SERVICE_PORT=4000
     volumes:
       - ../../dist/apps/data-service:/usr/unified-codes/dist/apps/data-service
   dgraph-standalone:
