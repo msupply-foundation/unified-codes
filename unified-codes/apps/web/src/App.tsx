@@ -3,26 +3,23 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-
 import { AppBar, Container, Grid, MenuBar, MenuItem, Toolbar, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
- 
+
 import { AlertActions } from './actions';
 import { Explorer, Login } from './components';
 
 export interface AppProps {
-  alert: IAlert,
-  hideAlert: () => void,
-};
+  alert: IAlert;
+  resetAlert: () => void;
+}
 
 export type App = React.FunctionComponent<AppProps>;
 
-export const AppComponent: App = ({ alert, hideAlert }) => {
+export const AppComponent: App = ({ alert, resetAlert }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const onClick = React.useCallback(() => setIsOpen(true), [setIsOpen]);
   const onClose = React.useCallback(() => setIsOpen(false), [setIsOpen]);
-
 
   return (
     <BrowserRouter>
@@ -45,17 +42,22 @@ export const AppComponent: App = ({ alert, hideAlert }) => {
           <Grid container item>
             <Switch>
               <Route exact path="/explorer">
-                  <Explorer />
+                <Explorer />
               </Route>
               <Route exact path="/login">
-                  <Login />
+                <Login />
               </Route>
               <Route>
                 <Redirect to="/explorer" />
               </Route>
             </Switch>
           </Grid>
-          <AlertBar isVisible={alert.isVisible} text={alert.text} severity={alert.severity} onClose={hideAlert}/>
+          <AlertBar
+            isVisible={alert.isVisible}
+            text={alert.text}
+            severity={alert.severity}
+            onClose={resetAlert}
+          />
         </Grid>
       </Container>
     </BrowserRouter>
@@ -63,14 +65,14 @@ export const AppComponent: App = ({ alert, hideAlert }) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
-  const hideAlert = () => dispatch(AlertActions.hideAlert());
-  return { hideAlert };
+  const resetAlert = () => dispatch(AlertActions.resetAlert());
+  return { resetAlert };
 };
 
 const mapStateToProps = (state: any) => {
   const { alert, entities } = state;
   return { alert, entities };
-}
+};
 
 export const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
 

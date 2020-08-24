@@ -1,13 +1,16 @@
-import { IAuthenticatorAction, AUTHENTICATOR_ACTIONS } from '../actions/AuthenticatorActions';
+import { IAuthenticatorAction, AUTHENTICATOR_ACTIONS } from '../actions';
+import { IAuthenticatorState } from '../types';
 
-const initialState = () => {
-  const authentication: { isAuthenticating: boolean } = {
+const initialState = (): IAuthenticatorState => {
+  return {
     isAuthenticating: false,
-  }
-  return authentication;
+  };
 };
 
-export const AuthenticatorReducer = (state = initialState(), action: IAuthenticatorAction) => {
+export const AuthenticatorReducer = (
+  state: IAuthenticatorState = initialState(),
+  action: IAuthenticatorAction
+) => {
   const { type } = action;
 
   switch (type) {

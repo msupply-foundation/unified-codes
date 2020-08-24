@@ -1,1 +1,1 @@
-export * from "./AlertBar";
+export * from './AlertBar';

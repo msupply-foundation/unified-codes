@@ -5,15 +5,15 @@ import { IUserCredentials } from './User';
 
 export interface IKeyCloakConfig {
   baseUrl: string;
-  clientId: string,
-  clientSecret: string,
-  grantType: string
+  clientId: string;
+  clientSecret: string;
+  grantType: string;
 }
 
 export interface IKeyCloakCredentials extends IUserCredentials {
-  clientId: string,
-  clientSecret: string,
-  grantType: string,
+  clientId: string;
+  clientSecret: string;
+  grantType: string;
   username: string;
   password: string;
 }
@@ -38,7 +38,7 @@ export class KeyCloakIdentityProvider extends IdentityProvider {
   }
 
   async getIdentityToken(credentials: IUserCredentials): Promise<JWTToken> {
-    const { username, password } = credentials;    
+    const { username, password } = credentials;
     const { baseUrl, clientId, clientSecret, grantType } = this.config;
 
     const formData = new FormData();

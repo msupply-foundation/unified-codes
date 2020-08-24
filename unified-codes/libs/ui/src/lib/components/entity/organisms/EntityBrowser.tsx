@@ -18,7 +18,13 @@ export type EntityBrowser = React.FunctionComponent<EntityBrowserProps>;
 export const EntityBrowser: EntityBrowser = ({ entities, onChange, onClear, onSearch }) => {
   const [input, setInput] = React.useState('');
 
-  const onChangeInput = React.useCallback((input: string) => { setInput(input); onChange && onChange(input) }, [setInput]);
+  const onChangeInput = React.useCallback(
+    (input: string) => {
+      setInput(input);
+      onChange && onChange(input);
+    },
+    [setInput]
+  );
 
   return (
     <Grid container direction="column">

@@ -9,18 +9,21 @@ export const AUTHENTICATOR_ACTIONS = {
 };
 
 export interface IAuthenticateAction extends Action<string> {
-  credentials: IUserCredentials,
-};
+  credentials: IUserCredentials;
+}
 
 export interface IAuthenticationSuccessAction extends Action<String> {
-  user: IUser,
-};
+  user: IUser;
+}
 
 export interface IAuthenticationFailureAction extends Action<string> {
-  error: string,
-};
+  error: string;
+}
 
-export type IAuthenticatorAction = IAuthenticateAction | IAuthenticationSuccessAction | IAuthenticationFailureAction;
+export type IAuthenticatorAction =
+  | IAuthenticateAction
+  | IAuthenticationSuccessAction
+  | IAuthenticationFailureAction;
 
 const authenticate = (credentials: IUserCredentials) => ({
   type: AUTHENTICATOR_ACTIONS.AUTHENTICATE,
