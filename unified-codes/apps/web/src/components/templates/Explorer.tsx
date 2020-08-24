@@ -47,17 +47,4 @@ export const Explorer = connect(mapStateToProps, mapDispatchToProps)(ExplorerCom
 
 export default Explorer;
 
-// const resetInput = React.useCallback(() => setInput(''), []);
-// const resetData = React.useCallback(() => setData(entities), [entities]);
 
-// const onChange = React.useCallback((value) => setInput(value), []);
-// const onClear = React.useCallback(() => {
-//   resetInput();
-//   resetData();
-// }, [resetData, resetInput]);
-
-// const onSearch = React.useCallback(() => {
-//   setData(
-//     entities.filter((entity) => entity.matchesCode(input) || entity.matchesDescription(input))
-//   );
-// }, [entities, input]);
