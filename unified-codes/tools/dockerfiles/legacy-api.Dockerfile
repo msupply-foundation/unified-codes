@@ -1,4 +1,4 @@
-FROM unified-codes/dependencies:latest
+FROM katms-unified-codes-dependencies:latest
 
 EXPOSE 3000
 
