@@ -49,7 +49,7 @@ export class KeyCloakIdentityProvider extends IdentityProvider {
     formData.append('password', password);
 
     const response = await fetch(baseUrl, {
-      method: 'POSTJWT',
+      method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
       credentials: 'include',
