@@ -4,9 +4,10 @@ import Button from '../atoms/Button';
 import Grid from '../../layout/atoms/Grid';
 import LoginInput from '../molecules/LoginInput';
 import Typography from '../../data/atoms/Typography';
+import { IUserCredentials } from 'libs/data/src/lib';
 
 export interface LoginFormProps {
-  onSubmit?: (username: string, password: string) => void;
+  onSubmit?: (IUserCredentials) => void;
 }
 
 export type LoginForm = React.FunctionComponent<LoginFormProps>;
@@ -20,11 +21,11 @@ export const LoginForm: LoginForm = ({ onSubmit }) => {
     setPassword(password);
   }, []);
 
-  const onClick = React.useCallback(() => (onSubmit ? onSubmit(username, password) : null), [
-    username,
-    password,
-    onSubmit,
-  ]);
+  const onClick = React.useCallback(() => { 
+    if (!onSubmit) return null;
+    const credentials: IUserCredentials = { username, password };
+    onSubmit(credentials);
+  }, [username, password, onSubmit]);
 
   return (
     <Grid>
