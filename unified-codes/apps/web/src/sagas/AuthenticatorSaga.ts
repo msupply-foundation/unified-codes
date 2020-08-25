@@ -18,9 +18,9 @@ function* authenticate(action: IAuthenticateAction) {
 
   // TODO: should get this from env, as previously!
   const keycloakConfig: IKeyCloakConfig = {
-    baseUrl: '',
-    clientId: '',
-    clientSecret: '',
+    baseUrl: process.env.AUTHENTICATION_URL || '',
+    clientId: process.env.CLIENT_ID || '',
+    clientSecret: process.env.CLIENT_SECRET || '',
     grantType: '',
   };
 

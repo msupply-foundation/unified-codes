@@ -56,7 +56,7 @@ function* fetchData() {
   yield put(AlertActions.raiseAlert(alertFetch));
 
   try {
-    const url: string | undefined = process.env.NX_DATA_SERVICE;
+    const url: string | undefined = `${process.env.DATA_SERVICE_URL}:${process.env.DATA_SERVICE_PORT}/${process.env.DATA_SERVICE_GRAPHQL}`;
     if (url) {
       const data: IEntity[] = yield call(getEntities, url);
       yield put(AlertActions.resetAlert());
