@@ -32,6 +32,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: Install modules
+      run: npm install
+      working-directory: ${{env.workspace-directory}}
     - name: Build affected projects
       run: npx nx affected:build
       working-directory: ${{env.workspace-directory}}
