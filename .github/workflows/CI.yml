@@ -35,8 +35,11 @@ jobs:
     - name: Install modules
       run: npm install
       working-directory: ${{env.workspace-directory}}
-    - name: Build affected projects
-      run: npx nx affected:build
+    - name: Build legacy-api
+      run: npx nx build legacy-api
+      working-directory: ${{env.workspace-directory}}
+    - name: Build data-service
+      run: npx nx build data-service
       working-directory: ${{env.workspace-directory}}
       # Test only with temp access token! Credentials should be moved to GitHub secrets
     - name: Build and push unified-codes/dependencies
