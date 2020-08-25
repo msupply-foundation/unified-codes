@@ -6,8 +6,7 @@ export class DgraphDataSource extends RESTDataSource {
 
   constructor() {
     super();
-    // TODO: lift this value out
-    this.baseURL = 'http://localhost:8080';
+    this.baseURL = process.env.NX_DGRAPH_ENDPOINT;
     this.headers = { 'Content-Type': 'application/graphql+-' };
     this.paths = { query: 'query' };
   }
@@ -26,7 +25,7 @@ export class RxNavDataSource extends RESTDataSource {
 
   constructor() {
     super();
-    this.baseURL = 'https://rxnav.nlm.nih.gov/REST';
+    this.baseURL = process.env.NX_RXNAV_ENDPOINT;
     this.paths = { interactions: 'interaction/interaction.json' };
   }
 

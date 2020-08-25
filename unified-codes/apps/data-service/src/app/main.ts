@@ -10,7 +10,8 @@ const start = async () => {
     const config = { logger: true };
     const plugins = [apolloPlugin, fastifyCors];
     fastifyServer = createFastifyServer(config, plugins);
-    await fastifyServer.listen(4000);
+    const port = parseInt(process.env.NX_DATA_SERVICE_PORT);
+    await fastifyServer.listen(port);
   } catch (err) {
     if (fastifyServer) {
       fastifyServer.log.error(err);

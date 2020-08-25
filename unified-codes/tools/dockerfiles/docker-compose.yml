@@ -1,0 +1,49 @@
+version: '3'
+services:
+  legacy-api:
+    container_name: legacy-api
+    build: 
+      context: ../..
+      dockerfile: tools/dockerfiles/legacy-api.Dockerfile
+    image: unified-codes/legacy-api:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - NX_DGRAPH_ENDPOINT=http://dgraph-standalone:8080
+      - NX_LEGACY_API_PORT=3000
+    volumes:
+      - ../../dist/apps/legacy-api:/usr/unified-codes/dist/apps/legacy-api
+  data-service:
+    build: 
+      context: ../..
+      dockerfile: tools/dockerfiles/data-service.Dockerfile
+    container_name: data-service
+    image: unified-codes/data-service:latest
+    ports:
+      - "4000:4000"
+    environment:
+      - NX_DGRAPH_ENDPOINT=http://dgraph-standalone:8080
+      - NX_AUTHENTICATION_URL=http://keycloak:9990/auth/realms/unified-codes
+      - NX_DATA_SERVICE_PORT=4000
+      - NX_RXNAV_ENDPOINT=https://rxnav.nlm.nih.gov/REST
+    volumes:
+      - ../../dist/apps/data-service:/usr/unified-codes/dist/apps/data-service
+  dgraph-standalone:
+    container_name: dgraph-standalone
+    image: dgraph/standalone:v20.03.0
+    ports: 
+      - "8080:8080"
+      - "9080:9080"
+      - "8000:8000"
+    volumes:
+      - ~/dgraph:/dgraph
+  keycloak:
+    container_name: keycloak
+    image: jboss/keycloak
+    ports: 
+      - "9990:8080"
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin 
+volumes:
+  logvolume01: {}
