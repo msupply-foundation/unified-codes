@@ -38,7 +38,8 @@ jobs:
       with:
         username: katms
         password: f8b503fd-314f-4397-8c97-be8231647849
-        dockerfile: ./unified-codes/unified-codes/tools/dockerfiles/dependencies.Dockerfile
+        path: ${{env.workspace-directory}}
+        dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/dependencies.Dockerfile
         repository: katms/unified-codes
         tags: latest
         push: true
