@@ -46,5 +46,3 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 export const Explorer = connect(mapStateToProps, mapDispatchToProps)(ExplorerComponent);
 
 export default Explorer;
-
-
