@@ -32,8 +32,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: Build affected projects
+      run: npx nx affected:build
+      working-directory: ${{env.workspace-directory}}
       # Test only with temp access token! Credentials should be moved to GitHub secrets
-    - name: Build and push Docker images
+    - name: Build and push unified-codes/dependencies
       uses: docker/build-push-action@v1
       with:
         username: katms
@@ -41,5 +44,25 @@ jobs:
         path: ${{env.workspace-directory}}
         dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/dependencies.Dockerfile
         repository: katms/unified-codes
-        tags: latest
+        tags: unified-codes/dependencies:latest
+        push: true
+    - name: Build and push legacy-api
+      uses: docker/build-push-action@v1
+      with:
+        username: katms
+        password: f8b503fd-314f-4397-8c97-be8231647849
+        path: ${{env.workspace-directory}}
+        dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/legacy-api.Dockerfile
+        repository: katms/unified-codes
+        tags: unified-codes/legacy-api:latest
+        push: true
+    - name: Build and push data-service
+      uses: docker/build-push-action@v1
+      with:
+        username: katms
+        password: f8b503fd-314f-4397-8c97-be8231647849
+        path: ${{env.workspace-directory}}
+        dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/data-service.Dockerfile
+        repository: katms/unified-codes
+        tags: unified-codes/data-service:latest
         push: true
