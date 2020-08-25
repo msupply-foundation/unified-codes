@@ -8,7 +8,7 @@ import * as Resolvers from './resolvers';
 import { ApolloService, KeyCloakIdentityProvider } from '@unified-codes/data';
 
 export const createApolloServer = (typeDefs?, resolvers?, dataSources?): ApolloServer => {
-  const AUTH_URL = 'http://127.0.0.1:9990/auth/realms/unified-codes';
+  const AUTH_URL = process.env.NX_AUTHENTICATION_URL;
 
   const _typeDefs = typeDefs ?? Schema.typeDefs;
   const _resolvers = resolvers ?? Resolvers.resolvers;
@@ -17,7 +17,6 @@ export const createApolloServer = (typeDefs?, resolvers?, dataSources?): ApolloS
     rxnav: new Data.RxNavDataSource(),
   }));
 
-  // TODO: get from .env.
   const identityProviderConfig = {
     baseUrl: AUTH_URL,
     clientId: '',
