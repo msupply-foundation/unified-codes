@@ -49,8 +49,8 @@ jobs:
         password: f8b503fd-314f-4397-8c97-be8231647849
         path: ${{env.workspace-directory}}
         dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/dependencies.Dockerfile
-        repository: katms/unified-codes
-        tags: dependencies:latest
+        repository: katms/unified-codes-dependencies
+        tags: latest
         push: true
     - name: Build and push legacy-api
       uses: docker/build-push-action@v1
@@ -59,8 +59,8 @@ jobs:
         password: f8b503fd-314f-4397-8c97-be8231647849
         path: ${{env.workspace-directory}}
         dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/legacy-api.Dockerfile
-        repository: katms/unified-codes
-        tags: legacy-api:latest
+        repository: katms/unified-codes-legacy-api
+        tags: latest
         push: true
     - name: Build and push data-service
       uses: docker/build-push-action@v1
@@ -69,6 +69,6 @@ jobs:
         password: f8b503fd-314f-4397-8c97-be8231647849
         path: ${{env.workspace-directory}}
         dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/data-service.Dockerfile
-        repository: katms/unified-codes
-        tags: data-service:latest
+        repository: katms/unified-codes-data-service
+        tags: latest
         push: true
