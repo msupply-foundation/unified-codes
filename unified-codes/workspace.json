@@ -65,7 +65,7 @@
           "builder": "@nrwl/node:build",
           "options": {
             "outputPath": "dist/apps/data-service",
-            "main": "apps/data-service/src/app/server.js",
+            "main": "apps/data-service/src/app/main.ts",
             "tsConfig": "apps/data-service/tsconfig.app.json",
             "assets": ["apps/data-service/src/assets"]
           },
@@ -127,7 +127,7 @@
             "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
             "styles": [],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
+            "webpackConfig": "apps/web/webpack.config.js"
           },
           "configurations": {
             "production": {

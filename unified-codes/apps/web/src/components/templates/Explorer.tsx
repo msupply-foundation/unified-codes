@@ -1,61 +1,50 @@
 import * as React from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
 import { EntityBrowser, Grid } from '@unified-codes/ui';
-import { Entity, EntityNode } from '@unified-codes/data';
+import { Entity } from '@unified-codes/data';
 
-const mockData: { entities: EntityNode[] } = {
-  entities: [
-    {
-      code: 'QFWR9789',
-      description: 'Amoxicillin',
-      type: 'medicinal_product',
-    },
-    {
-      code: 'GH89P98W',
-      description: 'Paracetamol',
-      type: 'medicinal_product',
-    },
-  ],
+import { ExplorerActions } from '../../actions';
+import { IState } from '../../types';
+import { ExplorerSelectors } from '../../selectors';
+
+export interface ExplorerProps {
+  entities: Entity[];
+  onReady: () => void;
+  onClear: () => void;
+  onSearch: (input: string) => void;
+}
+
+export type Explorer = React.FunctionComponent<ExplorerProps>;
+
+export const ExplorerComponent: Explorer = ({ entities, onReady, onClear, onSearch }) => {
+  React.useEffect(() => {
+    onReady();
+  }, []);
+
+  return (
+    <Grid container justify="center">
+      <EntityBrowser entities={entities} onClear={onClear} onSearch={onSearch} />
+    </Grid>
+  );
 };
 
-const query = gql`
-  query allEntities {
-    entities {
-      code
-      description
-      type
-    }
-  }
-`;
-
-export const Explorer = () => {
-  const [entities, setEntities] = React.useState([]);
-  const { loading, error, data } = useQuery(query);
-
-  if (entities.length) {
-    return (
-      <Grid container justify="center">
-        <EntityBrowser entities={entities} />
-      </Grid>
-    );
-  }
-
-  if (loading) {
-    return (
-      <Grid container justify="center">
-        Loading...
-      </Grid>
-    );
-  }
-
-  if (data || error) {
-    const entityData = data ?? mockData;
-    const entities = entityData.entities.map((entityNode: EntityNode) => new Entity(entityNode));
-    setEntities(entities);
-  }
-
-  return null;
+const mapStateToProps = (state: IState) => {
+  const entities = ExplorerSelectors.entitiesSelector(state);
+  return { entities };
 };
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  const onClear = () => dispatch(ExplorerActions.resetVariables());
+  const onReady = () => dispatch(ExplorerActions.fetchData());
+  const onSearch = (input: string) =>
+    dispatch(ExplorerActions.updateVariables({ code: input, description: input }));
+  return { onClear, onReady, onSearch };
+};
+
+export const Explorer = connect(mapStateToProps, mapDispatchToProps)(ExplorerComponent);
 
 export default Explorer;
+
+
