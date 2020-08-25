@@ -25,3 +25,20 @@ jobs:
     - name: Run legacy-api tests
       run: npx nx test legacy-api
       working-directory: ${{env.workspace-directory}}
+  build-push-docker:
+    runs-on: ubuntu-latest
+    env:
+      workspace-directory: ./unified-codes
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      # Test only with temp access token! Credentials should be moved to GitHub secrets
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v1
+      with:
+        username: katms
+        password: f8b503fd-314f-4397-8c97-be8231647849
+        dockerfile: ./unified-codes/unified-codes/tools/dockerfiles/dependencies.Dockerfile
+        repository: katms/unified-codes
+        tag_with_ref: true
+        push: true
