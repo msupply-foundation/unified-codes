@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Theme, withStyles } from '@material-ui/core/styles';
+import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import { Container, Grid, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
@@ -12,16 +13,20 @@ import { Explorer, Header, Login } from './components';
 
 export interface AppProps {
   alert: IAlert;
+  classes: ClassNameMap<any>;
   resetAlert: () => void;
 }
 
 const getStyles = (theme: Theme) => ({
   body: theme.typography.body1,
+  container: {
+    marginTop: 24,
+  },
 });
 
 export type App = React.FunctionComponent<AppProps>;
 
-const _App: App = ({ alert, resetAlert }) => {
+const _App: App = ({ alert, classes, resetAlert }) => {
   return (
     <BrowserRouter>
       <Container>
@@ -34,7 +39,7 @@ const _App: App = ({ alert, resetAlert }) => {
             onClose={resetAlert}
           />
         </Grid>
-        <Grid container item>
+        <Grid container item className={classes.container}>
           <Switch>
             <Route exact path="/explorer">
               <Explorer />
