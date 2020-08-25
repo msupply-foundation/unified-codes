@@ -16,12 +16,6 @@ module.exports = async ({ config, mode }) => {
     ? config.resolve.plugins.push(tsPaths)
     : (config.resolve.plugins = [tsPaths]);
 
-  config.node = {
-    global: true,
-    console: true,
-    fs: 'empty',
-  };
-
   // Return the altered config
   return config;
 };

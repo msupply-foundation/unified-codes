@@ -8,10 +8,7 @@
 # dependencies
 /node_modules
 
-# env
-*.local.env
-
-# IDEs + editors
+# IDEs and editors
 /.idea
 .project
 .classpath
@@ -19,6 +16,8 @@
 *.launch
 .settings/
 *.sublime-workspace
+
+# IDE - VSCode
 .vscode/*
 
 # misc
@@ -31,6 +30,6 @@ yarn-error.log
 testem.log
 /typings
 
-# system
+# System Files
 .DS_Store
 Thumbs.db
