@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 import nock from 'nock';
 
-import createLegacyApiServer from './api';
+import createApiServer from './api';
 import queries from './queries';
 
-const server = createLegacyApiServer();
+const server = createApiServer();
 
 describe('Test health endpoint', () => {
   test('Health endpoint response has status code 200', (done) => {
