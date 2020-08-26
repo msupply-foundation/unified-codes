@@ -1,7 +1,8 @@
-import { IApolloServiceContext, User } from '@unified-codes/data';
+import { User } from '@unified-codes/data';
+
 import { DgraphDataSource } from './data';
 
-const queries = {
+export const queries = {
   entity: (code) => {
     return `{
         query(func: eq(code, ${code}), first: 1) @recurse(loop: false)  {
@@ -30,8 +31,8 @@ const queries = {
 
 export const resolvers = {
   Query: {
-    entity: async (_source, _args, context: IApolloServiceContext) => {
-      const { token, authenticator, authoriser, dataSources } = context;
+    entity: async (_source, _args, _context) => {
+      const { token, authenticator, authoriser, dataSources } = _context;
       const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
 
       // TODO: add authorisation logic for any protected entities.
@@ -49,8 +50,8 @@ export const resolvers = {
       const [entity] = response.data.query;
       return entity;
     },
-    entities: async (_source, _args, context: IApolloServiceContext) => {
-      const { token, authenticator, authoriser, dataSources } = context;
+    entities: async (_source, _args, _context) => {
+      const { token, authenticator, authoriser, dataSources } = _context;
       const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
 
       // TODO: add authorisation logic for any protected entities.

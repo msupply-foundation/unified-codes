@@ -25,4 +25,4 @@ export const queries = {
   },
 };
 
-export default { queries };
+export default queries;

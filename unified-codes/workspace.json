@@ -65,7 +65,7 @@
           "builder": "@nrwl/node:build",
           "options": {
             "outputPath": "dist/apps/data-service",
-            "main": "apps/data-service/src/app/main.ts",
+            "main": "apps/data-service/src/app/server.ts",
             "tsConfig": "apps/data-service/tsconfig.app.json",
             "assets": ["apps/data-service/src/assets"]
           },

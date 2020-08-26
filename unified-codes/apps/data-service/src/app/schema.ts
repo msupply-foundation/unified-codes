@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-fastify';
 
-const typeDefs = gql`
+export const schema = gql`
   type Entity {
     type: String!
     code: String
@@ -28,4 +28,4 @@ const typeDefs = gql`
   }
 `;
 
-export { typeDefs };
+export default schema;
