@@ -21,7 +21,7 @@ export const LoginForm: LoginForm = ({ onSubmit }) => {
     setPassword(password);
   }, []);
 
-  const onClick = React.useCallback(() => { 
+  const onClick = React.useCallback(() => {
     if (!onSubmit) return null;
     const credentials: IUserCredentials = { username, password };
     onSubmit(credentials);
