@@ -57,7 +57,9 @@ export class JWT {
     }
   }
 
-  static parseAuthorisation(authorisation: string): JWTToken {
+  static parseRequest(request: any): JWTToken {
+    const { headers } = request;
+    const { authorisation } = headers;
     const [_, jwt] = authorisation.split(' ');
     if (!jwt) throw new JsonWebTokenError('authorisation header malformed');
     const token = new JWTToken(jwt);
@@ -65,14 +67,14 @@ export class JWT {
     return token;
   }
 
-  static parseRequest(request: any) {
-    const { authorisation = '' } = request;
-    return JWT.parseAuthorisation(authorisation);
-  }
+  static async parseResponse(response: any): Promise<JWTToken> {
+    const json = await response.json();
+    const { access_token: jwt } = json;
+    if (!jwt) throw new JsonWebTokenError('access_token malformed');
+    const token = new JWTToken(jwt);
+    if (!JWT.validateToken(token)) throw new JsonWebTokenError('jwt malformed');
+    return token;
 
-  static parseResponse(response: any) {
-    const { authorisation = '' } = response;
-    return JWT.parseAuthorisation(authorisation);
   }
 }
 
