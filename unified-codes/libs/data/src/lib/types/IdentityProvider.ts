@@ -39,7 +39,12 @@ export class KeyCloakIdentityProvider extends IdentityProvider {
 
   async getIdentityToken(credentials: IUserCredentials): Promise<JWTToken> {
     const { username, password } = credentials;
-    const { baseUrl: url, clientId: client_id, clientSecret: client_secret, grantType: grant_type } = this.config;
+    const {
+      baseUrl: url,
+      clientId: client_id,
+      clientSecret: client_secret,
+      grantType: grant_type,
+    } = this.config;
 
     const identityData = Object.entries({
       client_id,
@@ -49,14 +54,16 @@ export class KeyCloakIdentityProvider extends IdentityProvider {
       password,
     });
 
-    const formData = identityData.reduce((acc, [key, value]) => [...acc, `${key}=${value}`], []).join('&');
+    const formData = identityData
+      .reduce((acc, [key, value]) => [...acc, `${key}=${value}`], [])
+      .join('&');
 
     const response = await fetch(url, {
       method: 'POST',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json'
+        Accept: 'application/json',
       },
       body: formData,
     });

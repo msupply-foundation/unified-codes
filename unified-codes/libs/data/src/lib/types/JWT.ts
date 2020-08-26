@@ -74,7 +74,6 @@ export class JWT {
     const token = new JWTToken(jwt);
     if (!JWT.validateToken(token)) throw new JsonWebTokenError('jwt malformed');
     return token;
-
   }
 }
 
