@@ -1,10 +1,11 @@
 import * as React from 'react';
 
+import { IUserCredentials } from '@unified-codes/data';
+
 import Button from '../atoms/Button';
 import Grid from '../../layout/atoms/Grid';
 import LoginInput from '../molecules/LoginInput';
 import Typography from '../../data/atoms/Typography';
-import { IUserCredentials } from 'libs/data/src/lib';
 
 export interface LoginFormProps {
   onSubmit?: (IUserCredentials) => void;
