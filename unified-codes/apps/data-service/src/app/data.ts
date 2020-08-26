@@ -6,7 +6,7 @@ export class DgraphDataSource extends RESTDataSource {
 
   constructor() {
     super();
-    this.baseURL = `${process.env.DGRAPH_SERVICE_URL}:${process.env.DGRAPH_SERVICE_PORT}`; 
+    this.baseURL = `${process.env.DGRAPH_SERVICE_URL}:${process.env.DGRAPH_SERVICE_PORT}`;
     this.headers = { 'Content-Type': 'application/graphql+-' };
     this.paths = { query: 'query' };
   }

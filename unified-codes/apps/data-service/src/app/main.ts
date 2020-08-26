@@ -10,7 +10,7 @@ const start = async () => {
     const apolloPlugin = apolloServer.createHandler();
     const config = { logger: true };
     const plugins = [apolloPlugin, fastifyCors];
-    
+
     fastifyServer = createFastifyServer(config, plugins);
     await fastifyServer.listen(process.env.DATA_SERVICE_PORT);
   } catch (err) {
