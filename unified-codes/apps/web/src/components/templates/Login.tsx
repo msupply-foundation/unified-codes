@@ -17,10 +17,13 @@ export const LoginComponent: Login = ({ onLogin = () => null }) => {
 
   const closeDialog = React.useCallback(() => setIsOpen(false), []);
 
-  const onSubmit = React.useCallback((credentials: IUserCredentials) => {
-    if (onLogin) onLogin(credentials);
-    closeDialog();
-  }, [closeDialog, onLogin]);
+  const onSubmit = React.useCallback(
+    (credentials: IUserCredentials) => {
+      if (onLogin) onLogin(credentials);
+      closeDialog();
+    },
+    [closeDialog, onLogin]
+  );
 
   return (
     <Dialog open={isOpen} onClose={closeDialog}>
