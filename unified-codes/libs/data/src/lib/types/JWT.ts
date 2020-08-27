@@ -13,11 +13,13 @@ export class JWTToken {
   }
 
   get header() {
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     const decoded = JsonWebToken.decode(this.token, { complete: true }) as { [key: string]: any };
     return decoded?.header;
   }
 
   get payload() {
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     const decoded = JsonWebToken.decode(this.token, { complete: true }) as { [key: string]: any };
     return decoded?.payload;
   }
@@ -38,6 +40,7 @@ export class JWT {
     const headerPattern = '[A-Za-z0-9-_=]+';
     const payloadPattern = '[A-Za-z0-9-_=]+';
     const signaturePattern = '?[A-Za-z0-9-_.+/=]*';
+    /* eslint-disable-next-line no-useless-escape */
     const jwtExpected = `^${headerPattern}\.${payloadPattern}\.${signaturePattern}$`;
     const jwtActual = token.toString();
     const regex = new RegExp(jwtExpected);
@@ -57,16 +60,18 @@ export class JWT {
     }
   }
 
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   static parseRequest(request: any): JWTToken {
     const { headers } = request;
     const { authorisation } = headers;
-    const [_, jwt] = authorisation.split(' ');
+    const [, jwt] = authorisation.split(' ');
     if (!jwt) throw new JsonWebTokenError('authorisation header malformed');
     const token = new JWTToken(jwt);
     if (!JWT.validateToken(token)) throw new JsonWebTokenError('jwt malformed');
     return token;
   }
 
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   static async parseResponse(response: any): Promise<JWTToken> {
     const json = await response.json();
     const { access_token: jwt } = json;

@@ -39,16 +39,23 @@ export class KeyCloakIdentityProvider extends IdentityProvider {
 
   async getIdentityToken(credentials: IUserCredentials): Promise<JWTToken> {
     const { username, password } = credentials;
+
     const {
       baseUrl: url,
+      /* eslint-disable-next-line @typescript-eslint/camelcase */
       clientId: client_id,
+      /* eslint-disable-next-line @typescript-eslint/camelcase */
       clientSecret: client_secret,
+      /* eslint-disable-next-line @typescript-eslint/camelcase */
       grantType: grant_type,
     } = this.config;
 
     const identityData = Object.entries({
+      /* eslint-disable-next-line @typescript-eslint/camelcase */
       client_id,
+      /* eslint-disable-next-line @typescript-eslint/camelcase */
       client_secret,
+      /* eslint-disable-next-line @typescript-eslint/camelcase */
       grant_type,
       username,
       password,

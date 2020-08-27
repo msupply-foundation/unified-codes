@@ -21,13 +21,13 @@ export class User implements IUser {
   roles: string[];
 
   private parseToken(token: JWTToken): string[] {
-    const family_name = token.getProperty('family_name');
-    const given_name = token.getProperty('given_name');
+    const familyName = token.getProperty('family_name');
+    const givenName = token.getProperty('given_name');
     const name = token.getProperty('name');
-    const realm_access = token.getProperty('realm_access');
-    const roles = realm_access?.roles;
+    const realmAccess = token.getProperty('realm_access');
+    const roles = realmAccess?.roles;
 
-    if (!family_name || !given_name || !name || !realm_access || !roles) {
+    if (!familyName || !givenName || !name || !realmAccess || !roles) {
       throw new UserError('malformed user jwt token');
     }
 
