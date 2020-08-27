@@ -8,7 +8,7 @@ import LoginInput from '../molecules/LoginInput';
 import Typography from '../../data/atoms/Typography';
 
 export interface LoginFormProps {
-  onSubmit?: (IUserCredentials) => void;
+  onSubmit?: (credentials: IUserCredentials) => void;
 }
 
 export type LoginForm = React.FunctionComponent<LoginFormProps>;
