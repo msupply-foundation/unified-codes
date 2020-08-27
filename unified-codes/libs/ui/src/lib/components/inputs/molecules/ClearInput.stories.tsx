@@ -3,9 +3,9 @@ import { ClearInput } from './ClearInput';
 
 export default {
   component: ClearInput,
-  title: 'ClearInput',
+  title: 'Library/ClearInput',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <ClearInput />;
 };

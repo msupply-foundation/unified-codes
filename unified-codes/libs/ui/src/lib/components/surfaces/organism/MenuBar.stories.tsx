@@ -6,14 +6,14 @@ import MenuItem from '../../navigation/atoms/MenuItem';
 
 export default {
   component: MenuBar,
-  title: 'MenuBar',
-};
-
-export const primary = () => {
-  return <MenuBar open={true} />;
+  title: 'Library/MenuBar',
 };
 
 export const withNoProps = () => {
+  return <MenuBar open={true} />;
+};
+
+export const withControlProps = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const onClick = React.useCallback(() => setIsOpen(true), [setIsOpen]);
   const onClose = React.useCallback(() => setIsOpen(false), [setIsOpen]);

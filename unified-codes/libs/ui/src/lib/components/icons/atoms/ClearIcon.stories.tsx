@@ -3,9 +3,9 @@ import { ClearIcon } from './ClearIcon';
 
 export default {
   component: ClearIcon,
-  title: 'ClearIcon',
+  title: 'Library/Icons/ClearIcon',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <ClearIcon />;
 };

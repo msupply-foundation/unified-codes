@@ -6,11 +6,15 @@ import SearchIcon from '../../icons/atoms/SearchIcon';
 
 export default {
   component: Button,
-  title: 'Button',
+  title: 'Library/Button',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Button />;
+};
+
+export const withText = () => {
+  return <Button>Button</Button>;
 };
 
 export const withClearIcon = () => {

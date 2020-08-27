@@ -3,9 +3,9 @@ import { MenuItem } from './MenuItem';
 
 export default {
   component: MenuItem,
-  title: 'MenuItem',
+  title: 'Library/MenuItem',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <MenuItem />;
 };

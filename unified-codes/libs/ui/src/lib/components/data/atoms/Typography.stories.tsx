@@ -3,9 +3,9 @@ import { Typography } from './Typography';
 
 export default {
   component: Typography,
-  title: 'Typography',
+  title: 'Library/Typography',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Typography />;
 };

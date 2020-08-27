@@ -4,7 +4,7 @@ import Avatar from './Avatar';
 
 export default {
   component: Avatar,
-  title: 'Avatar',
+  title: 'Library/Avatar',
 };
 
-export const primary = () => <Avatar />;
+export const withNoProps = () => <Avatar />;

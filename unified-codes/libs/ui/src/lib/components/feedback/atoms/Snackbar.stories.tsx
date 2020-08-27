@@ -9,10 +9,10 @@ import Snackbar from './Snackbar';
 
 export default {
   component: Snackbar,
-  title: 'Snackbar',
+  title: 'Library/Snackbar',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Snackbar />;
 };
 

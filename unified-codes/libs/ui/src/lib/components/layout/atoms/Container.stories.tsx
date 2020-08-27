@@ -3,9 +3,9 @@ import { Container } from './Container';
 
 export default {
   component: Container,
-  title: 'Container',
+  title: 'Library/Container',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Container>Hello Container!</Container>;
 };

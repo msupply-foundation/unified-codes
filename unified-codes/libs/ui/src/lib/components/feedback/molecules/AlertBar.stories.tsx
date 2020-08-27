@@ -7,7 +7,7 @@ import { useAlert } from '../../../hooks';
 
 export default {
   component: AlertBar,
-  title: 'AlertBar',
+  title: 'Library/AlertBar',
 };
 
 export const errorAlertBar = () => {

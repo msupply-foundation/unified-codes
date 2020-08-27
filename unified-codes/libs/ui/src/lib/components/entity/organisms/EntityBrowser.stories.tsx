@@ -6,10 +6,10 @@ import { EntityBrowser } from './EntityBrowser';
 
 export default {
   component: EntityBrowser,
-  title: 'EntityBrowser',
+  title: 'Library/EntityBrowser',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   const data: IEntity[] = [
     {
       code: 'QFWR9789',

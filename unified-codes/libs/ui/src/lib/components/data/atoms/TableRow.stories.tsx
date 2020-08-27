@@ -3,9 +3,9 @@ import { TableRow } from './TableRow';
 
 export default {
   component: TableRow,
-  title: 'TableRow',
+  title: 'Library/Table/TableRow',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <TableRow />;
 };

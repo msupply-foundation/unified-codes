@@ -7,10 +7,10 @@ import SvgIcon from '../../icons/atoms/SvgIcon';
 
 export default {
   component: IconInput,
-  title: 'IconInput',
+  title: 'Library/IconInput',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <IconInput icon={SvgIcon} />;
 };
 

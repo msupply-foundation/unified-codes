@@ -3,10 +3,10 @@ import { Alert } from './Alert';
 
 export default {
   component: Alert,
-  title: 'Alert',
+  title: 'Library/Alert',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Alert />;
 };
 

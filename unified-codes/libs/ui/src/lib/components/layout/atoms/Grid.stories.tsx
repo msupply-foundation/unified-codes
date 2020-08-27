@@ -16,10 +16,10 @@ const useStyles = makeStyles(() => ({
 
 export default {
   component: Grid,
-  title: 'Grid',
+  title: 'Library/Grid',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Grid>Hello Grid!</Grid>;
 };
 

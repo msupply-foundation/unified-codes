@@ -3,9 +3,9 @@ import { MenuIcon } from './MenuIcon';
 
 export default {
   component: MenuIcon,
-  title: 'MenuIcon',
+  title: 'Library/Icons/MenuIcon',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <MenuIcon />;
 };

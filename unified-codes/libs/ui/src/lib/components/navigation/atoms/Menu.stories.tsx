@@ -3,9 +3,9 @@ import { Menu } from './Menu';
 
 export default {
   component: Menu,
-  title: 'Menu',
+  title: 'Library/Menu',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Menu open={true} />;
 };

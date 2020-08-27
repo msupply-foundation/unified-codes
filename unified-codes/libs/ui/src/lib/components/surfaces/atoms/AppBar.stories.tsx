@@ -4,7 +4,7 @@ import AppBar from './AppBar';
 
 export default {
   component: AppBar,
-  title: 'AppBar',
+  title: 'Library/AppBar',
 };
 
-export const primary = () => <AppBar />;
+export const withNoProps = () => <AppBar />;

@@ -6,10 +6,10 @@ import LoginForm from './LoginForm';
 
 export default {
   component: LoginForm,
-  title: 'LoginForm',
+  title: 'Library/LoginForm',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <LoginForm />;
 };
 

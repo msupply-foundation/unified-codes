@@ -3,9 +3,9 @@ import { Box } from './Box';
 
 export default {
   component: Box,
-  title: 'Box',
+  title: 'Library/Box',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Box>Hello Box!</Box>;
 };

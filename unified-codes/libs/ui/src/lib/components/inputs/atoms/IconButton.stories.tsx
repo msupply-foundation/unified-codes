@@ -3,9 +3,9 @@ import { IconButton } from './IconButton';
 
 export default {
   component: IconButton,
-  title: 'IconButton',
+  title: 'Library/IconButton',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <IconButton />;
 };

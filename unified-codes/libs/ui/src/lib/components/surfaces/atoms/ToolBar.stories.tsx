@@ -3,9 +3,9 @@ import { Toolbar } from './Toolbar';
 
 export default {
   component: Toolbar,
-  title: 'Toolbar',
+  title: 'Library/Toolbar',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Toolbar />;
 };

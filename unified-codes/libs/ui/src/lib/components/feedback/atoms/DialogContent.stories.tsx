@@ -3,9 +3,9 @@ import { DialogContent } from './DialogContent';
 
 export default {
   component: DialogContent,
-  title: 'DialogContent',
+  title: 'Library/DialogContent',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <DialogContent />;
 };

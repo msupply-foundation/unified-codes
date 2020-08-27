@@ -3,9 +3,9 @@ import { LoginInput } from './LoginInput';
 
 export default {
   component: LoginInput,
-  title: 'LoginInput',
+  title: 'Library/LoginInput',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <LoginInput />;
 };
