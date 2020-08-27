@@ -8,9 +8,8 @@ services:
     image: unified-codes/legacy-api:latest
     ports:
       - "3000:3000"
-    environment:
-      - NX_DGRAPH_ENDPOINT=http://dgraph-standalone:8080
-      - NX_LEGACY_API_PORT=3000
+    env_file:
+      - .docker.env
     volumes:
       - ../../dist/apps/legacy-api:/usr/unified-codes/dist/apps/legacy-api
   data-service:
@@ -21,11 +20,8 @@ services:
     image: unified-codes/data-service:latest
     ports:
       - "4000:4000"
-    environment:
-      - NX_DGRAPH_ENDPOINT=http://dgraph-standalone:8080
-      - NX_AUTHENTICATION_URL=http://keycloak:9990/auth/realms/unified-codes
-      - NX_DATA_SERVICE_PORT=4000
-      - NX_RXNAV_ENDPOINT=https://rxnav.nlm.nih.gov/REST
+    env_file:
+      - .docker.env
     volumes:
       - ../../dist/apps/data-service:/usr/unified-codes/dist/apps/data-service
   dgraph-standalone:
@@ -42,8 +38,7 @@ services:
     image: jboss/keycloak
     ports: 
       - "9990:8080"
-    environment:
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=admin 
+    env_file:
+      - .docker.env
 volumes:
   logvolume01: {}

@@ -34,7 +34,7 @@ const itemsHandler: Handler = (request: Request, reply: Reply) => {
     )}'`;
     reply.code(statusCode).send(body);
   } else {
-    const dgraphUrl = process.env.NX_DGRAPH_ENDPOINT;
+    const dgraphUrl = process.env.DGRAPH_ENDPOINT;
     const dgraphClientStub: DgraphClientStub = new DgraphClientStub(dgraphUrl);
     const dgraphClient: DgraphClient = new DgraphClient(dgraphClientStub);
     const txn: Txn = dgraphClient.newTxn();

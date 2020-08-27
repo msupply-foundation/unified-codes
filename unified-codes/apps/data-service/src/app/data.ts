@@ -6,7 +6,7 @@ export class DgraphDataSource extends RESTDataSource {
 
   constructor() {
     super();
-    this.baseURL = process.env.NX_DGRAPH_ENDPOINT;
+    this.baseURL = `${process.env.DGRAPH_SERVICE_URL}:${process.env.DGRAPH_SERVICE_PORT}`;
     this.headers = { 'Content-Type': 'application/graphql+-' };
     this.paths = { query: 'query' };
   }
@@ -25,8 +25,8 @@ export class RxNavDataSource extends RESTDataSource {
 
   constructor() {
     super();
-    this.baseURL = process.env.NX_RXNAV_ENDPOINT;
-    this.paths = { interactions: 'interaction/interaction.json' };
+    this.baseURL = `${process.env.RXNAV_SERVICE_URL}:${process.env.RXNAV_SERVICE_PORT}/${process.env.RXNAV_SERVICE_REST}`;
+    this.paths = { interactions: '/interaction/interaction.json' };
   }
 
   async getInteractions(rxCui) {
