@@ -14,7 +14,6 @@ import { LoginComponent } from './Login';
 export default { title: 'Login' };
 
 export const withNoProps = () => {
-<<<<<<< Updated upstream
   return <LoginComponent />;
 };
 
@@ -42,9 +41,6 @@ export const withKeycloakOnLoginProp = () => {
     const token: JWTToken = user.token;
     alert(token.toString());
   };
-=======
-  const onLogin = () => console.log('Called callback: onLogin');
->>>>>>> Stashed changes
 
   return <LoginComponent onLogin={onLogin} />;
 };
