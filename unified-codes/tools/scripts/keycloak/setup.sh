@@ -19,15 +19,15 @@ curl -v $KEYCLOAK_HOST:$KEYCLOAK_PORT/auth/admin/realms -H "Content-Type: applic
 echo
 
 echo " * Creating role..."
-curl -v $KEYCLOAK_HOST:$KEYCLOAK_PORT/auth/admin/realms/unified-codes/roles -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN"   --data '{"description": "Administation access", "name": "ADMIN" }'
+curl -v $KEYCLOAK_HOST:$KEYCLOAK_PORT/auth/admin/realms/unified-codes/roles -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN"   --data "{\"description\": \"Administation access\", \"name\": \"ADMIN\" }"
 
 echo
 echo " * Creating user..."
-curl -v $KEYCLOAK_HOST:$KEYCLOAK_PORT/auth/admin/realms/unified-codes/users -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN"   --data '{"username": "demo-admin", "firstName":"Demo", "lastName":"Admin", "attributes": {}, "email":"demo-admin@msupply.foundation", "emailVerified": true, "enabled":"true", "credentials": [{"type": "password", "value": "pass", "temporary": false}], "realmRoles": ["ADMIN"] }'
+curl -v $KEYCLOAK_HOST:$KEYCLOAK_PORT/auth/admin/realms/unified-codes/users -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN"   --data "{\"username\": \"demo-admin\", \"firstName\":\"Demo\", \"lastName\":\"Admin\", \"attributes\": {}, \"email\":\"demo-admin@msupply.foundation\", \"emailVerified\": true, \"enabled\": \"true\", \"credentials\": [{\"type\": \"password\", \"value\": \"pass\", \"temporary\": false}], \"realmRoles\": [\"ADMIN\"] }"
 
 echo
 echo " * Creating client..."
-curl -v $KEYCLOAK_HOST:$KEYCLOAK_PORT/auth/admin/realms/unified-codes/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN"   --data '{"clientId": "$CLIENT_ID", "secret": "$CLIENT_SECRET", "enabled": true, "protocol": "openid-connect", "redirectUris": ["*"], "rootUrl": "http://localhost:4200", "webOrigins": ["*"], "authorizationServicesEnabled": true, "bearerOnly": false, "clientAuthenticatorType": "client-secret", "publicClient": false, "serviceAccountsEnabled": true }'
+curl -v $KEYCLOAK_HOST:$KEYCLOAK_PORT/auth/admin/realms/unified-codes/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN"   --data "{\"clientId\": \"$CLIENT_ID\", \"secret\": \"$CLIENT_SECRET\", \"enabled\": true, \"protocol\": \"openid-connect\", \"redirectUris\": [\"*\"], \"rootUrl\": \"http://localhost:4200\", \"webOrigins\": [\"*\"], \"authorizationServicesEnabled\": true, \"bearerOnly\": false, \"clientAuthenticatorType\": \"client-secret\", \"publicClient\": false, \"serviceAccountsEnabled\": true }"
 
 echo " * Done."
 
