@@ -16,7 +16,6 @@ import AuthenticatorActions, {
 function* authenticate(action: IAuthenticateAction) {
   const { credentials } = action;
 
-  // TODO: should get this from env, as previously!
   const keycloakConfig: IKeyCloakConfig = {
     baseUrl:
       `${process.env.AUTHENTICATION_SERVICE_URL}:${process.env.AUTHETICATION_SERVICE_PORT}/${process.env.AUTHENTICATION_SERVICE_REALM}/${process.env.AUTHENTICATION_SERVICE_AUTH}` ||
