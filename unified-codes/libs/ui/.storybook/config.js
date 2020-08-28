@@ -5,7 +5,7 @@ const parameters = {
   options: {
     storySort: {
       method: 'alphabetical',
-      order: ['withNoProps'],
+      order: [],
       locales: '',
     },
   },
