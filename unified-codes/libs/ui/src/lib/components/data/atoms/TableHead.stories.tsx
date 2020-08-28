@@ -3,9 +3,9 @@ import { TableHead } from './TableHead';
 
 export default {
   component: TableHead,
-  title: 'TableHead',
+  title: 'Table/TableHead',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <TableHead />;
 };

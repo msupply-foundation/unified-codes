@@ -9,7 +9,7 @@ export default {
   title: 'LoginForm',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <LoginForm />;
 };
 

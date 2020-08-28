@@ -19,7 +19,7 @@ export default {
   title: 'Grid',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Grid>Hello Grid!</Grid>;
 };
 

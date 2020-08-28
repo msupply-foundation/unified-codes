@@ -6,6 +6,6 @@ export default {
   title: 'Container',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Container>Hello Container!</Container>;
 };

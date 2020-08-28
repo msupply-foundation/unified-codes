@@ -6,6 +6,6 @@ export default {
   title: 'LoginInput',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <LoginInput />;
 };

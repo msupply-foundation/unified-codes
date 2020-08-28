@@ -6,6 +6,6 @@ export default {
   title: 'Toolbar',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Toolbar />;
 };

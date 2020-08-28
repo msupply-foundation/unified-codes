@@ -8,13 +8,17 @@ export default {
   title: 'SearchBar',
 };
 
-export const primary = () => {
-  return <SearchBar />;
+export const withNoProps = () => {
+  const [input] = React.useState('');
+  return <SearchBar input={input} />;
 };
 
-export const withNoProps = () => {
+export const withVoidControlProps = () => {
   const returnVoid = () => null;
-  return <SearchBar onChange={returnVoid} onClear={returnVoid} onSearch={returnVoid} />;
+  const [input] = React.useState('');
+  return (
+    <SearchBar input={input} onChange={returnVoid} onClear={returnVoid} onSearch={returnVoid} />
+  );
 };
 
 export const withControlProps = () => {

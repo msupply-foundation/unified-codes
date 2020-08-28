@@ -10,7 +10,7 @@ export default {
   title: 'TextField',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <TextField />;
 };
 

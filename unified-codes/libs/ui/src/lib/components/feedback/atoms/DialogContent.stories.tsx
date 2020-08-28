@@ -6,6 +6,6 @@ export default {
   title: 'DialogContent',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <DialogContent />;
 };

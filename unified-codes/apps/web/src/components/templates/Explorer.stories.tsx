@@ -6,7 +6,7 @@ import { ExplorerComponent } from './Explorer';
 
 export default { title: 'Explorer' };
 
-export const primary = () => {
+export const withNoProps = () => {
   const [entities] = React.useState<Entity[]>([]);
 
   const onReady = () => console.log('onReady called...');

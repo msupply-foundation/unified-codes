@@ -6,6 +6,6 @@ export default {
   title: 'Table',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Table />;
 };

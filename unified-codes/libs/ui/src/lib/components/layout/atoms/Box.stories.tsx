@@ -6,6 +6,6 @@ export default {
   title: 'Box',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Box>Hello Box!</Box>;
 };

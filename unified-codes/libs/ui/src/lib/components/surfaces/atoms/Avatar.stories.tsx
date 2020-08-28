@@ -7,4 +7,4 @@ export default {
   title: 'Avatar',
 };
 
-export const primary = () => <Avatar />;
+export const withNoProps = () => <Avatar />;

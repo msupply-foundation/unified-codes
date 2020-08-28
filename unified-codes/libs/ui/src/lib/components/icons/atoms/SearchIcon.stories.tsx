@@ -3,9 +3,9 @@ import { SearchIcon } from './SearchIcon';
 
 export default {
   component: SearchIcon,
-  title: 'SearchIcon',
+  title: 'Icons/SearchIcon',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <SearchIcon />;
 };

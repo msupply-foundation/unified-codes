@@ -7,4 +7,4 @@ export default {
   title: 'AppBar',
 };
 
-export const primary = () => <AppBar />;
+export const withNoProps = () => <AppBar />;

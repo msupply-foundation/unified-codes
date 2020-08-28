@@ -3,9 +3,9 @@ import { EntityTableHeader } from './EntityTableHeader';
 
 export default {
   component: EntityTableHeader,
-  title: 'EntityTableHeader',
+  title: 'EntityTable/EntityTableHeader',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <EntityTableHeader />;
 };

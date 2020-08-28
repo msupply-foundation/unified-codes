@@ -6,6 +6,6 @@ export default {
   title: 'ClearInput',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <ClearInput />;
 };
