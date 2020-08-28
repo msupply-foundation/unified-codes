@@ -13,7 +13,7 @@ export const withNoProps = () => {
   return <SearchBar input={input} />;
 };
 
-export const withVoidContolProps = () => {
+export const withVoidControlProps = () => {
   const returnVoid = () => null;
   const [input] = React.useState('');
   return (
