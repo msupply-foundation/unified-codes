@@ -70,5 +70,5 @@ jobs:
         path: ${{env.workspace-directory}}
         dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/data-service.Dockerfile
         repository: katms/unified-codes-data-service
-        tags: latest
+        tag_with_ref: true
         push: true
