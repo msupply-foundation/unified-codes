@@ -50,7 +50,7 @@ jobs:
         path: ${{env.workspace-directory}}
         dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/dependencies.Dockerfile
         repository: katms/unified-codes-dependencies
-        tags: latest
+        tag_with_sha: true
         push: true
     - name: Build and push legacy-api
       uses: docker/build-push-action@v1
@@ -60,7 +60,7 @@ jobs:
         path: ${{env.workspace-directory}}
         dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/legacy-api.Dockerfile
         repository: katms/unified-codes-legacy-api
-        tags: latest
+        tag_with_sha: true
         push: true
     - name: Build and push data-service
       uses: docker/build-push-action@v1
@@ -70,5 +70,5 @@ jobs:
         path: ${{env.workspace-directory}}
         dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/data-service.Dockerfile
         repository: katms/unified-codes-data-service
-        tag_with_ref: true
+        tag_with_sha: true
         push: true
