@@ -3,7 +3,7 @@ import { SvgIcon } from './SvgIcon';
 
 export default {
   component: SvgIcon,
-  title: 'Library/Icons/SvgIcon',
+  title: 'Icons/SvgIcon',
 };
 
 export const withNoProps = () => {

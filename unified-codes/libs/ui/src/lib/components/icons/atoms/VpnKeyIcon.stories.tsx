@@ -3,7 +3,7 @@ import { VpnKeyIcon } from './VpnKeyIcon';
 
 export default {
   component: VpnKeyIcon,
-  title: 'Library/Icons/VpnKeyIcon',
+  title: 'Icons/VpnKeyIcon',
 };
 
 export const withNoProps = () => {

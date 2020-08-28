@@ -3,7 +3,7 @@ import { Dialog } from './Dialog';
 
 export default {
   component: Dialog,
-  title: 'Library/Dialog',
+  title: 'Dialog',
 };
 
 export const withNoProps = () => <Dialog open={true} />;

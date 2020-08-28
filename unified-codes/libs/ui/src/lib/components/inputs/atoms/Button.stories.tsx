@@ -6,7 +6,7 @@ import SearchIcon from '../../icons/atoms/SearchIcon';
 
 export default {
   component: Button,
-  title: 'Library/Button',
+  title: 'Button',
 };
 
 export const withNoProps = () => {

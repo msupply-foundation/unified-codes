@@ -7,7 +7,7 @@ import TextField from './TextField';
 
 export default {
   component: TextField,
-  title: 'Library/TextField',
+  title: 'TextField',
 };
 
 export const withNoProps = () => {

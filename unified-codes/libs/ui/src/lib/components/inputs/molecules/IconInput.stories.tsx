@@ -7,7 +7,7 @@ import SvgIcon from '../../icons/atoms/SvgIcon';
 
 export default {
   component: IconInput,
-  title: 'Library/IconInput',
+  title: 'IconInput',
 };
 
 export const withNoProps = () => {

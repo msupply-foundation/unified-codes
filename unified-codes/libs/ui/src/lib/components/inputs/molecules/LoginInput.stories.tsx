@@ -3,7 +3,7 @@ import { LoginInput } from './LoginInput';
 
 export default {
   component: LoginInput,
-  title: 'Library/LoginInput',
+  title: 'LoginInput',
 };
 
 export const withNoProps = () => {

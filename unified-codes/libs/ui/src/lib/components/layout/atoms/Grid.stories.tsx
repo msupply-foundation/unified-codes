@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
 
 export default {
   component: Grid,
-  title: 'Library/Grid',
+  title: 'Grid',
 };
 
 export const withNoProps = () => {

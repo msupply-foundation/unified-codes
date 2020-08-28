@@ -3,7 +3,7 @@ import { EntityTableHeader } from './EntityTableHeader';
 
 export default {
   component: EntityTableHeader,
-  title: 'Library/EntityTable/EntityTableHeader',
+  title: 'EntityTable/EntityTableHeader',
 };
 
 export const withNoProps = () => {

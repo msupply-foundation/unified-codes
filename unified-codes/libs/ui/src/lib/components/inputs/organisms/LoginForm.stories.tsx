@@ -6,7 +6,7 @@ import LoginForm from './LoginForm';
 
 export default {
   component: LoginForm,
-  title: 'Library/LoginForm',
+  title: 'LoginForm',
 };
 
 export const withNoProps = () => {

@@ -3,7 +3,7 @@ import { Typography } from './Typography';
 
 export default {
   component: Typography,
-  title: 'Library/Typography',
+  title: 'Typography',
 };
 
 export const withNoProps = () => {

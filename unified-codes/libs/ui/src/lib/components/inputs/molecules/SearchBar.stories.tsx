@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 
 export default {
   component: SearchBar,
-  title: 'Library/SearchBar',
+  title: 'SearchBar',
 };
 
 export const withNoProps = () => {
@@ -13,7 +13,7 @@ export const withNoProps = () => {
   return <SearchBar input={input} />;
 };
 
-export const withVoidContolProps = () => {
+export const withVoidControlProps = () => {
   const returnVoid = () => null;
   const [input] = React.useState('');
   return (

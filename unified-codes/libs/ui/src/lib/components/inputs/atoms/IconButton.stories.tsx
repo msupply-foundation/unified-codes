@@ -3,7 +3,7 @@ import { IconButton } from './IconButton';
 
 export default {
   component: IconButton,
-  title: 'Library/IconButton',
+  title: 'IconButton',
 };
 
 export const withNoProps = () => {

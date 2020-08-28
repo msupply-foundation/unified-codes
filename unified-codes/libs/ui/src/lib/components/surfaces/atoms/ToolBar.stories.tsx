@@ -3,7 +3,7 @@ import { Toolbar } from './Toolbar';
 
 export default {
   component: Toolbar,
-  title: 'Library/Toolbar',
+  title: 'Toolbar',
 };
 
 export const withNoProps = () => {

@@ -3,7 +3,7 @@ import { UCIcon } from './UCIcon';
 
 export default {
   component: UCIcon,
-  title: 'Library/Icons/UCIcon',
+  title: 'Icons/UCIcon',
 };
 
 export const withNoProps = () => {

@@ -3,7 +3,7 @@ import { InputAdornment } from './InputAdornment';
 
 export default {
   component: InputAdornment,
-  title: 'Library/InputAdornment',
+  title: 'InputAdornment',
 };
 
 export const withNoProps = () => {

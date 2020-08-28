@@ -3,7 +3,7 @@ import { ClearIcon } from './ClearIcon';
 
 export default {
   component: ClearIcon,
-  title: 'Library/Icons/ClearIcon',
+  title: 'Icons/ClearIcon',
 };
 
 export const withNoProps = () => {
