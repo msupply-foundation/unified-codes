@@ -3,7 +3,7 @@ import { SearchIcon } from './SearchIcon';
 
 export default {
   component: SearchIcon,
-  title: 'Library/Icons/SearchIcon',
+  title: 'Icons/SearchIcon',
 };
 
 export const withNoProps = () => {

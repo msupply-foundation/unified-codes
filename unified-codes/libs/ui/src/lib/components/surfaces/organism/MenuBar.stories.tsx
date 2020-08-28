@@ -6,7 +6,7 @@ import MenuItem from '../../navigation/atoms/MenuItem';
 
 export default {
   component: MenuBar,
-  title: 'Library/MenuBar',
+  title: 'MenuBar',
 };
 
 export const withNoProps = () => {

@@ -6,7 +6,7 @@ import EntityTable from './EntityTable';
 
 export default {
   component: EntityTable,
-  title: 'Library/EntityTable',
+  title: 'EntityTable',
 };
 
 export const withNoProps = () => {

@@ -5,7 +5,7 @@ import { Entity, IEntity } from '@unified-codes/data';
 
 export default {
   component: EntityTableRow,
-  title: 'Library/EntityTable/EntityTableRow',
+  title: 'EntityTable/EntityTableRow',
 };
 
 export const withNoProps = () => {

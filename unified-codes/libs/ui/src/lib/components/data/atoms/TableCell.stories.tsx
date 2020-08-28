@@ -3,7 +3,7 @@ import { TableCell } from './TableCell';
 
 export default {
   component: TableCell,
-  title: 'Library/Table/TableCell',
+  title: 'Table/TableCell',
 };
 
 export const withNoProps = () => {

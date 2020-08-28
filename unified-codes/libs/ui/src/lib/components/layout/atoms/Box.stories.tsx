@@ -3,7 +3,7 @@ import { Box } from './Box';
 
 export default {
   component: Box,
-  title: 'Library/Box',
+  title: 'Box',
 };
 
 export const withNoProps = () => {

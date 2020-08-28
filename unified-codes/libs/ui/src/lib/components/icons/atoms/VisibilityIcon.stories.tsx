@@ -3,7 +3,7 @@ import { VisibilityIcon } from './VisibilityIcon';
 
 export default {
   component: VisibilityIcon,
-  title: 'Library/Icons/VisibilityIcon',
+  title: 'Icons/VisibilityIcon',
 };
 
 export const withNoProps = () => {

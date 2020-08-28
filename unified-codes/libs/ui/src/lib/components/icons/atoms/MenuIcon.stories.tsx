@@ -3,7 +3,7 @@ import { MenuIcon } from './MenuIcon';
 
 export default {
   component: MenuIcon,
-  title: 'Library/Icons/MenuIcon',
+  title: 'Icons/MenuIcon',
 };
 
 export const withNoProps = () => {

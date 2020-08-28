@@ -3,7 +3,7 @@ import { Container } from './Container';
 
 export default {
   component: Container,
-  title: 'Library/Container',
+  title: 'Container',
 };
 
 export const withNoProps = () => {

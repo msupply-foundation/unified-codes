@@ -3,7 +3,7 @@ import { PersonIcon } from './PersonIcon';
 
 export default {
   component: PersonIcon,
-  title: 'Library/Icons/PersonIcon',
+  title: 'Icons/PersonIcon',
 };
 
 export const withNoProps = () => {

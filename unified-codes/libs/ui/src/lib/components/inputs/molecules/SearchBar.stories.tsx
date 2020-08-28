@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 
 export default {
   component: SearchBar,
-  title: 'Library/SearchBar',
+  title: 'SearchBar',
 };
 
 export const withNoProps = () => {

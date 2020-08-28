@@ -3,7 +3,7 @@ import { ClearInput } from './ClearInput';
 
 export default {
   component: ClearInput,
-  title: 'Library/ClearInput',
+  title: 'ClearInput',
 };
 
 export const withNoProps = () => {

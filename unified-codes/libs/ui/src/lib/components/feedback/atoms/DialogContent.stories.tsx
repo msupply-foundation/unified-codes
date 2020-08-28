@@ -3,7 +3,7 @@ import { DialogContent } from './DialogContent';
 
 export default {
   component: DialogContent,
-  title: 'Library/DialogContent',
+  title: 'DialogContent',
 };
 
 export const withNoProps = () => {

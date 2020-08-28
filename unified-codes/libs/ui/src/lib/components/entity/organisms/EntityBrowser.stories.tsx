@@ -6,7 +6,7 @@ import { EntityBrowser } from './EntityBrowser';
 
 export default {
   component: EntityBrowser,
-  title: 'Library/EntityBrowser',
+  title: 'EntityBrowser',
 };
 
 export const withNoProps = () => {

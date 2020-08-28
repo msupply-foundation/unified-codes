@@ -3,7 +3,7 @@ import { MenuItem } from './MenuItem';
 
 export default {
   component: MenuItem,
-  title: 'Library/MenuItem',
+  title: 'MenuItem',
 };
 
 export const withNoProps = () => {

@@ -3,7 +3,7 @@ import { Table } from './Table';
 
 export default {
   component: Table,
-  title: 'Library/Table',
+  title: 'Table',
 };
 
 export const withNoProps = () => {
