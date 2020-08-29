@@ -1,11 +1,23 @@
 import React from 'react';
-import { UCIcon } from './UCIcon';
+import { TMFLogo } from './TMFLogo';
 
 export default {
-  component: UCIcon,
-  title: 'Icons/UCIcon',
+  component: TMFLogo,
+  title: 'Icons/TMFLogo',
 };
 
 export const withNoProps = () => {
-  return <UCIcon />;
+  return (
+    <div style={{ backgroundColor: '#253240' }}>
+      <TMFLogo />
+    </div>
+  );
+};
+
+export const withSpecificSize = () => {
+  return (
+    <div style={{ backgroundColor: '#253240' }}>
+      <TMFLogo style={{ height: 360, width: 648 }} />
+    </div>
+  );
 };
