@@ -1,18 +1,6 @@
 name: CI
 on: push
 jobs:
-  check-types-legacy-api:
-    runs-on: ubuntu-latest
-    env:
-      workspace-directory: ./unified-codes
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: npm install
-      working-directory: ${{env.workspace-directory}}
-    - name: Run legacy-api type check
-      run: npx nx build legacy-api
-      working-directory: ${{env.workspace-directory}}
   test-legacy-api:
     runs-on: ubuntu-latest
     env:
