@@ -9,7 +9,7 @@ export default {
   title: 'EntityBrowser',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   const data: IEntity[] = [
     {
       code: 'QFWR9789',

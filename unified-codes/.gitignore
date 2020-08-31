@@ -9,7 +9,8 @@
 /node_modules
 
 # env
-*.local.env
+.env
+.local.env
 
 # IDEs + editors
 /.idea

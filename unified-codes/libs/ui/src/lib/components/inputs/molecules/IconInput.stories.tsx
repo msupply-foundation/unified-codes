@@ -10,7 +10,7 @@ export default {
   title: 'IconInput',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <IconInput icon={SvgIcon} />;
 };
 

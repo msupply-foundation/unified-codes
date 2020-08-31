@@ -6,6 +6,6 @@ export default {
   title: 'Typography',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Typography />;
 };

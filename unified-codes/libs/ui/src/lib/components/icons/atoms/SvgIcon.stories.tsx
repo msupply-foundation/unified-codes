@@ -3,9 +3,9 @@ import { SvgIcon } from './SvgIcon';
 
 export default {
   component: SvgIcon,
-  title: 'SvgIcon',
+  title: 'Icons/SvgIcon',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <SvgIcon />;
 };

@@ -6,6 +6,6 @@ export default {
   title: 'Menu',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Menu open={true} />;
 };

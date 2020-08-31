@@ -6,6 +6,6 @@ export default {
   title: 'IconButton',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <IconButton />;
 };

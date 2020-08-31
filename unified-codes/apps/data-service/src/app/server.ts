@@ -8,20 +8,20 @@ import * as Resolvers from './resolvers';
 import { ApolloService, KeyCloakIdentityProvider } from '@unified-codes/data';
 
 export const createApolloServer = (typeDefs?, resolvers?, dataSources?): ApolloServer => {
-  const AUTH_URL = process.env.NX_AUTHENTICATION_URL;
-
   const _typeDefs = typeDefs ?? Schema.typeDefs;
   const _resolvers = resolvers ?? Resolvers.resolvers;
-  const _dataSources = dataSources ?? (() => ({
-    dgraph: new Data.DgraphDataSource(),
-    rxnav: new Data.RxNavDataSource(),
-  }));
+  const _dataSources =
+    dataSources ??
+    (() => ({
+      dgraph: new Data.DgraphDataSource(),
+      rxnav: new Data.RxNavDataSource(),
+    }));
 
   const identityProviderConfig = {
-    baseUrl: AUTH_URL,
-    clientId: '',
-    clientSecret: '',
-    grantType: '',
+    baseUrl: `${process.env.AUTHENTICATION_SERVICE_URL}:${process.env.AUTHETICATION_SERVICE_PORT}/${process.env.AUTHENTICATION_SERVICE_REALM}/${process.env.AUTHENTICATION_SERVICE_AUTH}`,
+    clientId: process.env.AUTHENTICATION_SERVICE_CLIENT_ID,
+    clientSecret: process.env.AUTHENTICATION_SERVICE_CLIENT_SECRET,
+    grantType: process.env.AUTHENTICATION_SERVICE_GRANT_TYPE,
   };
 
   const identityProvider = new KeyCloakIdentityProvider(identityProviderConfig);
@@ -38,4 +38,3 @@ export const createFastifyServer = (config, plugins?) => {
   });
   return fastifyServer;
 };
-

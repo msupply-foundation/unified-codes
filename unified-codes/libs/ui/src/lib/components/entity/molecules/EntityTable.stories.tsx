@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Entity, EntityNode } from '@unified-codes/data';
+import { Entity, IEntity } from '@unified-codes/data';
 
 import EntityTable from './EntityTable';
 
@@ -9,8 +9,8 @@ export default {
   title: 'EntityTable',
 };
 
-export const primary = () => {
-  const data: EntityNode[] = [
+export const withNoProps = () => {
+  const data: IEntity[] = [
     {
       code: 'QFWR9789',
       description: 'Amoxicillin',
@@ -22,6 +22,6 @@ export const primary = () => {
       type: 'medicinal_product',
     },
   ];
-  const entities = data.map((entityNode: EntityNode) => new Entity(entityNode));
+  const entities = data.map((entity: IEntity) => new Entity(entity));
   return <EntityTable data={entities} />;
 };

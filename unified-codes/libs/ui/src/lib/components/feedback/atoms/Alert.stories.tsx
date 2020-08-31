@@ -6,7 +6,7 @@ export default {
   title: 'Alert',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Alert />;
 };
 

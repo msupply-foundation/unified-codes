@@ -3,9 +3,9 @@ import { PersonIcon } from './PersonIcon';
 
 export default {
   component: PersonIcon,
-  title: 'PersonIcon',
+  title: 'Icons/PersonIcon',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <PersonIcon />;
 };

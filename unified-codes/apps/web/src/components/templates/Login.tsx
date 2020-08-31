@@ -14,13 +14,16 @@ export type Login = React.FunctionComponent<LoginProps>;
 
 export const LoginComponent: Login = ({ onLogin = () => null }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(true);
+
   const closeDialog = React.useCallback(() => setIsOpen(false), []);
-  const onSubmit = React.useCallback((username, password) => {
-    if (!onLogin) return;
-    const auth = { username, password };
-    onLogin(auth);
-    closeDialog();
-  }, []);
+
+  const onSubmit = React.useCallback(
+    (credentials: IUserCredentials) => {
+      if (onLogin) onLogin(credentials);
+      closeDialog();
+    },
+    [closeDialog, onLogin]
+  );
 
   return (
     <Dialog open={isOpen} onClose={closeDialog}>

@@ -3,9 +3,9 @@ import { VpnKeyIcon } from './VpnKeyIcon';
 
 export default {
   component: VpnKeyIcon,
-  title: 'VpnKeyIcon',
+  title: 'Icons/VpnKeyIcon',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <VpnKeyIcon />;
 };

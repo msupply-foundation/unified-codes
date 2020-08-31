@@ -9,8 +9,12 @@ export default {
   title: 'Button',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Button />;
+};
+
+export const withText = () => {
+  return <Button>Button</Button>;
 };
 
 export const withClearIcon = () => {

@@ -12,7 +12,7 @@ export default {
   title: 'Snackbar',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <Snackbar />;
 };
 

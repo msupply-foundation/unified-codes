@@ -3,9 +3,9 @@ import { UCIcon } from './UCIcon';
 
 export default {
   component: UCIcon,
-  title: 'UCIcon',
+  title: 'Icons/UCIcon',
 };
 
-export const primary = () => {
+export const withNoProps = () => {
   return <UCIcon />;
 };

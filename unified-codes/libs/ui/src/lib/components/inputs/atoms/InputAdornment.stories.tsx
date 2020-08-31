@@ -6,6 +6,6 @@ export default {
   title: 'InputAdornment',
 };
 
-export const primary = () => {
-  return <InputAdornment />;
+export const withNoProps = () => {
+  return <InputAdornment position="start" />;
 };
