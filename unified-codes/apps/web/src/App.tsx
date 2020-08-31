@@ -9,7 +9,7 @@ import { Container, Grid, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
 
 import { AlertActions } from './actions';
-import { Explorer, Header, Login } from './components';
+import { Explorer, Footer, Header, Login } from './components';
 
 export interface AppProps {
   alert: IAlert;
@@ -20,6 +20,10 @@ export interface AppProps {
 const getStyles = (theme: Theme) => ({
   body: theme.typography.body1,
   container: {
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
+  content: {
     marginTop: 24,
   },
 });
@@ -29,7 +33,7 @@ export type App = React.FunctionComponent<AppProps>;
 const _App: App = ({ alert, classes, resetAlert }) => {
   return (
     <BrowserRouter>
-      <Container>
+      <Container maxWidth={false} className={classes.container}>
         <Grid container spacing={3} direction="column" justify="space-between" alignItems="stretch">
           <Header />
           <AlertBar
@@ -39,20 +43,23 @@ const _App: App = ({ alert, classes, resetAlert }) => {
             onClose={resetAlert}
           />
         </Grid>
-        <Grid container item className={classes.container}>
-          <Switch>
-            <Route exact path="/explorer">
-              <Explorer />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route>
-              <Redirect to="/explorer" />
-            </Route>
-          </Switch>
+        <Grid container item className={classes.content}>
+          <Container>
+            <Switch>
+              <Route exact path="/explorer">
+                <Explorer />
+              </Route>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route>
+                <Redirect to="/explorer" />
+              </Route>
+            </Switch>
+          </Container>
         </Grid>
       </Container>
+      <Footer />
     </BrowserRouter>
   );
 };
