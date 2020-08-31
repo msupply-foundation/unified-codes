@@ -50,7 +50,7 @@ jobs:
         path: ${{env.workspace-directory}}
         dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/dependencies.Dockerfile
         repository: unifiedcodes/dependencies
-        tag: latest
+        tags: latest
         push: true
     - name: Build and push legacy-api
       uses: docker/build-push-action@v1
@@ -60,7 +60,7 @@ jobs:
         path: ${{env.workspace-directory}}
         dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/legacy-api.Dockerfile
         repository: unifiedcodes/legacy-api
-        tag: latest
+        tags: latest
         push: true
     - name: Build and push data-service
       uses: docker/build-push-action@v1
@@ -70,5 +70,5 @@ jobs:
         path: ${{env.workspace-directory}}
         dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/data-service.Dockerfile
         repository: unifiedcodes/data-service
-        tag: latest
+        tags: latest
         push: true
