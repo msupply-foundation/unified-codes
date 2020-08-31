@@ -41,8 +41,8 @@ jobs:
     - name: Build data-service
       run: npx nx build data-service
       working-directory: ${{env.workspace-directory}}
-      # Test only with temp access token! Credentials should be moved to GitHub secrets
-    - name: Build and push unified-codes/dependencies
+      # Proof of concept only with temp access token! Credentials should be moved to GitHub secrets
+    - name: Build and push docker image unifiedcodes/dependencies
       uses: docker/build-push-action@v1
       with:
         username: katms
@@ -52,7 +52,7 @@ jobs:
         repository: unifiedcodes/dependencies
         tags: latest
         push: true
-    - name: Build and push legacy-api
+    - name: Build and push docker image unifiedcodes/legacy-api
       uses: docker/build-push-action@v1
       with:
         username: katms
@@ -62,7 +62,7 @@ jobs:
         repository: unifiedcodes/legacy-api
         tags: latest
         push: true
-    - name: Build and push data-service
+    - name: Build and push docker image unifiedcodes/data-service
       uses: docker/build-push-action@v1
       with:
         username: katms
