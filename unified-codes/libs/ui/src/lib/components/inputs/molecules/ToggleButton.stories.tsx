@@ -14,7 +14,3 @@ export const withNoProps = () => {
 export const selected = () => {
   return <ToggleButton isSelected={true}>Toggle Button</ToggleButton>;
 };
-
-
-
-

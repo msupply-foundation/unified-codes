@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CheckCircle as MCheckCircle }  from '@material-ui/icons';
+import { CheckCircle as MCheckCircle } from '@material-ui/icons';
 
 export interface CheckCircleIconProps {}
 
