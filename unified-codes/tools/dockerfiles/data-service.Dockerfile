@@ -1,4 +1,4 @@
-FROM unified-codes/dependencies:latest
+FROM unifiedcodes/dependencies:latest
 
 EXPOSE 4000
 

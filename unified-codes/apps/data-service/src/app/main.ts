@@ -12,7 +12,7 @@ const start = async () => {
     const plugins = [apolloPlugin, fastifyCors];
 
     fastifyServer = createFastifyServer(config, plugins);
-    await fastifyServer.listen(process.env.DATA_SERVICE_PORT);
+    await fastifyServer.listen(process.env.DATA_SERVICE_PORT, '0.0.0.0');
   } catch (err) {
     if (fastifyServer) {
       fastifyServer.log.error(err);
