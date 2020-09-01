@@ -1,27 +1,62 @@
 name: CI
 on: push
 jobs:
-  check-types-legacy-api:
-    runs-on: ubuntu-latest
-    env:
-      workspace-directory: ./unified-codes
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: npm install
-      working-directory: ${{env.workspace-directory}}
-    - name: Run legacy-api type check
-      run: npx nx build legacy-api
-      working-directory: ${{env.workspace-directory}}
   test-legacy-api:
     runs-on: ubuntu-latest
     env:
       workspace-directory: ./unified-codes
     steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: npm install
-      working-directory: ${{env.workspace-directory}}
-    - name: Run legacy-api tests
-      run: npx nx test legacy-api
-      working-directory: ${{env.workspace-directory}}
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: npm install
+        working-directory: ${{env.workspace-directory}}
+      - name: Run legacy-api tests
+        run: npx nx test legacy-api
+        working-directory: ${{env.workspace-directory}}
+  build-push-docker:
+    runs-on: ubuntu-latest
+    env:
+      workspace-directory: ./unified-codes
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install modules
+        run: npm install
+        working-directory: ${{env.workspace-directory}}
+      - name: Build legacy-api
+        run: npx nx build legacy-api
+        working-directory: ${{env.workspace-directory}}
+      - name: Build data-service
+        run: npx nx build data-service
+        working-directory: ${{env.workspace-directory}}
+        # Proof of concept only with temp access token! Credentials should be moved to GitHub secrets
+      - name: Build and push docker image unifiedcodes/dependencies
+        uses: docker/build-push-action@v1
+        with:
+          username: katms
+          password: ${{secrets.UNIFIED_CODES_DOCKER_HUB_PASSWORD}}
+          path: ${{env.workspace-directory}}
+          dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/dependencies.Dockerfile
+          repository: unifiedcodes/dependencies
+          tags: latest
+          push: true
+      - name: Build and push docker image unifiedcodes/legacy-api
+        uses: docker/build-push-action@v1
+        with:
+          username: katms
+          password: ${{secrets.UNIFIED_CODES_DOCKER_HUB_PASSWORD}}
+          path: ${{env.workspace-directory}}
+          dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/legacy-api.Dockerfile
+          repository: unifiedcodes/legacy-api
+          tags: latest
+          push: true
+      - name: Build and push docker image unifiedcodes/data-service
+        uses: docker/build-push-action@v1
+        with:
+          username: katms
+          password: ${{secrets.UNIFIED_CODES_DOCKER_HUB_PASSWORD}}
+          path: ${{env.workspace-directory}}
+          dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/data-service.Dockerfile
+          repository: unifiedcodes/data-service
+          tags: latest
+          push: true
