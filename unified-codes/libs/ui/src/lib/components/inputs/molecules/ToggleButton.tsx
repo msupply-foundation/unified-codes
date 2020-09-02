@@ -6,10 +6,10 @@ import CheckCircleIcon from '../../icons/atoms/CheckCircleIcon';
 
 const styles = {
   toggleButtonPrimary: {
-    background: '#2B83A1',
+    backgroundColor: '#2B83A1',
   },
   toggleButtonSecondary: {
-    background: '#5CCDF4'
+    backgroundColor: '#5CCDF4'
   }
 }
 
