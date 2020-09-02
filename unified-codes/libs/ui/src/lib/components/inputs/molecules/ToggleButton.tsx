@@ -6,24 +6,24 @@ import CheckCircleIcon from '../../icons/atoms/CheckCircleIcon';
 
 const styles = {
   toggleButtonPrimary: {
-    backgroundColor: '#2B83A1'
+    backgroundColor: '#2B83A1',
   },
   toggleButtonSecondary: {
-    backgroundColor: '#5CCDF4'
-  }
-}
+    backgroundColor: '#5CCDF4',
+  },
+};
 
 export interface ToggleButtonProps extends ButtonProps {
-  isSelected?: boolean
+  isSelected?: boolean;
 }
 
 export type ToggleButton = React.FunctionComponent<ToggleButtonProps>;
 
-export const ToggleButton : ToggleButton = (props: ToggleButtonProps) => {
+export const ToggleButton: ToggleButton = (props: ToggleButtonProps) => {
   const { isSelected } = props;
   const buttonStyle = isSelected ? styles.toggleButtonSecondary : styles.toggleButtonPrimary;
   const startIcon = isSelected ? <CheckCircleIcon /> : <AddIcon />;
-  return <Button startIcon= { startIcon }  {...props} style={buttonStyle}></Button>
+  return <Button startIcon={startIcon} {...props} style={buttonStyle}></Button>;
 };
 
 export default ToggleButton;
