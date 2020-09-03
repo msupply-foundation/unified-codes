@@ -7,10 +7,10 @@ export default {
   title: 'ToggleButton',
 };
 
-export const Unselected = () => {
-  return <ToggleButton>Toggle Button</ToggleButton>;
-};
+export const Unselected = () => (
+  <ToggleButton>Toggle Button</ToggleButton>
+);
 
-export const Selected = () => {
-  return <ToggleButton isSelected={true}>Toggle Button</ToggleButton>;
-};
+export const Selected = () => (
+  <ToggleButton isSelected={true}>Toggle Button</ToggleButton>
+);
