@@ -2,6 +2,10 @@ import { createMuiTheme, Theme } from '@material-ui/core/styles';
 
 const theme: Theme = createMuiTheme({
   palette: {
+    action: {
+      active: '#5CCDF4',
+      selected: '#2B83A1',
+    },
     background: {
       default: 'white',
       paper: 'white',
