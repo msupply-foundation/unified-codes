@@ -5,7 +5,7 @@ const start = async (): Promise<void> => {
   let server: Server;
   try {
     server = createLegacyApiServer({ logger: true });
-    const port = parseInt(process.env.LEGACY_API_PORT);
+    const port = parseInt(process.env.NX_LEGACY_API_PORT);
     await server.listen(port, '0.0.0.0');
   } catch (err) {
     server.log.error(err);
