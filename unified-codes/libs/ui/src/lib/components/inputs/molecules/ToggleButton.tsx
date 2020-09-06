@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Theme, withStyles } from '@material-ui/core/styles';
-import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import Button, { ButtonProps } from '../atoms/Button';
 import AddIcon from '../../icons/atoms/AddIcon';
@@ -14,10 +13,12 @@ const getStyles = (theme: Theme) => ({
     backgroundColor: theme.palette.action.selected,
     color: theme.palette.text.primary,
   },
+  root: {
+    borderRadius: '16px'
+  }
 });
 
 export interface ToggleButtonProps extends ButtonProps {
-  classes: ClassNameMap<any>;
   isSelected?: boolean;
 }
 

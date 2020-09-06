@@ -15,13 +15,13 @@ export type EntityFilter = React.FunctionComponent<EntityFilterProps>;
 export const EntityFilter: EntityFilter = () => (
   <Grid container justify="center" direction="row" spacing={2}>
     <Grid item>
-      <ToggleButton isSelected={true} label="Drug" />
+      <ToggleButton isSelected={true}>Drug</ToggleButton>
     </Grid>
     <Grid item>
-      <ToggleButton label="Unit of Use"/>
+      <ToggleButton>Unit of Use</ToggleButton>
     </Grid>
     <Grid item>
-      <ToggleButton label="Other" />
+      <ToggleButton>Other</ToggleButton>
     </Grid>
   </Grid>
 )
