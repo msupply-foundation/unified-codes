@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { EntityBrowser, Grid } from '@unified-codes/ui';
-import { Entity } from '@unified-codes/data';
+import { Entity, IPaginationRequest } from '@unified-codes/data';
 
 import { ExplorerActions } from '../../actions';
 import { IExplorerData, IState } from '../../types';
@@ -13,16 +13,16 @@ export interface ExplorerProps {
   data?: IExplorerData;
   onReady: () => void;
   onClear: () => void;
+  onFetch: (request: IPaginationRequest) => void;
   onSearch: (input: string) => void;
 }
 
 export type Explorer = React.FunctionComponent<ExplorerProps>;
 
-export const ExplorerComponent: Explorer = ({ data, onReady, onClear, onSearch }) => {
+export const ExplorerComponent: Explorer = ({ data, onReady, onClear, onFetch, onSearch }) => {
   React.useEffect(() => {
     onReady();
   }, []);
-
   const entityData = data || {
     entities: [] as Array<Entity>,
     hasMore: false,
@@ -31,22 +31,24 @@ export const ExplorerComponent: Explorer = ({ data, onReady, onClear, onSearch }
 
   return (
     <Grid container justify="center">
-      <EntityBrowser data={entityData} onClear={onClear} onSearch={onSearch} />
+      <EntityBrowser data={entityData} onClear={onClear} onSearch={onSearch} onFetch={onFetch} />
     </Grid>
   );
 };
 
 const mapStateToProps = (state: IState) => {
-  const entities = ExplorerSelectors.entitiesSelector(state);
-  return { entities };
+  const data = ExplorerSelectors.entitiesSelector(state);
+  return { data };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   const onClear = () => dispatch(ExplorerActions.resetVariables());
-  const onReady = () => dispatch(ExplorerActions.fetchData());
+  const onReady = () => dispatch(ExplorerActions.fetchData({}));
+  // TODO refactor when lifting search out
+  const onFetch = (request: IPaginationRequest) => dispatch(ExplorerActions.fetchData(request));
   const onSearch = (input: string) =>
     dispatch(ExplorerActions.updateVariables({ code: input, description: input }));
-  return { onClear, onReady, onSearch };
+  return { onClear, onFetch, onReady, onSearch };
 };
 
 export const Explorer = connect(mapStateToProps, mapDispatchToProps)(ExplorerComponent);

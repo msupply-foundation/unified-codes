@@ -21,14 +21,15 @@ export const entitiesSelector = createSelector(
   dataSelector,
   (variables?: IExplorerVariables, data?: IExplorerData) => {
     const { code = '', description = '' } = variables ?? {};
-    const allEntities: Entity[] = data?.entities.map((entity: IEntity) => new Entity(entity)) ?? [];
+    const allEntities: Entity[] =
+      data?.entities?.map((entity: IEntity) => new Entity(entity)) ?? [];
     // TODO: push this filter down
     const filteredEntities: Entity[] = allEntities.filter(
       (entity: Entity) => entity.matchesCode(code) || entity.matchesDescription(description)
     );
     return {
-      entities: filteredEntities,
       ...data,
+      entities: filteredEntities,
     };
   }
 );

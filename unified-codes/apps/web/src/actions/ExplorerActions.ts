@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { Entity, IPaginatedResults } from '@unified-codes/data';
+import { Entity, IPaginationRequest, IPaginatedResults } from '@unified-codes/data';
 
 export const EXPLORER_ACTIONS = {
   FETCH_DATA: 'explorerActions/fetchData',
@@ -10,7 +10,9 @@ export const EXPLORER_ACTIONS = {
   RESET_VARIABLES: 'explorerActions/resetVariables',
 };
 
-export interface IExplorerFetchDataAction extends Action<string> {}
+export interface IExplorerFetchDataAction extends Action<string> {
+  request: IPaginationRequest;
+}
 
 export interface IExplorerFetchSuccessAction extends Action<string> {
   data: IPaginatedResults<Entity>;
@@ -32,8 +34,9 @@ export type IExplorerAction =
   | IExplorerFetchFailureAction
   | IExplorerUpdateVariablesAction;
 
-export const fetchData = () => ({
+export const fetchData = (request: IPaginationRequest) => ({
   type: EXPLORER_ACTIONS.FETCH_DATA,
+  request,
 });
 
 export const fetchSuccess = (data: IPaginatedResults<Entity>) => ({

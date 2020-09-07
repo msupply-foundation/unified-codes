@@ -23,9 +23,10 @@ const typeDefs = gql`
   }
 
   type EntityConnection {
-    cursor: String!
-    hasMore: Boolean!
+    cursor: String
     entities: [Entity]!
+    hasMore: Boolean!
+    totalResults: Int!
   }
 
   input SearchFilter {

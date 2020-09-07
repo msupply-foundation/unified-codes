@@ -15,3 +15,8 @@ export interface IPaginatedResults<T extends IPaginatable> {
   hasMore: boolean;
   totalResults: number;
 }
+
+export interface IPaginationRequest {
+  page?: number;
+  rowsPerPage?: number;
+}

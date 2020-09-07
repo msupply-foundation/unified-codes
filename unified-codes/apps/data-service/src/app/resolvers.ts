@@ -74,6 +74,7 @@ export const resolvers = {
         pageSize,
         results: allEntities,
       };
+
       return getPaginatedResults<IEntity>(paginationParameters);
     },
   },
