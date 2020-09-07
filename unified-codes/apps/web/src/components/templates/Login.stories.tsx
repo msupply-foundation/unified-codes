@@ -26,11 +26,11 @@ export const withMockOnLoginProp = () => {
 export const withKeycloakOnLoginProp = () => {
   const identityProviderConfig = {
     baseUrl:
-      `${process.env.AUTHENTICATION_SERVICE_URL}:${process.env.AUTHENTICATION_SERVICE_PORT}/${process.env.AUTHENTICATION_SERVICE_REALM}/${process.env.AUTHENTICATION_SERVICE_AUTH}` ||
+      `${process.env.NX_AUTHENTICATION_SERVICE_URL}:${process.env.NX_AUTHENTICATION_SERVICE_PORT}/${process.env.NX_AUTHENTICATION_SERVICE_REALM}/${process.env.NX_AUTHENTICATION_SERVICE_AUTH}` ||
       '',
-    clientId: process.env.AUTHENTICATION_SERVICE_CLIENT_ID || '',
-    clientSecret: process.env.AUTHENTICATION_SERVICE_CLIENT_SECRET || '',
-    grantType: process.env.AUTHENTICATION_SERVICE_GRANT_TYPE || '',
+    clientId: process.env.NX_AUTHENTICATION_SERVICE_CLIENT_ID || '',
+    clientSecret: process.env.NX_AUTHENTICATION_SERVICE_CLIENT_SECRET || '',
+    grantType: process.env.NX_AUTHENTICATION_SERVICE_GRANT_TYPE || '',
   };
 
   const identityProvider = new KeyCloakIdentityProvider(identityProviderConfig);
