@@ -1,29 +1,37 @@
 import * as React from 'react';
+import { Theme, withStyles } from '@material-ui/core/styles';
+import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import ToggleButton from '../molecules/ToggleButton';
 import Grid from '../../layout/atoms/Grid';
 
-import { Theme, withStyles } from '@material-ui/core/styles';
-
-
 export interface EntityFilterProps {
-
+  classes: ClassNameMap<any>;
 }
+
+const getStyles = (theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.divider,
+    padding: '12px 0px 12px 0px'
+  }
+});
 
 export type EntityFilter = React.FunctionComponent<EntityFilterProps>;
 
-export const EntityFilter: EntityFilter = () => (
-  <Grid container justify="center" direction="row" spacing={2}>
+export const _EntityFilter: EntityFilter = ({classes}) => {
+  const onToggleSelected = () => (console.log('toggle clicked'));
+
+  return <Grid container justify="center" direction="row" className={classes.root} spacing={2}>
     <Grid item>
-      <ToggleButton isSelected={true}>Drug</ToggleButton>
+      <ToggleButton onClick={onToggleSelected}>Drug</ToggleButton>
     </Grid>
     <Grid item>
-      <ToggleButton>Unit of Use</ToggleButton>
+      <ToggleButton onClick={onToggleSelected}>Unit of Use</ToggleButton>
     </Grid>
     <Grid item>
-      <ToggleButton>Other</ToggleButton>
+      <ToggleButton onClick={onToggleSelected}>Other</ToggleButton>
     </Grid>
   </Grid>
-)
+}
 
-export default EntityFilter;
+export const EntityFilter = withStyles(getStyles)(_EntityFilter);

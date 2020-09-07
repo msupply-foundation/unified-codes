@@ -13,7 +13,8 @@ const theme: Theme = createMuiTheme({
     divider: '#253240',
     text: {
       primary: 'rgba(0,0,0,0.83)',
-      hint: 'rgba(0,0,0,0.6)',
+      secondary: 'rgba(255,255,255,0.87)',
+      hint: 'rgba(0,0,0,0.6)'
     },
   },
   typography: {
