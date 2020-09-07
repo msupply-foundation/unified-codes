@@ -1,7 +1,6 @@
-import { IPaginatable } from './Pagination';
 import { Property } from './Property';
 
-export interface IEntity extends IPaginatable {
+export interface IEntity {
   code: string;
   description: string;
   type: string;
@@ -10,14 +9,12 @@ export interface IEntity extends IPaginatable {
 
 export class Entity implements IEntity {
   private _code: string;
-  private _cursor?: string;
   private _description: string;
   private _type: string;
   private _properties?: Property[];
 
   constructor(entity: IEntity) {
     this._code = entity.code;
-    this._cursor = entity.cursor;
     this._description = entity.description;
     this._type = entity.type;
     this._properties = entity.properties;
@@ -25,10 +22,6 @@ export class Entity implements IEntity {
 
   get code(): string {
     return this._code;
-  }
-
-  get cursor(): string {
-    return this._cursor || '';
   }
 
   get description(): string {

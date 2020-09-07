@@ -1,22 +1,16 @@
-export interface IPaginatable {
-  cursor?: string;
-}
-
-export interface IPaginationParameters<T extends IPaginatable> {
-  after: string;
-  pageSize: number;
+export interface IPaginationParameters<T> {
+  offset: number;
+  first: number;
   results: Array<T>;
-  getCursor?: (item: T) => null | Array<T>;
 }
 
-export interface IPaginatedResults<T extends IPaginatable> {
+export interface IPaginatedResults<T> {
   entities: Array<T>;
-  cursor?: string;
   hasMore: boolean;
   totalResults: number;
 }
 
 export interface IPaginationRequest {
-  page?: number;
-  rowsPerPage?: number;
+  first?: number;
+  offset?: number;
 }

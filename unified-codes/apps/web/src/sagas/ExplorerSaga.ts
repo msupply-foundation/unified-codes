@@ -16,15 +16,14 @@ import {
   IExplorerFetchDataAction,
 } from '../actions';
 
-const getEntitiesQuery = (page: number, rowsPerPage: number) => `
+const getEntitiesQuery = (first: number, offset?: number) => `
   {
-    entities( pageSize: ${rowsPerPage}) {
+    entities(offset: ${offset} first: ${first}) {
       entities {
         code
         description
         type
       },
-      cursor,
       hasMore,
       totalResults,
     }
@@ -64,7 +63,7 @@ const getEntities = async (
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify({ query: getEntitiesQuery(request.page || 0, request.rowsPerPage || 25) }),
+    body: JSON.stringify({ query: getEntitiesQuery(request.first || 25, request.offset || 0) }),
   });
   const json = await response.json();
   const { data } = json;
@@ -81,6 +80,7 @@ function* fetchData(action: IExplorerFetchDataAction) {
       | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
     if (url) {
       const data: IPaginatedResults<Entity> = yield call(getEntities, url, action.request);
+
       yield put(AlertActions.resetAlert());
       yield put(ExplorerActions.fetchSuccess(data));
     }

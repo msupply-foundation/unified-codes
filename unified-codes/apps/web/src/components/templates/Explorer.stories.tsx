@@ -18,6 +18,15 @@ export const withNoProps = () => {
   const onReady = () => console.log('onReady called...');
   const onClear = () => console.log('onClear called...');
   const onSearch = () => console.log('onSearch called...');
+  const onFetch = () => console.log('onFetch called...');
 
-  return <ExplorerComponent data={data} onReady={onReady} onClear={onClear} onSearch={onSearch} />;
+  return (
+    <ExplorerComponent
+      data={data}
+      onReady={onReady}
+      onClear={onClear}
+      onSearch={onSearch}
+      onFetch={onFetch}
+    />
+  );
 };

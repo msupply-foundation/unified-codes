@@ -46,7 +46,11 @@ export const EntityBrowser: EntityBrowser = ({ data, onChange, onClear, onFetch,
   };
 
   const handleFetch = (page: number, rowsPerPage: number) => {
-    onFetch({ page, rowsPerPage });
+    const request: IPaginationRequest = {
+      first: rowsPerPage,
+      offset: page * rowsPerPage,
+    };
+    onFetch && onFetch(request);
   };
 
   return (

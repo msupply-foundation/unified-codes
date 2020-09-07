@@ -11,7 +11,7 @@ export const queries = {
         }
       }`;
   },
-  entities: (type: string, pageSize: number, after: number) => {
+  entities: (type: string, first: number, offset: number) => {
     return `{
       query(func: eq(type, ${type})) @filter(has(description)) @recurse(loop: false)  {
         code

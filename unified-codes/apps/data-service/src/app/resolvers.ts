@@ -54,7 +54,7 @@ export const resolvers = {
     entities: async (_source: any, args: any, context: IApolloServiceContext) => {
       const { token, authenticator, authoriser, dataSources } = context;
       const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
-      const { after, filter, pageSize = 20 } = args;
+      const { filter, first, offset } = args;
 
       // TODO: add authorisation logic for any protected entities.
       if (token) {
@@ -70,11 +70,10 @@ export const resolvers = {
       const response = await dgraph.postQuery(query);
       const allEntities: Array<IEntity> = response.data.query;
       const paginationParameters: IPaginationParameters<IEntity> = {
-        after,
-        pageSize,
+        first,
+        offset,
         results: allEntities,
       };
-
       return getPaginatedResults<IEntity>(paginationParameters);
     },
   },
