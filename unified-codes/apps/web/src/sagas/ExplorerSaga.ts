@@ -1,15 +1,17 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 
-import { IEntity, AlertSeverity, IAlert } from '@unified-codes/data';
+import { AlertSeverity, Entity, IAlert, IPaginatedResults } from '@unified-codes/data';
 
 import { EXPLORER_ACTIONS, ExplorerActions, AlertActions, IExplorerAction } from '../actions';
 
 const GET_ENTITIES = `
   {
-    entities {
-      code
-      description
-      type
+    entities(pageSize: 3) {
+      entities {
+        code
+        description
+        type
+      }
     }
   }
 `;
@@ -37,7 +39,7 @@ const alertFetch: IAlert = {
 };
 
 // TODO: add helper class for raw gql queries to data library and refactor this!
-const getEntities = async (url: string): Promise<IEntity[]> => {
+const getEntities = async (url: string): Promise<IPaginatedResults<Entity>> => {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -47,9 +49,9 @@ const getEntities = async (url: string): Promise<IEntity[]> => {
     body: JSON.stringify({ query: GET_ENTITIES }),
   });
   const json = await response.json();
-  const { data }: { data: { entities: IEntity[] } } = json;
-  const { entities }: { entities: IEntity[] } = data;
-  return entities;
+  const { data } = json;
+
+  return data;
 };
 
 function* fetchData() {
@@ -60,7 +62,7 @@ function* fetchData() {
       | string
       | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
     if (url) {
-      const data: IEntity[] = yield call(getEntities, url);
+      const data: IPaginatedResults<Entity> = yield call(getEntities, url);
       yield put(AlertActions.resetAlert());
       yield put(ExplorerActions.fetchSuccess(data));
     }

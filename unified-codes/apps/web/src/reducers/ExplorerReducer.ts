@@ -6,15 +6,24 @@ import {
   IExplorerFetchSuccessAction,
 } from '../actions';
 import { IExplorerState } from '../types';
+import { Entity } from '@unified-codes/data';
 
 const initialState = (): IExplorerState => {
   return {
+    data: {
+      entities: [] as Array<Entity>,
+      hasMore: false,
+      totalResults: 0,
+    },
     loading: false,
     variables: {},
   };
 };
 
-export const ExplorerReducer = (state = initialState(), action: IExplorerAction) => {
+export const ExplorerReducer = (
+  state = initialState(),
+  action: IExplorerAction
+): IExplorerState => {
   const { type } = action;
 
   switch (type) {
@@ -33,7 +42,7 @@ export const ExplorerReducer = (state = initialState(), action: IExplorerAction)
     }
 
     case EXPLORER_ACTIONS.RESET_DATA: {
-      return { ...state, data: [] };
+      return { ...state, data: initialState().data };
     }
 
     case EXPLORER_ACTIONS.UPDATE_VARIABLES: {

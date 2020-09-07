@@ -6,11 +6,11 @@ import { EntityBrowser, Grid } from '@unified-codes/ui';
 import { Entity } from '@unified-codes/data';
 
 import { ExplorerActions } from '../../actions';
-import { IState } from '../../types';
+import { IExplorerData, IState } from '../../types';
 import { ExplorerSelectors } from '../../selectors';
 
 export interface ExplorerProps {
-  entities: Entity[];
+  data?: IExplorerData;
   onReady: () => void;
   onClear: () => void;
   onSearch: (input: string) => void;
@@ -18,14 +18,20 @@ export interface ExplorerProps {
 
 export type Explorer = React.FunctionComponent<ExplorerProps>;
 
-export const ExplorerComponent: Explorer = ({ entities, onReady, onClear, onSearch }) => {
+export const ExplorerComponent: Explorer = ({ data, onReady, onClear, onSearch }) => {
   React.useEffect(() => {
     onReady();
   }, []);
 
+  const entityData = data || {
+    entities: [] as Array<Entity>,
+    hasMore: false,
+    totalResults: 0,
+  };
+
   return (
     <Grid container justify="center">
-      <EntityBrowser entities={entities} onClear={onClear} onSearch={onSearch} />
+      <EntityBrowser data={entityData} onClear={onClear} onSearch={onSearch} />
     </Grid>
   );
 };

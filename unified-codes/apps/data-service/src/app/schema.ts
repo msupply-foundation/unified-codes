@@ -19,7 +19,13 @@ const typeDefs = gql`
     "Request an entity by code"
     entity(code: String!): Entity
     "Request all entities with optional filter - Default behaviour: return all medicinal_products"
-    entities(filter: SearchFilter): [Entity]
+    entities(filter: SearchFilter, pageSize: Int, after: String): EntityConnection
+  }
+
+  type EntityConnection {
+    cursor: String!
+    hasMore: Boolean!
+    entities: [Entity]!
   }
 
   input SearchFilter {
