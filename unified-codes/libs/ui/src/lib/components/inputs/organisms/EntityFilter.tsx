@@ -7,12 +7,14 @@ import Grid from '../../layout/atoms/Grid';
 
 export interface EntityFilterProps {
   classes: ClassNameMap<any>;
+  onToggleSelected?: () => void;
 }
 
 const getStyles = (theme: Theme) => ({
   root: {
     backgroundColor: theme.palette.divider,
-    padding: '12px 0px 12px 0px'
+    paddingTop: '12px',
+    paddingBottom: '12px'
   }
 });
 
