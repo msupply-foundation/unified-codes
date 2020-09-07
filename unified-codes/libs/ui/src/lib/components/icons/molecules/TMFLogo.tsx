@@ -36,24 +36,24 @@ export const TMFLogo: SvgIcon = (props) => {
       />
       <text
         fill="#ccc"
-        font-family="Museo"
-        font-size="72"
+        fontFamily="Museo"
+        fontSize="72"
         transform="matrix(1,0,0,1,274.621,328.373)"
       >
         <tspan>Foundation</tspan>
       </text>
       <text
         fill="#ccc"
-        font-family="Museo"
-        font-size="96"
+        fontFamily="Museo"
+        fontSize="96"
         transform="matrix(1,0,0,1,362.007,233.258)"
       >
         <tspan>Supply</tspan>
       </text>
       <text
         fill="#f26532"
-        font-family="Museo"
-        font-size="96"
+        fontFamily="Museo"
+        fontSize="96"
         transform="matrix(1,0,0,1,274.007,233.738)"
       >
         <tspan>m</tspan>
