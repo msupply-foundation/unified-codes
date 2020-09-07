@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { EntityBrowser, Grid } from '@unified-codes/ui';
-import { Entity, IPaginationRequest } from '@unified-codes/data';
+import { Entity, IPaginationRequest, PaginationRequest } from '@unified-codes/data';
 
 import { ExplorerActions } from '../../actions';
 import { IExplorerData, IState } from '../../types';
@@ -43,7 +43,7 @@ const mapStateToProps = (state: IState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   const onClear = () => dispatch(ExplorerActions.resetVariables());
-  const onReady = () => dispatch(ExplorerActions.fetchData({}));
+  const onReady = () => dispatch(ExplorerActions.fetchData(new PaginationRequest()));
   // TODO refactor when lifting search out
   const onFetch = (request: IPaginationRequest) => dispatch(ExplorerActions.fetchData(request));
   const onSearch = (input: string) =>

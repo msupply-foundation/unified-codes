@@ -6,7 +6,7 @@ import EntityTable from '../molecules/EntityTable';
 import Grid from '../../layout/atoms/Grid';
 import SearchBar from '../../inputs/molecules/SearchBar';
 import TablePagination from '@material-ui/core/TablePagination';
-import { IPaginationRequest } from '@unified-codes/data';
+import { IPaginationRequest, PaginationRequest } from '@unified-codes/data';
 
 export interface EntityBrowserProps {
   data: IPaginatedResults<Entity>;
@@ -35,21 +35,15 @@ export const EntityBrowser: EntityBrowser = ({ data, onChange, onClear, onFetch,
 
   const handleChangePage = (_: MouseEvent, newPage: number) => {
     setPage(newPage);
-    handleFetch(newPage, rowsPerPage);
+    const request = new PaginationRequest(rowsPerPage, newPage * rowsPerPage);
+    onFetch && onFetch(request);
   };
 
   const handleChangeRowsPerPage = (event: RowsPerPageEvent) => {
     const rowsPerPage = +event.target.value;
     setRowsPerPage(rowsPerPage);
     setPage(0);
-    handleFetch(0, rowsPerPage);
-  };
-
-  const handleFetch = (page: number, rowsPerPage: number) => {
-    const request: IPaginationRequest = {
-      first: rowsPerPage,
-      offset: page * rowsPerPage,
-    };
+    const request = new PaginationRequest(rowsPerPage);
     onFetch && onFetch(request);
   };
 

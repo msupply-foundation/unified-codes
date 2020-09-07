@@ -63,7 +63,7 @@ const getEntities = async (
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify({ query: getEntitiesQuery(request.first || 25, request.offset || 0) }),
+    body: JSON.stringify({ query: getEntitiesQuery(request.first, request.offset) }),
   });
   const json = await response.json();
   const { data } = json;
