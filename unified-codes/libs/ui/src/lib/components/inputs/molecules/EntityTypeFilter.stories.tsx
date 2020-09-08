@@ -2,15 +2,15 @@ import * as React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../../../../../../../apps/web/src/muiTheme';
 
-import { EntityFilter } from './EntityFilter';
+import { EntityTypeFilter } from './EntityTypeFilter';
 
 export default {
-  component: EntityFilter,
-  title: 'EntityFilter',
+  component: EntityTypeFilter,
+  title: 'EntityTypeFilter',
 };
 
 export const withNoProps = () => (
   <ThemeProvider theme={theme}>
-    <EntityFilter />
+    <EntityTypeFilter />
   </ThemeProvider>
 );

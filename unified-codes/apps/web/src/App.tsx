@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Theme, withStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
-import { Container, Grid, AlertBar, EntityFilter } from '@unified-codes/ui';
+import { Container, Grid, AlertBar, EntityTypeFilter } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
 
 import { AlertActions } from './actions';
@@ -36,7 +36,7 @@ const _App: App = ({ alert, classes, resetAlert }) => {
       <Container maxWidth={false} className={classes.container}>
         <Grid container spacing={3} direction="column" justify="space-between" alignItems="stretch">
           <Header />
-          <EntityFilter />
+          <EntityTypeFilter />
           <AlertBar
             isVisible={alert.isVisible}
             text={alert.text}
