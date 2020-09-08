@@ -5,7 +5,8 @@ import {
   Entity,
   IAlert,
   IPaginatedResults,
-  IPaginationRequest,
+  IEntitySearchFilter,
+  IEntitySearchRequest,
 } from '@unified-codes/data';
 
 import {
@@ -16,9 +17,9 @@ import {
   IExplorerFetchDataAction,
 } from '../actions';
 
-const getEntitiesQuery = (first: number, offset?: number) => `
+const getEntitiesQuery = (filter: IEntitySearchFilter, first: number, offset?: number) => `
   {
-    entities(offset: ${offset} first: ${first}) {
+    entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" } offset: ${offset} first: ${first}) {
       entities {
         code
         description
@@ -55,7 +56,7 @@ const alertFetch: IAlert = {
 // TODO: add helper class for raw gql queries to data library and refactor this!
 const getEntities = async (
   url: string,
-  request: IPaginationRequest
+  request: IEntitySearchRequest
 ): Promise<IPaginatedResults<Entity>> => {
   const response = await fetch(url, {
     method: 'POST',
@@ -63,7 +64,9 @@ const getEntities = async (
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify({ query: getEntitiesQuery(request.first, request.offset) }),
+    body: JSON.stringify({
+      query: getEntitiesQuery(request.filter, request.first, request.offset),
+    }),
   });
   const json = await response.json();
   const { data } = json;

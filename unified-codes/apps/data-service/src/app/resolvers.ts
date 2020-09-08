@@ -16,9 +16,21 @@ const queries = {
         }
       }`;
   },
-  entities: (type: string) => {
+  entitiesByType: (type: string) => {
     return `{
       query(func: eq(type, ${type})) @filter(has(description)) @recurse(loop: false)  {
+        code
+        description
+        type
+        value
+        has_child
+        has_property
+      }
+    }`;
+  },
+  entitiesByDescriptionAndType: (type: string, description: string) => {
+    return `{
+      query(func: eq(type, ${type})) @filter(regexp(description, /.*${description}.*/i)) @recurse(loop: false)  {
         code
         description
         type
@@ -65,8 +77,11 @@ export const resolvers = {
         console.log(`Entity requested by anonymous user.`);
       }
 
-      const { type = 'medicinal_product' } = args?.filter ?? {};
-      const query = queries.entities(type);
+      const { type = 'medicinal_product', code, description } = filter ?? {};
+      const query =
+        description && description.length
+          ? queries.entitiesByDescriptionAndType(type, description)
+          : queries.entitiesByType(type);
       const response = await dgraph.postQuery(query);
       const allEntities: Array<IEntity> = response.data.query;
       const paginationParameters: IPaginationParameters<IEntity> = {

@@ -29,6 +29,10 @@ const typeDefs = gql`
   }
 
   input SearchFilter {
+    "Search by entity code"
+    code: String
+    "Search by entity description"
+    description: String
     "Search by Level in Product Hierarchy"
     type: String
   }
