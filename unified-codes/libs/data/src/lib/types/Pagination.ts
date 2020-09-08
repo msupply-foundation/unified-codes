@@ -5,7 +5,7 @@ export interface IPaginationParameters<T> {
 }
 
 export interface IPaginatedResults<T> {
-  entities: Array<T>;
+  data: Array<T>;
   hasMore: boolean;
   totalResults: number;
 }

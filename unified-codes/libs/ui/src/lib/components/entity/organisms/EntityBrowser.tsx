@@ -9,7 +9,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import { IPaginationRequest, PaginationRequest } from '@unified-codes/data';
 
 export interface EntityBrowserProps {
-  data: IPaginatedResults<Entity>;
+  entities: IPaginatedResults<Entity>;
   onChange?: (value: string) => void;
   onClear?: () => void;
   onFetch?: (request: IPaginationRequest) => void;
@@ -20,7 +20,13 @@ export type EntityBrowser = React.FunctionComponent<EntityBrowserProps>;
 type RowsPerPageEvent = React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>;
 type MouseEvent = React.MouseEvent<HTMLButtonElement> | null;
 
-export const EntityBrowser: EntityBrowser = ({ data, onChange, onClear, onFetch, onSearch }) => {
+export const EntityBrowser: EntityBrowser = ({
+  entities,
+  onChange,
+  onClear,
+  onFetch,
+  onSearch,
+}) => {
   const [input, setInput] = React.useState('');
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
@@ -53,13 +59,13 @@ export const EntityBrowser: EntityBrowser = ({ data, onChange, onClear, onFetch,
         <SearchBar input={input} onChange={onChangeInput} onClear={onClear} onSearch={onSearch} />
       </Grid>
       <Grid item style={{ maxHeight: 400, overflow: 'scroll' }}>
-        <EntityTable data={data.entities} />
+        <EntityTable data={entities.data} />
       </Grid>
       <Grid item>
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          count={data.totalResults}
+          count={entities.totalResults}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}

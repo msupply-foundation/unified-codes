@@ -10,7 +10,7 @@ export type IExplorerData = {
   cursor?: string;
   hasMore: boolean;
   totalResults: number;
-  entities: Entity[];
+  data: Entity[];
 };
 
 export interface IExplorerVariables {
@@ -19,7 +19,7 @@ export interface IExplorerVariables {
 }
 
 export interface IExplorerState {
-  data?: IExplorerData;
+  entities?: IExplorerData;
   error?: Error;
   loading?: boolean;
   variables?: IExplorerVariables;

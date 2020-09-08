@@ -19,7 +19,7 @@ import {
 const getEntitiesQuery = (first: number, offset?: number) => `
   {
     entities(offset: ${offset} first: ${first}) {
-      entities {
+      data {
         code
         description
         type
@@ -79,10 +79,9 @@ function* fetchData(action: IExplorerFetchDataAction) {
       | string
       | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
     if (url) {
-      const data: IPaginatedResults<Entity> = yield call(getEntities, url, action.request);
-
+      const entities: IPaginatedResults<Entity> = yield call(getEntities, url, action.request);
       yield put(AlertActions.resetAlert());
-      yield put(ExplorerActions.fetchSuccess(data));
+      yield put(ExplorerActions.fetchSuccess(entities));
     }
   } catch (error) {
     yield put(AlertActions.raiseAlert(alertError));

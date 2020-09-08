@@ -10,7 +10,7 @@ export default { title: 'Explorer' };
 export const withNoProps = () => {
   const [entities] = React.useState<Entity[]>([]);
   const data: IExplorerData = {
-    entities,
+    data: entities,
     hasMore: false,
     totalResults: 0,
   };
@@ -22,7 +22,7 @@ export const withNoProps = () => {
 
   return (
     <ExplorerComponent
-      data={data}
+      entities={data}
       onReady={onReady}
       onClear={onClear}
       onSearch={onSearch}

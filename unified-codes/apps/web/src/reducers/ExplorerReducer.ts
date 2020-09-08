@@ -10,8 +10,8 @@ import { Entity } from '@unified-codes/data';
 
 const initialState = (): IExplorerState => {
   return {
-    data: {
-      entities: [] as Array<Entity>,
+    entities: {
+      data: [] as Array<Entity>,
       hasMore: false,
       totalResults: 0,
     },
@@ -32,8 +32,8 @@ export const ExplorerReducer = (
     }
 
     case EXPLORER_ACTIONS.FETCH_SUCCESS: {
-      const { data } = action as IExplorerFetchSuccessAction;
-      return { ...state, data, loading: false };
+      const { entities } = action as IExplorerFetchSuccessAction;
+      return { ...state, entities, loading: false };
     }
 
     case EXPLORER_ACTIONS.FETCH_FAILURE: {
@@ -42,7 +42,7 @@ export const ExplorerReducer = (
     }
 
     case EXPLORER_ACTIONS.RESET_DATA: {
-      return { ...state, data: initialState().data };
+      return { ...state, entities: initialState().entities };
     }
 
     case EXPLORER_ACTIONS.UPDATE_VARIABLES: {
