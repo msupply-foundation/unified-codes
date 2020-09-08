@@ -1,4 +1,4 @@
-import { IAlert, IEntity, IUser } from '@unified-codes/data';
+import { Entity, IAlert, IUser } from '@unified-codes/data';
 
 export type IAlertState = IAlert | {};
 
@@ -6,7 +6,12 @@ export interface IAuthenticatorState {
   isAuthenticating?: boolean;
 }
 
-export type IExplorerData = IEntity[];
+export type IExplorerData = {
+  cursor?: string;
+  hasMore: boolean;
+  totalResults: number;
+  data: Entity[];
+};
 
 export interface IExplorerVariables {
   code?: string;
@@ -14,7 +19,7 @@ export interface IExplorerVariables {
 }
 
 export interface IExplorerState {
-  data?: IExplorerData;
+  entities?: IExplorerData;
   error?: Error;
   loading?: boolean;
   variables?: IExplorerVariables;
