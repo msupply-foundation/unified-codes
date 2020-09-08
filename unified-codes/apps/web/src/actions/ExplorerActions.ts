@@ -1,5 +1,10 @@
 import { Action } from 'redux';
-import { Entity, IEntitySearchRequest, IPaginatedResults } from '@unified-codes/data';
+import {
+  Entity,
+  IEntitySearchRequest,
+  IExplorerVariables,
+  IPaginatedResults,
+} from '@unified-codes/data';
 
 export const EXPLORER_ACTIONS = {
   FETCH_DATA: 'explorerActions/fetchData',
@@ -25,7 +30,7 @@ export interface IExplorerFetchFailureAction extends Action<string> {
 export interface IExplorerResetDataAction extends Action<string> {}
 
 export interface IExplorerUpdateVariablesAction extends Action<string> {
-  variables: object;
+  variables: IExplorerVariables;
 }
 
 export type IExplorerAction =

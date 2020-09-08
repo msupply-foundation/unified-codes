@@ -3,6 +3,8 @@ import { call, put, takeEvery, all } from 'redux-saga/effects';
 import {
   AlertSeverity,
   Entity,
+  EntitySearchFilter,
+  EntitySearchRequest,
   IAlert,
   IPaginatedResults,
   IEntitySearchFilter,
@@ -15,6 +17,7 @@ import {
   AlertActions,
   IExplorerAction,
   IExplorerFetchDataAction,
+  IExplorerUpdateVariablesAction,
 } from '../actions';
 
 const getEntitiesQuery = (filter: IEntitySearchFilter, first: number, offset?: number) => `
@@ -97,8 +100,24 @@ function* fetchDataSaga() {
   yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.FETCH_DATA, fetchData);
 }
 
+function* updateVariables(action: IExplorerUpdateVariablesAction) {
+  const { variables } = action;
+  const { code, description, page, rowsPerPage, type } = variables;
+  const filter = new EntitySearchFilter(description, code, type);
+  const request = new EntitySearchRequest(filter, rowsPerPage, page);
+
+  yield put(ExplorerActions.fetchData(request));
+}
+
+function* updateVariablesSaga() {
+  yield takeEvery<IExplorerUpdateVariablesAction>(
+    EXPLORER_ACTIONS.UPDATE_VARIABLES,
+    updateVariables
+  );
+}
+
 export function* explorerSaga() {
-  yield all([fetchDataSaga()]);
+  yield all([fetchDataSaga(), updateVariablesSaga()]);
 }
 
 export default explorerSaga;

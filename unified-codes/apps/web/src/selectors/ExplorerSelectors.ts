@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 
-import { IEntity, Entity } from '@unified-codes/data';
+import { IEntity, IExplorerVariables, Entity } from '@unified-codes/data';
 
-import { IState, IExplorerState, IExplorerData, IExplorerVariables } from '../types';
+import { IState, IExplorerState, IExplorerData } from '../types';
 
 export const explorerSelector = (state: IState): IExplorerState => state.explorer;
 
