@@ -2,33 +2,7 @@ import { IApolloServiceContext, User } from '@unified-codes/data';
 import { DgraphDataSource } from './data';
 import { getPaginatedResults } from './utils';
 import { IEntity, IPaginationParameters } from '@unified-codes/data';
-
-const queries = {
-  entity: (code: string) => {
-    return `{
-        query(func: eq(code, ${code}), first: 1) @recurse(loop: false)  {
-          code
-          description
-          type
-          value
-          has_child
-          has_property
-        }
-      }`;
-  },
-  entities: (type: string) => {
-    return `{
-      query(func: eq(type, ${type})) @filter(has(description)) @recurse(loop: false)  {
-        code
-        description
-        type
-        value
-        has_child
-        has_property
-      }
-    }`;
-  },
-};
+import { queries } from './queries';
 
 export const resolvers = {
   Query: {
@@ -65,7 +39,7 @@ export const resolvers = {
         console.log(`Entity requested by anonymous user.`);
       }
 
-      const { type = 'medicinal_product' } = args?.filter ?? {};
+      const { type = 'medicinal_product' } = filter ?? {};
       const query = queries.entities(type);
       const response = await dgraph.postQuery(query);
       const allEntities: Array<IEntity> = response.data.query;

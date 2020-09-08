@@ -19,10 +19,10 @@ const typeDefs = gql`
     "Request an entity by code"
     entity(code: String!): Entity
     "Request all entities with optional filter - Default behaviour: return all medicinal_products"
-    entities(filter: SearchFilter, first: Int, offset: Int): EntityConnection
+    entitiesQuery(filter: SearchFilter, first: Int, offset: Int): EntitiesQueryResult
   }
 
-  type EntityConnection {
+  type EntitiesQueryResult {
     entities: [Entity]!
     hasMore: Boolean!
     totalResults: Int!
