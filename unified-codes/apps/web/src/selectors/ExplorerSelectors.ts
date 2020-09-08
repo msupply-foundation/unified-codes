@@ -29,7 +29,7 @@ export const entitiesSelector = createSelector(
     );
     return {
       ...entities,
-      entities: filteredEntities,
+      data: filteredEntities,
     };
   }
 );

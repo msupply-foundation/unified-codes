@@ -10,7 +10,7 @@ export default {
 };
 
 export const withNoProps = () => {
-  const data: IEntity[] = [
+  const entities: IEntity[] = [
     {
       code: 'QFWR9789',
       description: 'Amoxicillin',
@@ -22,6 +22,7 @@ export const withNoProps = () => {
       type: 'medicinal_product',
     },
   ];
-  const entities = data.map((entityNode: IEntity) => new Entity(entityNode));
-  return <EntityBrowser entities={entities} />;
+  const data = entities.map((entityNode: IEntity) => new Entity(entityNode));
+  const entityData = { data, hasMore: false, totalResults: 2 };
+  return <EntityBrowser entities={entityData} />;
 };

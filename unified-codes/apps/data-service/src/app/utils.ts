@@ -21,5 +21,5 @@ function paginateResults<T>(params: IPaginationParameters<T>): Array<T> {
   // don't let us overflow
   if (offset === results.length - 1) return [];
 
-  return results.slice(offset + 1, Math.min(results.length, offset + 1 + first));
+  return results.slice(offset, Math.min(results.length, offset + first));
 }
