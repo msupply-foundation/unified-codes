@@ -4,16 +4,27 @@ import Link from '@material-ui/core/Link';
 import { Theme, withStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
-import { Drawer, Grid, TMFLogo } from '@unified-codes/ui';
-
+import { Grid, Paper, TMFLogo } from '@unified-codes/ui';
+import { flexDirection, position } from '../../muiTheme';
 export interface FooterProps {
   classes: ClassNameMap<any>;
+  x: React.CSSProperties;
 }
-
-type flexDirection = 'column' | 'row';
-
 const getStyles = (theme: Theme) => ({
-  root: {},
+  root: {
+    height: 135,
+    position: 'fixed' as position,
+    width: '100%',
+    bottom: 0,
+    alignItems: 'center',
+    backgroundColor: theme.palette.divider,
+    display: 'flex',
+    flexDirection: 'column' as flexDirection,
+    fontFamily: 'roboto',
+    ' & div': {
+      flex: '0 1 0%',
+    },
+  },
   logo: {
     marginBottom: 15,
   },
@@ -43,10 +54,9 @@ const getStyles = (theme: Theme) => ({
 
 export type Footer = React.FunctionComponent<FooterProps>;
 
-const StyledDrawer = withStyles(getStyles)(Drawer);
 const _Footer: Footer = ({ classes }) => {
   return (
-    <StyledDrawer anchor="bottom" variant="permanent">
+    <Paper className={classes.root} square elevation={0}>
       <Grid item>
         <Grid container className={classes.menu}>
           <Grid item>
@@ -66,7 +76,7 @@ const _Footer: Footer = ({ classes }) => {
           <TMFLogo />
         </a>
       </Grid>
-    </StyledDrawer>
+    </Paper>
   );
 };
 

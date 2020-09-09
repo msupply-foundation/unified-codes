@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { EntityBrowser, Grid } from '@unified-codes/ui';
+import { EntityBrowser, IEntityBrowserClasses } from '@unified-codes/ui';
 import {
   Entity,
   EntitySearchRequest,
@@ -14,7 +14,11 @@ import { ExplorerActions } from '../../actions';
 import { IExplorerData, IState } from '../../types';
 import { ExplorerSelectors } from '../../selectors';
 
+import { withStyles } from '@material-ui/core/styles';
+import { ITheme } from '../../muiTheme';
+
 export interface ExplorerProps {
+  classes?: IEntityBrowserClasses;
   entities?: IExplorerData;
   variables?: IExplorerVariables;
 
@@ -23,9 +27,15 @@ export interface ExplorerProps {
   onUpdateVariables: (variables: IExplorerVariables) => void;
 }
 
+const getStyles = (theme: ITheme) => ({
+  pagination: { backgroundColor: theme.palette.background.toolbar },
+  table: { maxHeight: 'calc(100vh - 325px)', overflow: 'scroll' },
+});
+
 export type Explorer = React.FunctionComponent<ExplorerProps>;
 
 export const ExplorerComponent: Explorer = ({
+  classes,
   entities,
   variables = {},
   onReady,
@@ -60,16 +70,15 @@ export const ExplorerComponent: Explorer = ({
   };
 
   return (
-    <Grid container justify="center">
-      <EntityBrowser
-        entities={entityData}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-        onClear={handleClear}
-        onSearch={handleSearch}
-        variables={variables}
-      />
-    </Grid>
+    <EntityBrowser
+      classes={classes}
+      entities={entityData}
+      onChangePage={handleChangePage}
+      onChangeRowsPerPage={handleChangeRowsPerPage}
+      onClear={handleClear}
+      onSearch={handleSearch}
+      variables={variables}
+    />
   );
 };
 
@@ -88,6 +97,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return { onReady, onSearch, onUpdateVariables };
 };
 
-export const Explorer = connect(mapStateToProps, mapDispatchToProps)(ExplorerComponent);
+const StyledExplorer = withStyles(getStyles)(ExplorerComponent);
+export const Explorer = connect(mapStateToProps, mapDispatchToProps)(StyledExplorer);
 
 export default Explorer;

@@ -1,4 +1,20 @@
-import { createMuiTheme, Theme } from '@material-ui/core/styles';
+import { createMuiTheme, Theme, ThemeOptions } from '@material-ui/core/styles';
+import { Palette } from '@material-ui/core/styles/createPalette';
+
+interface IPalette extends Palette {
+  background: {
+    default: string;
+    paper: string;
+    toolbar: string;
+  };
+}
+export interface ITheme extends Theme {
+  palette: IPalette;
+}
+
+interface IThemeOptions extends ThemeOptions {
+  palette: IPalette;
+}
 
 const theme: Theme = createMuiTheme({
   palette: {
@@ -8,7 +24,8 @@ const theme: Theme = createMuiTheme({
     },
     background: {
       default: 'white',
-      paper: 'white',
+      paper: '#f9f9fb',
+      toolbar: '#D4EEF7',
     },
     divider: '#253240',
     text: {
@@ -42,6 +59,9 @@ const theme: Theme = createMuiTheme({
       textTransform: 'uppercase',
     },
   },
-});
+} as IThemeOptions);
 
 export default theme;
+
+export type flexDirection = 'column' | 'row';
+export type position = 'fixed' | 'absolute';

@@ -24,7 +24,10 @@ const getStyles = (theme: Theme) => ({
     paddingRight: 0,
   },
   content: {
-    marginTop: 24,
+    backgroundColor: theme.palette.background.paper,
+    marginTop: 124,
+    marginBottom: 135,
+    maxHeight: '100vh',
   },
 });
 
@@ -43,20 +46,18 @@ const _App: App = ({ alert, classes, resetAlert }) => {
             onClose={resetAlert}
           />
         </Grid>
-        <Grid container item className={classes.content}>
-          <Container>
-            <Switch>
-              <Route exact path="/explorer">
-                <Explorer />
-              </Route>
-              <Route exact path="/login">
-                <Login />
-              </Route>
-              <Route>
-                <Redirect to="/explorer" />
-              </Route>
-            </Switch>
-          </Container>
+        <Grid container className={classes.content} justify="center">
+          <Switch>
+            <Route exact path="/explorer">
+              <Explorer />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route>
+              <Redirect to="/explorer" />
+            </Route>
+          </Switch>
         </Grid>
       </Container>
       <Footer />

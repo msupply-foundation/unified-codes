@@ -5,12 +5,12 @@ import { Theme, withStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import { AppBar, Avatar, Grid, UCIcon } from '@unified-codes/ui';
+import { flexDirection } from '../../muiTheme';
 
 export interface HeaderProps {
   classes: ClassNameMap<any>;
 }
 
-type flexDirection = 'column' | 'row';
 const getStyles = (theme: Theme) => ({
   root: {
     alignItems: 'center',
@@ -50,7 +50,7 @@ export type Header = React.FunctionComponent<HeaderProps>;
 
 const _Header: Header = ({ classes }) => {
   return (
-    <AppBar position="static" className={classes.root}>
+    <AppBar position="fixed" className={classes.root}>
       <Grid item className={classes.title1}>
         Universal&nbsp;Drug
       </Grid>

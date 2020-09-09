@@ -8,7 +8,12 @@ import SearchBar from '../../inputs/molecules/SearchBar';
 import Alert from '../../feedback/atoms/Alert';
 import TablePagination from '@material-ui/core/TablePagination';
 
+export interface IEntityBrowserClasses {
+  pagination: string;
+  table: string;
+}
 export interface EntityBrowserProps {
+  classes?: IEntityBrowserClasses;
   entities: IPaginatedResults<Entity>;
   noResultsMessage?: string;
   variables?: IExplorerVariables;
@@ -32,6 +37,7 @@ export const EntityBrowser: EntityBrowser = ({
   onChangeRowsPerPage,
   onClear,
   onSearch,
+  classes,
   variables,
 }) => {
   const [input, setInput] = React.useState('');
@@ -61,10 +67,15 @@ export const EntityBrowser: EntityBrowser = ({
 
   const { page = 1, rowsPerPage = 10 } = variables || {};
   return (
-    <Grid container direction="column">
-      <Grid item>
+    <Grid
+      container
+      direction="column"
+      style={{ backgroundColor: '#fff', maxHeight: '100%', maxWidth: 900 }}
+    >
+      <Grid item style={{ paddingLeft: 15 }}>
         <SearchBar
           input={input}
+          label="Search description"
           onChange={onChangeInput}
           onClear={handleClear}
           onSearch={onSearch}
@@ -72,10 +83,10 @@ export const EntityBrowser: EntityBrowser = ({
       </Grid>
       {entities.totalResults ? (
         <>
-          <Grid item style={{ maxHeight: 400, overflow: 'scroll' }}>
+          <Grid item className={classes?.table}>
             <EntityTable data={entities.data} />
           </Grid>
-          <Grid item>
+          <Grid item className={classes?.pagination}>
             {entities.totalResults && (
               <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
