@@ -20,7 +20,7 @@ export interface IExplorerFetchDataAction extends Action<string> {
 }
 
 export interface IExplorerFetchSuccessAction extends Action<string> {
-  data: IPaginatedResults<Entity>;
+  entities: IPaginatedResults<Entity>;
 }
 
 export interface IExplorerFetchFailureAction extends Action<string> {
@@ -44,9 +44,9 @@ export const fetchData = (request: IEntitySearchRequest) => ({
   request,
 });
 
-export const fetchSuccess = (data: IPaginatedResults<Entity>) => ({
+export const fetchSuccess = (entities: IPaginatedResults<Entity>) => ({
   type: EXPLORER_ACTIONS.FETCH_SUCCESS,
-  data,
+  entities,
 });
 
 export const fetchFailure = (error: Error) => ({

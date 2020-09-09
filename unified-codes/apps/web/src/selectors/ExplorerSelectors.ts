@@ -13,23 +13,23 @@ export const variablesSelector = createSelector(
 
 export const dataSelector = createSelector(
   explorerSelector,
-  (explorer: IExplorerState): IExplorerData | undefined => explorer.data
+  (explorer: IExplorerState): IExplorerData | undefined => explorer.entities
 );
 
 export const entitiesSelector = createSelector(
   variablesSelector,
   dataSelector,
-  (variables?: IExplorerVariables, data?: IExplorerData) => {
+  (variables?: IExplorerVariables, entities?: IExplorerData) => {
     const { code = '', description = '' } = variables ?? {};
     const allEntities: Entity[] =
-      data?.entities?.map((entity: IEntity) => new Entity(entity)) ?? [];
+      entities?.data?.map((entity: IEntity) => new Entity(entity)) ?? [];
     // TODO: push this filter down
     const filteredEntities: Entity[] = allEntities.filter(
       (entity: Entity) => entity.matchesCode(code) || entity.matchesDescription(description)
     );
     return {
-      ...data,
-      entities: filteredEntities,
+      ...entities,
+      data: filteredEntities,
     };
   }
 );

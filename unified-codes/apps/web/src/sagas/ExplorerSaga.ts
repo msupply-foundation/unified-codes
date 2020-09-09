@@ -23,7 +23,8 @@ import {
 const getEntitiesQuery = (filter: IEntitySearchFilter, first: number, offset?: number) => `
   {
     entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" } offset: ${offset} first: ${first}) {
-      entities {
+      data {
+
         code
         description
         type
@@ -85,10 +86,9 @@ function* fetchData(action: IExplorerFetchDataAction) {
       | string
       | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
     if (url) {
-      const data: IPaginatedResults<Entity> = yield call(getEntities, url, action.request);
-
+      const entities: IPaginatedResults<Entity> = yield call(getEntities, url, action.request);
       yield put(AlertActions.resetAlert());
-      yield put(ExplorerActions.fetchSuccess(data));
+      yield put(ExplorerActions.fetchSuccess(entities));
     }
   } catch (error) {
     yield put(AlertActions.raiseAlert(alertError));

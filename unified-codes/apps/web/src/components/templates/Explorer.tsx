@@ -15,8 +15,9 @@ import { IExplorerData, IState } from '../../types';
 import { ExplorerSelectors } from '../../selectors';
 
 export interface ExplorerProps {
-  data?: IExplorerData;
+  entities?: IExplorerData;
   variables?: IExplorerVariables;
+
   onReady: () => void;
   onSearch: (request: IEntitySearchRequest) => void;
   onUpdateVariables: (variables: IExplorerVariables) => void;
@@ -25,7 +26,7 @@ export interface ExplorerProps {
 export type Explorer = React.FunctionComponent<ExplorerProps>;
 
 export const ExplorerComponent: Explorer = ({
-  data,
+  entities,
   variables = {},
   onReady,
   onUpdateVariables,
@@ -33,8 +34,8 @@ export const ExplorerComponent: Explorer = ({
   React.useEffect(() => {
     onReady();
   }, []);
-  const entityData = data || {
-    entities: [] as Array<Entity>,
+  const entityData = entities || {
+    data: [] as Array<Entity>,
     hasMore: false,
     totalResults: 0,
   };
@@ -61,7 +62,7 @@ export const ExplorerComponent: Explorer = ({
   return (
     <Grid container justify="center">
       <EntityBrowser
-        data={entityData}
+        entities={entityData}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
         onClear={handleClear}
@@ -73,9 +74,9 @@ export const ExplorerComponent: Explorer = ({
 };
 
 const mapStateToProps = (state: IState) => {
-  const data = ExplorerSelectors.entitiesSelector(state);
+  const entities = ExplorerSelectors.entitiesSelector(state);
   const variables = ExplorerSelectors.variablesSelector(state);
-  return { data, variables };
+  return { entities, variables };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {

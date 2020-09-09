@@ -3,11 +3,11 @@ import { IPaginatedResults, IPaginationParameters } from '@unified-codes/data';
 export function getPaginatedResults<T>(params: IPaginationParameters<T>): IPaginatedResults<T> {
   const { results } = params;
   const totalResults = results.length;
-  const entities = paginateResults(params);
-  const entityCount = entities.length;
+  const data = paginateResults(params);
+  const entityCount = data.length;
 
   return {
-    entities,
+    data,
     hasMore: totalResults > entityCount,
     totalResults,
   };
@@ -21,5 +21,5 @@ function paginateResults<T>(params: IPaginationParameters<T>): Array<T> {
   // don't let us overflow
   if (offset === results.length - 1) return [];
 
-  return results.slice(offset + 1, Math.min(results.length, offset + 1 + first));
+  return results.slice(offset, Math.min(results.length, offset + first));
 }
