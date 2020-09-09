@@ -1,36 +1,12 @@
 import { IApolloServiceContext, User } from '@unified-codes/data';
 import { DgraphDataSource } from './data';
-
-const queries = {
-  entity: (code) => {
-    return `{
-        query(func: eq(code, ${code}), first: 1) @recurse(loop: false)  {
-          code
-          description
-          type
-          value
-          has_child
-          has_property
-        }
-      }`;
-  },
-  entities: (type) => {
-    return `{
-      query(func: eq(type, ${type})) @filter(has(description)) @recurse(loop: false)  {
-        code
-        description
-        type
-        value
-        has_child
-        has_property
-      }
-    }`;
-  },
-};
+import { getPaginatedResults } from './utils';
+import { IEntity, IPaginationParameters } from '@unified-codes/data';
+import { queries } from './queries';
 
 export const resolvers = {
   Query: {
-    entity: async (_source, _args, context: IApolloServiceContext) => {
+    entity: async (_source: any, _args: any, context: IApolloServiceContext) => {
       const { token, authenticator, authoriser, dataSources } = context;
       const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
 
@@ -49,9 +25,10 @@ export const resolvers = {
       const [entity] = response.data.query;
       return entity;
     },
-    entities: async (_source, _args, context: IApolloServiceContext) => {
+    entities: async (_source: any, args: any, context: IApolloServiceContext) => {
       const { token, authenticator, authoriser, dataSources } = context;
       const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
+      const { filter, first, offset } = args;
 
       // TODO: add authorisation logic for any protected entities.
       if (token) {
@@ -62,10 +39,16 @@ export const resolvers = {
         console.log(`Entity requested by anonymous user.`);
       }
 
-      const { type = 'medicinal_product' } = _args?.filter ?? {};
+      const { type = 'medicinal_product' } = filter ?? {};
       const query = queries.entities(type);
       const response = await dgraph.postQuery(query);
-      return response.data.query;
+      const allEntities: Array<IEntity> = response.data.query;
+      const paginationParameters: IPaginationParameters<IEntity> = {
+        first,
+        offset,
+        results: allEntities,
+      };
+      return getPaginatedResults<IEntity>(paginationParameters);
     },
   },
 };

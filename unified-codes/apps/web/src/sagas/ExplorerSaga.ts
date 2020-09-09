@@ -1,15 +1,31 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 
-import { IEntity, AlertSeverity, IAlert } from '@unified-codes/data';
+import {
+  AlertSeverity,
+  Entity,
+  IAlert,
+  IPaginatedResults,
+  IPaginationRequest,
+} from '@unified-codes/data';
 
-import { EXPLORER_ACTIONS, ExplorerActions, AlertActions, IExplorerAction } from '../actions';
+import {
+  EXPLORER_ACTIONS,
+  ExplorerActions,
+  AlertActions,
+  IExplorerAction,
+  IExplorerFetchDataAction,
+} from '../actions';
 
-const GET_ENTITIES = `
+const getEntitiesQuery = (first: number, offset?: number) => `
   {
-    entities {
-      code
-      description
-      type
+    entities(offset: ${offset} first: ${first}) {
+      data {
+        code
+        description
+        type
+      },
+      hasMore,
+      totalResults,
     }
   }
 `;
@@ -37,32 +53,35 @@ const alertFetch: IAlert = {
 };
 
 // TODO: add helper class for raw gql queries to data library and refactor this!
-const getEntities = async (url: string): Promise<IEntity[]> => {
+const getEntities = async (
+  url: string,
+  request: IPaginationRequest
+): Promise<IPaginatedResults<Entity>> => {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify({ query: GET_ENTITIES }),
+    body: JSON.stringify({ query: getEntitiesQuery(request.first, request.offset) }),
   });
   const json = await response.json();
-  const { data }: { data: { entities: IEntity[] } } = json;
-  const { entities }: { entities: IEntity[] } = data;
+  const { data } = json;
+  const { entities } = data;
+
   return entities;
 };
 
-function* fetchData() {
+function* fetchData(action: IExplorerFetchDataAction) {
   yield put(AlertActions.raiseAlert(alertFetch));
-
   try {
     const url:
       | string
       | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
     if (url) {
-      const data: IEntity[] = yield call(getEntities, url);
+      const entities: IPaginatedResults<Entity> = yield call(getEntities, url, action.request);
       yield put(AlertActions.resetAlert());
-      yield put(ExplorerActions.fetchSuccess(data));
+      yield put(ExplorerActions.fetchSuccess(entities));
     }
   } catch (error) {
     yield put(AlertActions.raiseAlert(alertError));

@@ -1,7 +1,7 @@
 export const queries = {
-  entity: (code) => {
+  entity: (code: string) => {
     return `{
-        query(func: eq(code, ${code})) @recurse(loop: false)  {
+        query(func: eq(code, ${code}), first: 1) @recurse(loop: false)  {
           code
           description
           type
@@ -11,7 +11,7 @@ export const queries = {
         }
       }`;
   },
-  entities: (type) => {
+  entities: (type: string) => {
     return `{
       query(func: eq(type, ${type})) @filter(has(description)) @recurse(loop: false)  {
         code

@@ -5,5 +5,6 @@ export * from './AuthorisationService';
 export * from './Entity';
 export * from './IdentityProvider';
 export * from './JWT';
+export * from './Pagination';
 export * from './Property';
 export * from './User';
