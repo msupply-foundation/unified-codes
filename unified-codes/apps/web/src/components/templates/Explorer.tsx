@@ -38,7 +38,7 @@ const getStyles = (theme: ITheme) => {
     table: {
       marginTop: 5,
       maxHeight: `calc(100vh - ${FOOTER_HEADER_HEIGHT}px)`,
-      overflow: 'scroll',
+      overflowY: 'scroll',
       '& th': { backgroundColor: theme.palette.background.toolbar, fontWeight: 700 },
       '& thead > tr': { borderBottom: borderStyle },
       '& tr > th': { borderRight: borderStyle },
