@@ -37,11 +37,11 @@ const getStyles = (theme: Theme) => ({
     },
   },
   title1: {
-    paddingRight: '0!important',
+    paddingRight: '5px!important',
     ...theme.typography.subtitle1,
   },
   title2: {
-    paddingLeft: '3px!important',
+    paddingLeft: '5px!important',
     ...theme.typography.subtitle2,
   },
 });
