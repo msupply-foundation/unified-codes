@@ -78,8 +78,8 @@ export const EntityBrowser: EntityBrowser = ({
 
   const { page = 1, rowsPerPage = 10 } = variables || {};
   return (
-    <Grid container direction="column" className={classes.root}>
-      <Grid item className={classes.searchBar}>
+    <Grid container direction="column" className={classes?.root}>
+      <Grid item className={classes?.searchBar}>
         <SearchBar
           input={input}
           label="Search description"

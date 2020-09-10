@@ -6,10 +6,11 @@ import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import { Grid, Paper, TMFLogo } from '@unified-codes/ui';
 import { flexDirection, ITheme, position } from '../../muiTheme';
+
 export interface FooterProps {
   classes: ClassNameMap<any>;
-  x: React.CSSProperties;
 }
+
 const getStyles = (theme: ITheme) => ({
   root: {
     height: 120,

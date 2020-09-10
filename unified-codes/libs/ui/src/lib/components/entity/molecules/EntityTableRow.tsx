@@ -13,7 +13,7 @@ export interface EntityTableRowProps {
 export type EntityTableRow = React.FunctionComponent<EntityTableRowProps>;
 
 export const EntityTableRow: EntityTableRow = ({ rowProps, cellProps, entity }) => {
-  const { code, description, type } = entity;
+  const { code, description, type } = entity || {};
   return (
     <TableRow {...rowProps}>
       <TableCell {...cellProps}>{code}</TableCell>
