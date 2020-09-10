@@ -1,3 +1,4 @@
+export * from './ArrowUpIcon';
 export * from './ClearIcon';
 export * from './SvgIcon';
 export * from './MenuIcon';

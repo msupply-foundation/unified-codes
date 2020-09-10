@@ -17,6 +17,7 @@ const initialState = (): IExplorerState => {
     },
     loading: false,
     variables: {
+      orderBy: 'description',
       page: 0,
       rowsPerPage: 25,
       type: 'medicinal_product',

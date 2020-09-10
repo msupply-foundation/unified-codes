@@ -1,40 +1,45 @@
 import * as React from 'react';
 
 import { TableCell, TableCellProps, TableRow, TableRowProps } from '../../data';
+import { ArrowUpIcon } from '../../icons';
 
 export interface EntityTableHeaderProps {
-  rowProps?: TableRowProps;
   cellProps?: TableCellProps;
+  orderDesc?: boolean;
+  orderBy?: string;
+  rowProps?: TableRowProps;
   onSort?: (value: string) => void;
 }
 
 export type EntityTableHeader = React.FunctionComponent<EntityTableHeaderProps>;
 
 export const EntityTableHeader: EntityTableHeader = ({
-  rowProps,
   cellProps,
+  orderDesc,
+  orderBy,
+  rowProps,
   onSort,
-}: {
-  rowProps: TableRowProps;
-  cellProps: TableCellProps;
-  onSort?: (value: string) => void;
-}) => {
-  const handleSortCode = () => onSort && onSort('code');
-  const handleSortDescription = () => onSort && onSort('description');
-  const handleSortType = () => onSort && onSort('type');
-  const mergedCellProps = { ...cellProps, style: { cursor: 'pointer' } };
+}: EntityTableHeaderProps) => {
+  const mergedCellProps = { ...cellProps, style: { cursor: 'pointer', padding: '3px 16px' } };
 
+  const Cell = ({ name }: { name: string }) => {
+    const sortName = name.toLowerCase();
+    const onClick = () => onSort && onSort(sortName);
+    const arrowStyle = orderDesc
+      ? { marginBottom: -7, transform: 'rotate(180deg)' }
+      : { marginBottom: -7 };
+    return (
+      <TableCell {...mergedCellProps} onClick={onClick}>
+        {name}
+        {sortName === orderBy && <ArrowUpIcon style={arrowStyle} />}
+      </TableCell>
+    );
+  };
   return (
     <TableRow {...rowProps}>
-      <TableCell {...mergedCellProps} onClick={handleSortCode}>
-        Code
-      </TableCell>
-      <TableCell {...mergedCellProps} onClick={handleSortDescription}>
-        Description
-      </TableCell>
-      <TableCell {...mergedCellProps} onClick={handleSortType}>
-        Type
-      </TableCell>
+      <Cell name="Code" />
+      <Cell name="Description" />
+      <Cell name="Type" />
     </TableRow>
   );
 };

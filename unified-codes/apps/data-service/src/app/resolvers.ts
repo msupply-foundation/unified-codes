@@ -39,8 +39,8 @@ export const resolvers = {
         console.log(`Entity requested by anonymous user.`);
       }
 
-      const { type = 'medicinal_product', code, description, orderAsc, orderBy } = filter ?? {};
-      const order = `order${orderAsc ? 'asc' : 'desc'}: ${orderBy}`;
+      const { type = 'medicinal_product', code, description, orderDesc, orderBy } = filter ?? {};
+      const order = `order${orderDesc ? 'desc' : 'asc'}: ${orderBy}`;
       const query =
         description && description.length
           ? queries.entitiesByDescriptionAndType(type, description, order)

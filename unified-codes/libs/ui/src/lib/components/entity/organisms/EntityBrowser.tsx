@@ -93,7 +93,12 @@ export const EntityBrowser: EntityBrowser = ({
       {entities.totalResults ? (
         <>
           <Grid item className={classes?.table}>
-            <EntityTable data={entities.data} {...childProps} onSort={onSort} />
+            <EntityTable
+              data={entities.data}
+              {...childProps}
+              onSort={onSort}
+              variables={variables}
+            />
           </Grid>
           <Grid item className={classes?.pagination}>
             {entities.totalResults && (

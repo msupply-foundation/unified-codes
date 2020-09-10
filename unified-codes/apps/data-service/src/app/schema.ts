@@ -38,7 +38,7 @@ const typeDefs = gql`
     "Field to order by"
     orderBy: String
     "Sort ascending"
-    orderAsc: Boolean
+    orderDesc: Boolean
   }
 `;
 

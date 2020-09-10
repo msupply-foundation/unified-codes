@@ -88,8 +88,8 @@ export const ExplorerComponent: Explorer = ({
   };
 
   const handleSort = (orderBy: string) => {
-    const orderAsc = orderBy === variables?.orderBy ? !variables.orderAsc : true;
-    onUpdateVariables({ ...variables, orderBy, orderAsc });
+    const orderDesc = orderBy === variables?.orderBy ? !variables.orderDesc : false;
+    onUpdateVariables({ ...variables, orderBy, orderDesc });
   };
 
   const childProps = {

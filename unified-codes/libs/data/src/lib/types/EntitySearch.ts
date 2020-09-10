@@ -1,7 +1,7 @@
 export interface IEntitySearchFilter {
   code: string;
   description: string;
-  orderAsc: boolean;
+  orderDesc: boolean;
   orderBy: string;
   type: string;
 }
@@ -15,7 +15,7 @@ export interface IEntitySearchRequest {
 export class EntitySearchFilter implements IEntitySearchFilter {
   _code: string;
   _description: string;
-  _orderAsc: boolean;
+  _orderDesc: boolean;
   _orderBy: string;
   _type: string;
 
@@ -24,11 +24,11 @@ export class EntitySearchFilter implements IEntitySearchFilter {
     code?: string,
     type?: string,
     orderBy?: string,
-    orderAsc?: boolean
+    orderDesc?: boolean
   ) {
     this._code = code || '';
     this._description = description || '';
-    this._orderAsc = orderAsc || true;
+    this._orderDesc = !!orderDesc;
     this._orderBy = orderBy || 'description';
     this._type = type || 'medicinal_product';
   }
@@ -41,8 +41,8 @@ export class EntitySearchFilter implements IEntitySearchFilter {
     return this._description;
   }
 
-  get orderAsc(): boolean {
-    return this._orderAsc;
+  get orderDesc(): boolean {
+    return this._orderDesc;
   }
 
   get orderBy(): string {

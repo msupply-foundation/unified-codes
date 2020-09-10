@@ -2,7 +2,7 @@ export interface IExplorerVariables {
   code?: string;
   description?: string;
   orderBy?: string;
-  orderAsc?: boolean;
+  orderDesc?: boolean;
   page?: number;
   rowsPerPage?: number;
   type?: string;

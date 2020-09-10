@@ -24,11 +24,11 @@ const getEntitiesQuery = (
   filter: IEntitySearchFilter,
   first: number,
   orderBy: string,
-  orderAsc: boolean,
+  orderDesc: boolean,
   offset?: number
 ) => `
   {
-    entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" orderBy: "${orderBy}" orderAsc: ${orderAsc} } offset: ${offset} first: ${first}) {
+    entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" orderBy: "${orderBy}" orderDesc: ${orderDesc} } offset: ${offset} first: ${first}) {
       data {
 
         code
@@ -79,7 +79,7 @@ const getEntities = async (
         request.filter,
         request.first,
         request.filter.orderBy,
-        request.filter.orderAsc,
+        request.filter.orderDesc,
         request.offset
       ),
     }),
@@ -114,8 +114,8 @@ function* fetchDataSaga() {
 
 function* updateVariables(action: IExplorerUpdateVariablesAction) {
   const { variables } = action;
-  const { code, description, page, rowsPerPage, orderAsc, orderBy, type } = variables;
-  const filter = new EntitySearchFilter(description, code, type, orderBy, orderAsc);
+  const { code, description, page, rowsPerPage, orderDesc, orderBy, type } = variables;
+  const filter = new EntitySearchFilter(description, code, type, orderBy, orderDesc);
   const request = new EntitySearchRequest(filter, rowsPerPage, page);
   yield put(ExplorerActions.fetchData(request));
 }
