@@ -16,7 +16,7 @@ const getStyles = (theme: Theme) => ({
     alignItems: 'center',
     backgroundColor: theme.palette.divider,
     flexDirection: 'row' as flexDirection,
-    padding: '29px 24px 12px 24px',
+    padding: '12px 24px 12px 24px',
     ' & div': {
       flex: '0 1 0%',
     },

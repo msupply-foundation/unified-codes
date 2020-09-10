@@ -9,9 +9,12 @@ import Alert from '../../feedback/atoms/Alert';
 import TablePagination from '@material-ui/core/TablePagination';
 
 export interface IEntityBrowserClasses {
-  pagination: string;
-  table: string;
+  pagination?: string;
+  root?: string;
+  searchBar?: string;
+  table?: string;
 }
+
 export interface EntityBrowserProps {
   classes?: IEntityBrowserClasses;
   entities: IPaginatedResults<Entity>;
@@ -67,12 +70,8 @@ export const EntityBrowser: EntityBrowser = ({
 
   const { page = 1, rowsPerPage = 10 } = variables || {};
   return (
-    <Grid
-      container
-      direction="column"
-      style={{ backgroundColor: '#fff', maxHeight: '100%', maxWidth: 900 }}
-    >
-      <Grid item style={{ paddingLeft: 15 }}>
+    <Grid container direction="column" className={classes.root}>
+      <Grid item className={classes.searchBar}>
         <SearchBar
           input={input}
           label="Search description"

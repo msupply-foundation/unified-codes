@@ -12,7 +12,7 @@ export interface FooterProps {
 }
 const getStyles = (theme: Theme) => ({
   root: {
-    height: 135,
+    height: 120,
     position: 'fixed' as position,
     width: '100%',
     bottom: 0,
@@ -29,8 +29,8 @@ const getStyles = (theme: Theme) => ({
     marginBottom: 15,
   },
   menu: {
-    marginBottom: 17,
-    marginTop: 32,
+    marginBottom: 15,
+    marginTop: 15,
     '& div ': {
       paddingRight: 15,
     },

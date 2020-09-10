@@ -25,7 +25,7 @@ const getStyles = (theme: Theme) => ({
   },
   content: {
     backgroundColor: theme.palette.background.paper,
-    marginTop: 124,
+    marginTop: 96,
     marginBottom: 135,
     maxHeight: '100vh',
   },

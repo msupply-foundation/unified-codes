@@ -17,6 +17,8 @@ import { ExplorerSelectors } from '../../selectors';
 import { withStyles } from '@material-ui/core/styles';
 import { ITheme } from '../../muiTheme';
 
+const FOOTER_HEADER_HEIGHT = 300;
+
 export interface ExplorerProps {
   classes?: IEntityBrowserClasses;
   entities?: IExplorerData;
@@ -29,7 +31,14 @@ export interface ExplorerProps {
 
 const getStyles = (theme: ITheme) => ({
   pagination: { backgroundColor: theme.palette.background.toolbar },
-  table: { maxHeight: 'calc(100vh - 325px)', overflow: 'scroll' },
+  root: { backgroundColor: theme.palette.background.default, maxHeight: '100%', maxWidth: 900 },
+  searchBar: { paddingLeft: 15 },
+  table: {
+    marginTop: 5,
+    maxHeight: `calc(100vh - ${FOOTER_HEADER_HEIGHT}px)`,
+    overflow: 'scroll',
+    '& th': { backgroundColor: '#ccc', fontWeight: 700 },
+  },
 });
 
 export type Explorer = React.FunctionComponent<ExplorerProps>;
