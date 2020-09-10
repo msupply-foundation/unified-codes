@@ -35,6 +35,10 @@ const typeDefs = gql`
     description: String
     "Search by Level in Product Hierarchy"
     type: String
+    "Field to order by"
+    orderBy: String
+    "Sort ascending"
+    orderAsc: Boolean
   }
 `;
 

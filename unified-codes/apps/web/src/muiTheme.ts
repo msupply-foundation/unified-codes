@@ -66,4 +66,5 @@ const theme: Theme = createMuiTheme({
 export default theme;
 
 export type flexDirection = 'column' | 'row';
+export type overflow = 'scroll' | 'auto';
 export type position = 'fixed' | 'absolute';

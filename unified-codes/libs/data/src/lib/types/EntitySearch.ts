@@ -1,6 +1,8 @@
 export interface IEntitySearchFilter {
   code: string;
   description: string;
+  orderAsc: boolean;
+  orderBy: string;
   type: string;
 }
 
@@ -13,11 +15,21 @@ export interface IEntitySearchRequest {
 export class EntitySearchFilter implements IEntitySearchFilter {
   _code: string;
   _description: string;
+  _orderAsc: boolean;
+  _orderBy: string;
   _type: string;
 
-  constructor(description?: string, code?: string, type?: string) {
+  constructor(
+    description?: string,
+    code?: string,
+    type?: string,
+    orderBy?: string,
+    orderAsc?: boolean
+  ) {
     this._code = code || '';
     this._description = description || '';
+    this._orderAsc = orderAsc || true;
+    this._orderBy = orderBy || 'description';
     this._type = type || 'medicinal_product';
   }
 
@@ -27,6 +39,14 @@ export class EntitySearchFilter implements IEntitySearchFilter {
 
   get description(): string {
     return this._description;
+  }
+
+  get orderAsc(): boolean {
+    return this._orderAsc;
+  }
+
+  get orderBy(): string {
+    return this._orderBy;
   }
 
   get type(): string {

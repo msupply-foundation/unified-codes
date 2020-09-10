@@ -15,7 +15,7 @@ import { IExplorerData, IState } from '../../types';
 import { ExplorerSelectors } from '../../selectors';
 
 import { withStyles } from '@material-ui/core/styles';
-import { ITheme } from '../../muiTheme';
+import { ITheme, overflow } from '../../muiTheme';
 
 const FOOTER_HEADER_HEIGHT = 300;
 
@@ -38,7 +38,7 @@ const getStyles = (theme: ITheme) => {
     table: {
       marginTop: 5,
       maxHeight: `calc(100vh - ${FOOTER_HEADER_HEIGHT}px)`,
-      overflowY: 'scroll',
+      overflowY: 'scroll' as overflow,
       '& th': { backgroundColor: theme.palette.background.toolbar, fontWeight: 700 },
       '& thead > tr': { borderBottom: borderStyle },
       '& tr > th': { borderRight: borderStyle },
@@ -87,6 +87,11 @@ export const ExplorerComponent: Explorer = ({
     onUpdateVariables({ ...variables, page: 0, rowsPerPage });
   };
 
+  const handleSort = (orderBy: string) => {
+    const orderAsc = orderBy === variables?.orderBy ? !variables.orderAsc : true;
+    onUpdateVariables({ ...variables, orderBy, orderAsc });
+  };
+
   const childProps = {
     tableProps: { alternatingRowColour: '#f5f5f5', stripedRows: true },
     rowProps: { rowProps: { style: { backgroundColor: '' } } },
@@ -101,6 +106,7 @@ export const ExplorerComponent: Explorer = ({
       onChangeRowsPerPage={handleChangeRowsPerPage}
       onClear={handleClear}
       onSearch={handleSearch}
+      onSort={handleSort}
       variables={variables}
     />
   );

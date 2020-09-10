@@ -20,9 +20,15 @@ import {
   IExplorerUpdateVariablesAction,
 } from '../actions';
 
-const getEntitiesQuery = (filter: IEntitySearchFilter, first: number, offset?: number) => `
+const getEntitiesQuery = (
+  filter: IEntitySearchFilter,
+  first: number,
+  orderBy: string,
+  orderAsc: boolean,
+  offset?: number
+) => `
   {
-    entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" } offset: ${offset} first: ${first}) {
+    entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" orderBy: "${orderBy}" orderAsc: ${orderAsc} } offset: ${offset} first: ${first}) {
       data {
 
         code
@@ -69,7 +75,13 @@ const getEntities = async (
       Accept: 'application/json',
     },
     body: JSON.stringify({
-      query: getEntitiesQuery(request.filter, request.first, request.offset),
+      query: getEntitiesQuery(
+        request.filter,
+        request.first,
+        request.filter.orderBy,
+        request.filter.orderAsc,
+        request.offset
+      ),
     }),
   });
   const json = await response.json();
@@ -102,10 +114,9 @@ function* fetchDataSaga() {
 
 function* updateVariables(action: IExplorerUpdateVariablesAction) {
   const { variables } = action;
-  const { code, description, page, rowsPerPage, type } = variables;
-  const filter = new EntitySearchFilter(description, code, type);
+  const { code, description, page, rowsPerPage, orderAsc, orderBy, type } = variables;
+  const filter = new EntitySearchFilter(description, code, type, orderBy, orderAsc);
   const request = new EntitySearchRequest(filter, rowsPerPage, page);
-
   yield put(ExplorerActions.fetchData(request));
 }
 

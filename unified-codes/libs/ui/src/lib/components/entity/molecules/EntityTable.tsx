@@ -20,6 +20,7 @@ export interface EntityTableProps {
   bodyProps?: TableBodyProps;
   rowProps?: EntityTableRowProps;
   data: Entity[];
+  onSort?: (value: string) => void;
 }
 
 export type EntityTable = React.FunctionComponent<EntityTableProps>;
@@ -31,6 +32,7 @@ export const EntityTable: EntityTable = ({
   bodyProps,
   rowProps,
   data,
+  onSort,
 }: {
   tableProps: TableProps;
   headProps: TableHeadProps;
@@ -38,6 +40,7 @@ export const EntityTable: EntityTable = ({
   bodyProps: TableBodyProps;
   rowProps: EntityTableRowProps;
   data: Entity[];
+  onSort?: (value: string) => void;
 }) => {
   const mapEntity = (entity: Entity, index: number) => {
     const localRowProps =
@@ -65,7 +68,7 @@ export const EntityTable: EntityTable = ({
   return (
     <Table {...otherProps}>
       <TableHead {...headProps}>
-        <EntityTableHeader {...headerProps} />
+        <EntityTableHeader {...headerProps} onSort={onSort} />
       </TableHead>
       <TableBody {...bodyProps}>
         <EntityTableRows />

@@ -33,6 +33,7 @@ export interface EntityBrowserProps {
   onChangeRowsPerPage?: (rowsPerPage: number) => void;
   onClear?: () => void;
   onSearch?: (value: string) => void;
+  onSort?: (value: string) => void;
 }
 
 export type EntityBrowser = React.FunctionComponent<EntityBrowserProps>;
@@ -48,6 +49,7 @@ export const EntityBrowser: EntityBrowser = ({
   onChangeRowsPerPage,
   onClear,
   onSearch,
+  onSort,
   classes,
   variables,
 }) => {
@@ -91,7 +93,7 @@ export const EntityBrowser: EntityBrowser = ({
       {entities.totalResults ? (
         <>
           <Grid item className={classes?.table}>
-            <EntityTable data={entities.data} {...childProps} />
+            <EntityTable data={entities.data} {...childProps} onSort={onSort} />
           </Grid>
           <Grid item className={classes?.pagination}>
             {entities.totalResults && (
