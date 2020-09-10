@@ -4,6 +4,7 @@ import { Palette } from '@material-ui/core/styles/createPalette';
 interface IPalette extends Palette {
   background: {
     default: string;
+    footer: string;
     paper: string;
     toolbar: string;
   };
@@ -24,10 +25,11 @@ const theme: Theme = createMuiTheme({
     },
     background: {
       default: 'white',
+      footer: '#253240',
       paper: '#f9f9fb',
       toolbar: '#D4EEF7',
     },
-    divider: '#253240',
+    divider: 'rgba(102,102,102,0.52)',
     text: {
       primary: 'rgba(0,0,0,0.83)',
       hint: 'rgba(0,0,0,0.6)',

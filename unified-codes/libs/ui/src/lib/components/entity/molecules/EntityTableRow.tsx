@@ -7,7 +7,7 @@ import { Entity } from '@unified-codes/data';
 export interface EntityTableRowProps {
   rowProps?: TableRowProps;
   cellProps?: TableCellProps;
-  entity: Entity;
+  entity?: Entity;
 }
 
 export type EntityTableRow = React.FunctionComponent<EntityTableRowProps>;

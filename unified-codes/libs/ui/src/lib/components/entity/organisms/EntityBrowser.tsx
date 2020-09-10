@@ -1,8 +1,10 @@
 import * as React from 'react';
 
 import { Entity, IExplorerVariables, IPaginatedResults } from '@unified-codes/data';
+import { TableProps } from '../../data';
 
 import EntityTable from '../molecules/EntityTable';
+import { EntityTableRowProps } from '../molecules/EntityTableRow';
 import Grid from '../../layout/atoms/Grid';
 import SearchBar from '../../inputs/molecules/SearchBar';
 import Alert from '../../feedback/atoms/Alert';
@@ -15,7 +17,12 @@ export interface IEntityBrowserClasses {
   table?: string;
 }
 
+export type IChildProperties = {
+  tableProps?: TableProps;
+  rowProps?: EntityTableRowProps;
+};
 export interface EntityBrowserProps {
+  childProps?: IChildProperties;
   classes?: IEntityBrowserClasses;
   entities: IPaginatedResults<Entity>;
   noResultsMessage?: string;
@@ -33,6 +40,7 @@ type RowsPerPageEvent = React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement
 type MouseEvent = React.MouseEvent<HTMLButtonElement> | null;
 
 export const EntityBrowser: EntityBrowser = ({
+  childProps,
   entities,
   noResultsMessage = 'No results found',
   onChange,
@@ -83,7 +91,7 @@ export const EntityBrowser: EntityBrowser = ({
       {entities.totalResults ? (
         <>
           <Grid item className={classes?.table}>
-            <EntityTable data={entities.data} />
+            <EntityTable data={entities.data} {...childProps} />
           </Grid>
           <Grid item className={classes?.pagination}>
             {entities.totalResults && (

@@ -1,23 +1,23 @@
 import * as React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
-import { Theme, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import { Grid, Paper, TMFLogo } from '@unified-codes/ui';
-import { flexDirection, position } from '../../muiTheme';
+import { flexDirection, ITheme, position } from '../../muiTheme';
 export interface FooterProps {
   classes: ClassNameMap<any>;
   x: React.CSSProperties;
 }
-const getStyles = (theme: Theme) => ({
+const getStyles = (theme: ITheme) => ({
   root: {
     height: 120,
     position: 'fixed' as position,
     width: '100%',
     bottom: 0,
     alignItems: 'center',
-    backgroundColor: theme.palette.divider,
+    backgroundColor: theme.palette.background.footer,
     display: 'flex',
     flexDirection: 'column' as flexDirection,
     fontFamily: 'roboto',
@@ -42,7 +42,7 @@ const getStyles = (theme: Theme) => ({
   },
   paper: {
     alignItems: 'center',
-    backgroundColor: theme.palette.divider,
+    backgroundColor: theme.palette.background.footer,
     display: 'flex',
     flexDirection: 'column' as flexDirection,
     fontFamily: 'roboto',

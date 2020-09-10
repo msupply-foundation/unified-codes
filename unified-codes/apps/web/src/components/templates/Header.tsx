@@ -5,16 +5,16 @@ import { Theme, withStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import { AppBar, Avatar, Grid, UCIcon } from '@unified-codes/ui';
-import { flexDirection } from '../../muiTheme';
+import { flexDirection, ITheme } from '../../muiTheme';
 
 export interface HeaderProps {
   classes: ClassNameMap<any>;
 }
 
-const getStyles = (theme: Theme) => ({
+const getStyles = (theme: ITheme) => ({
   root: {
     alignItems: 'center',
-    backgroundColor: theme.palette.divider,
+    backgroundColor: theme.palette.background.footer,
     flexDirection: 'row' as flexDirection,
     padding: '12px 24px 12px 24px',
     ' & div': {

@@ -34,7 +34,7 @@ export const SearchBar: SearchBar = ({ input, label, onChange, onClear, onSearch
         />
       </Grid>
       <Grid item xs={1}>
-        <SearchButton fullWidth onClick={onClick} />
+        <SearchButton fullWidth onClick={onClick} style={{ marginTop: 15 }} />
       </Grid>
     </Grid>
   );

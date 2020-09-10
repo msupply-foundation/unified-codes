@@ -39,17 +39,31 @@ export const EntityTable: EntityTable = ({
   rowProps: EntityTableRowProps;
   data: Entity[];
 }) => {
-  const mapEntity = (entity: Entity) => (
-    <EntityTableRow key={entity.code} {...{ ...rowProps, entity }}></EntityTableRow>
-  );
+  const mapEntity = (entity: Entity, index: number) => {
+    const localRowProps =
+      tableProps.stripedRows && tableProps.alternatingRowColour
+        ? { style: { backgroundColor: index % 2 ? tableProps.alternatingRowColour : '' } }
+        : undefined;
+
+    return (
+      <EntityTableRow
+        key={entity.code}
+        {...{
+          ...rowProps,
+          entity,
+          rowProps: { ...localRowProps },
+        }}
+      ></EntityTableRow>
+    );
+  };
 
   const EntityTableRows = React.useCallback(
     () => <React.Fragment>{data.map(mapEntity)}</React.Fragment>,
     [rowProps, data]
   );
-
+  const { stripedRows, alternatingRowColour, ...otherProps } = tableProps;
   return (
-    <Table {...tableProps}>
+    <Table {...otherProps}>
       <TableHead {...headProps}>
         <EntityTableHeader {...headerProps} />
       </TableHead>
