@@ -5,11 +5,11 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Theme, withStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
-import { Container, Grid, AlertBar, EntityTypeFilter } from '@unified-codes/ui';
+import { Container, Grid, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
 
 import { AlertActions } from './actions';
-import { Explorer, Footer, Header, Login } from './components';
+import { Explorer, Footer, Header, Login, EntityTypeFilter } from './components';
 
 export interface AppProps {
   alert: IAlert;
@@ -31,6 +31,7 @@ const getStyles = (theme: Theme) => ({
 export type App = React.FunctionComponent<AppProps>;
 
 const _App: App = ({ alert, classes, resetAlert }) => {
+  
   return (
     <BrowserRouter>
       <Container maxWidth={false} className={classes.container}>

@@ -34,11 +34,11 @@ export interface ToggleButtonProps extends ButtonProps {
 export type ToggleButton = React.FunctionComponent<ToggleButtonProps>;
 
 export const ToggleButton: ToggleButton = (props: ToggleButtonProps) => {
-  const { isSelected } = props;
+  const { isSelected, ...buttonProps } = props;
   const { classes } = props;
   const startIcon = isSelected ? <CheckCircleIcon /> : <AddIcon />;
   const className = isSelected ? classes.textPrimary : classes.textSecondary;
-  return <Button startIcon={startIcon} {...props} className={className}></Button>;
+  return <Button startIcon={startIcon} className={className} {...buttonProps}></Button>;
 };
 
 export default withStyles(getStyles)(ToggleButton);
