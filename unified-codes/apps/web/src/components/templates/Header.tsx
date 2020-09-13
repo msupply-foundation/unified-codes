@@ -20,6 +20,7 @@ const getStyles = (theme: Theme) => ({
     ' & div': {
       flex: '0 1 0%',
     },
+    boxShadow: 'none'
   },
   body: theme.typography.body1,
   logo: {
