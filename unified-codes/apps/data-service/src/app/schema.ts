@@ -23,10 +23,8 @@ const typeDefs = gql`
     entities(filter: EntityFilterInput, first: Int, offset: Int): EntitiesResponse
   }
 
-  type IEntityCollection {
+  type EntitiesResponse {
     data: [Entity]!
-    first: Int!
-    offset: Int!
     totalLength: Int!
   }
 
