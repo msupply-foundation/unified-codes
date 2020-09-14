@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Entity, IEntity } from '@unified-codes/data';
+import { Entity, EntityCollection, IEntity } from '@unified-codes/data';
 
 import { EntityBrowser } from './EntityBrowser';
 
@@ -23,6 +23,6 @@ export const withNoProps = () => {
     },
   ];
   const data = entities.map((entityNode: IEntity) => new Entity(entityNode));
-  const entityData = { data, hasMore: false, totalResults: 2 };
-  return <EntityBrowser entities={entityData} />;
+  const entityCollection = new EntityCollection(data);
+  return <EntityBrowser entities={entityCollection} />;
 };
