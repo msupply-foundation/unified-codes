@@ -9,7 +9,7 @@ import { Container, Grid, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
 
 import { AlertActions } from './actions';
-import { Explorer, Footer, Header, Login } from './components';
+import { Explorer, Footer, Header, Login, EntityTypeFilter } from './components';
 
 export interface AppProps {
   alert: IAlert;
@@ -34,11 +34,13 @@ const getStyles = (theme: Theme) => ({
 export type App = React.FunctionComponent<AppProps>;
 
 const _App: App = ({ alert, classes, resetAlert }) => {
+  
   return (
     <BrowserRouter>
       <Container maxWidth={false} className={classes.container}>
         <Grid container spacing={3} direction="column" justify="space-between" alignItems="stretch">
           <Header />
+          <EntityTypeFilter />
           <AlertBar
             isVisible={alert.isVisible}
             text={alert.text}
