@@ -103,7 +103,7 @@ export const EntityBrowser: EntityBrowser = ({
           <Grid item className={classes?.pagination}>
             {entities.totalLength && (
               <TablePagination
-                rowsPerPageOptions={[3, 10, 25, 100]}
+                rowsPerPageOptions={[10, 25, 100]}
                 component="div"
                 count={entities.totalLength}
                 rowsPerPage={rowsPerPage}

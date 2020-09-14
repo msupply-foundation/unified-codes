@@ -114,10 +114,10 @@ function* fetchDataSaga() {
 
 function* updateVariables(action: IExplorerUpdateVariablesAction) {
   const { variables } = action;
-  // TODO update with cursor
-  const { code, description, page = 0, rowsPerPage = 25, orderDesc, orderBy, type } = variables;
+  const { code, description, page, rowsPerPage, orderDesc, orderBy, type } = variables;
   const filter = new EntitySearchFilter(description, code, type, orderBy, orderDesc);
-  const request = new EntitySearchRequest(filter, rowsPerPage, page * rowsPerPage);
+  const offset = rowsPerPage && page ? page * rowsPerPage : undefined;
+  const request = new EntitySearchRequest(filter, rowsPerPage, offset);
   yield put(ExplorerActions.fetchData(request));
 }
 

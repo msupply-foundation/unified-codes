@@ -44,7 +44,7 @@ export const resolvers = {
       const response = await dgraph.postQuery(query);
       const entities: Array<IEntity> = response.data.query;
 
-      return new EntityCollection(entities, response?.data?.counters[0]?.total, first, offset); // TODO change to cursor?
+      return new EntityCollection(entities, response?.data?.counters[0]?.total, first, offset);
     },
   },
 };
