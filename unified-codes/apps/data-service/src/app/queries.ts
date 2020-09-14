@@ -11,9 +11,9 @@ export const queries = {
         }
       }`;
   },
-  entitiesByType: (type: string) => {
+  entitiesByType: (type: string, order: string) => {
     return `{
-      query(func: eq(type, ${type})) @filter(has(description)) @recurse(loop: false)  {
+      query(func: eq(type, ${type}), ${order}) @filter(has(description)) @recurse(loop: false)  {
         code
         description
         type
@@ -23,9 +23,9 @@ export const queries = {
       }
     }`;
   },
-  entitiesByDescriptionAndType: (type: string, description: string) => {
+  entitiesByDescriptionAndType: (type: string, description: string, order: string) => {
     return `{
-      query(func: eq(type, ${type})) @filter(regexp(description, /.*${description}.*/i)) @recurse(loop: false)  {
+      query(func: eq(type, ${type}), ${order}) @filter(regexp(description, /.*${description}.*/i)) @recurse(loop: false)  {
         code
         description
         type

@@ -9,17 +9,19 @@ import {
   TableBodyProps,
 } from '../../data';
 
-import { Entity } from '@unified-codes/data';
+import { Entity, IExplorerVariables } from '@unified-codes/data';
 
 import EntityTableHeader, { EntityTableHeaderProps } from './EntityTableHeader';
 import EntityTableRow, { EntityTableRowProps } from './EntityTableRow';
 export interface EntityTableProps {
-  tableProps?: TableProps;
+  bodyProps?: TableBodyProps;
+  data: Entity[];
   headProps?: TableHeadProps;
   headerProps?: EntityTableHeaderProps;
-  bodyProps?: TableBodyProps;
   rowProps?: EntityTableRowProps;
-  data: Entity[];
+  tableProps?: TableProps;
+  variables?: IExplorerVariables;
+  onSort?: (value: string) => void;
 }
 
 export type EntityTable = React.FunctionComponent<EntityTableProps>;
@@ -31,18 +33,13 @@ export const EntityTable: EntityTable = ({
   bodyProps,
   rowProps,
   data,
-}: {
-  tableProps: TableProps;
-  headProps: TableHeadProps;
-  headerProps: EntityTableHeaderProps;
-  bodyProps: TableBodyProps;
-  rowProps: EntityTableRowProps;
-  data: Entity[];
-}) => {
+  variables,
+  onSort,
+}: EntityTableProps) => {
   const mapEntity = (entity: Entity, index: number) => {
     const localRowProps =
-      tableProps.stripedRows && tableProps.alternatingRowColour
-        ? { style: { backgroundColor: index % 2 ? tableProps.alternatingRowColour : '' } }
+      tableProps?.stripedRows && tableProps?.alternatingRowColour
+        ? { style: { backgroundColor: index % 2 ? tableProps?.alternatingRowColour : '' } }
         : undefined;
 
     return (
@@ -61,11 +58,16 @@ export const EntityTable: EntityTable = ({
     () => <React.Fragment>{data.map(mapEntity)}</React.Fragment>,
     [rowProps, data]
   );
-  const { stripedRows, alternatingRowColour, ...otherProps } = tableProps;
+  const { stripedRows, alternatingRowColour, ...otherProps } = tableProps || {};
   return (
     <Table {...otherProps}>
       <TableHead {...headProps}>
-        <EntityTableHeader {...headerProps} />
+        <EntityTableHeader
+          {...headerProps}
+          onSort={onSort}
+          orderDesc={variables?.orderDesc}
+          orderBy={variables?.orderBy}
+        />
       </TableHead>
       <TableBody {...bodyProps}>
         <EntityTableRows />

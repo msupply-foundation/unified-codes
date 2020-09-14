@@ -19,7 +19,7 @@ const typeDefs = gql`
     "Request an entity by code"
     entity(code: String!): Entity
     "Request all entities with optional filter - Default behaviour: return all medicinal_products"
-    entities(filter: SearchFilter, first: Int, offset: Int): EntitiesResponse
+    entities(filter: EntityFilterInput, first: Int, offset: Int): EntitiesResponse
   }
 
   type EntitiesResponse {
@@ -28,13 +28,22 @@ const typeDefs = gql`
     totalResults: Int!
   }
 
-  input SearchFilter {
+  input EntityFilterInput {
     "Search by entity code"
     code: String
     "Search by entity description"
     description: String
+    "Order search results"
+    orderBy: EntitySortInput
     "Search by Level in Product Hierarchy"
     type: String
+  }
+
+  input EntitySortInput {
+    "Field to order by"
+    field: String
+    "Sort ascending"
+    descending: Boolean
   }
 `;
 
