@@ -1,4 +1,4 @@
-import { Entity, IAlert, IUser } from '@unified-codes/data';
+import { Entity, IAlert, IExplorerVariables, IUser } from '@unified-codes/data';
 
 export type IAlertState = IAlert | {};
 
@@ -12,11 +12,6 @@ export type IExplorerData = {
   totalResults: number;
   data: Entity[];
 };
-
-export interface IExplorerVariables {
-  code?: string;
-  description?: string;
-}
 
 export interface IExplorerState {
   entities?: IExplorerData;

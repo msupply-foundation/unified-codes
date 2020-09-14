@@ -16,7 +16,11 @@ const initialState = (): IExplorerState => {
       totalResults: 0,
     },
     loading: false,
-    variables: {},
+    variables: {
+      page: 0,
+      rowsPerPage: 25,
+      type: 'medicinal_product',
+    },
   };
 };
 
@@ -51,7 +55,7 @@ export const ExplorerReducer = (
     }
 
     case EXPLORER_ACTIONS.RESET_VARIABLES: {
-      return { ...state, variables: {} };
+      return { ...state, variables: initialState().variables };
     }
 
     default:

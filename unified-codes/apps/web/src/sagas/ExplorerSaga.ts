@@ -3,9 +3,12 @@ import { call, put, takeEvery, all } from 'redux-saga/effects';
 import {
   AlertSeverity,
   Entity,
+  EntitySearchFilter,
+  EntitySearchRequest,
   IAlert,
   IPaginatedResults,
-  IPaginationRequest,
+  IEntitySearchFilter,
+  IEntitySearchRequest,
 } from '@unified-codes/data';
 
 import {
@@ -14,12 +17,14 @@ import {
   AlertActions,
   IExplorerAction,
   IExplorerFetchDataAction,
+  IExplorerUpdateVariablesAction,
 } from '../actions';
 
-const getEntitiesQuery = (first: number, offset?: number) => `
+const getEntitiesQuery = (filter: IEntitySearchFilter, first: number, offset?: number) => `
   {
-    entities(offset: ${offset} first: ${first}) {
+    entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" } offset: ${offset} first: ${first}) {
       data {
+
         code
         description
         type
@@ -55,7 +60,7 @@ const alertFetch: IAlert = {
 // TODO: add helper class for raw gql queries to data library and refactor this!
 const getEntities = async (
   url: string,
-  request: IPaginationRequest
+  request: IEntitySearchRequest
 ): Promise<IPaginatedResults<Entity>> => {
   const response = await fetch(url, {
     method: 'POST',
@@ -63,7 +68,9 @@ const getEntities = async (
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify({ query: getEntitiesQuery(request.first, request.offset) }),
+    body: JSON.stringify({
+      query: getEntitiesQuery(request.filter, request.first, request.offset),
+    }),
   });
   const json = await response.json();
   const { data } = json;
@@ -93,8 +100,24 @@ function* fetchDataSaga() {
   yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.FETCH_DATA, fetchData);
 }
 
+function* updateVariables(action: IExplorerUpdateVariablesAction) {
+  const { variables } = action;
+  const { code, description, page, rowsPerPage, type } = variables;
+  const filter = new EntitySearchFilter(description, code, type);
+  const request = new EntitySearchRequest(filter, rowsPerPage, page);
+
+  yield put(ExplorerActions.fetchData(request));
+}
+
+function* updateVariablesSaga() {
+  yield takeEvery<IExplorerUpdateVariablesAction>(
+    EXPLORER_ACTIONS.UPDATE_VARIABLES,
+    updateVariables
+  );
+}
+
 export function* explorerSaga() {
-  yield all([fetchDataSaga()]);
+  yield all([fetchDataSaga(), updateVariablesSaga()]);
 }
 
 export default explorerSaga;
