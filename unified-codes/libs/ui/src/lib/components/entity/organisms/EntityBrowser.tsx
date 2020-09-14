@@ -3,11 +3,25 @@ import * as React from 'react';
 import { Entity, IExplorerVariables, IPaginatedResults } from '@unified-codes/data';
 
 import EntityTable from '../molecules/EntityTable';
+import EntityTypeFilter from '../molecules/EntityTypeFilter';
+import { EntityTableRowProps } from '../molecules/EntityTableRow';
 import Grid from '../../layout/atoms/Grid';
 import SearchBar from '../../inputs/molecules/SearchBar';
 import Alert from '../../feedback/atoms/Alert';
 import TablePagination from '@material-ui/core/TablePagination';
 
+export interface IEntityBrowserClasses {
+  pagination?: string;
+  searchBar?: string;
+  table?: string;
+  tableContainer?: string;
+  typeFilter?: string;
+}
+
+export type IChildProperties = {
+  rowProps?: EntityTableRowProps;
+  tableProps?: TableProps;
+};
 export interface EntityBrowserProps {
   entities: IPaginatedResults<Entity>;
   noResultsMessage?: string;
@@ -60,41 +74,51 @@ export const EntityBrowser: EntityBrowser = ({
   };
 
   const { page = 1, rowsPerPage = 10 } = variables || {};
+  const entityTypes = [
+    { name: 'Drugs', active: true },
+    { name: 'Unit of Use', active: false },
+    { name: 'Other', active: false },
+  ];
+
   return (
-    <Grid container direction="column">
-      <Grid item>
-        <SearchBar
-          input={input}
-          onChange={onChangeInput}
-          onClear={handleClear}
-          onSearch={onSearch}
-        />
-      </Grid>
-      {entities.totalResults ? (
-        <>
-          <Grid item style={{ maxHeight: 400, overflow: 'scroll' }}>
-            <EntityTable data={entities.data} />
-          </Grid>
-          <Grid item>
-            {entities.totalResults && (
-              <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={entities.totalResults}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
-              />
-            )}{' '}
-          </Grid>
-        </>
-      ) : (
-        <Grid item>
-          <Alert severity="warning">{noResultsMessage}</Alert>
+    <>
+      <EntityTypeFilter types={entityTypes} className={classes.typeFilter} />
+      <Grid container direction="column" className={classes?.tableContainer}>
+        <Grid item className={classes?.searchBar}>
+          <SearchBar
+            input={input}
+            label="Search description"
+            onChange={onChangeInput}
+            onClear={handleClear}
+            onSearch={onSearch}
+          />
         </Grid>
-      )}
-    </Grid>
+        {entities.totalResults ? (
+          <>
+            <Grid item className={classes?.table}>
+              <EntityTable data={entities.data} {...childProps} />
+            </Grid>
+            <Grid item className={classes?.pagination}>
+              {entities.totalResults && (
+                <TablePagination
+                  rowsPerPageOptions={[10, 25, 100]}
+                  component="div"
+                  count={entities.totalResults}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onChangePage={handleChangePage}
+                  onChangeRowsPerPage={handleChangeRowsPerPage}
+                />
+              )}
+            </Grid>
+          </>
+        ) : (
+          <Grid item>
+            <Alert severity="warning">{noResultsMessage}</Alert>
+          </Grid>
+        )}
+      </Grid>
+    </>
   );
 };
 

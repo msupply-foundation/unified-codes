@@ -14,7 +14,7 @@ const theme: Theme = createMuiTheme({
     text: {
       primary: 'rgba(0,0,0,0.83)',
       secondary: 'rgba(255,255,255,0.87)',
-      hint: 'rgba(0,0,0,0.6)'
+      hint: 'rgba(0,0,0,0.6)',
     },
   },
   typography: {
@@ -46,3 +46,7 @@ const theme: Theme = createMuiTheme({
 });
 
 export default theme;
+
+export type flexDirection = 'column' | 'row';
+export type overflow = 'auto' | 'hidden' | 'scroll' | 'visible';
+export type position = 'fixed' | 'absolute';

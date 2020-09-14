@@ -1,17 +1,24 @@
 import * as React from 'react';
-import { ToggleButtonGroup } from '@unified-codes/ui';
+import { ToggleButtonGroup } from '../../inputs/molecules/ToggleButtonGroup';
 
-export type EntityTypeFilter = React.FunctionComponent;
+export interface IEntityType {
+  active: boolean;
+  name: string;
+}
 
-export const EntityTypeFilter: EntityTypeFilter = () => {
-  const [entityStates, entityStateChange] = React.useState([
-    { name: 'Drugs', active: true },
-    { name: 'Unit of Use', active: false },
-    { name: 'Other', active: false },
-  ]);
+export interface IEntityTypeFilterProps {
+  className?: string;
+  types: Array<IEntityType>;
+}
+
+export type EntityTypeFilter = React.FunctionComponent<IEntityTypeFilterProps>;
+
+export const EntityTypeFilter: EntityTypeFilter = ({ className, types }) => {
+  const [entityStates, entityStateChange] = React.useState(types);
 
   return (
     <ToggleButtonGroup
+      className={className}
       onToggle={(clickedEntity: { name: string; active: boolean }) => {
         const newEntityStates = entityStates.map((entityItem) => {
           if (entityItem === clickedEntity) {

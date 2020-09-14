@@ -14,6 +14,11 @@ import { ExplorerActions } from '../../actions';
 import { IExplorerData, IState } from '../../types';
 import { ExplorerSelectors } from '../../selectors';
 
+import { withStyles } from '@material-ui/core/styles';
+import { ITheme, overflow } from '../../muiTheme';
+
+const FOOTER_HEADER_HEIGHT = 385;
+
 export interface ExplorerProps {
   entities?: IExplorerData;
   variables?: IExplorerVariables;
@@ -22,6 +27,37 @@ export interface ExplorerProps {
   onSearch: (request: IEntitySearchRequest) => void;
   onUpdateVariables: (variables: IExplorerVariables) => void;
 }
+
+const getStyles = (theme: ITheme) => {
+  const borderStyle = `1px solid ${theme.palette.divider}`;
+  return {
+    pagination: { backgroundColor: theme.palette.background.toolbar },
+    searchBar: { paddingLeft: 15 },
+    table: {
+      marginTop: 5,
+      maxHeight: `calc(100vh - ${FOOTER_HEADER_HEIGHT}px)`,
+      overflowY: 'scroll' as overflow,
+      '& th': { backgroundColor: theme.palette.background.toolbar, fontWeight: 700 },
+      '& thead > tr': { borderBottom: borderStyle },
+      '& tr > th': { borderRight: borderStyle },
+      '& tr > td': { borderRight: borderStyle, borderBottom: 0 },
+      '& tr > td:last-child': { borderRight: 0 },
+      '& tr > th:last-child': { borderRight: 0 },
+      '& tr > td:first-child': { fontWeight: 700 },
+    },
+    tableContainer: {
+      backgroundColor: theme.palette.background.default,
+      marginTop: 8,
+      maxHeight: '100%',
+      maxWidth: 900,
+    },
+    typeFilter: {
+      backgroundColor: theme.palette.background.footer,
+      paddingTop: '12px',
+      paddingBottom: '12px',
+    },
+  };
+};
 
 export type Explorer = React.FunctionComponent<ExplorerProps>;
 
