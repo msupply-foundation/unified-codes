@@ -20,15 +20,9 @@ import {
   IExplorerUpdateVariablesAction,
 } from '../actions';
 
-const getEntitiesQuery = (
-  filter: IEntitySearchFilter,
-  first: number,
-  orderBy: string,
-  orderDesc: boolean,
-  offset?: number
-) => `
+const getEntitiesQuery = (filter: IEntitySearchFilter, first: number, offset?: number) => `
   {
-    entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" orderBy: "${orderBy}" orderDesc: ${orderDesc} } offset: ${offset} first: ${first}) {
+    entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" orderBy: { field: "${filter.orderBy.field}" descending: ${filter.orderBy.descending} } } offset: ${offset} first: ${first}) {
       data {
         code
         description
@@ -74,13 +68,7 @@ const getEntities = async (
       Accept: 'application/json',
     },
     body: JSON.stringify({
-      query: getEntitiesQuery(
-        request.filter,
-        request.first,
-        request.filter.orderBy,
-        request.filter.orderDesc,
-        request.offset
-      ),
+      query: getEntitiesQuery(request.filter, request.first, request.offset),
     }),
   });
   const json = await response.json();

@@ -38,13 +38,13 @@ export const resolvers = {
         console.log(`Entity requested by anonymous user.`);
       }
 
-      const { type = 'medicinal_product', code, description, orderDesc, orderBy } = filter ?? {};
-      const order = `order${orderDesc ? 'desc' : 'asc'}: ${orderBy}`;
+      const { type = 'medicinal_product', code, description, orderBy } = filter ?? {};
+      const order = `order${orderBy.descending ? 'desc' : 'asc'}: ${orderBy.field}`;
       const query = queries.entities(type, order, offset, first, description);
       const response = await dgraph.postQuery(query);
       const entities: Array<IEntity> = response.data.query;
 
-      return new EntityCollection(entities, response?.data?.counters[0]?.total, first, offset);
+      return new EntityCollection(entities, response?.data?.counters[0]?.total);
     },
   },
 };
