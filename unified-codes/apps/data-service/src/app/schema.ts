@@ -2,11 +2,12 @@ import { gql } from 'apollo-server-fastify';
 
 const typeDefs = gql`
   type Entity {
-    type: String!
     code: String
     description: String!
-    has_property: [Property]
+    type: String!
+    uid: String!
     has_child: [Entity]
+    has_property: [Property]
   }
 
   type Property {
@@ -19,13 +20,15 @@ const typeDefs = gql`
     "Request an entity by code"
     entity(code: String!): Entity
     "Request all entities with optional filter - Default behaviour: return all medicinal_products"
-    entities(filter: SearchFilter, first: Int, offset: Int): EntitiesResponse
+    entities(filter: SearchFilter, first: Int, offset: Int): IEntityCollection
   }
 
-  type EntitiesResponse {
+  type IEntityCollection {
     data: [Entity]!
+    first: Int!
     hasMore: Boolean!
-    totalResults: Int!
+    offset: Int!
+    totalLength: Int!
   }
 
   input SearchFilter {

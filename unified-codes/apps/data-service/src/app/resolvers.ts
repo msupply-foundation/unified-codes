@@ -1,7 +1,6 @@
 import { IApolloServiceContext, User } from '@unified-codes/data';
 import { DgraphDataSource } from './data';
-import { getPaginatedResults } from './utils';
-import { IEntity, IPaginationParameters } from '@unified-codes/data';
+import { IEntity, EntityCollection } from '@unified-codes/data';
 import { queries } from './queries';
 
 export const resolvers = {
@@ -41,18 +40,11 @@ export const resolvers = {
 
       const { type = 'medicinal_product', code, description, orderDesc, orderBy } = filter ?? {};
       const order = `order${orderDesc ? 'desc' : 'asc'}: ${orderBy}`;
-      const query =
-        description && description.length
-          ? queries.entitiesByDescriptionAndType(type, description, order)
-          : queries.entitiesByType(type, order);
+      const query = queries.entities(type, order, offset, first, description);
       const response = await dgraph.postQuery(query);
-      const allEntities: Array<IEntity> = response.data.query;
-      const paginationParameters: IPaginationParameters<IEntity> = {
-        first,
-        offset,
-        results: allEntities,
-      };
-      return getPaginatedResults<IEntity>(paginationParameters);
+      const entities: Array<IEntity> = response.data.query;
+
+      return new EntityCollection(entities, response?.data?.counters[0]?.total, first, offset); // TODO change to cursor?
     },
   },
 };
