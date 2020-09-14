@@ -3,7 +3,7 @@ import { Paper } from './Paper';
 
 export default {
   component: Paper,
-  title: 'Library/Paper',
+  title: 'Paper',
 };
 
 export const withNoProps = () => {
