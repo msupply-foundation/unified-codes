@@ -26,7 +26,6 @@ const typeDefs = gql`
   type IEntityCollection {
     data: [Entity]!
     first: Int!
-    hasMore: Boolean!
     offset: Int!
     totalLength: Int!
   }

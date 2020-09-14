@@ -35,7 +35,6 @@ const getEntitiesQuery = (
         type
         uid
       },
-      hasMore,
       totalLength,
     }
   }
