@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { EntityBrowser, Grid } from '@unified-codes/ui';
+import { EntityBrowser, IEntityBrowserClasses } from '@unified-codes/ui';
 import {
   Entity,
   EntitySearchRequest,
@@ -14,7 +14,13 @@ import { ExplorerActions } from '../../actions';
 import { IExplorerData, IState } from '../../types';
 import { ExplorerSelectors } from '../../selectors';
 
+import { withStyles } from '@material-ui/core/styles';
+import { ITheme } from '../../muiTheme';
+
+const FOOTER_HEADER_HEIGHT = 300;
+
 export interface ExplorerProps {
+  classes?: IEntityBrowserClasses;
   entities?: IExplorerData;
   variables?: IExplorerVariables;
 
@@ -23,9 +29,31 @@ export interface ExplorerProps {
   onUpdateVariables: (variables: IExplorerVariables) => void;
 }
 
+const getStyles = (theme: ITheme) => {
+  const borderStyle = `1px solid ${theme.palette.divider}`;
+  return {
+    pagination: { backgroundColor: theme.palette.background.toolbar },
+    root: { backgroundColor: theme.palette.background.default, maxHeight: '100%', maxWidth: 900 },
+    searchBar: { paddingLeft: 15 },
+    table: {
+      marginTop: 5,
+      maxHeight: `calc(100vh - ${FOOTER_HEADER_HEIGHT}px)`,
+      overflowY: 'scroll',
+      '& th': { backgroundColor: theme.palette.background.toolbar, fontWeight: 700 },
+      '& thead > tr': { borderBottom: borderStyle },
+      '& tr > th': { borderRight: borderStyle },
+      '& tr > td': { borderRight: borderStyle, borderBottom: 0 },
+      '& tr > td:last-child': { borderRight: 0 },
+      '& tr > th:last-child': { borderRight: 0 },
+      '& tr > td:first-child': { fontWeight: 700 },
+    },
+  };
+};
+
 export type Explorer = React.FunctionComponent<ExplorerProps>;
 
 export const ExplorerComponent: Explorer = ({
+  classes,
   entities,
   variables = {},
   onReady,
@@ -59,17 +87,22 @@ export const ExplorerComponent: Explorer = ({
     onUpdateVariables({ ...variables, page: 0, rowsPerPage });
   };
 
+  const childProps = {
+    tableProps: { alternatingRowColour: '#f5f5f5', stripedRows: true },
+    rowProps: { rowProps: { style: { backgroundColor: '' } } },
+  };
+
   return (
-    <Grid container justify="center">
-      <EntityBrowser
-        entities={entityData}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-        onClear={handleClear}
-        onSearch={handleSearch}
-        variables={variables}
-      />
-    </Grid>
+    <EntityBrowser
+      childProps={childProps}
+      classes={classes}
+      entities={entityData}
+      onChangePage={handleChangePage}
+      onChangeRowsPerPage={handleChangeRowsPerPage}
+      onClear={handleClear}
+      onSearch={handleSearch}
+      variables={variables}
+    />
   );
 };
 
@@ -88,6 +121,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return { onReady, onSearch, onUpdateVariables };
 };
 
-export const Explorer = connect(mapStateToProps, mapDispatchToProps)(ExplorerComponent);
+const StyledExplorer = withStyles(getStyles)(ExplorerComponent);
+export const Explorer = connect(mapStateToProps, mapDispatchToProps)(StyledExplorer);
 
 export default Explorer;
