@@ -114,9 +114,10 @@ function* fetchDataSaga() {
 
 function* updateVariables(action: IExplorerUpdateVariablesAction) {
   const { variables } = action;
-  const { code, description, page, rowsPerPage, orderDesc, orderBy, type } = variables;
+  // TODO update with cursor
+  const { code, description, page = 0, rowsPerPage = 25, orderDesc, orderBy, type } = variables;
   const filter = new EntitySearchFilter(description, code, type, orderBy, orderDesc);
-  const request = new EntitySearchRequest(filter, rowsPerPage, page);
+  const request = new EntitySearchRequest(filter, rowsPerPage, page * rowsPerPage);
   yield put(ExplorerActions.fetchData(request));
 }
 

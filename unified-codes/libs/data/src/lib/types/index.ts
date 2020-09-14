@@ -8,6 +8,5 @@ export * from './EntitySearch';
 export * from './Explorer';
 export * from './IdentityProvider';
 export * from './JWT';
-export * from './Pagination';
 export * from './Property';
 export * from './User';
