@@ -26,7 +26,7 @@ const getStyles = (theme: Theme) => ({
   content: {
     backgroundColor: theme.palette.background.paper,
     marginTop: 96,
-    maxHeight: '100vh',
+    height: 'calc(100vh - 90px)',
     paddingBottom: 10,
   },
 });
@@ -46,7 +46,7 @@ const _App: App = ({ alert, classes, resetAlert }) => {
             onClose={resetAlert}
           />
         </Grid>
-        <Grid container className={classes.content} justify="center">
+        <div className={classes.content}>
           <Switch>
             <Route exact path="/explorer">
               <Explorer />
@@ -58,7 +58,7 @@ const _App: App = ({ alert, classes, resetAlert }) => {
               <Redirect to="/explorer" />
             </Route>
           </Switch>
-        </Grid>
+        </div>
       </Container>
       <Footer />
     </BrowserRouter>
