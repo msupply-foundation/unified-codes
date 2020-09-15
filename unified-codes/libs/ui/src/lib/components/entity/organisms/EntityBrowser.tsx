@@ -89,7 +89,7 @@ export const EntityBrowser: EntityBrowser = ({
 
   return (
     <>
-      <EntityTypeFilter types={entityTypes} className={classes.typeFilter} />
+      <EntityTypeFilter types={entityTypes} className={classes?.typeFilter} />
       <Grid container direction="column" className={classes?.tableContainer}>
         <Grid item className={classes?.searchBar}>
           <SearchBar
