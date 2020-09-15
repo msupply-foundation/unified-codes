@@ -100,7 +100,7 @@ export const EntityBrowser: EntityBrowser = ({
             onSearch={onSearch}
           />
         </Grid>
-        {entities.totalResults ? (
+        {entities.totalLength ? (
           <>
             <Grid item className={classes?.table}>
               <EntityTable
@@ -111,11 +111,11 @@ export const EntityBrowser: EntityBrowser = ({
               />
             </Grid>
             <Grid item className={classes?.pagination}>
-              {entities.totalResults && (
+              {entities.totalLength && (
                 <TablePagination
                   rowsPerPageOptions={[10, 25, 100]}
                   component="div"
-                  count={entities.totalResults}
+                  count={entities.totalLength}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   onChangePage={handleChangePage}

@@ -22,6 +22,12 @@ export const SearchBar: SearchBar = ({ input, label, onChange, onClear, onSearch
 
   const onClick = React.useCallback(() => onSearch && onSearch(input), [input, onSearch]);
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key == 'Enter') {
+      onSearch && onSearch(input);
+    }
+  };
+
   return (
     <Grid container>
       <Grid item xs={11}>
@@ -31,6 +37,7 @@ export const SearchBar: SearchBar = ({ input, label, onChange, onClear, onSearch
           value={input}
           onChange={onChangeText}
           onClear={onClear}
+          onKeyDown={handleKeyDown}
         />
       </Grid>
       <Grid item xs={1}>

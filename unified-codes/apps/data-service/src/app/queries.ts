@@ -11,24 +11,21 @@ export const queries = {
         }
       }`;
   },
-  entitiesByType: (type: string, order: string) => {
+  entities: (type: string, order: string, offset: number, first: number, description?: string) => {
+    const filter = description
+      ? `@filter(regexp(description, /.*${description}.*/i))`
+      : '@filter(has(description))';
+
     return `{
-      query(func: eq(type, ${type}), ${order}) @filter(has(description)) @recurse(loop: false)  {
-        code
-        description
-        type
-        value
-        has_child
-        has_property
+      all as counters(func: anyofterms(type, "${type}")) ${filter} { 
+        total: count(uid)
       }
-    }`;
-  },
-  entitiesByDescriptionAndType: (type: string, description: string, order: string) => {
-    return `{
-      query(func: eq(type, ${type}), ${order}) @filter(regexp(description, /.*${description}.*/i)) @recurse(loop: false)  {
+      
+      query(func: uid(all), ${order}, offset: ${offset}, first: ${first}) @recurse(loop: false)  {
         code
         description
         type
+        uid
         value
         has_child
         has_property

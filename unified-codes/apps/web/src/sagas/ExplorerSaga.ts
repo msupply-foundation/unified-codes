@@ -6,7 +6,7 @@ import {
   EntitySearchFilter,
   EntitySearchRequest,
   IAlert,
-  IPaginatedResults,
+  IEntityCollection,
   IEntitySearchFilter,
   IEntitySearchRequest,
 } from '@unified-codes/data';
@@ -27,9 +27,9 @@ const getEntitiesQuery = (filter: IEntitySearchFilter, first: number, offset?: n
         code
         description
         type
+        uid
       },
-      hasMore,
-      totalResults,
+      totalLength,
     }
   }
 `;
@@ -60,7 +60,7 @@ const alertFetch: IAlert = {
 const getEntities = async (
   url: string,
   request: IEntitySearchRequest
-): Promise<IPaginatedResults<Entity>> => {
+): Promise<IEntityCollection> => {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -85,7 +85,7 @@ function* fetchData(action: IExplorerFetchDataAction) {
       | string
       | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
     if (url) {
-      const entities: IPaginatedResults<Entity> = yield call(getEntities, url, action.request);
+      const entities: IEntityCollection = yield call(getEntities, url, action.request);
       yield put(AlertActions.resetAlert());
       yield put(ExplorerActions.fetchSuccess(entities));
     }
@@ -103,7 +103,8 @@ function* updateVariables(action: IExplorerUpdateVariablesAction) {
   const { variables } = action;
   const { code, description, page, rowsPerPage, orderDesc, orderBy, type } = variables;
   const filter = new EntitySearchFilter(description, code, type, orderBy, orderDesc);
-  const request = new EntitySearchRequest(filter, rowsPerPage, page);
+  const offset = rowsPerPage && page ? page * rowsPerPage : undefined;
+  const request = new EntitySearchRequest(filter, rowsPerPage, offset);
   yield put(ExplorerActions.fetchData(request));
 }
 

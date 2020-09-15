@@ -4,14 +4,15 @@ import { connect } from 'react-redux';
 
 import { EntityBrowser, IEntityBrowserClasses } from '@unified-codes/ui';
 import {
-  Entity,
+  EntityCollection,
   EntitySearchRequest,
+  IEntityCollection,
   IEntitySearchRequest,
   IExplorerVariables,
 } from '@unified-codes/data';
 
 import { ExplorerActions } from '../../actions';
-import { IExplorerData, IState } from '../../types';
+import { IState } from '../../types';
 import { ExplorerSelectors } from '../../selectors';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -21,7 +22,7 @@ const FOOTER_HEADER_HEIGHT = 385;
 
 export interface ExplorerProps {
   classes?: IEntityBrowserClasses;
-  entities?: IExplorerData;
+  entities?: IEntityCollection;
   variables?: IExplorerVariables;
 
   onReady: () => void;
@@ -73,11 +74,7 @@ export const ExplorerComponent: Explorer = ({
   React.useEffect(() => {
     onReady();
   }, []);
-  const entityData = entities || {
-    data: [] as Array<Entity>,
-    hasMore: false,
-    totalResults: 0,
-  };
+  const entityCollection = entities || new EntityCollection();
 
   const handleClear = () => {
     onUpdateVariables({ ...variables, description: '', page: 0 });
@@ -112,7 +109,7 @@ export const ExplorerComponent: Explorer = ({
     <EntityBrowser
       childProps={childProps}
       classes={classes}
-      entities={entityData}
+      entities={entityCollection}
       onChangePage={handleChangePage}
       onChangeRowsPerPage={handleChangeRowsPerPage}
       onClear={handleClear}

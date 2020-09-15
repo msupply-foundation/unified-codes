@@ -9,13 +9,13 @@ import {
   TableBodyProps,
 } from '../../data';
 
-import { Entity, IExplorerVariables } from '@unified-codes/data';
+import { IEntity, IExplorerVariables } from '@unified-codes/data';
 
 import EntityTableHeader, { EntityTableHeaderProps } from './EntityTableHeader';
 import EntityTableRow, { EntityTableRowProps } from './EntityTableRow';
 export interface EntityTableProps {
   bodyProps?: TableBodyProps;
-  data: Entity[];
+  data: Array<IEntity>;
   headProps?: TableHeadProps;
   headerProps?: EntityTableHeaderProps;
   rowProps?: EntityTableRowProps;
@@ -36,7 +36,7 @@ export const EntityTable: EntityTable = ({
   variables,
   onSort,
 }: EntityTableProps) => {
-  const mapEntity = (entity: Entity, index: number) => {
+  const mapEntity = (entity: IEntity, index: number) => {
     const localRowProps =
       tableProps?.stripedRows && tableProps?.alternatingRowColour
         ? { style: { backgroundColor: index % 2 ? tableProps?.alternatingRowColour : '' } }

@@ -1,19 +1,12 @@
 import * as React from 'react';
 
-import { Entity } from '@unified-codes/data';
-import { IExplorerData } from '../../types';
-
+import { EntityCollection } from '@unified-codes/data';
 import { ExplorerComponent } from './Explorer';
 
 export default { title: 'Explorer' };
 
 export const withNoProps = () => {
-  const [entities] = React.useState<Entity[]>([]);
-  const data: IExplorerData = {
-    data: entities,
-    hasMore: false,
-    totalResults: 0,
-  };
+  const data = new EntityCollection();
 
   const onReady = () => console.log('onReady called...');
   const onUpdateVariables = () => console.log('onUpdateVariables called...');
