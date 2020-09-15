@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Entity, IExplorerVariables, IPaginatedResults } from '@unified-codes/data';
+import { IEntityCollection, IExplorerVariables } from '@unified-codes/data';
 import { TableProps } from '../../data';
 
 import EntityTable from '../molecules/EntityTable';
@@ -24,7 +24,7 @@ export type IChildProperties = {
 export interface EntityBrowserProps {
   childProps?: IChildProperties;
   classes?: IEntityBrowserClasses;
-  entities: IPaginatedResults<Entity>;
+  entities: IEntityCollection;
   noResultsMessage?: string;
   variables?: IExplorerVariables;
 
@@ -78,7 +78,7 @@ export const EntityBrowser: EntityBrowser = ({
     onClear && onClear();
   };
 
-  const { page = 1, rowsPerPage = 10 } = variables || {};
+  const { page = 1, rowsPerPage = 25 } = variables || {};
   return (
     <Grid container direction="column" className={classes?.root}>
       <Grid item className={classes?.searchBar}>
@@ -90,7 +90,7 @@ export const EntityBrowser: EntityBrowser = ({
           onSearch={onSearch}
         />
       </Grid>
-      {entities.totalResults ? (
+      {entities.totalLength ? (
         <>
           <Grid item className={classes?.table}>
             <EntityTable
@@ -101,11 +101,11 @@ export const EntityBrowser: EntityBrowser = ({
             />
           </Grid>
           <Grid item className={classes?.pagination}>
-            {entities.totalResults && (
+            {entities.totalLength && (
               <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={entities.totalResults}
+                count={entities.totalLength}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onChangePage={handleChangePage}

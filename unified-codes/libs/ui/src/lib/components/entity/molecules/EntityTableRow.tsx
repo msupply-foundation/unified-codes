@@ -2,12 +2,12 @@ import * as React from 'react';
 
 import { TableCell, TableCellProps, TableRow, TableRowProps } from '../../data';
 
-import { Entity } from '@unified-codes/data';
+import { IEntity } from '@unified-codes/data';
 
 export interface EntityTableRowProps {
   rowProps?: TableRowProps;
   cellProps?: TableCellProps;
-  entity?: Entity;
+  entity?: IEntity;
 }
 
 export type EntityTableRow = React.FunctionComponent<EntityTableRowProps>;

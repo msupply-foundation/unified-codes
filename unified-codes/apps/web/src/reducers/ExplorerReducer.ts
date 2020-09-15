@@ -6,15 +6,11 @@ import {
   IExplorerFetchSuccessAction,
 } from '../actions';
 import { IExplorerState } from '../types';
-import { Entity } from '@unified-codes/data';
+import { EntityCollection } from '@unified-codes/data';
 
 const initialState = (): IExplorerState => {
   return {
-    entities: {
-      data: [] as Array<Entity>,
-      hasMore: false,
-      totalResults: 0,
-    },
+    entities: new EntityCollection(),
     loading: false,
     variables: {
       orderBy: 'description',

@@ -1,9 +1,9 @@
 import { Action } from 'redux';
 import {
   Entity,
+  IEntityCollection,
   IEntitySearchRequest,
   IExplorerVariables,
-  IPaginatedResults,
 } from '@unified-codes/data';
 
 export const EXPLORER_ACTIONS = {
@@ -20,7 +20,7 @@ export interface IExplorerFetchDataAction extends Action<string> {
 }
 
 export interface IExplorerFetchSuccessAction extends Action<string> {
-  entities: IPaginatedResults<Entity>;
+  entities: IEntityCollection;
 }
 
 export interface IExplorerFetchFailureAction extends Action<string> {
@@ -44,7 +44,7 @@ export const fetchData = (request: IEntitySearchRequest) => ({
   request,
 });
 
-export const fetchSuccess = (entities: IPaginatedResults<Entity>) => ({
+export const fetchSuccess = (entities: IEntityCollection) => ({
   type: EXPLORER_ACTIONS.FETCH_SUCCESS,
   entities,
 });
