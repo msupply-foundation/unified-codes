@@ -5,18 +5,18 @@ import { Theme, withStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import { AppBar, Avatar, Grid, UCIcon } from '@unified-codes/ui';
+import { flexDirection, ITheme } from '../../muiTheme';
 
 export interface HeaderProps {
   classes: ClassNameMap<any>;
 }
 
-type flexDirection = 'column' | 'row';
-const getStyles = (theme: Theme) => ({
+const getStyles = (theme: ITheme) => ({
   root: {
     alignItems: 'center',
-    backgroundColor: theme.palette.divider,
+    backgroundColor: theme.palette.background.footer,
     flexDirection: 'row' as flexDirection,
-    padding: '29px 24px 12px 24px',
+    padding: '12px 24px 12px 24px',
     ' & div': {
       flex: '0 1 0%',
     },
@@ -38,11 +38,11 @@ const getStyles = (theme: Theme) => ({
     },
   },
   title1: {
-    paddingRight: '0!important',
+    paddingRight: '5px!important',
     ...theme.typography.subtitle1,
   },
   title2: {
-    paddingLeft: '3px!important',
+    paddingLeft: '5px!important',
     ...theme.typography.subtitle2,
   },
 });
@@ -51,7 +51,7 @@ export type Header = React.FunctionComponent<HeaderProps>;
 
 const _Header: Header = ({ classes }) => {
   return (
-    <AppBar position="static" className={classes.root}>
+    <AppBar position="fixed" className={classes.root}>
       <Grid item className={classes.title1}>
         Universal&nbsp;Drug
       </Grid>

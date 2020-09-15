@@ -1,6 +1,11 @@
+export interface IEntitySortInput {
+  descending: boolean;
+  field: string;
+}
 export interface IEntitySearchFilter {
   code: string;
   description: string;
+  orderBy: IEntitySortInput;
   type: string;
 }
 
@@ -10,14 +15,39 @@ export interface IEntitySearchRequest {
   offset: number;
 }
 
+export class EntitySortInput implements IEntitySortInput {
+  _descending: boolean;
+  _field: string;
+
+  constructor(field?: string, descending?: boolean) {
+    this._field = field || 'description';
+    this._descending = !!descending;
+  }
+  get descending(): boolean {
+    return this._descending;
+  }
+
+  get field(): string {
+    return this._field;
+  }
+}
+
 export class EntitySearchFilter implements IEntitySearchFilter {
   _code: string;
   _description: string;
+  _orderBy: IEntitySortInput;
   _type: string;
 
-  constructor(description?: string, code?: string, type?: string) {
+  constructor(
+    description?: string,
+    code?: string,
+    type?: string,
+    orderBy?: string,
+    orderDesc?: boolean
+  ) {
     this._code = code || '';
     this._description = description || '';
+    this._orderBy = new EntitySortInput(orderBy, orderDesc);
     this._type = type || 'medicinal_product';
   }
 
@@ -27,6 +57,10 @@ export class EntitySearchFilter implements IEntitySearchFilter {
 
   get description(): string {
     return this._description;
+  }
+
+  get orderBy(): IEntitySortInput {
+    return this._orderBy;
   }
 
   get type(): string {

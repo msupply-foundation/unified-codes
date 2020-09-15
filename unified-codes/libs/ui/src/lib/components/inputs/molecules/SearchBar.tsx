@@ -6,6 +6,7 @@ import SearchButton from './SearchButton';
 
 export interface SearchBarProps {
   input: string;
+  label?: string;
   onChange?: (input: string) => void;
   onClear?: () => void;
   onSearch?: (input: string) => void;
@@ -13,7 +14,7 @@ export interface SearchBarProps {
 
 export type SearchBar = React.FunctionComponent<SearchBarProps>;
 
-export const SearchBar: SearchBar = ({ input, onChange, onClear, onSearch }) => {
+export const SearchBar: SearchBar = ({ input, label, onChange, onClear, onSearch }) => {
   const onChangeText = React.useCallback(
     (event) => (onChange ? onChange(event.target.value) : null),
     [onChange]
@@ -24,10 +25,16 @@ export const SearchBar: SearchBar = ({ input, onChange, onClear, onSearch }) => 
   return (
     <Grid container>
       <Grid item xs={11}>
-        <ClearInput fullWidth value={input} onChange={onChangeText} onClear={onClear} />
+        <ClearInput
+          fullWidth
+          label={label}
+          value={input}
+          onChange={onChangeText}
+          onClear={onClear}
+        />
       </Grid>
       <Grid item xs={1}>
-        <SearchButton fullWidth onClick={onClick} />
+        <SearchButton fullWidth onClick={onClick} style={{ marginTop: 15 }} />
       </Grid>
     </Grid>
   );

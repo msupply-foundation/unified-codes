@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { Entity, IExplorerVariables, IPaginatedResults } from '@unified-codes/data';
+import { IEntityCollection, IExplorerVariables } from '@unified-codes/data';
+import { TableProps } from '../../data';
 
 import EntityTable from '../molecules/EntityTable';
 import EntityTypeFilter from '../molecules/EntityTypeFilter';
@@ -23,7 +24,9 @@ export type IChildProperties = {
   tableProps?: TableProps;
 };
 export interface EntityBrowserProps {
-  entities: IPaginatedResults<Entity>;
+  childProps?: IChildProperties;
+  classes?: IEntityBrowserClasses;
+  entities: IEntityCollection;
   noResultsMessage?: string;
   variables?: IExplorerVariables;
 
@@ -32,6 +35,7 @@ export interface EntityBrowserProps {
   onChangeRowsPerPage?: (rowsPerPage: number) => void;
   onClear?: () => void;
   onSearch?: (value: string) => void;
+  onSort?: (value: string) => void;
 }
 
 export type EntityBrowser = React.FunctionComponent<EntityBrowserProps>;
@@ -39,6 +43,7 @@ type RowsPerPageEvent = React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement
 type MouseEvent = React.MouseEvent<HTMLButtonElement> | null;
 
 export const EntityBrowser: EntityBrowser = ({
+  childProps,
   entities,
   noResultsMessage = 'No results found',
   onChange,
@@ -46,6 +51,8 @@ export const EntityBrowser: EntityBrowser = ({
   onChangeRowsPerPage,
   onClear,
   onSearch,
+  onSort,
+  classes,
   variables,
 }) => {
   const [input, setInput] = React.useState('');
@@ -96,7 +103,12 @@ export const EntityBrowser: EntityBrowser = ({
         {entities.totalResults ? (
           <>
             <Grid item className={classes?.table}>
-              <EntityTable data={entities.data} {...childProps} />
+              <EntityTable
+                data={entities.data}
+                {...childProps}
+                onSort={onSort}
+                variables={variables}
+              />
             </Grid>
             <Grid item className={classes?.pagination}>
               {entities.totalResults && (

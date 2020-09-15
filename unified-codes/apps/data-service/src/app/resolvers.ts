@@ -39,11 +39,12 @@ export const resolvers = {
         console.log(`Entity requested by anonymous user.`);
       }
 
-      const { type = 'medicinal_product', code, description } = filter ?? {};
+      const { type = 'medicinal_product', code, description, orderBy } = filter ?? {};
+      const order = `order${orderBy.descending ? 'desc' : 'asc'}: ${orderBy.field}`;
       const query =
         description && description.length
-          ? queries.entitiesByDescriptionAndType(type, description)
-          : queries.entitiesByType(type);
+          ? queries.entitiesByDescriptionAndType(type, description, order)
+          : queries.entitiesByType(type, order);
       const response = await dgraph.postQuery(query);
       const allEntities: Array<IEntity> = response.data.query;
       const paginationParameters: IPaginationParameters<IEntity> = {

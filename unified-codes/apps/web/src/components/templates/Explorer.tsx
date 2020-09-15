@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { EntityBrowser, Grid } from '@unified-codes/ui';
+import { EntityBrowser, IEntityBrowserClasses } from '@unified-codes/ui';
 import {
   Entity,
   EntitySearchRequest,
@@ -20,6 +20,7 @@ import { ITheme, overflow } from '../../muiTheme';
 const FOOTER_HEADER_HEIGHT = 385;
 
 export interface ExplorerProps {
+  classes?: IEntityBrowserClasses;
   entities?: IExplorerData;
   variables?: IExplorerVariables;
 
@@ -32,6 +33,7 @@ const getStyles = (theme: ITheme) => {
   const borderStyle = `1px solid ${theme.palette.divider}`;
   return {
     pagination: { backgroundColor: theme.palette.background.toolbar },
+    root: { backgroundColor: theme.palette.background.default, maxHeight: '100%', maxWidth: 900 },
     searchBar: { paddingLeft: 15 },
     table: {
       marginTop: 5,
@@ -62,6 +64,7 @@ const getStyles = (theme: ITheme) => {
 export type Explorer = React.FunctionComponent<ExplorerProps>;
 
 export const ExplorerComponent: Explorer = ({
+  classes,
   entities,
   variables = {},
   onReady,
@@ -95,17 +98,28 @@ export const ExplorerComponent: Explorer = ({
     onUpdateVariables({ ...variables, page: 0, rowsPerPage });
   };
 
+  const handleSort = (orderBy: string) => {
+    const orderDesc = orderBy === variables?.orderBy ? !variables.orderDesc : false;
+    onUpdateVariables({ ...variables, orderBy, orderDesc });
+  };
+
+  const childProps = {
+    tableProps: { alternatingRowColour: '#f5f5f5', stripedRows: true },
+    rowProps: { rowProps: { style: { backgroundColor: '' } } },
+  };
+
   return (
-    <Grid container justify="center">
-      <EntityBrowser
-        entities={entityData}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-        onClear={handleClear}
-        onSearch={handleSearch}
-        variables={variables}
-      />
-    </Grid>
+    <EntityBrowser
+      childProps={childProps}
+      classes={classes}
+      entities={entityData}
+      onChangePage={handleChangePage}
+      onChangeRowsPerPage={handleChangeRowsPerPage}
+      onClear={handleClear}
+      onSearch={handleSearch}
+      onSort={handleSort}
+      variables={variables}
+    />
   );
 };
 
@@ -124,6 +138,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return { onReady, onSearch, onUpdateVariables };
 };
 
-export const Explorer = connect(mapStateToProps, mapDispatchToProps)(ExplorerComponent);
+const StyledExplorer = withStyles(getStyles)(ExplorerComponent);
+export const Explorer = connect(mapStateToProps, mapDispatchToProps)(StyledExplorer);
 
 export default Explorer;

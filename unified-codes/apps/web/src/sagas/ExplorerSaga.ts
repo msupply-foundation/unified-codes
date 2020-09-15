@@ -22,9 +22,8 @@ import {
 
 const getEntitiesQuery = (filter: IEntitySearchFilter, first: number, offset?: number) => `
   {
-    entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" } offset: ${offset} first: ${first}) {
+    entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" orderBy: { field: "${filter.orderBy.field}" descending: ${filter.orderBy.descending} } } offset: ${offset} first: ${first}) {
       data {
-
         code
         description
         type
@@ -102,10 +101,9 @@ function* fetchDataSaga() {
 
 function* updateVariables(action: IExplorerUpdateVariablesAction) {
   const { variables } = action;
-  const { code, description, page, rowsPerPage, type } = variables;
-  const filter = new EntitySearchFilter(description, code, type);
+  const { code, description, page, rowsPerPage, orderDesc, orderBy, type } = variables;
+  const filter = new EntitySearchFilter(description, code, type, orderBy, orderDesc);
   const request = new EntitySearchRequest(filter, rowsPerPage, page);
-
   yield put(ExplorerActions.fetchData(request));
 }
 
