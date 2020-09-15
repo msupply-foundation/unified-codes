@@ -18,7 +18,7 @@ import { ExplorerSelectors } from '../../selectors';
 import { withStyles } from '@material-ui/core/styles';
 import { ITheme, overflow } from '../../muiTheme';
 
-const FOOTER_HEADER_HEIGHT = 300;
+const FOOTER_HEADER_HEIGHT = 370;
 
 export interface ExplorerProps {
   classes?: IEntityBrowserClasses;
@@ -47,6 +47,17 @@ const getStyles = (theme: ITheme) => {
       '& tr > td:last-child': { borderRight: 0 },
       '& tr > th:last-child': { borderRight: 0 },
       '& tr > td:first-child': { fontWeight: 700 },
+    },
+    tableContainer: {
+      backgroundColor: theme.palette.background.default,
+      margin: '-20px auto 0 auto',
+      maxHeight: '100%',
+      maxWidth: 900,
+      borderRadius: 5,
+    },
+    typeFilter: {
+      backgroundColor: theme.palette.background.footer,
+      paddingBottom: 24,
     },
   };
 };

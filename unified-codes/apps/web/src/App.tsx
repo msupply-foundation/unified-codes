@@ -9,7 +9,7 @@ import { Container, Grid, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
 
 import { AlertActions } from './actions';
-import { Explorer, Footer, Header, Login, EntityTypeFilter } from './components';
+import { Explorer, Footer, Header, Login } from './components';
 
 export interface AppProps {
   alert: IAlert;
@@ -26,7 +26,7 @@ const getStyles = (theme: Theme) => ({
   content: {
     backgroundColor: theme.palette.background.paper,
     marginTop: 96,
-    maxHeight: '100vh',
+    height: 'calc(100vh - 90px)',
     paddingBottom: 10,
   },
 });
@@ -34,13 +34,11 @@ const getStyles = (theme: Theme) => ({
 export type App = React.FunctionComponent<AppProps>;
 
 const _App: App = ({ alert, classes, resetAlert }) => {
-  
   return (
     <BrowserRouter>
       <Container maxWidth={false} className={classes.container}>
         <Grid container spacing={3} direction="column" justify="space-between" alignItems="stretch">
           <Header />
-          <EntityTypeFilter />
           <AlertBar
             isVisible={alert.isVisible}
             text={alert.text}
@@ -48,7 +46,7 @@ const _App: App = ({ alert, classes, resetAlert }) => {
             onClose={resetAlert}
           />
         </Grid>
-        <Grid container className={classes.content} justify="center">
+        <div className={classes.content}>
           <Switch>
             <Route exact path="/explorer">
               <Explorer />
@@ -60,7 +58,7 @@ const _App: App = ({ alert, classes, resetAlert }) => {
               <Redirect to="/explorer" />
             </Route>
           </Switch>
-        </Grid>
+        </div>
       </Container>
       <Footer />
     </BrowserRouter>
