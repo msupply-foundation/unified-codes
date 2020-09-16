@@ -1,7 +1,7 @@
 import React from 'react';
 import { EntityTableRow } from './EntityTableRow';
 
-import { Entity, IEntity } from '@unified-codes/data';
+import { Entities, Entity } from '@unified-codes/data';
 
 export default {
   component: EntityTableRow,
@@ -9,11 +9,6 @@ export default {
 };
 
 export const withNoProps = () => {
-  const data: IEntity = {
-    code: 'QFWR9789',
-    description: 'Amoxicillin',
-    type: 'medicinal_product',
-  };
-  const entity = new Entity(data);
+  const entity = new Entity(Entities[0]);
   return <EntityTableRow entity={entity} />;
 };
