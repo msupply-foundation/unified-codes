@@ -1,15 +1,17 @@
 import * as React from 'react';
-import theme from '../../muiTheme';
-import { ThemeProvider } from '@material-ui/core/styles';
 
 import { EntityTypeFilter } from './EntityTypeFilter';
 
 export default { title: 'EntityTypeFilter' };
 
-export const withNoProps = () => {
+const entityTypes = [
+  { name: 'Type #1', active: true },
+  { name: 'Type #2', active: false },
+  { name: 'Type #3', active: false },
+];
+
+export const withDummyTypes = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <EntityTypeFilter />
-    </ThemeProvider>
+      <EntityTypeFilter types={entityTypes}/>
   );
 };
