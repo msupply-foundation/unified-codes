@@ -100,18 +100,9 @@ export const ExplorerComponent: Explorer = ({
     onUpdateVariables({ ...variables, orderBy, orderDesc });
   };
 
-  const handleSelect = (entityCode: string) => {
-    console.log(`${entityCode} selected`);
-  };
-
   const childProps = {
     tableProps: { alternatingRowColour: '#f5f5f5', stripedRows: true },
-    rowProps: {
-      rowProps: {
-        style: { backgroundColor: '' },
-      },
-      onEntitySelect: handleSelect,
-    },
+    rowProps: { rowProps: { style: { backgroundColor: '' } } },
   };
 
   return (
@@ -124,7 +115,6 @@ export const ExplorerComponent: Explorer = ({
       onClear={handleClear}
       onSearch={handleSearch}
       onSort={handleSort}
-      onEntitySelect={handleSelect}
       variables={variables}
     />
   );
