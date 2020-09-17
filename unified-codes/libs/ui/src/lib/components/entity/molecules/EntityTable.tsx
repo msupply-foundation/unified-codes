@@ -41,7 +41,7 @@ export const EntityTable: EntityTable = ({
   const mapEntity = (entity: IEntity, index: number) => {
     const localRowProps =
       tableProps?.stripedRows && tableProps?.alternatingRowColour
-        ? { style: { backgroundColor: index % 2 ? tableProps?.alternatingRowColour : '' } }
+        ? { style: { backgroundColor: index % 2 ? tableProps?.alternatingRowColour : '', cursor: 'pointer' } }
         : undefined;
 
     return (

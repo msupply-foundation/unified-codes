@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
 
 import { EntityBrowser, IEntityBrowserClasses } from '@unified-codes/ui';
 import {
@@ -75,6 +76,7 @@ export const ExplorerComponent: Explorer = ({
     onReady();
   }, []);
   const entityCollection = entities || new EntityCollection();
+  let history = useHistory();
 
   const handleClear = () => {
     onUpdateVariables({ ...variables, description: '', page: 0 });
@@ -102,6 +104,7 @@ export const ExplorerComponent: Explorer = ({
 
   const handleSelect = (entityCode: string) => {
     console.log(`${entityCode} selected`);
+    history.push('/search');
   };
 
   const childProps = {

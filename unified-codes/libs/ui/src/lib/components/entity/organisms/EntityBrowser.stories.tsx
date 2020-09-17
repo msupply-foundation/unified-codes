@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { Entity, EntityCollection, IEntity } from '@unified-codes/data';
-
 import { EntityBrowser } from './EntityBrowser';
 
 export default {
@@ -23,8 +22,8 @@ export const withNoProps = () => {
     },
   ];
 
-  const onSelect = () => console.log('onSelect triggered');
+  const onEntitySelect = () => console.log('onSelect triggered');
   const data = entities.map((entityNode: IEntity) => new Entity(entityNode));
   const entityCollection = new EntityCollection(data);
-  return <EntityBrowser entities={entityCollection} onSelect={onSelect} />;
+  return <EntityBrowser entities={entityCollection} onEntitySelect={onEntitySelect} />;
 };
