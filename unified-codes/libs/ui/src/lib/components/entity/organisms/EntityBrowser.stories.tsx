@@ -22,7 +22,9 @@ export const withNoProps = () => {
       type: 'medicinal_product',
     },
   ];
+
+  const onSelect = () => console.log('onSelect triggered');
   const data = entities.map((entityNode: IEntity) => new Entity(entityNode));
   const entityCollection = new EntityCollection(data);
-  return <EntityBrowser entities={entityCollection} />;
+  return <EntityBrowser entities={entityCollection} onSelect={onSelect} />;
 };

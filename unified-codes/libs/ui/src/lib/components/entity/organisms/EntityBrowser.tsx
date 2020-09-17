@@ -36,6 +36,7 @@ export interface EntityBrowserProps {
   onClear?: () => void;
   onSearch?: (value: string) => void;
   onSort?: (value: string) => void;
+  onEntitySelect: (code: string) => void;
 }
 
 export type EntityBrowser = React.FunctionComponent<EntityBrowserProps>;
@@ -52,6 +53,7 @@ export const EntityBrowser: EntityBrowser = ({
   onClear,
   onSearch,
   onSort,
+  onEntitySelect,
   classes,
   variables,
 }) => {
@@ -107,6 +109,7 @@ export const EntityBrowser: EntityBrowser = ({
                 data={entities.data}
                 {...childProps}
                 onSort={onSort}
+                onEntitySelect={onEntitySelect}
                 variables={variables}
               />
             </Grid>
