@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Entity, EntityCollection, IEntity } from '@unified-codes/data';
+import { EntityCollection, IEntity } from '@unified-codes/data';
 
 import { EntityBrowser } from './EntityBrowser';
 
@@ -17,12 +17,16 @@ export const withNoProps = () => {
       type: 'medicinal_product',
     },
     {
+      code: 'a1004adb',
+      description: 'Metronidazole',
+      type: 'medicinal_product',
+    },
+    {
       code: 'GH89P98W',
       description: 'Paracetamol',
       type: 'medicinal_product',
     },
   ];
-  const data = entities.map((entityNode: IEntity) => new Entity(entityNode));
-  const entityCollection = new EntityCollection(data);
+  const entityCollection = new EntityCollection(entities);
   return <EntityBrowser entities={entityCollection} />;
 };
