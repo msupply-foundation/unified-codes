@@ -63,6 +63,11 @@ const _Header: Header = ({ classes }) => {
       </Grid>
       <Grid item style={{ flex: 1 }}>
         <Grid container className={classes.menu}>
+        <Grid item>
+            <Link component={RouterLink} to="/search">
+              Search
+            </Link>
+          </Grid>
           <Grid item>
             <Link component={RouterLink} to="/">
               Browse

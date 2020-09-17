@@ -9,7 +9,7 @@ import { Container, Grid, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
 
 import { AlertActions } from './actions';
-import { Explorer, Footer, Header, Login } from './components';
+import { Explorer, Footer, Header, Login, SearchResults } from './components';
 
 export interface AppProps {
   alert: IAlert;
@@ -48,6 +48,9 @@ const _App: App = ({ alert, classes, resetAlert }) => {
         </Grid>
         <div className={classes.content}>
           <Switch>
+            <Route exact path="/search">
+              <SearchResults />
+            </Route>
             <Route exact path="/explorer">
               <Explorer />
             </Route>
