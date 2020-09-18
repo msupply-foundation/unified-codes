@@ -64,12 +64,12 @@ const _Header: Header = ({ classes }) => {
       <Grid item style={{ flex: 1 }}>
         <Grid container className={classes.menu}>
         <Grid item>
-            <Link component={RouterLink} to="/search">
+            <Link component={RouterLink} to="/">
               Search
             </Link>
           </Grid>
           <Grid item>
-            <Link component={RouterLink} to="/">
+            <Link component={RouterLink} to="/details">
               Browse
             </Link>
           </Grid>

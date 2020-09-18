@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 import { EntityBrowser, IEntityBrowserClasses } from '@unified-codes/ui';
 import {
@@ -104,7 +104,7 @@ export const ExplorerComponent: Explorer = ({
 
   const handleSelect = (entityCode: string) => {
     console.log(`${entityCode} selected`);
-    history.push('/search');
+    history.push(`/details/${entityCode}`);
   };
 
   const childProps = {
