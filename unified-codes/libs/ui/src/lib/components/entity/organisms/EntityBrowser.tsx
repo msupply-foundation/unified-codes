@@ -82,7 +82,7 @@ export const EntityBrowser: EntityBrowser = ({
     onClear && onClear();
   };
 
-  const { page = 1, rowsPerPage = 10 } = variables || {};
+  const { page = 0, rowsPerPage = 10 } = variables || {};
   const entityTypes = [
     { name: 'Drugs', active: true },
     { name: 'Unit of Use', active: false },

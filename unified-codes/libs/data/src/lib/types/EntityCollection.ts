@@ -11,7 +11,7 @@ export class EntityCollection implements IEntityCollection {
 
   constructor(data?: Array<IEntity>, totalLength?: number) {
     this._data = data || ([] as Array<IEntity>);
-    this._totalLength = totalLength === undefined ? 0 : totalLength;
+    this._totalLength = totalLength === undefined ? this._data.length : totalLength;
   }
 
   get data(): Array<IEntity> {
