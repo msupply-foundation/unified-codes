@@ -14,7 +14,8 @@
             "outputPath": "dist/apps/legacy-api",
             "main": "apps/legacy-api/src/app/server.ts",
             "tsConfig": "apps/legacy-api/tsconfig.app.json",
-            "assets": ["apps/legacy-api/src/assets"]
+            "assets": ["apps/legacy-api/src/assets"],
+            "externalDependencies": "none"
           },
           "configurations": {
             "production": {
@@ -67,7 +68,8 @@
             "outputPath": "dist/apps/data-service",
             "main": "apps/data-service/src/app/main.ts",
             "tsConfig": "apps/data-service/tsconfig.app.json",
-            "assets": ["apps/data-service/src/assets"]
+            "assets": ["apps/data-service/src/assets"],
+            "externalDependencies": ["fastify"]
           },
           "configurations": {
             "production": {
