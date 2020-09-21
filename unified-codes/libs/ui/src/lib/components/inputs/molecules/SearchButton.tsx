@@ -7,8 +7,9 @@ export type SearchButtonProps = ButtonProps;
 
 export type SearchButton = React.FunctionComponent<SearchButtonProps>;
 
-export const SearchButton: SearchButton = (props: SearchButtonProps) => (
-  <Button startIcon={<SearchIcon />} {...props}></Button>
-);
+export const SearchButton: SearchButton = (props: SearchButtonProps) => {
+  const { classes, ...otherProps } = props;
+  return <Button classes={{ root: classes?.root }} startIcon={<SearchIcon />} {...otherProps}></Button>;
+}
 
 export default SearchButton;

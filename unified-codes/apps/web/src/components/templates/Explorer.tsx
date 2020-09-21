@@ -107,6 +107,10 @@ export const ExplorerComponent: Explorer = ({
 
   return (
     <EntityBrowser
+      orderDesc={variables.orderDesc}
+      orderBy={variables.orderBy}
+      page={variables.page}
+      rowsPerPage={variables.rowsPerPage}
       childProps={childProps}
       classes={classes}
       entities={entityCollection}
@@ -115,7 +119,6 @@ export const ExplorerComponent: Explorer = ({
       onClear={handleClear}
       onSearch={handleSearch}
       onSort={handleSort}
-      variables={variables}
     />
   );
 };
