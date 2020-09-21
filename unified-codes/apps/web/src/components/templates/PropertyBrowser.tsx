@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { IEntity } from 'libs/data/src/lib';
 import { useState, useEffect } from 'react';
+import { Grid } from '@unified-codes/ui';
 
 export type PropertyBrowser = React.FunctionComponent;
 
@@ -14,7 +15,6 @@ export const PropertyBrowser: PropertyBrowser = () => {
     getEntity(url);
   }, []);
 
-  // TODO: Recurse on has_property and has_child to go deeper/wider in hierarchy
   const getEntityQuery = (code: string) => `
   {
     entity (code: "${code}") {
@@ -25,10 +25,17 @@ export const PropertyBrowser: PropertyBrowser = () => {
         type
         value
       }
+      # form_category
       has_child {
         code
         description
         type
+        # form
+        has_child {
+          code
+          description
+          type
+        }
       }
     }
   }`;
