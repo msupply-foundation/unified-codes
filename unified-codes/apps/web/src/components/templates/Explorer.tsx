@@ -103,7 +103,6 @@ export const ExplorerComponent: Explorer = ({
   };
 
   const handleSelect = (entityCode: string) => {
-    console.log(`${entityCode} selected`);
     history.push(`/details/${entityCode}`);
   };
 
