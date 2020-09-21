@@ -5,13 +5,13 @@ import { useState, useEffect } from 'react';
 
 export type PropertyBrowser = React.FunctionComponent;
 
-export const PropertyBrowser : PropertyBrowser = () => {
+export const PropertyBrowser: PropertyBrowser = () => {
   const { code } = useParams();
-  const url = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;;  
+  const url = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
   const [entity, setEntity] = useState<IEntity>();
 
   useEffect(() => {
-    getEntity(url)
+    getEntity(url);
   }, []);
 
   // TODO: Recurse on has_property and has_child to go deeper/wider in hierarchy
@@ -47,12 +47,12 @@ export const PropertyBrowser : PropertyBrowser = () => {
     const json = await response.json();
     const { data } = json;
     const { entity } = data;
-  
+
     setEntity(entity);
   };
 
-// TODO: Create UI components and format this properly
-return <div>{JSON.stringify(entity)}</div>;
-}
+  // TODO: Create UI components and format this properly
+  return <div>{JSON.stringify(entity)}</div>;
+};
 
 export default PropertyBrowser;
