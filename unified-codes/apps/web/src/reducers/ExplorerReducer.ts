@@ -16,7 +16,7 @@ const initialState = (): IExplorerState => {
       orderBy: 'description',
       page: 0,
       rowsPerPage: 25,
-      type: 'medicinal_product',
+      type: 'drug',
     },
   };
 };

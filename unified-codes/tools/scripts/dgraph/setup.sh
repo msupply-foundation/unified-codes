@@ -7,6 +7,6 @@ echo " * Initialising demo graph schema..."
 bash ./alter.sh ./data/schema.gql
 
 echo " * Populating demo graph data..."
-bash ./mutate.sh ./data/demo.json
+bash ./mutate.sh ./data/import.json
 
 echo " * Done."

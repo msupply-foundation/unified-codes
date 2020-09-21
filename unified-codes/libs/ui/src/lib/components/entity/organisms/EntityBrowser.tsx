@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IEntityCollection, IExplorerVariables } from '@unified-codes/data';
+import { IEntityCollection, IEntityType, IExplorerVariables } from '@unified-codes/data';
 import { TableProps } from '../../data';
 
 import EntityTable from '../molecules/EntityTable';
@@ -36,6 +36,7 @@ export interface EntityBrowserProps {
   onClear?: () => void;
   onSearch?: (value: string) => void;
   onSort?: (value: string) => void;
+  onTypesChange?: (entityTypes: Array<IEntityType>) => void;
 }
 
 export type EntityBrowser = React.FunctionComponent<EntityBrowserProps>;
@@ -52,6 +53,7 @@ export const EntityBrowser: EntityBrowser = ({
   onClear,
   onSearch,
   onSort,
+  onTypesChange,
   classes,
   variables,
 }) => {
@@ -82,14 +84,18 @@ export const EntityBrowser: EntityBrowser = ({
 
   const { page = 0, rowsPerPage = 10 } = variables || {};
   const entityTypes = [
-    { name: 'Drugs', active: true },
-    { name: 'Unit of Use', active: false },
+    { name: 'Drug', active: true },
+    { name: 'Medicinal Product', active: false },
     { name: 'Other', active: false },
   ];
 
   return (
     <>
-      <EntityTypeFilter types={entityTypes} className={classes?.typeFilter} />
+      <EntityTypeFilter
+        types={entityTypes}
+        className={classes?.typeFilter}
+        onChange={onTypesChange}
+      />
       <Grid container direction="column" className={classes?.tableContainer}>
         <Grid item className={classes?.searchBar}>
           <SearchBar
