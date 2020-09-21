@@ -69,11 +69,6 @@ const _Header: Header = ({ classes }) => {
             </Link>
           </Grid>
           <Grid item>
-            <Link component={RouterLink} to="/details">
-              Browse
-            </Link>
-          </Grid>
-          <Grid item>
             <Link component={RouterLink} to="/login">
               Admin
             </Link>
