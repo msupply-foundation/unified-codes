@@ -76,7 +76,7 @@ export const ExplorerComponent: Explorer = ({
     onReady();
   }, []);
   const entityCollection = entities || new EntityCollection();
-  let history = useHistory();
+  const history = useHistory();
 
   const handleClear = () => {
     onUpdateVariables({ ...variables, description: '', page: 0 });
