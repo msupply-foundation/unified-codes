@@ -65,7 +65,7 @@ const _Header: Header = ({ classes }) => {
         <Grid container className={classes.menu}>
         <Grid item>
             <Link component={RouterLink} to="/">
-              Search
+              Browse
             </Link>
           </Grid>
           <Grid item>
