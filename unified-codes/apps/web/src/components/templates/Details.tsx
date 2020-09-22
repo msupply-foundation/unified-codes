@@ -2,11 +2,10 @@ import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { IEntity } from 'libs/data/src/lib';
 import { useState, useEffect } from 'react';
-import { Grid } from '@unified-codes/ui';
 
-export type PropertyBrowser = React.FunctionComponent;
+export type Details = React.FunctionComponent;
 
-export const PropertyBrowser: PropertyBrowser = () => {
+export const Details: Details = () => {
   const { code } = useParams();
   const url = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
   const [entity, setEntity] = useState<IEntity>();
@@ -62,4 +61,4 @@ export const PropertyBrowser: PropertyBrowser = () => {
   return <div>{JSON.stringify(entity)}</div>;
 };
 
-export default PropertyBrowser;
+export default Details;
