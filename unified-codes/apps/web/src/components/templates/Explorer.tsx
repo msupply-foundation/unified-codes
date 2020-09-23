@@ -101,11 +101,13 @@ export const ExplorerComponent: Explorer = ({
   };
 
   const handleTypesChange = (entityTypes: Array<IEntityType>) => {
-    const type = entityTypes
-      .filter((t) => t.active)
-      .map((t) => t.name.toLowerCase().replace(' ', '_'))
-      .join(' ');
-    onUpdateVariables({ ...variables, type });
+    const type =
+      entityTypes
+        .filter((t) => t.active)
+        .map((t) => t.name.toLowerCase().replace(' ', '_'))
+        .join(' ') || '-';
+    const page = variables.type === type ? variables.page : 0;
+    onUpdateVariables({ ...variables, type, page });
   };
 
   const childProps = {

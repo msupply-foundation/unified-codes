@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { IEntityCollection, IEntityType, IExplorerVariables } from '@unified-codes/data';
+import { IEntityCollection, IExplorerVariables } from '@unified-codes/data';
 import { TableProps } from '../../data';
 
 import EntityTable from '../molecules/EntityTable';
-import EntityTypeFilter from '../molecules/EntityTypeFilter';
+import EntityTypeFilter, { IEntityType } from '../molecules/EntityTypeFilter';
 import { EntityTableRowProps } from '../molecules/EntityTableRow';
 import Grid from '../../layout/atoms/Grid';
 import SearchBar from '../../inputs/molecules/SearchBar';
