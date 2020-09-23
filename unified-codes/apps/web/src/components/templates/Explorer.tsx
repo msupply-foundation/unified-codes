@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { EntityBrowser, IEntityBrowserClasses } from '@unified-codes/ui';
+import { EntityBrowser, IEntityBrowserClasses, IEntityType } from '@unified-codes/ui';
 import {
   EntityCollection,
   EntitySearchRequest,
@@ -104,6 +104,16 @@ export const ExplorerComponent: Explorer = ({
 
   const handleSelect = (entityCode: string) => {
     history.push(`/details/${entityCode}`);
+  }
+  
+  const handleTypesChange = (entityTypes: Array<IEntityType>) => {
+    const type =
+      entityTypes
+        .filter((t) => t.active)
+        .map((t) => t.name.toLowerCase().replace(' ', '_'))
+        .join(' ') || '-';
+    const page = variables.type === type ? variables.page : 0;
+    onUpdateVariables({ ...variables, type, page });
   };
 
   const childProps = {
@@ -127,6 +137,7 @@ export const ExplorerComponent: Explorer = ({
       onSearch={handleSearch}
       onSort={handleSort}
       onEntitySelect={handleSelect}
+      onTypesChange={handleTypesChange}
       variables={variables}
     />
   );
