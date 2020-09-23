@@ -1,9 +1,15 @@
-import { IAlert, IEntityCollection, IExplorerVariables, IUser } from '@unified-codes/data';
+import { IAlert, IEntityCollection, IEntity, IExplorerVariables, IUser } from '@unified-codes/data';
 
 export type IAlertState = IAlert | {};
 
 export interface IAuthenticatorState {
   isAuthenticating?: boolean;
+}
+
+export interface IDetailsState {
+  entity?: IEntity;
+  error?: Error;
+  loading?: boolean;
 }
 
 export interface IExplorerState {
@@ -20,4 +26,5 @@ export interface IState {
   user: IUserState;
   explorer: IExplorerState;
   authenticator: IAuthenticatorState;
+  details: IDetailsState;
 }
