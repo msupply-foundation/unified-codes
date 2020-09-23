@@ -48,7 +48,7 @@ export class EntitySearchFilter implements IEntitySearchFilter {
     this._code = code || '';
     this._description = description || '';
     this._orderBy = new EntitySortInput(orderBy, orderDesc);
-    this._type = type || 'medicinal_product';
+    this._type = type || 'drug';
   }
 
   get code(): string {
