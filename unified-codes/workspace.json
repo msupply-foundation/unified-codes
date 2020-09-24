@@ -15,7 +15,7 @@
             "main": "apps/legacy-api/src/app/server.ts",
             "tsConfig": "apps/legacy-api/tsconfig.app.json",
             "assets": ["apps/legacy-api/src/assets"],
-            "externalDependencies": "none"
+            "externalDependencies": ["fastify"]
           },
           "configurations": {
             "production": {
