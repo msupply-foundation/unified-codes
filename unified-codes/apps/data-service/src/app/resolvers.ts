@@ -38,7 +38,7 @@ export const resolvers = {
         console.log(`Entity requested by anonymous user.`);
       }
 
-      const { type = 'medicinal_product', code, description, orderBy } = filter ?? {};
+      const { type = 'drug', code, description, orderBy } = filter ?? {};
       const order = `order${orderBy.descending ? 'desc' : 'asc'}: ${orderBy.field}`;
       const query = queries.entities(type, order, offset, first, description);
       const response = await dgraph.postQuery(query);

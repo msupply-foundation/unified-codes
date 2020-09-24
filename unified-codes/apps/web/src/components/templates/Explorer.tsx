@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { EntityBrowser, IEntityBrowserClasses } from '@unified-codes/ui';
+import { EntityBrowser, IEntityBrowserClasses, IEntityType } from '@unified-codes/ui';
 import {
   EntityCollection,
   EntitySearchRequest,
@@ -100,6 +100,16 @@ export const ExplorerComponent: Explorer = ({
     onUpdateVariables({ ...variables, orderBy, orderDesc });
   };
 
+  const handleTypesChange = (entityTypes: Array<IEntityType>) => {
+    const type =
+      entityTypes
+        .filter((t) => t.active)
+        .map((t) => t.name.toLowerCase().replace(' ', '_'))
+        .join(' ') || '-';
+    const page = variables.type === type ? variables.page : 0;
+    onUpdateVariables({ ...variables, type, page });
+  };
+
   const childProps = {
     tableProps: { alternatingRowColour: '#f5f5f5', stripedRows: true },
     rowProps: { rowProps: { style: { backgroundColor: '' } } },
@@ -115,6 +125,7 @@ export const ExplorerComponent: Explorer = ({
       onClear={handleClear}
       onSearch={handleSearch}
       onSort={handleSort}
+      onTypesChange={handleTypesChange}
       variables={variables}
     />
   );
