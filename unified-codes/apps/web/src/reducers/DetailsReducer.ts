@@ -24,7 +24,7 @@ export const DetailsReducer = (
     }
     case DETAILS_ACTIONS.FETCH_SUCCESS: {
       const { entity } = action as IDetailsFetchSuccessAction;
-      return { ...state, entity, loading: false };
+      return { ...state, entity, error: initialState().error, loading: false };
     }
     case DETAILS_ACTIONS.FETCH_FAILURE: {
       const { error } = action as IDetailsFetchFailureAction;
