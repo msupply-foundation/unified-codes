@@ -11,10 +11,14 @@ export interface DetailsProps {
  entity?: IEntity
 }
 
+interface IDetailsParameters {
+  code: string;
+}
+
 export type Details = React.FunctionComponent<DetailsProps>;
 
 export const DetailsComponent: Details = ({ entity, getEntity }) => {
-  const { code } = useParams();
+  const { code } = useParams<IDetailsParameters>();
 
   React.useEffect(() => {
     getEntity(code);
