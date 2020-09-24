@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { EntityBrowser, IEntityBrowserClasses, IEntityType } from '@unified-codes/ui';
 import {
@@ -75,6 +76,7 @@ export const ExplorerComponent: Explorer = ({
     onReady();
   }, []);
   const entityCollection = entities || new EntityCollection();
+  const history = useHistory();
 
   const handleClear = () => {
     onUpdateVariables({ ...variables, description: '', page: 0 });
@@ -100,6 +102,10 @@ export const ExplorerComponent: Explorer = ({
     onUpdateVariables({ ...variables, orderBy, orderDesc });
   };
 
+  const handleSelect = (entityCode: string) => {
+    history.push(`/details/${entityCode}`);
+  }
+  
   const handleTypesChange = (entityTypes: Array<IEntityType>) => {
     const type =
       entityTypes
@@ -112,7 +118,12 @@ export const ExplorerComponent: Explorer = ({
 
   const childProps = {
     tableProps: { alternatingRowColour: '#f5f5f5', stripedRows: true },
-    rowProps: { rowProps: { style: { backgroundColor: '' } } },
+    rowProps: {
+      rowProps: {
+        style: { backgroundColor: '' },
+      },
+      onEntitySelect: handleSelect,
+    },
   };
 
   return (
@@ -125,6 +136,7 @@ export const ExplorerComponent: Explorer = ({
       onClear={handleClear}
       onSearch={handleSearch}
       onSort={handleSort}
+      onEntitySelect={handleSelect}
       onTypesChange={handleTypesChange}
       variables={variables}
     />

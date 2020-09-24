@@ -28,5 +28,7 @@ export const withNoProps = () => {
     },
   ];
   const entityCollection = new EntityCollection(entities);
-  return <EntityBrowser entities={entityCollection} />;
+  const onEntitySelect = () => console.log('onEntitySelect triggered');
+
+  return <EntityBrowser entities={entityCollection} onEntitySelect={onEntitySelect} />;
 };

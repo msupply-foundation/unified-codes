@@ -22,6 +22,7 @@ export interface EntityTableProps {
   tableProps?: TableProps;
   variables?: IExplorerVariables;
   onSort?: (value: string) => void;
+  onEntitySelect: (entityCode: string) => void;
 }
 
 export type EntityTable = React.FunctionComponent<EntityTableProps>;
@@ -35,21 +36,29 @@ export const EntityTable: EntityTable = ({
   data,
   variables,
   onSort,
+  onEntitySelect,
 }: EntityTableProps) => {
   const mapEntity = (entity: IEntity, index: number) => {
     const localRowProps =
       tableProps?.stripedRows && tableProps?.alternatingRowColour
-        ? { style: { backgroundColor: index % 2 ? tableProps?.alternatingRowColour : '' } }
+        ? { style: { backgroundColor: index % 2 ? tableProps?.alternatingRowColour : '', cursor: 'pointer' } }
         : undefined;
 
     return (
       <EntityTableRow
         key={entity.code}
-        {...{
-          ...rowProps,
-          entity,
-          rowProps: { ...localRowProps },
-        }}
+        {
+          ...{
+            ...rowProps,
+            entity,
+            onEntitySelect, 
+            rowProps: {
+              ...localRowProps,
+              hover: true
+            },
+          }
+        }
+        
       ></EntityTableRow>
     );
   };
