@@ -194,8 +194,6 @@ export const withProps = () => {
 
   // Table w/ pagination.
 
-  // TODO: table + pagination logic should be coupled, add TablePagination as EntityTable component prop.
-
   const {
     entities,
     count,
@@ -257,7 +255,7 @@ export const withProps = () => {
             entity={entity}
             key={entity.code}
           ></EntityTableRow>
-        )
+        ))
       }
     </React.Fragment>
   ), [classes, columns, data]);
@@ -285,9 +283,6 @@ export const withProps = () => {
 
   // Search bar.
 
-  // TODO: Not too much! Add classes for buttonContainer and inputContainer, pass up handleKeyDown as prop, and it's
-  // done!
-
   const { 
     input,
     label,
@@ -311,19 +306,6 @@ export const withProps = () => {
 
   // Type filter.
 
-  // TODO: EntityTypeFilter is uncontrolled (i.e. maintains internal state that parent can't see).
-  // I don't think I communicated well, but idea I was going for is that library components should be 
-  // "dumb", just do what parent says and have parent maintain the state. Library components should "wrap" 
-  // smaller components for reusability, but should avoid any internal state management or hardcoded 
-  // styles/child props (if you need to specify certain styles/ child props etc. just expose child component
-  // as component prop so parent can take care of it).
-  
-  // Idea I'm thinking here is to move logic up and have parent maintain toggle state (e.g. as part of redux 
-  // slice responsible for filter parameters, i.e. search term, ordering, types, etc.). Parent can then pass
-  // buttons directly as render/component props to ToggleButtonGroup. 
-
-  // TLDR: 
-
   const { types } = useTypeFilterState();
 
   const entityBrowserTypeFilter = React.useMemo(() => (
@@ -339,15 +321,6 @@ export const withProps = () => {
   ), [classes, types]);
 
   // Browser.
-  
-  // TODO: refactor so pagination is part of table component. Table + pagination share state, so
-  // will avoid splitting shared state and will make EntityBrowser only need component props for
-  // table, toggleBar, searchBar.
-
-  // TODO x2: add an entity molecule, e.g. replace EntityTypeFilter with EntityTableFilter, which wraps 
-  // ToggleBar and SearchBar into another component (arguably an organism, so could add a little bit of 
-  // state management here too, if needed, but hopefully not!). Is good from an atomic design point of view
-  // and also leaves EntityBrowser only needing filter and table component props!
 
   return (
     <EntityBrowser 
