@@ -36,11 +36,11 @@ export const EntityDetails: EntityDetails = ({
         <ul>
           {formCategories?.map((item) => {
             return (
-              <li>
+              <li key={item.name}>
                 <Typography variant="body1">{item.name}</Typography>
                 <ul>
                   {item.forms?.map((form) => {
-                    return <li>{form}</li>;
+                    return <li key={form}>{form}</li>;
                   })}
                 </ul>
               </li>
@@ -50,7 +50,7 @@ export const EntityDetails: EntityDetails = ({
         <Typography variant="h6">Properties</Typography>
         <ul>
           {entityProperties?.map((item) => (
-            <li>
+            <li key={item.type}>
               <Typography variant="body1">
                 {item.type}: {item.value}
               </Typography>
@@ -60,7 +60,7 @@ export const EntityDetails: EntityDetails = ({
         <Typography variant="h6">External Links</Typography>
         <ul>
           {externalLinks?.map((item) => (
-            <li>
+            <li key={item.type}>
               <Link href={item.url}>{item.type}</Link>
             </li>
           ))}
