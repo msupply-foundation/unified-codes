@@ -1,4 +1,4 @@
-import fastify, { FastifyServerOptions, RouteShorthandOptionsWithHandler } from 'fastify';
+import fastify from 'fastify';
 
 import schemas from './schemas';
 import handlers from './handlers';

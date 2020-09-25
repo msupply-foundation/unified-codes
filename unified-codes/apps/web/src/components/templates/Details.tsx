@@ -31,6 +31,10 @@ interface IDetailsParameters {
   code: string;
 }
 
+interface IDetailsParameters {
+  code: string;
+}
+
 export type Details = React.FunctionComponent<DetailsProps>;
 
 export const DetailsComponent: Details = ({ classes, entity, getEntity, isLoading }) => {
