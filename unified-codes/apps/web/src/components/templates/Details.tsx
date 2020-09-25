@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { IEntity, Property } from '@unified-codes/data';
-import { EntityDetails, IFormCategory, IExternalLink } from '@unified-codes/ui';
+import { EntityDetails, IFormCategory, IExternalLink, Typography, Grid } from '@unified-codes/ui';
 import { DetailsActions } from '../../actions';
 import { IState } from '../../types';
 
@@ -43,7 +43,7 @@ export const DetailsComponent: Details = ({ entity, getEntity }) => {
       case 'code_nzulm':
         externalLinks.push({
           type: 'NZULM',
-          url: `${process.env.NX_NZULM_URL}/id=${property.value}`,
+          url: `${process.env.NX_NZULM_URL}/${process.env.NX_NZULM_PRODUCT_SEARCH}&id=${property.value}`,
         });
         break;
       default:
@@ -55,7 +55,12 @@ export const DetailsComponent: Details = ({ entity, getEntity }) => {
     }
   });
 
-  return <EntityDetails formCategories={formCategories} externalLinks={externalLinks} entityProperties={properties} />;
+  return (
+    <Grid direction="row">
+      <Typography variant="h4">{entity?.description}</Typography> 
+      <EntityDetails formCategories={formCategories} externalLinks={externalLinks} entityProperties={properties} />
+    </Grid>
+  );
 };
 
 const mapStateToProps = (state: IState) => {
