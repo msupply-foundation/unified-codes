@@ -1,9 +1,11 @@
 import * as React from 'react';
 
-import Grid from '../../layout/atoms/Grid';
-import ToggleButton from '../../inputs/molecules/ToggleButton';
-
 import { EEntityType } from '@unified-codes/data';
+
+import AddIcon from '../../icons/atoms/AddIcon';
+import Button from '../../inputs/atoms/Button';
+import CheckCircleIcon from '../../icons/atoms/CheckCircleIcon';
+import Grid from '../../layout/atoms/Grid';
 
 export interface IEntityToggleBarProps {
   classes?: {
@@ -25,15 +27,19 @@ export const EntityToggleBar: EntityToggleBar = ({ classes, buttonTypes, buttonS
     const isSelected = buttonStates[buttonType];
     const label = buttonLabels[buttonType];
 
+    const buttonClasses = isSelected ? { root: classes?.buttonActive } : { root: classes?.buttonInactive };
+    const buttonIcon = isSelected ? <CheckCircleIcon /> : <AddIcon />;
+    const buttonOnClick = () => onToggle(buttonType);
+
     return (
       <Grid item classes={{ root: classes?.buttonContainer }}>
-        <ToggleButton 
-          classes={{ root: isSelected ? classes?.buttonActive : classes?.buttonInactive }}
-          isSelected={isSelected} 
-          onClick={() => onToggle(buttonType)}
+        <Button 
+          classes={buttonClasses}
+          startIcon={buttonIcon}
+          onClick={buttonOnClick}
         >
           {label}
-        </ToggleButton>
+        </Button>
       </Grid>
     );
   });

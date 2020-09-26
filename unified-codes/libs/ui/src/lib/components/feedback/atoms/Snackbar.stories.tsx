@@ -6,6 +6,7 @@ import Alert from './Alert';
 import Button from '../../inputs/atoms/Button';
 import ClearButton from '../../inputs/molecules/ClearButton';
 import Snackbar from './Snackbar';
+import { ClearIcon } from '../../icons';
 
 export default {
   component: Snackbar,
@@ -74,12 +75,13 @@ export const withCloseIcon = () => {
           <Button color="secondary" size="small" onClick={() => setOpen(false)}>
             close
           </Button>
-          <ClearButton
-            size="small"
+          <Button
             aria-label="close"
             color="inherit"
             onClick={() => setOpen(false)}
-          ></ClearButton>
+            size="small"
+            startIcon={<ClearIcon/>} 
+          ></Button>
         </React.Fragment>
       }
     />
@@ -103,12 +105,13 @@ export const autoClose = () => {
           <Button color="secondary" size="small" onClick={() => setOpen(false)}>
             close
           </Button>
-          <ClearButton
-            size="small"
+          <Button
             aria-label="close"
             color="inherit"
             onClick={() => setOpen(false)}
-          ></ClearButton>
+            size="small"
+            startIcon={<ClearIcon/>} 
+          ></Button>
         </React.Fragment>
       }
     />

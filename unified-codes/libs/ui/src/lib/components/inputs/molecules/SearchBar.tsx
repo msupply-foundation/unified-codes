@@ -1,8 +1,9 @@
 import * as React from 'react';
 
+import Button from '../atoms/Button';
 import ClearInput from './ClearInput';
 import Grid from '../../layout/atoms/Grid';
-import SearchButton from './SearchButton';
+import SearchIcon from '../../icons/atoms/SearchIcon';
 
 export interface SearchBarProps {
   classes: { 
@@ -50,7 +51,7 @@ export const SearchBar: SearchBar = ({ classes, input, label, onChange, onClear,
         />
       </Grid>
       <Grid item xs={1}>
-        <SearchButton classes={{ root: classes?.button }} fullWidth onClick={onClick} />
+        <Button classes={{ root: classes?.button }} fullWidth startIcon={<SearchIcon />} onClick={onClick} />
       </Grid>
     </Grid>
   );

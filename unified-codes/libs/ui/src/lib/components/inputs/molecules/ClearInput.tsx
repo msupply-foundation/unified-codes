@@ -1,12 +1,14 @@
 import * as React from 'react';
 
-import ClearButton from './ClearButton';
+import Button from '../atoms/Button';
+import ClearIcon from '../../icons/atoms/ClearIcon';
 import InputAdornment from '../atoms/InputAdornment';
 import TextField, {
   StandardTextFieldProps,
   FilledTextFieldProps,
   OutlinedTextFieldProps,
 } from '../atoms/TextField';
+
 
 export interface StandardClearInputProps extends StandardTextFieldProps {
   classes?: {
@@ -42,7 +44,7 @@ export const ClearInput: ClearInput = ({ classes, onClear, ...other }) => {
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <ClearButton onClick={onClick} />
+            <Button startIcon={<ClearIcon/>} onClick={onClick}></Button>
           </InputAdornment>
         ),
       }}
