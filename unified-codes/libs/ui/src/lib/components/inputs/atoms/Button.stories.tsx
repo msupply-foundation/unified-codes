@@ -19,6 +19,10 @@ export const withClearIcon = () => <Button startIcon={<ClearIcon />} />;
 
 export const withSearchIcon = () => <Button startIcon={<SearchIcon />} />;
 
+export const withCheckCircleIcon = () => <Button startIcon={<CheckCircleIcon />} />;
+
+export const withAddIcon = () => <Button startIcon={<AddIcon />} />;
+
 export const withToggleProps = () => {
   const [isSelected, setIsSelected] = React.useState<boolean>(false);
 
