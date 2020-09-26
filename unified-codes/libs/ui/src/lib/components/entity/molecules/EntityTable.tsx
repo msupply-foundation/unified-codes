@@ -6,14 +6,19 @@ import {
   TableBody,
 } from '../../data';
 
+import { Grid } from '../../layout/atoms';
+
 export interface EntityTableProps {
   classes?: {
-    root?: string,
+    body?: string,
     head?: string,
-    body?: string
+    paginationContainer?: string,
+    root?: string,
+    tableContainer?: string
   };
   header: React.ReactElement,
-  rows: React.ReactElement,
+  pagination: React.ReactElement,
+  rows: React.ReactElement[],
 }
 
 export type EntityTable = React.FunctionComponent<EntityTableProps>;
@@ -21,18 +26,26 @@ export type EntityTable = React.FunctionComponent<EntityTableProps>;
 export const EntityTable: EntityTable = ({
   classes,
   header,
+  pagination,
   rows,
 }: EntityTableProps) => {
  
   return (
-    <Table classes={{ root: classes?.root }}>
-      <TableHead classes={{ root: classes?.head }}>
-        {header}
-      </TableHead>
-      <TableBody classes={{ root: classes?.body }}>
-        {rows}
-      </TableBody>
-    </Table>
+    <Grid classes={{ root: classes?.root }}>
+      <Grid classes={{ root: classes?.tableContainer }}>
+        <Table classes={{ root: classes?.root }}>
+          <TableHead classes={{ root: classes?.head }}>
+            {header}
+          </TableHead>
+          <TableBody classes={{ root: classes?.body }}>
+            {rows}
+          </TableBody>
+        </Table>
+      </Grid>
+      <Grid item classes={{ root: classes?.paginationContainer }}>
+        {pagination}
+      </Grid>
+    </Grid>
   );
 };
 

@@ -7,4 +7,3 @@ export * from './SearchBar';
 export * from './SearchButton';
 export * from './ToggleButton'
 export * from './UsernameInput';
-export * from './ToggleButtonGroup';

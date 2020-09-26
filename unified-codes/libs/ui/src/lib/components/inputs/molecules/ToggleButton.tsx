@@ -14,7 +14,7 @@ export type ToggleButton = React.FunctionComponent<ToggleButtonProps>;
 export const ToggleButton: ToggleButton = (props: ToggleButtonProps) => {
   const { classes, isSelected, ...buttonProps } = props;
   const startIcon = isSelected ? <CheckCircleIcon /> : <AddIcon />;
-  return <Button startIcon={startIcon} classes={{ root: classes?.root }} {...buttonProps}></Button>;
+  return <Button classes={{ root: classes?.root }} startIcon={startIcon} {...buttonProps}></Button>;
 };
 
 export default ToggleButton;

@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { makeStyles, TablePagination } from '@material-ui/core';
 
 import { EntityBrowser } from './EntityBrowser';
-import { makeStyles, TablePagination } from '@material-ui/core';
-import { EntityTable, EntityTypeFilter, EntityTableHeader, EntityTableRow } from '../molecules';
+import { EntityTable, EntityToggleBar, EntityTableHeader, EntityTableRow } from '../molecules';
 import { SearchBar } from '../../inputs';
-import { IEntity } from 'libs/data/src/lib';
+
+import { IEntity, EEntityType } from '@unified-codes/data';
 
 export default {
   component: EntityBrowser,
@@ -61,23 +62,23 @@ const useTableStyles = makeStyles({
   },
 })
 
-const useTypeFilterStyles = makeStyles({
+const useToggleBarStyles = makeStyles({
   root: {},
-  toggleButtonActive: {
+  buttonContainer: {},
+  buttonActive: {
     borderRadius: '16px',
     paddingRight: '12px',
     color: 'rgba(255,255,255,0.87)',
     background: '#5CCDF4',
     '&:hover': { background: '#2B83A1' }
   },
-  toggleButtonInactive: {
+  buttonInactive: {
     borderRadius: '16px',
     paddingRight: '12px',
     color: 'rgba(255,255,255,0.87)',
     background: '#2B83A1',
     '&:hover': { background: '#5CCDF4' }
   },
-  toggleButtonGroup: {}
 })
 
 const useBrowserStyles = makeStyles({
@@ -105,7 +106,7 @@ const useStyles = () => {
   const searchBarStyles = useSearchBarStyles();
   const headerStyles = useHeaderStyles();
   const tableStyles = useTableStyles();
-  const typeFilterStyles = useTypeFilterStyles();
+  const toggleBarStyles = useToggleBarStyles();
   const browserStyles = useBrowserStyles();
   const tablePaginationStyles = useTablePaginationStyles();
 
@@ -113,7 +114,7 @@ const useStyles = () => {
     searchBar: searchBarStyles,
     header: headerStyles,
     table: tableStyles,
-    typeFilter: typeFilterStyles,
+    toggleBar: toggleBarStyles,
     browser: browserStyles,
     tablePagination: tablePaginationStyles,
   }
@@ -175,24 +176,21 @@ const useTableState = () => {
     setFilterBy,
     setOrderBy,
     setOrderDesc,
-
   };
 }
 
-const useTypeFilterState = () => {
-  const [types, setTypes] = React.useState([
-    { name: 'Drugs', active: true },
-    { name: 'Unit of use', active: false },
-    { name: 'Other', active: false }
-  ]);
+const useToggleBarState = () => {
+  const [filterByDrug, setFilterByDrug] = React.useState(true);
+  const [filterByUnitOfUse, setFilterByUnitOfUse] = React.useState(false);
+  const [filterByOther, setFilterByOther] = React.useState(false);
 
-  return { types, setTypes };
+  return { filterByDrug, setFilterByDrug, filterByUnitOfUse, setFilterByUnitOfUse, filterByOther, setFilterByOther };
 }
 
 export const withProps = () => {
   const classes = useStyles();
 
-  // Table w/ pagination.
+  // Table.
 
   const {
     entities,
@@ -243,32 +241,20 @@ export const withProps = () => {
   ), [classes, columns, onSort, orderDesc, orderBy]);
 
   const entityTableRows = React.useMemo(() => (
-    <React.Fragment>
-      {
-        data.map((entity: IEntity, index: number) => (
-          <EntityTableRow
-            classes={{
-              root: index % 2 ? classes?.table?.rowPrimary : classes?.table?.rowSecondary,
-              cell: classes?.table?.cell
-            }}
-            columns={columns}
-            entity={entity}
-            key={entity.code}
-          ></EntityTableRow>
-        ))
-      }
-    </React.Fragment>
+    data.map((entity: IEntity, index: number) => (
+      <EntityTableRow
+        classes={{
+          root: index % 2 ? classes?.table?.rowPrimary : classes?.table?.rowSecondary,
+          cell: classes?.table?.cell
+        }}
+        columns={columns}
+        entity={entity}
+        key={entity.code}
+      ></EntityTableRow>
+    ))
   ), [classes, columns, data]);
-    
-  const entityBrowserTable = React.useMemo(() => (
-    <EntityTable 
-      classes={classes?.table}
-      header={entityBrowserTableHeader}
-      rows={entityTableRows}
-    />
-  ), [classes, entityBrowserTableHeader, entityTableRows]);
-
-  const entityBrowserTablePagination = React.useMemo(() => (
+  
+  const entityTablePagination = React.useMemo(() => (
     <TablePagination
       classes={{ root: classes?.tablePagination?.root }}
       rowsPerPageOptions={rowsPerPageOptions}
@@ -280,6 +266,15 @@ export const withProps = () => {
       onChangeRowsPerPage={onChangeRowsPerPage}
     />
   ), [classes, rowsPerPageOptions, count, rowsPerPage, page, onChangePage, onChangeRowsPerPage]);
+
+  const entityBrowserTable = React.useMemo(() => (
+    <EntityTable 
+      classes={classes?.table}
+      header={entityBrowserTableHeader}
+      rows={entityTableRows}
+      pagination={entityTablePagination}
+    />
+  ), [classes, entityBrowserTableHeader, entityTableRows]);
 
   // Search bar.
 
@@ -304,21 +299,60 @@ export const withProps = () => {
     />
   ), [classes, input, label, onChange, onClear, onSearch]);
 
-  // Type filter.
+  // Toggle bar.
 
-  const { types } = useTypeFilterState();
+  const { 
+    filterByDrug,
+    filterByUnitOfUse, 
+    filterByOther,
+    setFilterByDrug, 
+    setFilterByUnitOfUse, 
+    setFilterByOther
+  } = useToggleBarState();
 
-  const entityBrowserTypeFilter = React.useMemo(() => (
-    <EntityTypeFilter 
+  const onToggle = React.useCallback((type: EEntityType) => {
+    switch(type) {
+      case EEntityType.DRUG: {
+        setFilterByDrug(!filterByDrug);
+        break;
+      }
+      case EEntityType.UNIT_OF_USE: {
+        setFilterByUnitOfUse(!filterByUnitOfUse);
+        break;
+      }
+      case EEntityType.OTHER: {
+        setFilterByOther(!filterByOther);
+        break;
+      }
+    }
+  }, [filterByDrug, filterByUnitOfUse, filterByOther, setFilterByDrug, setFilterByUnitOfUse, setFilterByOther]);
+
+  const entityBrowserToggleBar = React.useMemo(() => (
+    <EntityToggleBar 
       classes={{ 
-        root: classes?.typeFilter?.root, 
-        toggleButtonActive: classes?.typeFilter?.toggleButtonActive,
-        toggleButtonInactive: classes?.typeFilter?.toggleButtonInactive,
-        toggleButtonGroup: classes?.typeFilter?.toggleButtonGroup,
+        root: classes?.toggleBar?.root, 
+        buttonContainer: classes?.toggleBar?.buttonContainer,
+        buttonActive: classes?.toggleBar?.buttonActive,
+        buttonInactive: classes?.toggleBar?.buttonInactive,
       }}
-      types={types} 
+      buttonTypes={[
+        EEntityType.DRUG,
+        EEntityType.UNIT_OF_USE,
+        EEntityType.OTHER
+      ]}
+      buttonStates={{
+        [EEntityType.DRUG]: filterByDrug,
+        [EEntityType.UNIT_OF_USE]: filterByUnitOfUse,
+        [EEntityType.OTHER]: filterByOther
+      }}
+      buttonLabels={{
+        [EEntityType.DRUG]: 'Drug',
+        [EEntityType.UNIT_OF_USE]: 'Unit of use',
+        [EEntityType.OTHER]: 'Other'
+      }}
+      onToggle={onToggle}
     />
-  ), [classes, types]);
+  ), [classes, filterByDrug, filterByUnitOfUse, filterByOther]);
 
   // Browser.
 
@@ -327,14 +361,12 @@ export const withProps = () => {
       classes={{ 
         root: classes?.browser?.root,
         tableContainer: classes?.browser?.tableContainer, 
-        typeFilterContainer: classes?.browser?.typeFilterContainer,
+        toggleBarContainer: classes?.browser?.typeFilterContainer,
         searchBarContainer: classes?.browser?.searchBarContainer,
-        tablePaginationContainer: classes?.browser?.tablePaginationContainer  
       }}
       table={entityBrowserTable}
-      typeFilter={entityBrowserTypeFilter}
+      toggleBar={entityBrowserToggleBar}
       searchBar={entityBrowserSearchBar}        
-      tablePagination={entityBrowserTablePagination}
     />
   );
 };

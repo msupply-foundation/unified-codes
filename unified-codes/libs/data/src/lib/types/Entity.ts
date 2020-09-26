@@ -1,9 +1,16 @@
 import { Property } from './Property';
 
+export enum EEntityType {
+  DRUG = 'medicinal_product',
+  UNIT_OF_USE = 'unit_of_use',
+  OTHER = 'other',
+}
+
+// TODO: complete EEntityType enum.
 export interface IEntity {
   code: string;
   description: string;
-  type: string;
+  type: EEntityType | string;
   properties?: Property[];
 }
 
