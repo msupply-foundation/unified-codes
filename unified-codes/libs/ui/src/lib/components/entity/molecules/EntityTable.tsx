@@ -18,7 +18,7 @@ export interface EntityTableProps {
   };
   header: React.ReactElement,
   pagination: React.ReactElement,
-  rows: React.ReactElement[],
+  rows: React.ReactElement,
 }
 
 export type EntityTable = React.FunctionComponent<EntityTableProps>;

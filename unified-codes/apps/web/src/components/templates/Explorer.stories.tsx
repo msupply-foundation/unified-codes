@@ -1,4 +1,4 @@
-import * as React from 'react';
+/* import * as React from 'react';
 
 import { EntityCollection, IEntity } from '@unified-codes/data';
 import { ExplorerComponent } from './Explorer';
@@ -38,3 +38,4 @@ export const withNoProps = () => {
     />
   );
 };
+ */

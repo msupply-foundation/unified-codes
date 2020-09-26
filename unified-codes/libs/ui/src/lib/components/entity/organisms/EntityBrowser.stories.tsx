@@ -230,7 +230,7 @@ export const withProps = () => {
   const onChangeRowsPerPage = React.useCallback((event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => 
     setRowsPerPage(+event.target.value), [setRowsPerPage]);
 
-  const entityBrowserTableHeader = React.useMemo(() => (
+  const EntityBrowserTableHeader = React.useCallback(() => (
     <EntityTableHeader
       classes={classes?.header}
       columns={columns}
@@ -240,21 +240,25 @@ export const withProps = () => {
     />
   ), [classes, columns, onSort, orderDesc, orderBy]);
 
-  const entityTableRows = React.useMemo(() => (
-    data.map((entity: IEntity, index: number) => (
-      <EntityTableRow
-        classes={{
-          root: index % 2 ? classes?.table?.rowPrimary : classes?.table?.rowSecondary,
-          cell: classes?.table?.cell
-        }}
-        columns={columns}
-        entity={entity}
-        key={entity.code}
-      ></EntityTableRow>
-    ))
+  const EntityTableRows = React.useCallback(() => (
+    <React.Fragment>
+      {
+        data.map((entity: IEntity, index: number) => (
+          <EntityTableRow
+            classes={{
+              root: index % 2 ? classes?.table?.rowPrimary : classes?.table?.rowSecondary,
+              cell: classes?.table?.cell
+            }}
+            columns={columns}
+            entity={entity}
+            key={entity.code}
+          ></EntityTableRow>
+        ))
+      }
+    </React.Fragment>
   ), [classes, columns, data]);
   
-  const entityTablePagination = React.useMemo(() => (
+  const EntityTablePagination = React.useCallback(() => (
     <TablePagination
       classes={{ root: classes?.tablePagination?.root }}
       rowsPerPageOptions={rowsPerPageOptions}
@@ -267,14 +271,14 @@ export const withProps = () => {
     />
   ), [classes, rowsPerPageOptions, count, rowsPerPage, page, onChangePage, onChangeRowsPerPage]);
 
-  const entityBrowserTable = React.useMemo(() => (
+  const EntityBrowserTable = React.useCallback(() => (
     <EntityTable 
       classes={classes?.table}
-      header={entityBrowserTableHeader}
-      rows={entityTableRows}
-      pagination={entityTablePagination}
+      header={<EntityBrowserTableHeader/>}
+      rows={<EntityTableRows/>}
+      pagination={<EntityTablePagination/>}
     />
-  ), [classes, entityBrowserTableHeader, entityTableRows]);
+  ), [classes, EntityBrowserTableHeader, EntityTableRows, EntityTablePagination]);
 
   // Search bar.
 
@@ -288,7 +292,7 @@ export const withProps = () => {
   const onSearch = React.useCallback((term: string) => setFilterBy(term), [setFilterBy]);
   const onClear = React.useCallback(() => { setInput(''); setFilterBy(''); }, [setInput, setFilterBy]);
 
-  const entityBrowserSearchBar = React.useMemo(() => (
+  const EntityBrowserSearchBar = React.useCallback(() => (
     <SearchBar 
       classes={classes.searchBar}
       input={input}
@@ -327,7 +331,7 @@ export const withProps = () => {
     }
   }, [filterByDrug, filterByUnitOfUse, filterByOther, setFilterByDrug, setFilterByUnitOfUse, setFilterByOther]);
 
-  const entityBrowserToggleBar = React.useMemo(() => (
+  const EntityBrowserToggleBar = React.useCallback(() => (
     <EntityToggleBar 
       classes={{ 
         root: classes?.toggleBar?.root, 
@@ -364,9 +368,9 @@ export const withProps = () => {
         toggleBarContainer: classes?.browser?.typeFilterContainer,
         searchBarContainer: classes?.browser?.searchBarContainer,
       }}
-      table={entityBrowserTable}
-      toggleBar={entityBrowserToggleBar}
-      searchBar={entityBrowserSearchBar}        
+      table={<EntityBrowserTable/>}
+      toggleBar={<EntityBrowserToggleBar/>}
+      searchBar={<EntityBrowserSearchBar/>}        
     />
   );
 };

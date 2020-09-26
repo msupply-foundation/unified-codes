@@ -2,18 +2,18 @@ import * as React from 'react';
 
 import { TableCell, TableCellProps, TableRow, TableRowProps } from '../../data';
 
-import { IEntity } from '@unified-codes/data';
+import { IEntity, EEntityField } from '@unified-codes/data';
 
 export interface IEntityTableRowClasses {
-  root: string,
-  cell: string,
+  root?: string,
+  cell?: string,
 }
 
 // TODO: remove rowProps, cellProps.
 export interface EntityTableRowProps  {
   classes?: IEntityTableRowClasses;
-  columns?: string[];
-  entity?: IEntity;
+  columns: string[];
+  entity: IEntity;
 }
 
 export type EntityTableRow = React.FunctionComponent<EntityTableRowProps>;
@@ -21,7 +21,7 @@ export type EntityTableRow = React.FunctionComponent<EntityTableRowProps>;
 export const EntityTableRow: EntityTableRow = ({ classes, columns, entity }) => {
   const cells = columns.map(column => (
     <TableCell classes={{ root: classes?.cell }}>
-      {entity[column]}
+      {entity[column as EEntityField]}
     </TableCell>
   ));
 

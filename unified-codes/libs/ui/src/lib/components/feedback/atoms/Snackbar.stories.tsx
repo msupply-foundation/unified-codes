@@ -4,9 +4,8 @@ import * as React from 'react';
 
 import Alert from './Alert';
 import Button from '../../inputs/atoms/Button';
-import ClearButton from '../../inputs/molecules/ClearButton';
+import ClearIcon from '../../icons/atoms/ClearIcon';
 import Snackbar from './Snackbar';
-import { ClearIcon } from '../../icons';
 
 export default {
   component: Snackbar,

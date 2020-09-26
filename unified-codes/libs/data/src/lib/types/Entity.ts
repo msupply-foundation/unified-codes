@@ -6,6 +6,12 @@ export enum EEntityType {
   OTHER = 'other',
 }
 
+export enum EEntityField {
+  CODE = 'code',
+  DESCRIPTION = 'description',
+  TYPE = 'type'
+}
+
 // TODO: complete EEntityType enum.
 export interface IEntity {
   code: string;

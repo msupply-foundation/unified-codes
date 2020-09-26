@@ -6,10 +6,10 @@ import Grid from '../../layout/atoms/Grid';
 import SearchIcon from '../../icons/atoms/SearchIcon';
 
 export interface SearchBarProps {
-  classes: { 
-    root: string;
-    button: string;
-    text: string;
+  classes?: { 
+    root?: string;
+    button?: string;
+    text?: string;
   }
   input: string;
   label?: string;
@@ -24,7 +24,7 @@ export const SearchBar: SearchBar = ({ classes, input, label, onChange, onClear,
   const onChangeText = React.useCallback(
     (event) => {
       event.preventDefault();
-      onChange(event.target.value);
+      onChange && onChange(event.target.value);
     },
     [onChange]
   );

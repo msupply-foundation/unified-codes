@@ -6,7 +6,7 @@ import {
   IExplorerFetchSuccessAction,
 } from '../actions';
 import { IExplorerState } from '../types';
-import { EntityCollection } from '@unified-codes/data';
+import { EntityCollection, EEntityField, EEntityType } from '@unified-codes/data';
 
 const initialState = (): IExplorerState => {
   return {
@@ -18,6 +18,22 @@ const initialState = (): IExplorerState => {
       rowsPerPage: 25,
       type: 'medicinal_product',
     },
+    searchBar: {
+      input: '',
+      label: 'Search description',
+    },
+    table: {
+      count: 1,
+      entities: [{ code: 'A', description: 'Drug A', type: 'medicinal_product' }],
+      orderBy: EEntityField.DESCRIPTION,
+      orderDesc: false,
+      rowsPerPage: 25,
+      page: 1,
+    },
+    toggleBar: {
+      buttonTypes: [EEntityType.DRUG, EEntityType.UNIT_OF_USE, EEntityType.OTHER],
+      buttonStates: { [EEntityType.DRUG]: true, [EEntityType.UNIT_OF_USE]: false, [EEntityType.OTHER]: false }
+    }
   };
 };
 

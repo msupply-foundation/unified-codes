@@ -1,3 +1,2 @@
-import ExplorerSelectors from './ExplorerSelectors';
-
 export * from './ExplorerSelectors';
+export * from './explorer';

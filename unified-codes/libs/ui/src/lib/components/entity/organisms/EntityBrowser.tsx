@@ -10,7 +10,7 @@ export interface IEntityBrowserClasses {
 }
 
 export interface EntityBrowserProps {
-  classes: IEntityBrowserClasses;
+  classes?: IEntityBrowserClasses;
   table: React.ReactElement;
   toggleBar: React.ReactElement;
   searchBar: React.ReactElement;
