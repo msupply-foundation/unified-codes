@@ -32,6 +32,10 @@ const getStyles = (theme: ITheme) => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
+  root: {
+    paddingLeft: 20,
+    paddingTop: 20
+  }
 });
 
 interface IDetailsParameters {
@@ -73,7 +77,7 @@ export const DetailsComponent: Details = ({ classes, entity, isLoading, getEntit
   });
 
   return (
-    <Grid container direction="column">
+    <Grid container className={classes.root} direction="column">
       <Backdrop className={classes.backdrop} open={isLoading}>
         <CircularProgress color="inherit" />
       </Backdrop>

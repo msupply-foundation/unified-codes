@@ -4,7 +4,7 @@ import { Property, IEntity } from '@unified-codes/data';
 import { Typography } from '../../data';
 import { Grid } from '../../layout';
 import { Link } from '../../navigation';
-import { EntityDetailListItem } from './EntityDetailListItem';
+import { EntityDetailCategoryItem } from './EntityDetailCategoryItem';
 import { TypographyVariant } from '@material-ui/core';
 
 export interface IExternalLink {
@@ -30,11 +30,11 @@ export const EntityDetailList: EntityDetailList = ({
   const headerTypography = headerVariant ?? 'h6';
 
   return (
-    <Grid container direction="column">
+    <Grid direction="column">
       <Typography variant={headerTypography}>Forms</Typography>
       <ul>
         {productSubCategories?.map((category) => {
-          return <EntityDetailListItem entity={category} />;
+          return <EntityDetailCategoryItem entity={category} />;
         })}
       </ul>
       <Typography variant={headerTypography}>Properties</Typography>
