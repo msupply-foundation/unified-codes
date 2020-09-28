@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { IEntity, Property } from '@unified-codes/data';
-import { EntityDetails, IFormCategory, IExternalLink, Typography, Grid, CircularProgress, Backdrop } from '@unified-codes/ui';
+import { EntityDetailList, IExternalLink, Grid, Typography, CircularProgress, Backdrop } from '@unified-codes/ui';
 
 import { DetailsActions } from '../../actions';
 import { IState } from '../../types';
@@ -31,30 +31,21 @@ interface IDetailsParameters {
   code: string;
 }
 
-interface IDetailsParameters {
-  code: string;
-}
-
 export type Details = React.FunctionComponent<DetailsProps>;
 
-export const DetailsComponent: Details = ({ classes, entity, getEntity, isLoading }) => {
+export const DetailsComponent: Details = ({ classes, entity, isLoading, getEntity }) => {
   const { code } = useParams<IDetailsParameters>();
 
   React.useEffect(() => {
     getEntity(code);
   }, []);
 
-  let formCategories: IFormCategory[] = [];
+  let productSubCategories: IEntity[] = [];
   let externalLinks: IExternalLink[] = [];
   let properties: Property[] = [];
 
   entity?.has_child?.forEach((child) => {
-    if (child.type == 'form_category') {
-      formCategories.push({
-        name: child.description,
-        forms: child.has_child?.map((child) => child.description),
-      });
-    }
+    productSubCategories.push(child);
   });
 
   entity?.has_property?.forEach((property) => {
@@ -79,8 +70,9 @@ export const DetailsComponent: Details = ({ classes, entity, getEntity, isLoadin
       <Backdrop className={classes.backdrop} open={isLoading}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      <Typography variant="h4">{entity?.description}</Typography> 
-      <EntityDetails formCategories={formCategories} externalLinks={externalLinks} entityProperties={properties} />
+      <Typography variant="h4">Name: {entity?.description}</Typography> 
+      <Typography variant="h5">Code: {entity?.code}</Typography> 
+      <EntityDetailList productSubCategories={productSubCategories} externalLinks={externalLinks} entityProperties={properties} />
     </Grid>
   );
 };

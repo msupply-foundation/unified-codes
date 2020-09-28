@@ -56,6 +56,12 @@ const getEntityQuery = (code: string) => `
         code
         description
         type
+        # unit_of_use
+        has_child {
+          code
+          description
+          type
+        }
       }
     }
   }
