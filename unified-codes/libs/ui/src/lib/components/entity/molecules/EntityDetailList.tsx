@@ -28,16 +28,14 @@ export const EntityDetailList: EntityDetailList = ({
   entityProperties,
 }) => {
   const headerTypography = headerVariant ?? 'h6';
-  
+
   return (
     <Grid container direction="column">
       <Typography variant={headerTypography}>Forms</Typography>
       <ul>
-        {
-          productSubCategories?.map((category) => {
-            return <EntityDetailListItem entity={category} />
-          })
-        }
+        {productSubCategories?.map((category) => {
+          return <EntityDetailListItem entity={category} />;
+        })}
       </ul>
       <Typography variant={headerTypography}>Properties</Typography>
       <ul>

@@ -10,14 +10,15 @@ export type EntityDetailListItem = React.FunctionComponent<EntityDetailListItemP
 
 export const EntityDetailListItem: EntityDetailListItem = ({ entity }) => {
   return (
-  <li key={entity.description}>
-    {entity.description} {`(code:${entity.code})`}
-    <ul>
-      {entity.has_child?.map((child) => {
-        return <EntityDetailListItem entity={child} />
-      })}
-    </ul>
-  </li>);
+    <li key={entity.description}>
+      {entity.description} {`(code:${entity.code})`}
+      <ul>
+        {entity.has_child?.map((child) => {
+          return <EntityDetailListItem entity={child} />;
+        })}
+      </ul>
+    </li>
+  );
 };
 
 export default EntityDetailListItem;

@@ -4,7 +4,14 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { IEntity, Property } from '@unified-codes/data';
-import { EntityDetailList, IExternalLink, Grid, Typography, CircularProgress, Backdrop } from '@unified-codes/ui';
+import {
+  EntityDetailList,
+  IExternalLink,
+  Grid,
+  Typography,
+  CircularProgress,
+  Backdrop,
+} from '@unified-codes/ui';
 
 import { DetailsActions } from '../../actions';
 import { IState } from '../../types';
@@ -24,7 +31,7 @@ const getStyles = (theme: ITheme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
-  }
+  },
 });
 
 interface IDetailsParameters {
@@ -70,9 +77,13 @@ export const DetailsComponent: Details = ({ classes, entity, isLoading, getEntit
       <Backdrop className={classes.backdrop} open={isLoading}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      <Typography variant="h4">Name: {entity?.description}</Typography> 
-      <Typography variant="h5">Code: {entity?.code}</Typography> 
-      <EntityDetailList productSubCategories={productSubCategories} externalLinks={externalLinks} entityProperties={properties} />
+      <Typography variant="h4">Name: {entity?.description}</Typography>
+      <Typography variant="h5">Code: {entity?.code}</Typography>
+      <EntityDetailList
+        productSubCategories={productSubCategories}
+        externalLinks={externalLinks}
+        entityProperties={properties}
+      />
     </Grid>
   );
 };
