@@ -1,14 +1,16 @@
 import { Action } from 'redux';
 
-import { EEntityField } from '@unified-codes/data';
+import { EEntityField, IEntity } from '@unified-codes/data';
 
 export const TABLE_ACTIONS = {
+  FETCH_ENTITIES: 'explorer/table/fetchEntities',
+  FETCH_ENTITIES_SUCCESS: 'explorer/table/fetchEntitiesSuccess',
+  FETCH_ENTITIES_FAILURE: 'explorer/table/fetchEntitiesFailure',
   UPDATE_FILTER_BY: 'explorer/table/updateFilterBy',
   UPDATE_ORDER_BY: 'explorer/table/updateOrderBy',
   UPDATE_ORDER_DESC: 'explorer/table/updateOrderDesc',
   UPDATE_ROWS_PER_PAGE: 'explorer/table/updateRowsPerPage',
   UPDATE_PAGE: 'explorer/table/updatePage',
-  UPDATE_DATA: 'explorer/table/updateData'
 };
 
 export interface ITableUpdateRowsPerPageAction extends Action<string> {
@@ -28,10 +30,18 @@ export interface ITableUpdateOrderDescAction extends Action<string> {
 }
 
 export interface ITableUpdateFilterByAction extends Action<string> {
-    filterBy: string;
+  filterBy: string;
 }
 
-export interface ITableUpdateData extends Action<string> {};
+export interface ITableFetchEntitiesAction extends Action<string> {};
+
+export interface ITableFetchEntitiesSuccessAction extends Action<string> {
+  entities: { data: IEntity[], totalLength: number };
+};
+
+export interface ITableFetchEntitiesFailureAction extends Action<string> {
+  error: Error;
+};
 
 export type ITableAction =
   ITableUpdateRowsPerPageAction | 
@@ -39,7 +49,9 @@ export type ITableAction =
   ITableUpdateOrderByAction |
   ITableUpdateOrderDescAction |
   ITableUpdateFilterByAction |
-  ITableUpdateData;
+  ITableFetchEntitiesAction |
+  ITableFetchEntitiesSuccessAction |
+  ITableFetchEntitiesFailureAction;
 
 const updateRowsPerPage = (rowsPerPage: number) => ({
     type: TABLE_ACTIONS.UPDATE_ROWS_PER_PAGE,
@@ -66,8 +78,18 @@ const updateOrderDesc = (orderDesc: boolean) => ({
     orderDesc,
 });
 
-const updateData = () => ({
-  type: TABLE_ACTIONS.UPDATE_DATA
+export const fetchEntities = () => ({
+  type: TABLE_ACTIONS.FETCH_ENTITIES
+});
+
+export const fetchEntitiesSuccess = (entities: IEntity[]) => ({
+  type: TABLE_ACTIONS.FETCH_ENTITIES_SUCCESS,
+  entities,
+});
+
+export const fetchEntitiesFailure = (error: Error) => ({
+  type: TABLE_ACTIONS.FETCH_ENTITIES_FAILURE,
+  error,
 });
 
 export const TableActions = {
@@ -76,7 +98,9 @@ export const TableActions = {
   updateFilterBy,
   updatePage,
   updateRowsPerPage,
-  updateData,
+  fetchEntities,
+  fetchEntitiesSuccess,
+  fetchEntitiesFailure,
 };
 
 export default TableActions;

@@ -9,11 +9,11 @@ export interface ISearchBarUpdateInputAction extends Action<string> {
   input: string;
 }
 
-export interface ISearchBarUpdateFilterByAction extends Action<string> {
-  filterBy: string;
+export interface ISearchBarUpdateLabelAction extends Action<string> {
+  label: string;
 }
 
-export type ISearchBarAction = ISearchBarUpdateInputAction | ISearchBarUpdateFilterByAction;
+export type ISearchBarAction = ISearchBarUpdateInputAction | ISearchBarUpdateLabelAction;
 
 const updateInput = (input: string) => ({
   type: SEARCH_BAR_ACTIONS.UPDATE_INPUT,

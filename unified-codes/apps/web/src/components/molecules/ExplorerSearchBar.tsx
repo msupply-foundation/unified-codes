@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch: React.Dispatch<ISearchBarAction | ITableAc
         dispatch(SearchBarActions.updateInput(''));
         dispatch(TableActions.updateFilterBy(''));
     }
-    const onSearch = () => dispatch(TableActions.updateData());
+    const onSearch = () => dispatch(TableActions.fetchEntities());
     return { onChange, onClear, onSearch };
 };
 

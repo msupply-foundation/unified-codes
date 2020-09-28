@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch: React.Dispatch<IToggleBarAction>) => {
             dispatch(toggleBarActions.toggleFilterByDrug());
             break;
           }
-          case EEntityType.UNIT_OF_USE: {
-            dispatch(toggleBarActions.toggleFilterByUnitOfUse());
+          case EEntityType.MEDICINAL_PRODUCT: {
+            dispatch(toggleBarActions.toggleFilterByMedicinalProduct());
             break;
           }
           case EEntityType.OTHER: {
@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch: React.Dispatch<IToggleBarAction>) => {
 const mapStateToProps = (state: IState) => {
     const buttonLabels = {
         [EEntityType.DRUG]: 'Drug',
-        [EEntityType.UNIT_OF_USE]: 'Unit of use',
+        [EEntityType.MEDICINAL_PRODUCT]: 'Medicinal product',
         [EEntityType.OTHER]: 'Other'
     };
 

@@ -2,11 +2,11 @@ import { Action } from 'redux';
 
 export const TOGGLE_BAR_ACTIONS = {
   UPDATE_FILTER_BY_DRUG: 'explorer/toggleBar/updateFilterByDrug',
-  UPDATE_FILTER_BY_UNIT_OF_USE: 'explorer/toggleBar/updateFilterByUnitOfUse',
+  UPDATE_FILTER_BY_MEDICINAL_PRODUCT: 'explorer/toggleBar/updateFilterByUnitOfUse',
   UPDATE_FILTER_BY_OTHER: 'explorer/toggleBar/updateFilterByOther',
   TOGGLE_FILTER_BY_DRUG: 'explorer/toggleBar/toggleFilterByDrug',
-  TOGGLE_FILTER_BY_UNIT_OF_USE: 'explorer/toggleBar/updateFilterByUnitOfUse',
-  TOGGLE_FILTER_BY_OTHER: 'explorer/toggleBar/updateFilterByOther',
+  TOGGLE_FILTER_BY_MEDICINAL_PRODUCT: 'explorer/toggleBar/toggleFilterByMedicinalProduct',
+  TOGGLE_FILTER_BY_OTHER: 'explorer/toggleBar/toggleFilterByOther',
 };
 
 export interface IToggleBarUpdateFilterByDrugAction extends Action<string> {
@@ -40,9 +40,9 @@ const updateFilterByDrug = (filterByDrug: boolean) => ({
   filterByDrug,
 });
 
-const updateFilterByUnitOfUse = (filterByUnitOfUse: boolean) => ({
-    type: TOGGLE_BAR_ACTIONS.UPDATE_FILTER_BY_UNIT_OF_USE,
-    filterByUnitOfUse,
+const updateFilterByMedicinalProduct = (filterByMedicinalProduct: boolean) => ({
+    type: TOGGLE_BAR_ACTIONS.UPDATE_FILTER_BY_MEDICINAL_PRODUCT,
+    filterByMedicinalProduct,
 });
 
 const updateFilterByOther = (filterByOther: boolean) => ({
@@ -51,24 +51,24 @@ const updateFilterByOther = (filterByOther: boolean) => ({
 });
 
 const toggleFilterByDrug = () => ({
-    type: TOGGLE_BAR_ACTIONS.UPDATE_FILTER_BY_DRUG,
+    type: TOGGLE_BAR_ACTIONS.TOGGLE_FILTER_BY_DRUG,
 });
   
-const toggleFilterByUnitOfUse = () => ({
-    type: TOGGLE_BAR_ACTIONS.UPDATE_FILTER_BY_UNIT_OF_USE,
+const toggleFilterByMedicinalProduct = () => ({
+    type: TOGGLE_BAR_ACTIONS.TOGGLE_FILTER_BY_MEDICINAL_PRODUCT,
 });
   
 const toggleFilterByOther = () => ({
-    type: TOGGLE_BAR_ACTIONS.UPDATE_FILTER_BY_OTHER,
+    type: TOGGLE_BAR_ACTIONS.TOGGLE_FILTER_BY_OTHER,
 });
 
 
 export const toggleBarActions = {
     updateFilterByDrug,
-    updateFilterByUnitOfUse,
+    updateFilterByMedicinalProduct,
     updateFilterByOther,
     toggleFilterByDrug,
-    toggleFilterByUnitOfUse,
+    toggleFilterByMedicinalProduct,
     toggleFilterByOther
 };
 

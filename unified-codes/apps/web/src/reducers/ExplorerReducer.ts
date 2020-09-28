@@ -1,12 +1,7 @@
-import {
-  EXPLORER_ACTIONS,
-  IExplorerAction,
-  IExplorerUpdateVariablesAction,
-  IExplorerFetchFailureAction,
-  IExplorerFetchSuccessAction,
-} from '../actions';
+
 import { IExplorerState } from '../types';
 import { EntityCollection, EEntityField, EEntityType } from '@unified-codes/data';
+import { ISearchBarAction, ITableAction, ITableFetchEntitiesSuccessAction, IToggleBarAction, TABLE_ACTIONS } from '../actions';
 
 const initialState = (): IExplorerState => {
   return {
@@ -24,56 +19,34 @@ const initialState = (): IExplorerState => {
     },
     table: {
       count: 1,
-      entities: [{ code: 'A', description: 'Drug A', type: 'medicinal_product' }],
+      entities: [],
       orderBy: EEntityField.DESCRIPTION,
       orderDesc: false,
       rowsPerPage: 25,
       page: 1,
     },
     toggleBar: {
-      buttonTypes: [EEntityType.DRUG, EEntityType.UNIT_OF_USE, EEntityType.OTHER],
-      buttonStates: { [EEntityType.DRUG]: true, [EEntityType.UNIT_OF_USE]: false, [EEntityType.OTHER]: false }
+      buttonTypes: [EEntityType.DRUG, EEntityType.MEDICINAL_PRODUCT, EEntityType.OTHER],
+      buttonStates: { [EEntityType.DRUG]: true, [EEntityType.MEDICINAL_PRODUCT]: false, [EEntityType.OTHER]: false }
     }
   };
 };
 
 export const ExplorerReducer = (
   state = initialState(),
-  action: IExplorerAction
+  action: ITableAction | IToggleBarAction | ISearchBarAction
 ): IExplorerState => {
   const { type } = action;
 
   switch (type) {
-    case EXPLORER_ACTIONS.FETCH_DATA: {
-      return { ...state, loading: true };
+    case TABLE_ACTIONS.FETCH_ENTITIES_SUCCESS: {
+      const { entities } = action as ITableFetchEntitiesSuccessAction;
+      const { data, totalLength } = entities;
+      return { ...state, table: { ...state.table, entities: data, count: totalLength }};
     }
-
-    case EXPLORER_ACTIONS.FETCH_SUCCESS: {
-      const { entities } = action as IExplorerFetchSuccessAction;
-      return { ...state, entities, loading: false };
-    }
-
-    case EXPLORER_ACTIONS.FETCH_FAILURE: {
-      const { error } = action as IExplorerFetchFailureAction;
-      return { ...state, error, loading: false };
-    }
-
-    case EXPLORER_ACTIONS.RESET_DATA: {
-      return { ...state, entities: initialState().entities };
-    }
-
-    case EXPLORER_ACTIONS.UPDATE_VARIABLES: {
-      const { variables } = action as IExplorerUpdateVariablesAction;
-      return { ...state, variables };
-    }
-
-    case EXPLORER_ACTIONS.RESET_VARIABLES: {
-      return { ...state, variables: initialState().variables };
-    }
-
-    default:
-      return state;
   }
+
+    return state;
 };
 
 export default ExplorerReducer;

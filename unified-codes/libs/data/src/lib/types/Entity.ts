@@ -1,8 +1,8 @@
 import { Property } from './Property';
 
 export enum EEntityType {
-  DRUG = 'medicinal_product',
-  UNIT_OF_USE = 'unit_of_use',
+  DRUG = 'drug',
+  MEDICINAL_PRODUCT = 'medicinal_product',
   OTHER = 'other',
 }
 
