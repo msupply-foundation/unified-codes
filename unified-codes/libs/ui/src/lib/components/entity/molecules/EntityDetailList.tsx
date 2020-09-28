@@ -33,9 +33,9 @@ export const EntityDetailList: EntityDetailList = ({
     <Grid direction="column">
       <Typography variant={headerTypography}>Forms</Typography>
       <ul>
-        {productSubCategories?.map((category) => {
-          return <EntityDetailCategoryItem entity={category} />;
-        })}
+        {productSubCategories?.map((category) => (
+          <EntityDetailCategoryItem entity={category} />
+        ))}
       </ul>
       <Typography variant={headerTypography}>Properties</Typography>
       <ul>
