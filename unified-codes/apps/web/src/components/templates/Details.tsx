@@ -51,9 +51,9 @@ export const DetailsComponent: Details = ({ classes, entity, isLoading, getEntit
     getEntity(code);
   }, []);
 
-  let productSubCategories: IEntity[] = [];
-  let externalLinks: IExternalLink[] = [];
-  let properties: Property[] = [];
+  const productSubCategories: IEntity[] = [];
+  const externalLinks: IExternalLink[] = [];
+  const properties: Property[] = [];
 
   entity?.has_child?.forEach((child) => {
     productSubCategories.push(child);
