@@ -10,13 +10,15 @@ export type EntityDetailCategoryItem = React.FunctionComponent<EntityDetailCateg
 
 export const EntityDetailCategoryItem: EntityDetailCategoryItem = ({ entity }) => {
   return (
-    <li key={entity.description}>
+    <li>
       {entity.description} {`(code:${entity.code})`}
-      <ul>
-        {entity.has_child?.map((child) => (
-          <EntityDetailCategoryItem entity={child} />
-        ))}
-      </ul>
+      {entity.has_child ? (
+        <ul>
+          {entity.has_child.map((child) => (
+            <EntityDetailCategoryItem entity={child} key={child.description} />
+          ))}
+        </ul>
+      ) : null}
     </li>
   );
 };
