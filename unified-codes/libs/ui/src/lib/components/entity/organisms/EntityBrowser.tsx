@@ -9,14 +9,14 @@ export interface IEntityBrowserClasses {
   tableContainer?: string,
 }
 
-export interface EntityBrowserProps {
+export interface IEntityBrowserProps {
   classes?: IEntityBrowserClasses;
   table: React.ReactElement;
   toggleBar: React.ReactElement;
   searchBar: React.ReactElement;
 }
 
-export type EntityBrowser = React.FunctionComponent<EntityBrowserProps>;
+export type EntityBrowser = React.FunctionComponent<IEntityBrowserProps>;
 
 export const EntityBrowser: EntityBrowser = ({
   classes,
@@ -32,9 +32,9 @@ export const EntityBrowser: EntityBrowser = ({
         <Grid item className={classes?.searchBarContainer}>
           {searchBar}
         </Grid>
-      <Grid item classes={{ root: classes?.tableContainer }}>
+        <Grid item classes={{ root: classes?.tableContainer }}>
           {table}
-      </Grid>
+        </Grid>
     </Grid>
   );
 };
