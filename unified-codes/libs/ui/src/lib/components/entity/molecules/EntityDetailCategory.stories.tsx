@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { IEntity } from '@unified-codes/data';
-import EntityDetailCategoryItem from './EntityDetailCategoryItem';
+import EntityDetailCategory from './EntityDetailCategory';
 
 export default {
-  component: EntityDetailCategoryItem,
-  title: 'EntityDetail/EntityDetailCategoryItem',
+  component: EntityDetailCategory,
+  title: 'EntityDetail/EntityDetailCategory',
 };
 
 const mockEntityDetails: IEntity = {
@@ -24,5 +24,5 @@ const mockEntityDetails: IEntity = {
 };
 
 export const withDummyEntity = () => {
-  return <EntityDetailCategoryItem entity={mockEntityDetails} />;
+  return <EntityDetailCategory entity={mockEntityDetails} />;
 };

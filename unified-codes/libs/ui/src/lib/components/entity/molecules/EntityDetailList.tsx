@@ -4,7 +4,7 @@ import { Property, IEntity } from '@unified-codes/data';
 import { Typography } from '../../data';
 import { Grid } from '../../layout';
 import { Link } from '../../navigation';
-import { EntityDetailCategoryItem } from './EntityDetailCategoryItem';
+import { EntityDetailCategory } from './EntityDetailCategory';
 import { TypographyVariant } from '@material-ui/core';
 
 export interface IExternalLink {
@@ -36,7 +36,7 @@ export const EntityDetailList: EntityDetailList = ({
       <ul>
         {productSubCategories?.length
           ? productSubCategories.map((category) => (
-              <EntityDetailCategoryItem entity={category} key={category.description} />
+              <EntityDetailCategory entity={category} key={category.description} />
             ))
           : noResults}
       </ul>
