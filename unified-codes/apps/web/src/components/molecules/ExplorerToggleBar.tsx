@@ -4,23 +4,23 @@ import { connect } from 'react-redux';
 import { EEntityType } from '@unified-codes/data';
 import { EntityToggleBar } from '@unified-codes/ui';
 
-import { toggleBarActions, IToggleBarAction } from '../../actions/explorer';
-import { toggleBarSelectors } from '../../selectors/explorer';
+import { ExplorerActions, IExplorerAction } from '../../actions';
+import { ExplorerSelectors } from '../../selectors';
 import { IState } from '../../types';
 
-const mapDispatchToProps = (dispatch: React.Dispatch<IToggleBarAction>) => {
+const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
     const onToggle = (type: EEntityType) => {
         switch(type) {
           case EEntityType.DRUG: {
-            dispatch(toggleBarActions.toggleFilterByDrug());
+            dispatch(ExplorerActions.toggleFilterByDrug());
             break;
           }
           case EEntityType.MEDICINAL_PRODUCT: {
-            dispatch(toggleBarActions.toggleFilterByMedicinalProduct());
+            dispatch(ExplorerActions.toggleFilterByMedicinalProduct());
             break;
           }
           case EEntityType.OTHER: {
-            dispatch(toggleBarActions.toggleFilterByOther());
+            dispatch(ExplorerActions.toggleFilterByOther());
             break;
           }
         }
@@ -35,8 +35,8 @@ const mapStateToProps = (state: IState) => {
         [EEntityType.OTHER]: 'Other'
     };
 
-    const buttonTypes = toggleBarSelectors.selectButtonTypes(state);
-    const buttonStates = toggleBarSelectors.selectButtonStates(state);
+    const buttonTypes = ExplorerSelectors.selectButtonTypes(state);
+    const buttonStates = ExplorerSelectors.selectButtonStates(state);
 
     return { buttonTypes, buttonStates, buttonLabels };
 };

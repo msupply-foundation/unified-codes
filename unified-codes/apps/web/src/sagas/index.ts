@@ -1,8 +1,8 @@
 import { all } from 'redux-saga/effects';
 
 import authenticatorSaga from './AuthenticatorSaga';
-import tableSaga from './explorer/table';
+import explorerSaga from './ExplorerSaga';
 
 export function* rootSaga() {
-  yield all([authenticatorSaga(), tableSaga()]);
+  yield all([authenticatorSaga(), explorerSaga()]);
 }

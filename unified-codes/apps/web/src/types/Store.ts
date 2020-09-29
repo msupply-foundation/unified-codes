@@ -13,6 +13,7 @@ export interface IExplorerSearchBarState {
 
 export interface IExplorerTableState {
   count: number;
+  loading: boolean;
   orderBy: EEntityField;
   orderDesc: boolean;
   rowsPerPage: number;

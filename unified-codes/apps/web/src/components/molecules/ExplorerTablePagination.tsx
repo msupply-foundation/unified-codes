@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 
 import { TablePagination } from '@unified-codes/ui';
 
-import { TableActions, ITableAction } from '../../actions/explorer';
-import { TableSelectors } from '../../selectors/explorer';
+import { ExplorerActions, IExplorerAction } from '../../actions';
+import { ExplorerSelectors } from '../../selectors';
 import { IState } from '../../types';
 
-const mapDispatchToProps = (dispatch: React.Dispatch<ITableAction>) => {
-    const onChangePage = (_: React.MouseEvent<HTMLButtonElement> | null, page: number) => dispatch(TableActions.updatePage(page));
-    const onChangeRowsPerPage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => dispatch(TableActions.updateRowsPerPage(+event.target.value));
+const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
+    const onChangePage = (_: React.MouseEvent<HTMLButtonElement> | null, page: number) => dispatch(ExplorerActions.updatePage(page));
+    const onChangeRowsPerPage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => dispatch(ExplorerActions.updateRowsPerPage(+event.target.value));
     
     return { onChangePage, onChangeRowsPerPage };
 };
@@ -17,9 +17,9 @@ const mapDispatchToProps = (dispatch: React.Dispatch<ITableAction>) => {
 const mapStateToProps = (state: IState) => {
     const rowsPerPageOptions = [25, 50, 100];
 
-    const count = TableSelectors.selectCount(state); 
-    const rowsPerPage = TableSelectors.selectRowsPerPage(state);
-    const page = TableSelectors.selectPage(state);
+    const count = ExplorerSelectors.selectCount(state); 
+    const rowsPerPage = ExplorerSelectors.selectRowsPerPage(state);
+    const page = ExplorerSelectors.selectPage(state);
 
     return { rowsPerPageOptions, count, rowsPerPage, page };
 };

@@ -1,122 +1,138 @@
-// import { call, put, takeEvery, all } from 'redux-saga/effects';
+import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 
-// import {
-//   AlertSeverity,
-//   Entity,
-//   EntitySearchFilter,
-//   EntitySearchRequest,
-//   IAlert,
-//   IEntityCollection,
-//   IEntitySearchFilter,
-//   IEntitySearchRequest,
-// } from '@unified-codes/data';
+import {
+  AlertSeverity,
+  EEntityField,
+  EEntityType,
+  IAlert,
+  IEntity,
+} from '@unified-codes/data';
 
-// import {
-//   EXPLORER_ACTIONS,
-//   ExplorerActions,
-//   AlertActions,
-//   IExplorerAction,
-//   IExplorerFetchDataAction,
-//   IExplorerUpdateVariablesAction,
-// } from '../actions';
+import { AlertActions, ExplorerActions, EXPLORER_ACTIONS, IExplorerAction } from '../actions';
+import { IExplorerState, IState } from '../types';
 
-// const getEntitiesQuery = (filter: IEntitySearchFilter, first: number, offset?: number) => `
-//   {
-//     entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" orderBy: { field: "${filter.orderBy.field}" descending: ${filter.orderBy.descending} } } offset: ${offset} first: ${first}) {
-//       data {
-//         code
-//         description
-//         type
-//         uid
-//       },
-//       totalLength,
-//     }
-//   }
-// `;
+const ALERT_SEVERITY = {
+  FETCH: AlertSeverity.info,
+  ERROR: AlertSeverity.error,
+};
 
-// const ALERT_SEVERITY = {
-//   FETCH: AlertSeverity.info,
-//   ERROR: AlertSeverity.error,
-// };
+const ALERT_TEXT = {
+  FETCH: 'Fetching...',
+  ERROR: 'Could not fetch data.',
+};
 
-// const ALERT_TEXT = {
-//   FETCH: 'Fetching...',
-//   ERROR: 'Could not fetch data.',
-// };
+const alertError: IAlert = {
+  isVisible: true,
+  severity: ALERT_SEVERITY.ERROR,
+  text: ALERT_TEXT.ERROR,
+};
 
-// const alertError: IAlert = {
-//   isVisible: true,
-//   severity: ALERT_SEVERITY.ERROR,
-//   text: ALERT_TEXT.ERROR,
-// };
+const alertFetch: IAlert = {
+  isVisible: true,
+  severity: ALERT_SEVERITY.FETCH,
+  text: ALERT_TEXT.FETCH,
+};
 
-// const alertFetch: IAlert = {
-//   isVisible: true,
-//   severity: ALERT_SEVERITY.FETCH,
-//   text: ALERT_TEXT.FETCH,
-// };
+interface IFetchEntitiesParameters {
+  code?: string,
+  description?: string,
+  type?: EEntityType,
+  orderBy?: EEntityField,
+  orderDesc?: boolean,
+  first?: number,
+  offset?: number,
+}
 
-// // TODO: add helper class for raw gql queries to data library and refactor this!
-// const getEntities = async (
-//   url: string,
-//   request: IEntitySearchRequest
-// ): Promise<IEntityCollection> => {
-//   const response = await fetch(url, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Accept: 'application/json',
-//     },
-//     body: JSON.stringify({
-//       query: getEntitiesQuery(request.filter, request.first, request.offset),
-//     }),
-//   });
-//   const json = await response.json();
-//   const { data } = json;
-//   const { entities } = data;
+const getEntitiesQuery = ({
+  code,
+  description,
+  type = EEntityType.MEDICINAL_PRODUCT,
+  orderBy = EEntityField.DESCRIPTION,
+  orderDesc = false,
+  first = 25,
+  offset = 0,
+}: IFetchEntitiesParameters) => `
+  {
+    entities(filter: { code: "${code}" description: "${description}" type: "${type}" orderBy: { field: "${orderBy}" descending: ${orderDesc} } } offset: ${offset} first: ${first}) {
+      data {
+        code
+        description
+        type
+        uid
+      },
+      totalLength,
+    }
+  }
+`;
 
-//   return entities;
-// };
+const getEntities = async (
+  url: string,
+  parameters: IFetchEntitiesParameters
+): Promise<IEntity[]> => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      query: getEntitiesQuery(parameters),
+    }),
+  });
+  const json = await response.json();
 
-// function* fetchData(action: IExplorerFetchDataAction) {
-//   yield put(AlertActions.raiseAlert(alertFetch));
-//   try {
-//     const url:
-//       | string
-//       | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
-//     if (url) {
-//       const entities: IEntityCollection = yield call(getEntities, url, action.request);
-//       yield put(AlertActions.resetAlert());
-//       yield put(ExplorerActions.fetchSuccess(entities));
-//     }
-//   } catch (error) {
-//     yield put(AlertActions.raiseAlert(alertError));
-//     yield put(ExplorerActions.fetchFailure(error));
-//   }
-// }
+  const { data } = json;
+  const { entities } = data;
 
-// function* fetchDataSaga() {
-//   yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.FETCH_DATA, fetchData);
-// }
+  return entities;
+};
 
-// function* updateVariables(action: IExplorerUpdateVariablesAction) {
-//   const { variables } = action;
-//   const { code, description, page, rowsPerPage, orderDesc, orderBy, type } = variables;
-//   const filter = new EntitySearchFilter(description, code, type, orderBy, orderDesc);
-//   const offset = rowsPerPage && page ? page * rowsPerPage : undefined;
-//   const request = new EntitySearchRequest(filter, rowsPerPage, offset);
-//   yield put(ExplorerActions.fetchData(request));
-// }
+const getEntitiesParameters = (state: IState) => {
+  const { explorer }: { explorer: IExplorerState } = state;
+  const { searchBar, table } = explorer;
 
-// function* updateVariablesSaga() {
-//   yield takeEvery<IExplorerUpdateVariablesAction>(
-//     EXPLORER_ACTIONS.UPDATE_VARIABLES,
-//     updateVariables
-//   );
-// }
+  const code = '';
+  const description = searchBar?.input ?? '';
+  const type = EEntityType.MEDICINAL_PRODUCT;
+  const orderBy = table?.orderBy ?? EEntityField.DESCRIPTION;
+  const orderDesc = table?.orderDesc ?? false;
+  const first = table?.rowsPerPage ?? 25;
+  const offset = (table?.page ? table.page - 1 : 0) * first;
 
-// export function* explorerSaga() {
-//   yield all([fetchDataSaga(), updateVariablesSaga()]);
-// }
+  return {
+    code,
+    description,
+    type,
+    orderBy,
+    orderDesc,
+    first,
+    offset
+  };
+}
 
-// export default explorerSaga;
+function* fetchData() {
+  yield put(AlertActions.raiseAlert(alertFetch));
+  try {
+    const url:
+      | string
+      | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
+    if (url) {
+      const parameters = yield select(getEntitiesParameters);
+      const entities = yield call(getEntities, url, parameters);
+      yield put(ExplorerActions.fetchEntitiesSuccess(entities));
+    }
+  } catch (error) {
+      yield put(AlertActions.raiseAlert(alertError));
+      yield put(ExplorerActions.fetchEntitiesFailure(error));
+  }
+}
+
+function* fetchEntitiesSaga() {
+  yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.FETCH_ENTITIES, fetchData);
+}
+
+export function* explorerSaga() {
+  yield all([fetchEntitiesSaga()]);
+}
+
+export default explorerSaga;

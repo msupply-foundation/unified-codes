@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import { EntityTableHeader } from '@unified-codes/ui';
 import { EEntityField } from '@unified-codes/data';
 
-import { TableActions, ITableAction } from '../../actions/explorer';
-import { TableSelectors } from '../../selectors/explorer';
+import { ExplorerActions, IExplorerAction } from '../../actions';
+import { ExplorerSelectors } from '../../selectors';
 import { IState } from '../../types';
 
-const mapDispatchToProps = (dispatch: React.Dispatch<ITableAction>) => {
+const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
     const onSort = (column: string) => {
-        dispatch(TableActions.updateOrderBy(column as EEntityField));
-        dispatch(TableActions.updateOrderDesc(false));
+        dispatch(ExplorerActions.updateOrderBy(column as EEntityField));
+        dispatch(ExplorerActions.updateOrderDesc(false));
     }
 
     return { onSort };
@@ -21,8 +21,8 @@ const mapDispatchToProps = (dispatch: React.Dispatch<ITableAction>) => {
 const mapStateToProps = (state: IState) => {
     const columns = [ EEntityField.CODE, EEntityField.DESCRIPTION, EEntityField.TYPE ];
 
-    const orderBy = TableSelectors.selectOrderBy(state);
-    const orderDesc = TableSelectors.selectOrderDesc(state);
+    const orderBy = ExplorerSelectors.selectOrderBy(state);
+    const orderDesc = ExplorerSelectors.selectOrderDesc(state);
 
     return { columns, orderBy, orderDesc };
 };

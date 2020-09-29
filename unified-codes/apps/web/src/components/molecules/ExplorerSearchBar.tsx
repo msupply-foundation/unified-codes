@@ -3,23 +3,23 @@ import { connect } from 'react-redux';
 
 import { SearchBar } from '@unified-codes/ui';
 
-import { SearchBarActions, TableActions, ITableAction, ISearchBarAction } from '../../actions/explorer';
-import { SearchBarSelectors } from '../../selectors/explorer';
+import { ExplorerActions, IExplorerAction } from '../../actions';
+import { ExplorerSelectors } from '../../selectors';
 import { IState } from '../../types';
 
-const mapDispatchToProps = (dispatch: React.Dispatch<ISearchBarAction | ITableAction>) => {
-    const onChange = (input: string) => dispatch(SearchBarActions.updateInput(input));
+const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
+    const onChange = (input: string) => dispatch(ExplorerActions.updateInput(input));
     const onClear = () => {
-        dispatch(SearchBarActions.updateInput(''));
-        dispatch(TableActions.updateFilterBy(''));
+        dispatch(ExplorerActions.updateInput(''));
+        dispatch(ExplorerActions.updateFilterBy(''));
     }
-    const onSearch = () => dispatch(TableActions.fetchEntities());
+    const onSearch = () => dispatch(ExplorerActions.fetchEntities());
     return { onChange, onClear, onSearch };
 };
 
 const mapStateToProps = (state: IState) => {
-    const input = SearchBarSelectors.selectInput(state);
-    const label = SearchBarSelectors.selectLabel(state);
+    const input = ExplorerSelectors.selectInput(state);
+    const label = ExplorerSelectors.selectLabel(state);
     return { input, label };
 };
 
