@@ -20,7 +20,7 @@ export type EntityTableRow = React.FunctionComponent<EntityTableRowProps>;
 
 export const EntityTableRow: EntityTableRow = ({ classes, columns, entity }) => {
   const cells = columns.map(column => (
-    <TableCell classes={{ root: classes?.cell }}>
+    <TableCell key={column} classes={{ root: classes?.cell }}>
       {entity[column as EEntityField]}
     </TableCell>
   ));

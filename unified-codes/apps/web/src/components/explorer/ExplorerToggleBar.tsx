@@ -30,7 +30,7 @@ const mergeProps = ((stateProps: any, dispatchProps: any) => {
     const color = buttonStates[buttonType] ? 'primary' : 'secondary';
     const label = buttonLabels[buttonType];
   
-    return <ExplorerToggleButton startIcon={startIcon} color={color} onClick={() => onToggle(buttonType)}>{label}</ExplorerToggleButton>
+    return <ExplorerToggleButton key={buttonType} startIcon={startIcon} color={color} onClick={() => onToggle(buttonType)}>{label}</ExplorerToggleButton>
   });
 
   return {

@@ -16,7 +16,7 @@ export type EntityToggleBar = React.FunctionComponent<IEntityToggleBarProps>;
 
 export const EntityToggleBar: EntityToggleBar = ({ classes, buttons }) => (
   <Grid container classes={classes} justify="center" direction="row" spacing={2}>
-    {buttons.map(button => <Grid item>{button}</Grid>)}
+    {buttons.map(button => <Grid item key={button.key}>{button}</Grid>)}
   </Grid>
 );
 

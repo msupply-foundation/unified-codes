@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { IEntity, EEntityField } from '@unified-codes/data';
 
-import Grid from '../../layout/atoms/Grid';
 import EntityTableRow, { IEntityTableRowClasses } from './EntityTableRow';
 
 export interface IEntityTableRowsClasses {
@@ -35,7 +34,7 @@ export const EntityTableRows: EntityTableRows = ({ classes, columns, entities })
         )
       ), [classes, columns, entities]);
 
-  return <Grid classes={{root: classes?.root}}>{rows}</Grid>;
+  return <React.Fragment>{rows}</React.Fragment>;
 };
 
 export default EntityTableRows;

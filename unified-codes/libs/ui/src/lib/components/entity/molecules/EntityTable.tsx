@@ -1,3 +1,4 @@
+import { TableFooter, TableRow } from '@material-ui/core';
 import * as React from 'react';
 
 import {
@@ -40,11 +41,14 @@ export const EntityTable: EntityTable = ({
           <TableBody classes={{ root: classes?.body }}>
             {rows}
           </TableBody>
+          <TableFooter classes={{ root: classes?.paginationContainer }}>
+            <TableRow>
+              {pagination}
+            </TableRow>
+          </TableFooter>
         </Table>
       </Grid>
-      <Grid container item classes={{ root: classes?.paginationContainer }}>
-        {pagination}
-      </Grid>
+
     </Grid>
   );
 };

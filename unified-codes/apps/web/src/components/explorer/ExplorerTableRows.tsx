@@ -8,7 +8,7 @@ import { IExplorerAction } from '../../actions';
 import { ExplorerSelectors } from '../../selectors';
 import { IState } from '../../types';
 
-const mapDispatchToProps = (_: React.Dispatch<IExplorerAction>) => {};
+const mapDispatchToProps = (_: React.Dispatch<IExplorerAction>) => ({});
 
 const mapStateToProps = (state: IState) => {
     const columns = [ EEntityField.CODE, EEntityField.DESCRIPTION, EEntityField.TYPE ];
