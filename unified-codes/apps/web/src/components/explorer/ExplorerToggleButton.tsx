@@ -1,9 +1,7 @@
-import * as React from 'react';
-import { withStyles } from '@material-ui/core';
-
 import { Button } from '@unified-codes/ui';
 
-import { ITheme } from '../../muiTheme';
+import { withStyles } from '../../styles';
+import { ITheme } from '../../types';
 
 const styles = (theme: ITheme) => ({
   textPrimary: {

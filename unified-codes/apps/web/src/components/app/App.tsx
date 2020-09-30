@@ -2,14 +2,19 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { Theme, withStyles } from '@material-ui/core/styles';
-import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import { Container, Grid, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
 
-import { AlertActions } from './actions';
-import { Explorer, Footer, Header, Login } from './components';
+import Explorer from '../explorer/Explorer';
+import Login from '../login/Login';
+import Footer from './Footer';
+import Header from './Header';
+
+import { AlertActions } from '../../actions';
+import { withStyles } from '../../styles';
+import { ClassNameMap, ITheme } from '../../types';
+
 
 export interface AppProps {
   alert: IAlert;
@@ -17,7 +22,7 @@ export interface AppProps {
   resetAlert: () => void;
 }
 
-const getStyles = (theme: Theme) => ({
+const getStyles = (theme: ITheme) => ({
   body: theme.typography.body1,
   container: {
     paddingLeft: 0,

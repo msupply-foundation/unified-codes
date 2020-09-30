@@ -1,21 +1,17 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Grid, withStyles } from '@material-ui/core';
 
 import { EEntityType } from '@unified-codes/data';
-import { EntityToggleBar } from '@unified-codes/ui';
+import { CheckCircleIcon, AddIcon, EntityToggleBar } from '@unified-codes/ui';
+
+import ExplorerToggleButton from './ExplorerToggleButton';
 
 import { ExplorerActions, IExplorerAction } from '../../actions';
 import { ExplorerSelectors } from '../../selectors';
-import { IState } from '../../types';
-import { ITheme } from '../../muiTheme';
-import ExplorerToggleButton from './ExplorerToggleButton';
-import CheckCircleIcon from 'libs/ui/src/lib/components/icons/atoms/CheckCircleIcon';
-import AddIcon from 'libs/ui/src/lib/components/icons/atoms/AddIcon';
+import { withStyles } from '../../styles';
+import { IState, ITheme } from '../../types';
 
-const styles = (theme: ITheme) => ({
-
-});
+const styles = (_: ITheme) => ({});
 
 const mergeProps = ((stateProps: any, dispatchProps: any) => {
   const { buttonTypes, buttonStates } = stateProps;

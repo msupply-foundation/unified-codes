@@ -5,7 +5,13 @@ import { SearchBar } from '@unified-codes/ui';
 
 import { ExplorerActions, IExplorerAction } from '../../actions';
 import { ExplorerSelectors } from '../../selectors';
-import { IState } from '../../types';
+import { withStyles } from '../../styles';
+import { IState, ITheme } from '../../types';
+
+const styles = (_: ITheme) => ({
+    input: { paddingLeft: 15 },
+    button: { marginTop: 15 }
+});
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
     const onChange = (input: string) => dispatch(ExplorerActions.updateInput(input));
@@ -23,6 +29,6 @@ const mapStateToProps = (state: IState) => {
     return { input, label };
 };
 
-export const ExplorerSearchBar = connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export const ExplorerSearchBar = connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SearchBar));
 
 export default ExplorerSearchBar;

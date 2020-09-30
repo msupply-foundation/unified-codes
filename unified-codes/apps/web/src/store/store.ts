@@ -9,9 +9,9 @@ import {
 } from 'redux';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 
-import { AlertReducer, AuthenticatorReducer, ExplorerReducer, UserReducer } from './reducers';
-import { rootSaga } from './sagas';
-import { IState } from './types';
+import { AlertReducer, AuthenticatorReducer, ExplorerReducer, UserReducer } from '../reducers';
+import { rootSaga } from '../sagas';
+import { IState } from '../types';
 
 const reducer: Reducer<CombinedState<IState>> = combineReducers({
   alert: AlertReducer,

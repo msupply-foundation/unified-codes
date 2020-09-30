@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
-import { Theme, withStyles } from '@material-ui/core/styles';
-import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import { AppBar, Avatar, Grid, UCIcon } from '@unified-codes/ui';
-import { flexDirection, ITheme } from '../../muiTheme';
+import { ClassNameMap, flexDirection, ITheme } from '../../types';
+import { withStyles } from '@material-ui/core';
 
 export interface HeaderProps {
   classes: ClassNameMap<any>;
@@ -83,3 +82,5 @@ const _Header: Header = ({ classes }) => {
 };
 
 export const Header = withStyles(getStyles)(_Header);
+
+export default Header;

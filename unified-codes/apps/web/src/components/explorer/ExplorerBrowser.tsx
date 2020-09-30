@@ -1,8 +1,7 @@
-import { withStyles } from '@material-ui/core';
-
 import { EntityBrowser } from '@unified-codes/ui';
 
-import { ITheme } from '../../muiTheme';
+import { withStyles } from '../../styles';
+import { ITheme } from '../../types';
 
 const styles = (theme: ITheme) => ({
     root: {
@@ -28,6 +27,6 @@ const styles = (theme: ITheme) => ({
     },
 });
 
-export const ExplorerEntityBrowser = withStyles(styles)(EntityBrowser);
+export const ExplorerBrowser = withStyles(styles)(EntityBrowser);
 
-export default ExplorerEntityBrowser;
+export default ExplorerBrowser;

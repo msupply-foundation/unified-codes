@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import { Footer } from './Footer';
-import theme from '../../muiTheme';
+import theme from '../../theme';
 
 export default { title: 'Footer' };
 

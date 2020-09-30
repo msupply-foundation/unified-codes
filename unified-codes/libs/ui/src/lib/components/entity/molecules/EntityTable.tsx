@@ -31,8 +31,8 @@ export const EntityTable: EntityTable = ({
 }: EntityTableProps) => {
  
   return (
-    <Grid classes={{ root: classes?.root }}>
-      <Grid classes={{ root: classes?.tableContainer }}>
+    <Grid container classes={{ root: classes?.root }}>
+      <Grid container item classes={{ root: classes?.tableContainer }}>
         <Table classes={{ root: classes?.root }}>
           <TableHead classes={{ root: classes?.head }}>
             {header}
@@ -42,7 +42,7 @@ export const EntityTable: EntityTable = ({
           </TableBody>
         </Table>
       </Grid>
-      <Grid item classes={{ root: classes?.paginationContainer }}>
+      <Grid container item classes={{ root: classes?.paginationContainer }}>
         {pagination}
       </Grid>
     </Grid>
