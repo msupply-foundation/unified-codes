@@ -15,7 +15,7 @@ const initialTableState = (): IExplorerTableState => ({
   orderBy: EEntityField.DESCRIPTION,
   orderDesc: false,
   rowsPerPage: 25,
-  page: 1,
+  page: 0,
 });
 
 const initialToggleBarState = (): IExplorerToggleBarState => ({
