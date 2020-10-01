@@ -23,6 +23,18 @@ const typeDefs = gql`
     entities(filter: EntityFilterInput, first: Int, offset: Int): EntityCollection
   }
 
+  type Mutation {
+    deleteEntity(code: String!): DeleteMutationResponse
+  }
+
+  type DeleteMutationResponse implements MutationResponse {
+    success: Boolean!
+  }
+
+  interface MutationResponse {
+    success: Boolean!
+  }
+
   type EntityCollection {
     data: [Entity]!
     totalLength: Int!

@@ -8,7 +8,7 @@ export class DgraphDataSource extends RESTDataSource {
     super();
     this.baseURL = `${process.env.NX_DGRAPH_SERVICE_URL}:${process.env.NX_DGRAPH_SERVICE_PORT}`;
     this.headers = { 'Content-Type': 'application/graphql+-' };
-    this.paths = { query: 'query' };
+    this.paths = { query: 'query', mutate: 'mutate?commitNow=true' };
   }
 
   willSendRequest(request) {
@@ -17,6 +17,11 @@ export class DgraphDataSource extends RESTDataSource {
 
   async postQuery(query) {
     return this.post(this.paths.query, query);
+  }
+
+  async postMutation(mutation) {
+    this.headers = { 'Content-Type': 'application/rdf' };
+    return this.post(this.paths.mutate, mutation);
   }
 }
 
