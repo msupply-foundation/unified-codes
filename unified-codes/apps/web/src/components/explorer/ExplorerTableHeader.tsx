@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { batch, connect } from 'react-redux';
 
 import { EntityTableHeader } from '@unified-codes/ui';
 import { EEntityField } from '@unified-codes/data';
@@ -27,10 +27,11 @@ const styles = (theme: ITheme) => ({
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
     const onSort = (column: string) => {
-        dispatch(ExplorerActions.updateOrderBy(column as EEntityField));
-        dispatch(ExplorerActions.updateOrderDesc(false));
-    }
-
+        batch(() => {
+            dispatch(ExplorerActions.updateOrderBy(column as EEntityField));
+            dispatch(ExplorerActions.updateEntities());
+        })
+    } 
     return { onSort };
 };
 

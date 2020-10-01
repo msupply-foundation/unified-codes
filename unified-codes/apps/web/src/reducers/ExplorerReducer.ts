@@ -1,7 +1,7 @@
 
 import { IExplorerSearchBarState, IExplorerState, IExplorerTableState, IExplorerToggleBarState } from '../types';
 import { EEntityField, EEntityType } from '@unified-codes/data';
-import { EXPLORER_ACTIONS, IExplorerAction, IExplorerSearchBarUpdateInputAction, IExplorerTableFetchEntitiesSuccessAction } from '../actions';
+import { EXPLORER_ACTIONS, IExplorerAction, IExplorerSearchBarUpdateInputAction, IExplorerTableFetchEntitiesSuccessAction, IExplorerTableUpdateOrderByAction, IExplorerTableUpdateOrderDescAction } from '../actions';
 
 const initialState: IExplorerState = {
   searchBar: {
@@ -31,6 +31,17 @@ export const ExplorerReducer = (
   const { type } = action;
 
   switch (type) {
+    case EXPLORER_ACTIONS.UPDATE_ORDER_BY: {
+      const { orderBy } = action as IExplorerTableUpdateOrderByAction;    
+      const orderDesc = orderBy === state.table.orderBy && !state.table.orderDesc;
+      return { ...state, table: { ...state.table, orderBy, orderDesc }};
+    }
+
+    case EXPLORER_ACTIONS.UPDATE_ORDER_DESC: {
+      const { orderDesc } = action as IExplorerTableUpdateOrderDescAction;
+      return { ...state, table: { ...state.table, orderDesc }};
+    }
+
     case EXPLORER_ACTIONS.UPDATE_ENTITIES_SUCCESS: {
       const { entities } = action as IExplorerTableFetchEntitiesSuccessAction;
       const { data, totalLength } = entities;
