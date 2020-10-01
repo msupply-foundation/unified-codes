@@ -16,10 +16,10 @@ const styles = (_: ITheme) => ({
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
     const onChange = (input: string) => dispatch(ExplorerActions.updateInput(input));
     const onClear = () => {
-        dispatch(ExplorerActions.updateInput(''));
-        dispatch(ExplorerActions.updateFilterBy(''));
+        dispatch(ExplorerActions.resetInput());
+        dispatch(ExplorerActions.resetFilterBy());
     }
-    const onSearch = () => dispatch(ExplorerActions.fetchEntities());
+    const onSearch = () => dispatch(ExplorerActions.updateEntities());
     return { onChange, onClear, onSearch };
 };
 

@@ -14,6 +14,7 @@ export interface IExplorerSearchBarState {
 export interface IExplorerTableState {
   count: number;
   loading: boolean;
+  filterBy: string;
   orderBy: EEntityField;
   orderDesc: boolean;
   rowsPerPage: number;

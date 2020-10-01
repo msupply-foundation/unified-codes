@@ -1,4 +1,3 @@
-export * from './Explorer';
 export * from './ExplorerBrowser';
 export * from './ExplorerSearchBar';
 export * from './ExplorerTable';

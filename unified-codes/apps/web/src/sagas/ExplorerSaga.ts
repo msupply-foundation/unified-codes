@@ -81,8 +81,14 @@ const getEntities = async (
   });
   const json = await response.json();
 
+  console.log(parameters);
+
+  console.log(json);
+
   const { data } = json;
   const { entities } = data;
+
+  console.log(entities);
 
   return entities;
 };
@@ -119,16 +125,16 @@ function* fetchData() {
     if (url) {
       const parameters = yield select(getEntitiesParameters);
       const entities = yield call(getEntities, url, parameters);
-      yield put(ExplorerActions.fetchEntitiesSuccess(entities));
+      yield put(ExplorerActions.updateEntitiesSuccess(entities));
     }
   } catch (error) {
       yield put(AlertActions.raiseAlert(alertError));
-      yield put(ExplorerActions.fetchEntitiesFailure(error));
+      yield put(ExplorerActions.updateEntitiesFailure(error));
   }
 }
 
 function* fetchEntitiesSaga() {
-  yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.FETCH_ENTITIES, fetchData);
+  yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.UPDATE_ENTITIES, fetchData);
 }
 
 export function* explorerSaga() {
