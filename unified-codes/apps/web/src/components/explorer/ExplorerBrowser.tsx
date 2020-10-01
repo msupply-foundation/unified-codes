@@ -18,6 +18,7 @@ const styles = (theme: ITheme) => ({
     searchBarContainer: {
         backgroundColor: theme.palette.background.default,
         margin: '-20px auto 0 auto',
+        maxWidth: 900,
         width: '60%',
         borderRadius: 5,
     },
