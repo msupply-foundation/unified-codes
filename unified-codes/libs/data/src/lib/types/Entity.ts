@@ -4,20 +4,23 @@ export interface IEntity {
   code: string;
   description: string;
   type: string;
-  properties?: Property[];
+  has_property?: Property[];
+  has_child?: IEntity[];
 }
 
 export class Entity implements IEntity {
   private _code: string;
   private _description: string;
   private _type: string;
-  private _properties?: Property[];
+  private _has_property?: Property[];
+  private _has_child?: IEntity[];
 
   constructor(entity: IEntity) {
     this._code = entity.code;
     this._description = entity.description;
     this._type = entity.type;
-    this._properties = entity.properties;
+    this._has_property = entity.has_property;
+    this._has_child = entity.has_child;
   }
 
   get code(): string {
@@ -33,7 +36,11 @@ export class Entity implements IEntity {
   }
 
   get properties(): Property[] | undefined {
-    return this._properties;
+    return this._has_property;
+  }
+
+  get children(): IEntity[] | undefined {
+    return this._has_child;
   }
 
   matchesCode(pattern: string) {
