@@ -61,15 +61,20 @@ export const selectEntities = createSelector(
     (table: IExplorerTableState): IEntity[] => table?.entities
 );
 
-export const selectButtonTypes = createSelector(
+export const selectFilterByDrug = createSelector(
     selectToggleBar,
-    (toggleBar: IExplorerToggleBarState): EEntityType[] => toggleBar?.buttonTypes
-);
+    (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.DRUG]
+)
 
-export const selectButtonStates = createSelector(
+export const selectFilterByMedicinalProduct = createSelector(
     selectToggleBar,
-    (toggleBar: IExplorerToggleBarState): { [key in EEntityType]: boolean } => toggleBar?.buttonStates
-);
+    (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.MEDICINAL_PRODUCT]
+)
+
+export const selectFilterByOther = createSelector(
+    selectToggleBar,
+    (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.OTHER]
+)
 
 export const SearchBarSelectors = {
     selectInput,
@@ -86,8 +91,9 @@ export const TableSelectors = {
 };
 
 export const ToggleBarSelectors = {
-    selectButtonTypes,
-    selectButtonStates,
+    selectFilterByDrug,
+    selectFilterByMedicinalProduct,
+    selectFilterByOther
 };
 
 export const ExplorerSelectors = {

@@ -19,8 +19,9 @@ const initialState: IExplorerState = {
     page: 0,
   },
   toggleBar: {
-    buttonTypes: [EEntityType.DRUG, EEntityType.MEDICINAL_PRODUCT, EEntityType.OTHER],
-    buttonStates: { [EEntityType.DRUG]: true, [EEntityType.MEDICINAL_PRODUCT]: false, [EEntityType.OTHER]: false }
+    [EEntityType.DRUG]: true,
+    [EEntityType.MEDICINAL_PRODUCT]: false,
+    [EEntityType.OTHER]: false
   }
 };
 
@@ -79,6 +80,18 @@ export const ExplorerReducer = (
 
     case EXPLORER_ACTIONS.RESET_ROWS_PER_PAGE: {
       return { ...state, table: { ...state.table, rowsPerPage: initialState.table.rowsPerPage }};
+    }
+
+    case EXPLORER_ACTIONS.TOGGLE_FILTER_BY_DRUG: {
+      return { ...state, toggleBar: { ...state.toggleBar, [EEntityType.DRUG]: !state.toggleBar[EEntityType.DRUG] }};
+    }
+
+    case EXPLORER_ACTIONS.TOGGLE_FILTER_BY_MEDICINAL_PRODUCT: {
+      return { ...state, toggleBar: { ...state.toggleBar, [EEntityType.MEDICINAL_PRODUCT]: !state.toggleBar[EEntityType.MEDICINAL_PRODUCT] }};
+    }
+    
+    case EXPLORER_ACTIONS.TOGGLE_FILTER_BY_OTHER: {
+      return { ...state, toggleBar: { ...state.toggleBar, [EEntityType.OTHER]: !state.toggleBar[EEntityType.OTHER] }};
     }
   }
 

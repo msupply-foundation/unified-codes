@@ -23,15 +23,12 @@ export interface IExplorerTableState {
 }
 
 export interface IExplorerToggleBarState {
-  buttonStates: { [key in EEntityType]: boolean };
-  buttonTypes: EEntityType[];
+  [EEntityType.DRUG]: boolean,
+  [EEntityType.MEDICINAL_PRODUCT]: boolean,
+  [EEntityType.OTHER]: boolean,
 }
 
 export interface IExplorerState {
-  entities?: IEntityCollection;
-  error?: Error;
-  loading?: boolean;
-  variables?: IExplorerVariables;
   searchBar: IExplorerSearchBarState;
   table: IExplorerTableState;
   toggleBar: IExplorerToggleBarState;
