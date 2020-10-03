@@ -10,6 +10,7 @@ import {
 
 import { AlertActions, ExplorerActions, EXPLORER_ACTIONS, IExplorerAction } from '../actions';
 import { IExplorerState, IState } from '../types';
+import { ExplorerSelectors } from '../selectors';
 
 const ALERT_SEVERITY = {
   FETCH: AlertSeverity.info,
@@ -36,7 +37,7 @@ const alertFetch: IAlert = {
 interface IFetchEntitiesParameters {
   code?: string,
   description?: string,
-  type?: EEntityType,
+  types?: EEntityType[],
   orderBy?: EEntityField,
   orderDesc?: boolean,
   first?: number,
@@ -46,14 +47,14 @@ interface IFetchEntitiesParameters {
 const getEntitiesQuery = ({
   code,
   description,
-  type = EEntityType.MEDICINAL_PRODUCT,
+  types = [EEntityType.MEDICINAL_PRODUCT],
   orderBy = EEntityField.DESCRIPTION,
   orderDesc = false,
   first = 25,
   offset = 0,
 }: IFetchEntitiesParameters) => `
   {
-    entities(filter: { code: "${code}" description: "${description}" type: "${type}" orderBy: { field: "${orderBy}" descending: ${orderDesc} } } offset: ${offset} first: ${first}) {
+    entities(filter: { code: "${code}" description: "${description}" type: "${types}" orderBy: { field: "${orderBy}" descending: ${orderDesc} } } offset: ${offset} first: ${first}) {
       data {
         code
         description
@@ -79,42 +80,14 @@ const getEntities = async (
       query: getEntitiesQuery(parameters),
     }),
   });
+
   const json = await response.json();
-
-  console.log(parameters);
-
-  console.log(json);
 
   const { data } = json;
   const { entities } = data;
 
-  console.log(entities);
-
   return entities;
 };
-
-const getEntitiesParameters = (state: IState) => {
-  const { explorer }: { explorer: IExplorerState } = state;
-  const { searchBar, table } = explorer;
-
-  const code = '';
-  const description = searchBar?.input ?? '';
-  const type = EEntityType.MEDICINAL_PRODUCT;
-  const orderBy = table?.orderBy ?? EEntityField.DESCRIPTION;
-  const orderDesc = table?.orderDesc ?? false;
-  const first = table?.rowsPerPage ?? 25;
-  const offset = (table?.page ? table.page - 1 : 0) * first;
-
-  return {
-    code,
-    description,
-    type,
-    orderBy,
-    orderDesc,
-    first,
-    offset
-  };
-}
 
 function* fetchData() {
   yield put(AlertActions.raiseAlert(alertFetch));
@@ -123,7 +96,27 @@ function* fetchData() {
       | string
       | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
     if (url) {
-      const parameters = yield select(getEntitiesParameters);
+      const code = yield select(ExplorerSelectors.selectCode);
+      const description = yield select(ExplorerSelectors.selectDescription);
+      const types = yield select(ExplorerSelectors.selectTypes);
+      const orderBy = yield select(ExplorerSelectors.selectOrderBy);
+      const orderDesc = yield select(ExplorerSelectors.selectOrderDesc);
+      const rowsPerPage = yield select(ExplorerSelectors.selectRowsPerPage);
+      const page = yield select(ExplorerSelectors.selectPage);
+
+      const first = rowsPerPage;
+      const offset = rowsPerPage * (page - 1);
+
+      const parameters: IFetchEntitiesParameters = {
+        code,
+        description,
+        types,
+        orderBy,
+        orderDesc,
+        first,
+        offset
+      }
+ 
       const entities = yield call(getEntities, url, parameters);
       yield put(ExplorerActions.updateEntitiesSuccess(entities));
     }

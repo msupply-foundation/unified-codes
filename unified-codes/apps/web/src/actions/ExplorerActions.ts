@@ -6,8 +6,8 @@ export interface IExplorerSearchBarUpdateInputAction extends Action<string> {
     input: string;
 }
 
-export interface IExplorerSearchBarUpdateLabelAction extends Action<string> {
-    label: string;
+export interface IExplorerSearchBarUpdateFilterByAction extends Action<string> {
+    filterBy: EEntityField;
 }
 
 
@@ -61,7 +61,7 @@ export interface IExplorerToggleBarToggleByOtherAction extends Action<string> { 
 
 export type IExplorerSearchBarAction =
     IExplorerSearchBarUpdateInputAction |
-    IExplorerSearchBarUpdateLabelAction;
+    IExplorerSearchBarUpdateFilterByAction;
 
 export type IExplorerTableAction =
     IExplorerTableUpdateRowsPerPageAction |
@@ -85,22 +85,20 @@ export type IExplorerAction = IExplorerSearchBarAction | IExplorerTableAction | 
 
 export const EXPLORER_SEARCH_BAR_ACTIONS = {
     UPDATE_INPUT: 'explorer/searchBar/updateInput',
-    UPDATE_LABEL: 'explorer/searchBar/updateLabel',
+    UPDATE_FILTER_BY: 'explorer/searchBar/updateFilterBy',
     RESET_INPUT: 'explorer/searchBar/resetInput',
-    RESET_LABEL: 'explorer/searchBar/resetLabel', 
+    RESET_FILTER_BY: 'explorer/searchBar/resetFilterBy', 
 };
 
 export const EXPLORER_TABLE_ACTIONS = {
     UPDATE_ENTITIES: 'explorer/table/updateEntities',
     UPDATE_ENTITIES_SUCCESS: 'explorer/table/updateEntitiesSuccess',
     UPDATE_ENTITIES_FAILURE: 'explorer/table/updateEntitiesFailure', 
-    UPDATE_FILTER_BY: 'explorer/table/updateFilterBy',
     UPDATE_ORDER_BY: 'explorer/table/updateOrderBy',
     UPDATE_ORDER_DESC: 'explorer/table/updateOrderDesc',
     UPDATE_ROWS_PER_PAGE: 'explorer/table/updateRowsPerPage',
     UPDATE_PAGE: 'explorer/table/updatePage',
     RESET_ENTITIES: 'explorer/table/resetEntities',
-    RESET_FILTER_BY: 'explorer/table/resetFilterBy',
     RESET_ORDER_BY: 'explorer/table/resetOrderBy',
     RESET_ORDER_DESC: 'explorer/table/resetOrderDesc',
     RESET_ROWS_PER_PAGE: 'explorer/table/resetRowsPerPage',
@@ -121,16 +119,16 @@ const updateInput = (input: string) => ({
     input,
 });
 
-const updateLabel = (label: string) => ({
-    type: EXPLORER_SEARCH_BAR_ACTIONS.UPDATE_LABEL,
-    label,
+const updateFilterBy = (filterBy: string) => ({
+    type: EXPLORER_SEARCH_BAR_ACTIONS.UPDATE_FILTER_BY,
+    filterBy,
 });
 
 const resetInput = () => ({
     type: EXPLORER_SEARCH_BAR_ACTIONS.RESET_INPUT
 });
 
-const resetLabel = () => ({ type: EXPLORER_SEARCH_BAR_ACTIONS.RESET_LABEL });
+const resetFilterBy = () => ({ type: EXPLORER_SEARCH_BAR_ACTIONS.RESET_FILTER_BY });
 
 const updateRowsPerPage = (rowsPerPage: number) => ({
     type: EXPLORER_TABLE_ACTIONS.UPDATE_ROWS_PER_PAGE,
@@ -140,11 +138,6 @@ const updateRowsPerPage = (rowsPerPage: number) => ({
 const updatePage = (page: number) => ({
     type: EXPLORER_TABLE_ACTIONS.UPDATE_PAGE,
     page,
-})
-
-const updateFilterBy = (filterBy: string) => ({
-    type: EXPLORER_TABLE_ACTIONS.UPDATE_FILTER_BY,
-    filterBy,
 })
 
 const updateOrderBy = (orderBy: EEntityField) => ({
@@ -172,8 +165,6 @@ export const updateEntitiesFailure = (error: Error) => ({
 });
 
 const resetEntities = () => ({ type: EXPLORER_TABLE_ACTIONS.RESET_ENTITIES });
-
-const resetFilterBy = () => ({ type: EXPLORER_TABLE_ACTIONS.RESET_FILTER_BY });
 
 const resetOrderBy = () => ({ type:  EXPLORER_TABLE_ACTIONS.RESET_ORDER_BY });
 
@@ -212,15 +203,14 @@ const toggleFilterByOther = () => ({
 
 export const ExplorerSearchBarActions = {
     updateInput,
-    updateLabel,
+    updateFilterBy,
     resetInput,
-    resetLabel
+    resetFilterBy
 };
 
 export const ExplorerTableActions = {
     updateOrderBy,
     updateOrderDesc,
-    updateFilterBy,
     updatePage,
     updateRowsPerPage,
     updateEntities,
@@ -228,7 +218,6 @@ export const ExplorerTableActions = {
     updateEntitiesFailure,
     resetOrderBy,
     resetOrderDesc,
-    resetFilterBy,
     resetPage,
     resetRowsPerPage,
     resetEntities,

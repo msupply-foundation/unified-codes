@@ -46,7 +46,6 @@ const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
             dispatch(ExplorerActions.resetEntities());
             dispatch(ExplorerActions.resetFilterBy());
             dispatch(ExplorerActions.resetInput());
-            dispatch(ExplorerActions.resetLabel());
             dispatch(ExplorerActions.resetOrderBy());
             dispatch(ExplorerActions.resetOrderDesc());
             dispatch(ExplorerActions.resetPage());

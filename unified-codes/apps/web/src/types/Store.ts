@@ -1,4 +1,4 @@
-import { IAlert, IEntityCollection, IExplorerVariables, IUser, EEntityField, IEntity, EEntityType } from '@unified-codes/data';
+import { IAlert, IUser, EEntityField, IEntity, EEntityType } from '@unified-codes/data';
 
 export type IAlertState = IAlert | {};
 
@@ -8,13 +8,12 @@ export interface IAuthenticatorState {
 
 export interface IExplorerSearchBarState {
   input: string;
-  label: string;
+  filterBy: EEntityField;
 }
 
 export interface IExplorerTableState {
   count: number;
   loading: boolean;
-  filterBy: string;
   orderBy: EEntityField;
   orderDesc: boolean;
   rowsPerPage: number;

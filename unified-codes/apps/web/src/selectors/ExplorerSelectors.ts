@@ -4,96 +4,127 @@ import { EEntityField, EEntityType, IEntity } from '@unified-codes/data';
 
 import { IExplorerSearchBarState, IExplorerState, IExplorerTableState, IExplorerToggleBarState, IState } from '../types';
 
-export const selectExplorer = (state: IState): IExplorerState => state.explorer;
+const selectExplorer = (state: IState): IExplorerState => state.explorer;
 
-export const selectSearchBar = createSelector(
+const selectSearchBar = createSelector(
     selectExplorer,
     (explorer: IExplorerState) => explorer?.searchBar
 );
 
-export const selectTable = createSelector(
+const selectTable = createSelector(
     selectExplorer,
     (explorer: IExplorerState) => explorer?.table
 );
 
-export const selectToggleBar = createSelector(
+const selectToggleBar = createSelector(
     selectExplorer,
     (explorer: IExplorerState) => explorer?.toggleBar
 );
 
-export const selectInput = createSelector(
+const selectInput = createSelector(
     selectSearchBar,
     (searchBar: IExplorerSearchBarState): string => searchBar?.input
 );
 
-export const selectLabel = createSelector(
+const selectFilterBy = createSelector(
     selectSearchBar,
-    (searchBar: IExplorerSearchBarState): string => searchBar?.label
+    (searchBar: IExplorerSearchBarState): EEntityField => searchBar?.filterBy
 );
 
-export const selectOrderBy = createSelector(
+const selectLabel = createSelector(
+    selectFilterBy,
+    (filterBy: EEntityField): string => {
+        switch (filterBy) {
+            case EEntityField.CODE: return 'Search by code';
+            case EEntityField.DESCRIPTION: return 'Search by description';
+            default: return '';
+        }
+    }
+);
+
+const selectCode = createSelector(
+    selectInput, selectFilterBy,
+    (input: string, filterBy: EEntityField) => filterBy === EEntityField.CODE ? input : ''
+);
+
+const selectDescription = createSelector(
+    selectInput, selectFilterBy,
+    (input: string, filterBy: EEntityField) => filterBy === EEntityField.DESCRIPTION ? input : ''
+);
+
+const selectOrderBy = createSelector(
     selectTable,
     (table: IExplorerTableState): EEntityField => table?.orderBy
 );
 
-export const selectOrderDesc = createSelector(
+const selectOrderDesc = createSelector(
     selectTable,
     (table: IExplorerTableState): boolean => table?.orderDesc
 );
 
-export const selectCount = createSelector(
+const selectCount = createSelector(
     selectTable,
     (table: IExplorerTableState): number => table?.count
 );
 
-export const selectRowsPerPage = createSelector(
+const selectRowsPerPage = createSelector(
     selectTable,
     (table: IExplorerTableState): number => table?.rowsPerPage
 )
 
-export const selectPage = createSelector(
+const selectPage = createSelector(
     selectTable,
     (table: IExplorerTableState): number => table?.page
 )
 
-export const selectEntities = createSelector(
+const selectEntities = createSelector(
     selectTable,
     (table: IExplorerTableState): IEntity[] => table?.entities
 );
 
-export const selectFilterByDrug = createSelector(
+const selectFilterByDrug = createSelector(
     selectToggleBar,
     (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.DRUG]
 )
 
-export const selectFilterByMedicinalProduct = createSelector(
+const selectFilterByMedicinalProduct = createSelector(
     selectToggleBar,
     (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.MEDICINAL_PRODUCT]
 )
 
-export const selectFilterByOther = createSelector(
+const selectFilterByOther = createSelector(
     selectToggleBar,
     (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.OTHER]
 )
 
+const selectTypes = createSelector(
+    selectToggleBar,
+    (toggleBar: IExplorerToggleBarState): EEntityType[] =>
+    Object.keys(toggleBar).filter((type: EEntityType) => toggleBar[type]) as EEntityType[]
+)
+
 export const SearchBarSelectors = {
+    selectFilterBy,
     selectInput,
     selectLabel,
 };
 
 export const TableSelectors = {
+    selectCode,
+    selectDescription,
+    selectCount,
+    selectEntities,
     selectOrderBy,
     selectOrderDesc,
-    selectCount,
-    selectRowsPerPage,
     selectPage,
-    selectEntities
+    selectRowsPerPage,
+    selectTypes,
 };
 
 export const ToggleBarSelectors = {
     selectFilterByDrug,
     selectFilterByMedicinalProduct,
-    selectFilterByOther
+    selectFilterByOther,
 };
 
 export const ExplorerSelectors = {

@@ -1,18 +1,17 @@
 
 import { IExplorerSearchBarState, IExplorerState, IExplorerTableState, IExplorerToggleBarState } from '../types';
 import { EEntityField, EEntityType } from '@unified-codes/data';
-import { EXPLORER_ACTIONS, IExplorerAction, IExplorerSearchBarUpdateInputAction, IExplorerTableFetchEntitiesSuccessAction, IExplorerTableUpdateOrderByAction, IExplorerTableUpdateOrderDescAction } from '../actions';
+import { EXPLORER_ACTIONS, IExplorerAction, IExplorerSearchBarUpdateFilterByAction, IExplorerSearchBarUpdateInputAction, IExplorerTableFetchEntitiesSuccessAction, IExplorerTableUpdateOrderByAction, IExplorerTableUpdateOrderDescAction } from '../actions';
 
 const initialState: IExplorerState = {
   searchBar: {
     input: '',
-    label: 'Search description'
+    filterBy: EEntityField.DESCRIPTION,
   },
   table: {
     entities: [],
     count: 0,
     loading: false,
-    filterBy: '',
     orderBy: EEntityField.DESCRIPTION,
     orderDesc: false,
     rowsPerPage: 25,
@@ -58,12 +57,13 @@ export const ExplorerReducer = (
       return { ...state, searchBar: { ...state.searchBar, input: initialState.searchBar.input } };
     }
 
-    case EXPLORER_ACTIONS.RESET_LABEL: {
-      return { ...state, searchBar: { ...state.searchBar, label: initialState.searchBar.label } };
+    case EXPLORER_ACTIONS.UPDATE_FILTER_BY: {
+      const { filterBy } = action as IExplorerSearchBarUpdateFilterByAction;
+      return { ...state, searchBar: { ...state.searchBar, filterBy } };
     }
 
     case EXPLORER_ACTIONS.RESET_FILTER_BY: {
-      return { ...state, table: { ...state.table, filterBy: initialState.table.filterBy } };
+      return { ...state, searchBar: { ...state.searchBar, filterBy: initialState.searchBar.filterBy } };
     }
 
     case EXPLORER_ACTIONS.RESET_ORDER_BY: {
