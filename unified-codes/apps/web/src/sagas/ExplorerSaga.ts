@@ -9,8 +9,8 @@ import {
 } from '@unified-codes/data';
 
 import { AlertActions, ExplorerActions, EXPLORER_ACTIONS, IExplorerAction } from '../actions';
-import { IExplorerState, IState } from '../types';
 import { ExplorerSelectors } from '../selectors';
+import { ExplorerQuery, IExplorerParameters } from '../types';
 
 const ALERT_SEVERITY = {
   FETCH: AlertSeverity.info,
@@ -34,41 +34,10 @@ const alertFetch: IAlert = {
   text: ALERT_TEXT.FETCH,
 };
 
-interface IFetchEntitiesParameters {
-  code?: string,
-  description?: string,
-  types?: EEntityType[],
-  orderBy?: EEntityField,
-  orderDesc?: boolean,
-  first?: number,
-  offset?: number,
-}
-
-const getEntitiesQuery = ({
-  code,
-  description,
-  types = [EEntityType.MEDICINAL_PRODUCT],
-  orderBy = EEntityField.DESCRIPTION,
-  orderDesc = false,
-  first = 25,
-  offset = 0,
-}: IFetchEntitiesParameters) => `
-  {
-    entities(filter: { code: "${code}" description: "${description}" type: "${types}" orderBy: { field: "${orderBy}" descending: ${orderDesc} } } offset: ${offset} first: ${first}) {
-      data {
-        code
-        description
-        type
-        uid
-      },
-      totalLength,
-    }
-  }
-`;
 
 const getEntities = async (
   url: string,
-  parameters: IFetchEntitiesParameters
+  query: ExplorerQuery
 ): Promise<IEntity[]> => {
   const response = await fetch(url, {
     method: 'POST',
@@ -77,7 +46,7 @@ const getEntities = async (
       Accept: 'application/json',
     },
     body: JSON.stringify({
-      query: getEntitiesQuery(parameters),
+      query: String(query),
     }),
   });
 
@@ -104,20 +73,20 @@ function* fetchData() {
       const rowsPerPage = yield select(ExplorerSelectors.selectRowsPerPage);
       const page = yield select(ExplorerSelectors.selectPage);
 
-      const first = rowsPerPage;
-      const offset = rowsPerPage * (page - 1);
-
-      const parameters: IFetchEntitiesParameters = {
+      const parameters: IExplorerParameters = {
         code,
         description,
         types,
         orderBy,
         orderDesc,
-        first,
-        offset
-      }
- 
-      const entities = yield call(getEntities, url, parameters);
+        rowsPerPage,
+        page
+      };
+
+      const query = new ExplorerQuery(parameters);
+
+      const entities = yield call(getEntities, url, query);
+
       yield put(ExplorerActions.updateEntitiesSuccess(entities));
     }
   } catch (error) {
