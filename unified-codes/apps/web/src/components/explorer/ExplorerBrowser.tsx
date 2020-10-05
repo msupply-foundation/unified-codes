@@ -4,9 +4,6 @@ import { batch, connect } from 'react-redux';
 import { EntityBrowser } from '@unified-codes/ui';
 
 import ExplorerTable from './ExplorerTable';
-import ExplorerTableHeader from './ExplorerTableHeader';
-import ExplorerTableRows from './ExplorerTableRows';
-import ExplorerTablePagination from './ExplorerTablePagination';
 import ExplorerToggleBar from './ExplorerToggleBar';
 import ExplorerSearchBar from './ExplorerSearchBar';
 
@@ -57,11 +54,7 @@ const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
 }
 
 const mapStateToProps = () => {
-    const header = <ExplorerTableHeader />;
-    const rows = <ExplorerTableRows />;
-    const pagination = <ExplorerTablePagination />;
-  
-    const table = <ExplorerTable header={header} rows={rows} pagination={pagination}/>;
+    const table = <ExplorerTable/>;
     const toggleBar = <ExplorerToggleBar/>;
     const searchBar = <ExplorerSearchBar/>;
 

@@ -7,6 +7,7 @@ import { Container, Grid, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
 
 import ExplorerBrowser from '../explorer/ExplorerBrowser';
+import DetailViewer from '../detail/DetailViewer'
 import Login from '../login/Login';
 import Footer from './Footer';
 import Header from './Header';
@@ -58,6 +59,9 @@ const _App: App = ({ alert, classes, resetAlert }) => {
             </Route>
             <Route exact path="/login">
               <Login />
+            </Route>
+            <Route exact path="/detail/:code">
+              <DetailViewer/>
             </Route>
             <Route>
               <Redirect to="/explorer" />

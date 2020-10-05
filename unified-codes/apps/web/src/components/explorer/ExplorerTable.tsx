@@ -1,9 +1,14 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 
 import { EntityTable } from '@unified-codes/ui';
 
 import { withStyles } from '../../styles';
-import { ITheme, overflow } from '../../types';
+import { IState, ITheme, overflow } from '../../types';
+
+import ExplorerTableHeader from './ExplorerTableHeader';
+import ExplorerTableRows from './ExplorerTableRows';
+import ExplorerTablePagination from './ExplorerTablePagination';
 
 const styles = (theme: ITheme) => ({
     tableContainer: {
@@ -17,6 +22,14 @@ const styles = (theme: ITheme) => ({
     }
 });
 
-export const ExplorerEntityTable = withStyles(styles)(EntityTable);
+const mapStateToProps = (state: IState) => {
+    const header = <ExplorerTableHeader />;
+    const rows = <ExplorerTableRows />;
+    const pagination = <ExplorerTablePagination />;
 
-export default ExplorerEntityTable;
+    return { header, rows, pagination };
+}
+
+export const ExplorerTable = connect(mapStateToProps)(withStyles(styles)(EntityTable));
+
+export default ExplorerTable;
