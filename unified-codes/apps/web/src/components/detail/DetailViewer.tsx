@@ -5,6 +5,7 @@ import { Grid, Typography } from '@unified-codes/ui'
 import { IEntity, IProperty } from '@unified-codes/data';
 
 import { IState } from '../../types';
+import { DetailSelectors } from '../../selectors';
 
 interface IEntityViewerProps {
     classes?: { root?: string };
@@ -32,11 +33,18 @@ const EntityViewer: EntityViewer = ({ classes, code, description, children, prop
     )
 }
 
-const mapStateToProps = (_: IState) => {
-    return {
-        code: 'Hello Kat!',
-        description: 'How are you?'
-    };
+const mapStateToProps = (state: IState) => {
+    const entity = DetailSelectors.selectEntity(state);
+
+    console.log(entity);
+    
+    const code = DetailSelectors.selectCode(state);
+    const description = DetailSelectors.selectDescription(state);
+    const type = DetailSelectors.selectType(state);
+
+    console.log(code);
+
+    return { code, description, type };
 }
 
 export const DetailViewer = connect(mapStateToProps)(EntityViewer);
