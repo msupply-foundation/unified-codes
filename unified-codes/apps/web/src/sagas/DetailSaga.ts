@@ -88,7 +88,6 @@ const getEntity = async (
 };
 
 function* fetchDetails(action: IDetailFetchEntityAction) {
-  yield delay(2000);
   yield put(AlertActions.raiseAlert(alertFetch));
   try {
     const url = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
