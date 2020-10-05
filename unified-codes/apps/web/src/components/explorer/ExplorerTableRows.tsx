@@ -11,29 +11,36 @@ import { IState } from '../../types';
 
 export type ExplorerTableRowsProps = IEntityTableRowsProps;
 
-const ExplorerTableRowsComponent = (props: ExplorerTableRowsProps ) => {
-    const history = useHistory();
+const ExplorerTableRowsComponent = (props: ExplorerTableRowsProps) => {
+  const history = useHistory();
 
-    const onSelect = (entity: IEntity) => { 
-        history.push(`/detail/${entity.code}`);
-        props.onSelect(entity);
-    }
+  const onSelect = (entity: IEntity) => {
+    history.push(`/detail/${entity.code}`);
+    props.onSelect(entity);
+  };
 
-    return <EntityTableRows {...props} onSelect={onSelect}/>
-}
+  return <EntityTableRows {...props} onSelect={onSelect} />;
+};
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
-    const onSelect = (entity: IEntity) => dispatch(DetailActions.updateEntity(entity));
-    return { onSelect };
+  const onSelect = (entity: IEntity) => {
+    dispatch(DetailActions.updateEntity(entity));
+    dispatch(DetailActions.fetchEntity(entity.code));
+  };
+
+  return { onSelect };
 };
 
 const mapStateToProps = (state: IState) => {
-    const columns = [ EEntityField.CODE, EEntityField.DESCRIPTION, EEntityField.TYPE ];
-    const entities = ExplorerSelectors.selectEntities(state);
+  const columns = [EEntityField.CODE, EEntityField.DESCRIPTION, EEntityField.TYPE];
+  const entities = ExplorerSelectors.selectEntities(state);
 
-    return { columns, entities };
+  return { columns, entities };
 };
 
-export const ExplorerTableRows = connect(mapStateToProps, mapDispatchToProps)(ExplorerTableRowsComponent);
+export const ExplorerTableRows = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ExplorerTableRowsComponent);
 
 export default ExplorerTableRows;

@@ -38,6 +38,7 @@ export type IUserState = IUser | {};
 export type IDetailState = {
   entity: IEntity | null;
   loading: boolean;
+  error?: Error
 }
 
 export interface IState {
