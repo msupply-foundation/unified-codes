@@ -61,7 +61,7 @@ const _App: App = ({ alert, classes, resetAlert }) => {
               <Login />
             </Route>
             <Route exact path="/detail/:code">
-              <DetailViewer/>
+              <DetailViewer />
             </Route>
             <Route>
               <Redirect to="/explorer" />

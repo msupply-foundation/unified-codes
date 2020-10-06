@@ -1,52 +1,74 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { Grid, Typography } from '@unified-codes/ui'
+import { Button, Grid, Typography } from '@unified-codes/ui'
 import { IEntity, IProperty } from '@unified-codes/data';
 
-import { IState } from '../../types';
+import { IState, ITheme } from '../../types';
 import { DetailSelectors } from '../../selectors';
+import { withStyles } from '../../styles';
+import { ExplorerToggleButton } from '../explorer';
+
+const styles = (theme: ITheme) => ({
+    root: {
+        width: '100%',
+    },
+    bottomContainer: {
+        backgroundColor: theme.palette.background.default,
+        margin: '-20px auto 0 auto',
+        maxHeight: '100%',
+        maxWidth: 900,
+        width: '60%',
+        borderRadius: 5,
+    },
+    topContainer: {
+        backgroundColor: theme.palette.background.footer,
+        height: 80,
+        paddingBottom: 25,
+        justifyContent: 'center',
+    },
+});
+
+interface IEntityViewerClasses {
+    root?: string;
+    bottomContainer?: string;
+    topContainer?: string;
+}
 
 interface IEntityViewerProps {
-    classes?: { root?: string };
-    code: string;
-    description: string;
-    children?: IEntity[];
-    properties?: IProperty[];
+    classes?: IEntityViewerClasses;
+    entity: IEntity;
 }
 
 type EntityViewer = React.FunctionComponent<IEntityViewerProps>;
 
-const EntityViewer: EntityViewer = ({ classes, code, description, children, properties }) => {
+const EntityViewer: EntityViewer = ({ classes, entity }) => {
+    const { code, description, children, properties } = entity;
+
     const nameField = `Name: ${description}`;
     const codeField = `Code: ${code}`;
-    const childrenField = 'Children';
-    const propertiesField = 'Properties';
+    const childrenField = `Children: ${children}`;
+    const propertiesField = `Properties: ${properties}`;
 
     return (
-        <Grid container classes={{ root: classes?.root }} direction="column">
-            <Typography>{nameField}</Typography>
-            <Typography>{codeField}</Typography>
-            <Typography>{childrenField}</Typography>
-            <Typography>{propertiesField}</Typography>
+        <Grid container classes={{ root: classes?.root }}>
+            <Grid container classes={{ root: classes?.topContainer }}></Grid>
+            <Grid container classes={{ root: classes?.bottomContainer }} direction="column">
+                <Typography variant="h5">{nameField}</Typography>
+                <Typography variant="h5">{codeField}</Typography>
+                <Typography variant="h5">{childrenField}</Typography>
+                <Typography variant="h5">{propertiesField}</Typography>
+            </Grid>
         </Grid>
+
     )
 }
 
 const mapStateToProps = (state: IState) => {
     const entity = DetailSelectors.selectEntity(state);
-
-    console.log(entity);
-    
-    const code = DetailSelectors.selectCode(state);
-    const description = DetailSelectors.selectDescription(state);
-    const type = DetailSelectors.selectType(state);
-
-    console.log(code);
-
-    return { code, description, type };
+    return { entity };
 }
 
-export const DetailViewer = connect(mapStateToProps)(EntityViewer);
+export const DetailViewer = connect(mapStateToProps)(withStyles(styles)(EntityViewer));
 
 export default DetailViewer;

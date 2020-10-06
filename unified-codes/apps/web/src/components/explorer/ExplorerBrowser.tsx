@@ -32,7 +32,8 @@ const styles = (theme: ITheme) => ({
     },
     toggleBarContainer: {
         backgroundColor: theme.palette.background.footer,
-        paddingBottom: 24,
+        height: 80,
+        paddingBottom: 25,
     },
 });
 
