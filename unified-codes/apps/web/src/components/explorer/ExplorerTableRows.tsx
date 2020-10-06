@@ -25,7 +25,6 @@ const ExplorerTableRowsComponent = (props: ExplorerTableRowsProps) => {
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
   const onSelect = (entity: IEntity) => {
     dispatch(DetailActions.updateEntity(entity));
-    dispatch(DetailActions.fetchEntity(entity.code));
   };
 
   return { onSelect };

@@ -10,7 +10,7 @@ import {
   DETAIL_ACTIONS,
   DetailActions,
   AlertActions,
-  IDetailFetchEntityAction,
+  IDetailUpdateEntityAction,
 } from '../actions';
 
 
@@ -87,22 +87,24 @@ const getEntity = async (
   return entity;
 };
 
-function* fetchDetails(action: IDetailFetchEntityAction) {
+function* fetchDetails(action: IDetailUpdateEntityAction) {
   yield put(AlertActions.raiseAlert(alertFetch));
   try {
     const url = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
-    const { code } = action;
-    const entity: IEntity = yield call(getEntity, url, code);
+    const { entity } = action;
+    const { code } = entity;
+    
+    const updatedEntity: IEntity = yield call(getEntity, url, code);
     yield put(AlertActions.resetAlert());
-    yield put(DetailActions.fetchEntitySuccess(entity));
+    yield put(DetailActions.updateEntitySuccess(updatedEntity));
   } catch (error) {
     yield put(AlertActions.raiseAlert(alertError));
-    yield put(DetailActions.fetchEntityFailure(error));
+    yield put(DetailActions.updateEntityFailure(error));
   }
 }
 
 function* fetchDetailsSaga() {
-  yield takeEvery<IDetailFetchEntityAction>(DETAIL_ACTIONS.FETCH_ENTITY, fetchDetails);
+  yield takeEvery<IDetailUpdateEntityAction>(DETAIL_ACTIONS.UPDATE_ENTITY, fetchDetails);
 }
 
 
