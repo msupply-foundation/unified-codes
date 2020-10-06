@@ -47,6 +47,22 @@ export const resolvers = {
       return new EntityCollection(entities, response?.data?.counters[0]?.total);
     },
   },
+  Entity: {
+    interactions(parent, _args, _context, _info) {
+      // Workaround to prevent interaction requests for multiple entities
+      if (_info.path.prev == 'entity'){
+        const mockInteraction = {
+          'name': 'testName',
+          'description': 'testDescription',
+          'severity': 'testSeverity',
+          'source': 'testSource',
+          'rxcui': 'testRXCUI'
+        };
+        const interactions = [ mockInteraction ];
+        return interactions;
+      }
+    }
+  },
 };
 
 export default resolvers;
