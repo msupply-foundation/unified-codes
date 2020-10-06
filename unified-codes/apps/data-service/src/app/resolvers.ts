@@ -1,8 +1,9 @@
 import { IApolloServiceContext, User } from '@unified-codes/data';
 import { DgraphDataSource, RxNavDataSource } from './data';
 import { IEntity, EntityCollection } from '@unified-codes/data';
-import { queries } from './queries';
 import { GraphQLResolveInfo } from 'graphql/type';
+import { queries } from './queries';
+import { mappers } from './mappers';
 
 export const resolvers = {
   Query: {
@@ -51,7 +52,7 @@ export const resolvers = {
   Entity: {
     interactions: async (
       parent: IEntity,
-      _args,
+      _args: any,
       context: IApolloServiceContext,
       info: GraphQLResolveInfo
     ) => {
@@ -66,8 +67,8 @@ export const resolvers = {
 
         if (rxNavIds.length) {
           const rxCui = rxNavIds[0].value;
-          // TODO: Map this response to our schema!
-          return await rxNav.getInteractions(rxCui);
+          const rxNavResponse = await rxNav.getInteractions(rxCui);
+          return mappers.mapInteractionResponse(rxNavResponse);
         }
 
         console.log(`No RxNavId found for entity with code: ${parent.code}`);
