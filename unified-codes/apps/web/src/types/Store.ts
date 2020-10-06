@@ -35,7 +35,7 @@ export interface IExplorerState {
 
 export type IUserState = IUser | {};
 
-export type IDetailState = {
+export interface IDetailState {
   entity: IEntity | null;
   loading: boolean;
   error?: Error

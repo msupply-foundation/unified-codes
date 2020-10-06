@@ -1,15 +1,12 @@
 import { DETAIL_ACTIONS, IDetailAction, IDetailUpdateEntityAction, IDetailFetchEntityAction, IDetailFetchSuccessAction, IDetailFetchFailureAction } from '../actions';
 import { IDetailState } from '../types';
 
-const initialState = (): IDetailState => {
-  const detail: IDetailState = {
-    entity: null,
-    loading: false
-  };
-  return detail;
+const initialState: IDetailState = {
+  entity: null,
+  loading: false
 };
 
-export const DetailReducer = (state: IDetailState = initialState(), action: IDetailAction) => {
+export const DetailReducer = (state: IDetailState = initialState, action: IDetailAction) => {
     const { type } = action;
 
     switch(type) {
@@ -22,7 +19,7 @@ export const DetailReducer = (state: IDetailState = initialState(), action: IDet
         }
         case DETAIL_ACTIONS.FETCH_ENTITY_SUCCESS: {
           const { entity } = action as IDetailFetchSuccessAction;
-          return { ...state, entity, error: initialState().error, loading: false };
+          return { ...state, entity, error: initialState.error, loading: false };
         }
         case DETAIL_ACTIONS.FETCH_ENTITY_FAILURE: {
           const { error } = action as IDetailFetchFailureAction;
