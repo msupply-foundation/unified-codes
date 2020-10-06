@@ -91,7 +91,8 @@ function* fetchDetails(action: IDetailFetchEntityAction) {
   yield put(AlertActions.raiseAlert(alertFetch));
   try {
     const url = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
-    const entity: IEntity = yield call(getEntity, url, action.code);
+    const { code } = action;
+    const entity: IEntity = yield call(getEntity, url, code);
     yield put(AlertActions.resetAlert());
     yield put(DetailActions.fetchEntitySuccess(entity));
   } catch (error) {
