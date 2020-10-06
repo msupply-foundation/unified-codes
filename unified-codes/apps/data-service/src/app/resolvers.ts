@@ -1,5 +1,5 @@
 import { IApolloServiceContext, User } from '@unified-codes/data';
-import { DgraphDataSource } from './data';
+import { DgraphDataSource, RxNavDataSource } from './data';
 import { IEntity, EntityCollection } from '@unified-codes/data';
 import { queries } from './queries';
 
@@ -48,19 +48,23 @@ export const resolvers = {
     },
   },
   Entity: {
-    interactions(parent, _args, _context, _info) {
+    interactions: async(parent: IEntity, _args, context, info) => {
+      const { dataSources } = context;
+      const rxNav: RxNavDataSource = dataSources.rxnav as RxNavDataSource;
+
       // Workaround to prevent interaction requests for multiple entities
-      if (_info.path.prev == 'entity'){
-        const mockInteraction = {
-          'name': 'testName',
-          'description': 'testDescription',
-          'severity': 'testSeverity',
-          'source': 'testSource',
-          'rxcui': 'testRXCUI'
-        };
-        const interactions = [ mockInteraction ];
-        return interactions;
-      }
+      if (info.path.prev?.key == 'entity') {
+        const rxNavIds = parent.has_property?.filter((properties) => properties.type == 'code_rxnav')
+        
+        if (rxNavIds.length) {
+          const rxCui = rxNavIds[0].value;
+          // TODO: Map this response to our schema!
+          return await rxNav.getInteractions(rxCui);
+        }
+
+        console.log(`No RxNavId found for entity with code: ${parent.code}`);
+      };
+      console.log(`Skipping interactions fetch for ${parent.description}`);
     }
   },
 };
