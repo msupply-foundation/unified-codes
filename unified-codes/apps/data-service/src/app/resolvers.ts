@@ -2,6 +2,7 @@ import { IApolloServiceContext, User } from '@unified-codes/data';
 import { DgraphDataSource, RxNavDataSource } from './data';
 import { IEntity, EntityCollection } from '@unified-codes/data';
 import { queries } from './queries';
+import { GraphQLResolveInfo } from 'graphql/type';
 
 export const resolvers = {
   Query: {
@@ -48,14 +49,21 @@ export const resolvers = {
     },
   },
   Entity: {
-    interactions: async(parent: IEntity, _args, context, info) => {
+    interactions: async (
+      parent: IEntity,
+      _args,
+      context: IApolloServiceContext,
+      info: GraphQLResolveInfo
+    ) => {
       const { dataSources } = context;
       const rxNav: RxNavDataSource = dataSources.rxnav as RxNavDataSource;
 
       // Workaround to prevent interaction requests for multiple entities
       if (info.path.prev?.key == 'entity') {
-        const rxNavIds = parent.has_property?.filter((properties) => properties.type == 'code_rxnav')
-        
+        const rxNavIds = parent.has_property?.filter(
+          (properties) => properties.type == 'code_rxnav'
+        );
+
         if (rxNavIds.length) {
           const rxCui = rxNavIds[0].value;
           // TODO: Map this response to our schema!
@@ -63,9 +71,9 @@ export const resolvers = {
         }
 
         console.log(`No RxNavId found for entity with code: ${parent.code}`);
-      };
+      }
       console.log(`Skipping interactions fetch for ${parent.description}`);
-    }
+    },
   },
 };
 
