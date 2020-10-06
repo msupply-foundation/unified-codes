@@ -70,7 +70,6 @@ export const resolvers = {
           const rxNavResponse = await rxNav.getInteractions(rxCui);
           return mappers.mapInteractionResponse(rxNavResponse);
         }
-
         console.log(`No RxNavId found for entity with code: ${parent.code}`);
       }
       console.log(`Skipping interactions fetch for ${parent.description}`);
