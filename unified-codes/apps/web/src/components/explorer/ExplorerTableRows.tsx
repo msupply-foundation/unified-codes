@@ -7,7 +7,33 @@ import { EEntityField, IEntity } from '@unified-codes/data';
 
 import { DetailActions, IExplorerAction } from '../../actions';
 import { ExplorerSelectors } from '../../selectors';
-import { IState } from '../../types';
+import { IState, ITheme } from '../../types';
+import { withStyles } from '../../styles';
+
+const styles = (theme: ITheme) => {
+  const row = {
+    cursor: 'pointer',
+    '&:hover': { backgroundColor: theme.palette.background.toolbar },
+    '& td:last-child': { borderRight: 0 },
+    '& td:first-child': { fontWeight: 700 },
+  };
+
+  return {
+    root: {},
+    rowPrimary: {
+      ...row,
+      background: theme.palette.background.default,
+    },
+    rowSecondary: {
+      ...row,
+      background: theme.palette.background.paper,
+    },
+    cell: {
+      borderRight: `1px solid ${theme.palette.divider}`,
+      borderBottom: 0,
+    },
+  };
+};
 
 export type ExplorerTableRowsProps = IEntityTableRowsProps;
 
@@ -40,6 +66,6 @@ const mapStateToProps = (state: IState) => {
 export const ExplorerTableRows = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ExplorerTableRowsComponent);
+)(withStyles(styles)(ExplorerTableRowsComponent));
 
 export default ExplorerTableRows;
