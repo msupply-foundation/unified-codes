@@ -5,11 +5,11 @@ import { TablePagination } from '@unified-codes/ui';
 
 import { ExplorerActions, IExplorerAction } from '../../actions';
 import { ExplorerSelectors } from '../../selectors';
-import { IState, ITheme } from '../../types';
+import { IState, ITheme, position } from '../../types';
 import { withStyles } from '../../styles';
 
 const styles = (theme: ITheme) => ({
-    root: { background: theme.palette.background.toolbar }
+    root: { background: theme.palette.background.toolbar, bottom: 0, position: 'sticky' as position }
 });
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {

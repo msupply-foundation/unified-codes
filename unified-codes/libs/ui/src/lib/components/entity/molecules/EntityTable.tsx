@@ -15,6 +15,7 @@ export interface IEntityTableProps {
     head?: string,
     paginationContainer?: string,
     root?: string,
+    table?: string,
     tableContainer?: string
   };
   header: React.ReactElement,
@@ -34,7 +35,7 @@ export const EntityTable: EntityTable = ({
   return (
     <Grid container classes={{ root: classes?.root }}>
       <Grid container item classes={{ root: classes?.tableContainer }}>
-        <Table classes={{ root: classes?.root }}>
+        <Table classes={{ root: classes?.table }}>
           <TableHead classes={{ root: classes?.head }}>
             {header}
           </TableHead>
@@ -48,7 +49,6 @@ export const EntityTable: EntityTable = ({
           </TableFooter>
         </Table>
       </Grid>
-
     </Grid>
   );
 };

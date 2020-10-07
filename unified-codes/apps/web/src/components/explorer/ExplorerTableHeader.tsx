@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { batch, connect } from 'react-redux';
 
-import { EntityTableHeader } from '@unified-codes/ui';
+import { EntityTableHeader, IEntityTableProps } from '@unified-codes/ui';
 import { EEntityField } from '@unified-codes/data';
 
 import { ExplorerActions, IExplorerAction } from '../../actions';
 import { ExplorerSelectors } from '../../selectors';
-import { IState, ITheme } from '../../types';
+import { IState, ITheme, position } from '../../types';
 import { withStyles } from '../../styles';
 
 const styles = (theme: ITheme) => ({
@@ -20,6 +20,8 @@ const styles = (theme: ITheme) => ({
         fontWeight: 700,
         cursor: 'pointer',
         padding: '3px 16px',
+        position: 'sticky' as position,
+        top: 0,
         '&:last-child': { borderRight: 0 },
         '&:first-letter': { textTransform: 'capitalize' }
     },
