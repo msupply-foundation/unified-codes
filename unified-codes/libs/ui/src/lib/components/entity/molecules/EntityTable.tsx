@@ -9,7 +9,7 @@ import {
 
 import { Grid } from '../../layout/atoms';
 
-export interface EntityTableProps {
+export interface IEntityTableProps {
   classes?: {
     body?: string,
     head?: string,
@@ -22,14 +22,14 @@ export interface EntityTableProps {
   rows: React.ReactElement,
 }
 
-export type EntityTable = React.FunctionComponent<EntityTableProps>;
+export type EntityTable = React.FunctionComponent<IEntityTableProps>;
 
 export const EntityTable: EntityTable = ({
   classes,
   header,
   pagination,
   rows,
-}: EntityTableProps) => {
+}: IEntityTableProps) => {
  
   return (
     <Grid container classes={{ root: classes?.root }}>

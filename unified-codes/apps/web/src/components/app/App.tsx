@@ -6,7 +6,8 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Container, Grid, AlertBar } from '@unified-codes/ui';
 import { IAlert } from '@unified-codes/data';
 
-import Explorer from '../explorer/Explorer';
+import ExplorerBrowser from '../explorer/ExplorerBrowser';
+import DetailViewer from '../detail/DetailViewer'
 import Login from '../login/Login';
 import Footer from './Footer';
 import Header from './Header';
@@ -54,10 +55,13 @@ const _App: App = ({ alert, classes, resetAlert }) => {
         <div className={classes.content}>
           <Switch>
             <Route exact path="/explorer">
-              <Explorer />
+              <ExplorerBrowser />
             </Route>
             <Route exact path="/login">
               <Login />
+            </Route>
+            <Route exact path="/detail/:code">
+              <DetailViewer/>
             </Route>
             <Route>
               <Redirect to="/explorer" />

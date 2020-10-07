@@ -1,20 +1,20 @@
 import { IEntity } from './Entity';
 
 export interface IEntityCollection {
-  data: Array<IEntity>;
+  data: IEntity[];
   totalLength: number;
 }
 
 export class EntityCollection implements IEntityCollection {
-  _data: Array<IEntity>;
+  _data: IEntity[];
   _totalLength: number;
 
-  constructor(data?: Array<IEntity>, totalLength?: number) {
-    this._data = data || ([] as Array<IEntity>);
-    this._totalLength = totalLength === undefined ? this._data.length : totalLength;
+  constructor(data: IEntity[] = [], totalLength?: number) {
+    this._data = data;
+    this._totalLength = totalLength ?? data.length;
   }
 
-  get data(): Array<IEntity> {
+  get data(): IEntity[] {
     return this._data;
   }
 

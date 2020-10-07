@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { batch, connect } from 'react-redux';
 
 import { EEntityType } from '@unified-codes/data';
 import { CheckCircleIcon, AddIcon, EntityToggleBar } from '@unified-codes/ui';
@@ -14,54 +14,82 @@ import { IState, ITheme } from '../../types';
 const styles = (_: ITheme) => ({});
 
 const mergeProps = ((stateProps: any, dispatchProps: any) => {
-  const { buttonTypes, buttonStates } = stateProps;
-  const { onToggle } = dispatchProps;
+  const { filterByDrug, filterByMedicinalProduct, filterByOther } = stateProps;
+  const { onToggleFilterByDrug, onToggleFilterByMedicinalProduct, onToggleFilterByOther } = dispatchProps;
 
-  const buttonLabels = {
-    [EEntityType.DRUG]: 'Drug',
-    [EEntityType.MEDICINAL_PRODUCT]: 'Medicinal product',
-    [EEntityType.OTHER]: 'Other'
-  }
+  const drugButtonLabel = 'Drug';
+  const drugButtonKey = EEntityType.DRUG;
+  const drugButtonColor = filterByDrug ? 'primary' : 'secondary';
+  const drugButtonStartIcon = filterByDrug ? <CheckCircleIcon /> : <AddIcon />;
+  const drugButtonOnClick = onToggleFilterByDrug;
 
-  const buttons = buttonTypes.map((buttonType: EEntityType) => {
-    const isSelected = buttonStates[buttonType];
-  
-    const startIcon = isSelected ? <CheckCircleIcon/> : <AddIcon/>;
-    const color = buttonStates[buttonType] ? 'primary' : 'secondary';
-    const label = buttonLabels[buttonType];
-  
-    return <ExplorerToggleButton key={buttonType} startIcon={startIcon} color={color} onClick={() => onToggle(buttonType)}>{label}</ExplorerToggleButton>
-  });
+  const medicinalProductButtonLabel = 'Medicinal product';
+  const medicinalProductButtonKey = EEntityType.MEDICINAL_PRODUCT;
+  const medicinalProductButtonColor = filterByMedicinalProduct ? 'primary' : 'secondary';
+  const medicinalProductButtonStartIcon = filterByMedicinalProduct ? <CheckCircleIcon /> : <AddIcon />;
+  const medicinalProductButtonOnClick = onToggleFilterByMedicinalProduct;
 
-  return {
-    buttons
-  }
+  const otherButtonLabel = 'Other';
+  const otherButtonKey = EEntityType.OTHER;
+  const otherButtonColor = filterByOther ? 'primary' : 'secondary';
+  const otherButtonStartIcon = filterByOther ? <CheckCircleIcon /> : <AddIcon />;
+  const otherButtonOnClick = onToggleFilterByOther;
+
+  const ToggleButtonDrug = (
+    <ExplorerToggleButton
+      key={drugButtonKey}
+      startIcon={drugButtonStartIcon}
+      color={drugButtonColor}
+      onClick={drugButtonOnClick}
+    >{drugButtonLabel}</ExplorerToggleButton>
+  );
+
+  const ToggleButtonMedicinalProduct = (
+    <ExplorerToggleButton
+      key={medicinalProductButtonKey}
+      startIcon={medicinalProductButtonStartIcon}
+      color={medicinalProductButtonColor}
+      onClick={medicinalProductButtonOnClick}
+    >{medicinalProductButtonLabel}</ExplorerToggleButton>
+  );
+
+  const ToggleButtonOther = (
+    <ExplorerToggleButton
+      key={otherButtonKey}
+      startIcon={otherButtonStartIcon}
+      color={otherButtonColor}
+      onClick={otherButtonOnClick}
+    >{otherButtonLabel}</ExplorerToggleButton>
+  );
+
+  return { buttons: [ToggleButtonDrug, ToggleButtonMedicinalProduct, ToggleButtonOther] };
 })
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
-    const onToggle = (type: EEntityType) => {
-        switch(type) {
-          case EEntityType.DRUG: {
-            dispatch(ExplorerActions.toggleFilterByDrug());
-            break;
-          }
-          case EEntityType.MEDICINAL_PRODUCT: {
-            dispatch(ExplorerActions.toggleFilterByMedicinalProduct());
-            break;
-          }
-          case EEntityType.OTHER: {
-            dispatch(ExplorerActions.toggleFilterByOther());
-            break;
-          }
-        }
-    };
-    return { onToggle };
+  const onToggleFilterByDrug = () => batch(() => {
+    dispatch(ExplorerActions.toggleFilterByDrug());
+    dispatch(ExplorerActions.updateEntities());
+  });
+
+  const onToggleFilterByMedicinalProduct = () => batch(() => {
+    dispatch(ExplorerActions.toggleFilterByMedicinalProduct());
+    dispatch(ExplorerActions.updateEntities())
+  });
+
+  const onToggleFilterByOther =  () => batch(() => { 
+    dispatch(ExplorerActions.toggleFilterByOther());
+    dispatch(ExplorerActions.updateEntities())
+  });
+
+  return { onToggleFilterByDrug, onToggleFilterByMedicinalProduct, onToggleFilterByOther };
 };
 
 const mapStateToProps = (state: IState) => {
-    const buttonTypes = ExplorerSelectors.selectButtonTypes(state);
-    const buttonStates = ExplorerSelectors.selectButtonStates(state);
-    return { buttonTypes, buttonStates };
+  const filterByDrug = ExplorerSelectors.selectFilterByDrug(state);
+  const filterByMedicinalProduct = ExplorerSelectors.selectFilterByMedicinalProduct(state);
+  const filterByOther = ExplorerSelectors.selectFilterByOther(state);
+
+  return { filterByDrug, filterByMedicinalProduct, filterByOther };
 };
 
 export const ExplorerToggleBar = connect(mapStateToProps, mapDispatchToProps, mergeProps)(withStyles(styles)(EntityToggleBar));

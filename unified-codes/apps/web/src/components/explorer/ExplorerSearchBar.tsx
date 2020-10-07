@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { batch, connect } from 'react-redux';
 
 import { SearchBar } from '@unified-codes/ui';
 
@@ -15,17 +15,22 @@ const styles = (_: ITheme) => ({
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
     const onChange = (input: string) => dispatch(ExplorerActions.updateInput(input));
-    const onClear = () => {
-        dispatch(ExplorerActions.updateInput(''));
-        dispatch(ExplorerActions.updateFilterBy(''));
-    }
-    const onSearch = () => dispatch(ExplorerActions.fetchEntities());
+
+    const onClear = () => batch(() => {
+        dispatch(ExplorerActions.resetInput());
+        dispatch(ExplorerActions.resetFilterBy());
+        dispatch(ExplorerActions.updateEntities());
+    });
+
+    const onSearch = () => dispatch(ExplorerActions.updateEntities());
+
     return { onChange, onClear, onSearch };
 };
 
 const mapStateToProps = (state: IState) => {
     const input = ExplorerSelectors.selectInput(state);
     const label = ExplorerSelectors.selectLabel(state);
+    
     return { input, label };
 };
 

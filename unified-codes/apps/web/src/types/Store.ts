@@ -1,4 +1,4 @@
-import { IAlert, IEntityCollection, IExplorerVariables, IUser, EEntityField, IEntity, EEntityType } from '@unified-codes/data';
+import { IAlert, IUser, EEntityField, IEntity, EEntityType } from '@unified-codes/data';
 
 export type IAlertState = IAlert | {};
 
@@ -8,7 +8,7 @@ export interface IAuthenticatorState {
 
 export interface IExplorerSearchBarState {
   input: string;
-  label: string;
+  filterBy: EEntityField;
 }
 
 export interface IExplorerTableState {
@@ -22,15 +22,12 @@ export interface IExplorerTableState {
 }
 
 export interface IExplorerToggleBarState {
-  buttonStates: { [key in EEntityType]: boolean };
-  buttonTypes: EEntityType[];
+  [EEntityType.DRUG]: boolean,
+  [EEntityType.MEDICINAL_PRODUCT]: boolean,
+  [EEntityType.OTHER]: boolean,
 }
 
 export interface IExplorerState {
-  entities?: IEntityCollection;
-  error?: Error;
-  loading?: boolean;
-  variables?: IExplorerVariables;
   searchBar: IExplorerSearchBarState;
   table: IExplorerTableState;
   toggleBar: IExplorerToggleBarState;
@@ -38,10 +35,16 @@ export interface IExplorerState {
 
 export type IUserState = IUser | {};
 
+export interface IDetailState {
+  entity: IEntity | null;
+  loading: boolean;
+  error?: Error
+}
 
 export interface IState {
   alert: IAlertState;
   user: IUserState;
+  detail: IDetailState;
   explorer: IExplorerState;
   authenticator: IAuthenticatorState;
 }
