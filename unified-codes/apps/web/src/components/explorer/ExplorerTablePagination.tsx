@@ -1,11 +1,16 @@
-import * as react from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { TablePagination } from '@unified-codes/ui';
 
 import { ExplorerActions, IExplorerAction } from '../../actions';
 import { ExplorerSelectors } from '../../selectors';
-import { IState } from '../../types';
+import { IState, ITheme } from '../../types';
+import { withStyles } from '../../styles';
+
+const styles = (theme: ITheme) => ({
+    root: { background: theme.palette.background.toolbar }
+});
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
     const onChangePage = (_: React.MouseEvent<HTMLButtonElement> | null, page: number) => dispatch(ExplorerActions.updatePage(page));
@@ -24,6 +29,6 @@ const mapStateToProps = (state: IState) => {
     return { rowsPerPageOptions, count, rowsPerPage, page };
 };
 
-export const ExplorerTablePagination = connect(mapStateToProps, mapDispatchToProps)(TablePagination);
+export const ExplorerTablePagination = connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(TablePagination));
 
 export default ExplorerTablePagination;

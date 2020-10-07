@@ -5,7 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { ClassNameMap } from '@material-ui/core/styles/withStyles';
 
 import { Grid, Paper, TMFLogo } from '@unified-codes/ui';
-import { flexDirection, ITheme, position } from '../../muiTheme';
+
+import { flexDirection, ITheme, position } from '../../types';
 
 export interface FooterProps {
   classes: ClassNameMap<any>;
@@ -82,3 +83,5 @@ const _Footer: Footer = ({ classes }) => {
 };
 
 export const Footer = withStyles(getStyles)(_Footer);
+
+export default Footer;

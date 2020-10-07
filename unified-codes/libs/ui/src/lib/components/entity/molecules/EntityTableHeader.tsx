@@ -34,7 +34,7 @@ export const EntityTableHeader: EntityTableHeader = ({
     const onClick = () => onSort && onSort(column);
     const sortIcon = orderBy === column ? <ArrowUpIcon style={arrowStyle} /> : null;
     return (
-      <TableCell classes={{ root: classes?.cell }} onClick={onClick}>
+      <TableCell classes={{ root: classes?.cell }} key={column} onClick={onClick}>
         {column}
         {sortIcon}  
       </TableCell>

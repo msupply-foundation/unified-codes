@@ -9,7 +9,7 @@ export interface SearchBarProps {
   classes?: { 
     root?: string;
     button?: string;
-    text?: string;
+    input?: string;
   }
   input: string;
   label?: string;
@@ -41,7 +41,7 @@ export const SearchBar: SearchBar = ({ classes, input, label, onChange, onClear,
     <Grid className={classes?.root} container>
       <Grid item xs={11}>
         <ClearInput
-          classes={{ root:classes?.text }}
+          classes={{ root:classes?.input }}
           fullWidth
           label={label}
           value={input}

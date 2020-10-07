@@ -9,21 +9,30 @@ export interface IEntityBrowserClasses {
   tableContainer?: string,
 }
 
-export interface EntityBrowserProps {
+export interface IEntityBrowserProps {
   classes?: IEntityBrowserClasses;
+  onMount: () => void;
+  onUnmount: () => void;
   table: React.ReactElement;
   toggleBar: React.ReactElement;
   searchBar: React.ReactElement;
 }
 
-export type EntityBrowser = React.FunctionComponent<EntityBrowserProps>;
+export type EntityBrowser = React.FunctionComponent<IEntityBrowserProps>;
 
 export const EntityBrowser: EntityBrowser = ({
   classes,
+  onMount,
+  onUnmount,
   searchBar,
   table,
   toggleBar
 }) => {
+  React.useEffect(() => {
+    onMount();
+    return onUnmount;
+  }, []);
+
   return (
     <Grid container direction='column' className={classes?.root}>
         <Grid item className={classes?.toggleBarContainer}>
@@ -32,9 +41,9 @@ export const EntityBrowser: EntityBrowser = ({
         <Grid item className={classes?.searchBarContainer}>
           {searchBar}
         </Grid>
-      <Grid item classes={{ root: classes?.tableContainer }}>
+        <Grid item classes={{ root: classes?.tableContainer }}>
           {table}
-      </Grid>
+        </Grid>
     </Grid>
   );
 };

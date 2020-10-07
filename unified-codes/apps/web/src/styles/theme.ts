@@ -1,23 +1,8 @@
-import { createMuiTheme, Theme, ThemeOptions } from '@material-ui/core/styles';
-import { Palette } from '@material-ui/core/styles/createPalette';
+import { createMuiTheme as mCreateMuiTheme, withStyles as mWithStyles } from '@material-ui/core/styles';
 
-interface IPalette extends Palette {
-  background: {
-    default: string;
-    footer: string;
-    paper: string;
-    toolbar: string;
-  };
-}
-export interface ITheme extends Theme {
-  palette: IPalette;
-}
+import { IThemeOptions, Theme } from '../types';
 
-interface IThemeOptions extends ThemeOptions {
-  palette: IPalette;
-}
-
-const theme: Theme = createMuiTheme({
+export const theme: Theme = mCreateMuiTheme({
   palette: {
     action: {
       active: '#5CCDF4',
@@ -64,8 +49,8 @@ const theme: Theme = createMuiTheme({
   },
 } as IThemeOptions);
 
+export const createMuiTheme = mCreateMuiTheme;
+export const withStyles = mWithStyles;
+
 export default theme;
 
-export type flexDirection = 'column' | 'row';
-export type overflow = 'auto' | 'hidden' | 'scroll' | 'visible';
-export type position = 'fixed' | 'absolute';

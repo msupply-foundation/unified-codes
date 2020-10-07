@@ -1,3 +1,4 @@
+import { TableFooter, TableRow } from '@material-ui/core';
 import * as React from 'react';
 
 import {
@@ -8,7 +9,7 @@ import {
 
 import { Grid } from '../../layout/atoms';
 
-export interface EntityTableProps {
+export interface IEntityTableProps {
   classes?: {
     body?: string,
     head?: string,
@@ -21,18 +22,18 @@ export interface EntityTableProps {
   rows: React.ReactElement,
 }
 
-export type EntityTable = React.FunctionComponent<EntityTableProps>;
+export type EntityTable = React.FunctionComponent<IEntityTableProps>;
 
 export const EntityTable: EntityTable = ({
   classes,
   header,
   pagination,
   rows,
-}: EntityTableProps) => {
+}: IEntityTableProps) => {
  
   return (
-    <Grid classes={{ root: classes?.root }}>
-      <Grid classes={{ root: classes?.tableContainer }}>
+    <Grid container classes={{ root: classes?.root }}>
+      <Grid container item classes={{ root: classes?.tableContainer }}>
         <Table classes={{ root: classes?.root }}>
           <TableHead classes={{ root: classes?.head }}>
             {header}
@@ -40,11 +41,14 @@ export const EntityTable: EntityTable = ({
           <TableBody classes={{ root: classes?.body }}>
             {rows}
           </TableBody>
+          <TableFooter classes={{ root: classes?.paginationContainer }}>
+            <TableRow>
+              {pagination}
+            </TableRow>
+          </TableFooter>
         </Table>
       </Grid>
-      <Grid item classes={{ root: classes?.paginationContainer }}>
-        {pagination}
-      </Grid>
+
     </Grid>
   );
 };

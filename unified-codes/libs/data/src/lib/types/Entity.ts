@@ -1,4 +1,4 @@
-import { Property } from './Property';
+import { IProperty, Property } from './Property';
 
 export enum EEntityType {
   DRUG = 'drug',
@@ -17,20 +17,23 @@ export interface IEntity {
   code: string;
   description: string;
   type: EEntityType | string;
-  properties?: Property[];
+  children?: IEntity[];
+  properties?: IProperty[];
 }
 
 export class Entity implements IEntity {
   private _code: string;
   private _description: string;
   private _type: string;
+  private _children?: Entity[];
   private _properties?: Property[];
 
   constructor(entity: IEntity) {
     this._code = entity.code;
     this._description = entity.description;
     this._type = entity.type;
-    this._properties = entity.properties;
+    this._children = entity.children?.map((child: IEntity) => new Entity(child));
+    this._properties = entity.properties?.map((property: IProperty) => new Property(property));
   }
 
   get code(): string {
@@ -43,6 +46,10 @@ export class Entity implements IEntity {
 
   get type(): string {
     return this._type;
+  }
+
+  get children(): Entity[] | undefined {
+    return this._children;
   }
 
   get properties(): Property[] | undefined {
