@@ -35,10 +35,16 @@ export interface IExplorerState {
 
 export type IUserState = IUser | {};
 
+export interface IDetailState {
+  entity: IEntity | null;
+  loading: boolean;
+  error?: Error
+}
 
 export interface IState {
   alert: IAlertState;
   user: IUserState;
+  detail: IDetailState;
   explorer: IExplorerState;
   authenticator: IAuthenticatorState;
 }
