@@ -34,17 +34,12 @@ const EntityViewer: EntityViewer = ({ classes, code, description, children, prop
 }
 
 const mapStateToProps = (state: IState) => {
-    const entity = DetailSelectors.selectEntity(state);
-
-    console.log(entity);
-    
     const code = DetailSelectors.selectCode(state);
     const description = DetailSelectors.selectDescription(state);
     const type = DetailSelectors.selectType(state);
-
-    console.log(code);
-
-    return { code, description, type };
+    const children = DetailSelectors.selectChildren(state);
+    const properties = DetailSelectors.selectProperties(state);
+    return { code, description, type, children, properties };  
 }
 
 export const DetailViewer = connect(mapStateToProps)(EntityViewer);

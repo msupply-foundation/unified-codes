@@ -24,11 +24,23 @@ const selectType = createSelector(
     (entity: IEntity) => entity?.type
 );
 
+const selectChildren = createSelector(
+    selectEntity,
+    (entity: IEntity) => entity?.children
+);
+
+const selectProperties = createSelector(
+    selectEntity,
+    (entity: IEntity) => entity?.properties
+);
+
 export const DetailSelectors = {
     selectEntity,
     selectCode,
     selectDescription,
-    selectType
+    selectType,
+    selectChildren,
+    selectProperties
 }
 
 export default DetailSelectors;
