@@ -1,5 +1,5 @@
 
-import { IExplorerSearchBarState, IExplorerState, IExplorerTableState, IExplorerToggleBarState } from '../types';
+import { IExplorerState } from '../types';
 import { EEntityField, EEntityType } from '@unified-codes/data';
 import { EXPLORER_ACTIONS, IExplorerAction, IExplorerSearchBarUpdateFilterByAction, IExplorerSearchBarUpdateInputAction, IExplorerTableFetchEntitiesSuccessAction, IExplorerTableUpdateOrderByAction, IExplorerTableUpdateOrderDescAction } from '../actions';
 

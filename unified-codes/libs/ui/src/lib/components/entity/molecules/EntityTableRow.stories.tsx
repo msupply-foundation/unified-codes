@@ -14,5 +14,5 @@ export const withNoProps = () => {
     description: 'Amoxicillin',
     type: 'medicinal_product',
   });
-  return <EntityTableRow entity={entity} />;
+  return <EntityTableRow entity={entity} onEntitySelect={() => console.log('onEntitySelect triggered')} />;
 };

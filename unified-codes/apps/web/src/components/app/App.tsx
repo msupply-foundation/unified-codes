@@ -11,11 +11,12 @@ import DetailViewer from '../detail/DetailViewer'
 import Login from '../login/Login';
 import Footer from './Footer';
 import Header from './Header';
+import ErrorPage from '../pages/ErrorPage';
 
 import { AlertActions } from '../../actions';
 import { withStyles } from '../../styles';
-import { ClassNameMap, ITheme } from '../../types';
-
+import { ITheme } from '../../types';
+import { ClassNameMap } from '../../types';
 
 export interface AppProps {
   alert: IAlert;
@@ -54,17 +55,23 @@ const _App: App = ({ alert, classes, resetAlert }) => {
         </Grid>
         <div className={classes.content}>
           <Switch>
+            <Route path="/details/:code">
+              <DetailViewer />
+            </Route>
+            <Route exact path="/">
+              <ExplorerBrowser />
+            </Route>
             <Route exact path="/explorer">
               <ExplorerBrowser />
             </Route>
             <Route exact path="/login">
               <Login />
             </Route>
-            <Route exact path="/detail/:code">
-              <DetailViewer/>
+            <Route exact path="/404">
+              <ErrorPage code="404" />
             </Route>
             <Route>
-              <Redirect to="/explorer" />
+              <Redirect to="/404" />
             </Route>
           </Switch>
         </div>

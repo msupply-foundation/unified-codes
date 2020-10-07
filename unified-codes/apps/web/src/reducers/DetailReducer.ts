@@ -2,7 +2,6 @@ import { DETAIL_ACTIONS, IDetailAction, IDetailUpdateEntityAction, IDetailUpdate
 import { IDetailState } from '../types';
 
 const initialState: IDetailState = {
-  entity: null,
   loading: false
 };
 

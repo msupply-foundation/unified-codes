@@ -24,7 +24,13 @@ export interface IExplorerTableState {
 export interface IExplorerToggleBarState {
   [EEntityType.DRUG]: boolean,
   [EEntityType.MEDICINAL_PRODUCT]: boolean,
-  [EEntityType.OTHER]: boolean,
+  [EEntityType.OTHER]: boolean
+}
+
+export interface IDetailState {
+  entity?: IEntity;
+  error?: Error;
+  loading?: boolean;
 }
 
 export interface IExplorerState {
@@ -34,12 +40,6 @@ export interface IExplorerState {
 }
 
 export type IUserState = IUser | {};
-
-export interface IDetailState {
-  entity: IEntity | null;
-  loading: boolean;
-  error?: Error
-}
 
 export interface IState {
   alert: IAlertState;
