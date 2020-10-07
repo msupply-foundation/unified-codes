@@ -61,7 +61,7 @@ export const resolvers = {
 
       // Workaround to prevent interaction requests for multiple entities
       if (info.path.prev?.key == 'entity') {
-        const rxNavIds = parent.has_property?.filter(
+        const rxNavIds = parent.properties?.filter(
           (properties) => properties.type == 'code_rxnav'
         );
 
