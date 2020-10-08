@@ -1,12 +1,6 @@
 import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 
-import {
-  AlertSeverity,
-  EEntityField,
-  EEntityType,
-  IAlert,
-  IEntity,
-} from '@unified-codes/data';
+import { AlertSeverity, EEntityField, EEntityType, IAlert, IEntity } from '@unified-codes/data';
 
 import { AlertActions, ExplorerActions, EXPLORER_ACTIONS, IExplorerAction } from '../actions';
 import { ExplorerSelectors } from '../selectors';
@@ -34,11 +28,7 @@ const alertFetch: IAlert = {
   text: ALERT_TEXT.FETCH,
 };
 
-
-const getEntities = async (
-  url: string,
-  query: ExplorerQuery
-): Promise<IEntity[]> => {
+const getEntities = async (url: string, query: ExplorerQuery): Promise<IEntity[]> => {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -80,7 +70,7 @@ function* fetchData() {
         orderBy,
         orderDesc,
         rowsPerPage,
-        page
+        page,
       };
 
       const query = new ExplorerQuery(parameters);
@@ -88,10 +78,11 @@ function* fetchData() {
       const entities = yield call(getEntities, url, query);
 
       yield put(ExplorerActions.updateEntitiesSuccess(entities));
+      yield put(AlertActions.resetAlert());
     }
   } catch (error) {
-      yield put(AlertActions.raiseAlert(alertError));
-      yield put(ExplorerActions.updateEntitiesFailure(error));
+    yield put(AlertActions.raiseAlert(alertError));
+    yield put(ExplorerActions.updateEntitiesFailure(error));
   }
 }
 
