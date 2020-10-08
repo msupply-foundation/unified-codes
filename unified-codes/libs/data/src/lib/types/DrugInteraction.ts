@@ -13,12 +13,12 @@ export class DrugInteraction implements IDrugInteraction {
   private _source: string;
   private _rxcui: string;
 
-  constructor(drugInteraction: IDrugInteraction) {
-    this._name = drugInteraction.name;
-    this._description = drugInteraction.description;
-    this._severity = drugInteraction.severity;
-    this._source = drugInteraction.source;
-    this._rxcui = drugInteraction.rxcui;
+  constructor(interaction: IDrugInteraction) {
+    this._name = interaction.name;
+    this._description = interaction.description;
+    this._severity = interaction.severity;
+    this._source = interaction.source;
+    this._rxcui = interaction.rxcui;
   }
 
   get name(): string {

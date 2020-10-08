@@ -12,9 +12,9 @@ export const EntityDetailCategory: EntityDetailCategory = ({ entity }) => {
   return (
     <li>
       {entity.description} {`(code:${entity.code})`}
-      {entity.has_child ? (
+      {entity.children ? (
         <ul>
-          {entity.has_child.map((child) => (
+          {entity.children.map((child) => (
             <EntityDetailCategory entity={child} key={child.description} />
           ))}
         </ul>

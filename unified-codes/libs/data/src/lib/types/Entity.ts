@@ -1,26 +1,39 @@
-import { Property } from './Property';
+import { IProperty, Property } from './Property';
 
+export enum EEntityType {
+  DRUG = 'drug',
+  MEDICINAL_PRODUCT = 'medicinal_product',
+  OTHER = 'other',
+}
+
+export enum EEntityField {
+  CODE = 'code',
+  DESCRIPTION = 'description',
+  TYPE = 'type'
+}
+
+// TODO: complete EEntityType enum.
 export interface IEntity {
   code: string;
   description: string;
-  type: string;
-  has_property?: Property[];
-  has_child?: IEntity[];
+  type: EEntityType | string;
+  children?: IEntity[];
+  properties?: IProperty[];
 }
 
 export class Entity implements IEntity {
   private _code: string;
   private _description: string;
   private _type: string;
-  private _has_property?: Property[];
-  private _has_child?: IEntity[];
+  private _children?: Entity[];
+  private _properties?: Property[];
 
   constructor(entity: IEntity) {
     this._code = entity.code;
     this._description = entity.description;
     this._type = entity.type;
-    this._has_property = entity.has_property;
-    this._has_child = entity.has_child;
+    this._children = entity.children?.map((child: IEntity) => new Entity(child));
+    this._properties = entity.properties?.map((property: IProperty) => new Property(property));
   }
 
   get code(): string {
@@ -35,12 +48,12 @@ export class Entity implements IEntity {
     return this._type;
   }
 
-  get properties(): Property[] | undefined {
-    return this._has_property;
+  get children(): Entity[] | undefined {
+    return this._children;
   }
 
-  get children(): IEntity[] | undefined {
-    return this._has_child;
+  get properties(): Property[] | undefined {
+    return this._properties;
   }
 
   matchesCode(pattern: string) {

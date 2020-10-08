@@ -1,38 +1,10 @@
-import { call, put, takeEvery, all } from 'redux-saga/effects';
+import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 
-import {
-  AlertSeverity,
-  Entity,
-  EntitySearchFilter,
-  EntitySearchRequest,
-  IAlert,
-  IEntityCollection,
-  IEntitySearchFilter,
-  IEntitySearchRequest,
-} from '@unified-codes/data';
+import { AlertSeverity, EEntityField, EEntityType, IAlert, IEntity } from '@unified-codes/data';
 
-import {
-  EXPLORER_ACTIONS,
-  ExplorerActions,
-  AlertActions,
-  IExplorerAction,
-  IExplorerFetchDataAction,
-  IExplorerUpdateVariablesAction,
-} from '../actions';
-
-const getEntitiesQuery = (filter: IEntitySearchFilter, first: number, offset?: number) => `
-  {
-    entities(filter: { code: "${filter.code}" description: "${filter.description}" type: "${filter.type}" orderBy: { field: "${filter.orderBy.field}" descending: ${filter.orderBy.descending} } } offset: ${offset} first: ${first}) {
-      data {
-        code
-        description
-        type
-        uid
-      },
-      totalLength,
-    }
-  }
-`;
+import { AlertActions, ExplorerActions, EXPLORER_ACTIONS, IExplorerAction } from '../actions';
+import { ExplorerSelectors } from '../selectors';
+import { ExplorerQuery, IExplorerParameters } from '../types';
 
 const ALERT_SEVERITY = {
   FETCH: AlertSeverity.info,
@@ -56,11 +28,7 @@ const alertFetch: IAlert = {
   text: ALERT_TEXT.FETCH,
 };
 
-// TODO: add helper class for raw gql queries to data library and refactor this!
-const getEntities = async (
-  url: string,
-  request: IEntitySearchRequest
-): Promise<IEntityCollection> => {
+const getEntities = async (url: string, query: ExplorerQuery): Promise<IEntity[]> => {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -68,55 +36,62 @@ const getEntities = async (
       Accept: 'application/json',
     },
     body: JSON.stringify({
-      query: getEntitiesQuery(request.filter, request.first, request.offset),
+      query: String(query),
     }),
   });
+
   const json = await response.json();
+
   const { data } = json;
   const { entities } = data;
 
   return entities;
 };
 
-function* fetchData(action: IExplorerFetchDataAction) {
+function* fetchData() {
   yield put(AlertActions.raiseAlert(alertFetch));
   try {
     const url:
       | string
       | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
     if (url) {
-      const entities: IEntityCollection = yield call(getEntities, url, action.request);
+      const code = yield select(ExplorerSelectors.selectCode);
+      const description = yield select(ExplorerSelectors.selectDescription);
+      const types = yield select(ExplorerSelectors.selectTypes);
+      const orderBy = yield select(ExplorerSelectors.selectOrderBy);
+      const orderDesc = yield select(ExplorerSelectors.selectOrderDesc);
+      const rowsPerPage = yield select(ExplorerSelectors.selectRowsPerPage);
+      const page = yield select(ExplorerSelectors.selectPage);
+
+      const parameters: IExplorerParameters = {
+        code,
+        description,
+        types,
+        orderBy,
+        orderDesc,
+        rowsPerPage,
+        page,
+      };
+
+      const query = new ExplorerQuery(parameters);
+
+      const entities = yield call(getEntities, url, query);
+
+      yield put(ExplorerActions.updateEntitiesSuccess(entities));
       yield put(AlertActions.resetAlert());
-      yield put(ExplorerActions.fetchSuccess(entities));
     }
   } catch (error) {
     yield put(AlertActions.raiseAlert(alertError));
-    yield put(ExplorerActions.fetchFailure(error));
+    yield put(ExplorerActions.updateEntitiesFailure(error));
   }
 }
 
-function* fetchDataSaga() {
-  yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.FETCH_DATA, fetchData);
-}
-
-function* updateVariables(action: IExplorerUpdateVariablesAction) {
-  const { variables } = action;
-  const { code, description, page, rowsPerPage, orderDesc, orderBy, type } = variables;
-  const filter = new EntitySearchFilter(description, code, type, orderBy, orderDesc);
-  const offset = rowsPerPage && page ? page * rowsPerPage : undefined;
-  const request = new EntitySearchRequest(filter, rowsPerPage, offset);
-  yield put(ExplorerActions.fetchData(request));
-}
-
-function* updateVariablesSaga() {
-  yield takeEvery<IExplorerUpdateVariablesAction>(
-    EXPLORER_ACTIONS.UPDATE_VARIABLES,
-    updateVariables
-  );
+function* fetchEntitiesSaga() {
+  yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.UPDATE_ENTITIES, fetchData);
 }
 
 export function* explorerSaga() {
-  yield all([fetchDataSaga(), updateVariablesSaga()]);
+  yield all([fetchEntitiesSaga()]);
 }
 
 export default explorerSaga;
