@@ -1,27 +1,36 @@
 import * as React from 'react';
 
-import { TableCell, TableCellProps, TableRow, TableRowProps } from '../../data';
+import { TableCell, TableRow } from '../../data';
 
-import { IEntity } from '@unified-codes/data';
+import { IEntity, EEntityField } from '@unified-codes/data';
 
-export interface EntityTableRowProps {
-  rowProps?: TableRowProps;
-  cellProps?: TableCellProps;
-  entity?: IEntity;
-  onEntitySelect: (entityCode: string) => void;
+export interface IEntityTableRowClasses {
+  root?: string,
+  cell?: string,
 }
 
-export type EntityTableRow = React.FunctionComponent<EntityTableRowProps>;
+// TODO: remove rowProps, cellProps.
+export interface IEntityTableRowProps  {
+  classes?: IEntityTableRowClasses;
+  columns: string[];
+  entity: IEntity;
+  onSelect: (entity: IEntity) => void;
+}
 
-export const EntityTableRow: EntityTableRow = ({ rowProps, cellProps, entity, onEntitySelect }) => {
-  const { code, description, type } = entity || {};
-  const handleOnClick = code ? () => onEntitySelect(code) : () => false;
+export type EntityTableRow = React.FunctionComponent<IEntityTableRowProps>;
+
+export const EntityTableRow: EntityTableRow = ({ classes, columns, entity, onSelect }) => {
+  const onClick = React.useCallback(() => onSelect(entity), [entity, onSelect]);
+
+  const cells = columns.map(column => (
+    <TableCell key={column} classes={{ root: classes?.cell }}>
+      {entity[column as EEntityField]}
+    </TableCell>
+  ));
 
   return (
-    <TableRow {...rowProps} onClick={handleOnClick}>
-      <TableCell {...cellProps}>{code}</TableCell>
-      <TableCell {...cellProps}>{description}</TableCell>
-      <TableCell {...cellProps}>{type}</TableCell>
+    <TableRow classes={{ root: classes?.root }} onClick={onClick}>
+      {cells}
     </TableRow>
   );
 };

@@ -30,7 +30,7 @@ export class RxNavDataSource extends RESTDataSource {
 
   constructor() {
     super();
-    this.baseURL = `${process.env.NX_RXNAV_SERVICE_URL}:${process.env.NX_RXNAV_SERVICE_PORT}/${process.env.NX_RXNAV_SERVICE_REST}`;
+    this.baseURL = `${process.env.NX_RXNAV_SERVICE_URL}/${process.env.NX_RXNAV_SERVICE_REST}`;
     this.paths = { interactions: '/interaction/interaction.json' };
   }
 

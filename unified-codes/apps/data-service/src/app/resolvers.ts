@@ -1,8 +1,10 @@
 import { IApolloServiceContext, User, Entity } from '@unified-codes/data';
-import { DgraphDataSource } from './data';
+import { DgraphDataSource, RxNavDataSource } from './data';
 import { IEntity, EntityCollection } from '@unified-codes/data';
+import { GraphQLResolveInfo } from 'graphql/type';
 import { queries } from './queries';
 import { mutations } from './mutations';
+import { mappers } from './mappers';
 
 export const resolvers = {
   Query: {
@@ -47,6 +49,32 @@ export const resolvers = {
       return new EntityCollection(entities, response?.data?.counters[0]?.total);
     },
   },
+  Entity: {
+    interactions: async (
+      parent: IEntity,
+      _args: any,
+      context: IApolloServiceContext,
+      info: GraphQLResolveInfo
+    ) => {
+      const { dataSources } = context;
+      const rxNav: RxNavDataSource = dataSources.rxnav as RxNavDataSource;
+
+      // Workaround to prevent interaction requests for multiple entities
+      if (info.path.prev?.key == 'entity') {
+        const rxNavIds = parent.properties?.filter(
+          (properties) => properties.type == 'code_rxnav'
+        );
+
+        if (rxNavIds?.length) {
+          const rxCui = rxNavIds[0].value;
+          const rxNavResponse = await rxNav.getInteractions(rxCui);
+          return mappers.mapInteractionResponse(rxNavResponse);
+        }
+        console.log(`No RxNavId found for entity with code: ${parent.code}`);
+      }
+      console.log(`Skipping interactions fetch for ${parent.description}`);
+    },
+  },
   Mutation : {
     deleteEntity: async (_source: any, _args: any, context: IApolloServiceContext) => {
       const { token, authenticator, authoriser, dataSources } = context;
@@ -67,7 +95,7 @@ export const resolvers = {
       const success = response.data.code == "Success" ? true : false;
       return { success: success};
     },
-  }
+  },
 };
 
 export default resolvers;

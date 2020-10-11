@@ -1,87 +1,55 @@
+import { TableFooter, TableRow } from '@material-ui/core';
 import * as React from 'react';
 
 import {
   Table,
-  TableProps,
   TableHead,
-  TableHeadProps,
   TableBody,
-  TableBodyProps,
 } from '../../data';
 
-import { IEntity, IExplorerVariables } from '@unified-codes/data';
+import { Grid } from '../../layout/atoms';
 
-import EntityTableHeader, { EntityTableHeaderProps } from './EntityTableHeader';
-import EntityTableRow, { EntityTableRowProps } from './EntityTableRow';
-export interface EntityTableProps {
-  bodyProps?: TableBodyProps;
-  data: Array<IEntity>;
-  headProps?: TableHeadProps;
-  headerProps?: EntityTableHeaderProps;
-  rowProps?: EntityTableRowProps;
-  tableProps?: TableProps;
-  variables?: IExplorerVariables;
-  onSort?: (value: string) => void;
-  onEntitySelect: (entityCode: string) => void;
+export interface IEntityTableProps {
+  classes?: {
+    body?: string,
+    head?: string,
+    paginationContainer?: string,
+    root?: string,
+    table?: string,
+    tableContainer?: string
+  };
+  header: React.ReactElement,
+  pagination: React.ReactElement,
+  rows: React.ReactElement,
 }
 
-export type EntityTable = React.FunctionComponent<EntityTableProps>;
+export type EntityTable = React.FunctionComponent<IEntityTableProps>;
 
 export const EntityTable: EntityTable = ({
-  tableProps,
-  headProps,
-  headerProps,
-  bodyProps,
-  rowProps,
-  data,
-  variables,
-  onSort,
-  onEntitySelect,
-}: EntityTableProps) => {
-  const mapEntity = (entity: IEntity, index: number) => {
-    const localRowProps =
-      tableProps?.stripedRows && tableProps?.alternatingRowColour
-        ? { style: { backgroundColor: index % 2 ? tableProps?.alternatingRowColour : '', cursor: 'pointer' } }
-        : undefined;
-
-    return (
-      <EntityTableRow
-        key={entity.code}
-        {
-          ...{
-            ...rowProps,
-            entity,
-            onEntitySelect, 
-            rowProps: {
-              ...localRowProps,
-              hover: true
-            },
-          }
-        }
-        
-      ></EntityTableRow>
-    );
-  };
-
-  const EntityTableRows = React.useCallback(
-    () => <React.Fragment>{data.map(mapEntity)}</React.Fragment>,
-    [rowProps, data]
-  );
-  const { stripedRows, alternatingRowColour, ...otherProps } = tableProps || {};
+  classes,
+  header,
+  pagination,
+  rows,
+}: IEntityTableProps) => {
+ 
   return (
-    <Table {...otherProps}>
-      <TableHead {...headProps}>
-        <EntityTableHeader
-          {...headerProps}
-          onSort={onSort}
-          orderDesc={variables?.orderDesc}
-          orderBy={variables?.orderBy}
-        />
-      </TableHead>
-      <TableBody {...bodyProps}>
-        <EntityTableRows />
-      </TableBody>
-    </Table>
+    <Grid container classes={{ root: classes?.root }}>
+      <Grid container item classes={{ root: classes?.tableContainer }}>
+        <Table classes={{ root: classes?.table }}>
+          <TableHead classes={{ root: classes?.head }}>
+            {header}
+          </TableHead>
+          <TableBody classes={{ root: classes?.body }}>
+            {rows}
+          </TableBody>
+          <TableFooter classes={{ root: classes?.paginationContainer }}>
+            <TableRow>
+              {pagination}
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </Grid>
+    </Grid>
   );
 };
 

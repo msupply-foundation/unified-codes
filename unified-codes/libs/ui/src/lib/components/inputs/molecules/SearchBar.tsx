@@ -1,10 +1,16 @@
 import * as React from 'react';
 
+import Button from '../atoms/Button';
 import ClearInput from './ClearInput';
 import Grid from '../../layout/atoms/Grid';
-import SearchButton from './SearchButton';
+import SearchIcon from '../../icons/atoms/SearchIcon';
 
 export interface SearchBarProps {
+  classes?: { 
+    root?: string;
+    button?: string;
+    input?: string;
+  }
   input: string;
   label?: string;
   onChange?: (input: string) => void;
@@ -14,9 +20,12 @@ export interface SearchBarProps {
 
 export type SearchBar = React.FunctionComponent<SearchBarProps>;
 
-export const SearchBar: SearchBar = ({ input, label, onChange, onClear, onSearch }) => {
+export const SearchBar: SearchBar = ({ classes, input, label, onChange, onClear, onSearch }) => {
   const onChangeText = React.useCallback(
-    (event) => (onChange ? onChange(event.target.value) : null),
+    (event) => {
+      event.preventDefault();
+      onChange && onChange(event.target.value);
+    },
     [onChange]
   );
 
@@ -29,9 +38,10 @@ export const SearchBar: SearchBar = ({ input, label, onChange, onClear, onSearch
   };
 
   return (
-    <Grid container>
+    <Grid className={classes?.root} container>
       <Grid item xs={11}>
         <ClearInput
+          classes={{ root:classes?.input }}
           fullWidth
           label={label}
           value={input}
@@ -41,7 +51,7 @@ export const SearchBar: SearchBar = ({ input, label, onChange, onClear, onSearch
         />
       </Grid>
       <Grid item xs={1}>
-        <SearchButton fullWidth onClick={onClick} style={{ marginTop: 15 }} />
+        <Button classes={{ root: classes?.button }} fullWidth startIcon={<SearchIcon />} onClick={onClick} />
       </Grid>
     </Grid>
   );

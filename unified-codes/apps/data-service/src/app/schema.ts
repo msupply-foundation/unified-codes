@@ -6,14 +6,23 @@ const typeDefs = gql`
     description: String!
     type: String!
     uid: String!
-    has_child: [Entity]
-    has_property: [Property]
+    interactions: [DrugInteraction]
+    children: [Entity]
+    properties: [Property]
   }
 
   type Property {
     type: String!
     value: String!
-    has_property: [Property]
+    properties: [Property]
+  }
+
+  type DrugInteraction {
+    name: String
+    description: String
+    severity: String
+    source: String
+    rxcui: String
   }
 
   type Query {
