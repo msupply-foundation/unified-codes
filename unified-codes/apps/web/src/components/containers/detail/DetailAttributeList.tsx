@@ -1,13 +1,28 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { Grid, Typography, List, ListItem, ListItemText } from '@unified-codes/ui/components'
+import { Grid, Typography } from '@unified-codes/ui/components'
+import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 
 import { IState } from '../../../types';
 import { DetailSelectors } from '../../../selectors';
+import { ITheme } from '../../../styles';
+
+const useStyles = makeStyles((_: ITheme) => createStyles({
+    text: {
+        paddingRight: 44,
+        alignText: 'center',
+        color: 'rgba(255,255,255,0.83)',
+        fontSize: 14,
+        textTransform: 'uppercase',
+    }
+}));
 
 interface DetailAttributeListProps {
-    classes?: { root?: string };
+    classes?: { 
+        root?: string,
+        text?: string
+    };
     code?: string;
     description?: string;
     type?: string;
@@ -15,30 +30,24 @@ interface DetailAttributeListProps {
 
 export type DetailAttributeList = React.FunctionComponent<DetailAttributeListProps>;
 
-const DetailAttributeListComponent: DetailAttributeList = ({ classes, code, description, type }) => {
+const DetailAttributeListComponent: DetailAttributeList = ({  code, description, type }) => {
+    const classes = useStyles();
+
     const nameField = `Name: ${description}`;
     const codeField = `Code: ${code}`;
     const typeField = `Type: ${type}`;
 
     return (
-        <Grid container classes={{ root: classes?.root }} direction="column">
-            <List>
-                <ListItem>
-                    <ListItemText>
-                        <Typography>{nameField}</Typography>
-                    </ListItemText>
-                </ListItem>
-                <ListItem>
-                    <ListItemText>
-                        <Typography>{codeField}</Typography>
-                    </ListItemText>
-                </ListItem>
-                <ListItem>
-                    <ListItemText>
-                        <Typography>{typeField}</Typography>  
-                    </ListItemText>
-                </ListItem>
-            </List>
+        <Grid container justify="center">
+            <Grid item>
+                <Typography className={classes?.text}>{nameField}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography className={classes?.text}>{codeField}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography className={classes?.text}>{typeField}</Typography>  
+            </Grid>
         </Grid>
     )
 }

@@ -1,8 +1,14 @@
 import * as React from 'react';
 
-import { Box } from '@unified-codes/ui/components';
+import { Grid } from '@unified-codes/ui/components';
 
 export interface DetailLayoutProps {
+    classes?: {
+        root?: string;
+        attributeListContainer?: string;
+        childListContainer?: string;
+        propertyListContainer?: string;
+    };
     attributeList: React.ReactElement;
     childList: React.ReactElement;
     propertyList: React.ReactElement;
@@ -10,12 +16,18 @@ export interface DetailLayoutProps {
 
 export type DetailLayout = React.FunctionComponent<DetailLayoutProps>;
 
-export const DetailLayout: DetailLayout = ({ attributeList, childList, propertyList }) => (
-    <Box>
-        {attributeList}
-        {childList}
-        {propertyList}
-    </Box>
+export const DetailLayout: DetailLayout = ({ classes, attributeList, childList, propertyList }) => (
+    <Grid container direction='column' className={classes?.root}>
+        <Grid item className={classes?.attributeListContainer}>
+            {attributeList}
+        </Grid>
+        <Grid item className={classes?.childListContainer}>
+            {childList}
+        </Grid>
+        <Grid item className={classes?.propertyListContainer}>
+            {propertyList}
+        </Grid>
+    </Grid>
 );
 
 export default DetailLayout;
