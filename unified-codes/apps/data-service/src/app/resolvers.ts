@@ -65,7 +65,7 @@ export const resolvers = {
           (properties) => properties.type == 'code_rxnav'
         );
 
-        if (rxNavIds.length) {
+        if (rxNavIds?.length) {
           const rxCui = rxNavIds[0].value;
           const rxNavResponse = await rxNav.getInteractions(rxCui);
           return mappers.mapInteractionResponse(rxNavResponse);

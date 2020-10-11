@@ -42,22 +42,22 @@ const getEntityQuery = (code: string) => `
     code
     description
     type
-    has_property {
+    properties {
       type
       value
     }
     # form_category
-    has_child {
+    children {
       code
       description
       type
       # form
-      has_child {
+      children {
         code
         description
         type
         # unit_of_use
-        has_child {
+        children {
           code
           description
           type
