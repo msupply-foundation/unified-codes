@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 
 import DetailAttributeList from './DetailAttributeList';
-import DetailChildList from './DetailChildList';
+import DetailEntityList from './DetailEntityList';
 import DetailPropertyList from './DetailPropertyList';
 import DetailLayout from '../../layout/DetailLayout';
 
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: ITheme) => createStyles({
         backgroundColor: theme.palette.background.default,
         margin: '-20px auto 0 auto',
         maxWidth: 900,
-        width: '60%',
+        width: '100%',
         borderRadius: 5,
     },
     propertyListContainer: {
@@ -51,7 +51,7 @@ export const DetailPageComponent: DetailPage = ({ onMount, onUnmount }) => {
         return onUnmount;
     }, []);
 
-    return <DetailLayout classes={classes} attributeList={<DetailAttributeList/>} childList={<DetailChildList/>} propertyList={<DetailPropertyList/>} />;
+    return <DetailLayout classes={classes} attributeList={<DetailAttributeList/>} childList={<DetailEntityList/>} propertyList={<DetailPropertyList/>} />;
 };
 
 const mapDispatchToProps = (_: React.Dispatch<IDetailAction>) => {

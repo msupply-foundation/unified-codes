@@ -1,4 +1,5 @@
 export * from './DetailPage';
 export * from './DetailAttributeList';
-export * from './DetailChildList';
+export * from './DetailEntityList';
+export * from './DetailEntityListItem';
 export * from './DetailPropertyList';
