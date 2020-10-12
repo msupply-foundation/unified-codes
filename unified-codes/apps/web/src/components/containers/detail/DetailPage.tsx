@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: ITheme) => createStyles({
         backgroundColor: theme.palette.background.default,
         margin: '0 auto 0 auto',
         maxWidth: 900,
-        width: '60%',
+        width: '100%',
         borderRadius: 5,
     },
 }));
