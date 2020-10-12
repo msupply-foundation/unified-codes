@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all, delay } from 'redux-saga/effects';
+import { call, put, takeEvery, all } from 'redux-saga/effects';
 
 import {
   AlertSeverity,
@@ -42,22 +42,22 @@ const getEntityQuery = (code: string) => `
     code
     description
     type
-    has_property {
+    properties {
       type
       value
     }
     # form_category
-    has_child {
+    children {
       code
       description
       type
       # form
-      has_child {
+      children {
         code
         description
         type
         # unit_of_use
-        has_child {
+        children {
           code
           description
           type
