@@ -34,10 +34,17 @@ const typeDefs = gql`
 
   type Mutation {
     deleteEntity(code: String!): DeleteMutationResponse
+    createEntity(entity: EntityInput!): UpdateMutationResponse
+    updateEntity(code: String, entity: EntityInput!): UpdateMutationResponse
   }
 
   type DeleteMutationResponse implements MutationResponse {
     success: Boolean!
+  }
+
+  type UpdateMutationResponse implements MutationResponse {
+    success: Boolean!
+    entity: Entity
   }
 
   interface MutationResponse {
@@ -65,6 +72,19 @@ const typeDefs = gql`
     field: String
     "Sort ascending"
     descending: Boolean
+  }
+
+  input EntityInput {
+    description: String!
+    type: String!
+    children: [EntityInput]
+    properties: [PropertyInput]
+  }
+  
+  input PropertyInput {
+    type: String!
+    value: String!
+    properties: [PropertyInput]
   }
 `;
 
