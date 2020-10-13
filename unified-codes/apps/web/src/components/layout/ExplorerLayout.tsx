@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import { Grid } from '@unified-codes/ui/components';
-import { Backdrop, CircularProgress } from '../../feedback';
+import { Backdrop, CircularProgress, Grid } from '@unified-codes/ui/components';
 
 export interface ExplorerLayoutProps {
   root?: string;

@@ -39,10 +39,10 @@ const styles = (theme: ITheme) => {
 
 export interface ExplorerTableRowsProps {
   classes?: {
-    root?: string,
-    rowPrimary?: string,
-    rowSecondary?: string,
-    cell?: string,
+    root?: string;
+    rowPrimary?: string;
+    rowSecondary?: string;
+    cell?: string;
   };
   columns: EEntityField[];
   entities: IEntity[];
@@ -51,13 +51,18 @@ export interface ExplorerTableRowsProps {
 
 export type ExplorerTableRows = React.FunctionComponent<ExplorerTableRowsProps>;
 
-const ExplorerTableRowsComponent: ExplorerTableRows = ({ classes, columns, entities, onSelect }) => {
+const ExplorerTableRowsComponent: ExplorerTableRows = ({
+  classes,
+  columns,
+  entities,
+  onSelect,
+}) => {
   const history = useHistory();
 
   const rows = entities.map((entity: IEntity, index) => {
     const rowKey = entity.code;
     const rowClass = index % 2 ? classes?.rowPrimary : classes?.rowSecondary;
-    const rowCells = columns.map(column => (
+    const rowCells = columns.map((column) => (
       <TableCell key={column} className={classes?.cell}>
         {entity[column as EEntityField]}
       </TableCell>
@@ -66,7 +71,7 @@ const ExplorerTableRowsComponent: ExplorerTableRows = ({ classes, columns, entit
     const onClickRow = () => {
       history.push(`/detail/${entity.code}`);
       onSelect(entity);
-    }
+    };
 
     return (
       <TableRow key={rowKey} className={rowClass} onClick={onClickRow}>
@@ -75,7 +80,7 @@ const ExplorerTableRowsComponent: ExplorerTableRows = ({ classes, columns, entit
     );
   });
 
-  return <TableBody>{rows}</TableBody>;
+  return <TableBody className={classes?.root}>{rows}</TableBody>;
 };
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {

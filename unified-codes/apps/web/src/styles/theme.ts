@@ -1,4 +1,4 @@
-import { createMuiTheme, Palette, Theme, ThemeOptions } from '@unified-codes/ui/styles';
+import { createMuiTheme, Palette, Theme, ThemeOptions, ZIndex } from '@unified-codes/ui/styles';
 
 export interface IPalette extends Palette {
   background: {
@@ -11,6 +11,7 @@ export interface IPalette extends Palette {
 
 export interface ITheme extends Theme {
   palette: IPalette;
+  zIndex: ZIndex;
 }
 
 export interface IThemeOptions extends ThemeOptions {

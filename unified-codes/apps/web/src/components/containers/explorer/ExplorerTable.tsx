@@ -12,25 +12,42 @@ import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
 
 const styles = (theme: ITheme) => ({
-    tableContainer: {
-        marginTop: 5,
-        maxHeight: `calc(100vh - 370px)`,
-        overflowY: 'scroll' as Overflow,
-    },
-    table: {
-        borderCollapse: 'separate' as BorderCollapse,
-    },
-    paginationContainer: {
-        justifyContent: 'flex-end',
-        background: theme.palette.background.toolbar,
-    }
+  tableRows: {
+    display: 'block',
+    marginTop: 5,
+    maxHeight: `calc(100vh - 410px)`,
+    overflowY: 'scroll' as Overflow,
+  },
+  table: {
+    borderCollapse: 'separate' as BorderCollapse,
+  },
+  pagination: {
+    justifyContent: 'flex-end',
+    background: theme.palette.background.toolbar,
+  },
 });
 
-const mapStateToProps = (_: IState) => {}
+export interface ExplorerTableProps {
+  classes?: {
+    pagination?: string;
+    table?: string;
+    tableContainer?: string;
+    tableRows?: string;
+  };
+}
 
-export const ExplorerTableComponent = () => (
-    <ExplorerTableLayout header={<ExplorerTableHeader/>} rows={<ExplorerTableRows/>} pagination={<ExplorerTablePagination/>} />
+export type ExplorerTable = React.FunctionComponent<ExplorerTableProps>;
+
+export const ExplorerTableComponent: ExplorerTable = ({ classes }) => (
+  <ExplorerTableLayout
+    classes={classes}
+    header={<ExplorerTableHeader />}
+    rows={<ExplorerTableRows classes={{ root: classes?.tableRows }} />}
+    pagination={<ExplorerTablePagination classes={{ root: classes?.pagination }} />}
+  />
 );
+
+const mapStateToProps = (_: IState) => ({});
 
 export const ExplorerTable = connect(mapStateToProps)(withStyles(styles)(ExplorerTableComponent));
 
