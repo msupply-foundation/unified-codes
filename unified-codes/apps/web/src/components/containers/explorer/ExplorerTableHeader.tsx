@@ -8,7 +8,7 @@ import {
   TableCell,
   TableRow,
 } from '@unified-codes/ui/components';
-import { withStyles, Position } from '@unified-codes/ui/styles';
+import { Position, TableLayout, withStyles } from '@unified-codes/ui/styles';
 import { EEntityField } from '@unified-codes/data';
 
 import { ExplorerActions, IExplorerAction } from '../../../actions';
@@ -17,7 +17,12 @@ import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
 
 const styles = (theme: ITheme) => ({
-  root: { display: 'table', marginTop: 5, tableLayout: 'fixed', width: 'calc(100% - 14px)' },
+  root: {
+    display: 'table',
+    marginTop: 5,
+    tableLayout: 'fixed' as TableLayout,
+    width: 'calc(100% - 14px)',
+  },
   row: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },

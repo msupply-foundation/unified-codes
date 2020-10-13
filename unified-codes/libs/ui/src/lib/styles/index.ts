@@ -16,3 +16,4 @@ export type FlexDirection = 'column' | 'row';
 export type Overflow = 'auto' | 'hidden' | 'scroll' | 'visible';
 export type Position = 'fixed' | 'absolute' | 'sticky';
 export type BorderCollapse = 'separate' | 'collapse';
+export type TableLayout = 'auto' | 'inherit' | '-moz-initial' | 'initial' | 'revert' | 'unset' | 'fixed';

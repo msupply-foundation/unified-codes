@@ -11,13 +11,14 @@ import { ExplorerSelectors } from '../../../selectors';
 import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
 import { TableBody } from '@material-ui/core';
+import { TableLayout } from '@unified-codes/ui/styles';
 
 const styles = (theme: ITheme) => {
   const row = {
     cursor: 'pointer',
     display: 'table',
     width: '100%',
-    tableLayout: 'fixed',
+    tableLayout: 'fixed' as TableLayout,
     '&:hover': { backgroundColor: theme.palette.background.toolbar },
     '& td:last-child': { borderRight: 0 },
     '& td:first-child': { fontWeight: 700 },

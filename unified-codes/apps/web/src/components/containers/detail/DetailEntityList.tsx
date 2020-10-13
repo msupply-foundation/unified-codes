@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme: ITheme) =>
 );
 
 export interface DetailEntityListProps {
+  classes: Record<string, string>;
   entity: IEntity;
 }
 
