@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { IEntity, IProperty } from '@unified-codes/data';
+import { IEntity } from '@unified-codes/data';
 import { List } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
-import DetailPropertyListItem from './DetailPropertyListItem';
+import DetailEntityListItem from './DetailEntityListItem';
 
 import { IState } from '../../../types';
 import { DetailSelectors } from '../../../selectors';
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     root: {
       backgroundColor: theme.palette.background.default,
-      margin: '0 auto 0 auto',
+      margin: '20px auto 0 auto',
       maxWidth: 900,
       width: '100%',
       borderRadius: 5,
@@ -23,18 +23,18 @@ const useStyles = makeStyles((theme: ITheme) =>
   })
 );
 
-export interface DetailPropertyListProps {
+export interface DetailEntityListProps {
   entity: IEntity;
 }
 
-export type DetailPropertyList = React.FunctionComponent<DetailPropertyListProps>;
+export type DetailEntityList = React.FunctionComponent<DetailEntityListProps>;
 
-export const DetailPropertyListComponent: DetailPropertyList = ({ entity }) => {
+export const DetailEntityListComponent: DetailEntityList = ({ entity }) => {
   const classes = useStyles();
 
   return (
     <List className={classes.root}>
-      <DetailPropertyListItem description="Properties" properties={entity?.properties} />
+      <DetailEntityListItem description="Forms" childEntities={entity?.children} />
     </List>
   );
 };
@@ -44,6 +44,9 @@ const mapStateToProps = (state: IState) => {
   return { entity };
 };
 
-export const DetailPropertyList = connect(mapStateToProps)(DetailPropertyListComponent);
+export const DetailEntityList = connect(mapStateToProps)(DetailEntityListComponent);
 
-export default DetailPropertyList;
+export default DetailEntityList;
+
+// Scroll
+// Handle non drug items

@@ -1,33 +1,30 @@
 import * as React from 'react';
+import { useParams } from 'react-router-dom';
 
-import { Grid } from '@unified-codes/ui/components';
+import ErrorNotFound from './ErrorNotFound';
 
-const CatOnBike = require('../../../assets/cat-on-bike.png');
+import { ERROR_ROUTE_PARAMETERS } from '../../../routes';
 
 export interface ErrorPageProps {
-  code: string;
+  onMount?: (params: ERROR_ROUTE_PARAMETERS) => void;
+  onUnmount?: (params: ERROR_ROUTE_PARAMETERS) => void;
 }
 
 export type ErrorPage = React.FunctionComponent<ErrorPageProps>;
 
-export const ErrorPage: ErrorPage = ({ code }) => {
-  switch (code) {
+export const ErrorPage: ErrorPage = ({ onMount = () => null, onUnmount = () => null }) => {
+  const params: ERROR_ROUTE_PARAMETERS = useParams();
+
+  React.useEffect(() => {
+    onMount(params);
+    return () => onUnmount(params);
+  }, []);
+
+  switch (params?.code) {
     case '404':
-      return (
-        <Grid container style={{ flexDirection: 'column', alignContent: 'center' }}>
-          <Grid item style={{ textAlign: 'center' }}>
-            <h3>Nothing to see here...</h3>
-          </Grid>
-          <Grid item>
-            <img style={{ maxHeight: 'calc(100vh - 300px)', maxWidth: '100vw ' }} src={CatOnBike} />
-          </Grid>
-          <Grid item style={{ textAlign: 'center' }}>
-            <h3>...are you sure that you're in the right place?</h3>
-          </Grid>
-        </Grid>
-      );
+      return <ErrorNotFound />;
     default:
-      return <div>Oops! Something went wrong.</div>;
+      return <ErrorNotFound />;
   }
 };
 

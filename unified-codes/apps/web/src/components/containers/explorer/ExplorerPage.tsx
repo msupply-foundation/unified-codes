@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { batch, connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 
@@ -12,6 +13,7 @@ import { IState } from '../../../types';
 import { ExplorerActions, IExplorerAction } from '../../../actions';
 import { ITheme } from '../../../styles';
 import { ExplorerSelectors } from 'apps/web/src/selectors';
+import { EXPLORER_ROUTE_PARAMETERS } from '../../../routes';
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
@@ -46,18 +48,23 @@ const useStyles = makeStyles((theme: ITheme) =>
 
 export interface ExplorerPageProps {
   loading?: boolean;
-  onMount: () => void;
-  onUnmount: () => void;
+  onMount?: (parameters: EXPLORER_ROUTE_PARAMETERS) => void;
+  onUnmount?: (parameters: EXPLORER_ROUTE_PARAMETERS) => void;
 }
 
 export type ExplorerPage = React.FunctionComponent<ExplorerPageProps>;
 
-export const ExplorerPageComponent: ExplorerPage = ({ loading, onMount, onUnmount }) => {
+export const ExplorerPageComponent: ExplorerPage = ({
+  loading,
+  onMount = ({}) => null,
+  onUnmount = ({}) => null,
+}) => {
   const classes = useStyles();
+  const params = useParams();
 
   React.useEffect(() => {
-    onMount();
-    return onUnmount;
+    onMount && onMount(params);
+    return () => onUnmount && onUnmount(params);
   }, []);
 
   return (

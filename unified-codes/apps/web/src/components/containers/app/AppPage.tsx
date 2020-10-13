@@ -4,49 +4,69 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { Box } from '@unified-codes/ui/components';
 import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 
+import { ROUTE_PATHS, ROUTES } from '../../../routes';
 import { ITheme } from '../../../styles';
 
-import DetailPage from '../detail/DetailPage';
-import ErrorPage from '../error/ErrorPage';
-import ExplorerPage from '../explorer/ExplorerPage';
-import Login from '../login/Login';
-
-const useStyles = makeStyles((theme: ITheme) => createStyles({
+const useStyles = makeStyles((theme: ITheme) =>
+  createStyles({
     root: {
-        backgroundColor: theme.palette.background.paper,
-        marginTop: 96,
-        height: 'calc(100vh - 90px)',
-        paddingBottom: 10,
-   },
-}));
+      backgroundColor: theme.palette.background.paper,
+      marginTop: 96,
+      height: 'calc(100vh - 90px)',
+      paddingBottom: 10,
+    },
+  })
+);
 
-export const AppPage = () => {
-    const classes = useStyles();
+export interface AppPageProps {
+  onMount: () => void;
+  onUnmount: () => void;
+}
 
-    return (
-        <Box className={classes.root}>
-            <Switch>
-                <Route path="/detail/:code">
-                    <DetailPage />
-                </Route>
-                <Route exact path="/">
-                    <ExplorerPage />
-                </Route>
-                <Route exact path="/explorer">
-                    <ExplorerPage />
-                </Route>
-                <Route exact path="/login">
-                    <Login />
-                </Route>
-                <Route exact path="/404">
-                    <ErrorPage code="404" />
-                </Route>
-                <Route>
-                    <Redirect to="/404" />
-                </Route>
-            </Switch>
-        </Box>
-    );
+export type AppPage = React.FunctionComponent<AppPageProps>;
+
+export const AppPage = ({ onMount = () => null, onUnmount = () => null }) => {
+  const classes = useStyles();
+
+  const {
+    DETAIL: DetailRoute,
+    EXPLORER: ExplorerRoute,
+    LOGIN: LoginRoute,
+    ERROR: ErrorRoute,
+  } = ROUTES;
+
+  const {
+    DEFAULT: defaultPath,
+    DETAIL: detailPath,
+    EXPLORER: explorerPath,
+    LOGIN: loginPath,
+    ERROR: errorPath,
+  } = ROUTE_PATHS;
+
+  return (
+    <Box className={classes.root}>
+      <Switch>
+        <Route exact path={defaultPath}>
+          <ExplorerRoute />
+        </Route>
+        <Route exact path={detailPath}>
+          <DetailRoute />
+        </Route>
+        <Route exact path={explorerPath}>
+          <ExplorerRoute />
+        </Route>
+        <Route exact path={errorPath}>
+          <ErrorRoute />
+        </Route>
+        <Route exact path={loginPath}>
+          <LoginRoute />
+        </Route>
+        <Route>
+          <Redirect to={errorPath} />
+        </Route>
+      </Switch>
+    </Box>
+  );
 };
 
 export default AppPage;

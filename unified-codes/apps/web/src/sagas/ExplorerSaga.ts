@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 
-import { AlertSeverity, EEntityField, EEntityType, IAlert, IEntity } from '@unified-codes/data';
+import { AlertSeverity, IAlert, IEntity } from '@unified-codes/data';
 
 import {
   AlertActions,
@@ -12,6 +12,7 @@ import {
 } from '../actions';
 import { ExplorerSelectors } from '../selectors';
 import { ExplorerQuery, IExplorerParameters } from '../types';
+import { isType } from 'graphql';
 
 const ALERT_SEVERITY = {
   FETCH: AlertSeverity.info,
@@ -55,7 +56,20 @@ const getEntities = async (url: string, query: ExplorerQuery): Promise<IEntity[]
   return entities;
 };
 
-function* fetchData() {
+type FetchDataAction =
+  | IExplorerAction
+  | IExplorerTableUpdatePageAction
+  | IExplorerTableUpdateRowsPerPageAction;
+
+const isUpdatePageAction = (action: FetchDataAction): action is IExplorerTableUpdatePageAction =>
+  (action as IExplorerTableUpdatePageAction)?.page !== undefined;
+
+const isUpdateRowsPerPageAction = (
+  action: FetchDataAction
+): action is IExplorerTableUpdateRowsPerPageAction =>
+  (action as IExplorerTableUpdateRowsPerPageAction)?.rowsPerPage !== undefined;
+
+function* fetchData(action: FetchDataAction) {
   yield put(AlertActions.raiseAlert(alertFetch));
   try {
     const url:
@@ -67,8 +81,11 @@ function* fetchData() {
       const types = yield select(ExplorerSelectors.selectTypes);
       const orderBy = yield select(ExplorerSelectors.selectOrderBy);
       const orderDesc = yield select(ExplorerSelectors.selectOrderDesc);
-      const rowsPerPage = yield select(ExplorerSelectors.selectRowsPerPage);
-      const page = yield select(ExplorerSelectors.selectPage);
+      let rowsPerPage = yield select(ExplorerSelectors.selectRowsPerPage);
+      let page = yield select(ExplorerSelectors.selectPage);
+
+      if (isUpdatePageAction(action)) page = action.page;
+      if (isUpdateRowsPerPageAction(action)) rowsPerPage = action.rowsPerPage;
 
       const parameters: IExplorerParameters = {
         code,
@@ -93,89 +110,15 @@ function* fetchData() {
   }
 }
 
-function* fetchData2(action: IExplorerTableUpdatePageAction) {
-  yield put(AlertActions.raiseAlert(alertFetch));
-  try {
-    const url:
-      | string
-      | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
-    if (url) {
-      const code = yield select(ExplorerSelectors.selectCode);
-      const description = yield select(ExplorerSelectors.selectDescription);
-      const types = yield select(ExplorerSelectors.selectTypes);
-      const orderBy = yield select(ExplorerSelectors.selectOrderBy);
-      const orderDesc = yield select(ExplorerSelectors.selectOrderDesc);
-      const rowsPerPage = yield select(ExplorerSelectors.selectRowsPerPage);
-      const page = action.page;
-
-      const parameters: IExplorerParameters = {
-        code,
-        description,
-        types,
-        orderBy,
-        orderDesc,
-        rowsPerPage,
-        page,
-      };
-
-      const query = new ExplorerQuery(parameters);
-
-      const entities = yield call(getEntities, url, query);
-
-      yield put(ExplorerActions.updateEntitiesSuccess(entities));
-      yield put(AlertActions.resetAlert());
-    }
-  } catch (error) {
-    yield put(AlertActions.raiseAlert(alertError));
-    yield put(ExplorerActions.updateEntitiesFailure(error));
-  }
-}
-function* fetchData3(action: IExplorerTableUpdateRowsPerPageAction) {
-  yield put(AlertActions.raiseAlert(alertFetch));
-  try {
-    const url:
-      | string
-      | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
-    if (url) {
-      const code = yield select(ExplorerSelectors.selectCode);
-      const description = yield select(ExplorerSelectors.selectDescription);
-      const types = yield select(ExplorerSelectors.selectTypes);
-      const orderBy = yield select(ExplorerSelectors.selectOrderBy);
-      const orderDesc = yield select(ExplorerSelectors.selectOrderDesc);
-      const rowsPerPage = action.rowsPerPage;
-      const page = yield select(ExplorerSelectors.selectPage);
-
-      const parameters: IExplorerParameters = {
-        code,
-        description,
-        types,
-        orderBy,
-        orderDesc,
-        rowsPerPage,
-        page,
-      };
-
-      const query = new ExplorerQuery(parameters);
-
-      const entities = yield call(getEntities, url, query);
-
-      yield put(ExplorerActions.updateEntitiesSuccess(entities));
-      yield put(AlertActions.resetAlert());
-    }
-  } catch (error) {
-    yield put(AlertActions.raiseAlert(alertError));
-    yield put(ExplorerActions.updateEntitiesFailure(error));
-  }
-}
 function* fetchEntitiesSaga() {
   yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.UPDATE_ENTITIES, fetchData);
 }
 
 function* updateRowsPerPageAndFetchSaga() {
-  yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.UPDATE_ROWS_PER_PAGE, fetchData2);
+  yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.UPDATE_ROWS_PER_PAGE, fetchData);
 }
 function* updatePageAndFetchSaga() {
-  yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.UPDATE_PAGE, fetchData3);
+  yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.UPDATE_PAGE, fetchData);
 }
 export function* explorerSaga() {
   yield all([fetchEntitiesSaga(), updateRowsPerPageAndFetchSaga(), updatePageAndFetchSaga()]);
