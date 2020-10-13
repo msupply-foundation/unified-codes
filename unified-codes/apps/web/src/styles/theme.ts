@@ -1,4 +1,7 @@
-import { createMuiTheme as mCreateMuiTheme, withStyles as mWithStyles } from '@material-ui/core/styles';
+import {
+  createMuiTheme as mCreateMuiTheme,
+  withStyles as mWithStyles,
+} from '@material-ui/core/styles';
 
 import { IThemeOptions, Theme } from '../types';
 
@@ -53,4 +56,3 @@ export const createMuiTheme = mCreateMuiTheme;
 export const withStyles = mWithStyles;
 
 export default theme;
-

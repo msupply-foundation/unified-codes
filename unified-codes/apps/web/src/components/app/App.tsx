@@ -25,8 +25,8 @@ export interface AppProps {
 }
 
 const getStyles = (theme: ITheme) => ({
-  body: theme.typography.body1,
   container: {
+    overflow: 'hidden',
     paddingLeft: 0,
     paddingRight: 0,
   },
