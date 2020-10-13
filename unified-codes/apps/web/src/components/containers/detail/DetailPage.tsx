@@ -51,7 +51,7 @@ export const DetailPageComponent: DetailPage = ({ onMount, onUnmount }) => {
         return onUnmount;
     }, []);
 
-    return <DetailLayout classes={classes} attributeList={<DetailAttributeList/>} childList={<DetailEntityList/>} propertyList={<DetailPropertyList/>} />;
+    return <DetailLayout classes={classes} attributeList={<DetailEntityAttributeList/>} childList={<DetailEntityList/>} propertyList={<DetailPropertyList/>} />;
 };
 
 const mapDispatchToProps = (_: React.Dispatch<IDetailAction>) => {
