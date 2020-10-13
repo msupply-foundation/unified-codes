@@ -39,7 +39,7 @@ export const EntityBrowser: EntityBrowser = ({
 
   return (
     <Grid container direction="column" className={classes?.root}>
-      <Backdrop className={classes?.backdrop} open={loading}>
+      <Backdrop className={classes?.backdrop} open={loading || false}>
         <CircularProgress color="inherit" />
       </Backdrop>
       <Grid item className={classes?.toggleBarContainer}>

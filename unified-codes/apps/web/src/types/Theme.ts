@@ -6,18 +6,18 @@ export type ThemeOptions = MThemeOptions;
 export type Palette = MPalette;
 
 export interface IPalette extends Palette {
-    background: {
-        default: string;
-        footer: string;
-        paper: string;
-        toolbar: string;
-    };
+  background: {
+    default: string;
+    footer: string;
+    paper: string;
+    toolbar: string;
+  };
 }
 
 export interface ITheme extends Theme {
-    palette: IPalette;
+  palette: IPalette;
 }
 
 export interface IThemeOptions extends ThemeOptions {
-    palette: IPalette;
+  palette: IPalette;
 }
