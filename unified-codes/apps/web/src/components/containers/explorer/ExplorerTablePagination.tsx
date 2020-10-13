@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { batch, connect } from 'react-redux';
 
 import {
   TableFooter,
@@ -40,9 +40,15 @@ export const ExplorerTablePaginationComponent: ExplorerTablePagination = ({
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
   const onChangePage = (_: React.MouseEvent<HTMLButtonElement> | null, page: number) =>
-    dispatch(ExplorerActions.updatePage(page));
+    batch(() => {
+      dispatch(ExplorerActions.updateEntities());
+      dispatch(ExplorerActions.updatePage(page));
+    });
   const onChangeRowsPerPage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
-    dispatch(ExplorerActions.updateRowsPerPage(+event.target.value));
+    batch(() => {
+      dispatch(ExplorerActions.updateEntities());
+      dispatch(ExplorerActions.updateRowsPerPage(+event.target.value));
+    });
 
   return { onChangePage, onChangeRowsPerPage };
 };
