@@ -28,7 +28,7 @@ export const DetailEntityListComponent: DetailEntityList = ({ entity }) => {
 
     return (
         <List className={classes.root}>
-            <DetailEntityListItem description="Forms" children={entity?.children} />
+            <DetailEntityListItem description="Forms" childEntities={entity?.children} />
         </List>
     );
 };
