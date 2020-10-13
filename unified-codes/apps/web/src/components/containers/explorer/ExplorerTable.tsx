@@ -14,7 +14,6 @@ import { ITheme } from '../../../styles';
 const styles = (theme: ITheme) => ({
   tableRows: {
     display: 'block',
-    marginTop: 5,
     maxHeight: `calc(100vh - 410px)`,
     overflowY: 'scroll' as Overflow,
   },

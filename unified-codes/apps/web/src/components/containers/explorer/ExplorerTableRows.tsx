@@ -15,6 +15,9 @@ import { TableBody } from '@material-ui/core';
 const styles = (theme: ITheme) => {
   const row = {
     cursor: 'pointer',
+    display: 'table',
+    width: '100%',
+    tableLayout: 'fixed',
     '&:hover': { backgroundColor: theme.palette.background.toolbar },
     '& td:last-child': { borderRight: 0 },
     '& td:first-child': { fontWeight: 700 },

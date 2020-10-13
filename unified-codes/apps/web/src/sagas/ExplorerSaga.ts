@@ -2,7 +2,14 @@ import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 
 import { AlertSeverity, EEntityField, EEntityType, IAlert, IEntity } from '@unified-codes/data';
 
-import { AlertActions, ExplorerActions, EXPLORER_ACTIONS, IExplorerAction } from '../actions';
+import {
+  AlertActions,
+  ExplorerActions,
+  EXPLORER_ACTIONS,
+  IExplorerAction,
+  IExplorerTableUpdateRowsPerPageAction,
+  IExplorerTableUpdatePageAction,
+} from '../actions';
 import { ExplorerSelectors } from '../selectors';
 import { ExplorerQuery, IExplorerParameters } from '../types';
 
@@ -86,12 +93,92 @@ function* fetchData() {
   }
 }
 
+function* fetchData2(action: IExplorerTableUpdatePageAction) {
+  yield put(AlertActions.raiseAlert(alertFetch));
+  try {
+    const url:
+      | string
+      | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
+    if (url) {
+      const code = yield select(ExplorerSelectors.selectCode);
+      const description = yield select(ExplorerSelectors.selectDescription);
+      const types = yield select(ExplorerSelectors.selectTypes);
+      const orderBy = yield select(ExplorerSelectors.selectOrderBy);
+      const orderDesc = yield select(ExplorerSelectors.selectOrderDesc);
+      const rowsPerPage = yield select(ExplorerSelectors.selectRowsPerPage);
+      const page = action.page;
+
+      const parameters: IExplorerParameters = {
+        code,
+        description,
+        types,
+        orderBy,
+        orderDesc,
+        rowsPerPage,
+        page,
+      };
+
+      const query = new ExplorerQuery(parameters);
+
+      const entities = yield call(getEntities, url, query);
+
+      yield put(ExplorerActions.updateEntitiesSuccess(entities));
+      yield put(AlertActions.resetAlert());
+    }
+  } catch (error) {
+    yield put(AlertActions.raiseAlert(alertError));
+    yield put(ExplorerActions.updateEntitiesFailure(error));
+  }
+}
+function* fetchData3(action: IExplorerTableUpdateRowsPerPageAction) {
+  yield put(AlertActions.raiseAlert(alertFetch));
+  try {
+    const url:
+      | string
+      | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
+    if (url) {
+      const code = yield select(ExplorerSelectors.selectCode);
+      const description = yield select(ExplorerSelectors.selectDescription);
+      const types = yield select(ExplorerSelectors.selectTypes);
+      const orderBy = yield select(ExplorerSelectors.selectOrderBy);
+      const orderDesc = yield select(ExplorerSelectors.selectOrderDesc);
+      const rowsPerPage = action.rowsPerPage;
+      const page = yield select(ExplorerSelectors.selectPage);
+
+      const parameters: IExplorerParameters = {
+        code,
+        description,
+        types,
+        orderBy,
+        orderDesc,
+        rowsPerPage,
+        page,
+      };
+
+      const query = new ExplorerQuery(parameters);
+
+      const entities = yield call(getEntities, url, query);
+
+      yield put(ExplorerActions.updateEntitiesSuccess(entities));
+      yield put(AlertActions.resetAlert());
+    }
+  } catch (error) {
+    yield put(AlertActions.raiseAlert(alertError));
+    yield put(ExplorerActions.updateEntitiesFailure(error));
+  }
+}
 function* fetchEntitiesSaga() {
   yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.UPDATE_ENTITIES, fetchData);
 }
 
+function* updateRowsPerPageAndFetchSaga() {
+  yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.UPDATE_ROWS_PER_PAGE, fetchData2);
+}
+function* updatePageAndFetchSaga() {
+  yield takeEvery<IExplorerAction>(EXPLORER_ACTIONS.UPDATE_PAGE, fetchData3);
+}
 export function* explorerSaga() {
-  yield all([fetchEntitiesSaga()]);
+  yield all([fetchEntitiesSaga(), updateRowsPerPageAndFetchSaga(), updatePageAndFetchSaga()]);
 }
 
 export default explorerSaga;
