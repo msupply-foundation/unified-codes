@@ -6,7 +6,6 @@ import { TableCell, TableRow } from '@unified-codes/ui/components';
 import { withStyles } from '@unified-codes/ui/styles';
 import { EEntityField, IEntity } from '@unified-codes/data';
 
-import { DetailActions, IExplorerAction } from '../../../actions';
 import { ExplorerSelectors } from '../../../selectors';
 import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
@@ -46,13 +45,17 @@ export interface ExplorerTableRowsProps {
   };
   columns: EEntityField[];
   entities: IEntity[];
-  onSelect: (entity: IEntity) => void;
 }
 
 export type ExplorerTableRows = React.FunctionComponent<ExplorerTableRowsProps>;
 
-const ExplorerTableRowsComponent: ExplorerTableRows = ({ classes, columns, entities, onSelect }) => {
+const useViewEntity = () => {
   const history = useHistory();
+  return (entity: IEntity) => history.push(`/detail/${entity.code}`);
+}
+
+const ExplorerTableRowsComponent: ExplorerTableRows = ({ classes, columns, entities }) => {
+  const viewEntity = useViewEntity();
 
   const rows = entities.map((entity: IEntity, index) => {
     const rowKey = entity.code;
@@ -63,27 +66,16 @@ const ExplorerTableRowsComponent: ExplorerTableRows = ({ classes, columns, entit
       </TableCell>
     ));
 
-    const onClickRow = () => {
-      history.push(`/detail/${entity.code}`);
-      onSelect(entity);
-    }
+    const onRowClick = () => viewEntity(entity);
 
     return (
-      <TableRow key={rowKey} className={rowClass} onClick={onClickRow}>
+      <TableRow key={rowKey} className={rowClass} onClick={onRowClick}>
         {rowCells}
       </TableRow>
     );
   });
 
   return <TableBody>{rows}</TableBody>;
-};
-
-const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
-  const onSelect = (entity: IEntity) => {
-    dispatch(DetailActions.updateEntity(entity));
-  };
-
-  return { onSelect };
 };
 
 const mapStateToProps = (state: IState) => {
@@ -93,9 +85,6 @@ const mapStateToProps = (state: IState) => {
   return { columns, entities };
 };
 
-export const ExplorerTableRows = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(ExplorerTableRowsComponent));
+export const ExplorerTableRows = connect(mapStateToProps)(withStyles(styles)(ExplorerTableRowsComponent));
 
 export default ExplorerTableRows;

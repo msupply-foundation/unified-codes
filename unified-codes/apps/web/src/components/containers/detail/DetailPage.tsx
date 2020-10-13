@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 
-import DetailAttributeList from './DetailAttributeList';
+import DetailEntityAttributeList from './DetailEntityAttributeList';
 import DetailEntityList from './DetailEntityList';
 import DetailPropertyList from './DetailPropertyList';
 import DetailLayout from '../../layout/DetailLayout';
 
-import { IDetailAction } from '../../../actions';
+import { DetailActions, IDetailAction } from '../../../actions';
 import { ITheme } from '../../../styles';
-import { IState } from '../../../types';
+import { IState, IDetailRouteParams } from '../../../types';
 
 const useStyles = makeStyles((theme: ITheme) => createStyles({
     root: {
@@ -37,25 +38,29 @@ const useStyles = makeStyles((theme: ITheme) => createStyles({
 }));
 
 export interface DetailPageProps {
-    onMount: () => void;
-    onUnmount: () => void;
+    onMount: (params: IDetailRouteParams) => void;
+    onUnmount: (params: IDetailRouteParams) => void;
 }
 
 export type DetailPage = React.FunctionComponent<DetailPageProps>;
 
-export const DetailPageComponent: DetailPage = ({ onMount, onUnmount }) => {
+export const DetailPageComponent: DetailPage = ({ onMount = () => null, onUnmount = () => null }) => {
     const classes = useStyles();
+    const params: IDetailRouteParams = useParams();
 
     React.useEffect(() => {
-        onMount();
-        return onUnmount;
+        onMount(params);
+        return () => onUnmount(params);
     }, []);
 
     return <DetailLayout classes={classes} attributeList={<DetailEntityAttributeList/>} childList={<DetailEntityList/>} propertyList={<DetailPropertyList/>} />;
 };
 
-const mapDispatchToProps = (_: React.Dispatch<IDetailAction>) => {
-    const onMount = () => null;
+const mapDispatchToProps = (dispatch: React.Dispatch<IDetailAction>) => {
+    const onMount = (params: IDetailRouteParams) => { 
+        const { code } = params;
+        dispatch(DetailActions.fetchEntity(code));
+    }
     const onUnmount = () => null;
     return { onMount, onUnmount };
 };
