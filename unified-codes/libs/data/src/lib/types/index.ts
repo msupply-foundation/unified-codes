@@ -9,3 +9,5 @@ export * from './IdentityProvider';
 export * from './JWT';
 export * from './Property';
 export * from './User';
+export * from './EntitySearch';
+export * from './EntitySort';
