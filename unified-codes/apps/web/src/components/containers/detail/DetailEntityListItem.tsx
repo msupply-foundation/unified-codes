@@ -26,36 +26,45 @@ const DetailEntityListItem: DetailEntityListItem = ({ description, childEntities
 
     const { isOpen, onToggle } = useToggle(false);
 
-    const EntityListItemText = () => <ListItemText primary={description} />;
-    const EntityListToggleIcon = isOpen ? ArrowUpIcon : ArrowDownIcon;
-    const EntityListToggleItem = () => {
-        if (!childEntities?.length) return <EntityListItemText />
-        return (
-            <ListItem button onClick={onToggle}>
-                <EntityListItemText />
-                    <ListItemIcon>
-                        <EntityListToggleIcon />
-                    </ListItemIcon>
-            </ListItem>
-        )
-    };
+    const { length: childCount } = childEntities ?? [];
+
+    const EntityListToggleItemText = () => {
+        const itemText = !!childCount ? `${description} (${childCount})` : description;
+        return <ListItemText primary={itemText} />;
+    }
+
+
+    const EntityListToggleItemIcon = isOpen ? ArrowUpIcon : ArrowDownIcon;
+
+    const EntityListToggleItem = () => !!childCount ? (
+        <ListItem button onClick={onToggle}>
+            <EntityListToggleItemText />
+            <ListItemIcon>
+                <EntityListToggleItemIcon />
+            </ListItemIcon>
+        </ListItem> 
+    ) : (
+        <ListItem>
+            <EntityListToggleItemText />
+        </ListItem>
+    );
 
     const EntityListChildItems = React.useCallback(() => {
-        if (!childEntities?.length) return null;
-        return (
-            <Collapse in={isOpen}>
-                <List>
-                    {childEntities?.map((child: IEntity) => <DetailEntityListItem description={child.description} childEntities={child.children}/>)}
-                </List>
-            </Collapse>
-        );
-    }, [isOpen, childEntities]);
+        if (!childCount) return null;
+        const childItems = childEntities?.map((child: IEntity) => {
+            const { description, children } = child;
+            return <DetailEntityListItem description={description} childEntities={children}/>;
+        });
+        return <List>{childItems}</List>;
+    }, [childEntities]);
 
     return (
         <ListItem>
             <List className={classes.root}>
                 <EntityListToggleItem />
-                <EntityListChildItems />
+                <Collapse in={isOpen}>
+                    <EntityListChildItems />
+                </Collapse>
             </List>
         </ListItem>
     );

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
+import { IEntity } from '@unified-codes/data';
 import { Grid, Typography } from '@unified-codes/ui/components'
 import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 
@@ -23,40 +24,36 @@ interface DetailAttributeListProps {
         root?: string,
         text?: string
     };
-    code?: string;
-    description?: string;
-    type?: string;
+    entity?: IEntity;
 }
 
 export type DetailAttributeList = React.FunctionComponent<DetailAttributeListProps>;
 
-const DetailAttributeListComponent: DetailAttributeList = ({  code, description, type }) => {
+const DetailAttributeListComponent: DetailAttributeList = ({ entity }) => {
     const classes = useStyles();
 
-    const nameField = `Name: ${description}`;
-    const codeField = `Code: ${code}`;
-    const typeField = `Type: ${type}`;
+    if (!entity) return null;
+
+    const { description, code, type } = entity;
 
     return (
         <Grid container justify="center">
             <Grid item>
-                <Typography className={classes?.text}>{nameField}</Typography>
+                <Typography className={classes?.text}>{`Name: ${description}`}</Typography>
             </Grid>
             <Grid item>
-                <Typography className={classes?.text}>{codeField}</Typography>
+                <Typography className={classes?.text}>{`Code: ${code}`}</Typography>
             </Grid>
             <Grid item>
-                <Typography className={classes?.text}>{typeField}</Typography>  
+                <Typography className={classes?.text}>{`Type: ${type}`}</Typography>  
             </Grid>
         </Grid>
     )
 }
 
 const mapStateToProps = (state: IState) => {
-    const code = DetailSelectors.selectCode(state);
-    const description = DetailSelectors.selectDescription(state);
-    const type = DetailSelectors.selectType(state);
-    return { code, description, type };  
+    const entity = DetailSelectors.selectEntity(state);
+    return { entity };  
 }
 
 export const DetailAttributeList = connect(mapStateToProps)(DetailAttributeListComponent);

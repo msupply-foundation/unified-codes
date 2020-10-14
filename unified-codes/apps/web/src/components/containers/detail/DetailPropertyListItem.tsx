@@ -26,39 +26,45 @@ const DetailPropertyListItem: DetailPropertyListItem = ({ description, propertie
 
     const { isOpen, onToggle } = useToggle(false);
 
-    const Parent = () => {
-        const ToggleIcon = () => {
-            if (!properties?.length) return null;
-            return isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />;
-        };
+    const { length: childCount } = properties ?? [];
 
-        return (
-            <ListItem button onClick={onToggle}>
-                <ListItemText primary={description} />
-                <ListItemIcon>
-                    <ToggleIcon />
-                </ListItemIcon>
-            </ListItem>
-        );
-    };
+    const PropertyListToggleItemText = () => {
+        const itemText = !!childCount ? `${description} (${childCount})` : description;
+        return <ListItemText primary={itemText} />
+    }
 
-    const Children = React.useCallback(() => {
-        const children = properties?.map((property: IProperty) => (
-            <DetailPropertyListItem 
-                description={`${property.type}: ${property.value}`} 
-                children={property.properties} 
-            />
-        ));
+    const PropertyListToggleItemIcon = isOpen ? ArrowUpIcon : ArrowDownIcon;
 
-        return <List>{children}</List>;
+    const PropertyListToggleItem = () => !!childCount ? (
+        <ListItem button onClick={onToggle}>
+            <PropertyListToggleItemText />
+            <ListItemIcon>
+                <PropertyListToggleItemIcon />
+            </ListItemIcon>
+        </ListItem> 
+    ) : (
+        <ListItem>
+            <PropertyListToggleItemText />
+        </ListItem>
+    );
+
+
+    const PropertyListChildItems = React.useCallback(() => {
+        if (!childCount) return null;
+        const childProperties = properties?.map((property: IProperty) => {
+            const { type, value, properties } = property;
+            const description = `${type}: ${value}`;
+            return <DetailPropertyListItem description={description} properties={properties}/>;
+        });
+        return <List>{childProperties}</List>;
     }, [properties]);
 
     return (
         <ListItem>
             <List className={classes.root}>
-                <Parent />
+                <PropertyListToggleItem />
                 <Collapse in={isOpen}>
-                    <Children />
+                    <PropertyListChildItems />
                 </Collapse>
             </List>
         </ListItem>

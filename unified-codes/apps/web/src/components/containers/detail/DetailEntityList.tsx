@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { IEntity } from '@unified-codes/data';
-import { List } from '@unified-codes/ui/components';
+import { List, ListItem, ListItemText } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
 import DetailEntityListItem from './DetailEntityListItem';
@@ -18,7 +18,7 @@ const useStyles = makeStyles((_: ITheme) => createStyles({
 }));
 
 export interface DetailEntityListProps {
-    entity: IEntity;
+    entity?: IEntity;
 }
 
 export type DetailEntityList = React.FunctionComponent<DetailEntityListProps>;
@@ -26,9 +26,17 @@ export type DetailEntityList = React.FunctionComponent<DetailEntityListProps>;
 export const DetailEntityListComponent: DetailEntityList = ({ entity }) => {
     const classes = useStyles();
 
+    // TODO: handle non-drug root entities.
+    const description = "Forms";
+
+    const { children: childEntities } = entity ?? {};
+    const { length: entityCount } = childEntities ?? [];
+
+    if (!entityCount) return null;
+
     return (
         <List className={classes.root}>
-            <DetailEntityListItem description="Forms" childEntities={entity?.children} />
+            <DetailEntityListItem description={description} childEntities={childEntities} />
         </List>
     );
 };
