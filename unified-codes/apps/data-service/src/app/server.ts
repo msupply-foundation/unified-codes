@@ -1,22 +1,13 @@
+import "reflect-metadata";
+
 import fastify from 'fastify';
 import { ApolloServer } from 'apollo-server-fastify';
 
-import * as Schema from './schema';
 import * as Data from './data';
-import * as Resolvers from './resolvers';
 
 import { ApolloService, KeyCloakIdentityProvider } from '@unified-codes/data';
 
-export const createApolloServer = (typeDefs?, resolvers?, dataSources?): ApolloServer => {
-  const _typeDefs = typeDefs ?? Schema.typeDefs;
-  const _resolvers = resolvers ?? Resolvers.resolvers;
-  const _dataSources =
-    dataSources ??
-    (() => ({
-      dgraph: new Data.DgraphDataSource(),
-      rxnav: new Data.RxNavDataSource(),
-    }));
-
+export const createApolloServer = async (typeDefs, resolvers, dataSources): Promise<ApolloServer> => {
   const identityProviderConfig = {
     baseUrl: `${process.env.NX_AUTHENTICATION_SERVICE_URL}:${process.env.NX_AUTHETICATION_SERVICE_PORT}/${process.env.NX_AUTHENTICATION_SERVICE_REALM}/${process.env.NX_AUTHENTICATION_SERVICE_AUTH}`,
     clientId: process.env.NX_AUTHENTICATION_SERVICE_CLIENT_ID,
@@ -25,7 +16,7 @@ export const createApolloServer = (typeDefs?, resolvers?, dataSources?): ApolloS
   };
 
   const identityProvider = new KeyCloakIdentityProvider(identityProviderConfig);
-  const apolloService = new ApolloService(_typeDefs, _resolvers, _dataSources, identityProvider);
+  const apolloService = new ApolloService(typeDefs, resolvers, dataSources, identityProvider);
   const apolloServer = apolloService.getServer();
 
   return apolloServer;
