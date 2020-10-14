@@ -23,17 +23,19 @@ const useStyles = makeStyles((_: ITheme) => createStyles({
       alignContent: 'center',
       justifyContent: 'center',
       padding: '20px 0 20px 0',
-      height: '100%',
   },
   centerContainer: {
       flexDirection: 'row',
       justifyContent: 'center',
+      padding: '20px 0 20px 0',
   },
   topContainer: {
-      textAlign: 'center'
+      textAlign: 'center',
+      padding: '20px 0 20px 0',
   },
   bottomContainer: {
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: '20px 0 20px 0',
   }
 }));
 

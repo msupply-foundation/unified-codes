@@ -17,7 +17,6 @@ export interface IThemeOptions extends ThemeOptions {
   palette: IPalette;
 }
 
-
 export const theme: Theme = createMuiTheme({
   palette: {
     action: {

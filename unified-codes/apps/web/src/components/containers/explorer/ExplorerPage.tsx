@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 
+import ExplorerProgressBar from './ExplorerProgressBar';
 import ExplorerTable from './ExplorerTable';
 import ExplorerToggleBar from './ExplorerToggleBar';
 import ExplorerSearchBar from './ExplorerSearchBar';
@@ -54,7 +55,7 @@ export const ExplorerPageComponent: ExplorerPage = ({ onMount = ({}) => null, on
         return () => onUnmount && onUnmount(params);
     }, []);
 
-    return <ExplorerLayout classes={classes} table={<ExplorerTable/>} toggleBar={<ExplorerToggleBar/>} searchBar={<ExplorerSearchBar/>} />;
+    return <ExplorerLayout classes={classes} table={<ExplorerTable/>} toggleBar={<ExplorerToggleBar/>} searchBar={<ExplorerSearchBar/>} progressBar={<ExplorerProgressBar />} />;
 };
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Backdrop, CircularProgress } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
+import ExplorerProgressCat from './ExplorerProgressCat';
+
 import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
 import { ExplorerSelectors } from '../../../selectors';
@@ -11,7 +13,6 @@ import { ExplorerSelectors } from '../../../selectors';
 const useStyles = makeStyles((theme: ITheme) => createStyles({
     root: {
         zIndex: theme.zIndex.drawer + 1,
-        color: '#fff',
       },
 }));
 
@@ -24,9 +25,12 @@ export type ExplorerProgressBar = React.FunctionComponent<ExplorerProgressBarPro
 export const ExplorerProgressBarComponent: ExplorerProgressBar = ({ isLoading }) => {
     const classes = useStyles();
 
+    // Uncomment to enable cat mode!
+    // return <ExplorerProgressCat />;
+
     return (
         <Backdrop className={classes.root} open={isLoading}>
-            <CircularProgress color="inherit" />
+            <CircularProgress color="inherit" />;
         </Backdrop>
     );
 }
@@ -37,3 +41,5 @@ const mapStateToProps = (state: IState) => {
 }
 
 export const ExplorerProgressBar = connect(mapStateToProps)(ExplorerProgressBarComponent);
+
+export default ExplorerProgressBar;

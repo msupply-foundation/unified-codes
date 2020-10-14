@@ -10,7 +10,6 @@ const useStyles = makeStyles((_: ITheme) => createStyles({
     image: {
         maxHeight: 'calc(100vh - 350px)', 
         maxWidth: '100vw',
-        padding: '20px 0 20px 0'
     },
 }));
 
