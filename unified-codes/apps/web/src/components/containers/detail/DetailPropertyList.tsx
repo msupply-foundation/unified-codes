@@ -1,41 +1,47 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { IProperty } from '@unified-codes/data';
-import { Grid, Typography, List, ListItem, ListItemText } from '@unified-codes/ui/components'
+import { IEntity, IProperty } from '@unified-codes/data';
+import { List, ListItem, ListItemText } from '@unified-codes/ui/components';
+import { createStyles, makeStyles } from '@unified-codes/ui/styles';
+
+import DetailPropertyListItem from './DetailPropertyListItem';
 
 import { IState } from '../../../types';
 import { DetailSelectors } from '../../../selectors';
+import { ITheme } from '../../../styles';
 
-interface DetailPropertyListProps {
-    classes?: { root?: string };
-    properties?: IProperty[];
+const useStyles = makeStyles((_: ITheme) => createStyles({
+    root: {
+        width: '100%',
+    }
+}));
+
+export interface DetailPropertyListProps {
+    entity: IEntity;
 }
 
 export type DetailPropertyList = React.FunctionComponent<DetailPropertyListProps>;
 
-const DetailPropertyListComponent: DetailPropertyList = ({ classes }) => {
-    const propertiesField = 'Properties: N/A';
+export const DetailPropertyListComponent: DetailPropertyList = ({ entity }) => {
+    const classes = useStyles();
 
-    // TODO: render entity property list.
+    const { properties } = entity ?? {};
+    const { length: propertyCount } = properties ?? [];
+
+    if (!propertyCount) return null;
+
     return (
-        <Grid container classes={{ root: classes?.root }} direction="column">
-            <List>
-                <ListItem>
-                    <ListItemText>
-                        <Typography>{propertiesField}</Typography>
-                    </ListItemText>
-                </ListItem>
-            </List>
-        </Grid>
-    )
-}
+        <List className={classes.root}>
+            <DetailPropertyListItem description="Properties" properties={properties} />
+        </List>
+    );
+};
 
 const mapStateToProps = (state: IState) => {
-    const properties = DetailSelectors.selectProperties(state);
-    return { properties };  
+    const entity = DetailSelectors.selectEntity(state);
+    return { entity };  
 }
-
 
 export const DetailPropertyList = connect(mapStateToProps)(DetailPropertyListComponent);
 

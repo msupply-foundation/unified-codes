@@ -6,8 +6,8 @@ export const queries = {
           description
           type
           value
-          has_child
-          has_property
+          children: has_child
+          properties: has_property
         }
       }`;
   },
@@ -27,8 +27,8 @@ export const queries = {
         type
         uid
         value
-        has_child
-        has_property
+        children: has_child
+        properties: has_property
       }
     }`;
   },

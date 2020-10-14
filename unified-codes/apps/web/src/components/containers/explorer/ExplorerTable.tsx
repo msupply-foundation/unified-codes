@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { BorderCollapse, Overflow, withStyles } from '@unified-codes/ui/styles';
+import { BorderCollapse, makeStyles, createStyles, Overflow, withStyles } from '@unified-codes/ui/styles';
 
 import ExplorerTableHeader from './ExplorerTableHeader';
 import ExplorerTableRows from './ExplorerTableRows';
@@ -11,7 +11,7 @@ import ExplorerTableLayout from '../../layout/ExplorerTableLayout';
 import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
 
-const styles = (theme: ITheme) => ({
+const useStyles = makeStyles((theme: ITheme) => createStyles({
     tableContainer: {
         marginTop: 5,
         maxHeight: `calc(100vh - 370px)`,
@@ -24,14 +24,15 @@ const styles = (theme: ITheme) => ({
         justifyContent: 'flex-end',
         background: theme.palette.background.toolbar,
     }
-});
+}));
 
-const mapStateToProps = (_: IState) => {}
+const mapStateToProps = (_: IState) => ({});
 
-export const ExplorerTableComponent = () => (
-    <ExplorerTableLayout header={<ExplorerTableHeader/>} rows={<ExplorerTableRows/>} pagination={<ExplorerTablePagination/>} />
-);
+export const ExplorerTableComponent = () => {
+    const classes = useStyles();
+    return <ExplorerTableLayout classes={classes} header={<ExplorerTableHeader/>} rows={<ExplorerTableRows/>} pagination={<ExplorerTablePagination/>} />
+}
 
-export const ExplorerTable = connect(mapStateToProps)(withStyles(styles)(ExplorerTableComponent));
+export const ExplorerTable = connect(mapStateToProps)(ExplorerTableComponent);
 
 export default ExplorerTable;

@@ -1,4 +1,3 @@
-export * from './entity';
 export * from './data';
 export * from './feedback';
 export * from './icons';

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { batch, connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 
@@ -8,7 +9,7 @@ import ExplorerToggleBar from './ExplorerToggleBar';
 import ExplorerSearchBar from './ExplorerSearchBar';
 import ExplorerLayout from '../../layout/ExplorerLayout';
 
-import { IState } from '../../../types';
+import { IState, IExplorerRouteParams } from '../../../types';
 import { ExplorerActions, IExplorerAction } from '../../../actions';
 import { ITheme } from '../../../styles';
 
@@ -38,18 +39,19 @@ const useStyles = makeStyles((theme: ITheme) => createStyles({
 }));
 
 export interface ExplorerPageProps {
-    onMount: () => void;
-    onUnmount: () => void;
+    onMount?: (parameters: IExplorerRouteParams) => void;
+    onUnmount?: (parameters: IExplorerRouteParams) => void;
 }
 
 export type ExplorerPage = React.FunctionComponent<ExplorerPageProps>;
 
-export const ExplorerPageComponent: ExplorerPage = ({ onMount, onUnmount }) => {
+export const ExplorerPageComponent: ExplorerPage = ({ onMount = ({}) => null, onUnmount = ({}) => null }) => {
     const classes = useStyles();
+    const params = useParams();
 
     React.useEffect(() => {
-        onMount();
-        return onUnmount;
+        onMount && onMount(params);
+        return () => onUnmount && onUnmount(params);
     }, []);
 
     return <ExplorerLayout classes={classes} table={<ExplorerTable/>} toggleBar={<ExplorerToggleBar/>} searchBar={<ExplorerSearchBar/>} />;

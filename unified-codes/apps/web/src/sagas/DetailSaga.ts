@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all, delay } from 'redux-saga/effects';
+import { call, put, takeEvery, all } from 'redux-saga/effects';
 
 import {
   AlertSeverity,
@@ -10,7 +10,7 @@ import {
   DETAIL_ACTIONS,
   DetailActions,
   AlertActions,
-  IDetailUpdateEntityAction,
+  IDetailFetchEntityAction,
 } from '../actions';
 
 
@@ -42,22 +42,22 @@ const getEntityQuery = (code: string) => `
     code
     description
     type
-    has_property {
+    properties {
       type
       value
     }
     # form_category
-    has_child {
+    children {
       code
       description
       type
       # form
-      has_child {
+      children {
         code
         description
         type
         # unit_of_use
-        has_child {
+        children {
           code
           description
           type
@@ -87,13 +87,11 @@ const getEntity = async (
   return entity;
 };
 
-function* fetchDetails(action: IDetailUpdateEntityAction) {
+function* fetchDetails(action: IDetailFetchEntityAction) {
   yield put(AlertActions.raiseAlert(alertFetch));
   try {
     const url = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
-    const { entity } = action;
-    const { code } = entity;
-    
+    const { code } = action;
     const updatedEntity: IEntity = yield call(getEntity, url, code);
     yield put(AlertActions.resetAlert());
     yield put(DetailActions.updateEntitySuccess(updatedEntity));
@@ -104,7 +102,7 @@ function* fetchDetails(action: IDetailUpdateEntityAction) {
 }
 
 function* fetchDetailsSaga() {
-  yield takeEvery<IDetailUpdateEntityAction>(DETAIL_ACTIONS.UPDATE_ENTITY, fetchDetails);
+  yield takeEvery<IDetailFetchEntityAction>(DETAIL_ACTIONS.FETCH_ENTITY, fetchDetails);
 }
 
 
