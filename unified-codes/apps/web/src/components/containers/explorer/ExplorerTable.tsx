@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { BorderCollapse, makeStyles, createStyles, Overflow, withStyles } from '@unified-codes/ui/styles';
+import { BorderCollapse, makeStyles, createStyles, Overflow } from '@unified-codes/ui/styles';
 
 import ExplorerTableHeader from './ExplorerTableHeader';
 import ExplorerTableRows from './ExplorerTableRows';
