@@ -4,6 +4,7 @@ export const PATHS = {
     EXPLORER: '/explorer',
     LOGIN: '/login',
     ERROR: '/error/:code',
+    ERROR_NOT_FOUND: '/error/404',
 };
 
 export default PATHS;

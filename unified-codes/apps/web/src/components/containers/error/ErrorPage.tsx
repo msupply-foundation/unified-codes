@@ -21,7 +21,9 @@ const useStyles = makeStyles((_: ITheme) => createStyles({
   root: {
       flexDirection: 'column',
       alignContent: 'center',
+      justifyContent: 'center',
       padding: '20px 0 20px 0',
+      height: '100%',
   },
   centerContainer: {
       flexDirection: 'row',
@@ -31,7 +33,7 @@ const useStyles = makeStyles((_: ITheme) => createStyles({
       textAlign: 'center'
   },
   bottomContainer: {
-    textAligh: 'center'
+    textAlign: 'center'
   }
 }));
 

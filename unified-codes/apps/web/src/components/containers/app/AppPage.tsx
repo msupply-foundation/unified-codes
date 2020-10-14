@@ -38,7 +38,8 @@ export const AppPage = ({ onMount = () => null, onUnmount = () => null }) => {
         DETAIL: detailPath,
         EXPLORER: explorerPath,
         LOGIN: loginPath,
-        ERROR: errorPath
+        ERROR: errorPath,
+        ERROR_NOT_FOUND: errorNotFoundPath,
     } = PATHS;
 
     return (
@@ -60,7 +61,7 @@ export const AppPage = ({ onMount = () => null, onUnmount = () => null }) => {
                     <LoginRoute />
                 </Route>
                 <Route>
-                    <Redirect to={errorPath} />
+                    <Redirect to={errorNotFoundPath} />
                 </Route>
             </Switch>
         </Box>
