@@ -1,3 +1,4 @@
+export * from './Alert';
 export * from './Store';
 export * from './Explorer';
 export * from './Error';

@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 
-import { IAlert } from '@unified-codes/data';
-import { AlertBar, AppBar, Avatar, Grid, UCIcon } from '@unified-codes/ui/components';
+import { AppBar, Avatar, Grid, UCIcon } from '@unified-codes/ui/components';
 import { withStyles, FlexDirection } from '@unified-codes/ui/styles';
 
-import { ITheme } from '../../../styles';
+import AlertBar from '../alert/AlertBar';
 
+import { ITheme } from '../../../styles';
+import { IAlert } from '../../../types';
 import { AlertActions, IAlertAction } from '../../../actions';
 
 export interface HeaderProps {

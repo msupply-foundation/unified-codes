@@ -1,4 +1,6 @@
-import { IAlert, IUser, EEntityField, IEntity, EEntityType } from '@unified-codes/data';
+import { IUser, EEntityField, IEntity, EEntityType } from '@unified-codes/data';
+
+import { IAlert } from './Alert';
 
 export type IAlertState = IAlert | {};
 

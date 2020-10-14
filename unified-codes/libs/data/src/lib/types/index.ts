@@ -1,4 +1,3 @@
-export * from './Alert';
 export * from './ApolloService';
 export * from './AuthenticationService';
 export * from './AuthorisationService';
