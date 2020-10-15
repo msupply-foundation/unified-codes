@@ -9,7 +9,7 @@ export enum EEntityType {
 export enum EEntityField {
   CODE = 'code',
   DESCRIPTION = 'description',
-  TYPE = 'type'
+  TYPE = 'type',
 }
 
 // TODO: complete EEntityType enum.

@@ -26,10 +26,18 @@ export const withAddIcon = () => <Button startIcon={<AddIcon />} />;
 export const withToggleProps = () => {
   const [isSelected, setIsSelected] = React.useState<boolean>(false);
 
-  const label = React.useMemo(() => isSelected ? 'Selected button' : 'Unselected button', [isSelected]);
-  const icon = React.useMemo(() => isSelected ? <CheckCircleIcon /> : <AddIcon />, [isSelected]);
+  const label = React.useMemo(() => (isSelected ? 'Selected button' : 'Unselected button'), [
+    isSelected,
+  ]);
+  const icon = React.useMemo(() => (isSelected ? <CheckCircleIcon /> : <AddIcon />), [isSelected]);
 
-  const onClick = React.useCallback(() => setIsSelected(isSelected => !isSelected), [setIsSelected]);
+  const onClick = React.useCallback(() => setIsSelected((isSelected) => !isSelected), [
+    setIsSelected,
+  ]);
 
-  return <Button startIcon={icon} onClick={onClick}>{label}</Button>;
-}
+  return (
+    <Button startIcon={icon} onClick={onClick}>
+      {label}
+    </Button>
+  );
+};

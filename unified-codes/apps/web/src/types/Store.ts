@@ -22,9 +22,9 @@ export interface IExplorerTableState {
 }
 
 export interface IExplorerToggleBarState {
-  [EEntityType.DRUG]: boolean,
-  [EEntityType.MEDICINAL_PRODUCT]: boolean,
-  [EEntityType.OTHER]: boolean
+  [EEntityType.DRUG]: boolean;
+  [EEntityType.MEDICINAL_PRODUCT]: boolean;
+  [EEntityType.OTHER]: boolean;
 }
 
 export interface IDetailState {
@@ -48,4 +48,3 @@ export interface IState {
   explorer: IExplorerState;
   authenticator: IAuthenticatorState;
 }
-

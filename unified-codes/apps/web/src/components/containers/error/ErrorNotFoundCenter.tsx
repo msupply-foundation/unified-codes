@@ -6,20 +6,22 @@ import { ITheme } from '../../../styles';
 
 const image = require('../../../assets/image/cat_bike.png');
 
-const useStyles = makeStyles((_: ITheme) => createStyles({
+const useStyles = makeStyles((_: ITheme) =>
+  createStyles({
     image: {
-        maxHeight: 'calc(100vh - 350px)', 
-        maxWidth: '100vw',
+      maxHeight: 'calc(100vh - 350px)',
+      maxWidth: '100vw',
     },
-}));
+  })
+);
 
 export interface ErrorNotFoundCenterProps {}
 
 export type ErrorNotFoundCenter = React.FunctionComponent<ErrorNotFoundCenterProps>;
 
 export const ErrorNotFoundCenter: ErrorNotFoundCenter = () => {
-    const classes = useStyles();
-    return <img className={classes.image} src={image} />;
+  const classes = useStyles();
+  return <img className={classes.image} src={image} />;
 };
 
 export default ErrorNotFoundCenter;

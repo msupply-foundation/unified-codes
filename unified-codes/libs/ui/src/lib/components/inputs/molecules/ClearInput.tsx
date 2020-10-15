@@ -9,22 +9,21 @@ import TextField, {
   OutlinedTextFieldProps,
 } from '../atoms/TextField';
 
-
 export interface StandardClearInputProps extends StandardTextFieldProps {
   classes?: {
-    root?: string 
+    root?: string;
   };
   onClear?: () => void;
 }
 export interface FilledClearInputProps extends FilledTextFieldProps {
   classes?: {
-    root?: string 
+    root?: string;
   };
   onClear?: () => void;
 }
 export interface OutlinedClearInputProps extends OutlinedTextFieldProps {
   classes?: {
-    root?: string 
+    root?: string;
   };
   onClear?: () => void;
 }
@@ -44,7 +43,7 @@ export const ClearInput: ClearInput = ({ classes, onClear, ...other }) => {
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <Button startIcon={<ClearIcon/>} onClick={onClick}></Button>
+            <Button startIcon={<ClearIcon />} onClick={onClick}></Button>
           </InputAdornment>
         ),
       }}

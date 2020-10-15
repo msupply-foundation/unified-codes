@@ -10,7 +10,7 @@ ReactDOM.render(
   <AppStore>
     <AppRouter>
       <AppTheme>
-        <App/>
+        <App />
       </AppTheme>
     </AppRouter>
   </AppStore>,
