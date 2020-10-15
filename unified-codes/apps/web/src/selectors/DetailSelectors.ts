@@ -1,6 +1,8 @@
-import { IEntity } from 'libs/data/src/lib';
 import { createSelector } from 'reselect';
-import { IDetailState, IState } from "../types";
+
+import { IEntity } from '@unified-codes/data';
+
+import { IDetailState, IState } from '../types';
 
 const selectDetail = (state: IState): IDetailState => state.detail;
 

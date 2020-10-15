@@ -1,11 +1,23 @@
-import {
-  createMuiTheme as mCreateMuiTheme,
-  withStyles as mWithStyles,
-} from '@material-ui/core/styles';
+import { createMuiTheme, Palette, Theme, ThemeOptions } from '@unified-codes/ui/styles';
 
-import { IThemeOptions, Theme } from '../types';
+export interface IPalette extends Palette {
+  background: {
+      default: string;
+      footer: string;
+      paper: string;
+      toolbar: string;
+  };
+}
 
-export const theme: Theme = mCreateMuiTheme({
+export interface ITheme extends Theme {
+  palette: IPalette;
+}
+
+export interface IThemeOptions extends ThemeOptions {
+  palette: IPalette;
+}
+
+export const theme: Theme = createMuiTheme({
   palette: {
     action: {
       active: '#5CCDF4',
@@ -50,9 +62,6 @@ export const theme: Theme = mCreateMuiTheme({
       textTransform: 'uppercase',
     },
   },
-} as IThemeOptions);
-
-export const createMuiTheme = mCreateMuiTheme;
-export const withStyles = mWithStyles;
+} as ThemeOptions);
 
 export default theme;
