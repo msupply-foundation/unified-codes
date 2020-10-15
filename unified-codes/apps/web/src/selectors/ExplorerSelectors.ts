@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 import { EEntityField, EEntityType, IEntity } from '@unified-codes/data';
 
 import {
+  IExplorerParameters,
   IExplorerSearchBarState,
   IExplorerState,
   IExplorerTableState,
@@ -79,6 +80,39 @@ const selectRowsPerPage = createSelector(
 
 const selectPage = createSelector(selectTable, (table: IExplorerTableState): number => table?.page);
 
+const selectTypes = createSelector(
+  selectToggleBar,
+  (toggleBar: IExplorerToggleBarState): EEntityType[] =>
+    Object.keys(toggleBar).filter((type: EEntityType) => toggleBar[type]) as EEntityType[]
+);
+
+const selectParameters = createSelector(
+  selectCode,
+  selectDescription,
+  selectTypes,
+  selectOrderBy,
+  selectOrderDesc,
+  selectRowsPerPage,
+  selectPage,
+  (
+    code: string,
+    description: string,
+    types: EEntityType[],
+    orderBy: EEntityField,
+    orderDesc: boolean,
+    rowsPerPage: number,
+    page: number
+  ): IExplorerParameters => ({
+    code,
+    description,
+    types,
+    orderBy,
+    orderDesc,
+    rowsPerPage,
+    page,
+  })
+);
+
 const selectEntities = createSelector(
   selectTable,
   (table: IExplorerTableState): IEntity[] => table?.entities
@@ -97,12 +131,6 @@ const selectFilterByMedicinalProduct = createSelector(
 const selectFilterByOther = createSelector(
   selectToggleBar,
   (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.OTHER]
-);
-
-const selectTypes = createSelector(
-  selectToggleBar,
-  (toggleBar: IExplorerToggleBarState): EEntityType[] =>
-    Object.keys(toggleBar).filter((type: EEntityType) => toggleBar[type]) as EEntityType[]
 );
 
 const selectLoading = createSelector(
@@ -125,6 +153,7 @@ export const TableSelectors = {
   selectOrderBy,
   selectOrderDesc,
   selectPage,
+  selectParameters,
   selectRowsPerPage,
   selectTypes,
 };
