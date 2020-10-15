@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import * as React from 'react';
 
-import MenuBar from './MenuBar';
-import MenuItem from '../../navigation/atoms/MenuItem';
-import { useToggle } from '@unified-codes/ui';
+import { MenuBar, MenuItem } from '@unified-codes/ui/components';
+import { useToggle } from '@unified-codes/ui/hooks';
 
 export default {
   component: MenuBar,

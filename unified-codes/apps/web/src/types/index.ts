@@ -1,4 +1,4 @@
 export * from './Store';
-export * from './Theme';
-export * from './Styles';
 export * from './Explorer';
+export * from './Error';
+export * from './Route';
