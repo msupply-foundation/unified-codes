@@ -10,28 +10,40 @@ import ExplorerTableLayout from '../../layout/ExplorerTableLayout';
 
 import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
+import { withStyles, Position } from '@unified-codes/ui/styles';
 
-const useStyles = makeStyles((theme: ITheme) => createStyles({
+const useStyles = makeStyles((theme: ITheme) =>
+  createStyles({
     tableContainer: {
-        marginTop: 5,
-        maxHeight: `calc(100vh - 370px)`,
-        overflowY: 'scroll' as Overflow,
+      marginTop: 5,
+      maxHeight: `calc(100vh - 330px)`,
+      overflowY: 'scroll' as Overflow,
     },
     table: {
-        borderCollapse: 'separate' as BorderCollapse,
+      borderCollapse: 'separate' as BorderCollapse,
     },
-    paginationContainer: {
-        justifyContent: 'flex-end',
-        background: theme.palette.background.toolbar,
-    }
-}));
+    pagination: {
+      background: theme.palette.background.toolbar,
+      bottom: 0,
+      justifyContent: 'flex-end',
+      position: 'sticky' as Position,
+    },
+  })
+);
 
 const mapStateToProps = (_: IState) => ({});
 
 export const ExplorerTableComponent = () => {
-    const classes = useStyles();
-    return <ExplorerTableLayout classes={classes} header={<ExplorerTableHeader/>} rows={<ExplorerTableRows/>} pagination={<ExplorerTablePagination/>} />
-}
+  const classes = useStyles();
+  return (
+    <ExplorerTableLayout
+      classes={classes}
+      header={<ExplorerTableHeader />}
+      rows={<ExplorerTableRows />}
+      pagination={<ExplorerTablePagination classes={classes} />}
+    />
+  );
+};
 
 export const ExplorerTable = connect(mapStateToProps)(ExplorerTableComponent);
 
