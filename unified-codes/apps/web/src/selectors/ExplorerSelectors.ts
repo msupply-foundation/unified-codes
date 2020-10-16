@@ -79,12 +79,6 @@ const selectRowsPerPage = createSelector(
 
 const selectPage = createSelector(selectTable, (table: IExplorerTableState): number => table?.page);
 
-const selectTypes = createSelector(
-  selectToggleBar,
-  (toggleBar: IExplorerToggleBarState): EEntityType[] =>
-    Object.keys(toggleBar).filter((type: EEntityType) => toggleBar[type]) as EEntityType[]
-);
-
 const selectEntities = createSelector(
   selectTable,
   (table: IExplorerTableState): IEntity[] => table?.entities
@@ -103,6 +97,12 @@ const selectFilterByMedicinalProduct = createSelector(
 const selectFilterByOther = createSelector(
   selectToggleBar,
   (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.OTHER]
+);
+
+const selectTypes = createSelector(
+  selectToggleBar,
+  (toggleBar: IExplorerToggleBarState): EEntityType[] =>
+    Object.keys(toggleBar).filter((type: EEntityType) => toggleBar[type]) as EEntityType[]
 );
 
 const selectLoading = createSelector(

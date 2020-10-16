@@ -74,6 +74,7 @@ function* fetchData() {
       };
 
       const query = new ExplorerQuery(parameters);
+
       const entities = yield call(getEntities, url, query);
 
       yield put(ExplorerActions.updateEntitiesSuccess(entities));

@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+
 import { EEntityField, IEntity } from '@unified-codes/data';
 
 export interface IExplorerSearchBarUpdateInputAction extends Action<string> {
