@@ -1,4 +1,4 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 
 import fastifyCors from 'fastify-cors';
 import { buildTypeDefsAndResolvers } from 'type-graphql';
@@ -13,13 +13,13 @@ const start = async () => {
 
   try {
     const { typeDefs, resolvers } = await buildTypeDefsAndResolvers({
-      resolvers: [Resolvers.EntityResolver]
-    })
+      resolvers: [Resolvers.EntityResolver],
+    });
 
-    const dataSources = (() => ({
+    const dataSources = () => ({
       dgraph: new Data.DgraphDataSource(),
       rxnav: new Data.RxNavDataSource(),
-    }));
+    });
 
     const apolloServer = await createApolloServer(typeDefs, resolvers, dataSources);
     const apolloPlugin = apolloServer.createHandler();

@@ -1,7 +1,24 @@
 import { GraphQLResolveInfo } from 'graphql/type';
-import { Resolver, Query, Ctx, Args, ArgsType, Field, FieldResolver, Root, Info, Int } from 'type-graphql'
+import {
+  Resolver,
+  Query,
+  Ctx,
+  Args,
+  ArgsType,
+  Field,
+  FieldResolver,
+  Root,
+  Info,
+  Int,
+} from 'type-graphql';
 
-import { User, IEntity, EntityCollection, IApolloServiceContext, EEntityType } from '@unified-codes/data';
+import {
+  User,
+  IEntity,
+  EntityCollection,
+  IApolloServiceContext,
+  EEntityType,
+} from '@unified-codes/data';
 
 import { DgraphDataSource, RxNavDataSource } from './data';
 import { queries } from './queries';

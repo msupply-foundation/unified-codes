@@ -1,6 +1,15 @@
-import { registerEnumType, ObjectType, InputType, Field, Int } from "type-graphql";
+import { registerEnumType, ObjectType, InputType, Field, Int, ID } from 'type-graphql';
 
-import { IEntity, IEntitySort, IDrugInteraction, IProperty, IEntityCollection, IEntitySearch, EEntityField, EEntityType } from '@unified-codes/data';
+import {
+  IEntity,
+  IEntitySort,
+  IDrugInteraction,
+  IProperty,
+  IEntityCollection,
+  IEntitySearch,
+  EEntityField,
+  EEntityType,
+} from '@unified-codes/data';
 
 // registerEnumType(EEntityType, {
 //   name: "EEntityType",
@@ -12,87 +21,87 @@ import { IEntity, IEntitySort, IDrugInteraction, IProperty, IEntityCollection, I
 
 @ObjectType()
 export class EntityType implements IEntity {
-  @Field()
+  @Field((type) => ID)
   uid: string;
 
-  @Field({ nullable: true })
+  @Field((type) => String, { nullable: true })
   code: string;
 
-  @Field({ nullable: true })
+  @Field((type) => String, { nullable: true })
   description: string;
 
-  @Field({ nullable: true })
+  @Field((type) => String, { nullable: true })
   type: string;
 
-  @Field(type => DrugInteractionType, { nullable: true })
+  @Field((type) => DrugInteractionType, { nullable: true })
   interactions: IDrugInteraction[];
 
-  @Field(type => [EntityType], { nullable: true })
+  @Field((type) => [EntityType], { nullable: true })
   children: IEntity[];
 
-  @Field(type => [PropertyType], { nullable: true })
+  @Field((type) => [PropertyType], { nullable: true })
   properties: IProperty[];
 }
 
 @ObjectType()
 export class EntityCollectionType implements IEntityCollection {
-  @Field(type => [EntityType])
+  @Field((type) => [EntityType])
   data: IEntity[];
 
-  @Field(type => Int)
+  @Field((type) => Int)
   totalLength: number;
 }
 
 @InputType()
 export class EntitySearchInput implements Omit<IEntitySearch, 'type'> {
-  @Field()
+  @Field((type) => String, { nullable: true })
   code: string;
 
-  @Field()
+  @Field((type) => String, { nullable: true })
   description: string;
 
-  @Field(type => EntitySortInput)
+  @Field((type) => EntitySortInput, { nullable: true })
   orderBy: IEntitySort;
 
-  @Field(type => String)
+  @Field((type) => String, { nullable: true })
   type: string;
 }
 
 @InputType()
 export class EntitySortInput implements Omit<IEntitySort, 'field'> {
-  @Field(type => String)
+  @Field((type) => String)
   field: string;
 
-  @Field()
+  @Field((type) => Boolean)
   descending: boolean;
 }
 
 @ObjectType()
 export class PropertyType implements IProperty {
-  @Field()
+  @Field((type) => String)
   type: string;
 
-  @Field()
+  @Field((type) => String)
   value: string;
 
-  @Field(type => [PropertyType], { nullable: true })
+  @Field((type) => [PropertyType], { nullable: true })
   properties: IProperty[];
 }
 
 @ObjectType()
 export class DrugInteractionType implements IDrugInteraction {
-  @Field()
+  @Field((type) => String)
   name: string;
 
-  @Field()
+  @Field((type) => String)
   description: string;
 
-  @Field()
+  @Field((type) => String)
   severity: string;
 
-  @Field()
+  @Field((type) => String)
   source: string;
 
-  @Field()
+  @Field((type) => String)
   rxcui: string;
 }

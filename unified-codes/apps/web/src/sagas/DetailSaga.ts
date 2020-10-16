@@ -2,15 +2,9 @@ import { call, put, takeEvery, all } from 'redux-saga/effects';
 
 import { IEntity } from '@unified-codes/data';
 
-import {
-  DETAIL_ACTIONS,
-  DetailActions,
-  AlertActions,
-  IDetailFetchEntityAction,
-} from '../actions';
+import { DETAIL_ACTIONS, DetailActions, AlertActions, IDetailFetchEntityAction } from '../actions';
 
 import { AlertSeverity, IAlert } from '../types';
-
 
 const ALERT_SEVERITY = {
   FETCH: AlertSeverity.info,
