@@ -1,4 +1,7 @@
-import { ListItemText as MListItemText, ListItemTextProps as MListItemTextProps } from '@material-ui/core';
+import {
+  ListItemText as MListItemText,
+  ListItemTextProps as MListItemTextProps,
+} from '@material-ui/core';
 
 export type ListItemTextProps = MListItemTextProps;
 

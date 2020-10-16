@@ -12,10 +12,10 @@ export interface ExplorerLayoutProps {
 
 export interface ExplorerLayoutProps {
   classes?: {
-      root?: string,
-      toggleBarContainer?: string,
-      searchBarContainer?: string,
-      tableContainer?: string,
+    root?: string;
+    toggleBarContainer?: string;
+    searchBarContainer?: string;
+    tableContainer?: string;
   };
   table: React.ReactElement;
   toggleBar: React.ReactElement;
@@ -49,4 +49,3 @@ export const ExplorerLayout: ExplorerLayout = ({
 };
 
 export default ExplorerLayout;
- 

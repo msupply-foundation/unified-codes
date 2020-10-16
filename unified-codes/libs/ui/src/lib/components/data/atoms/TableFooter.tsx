@@ -1,4 +1,7 @@
-import { TableFooter as MTableFooter, TableFooterProps as MTableFooterProps } from '@material-ui/core';
+import {
+  TableFooter as MTableFooter,
+  TableFooterProps as MTableFooterProps,
+} from '@material-ui/core';
 
 export type TableFooterProps = MTableFooterProps;
 

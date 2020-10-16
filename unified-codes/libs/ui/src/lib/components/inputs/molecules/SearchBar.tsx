@@ -6,11 +6,11 @@ import Grid from '../../layout/atoms/Grid';
 import SearchIcon from '../../icons/atoms/SearchIcon';
 
 export interface SearchBarProps {
-  classes?: { 
+  classes?: {
     root?: string;
     button?: string;
     input?: string;
-  }
+  };
   input: string;
   label?: string;
   onChange?: (input: string) => void;
@@ -41,7 +41,7 @@ export const SearchBar: SearchBar = ({ classes, input, label, onChange, onClear,
     <Grid className={classes?.root} container>
       <Grid item xs={11}>
         <ClearInput
-          classes={{ root:classes?.input }}
+          classes={{ root: classes?.input }}
           fullWidth
           label={label}
           value={input}
@@ -51,7 +51,12 @@ export const SearchBar: SearchBar = ({ classes, input, label, onChange, onClear,
         />
       </Grid>
       <Grid item xs={1}>
-        <Button classes={{ root: classes?.button }} fullWidth startIcon={<SearchIcon />} onClick={onClick} />
+        <Button
+          classes={{ root: classes?.button }}
+          fullWidth
+          startIcon={<SearchIcon />}
+          onClick={onClick}
+        />
       </Grid>
     </Grid>
   );

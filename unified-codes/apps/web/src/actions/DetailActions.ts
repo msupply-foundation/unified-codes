@@ -32,8 +32,8 @@ export type IDetailAction =
 
 const fetchEntity = (code: string) => ({
   type: DETAIL_ACTIONS.FETCH_ENTITY,
-  code
-})
+  code,
+});
 
 const updateEntity = (entity: IEntity) => ({
   type: DETAIL_ACTIONS.UPDATE_ENTITY,

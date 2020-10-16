@@ -17,25 +17,33 @@ const styles = (_: ITheme) => ({});
 export interface ExplorerToggleBarProps {
   classes?: {
     root?: string;
-  },
-  buttons: React.ReactElement[]
+  };
+  buttons: React.ReactElement[];
 }
 
 export type ExplorerToggleBar = React.FunctionComponent<ExplorerToggleBarProps>;
 
 const ExplorerToggleBarComponent: ExplorerToggleBar = ({ classes, buttons }) => {
-  const toggleButtons = buttons.map(button => <Grid item key={button?.key as React.ReactText}>{button}</Grid>);
+  const toggleButtons = buttons.map((button) => (
+    <Grid item key={button?.key as React.ReactText}>
+      {button}
+    </Grid>
+  ));
 
   return (
     <Grid container classes={classes} justify="center" direction="row" spacing={2}>
       {toggleButtons}
     </Grid>
   );
-}
+};
 
-const mergeProps = ((stateProps: any, dispatchProps: any) => {
+const mergeProps = (stateProps: any, dispatchProps: any) => {
   const { filterByDrug, filterByMedicinalProduct, filterByOther } = stateProps;
-  const { onToggleFilterByDrug, onToggleFilterByMedicinalProduct, onToggleFilterByOther } = dispatchProps;
+  const {
+    onToggleFilterByDrug,
+    onToggleFilterByMedicinalProduct,
+    onToggleFilterByOther,
+  } = dispatchProps;
 
   const drugButtonLabel = 'Drug';
   const drugButtonKey = EEntityType.DRUG;
@@ -46,7 +54,11 @@ const mergeProps = ((stateProps: any, dispatchProps: any) => {
   const medicinalProductButtonLabel = 'Medicinal product';
   const medicinalProductButtonKey = EEntityType.MEDICINAL_PRODUCT;
   const medicinalProductButtonColor = filterByMedicinalProduct ? 'primary' : 'secondary';
-  const medicinalProductButtonStartIcon = filterByMedicinalProduct ? <CheckCircleIcon /> : <AddIcon />;
+  const medicinalProductButtonStartIcon = filterByMedicinalProduct ? (
+    <CheckCircleIcon />
+  ) : (
+    <AddIcon />
+  );
   const medicinalProductButtonOnClick = onToggleFilterByMedicinalProduct;
 
   const otherButtonLabel = 'Other';
@@ -61,7 +73,9 @@ const mergeProps = ((stateProps: any, dispatchProps: any) => {
       startIcon={drugButtonStartIcon}
       color={drugButtonColor}
       onClick={drugButtonOnClick}
-    >{drugButtonLabel}</ExplorerToggleButton>
+    >
+      {drugButtonLabel}
+    </ExplorerToggleButton>
   );
 
   const ToggleButtonMedicinalProduct = (
@@ -70,7 +84,9 @@ const mergeProps = ((stateProps: any, dispatchProps: any) => {
       startIcon={medicinalProductButtonStartIcon}
       color={medicinalProductButtonColor}
       onClick={medicinalProductButtonOnClick}
-    >{medicinalProductButtonLabel}</ExplorerToggleButton>
+    >
+      {medicinalProductButtonLabel}
+    </ExplorerToggleButton>
   );
 
   const ToggleButtonOther = (
@@ -79,27 +95,35 @@ const mergeProps = ((stateProps: any, dispatchProps: any) => {
       startIcon={otherButtonStartIcon}
       color={otherButtonColor}
       onClick={otherButtonOnClick}
-    >{otherButtonLabel}</ExplorerToggleButton>
+    >
+      {otherButtonLabel}
+    </ExplorerToggleButton>
   );
 
   return { buttons: [ToggleButtonDrug, ToggleButtonMedicinalProduct, ToggleButtonOther] };
-})
+};
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
-  const onToggleFilterByDrug = () => batch(() => {
-    dispatch(ExplorerActions.toggleFilterByDrug());
-    dispatch(ExplorerActions.updateEntities());
-  });
+  const onToggleFilterByDrug = () =>
+    batch(() => {
+      dispatch(ExplorerActions.resetPage());
+      dispatch(ExplorerActions.toggleFilterByDrug());
+      dispatch(ExplorerActions.updateEntities());
+    });
 
-  const onToggleFilterByMedicinalProduct = () => batch(() => {
-    dispatch(ExplorerActions.toggleFilterByMedicinalProduct());
-    dispatch(ExplorerActions.updateEntities())
-  });
+  const onToggleFilterByMedicinalProduct = () =>
+    batch(() => {
+      dispatch(ExplorerActions.resetPage());
+      dispatch(ExplorerActions.toggleFilterByMedicinalProduct());
+      dispatch(ExplorerActions.updateEntities());
+    });
 
-  const onToggleFilterByOther =  () => batch(() => { 
-    dispatch(ExplorerActions.toggleFilterByOther());
-    dispatch(ExplorerActions.updateEntities())
-  });
+  const onToggleFilterByOther = () =>
+    batch(() => {
+      dispatch(ExplorerActions.resetPage());
+      dispatch(ExplorerActions.toggleFilterByOther());
+      dispatch(ExplorerActions.updateEntities());
+    });
 
   return { onToggleFilterByDrug, onToggleFilterByMedicinalProduct, onToggleFilterByOther };
 };
@@ -112,6 +136,10 @@ const mapStateToProps = (state: IState) => {
   return { filterByDrug, filterByMedicinalProduct, filterByOther };
 };
 
-export const ExplorerToggleBar = connect(mapStateToProps, mapDispatchToProps, mergeProps)(withStyles(styles)(ExplorerToggleBarComponent));
+export const ExplorerToggleBar = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(withStyles(styles)(ExplorerToggleBarComponent));
 
 export default ExplorerToggleBar;

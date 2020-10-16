@@ -65,10 +65,7 @@ const getEntityQuery = (code: string) => `
   }
 }`;
 
-const getEntity = async (
-  url: string,
-  code: string
-): Promise<IEntity> => {
+const getEntity = async (url: string, code: string): Promise<IEntity> => {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -102,7 +99,6 @@ function* fetchDetails(action: IDetailFetchEntityAction) {
 function* fetchDetailsSaga() {
   yield takeEvery<IDetailFetchEntityAction>(DETAIL_ACTIONS.FETCH_ENTITY, fetchDetails);
 }
-
 
 export function* detailsSaga() {
   yield all([fetchDetailsSaga()]);

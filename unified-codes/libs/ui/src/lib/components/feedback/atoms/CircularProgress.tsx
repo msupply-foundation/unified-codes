@@ -1,4 +1,7 @@
-import { CircularProgress as MCircularProgress, CircularProgressProps as MCircularProgressProps } from '@material-ui/core';
+import {
+  CircularProgress as MCircularProgress,
+  CircularProgressProps as MCircularProgressProps,
+} from '@material-ui/core';
 
 export type CircularProgressProps = MCircularProgressProps;
 

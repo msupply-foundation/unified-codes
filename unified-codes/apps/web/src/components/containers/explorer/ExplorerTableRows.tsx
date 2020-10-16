@@ -38,10 +38,10 @@ const styles = (theme: ITheme) => {
 
 export interface ExplorerTableRowsProps {
   classes?: {
-    root?: string,
-    rowPrimary?: string,
-    rowSecondary?: string,
-    cell?: string,
+    root?: string;
+    rowPrimary?: string;
+    rowSecondary?: string;
+    cell?: string;
   };
   columns: EEntityField[];
   entities: IEntity[];
@@ -52,7 +52,7 @@ export type ExplorerTableRows = React.FunctionComponent<ExplorerTableRowsProps>;
 const useViewEntity = () => {
   const history = useHistory();
   return (entity: IEntity) => history.push(`/detail/${entity.code}`);
-}
+};
 
 const ExplorerTableRowsComponent: ExplorerTableRows = ({ classes, columns, entities }) => {
   const viewEntity = useViewEntity();
@@ -87,6 +87,8 @@ const mapStateToProps = (state: IState) => {
   return { columns, entities };
 };
 
-export const ExplorerTableRows = connect(mapStateToProps)(withStyles(styles)(ExplorerTableRowsComponent));
+export const ExplorerTableRows = connect(mapStateToProps)(
+  withStyles(styles)(ExplorerTableRowsComponent)
+);
 
 export default ExplorerTableRows;

@@ -62,7 +62,7 @@ export class EntityResolver {
     const { type = EEntityType.DRUG, code, description, orderBy } = filter ?? {};
     const order = `order${orderBy.descending ? 'desc' : 'asc'}: ${orderBy.field}`;
     const query = queries.entities(type, order, offset, first, description);
-    const response = await dgraph.postQuery(query);
+    const response = await dgraph.postQuery(query);u
     const entities: Array<IEntity> = response.data.query;
 
     return new EntityCollection(entities, response?.data?.counters[0]?.total);
@@ -79,14 +79,14 @@ export class EntityResolver {
         (properties) => properties.type == 'code_rxnav'
       );
 
-      if (rxNavIds?.length) {
-        const rxCui = rxNavIds[0].value;
-        const rxNavResponse = await rxNav.getInteractions(rxCui);
-        return mappers.mapInteractionResponse(rxNavResponse);
-      }
-      console.log(`No RxNavId found for entity with code: ${entity.code}`);
+    if (rxNavIds?.length) {
+      const rxCui = rxNavIds[0].value;
+      const rxNavResponse = await rxNav.getInteractions(rxCui);
+      return mappers.mapInteractionResponse(rxNavResponse);
     }
-    console.log(`Skipping interactions fetch for ${entity.description}`);
+    console.log(`No RxNavId found for entity with code: ${entity.code}`);
+  }
+  console.log(`Skipping interactions fetch for ${entity.description}`);
   }
 }
 
