@@ -106,21 +106,18 @@ const mergeProps = (stateProps: any, dispatchProps: any) => {
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
   const onToggleFilterByDrug = () =>
     batch(() => {
-      dispatch(ExplorerActions.resetPage());
       dispatch(ExplorerActions.toggleFilterByDrug());
       dispatch(ExplorerActions.updateEntities());
     });
 
   const onToggleFilterByMedicinalProduct = () =>
     batch(() => {
-      dispatch(ExplorerActions.resetPage());
       dispatch(ExplorerActions.toggleFilterByMedicinalProduct());
       dispatch(ExplorerActions.updateEntities());
     });
 
   const onToggleFilterByOther = () =>
     batch(() => {
-      dispatch(ExplorerActions.resetPage());
       dispatch(ExplorerActions.toggleFilterByOther());
       dispatch(ExplorerActions.updateEntities());
     });

@@ -79,7 +79,7 @@ export const withCloseIcon = () => {
             color="inherit"
             onClick={() => setOpen(false)}
             size="small"
-            startIcon={<ClearIcon/>} 
+            startIcon={<ClearIcon />}
           ></Button>
         </React.Fragment>
       }
@@ -109,7 +109,7 @@ export const autoClose = () => {
             color="inherit"
             onClick={() => setOpen(false)}
             size="small"
-            startIcon={<ClearIcon/>} 
+            startIcon={<ClearIcon />}
           ></Button>
         </React.Fragment>
       }
