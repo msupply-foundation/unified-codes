@@ -10,29 +10,29 @@ import { EntitySearchInput, EntityType, EntityCollectionType, DrugInteractionTyp
 
 @ArgsType()
 class GetEntityArgs {
-  @Field(type => String)
+  @Field((type) => String)
   code;
 }
 
 @ArgsType()
 class GetEntitiesArgs {
-  @Field(type => EntitySearchInput)
+  @Field((type) => EntitySearchInput)
   filter;
 
-  @Field(type => Int) 
+  @Field((type) => Int)
   first;
 
-  @Field(type => Int)
+  @Field((type) => Int)
   offset;
 }
 
-@Resolver(of => EntityType)
+@Resolver((of) => EntityType)
 export class EntityResolver {
-  @Query(returns => EntityType)
+  @Query((returns) => EntityType)
   async entity(@Args() args: GetEntityArgs, @Ctx() ctx: IApolloServiceContext) {
     const { code } = args;
     const { token, authenticator, authoriser, dataSources } = ctx;
-    
+
     const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
 
     // TODO: add authorisation logic for any protected entities.
@@ -47,7 +47,7 @@ export class EntityResolver {
     return entity;
   }
 
-  @Query(returns => EntityCollectionType)
+  @Query((returns) => EntityCollectionType)
   async entities(@Args() args: GetEntitiesArgs, @Ctx() ctx: IApolloServiceContext) {
     const { token, authenticator, authoriser, dataSources } = ctx;
     const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
@@ -62,31 +62,34 @@ export class EntityResolver {
     const { type = EEntityType.DRUG, code, description, orderBy } = filter ?? {};
     const order = `order${orderBy.descending ? 'desc' : 'asc'}: ${orderBy.field}`;
     const query = queries.entities(type, order, offset, first, description);
-    const response = await dgraph.postQuery(query);u
+    const response = await dgraph.postQuery(query);
+    u;
     const entities: Array<IEntity> = response.data.query;
 
     return new EntityCollection(entities, response?.data?.counters[0]?.total);
   }
 
-  @FieldResolver(returns => [DrugInteractionType])
-  async interactions(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext, @Info() info: GraphQLResolveInfo) {
+  @FieldResolver((returns) => [DrugInteractionType])
+  async interactions(
+    @Root() entity: IEntity,
+    @Ctx() ctx: IApolloServiceContext,
+    @Info() info: GraphQLResolveInfo
+  ) {
     const { dataSources } = ctx;
     const rxNav: RxNavDataSource = dataSources.rxnav as RxNavDataSource;
 
     // Workaround to prevent interaction requests for multiple entities
     if (info.path.prev?.key == 'entity') {
-      const rxNavIds = entity.properties?.filter(
-        (properties) => properties.type == 'code_rxnav'
-      );
+      const rxNavIds = entity.properties?.filter((properties) => properties.type == 'code_rxnav');
 
-    if (rxNavIds?.length) {
-      const rxCui = rxNavIds[0].value;
-      const rxNavResponse = await rxNav.getInteractions(rxCui);
-      return mappers.mapInteractionResponse(rxNavResponse);
+      if (rxNavIds?.length) {
+        const rxCui = rxNavIds[0].value;
+        const rxNavResponse = await rxNav.getInteractions(rxCui);
+        return mappers.mapInteractionResponse(rxNavResponse);
+      }
+      console.log(`No RxNavId found for entity with code: ${entity.code}`);
     }
-    console.log(`No RxNavId found for entity with code: ${entity.code}`);
-  }
-  console.log(`Skipping interactions fetch for ${entity.description}`);
+    console.log(`Skipping interactions fetch for ${entity.description}`);
   }
 }
 
