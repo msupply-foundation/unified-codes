@@ -126,6 +126,7 @@ export const ExplorerReducer = (
         toggleBar: { ...state.toggleBar, [EEntityType.OTHER]: !state.toggleBar[EEntityType.OTHER] },
       };
     }
+  }
 
   return state;
 };
