@@ -33,7 +33,7 @@ export class EntityType implements IEntity {
   @Field((type) => String, { nullable: true })
   type: string;
 
-  @Field((type) => DrugInteractionType, { nullable: true })
+  @Field((type) => [DrugInteractionType], { nullable: true })
   interactions: IDrugInteraction[];
 
   @Field((type) => [EntityType], { nullable: true })
