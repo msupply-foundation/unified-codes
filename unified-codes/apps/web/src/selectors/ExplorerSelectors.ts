@@ -94,15 +94,15 @@ const selectFilterByMedicinalProduct = createSelector(
   (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.MEDICINAL_PRODUCT]
 );
 
+const selectFilterByOther = createSelector(
+  selectToggleBar,
+  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.OTHER]
+);
+
 const selectTypes = createSelector(
   selectToggleBar,
   (toggleBar: IExplorerToggleBarState): EEntityType[] =>
     Object.keys(toggleBar).filter((type: EEntityType) => toggleBar[type]) as EEntityType[]
-);
-
-const selectFilterByOther = createSelector(
-  selectToggleBar,
-  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.OTHER]
 );
 
 const selectLoading = createSelector(
