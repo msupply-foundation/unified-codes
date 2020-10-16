@@ -10,13 +10,13 @@ import ExplorerTableLayout from '../../layout/ExplorerTableLayout';
 
 import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
-import { Position } from '@unified-codes/ui/styles';
+import { withStyles, Position } from '@unified-codes/ui/styles';
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     tableContainer: {
       marginTop: 5,
-      maxHeight: `calc(100vh - 310px)`,
+      maxHeight: `calc(100vh - 330px)`,
       overflowY: 'scroll' as Overflow,
     },
     table: {
