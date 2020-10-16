@@ -7,18 +7,13 @@ import {
   TablePagination,
   TablePaginationProps,
 } from '@unified-codes/ui/components';
-import { withStyles, Position } from '@unified-codes/ui/styles';
 
 import { ExplorerActions, IExplorerAction } from '../../../actions';
 import { ExplorerSelectors } from '../../../selectors';
 import { IState } from '../../../types';
-import { ITheme } from '../../../styles';
 
-const styles = (theme: ITheme) => ({
-  root: { background: theme.palette.background.toolbar, bottom: 0, position: 'sticky' as Position },
-});
-
-export interface ExplorerTablePaginationProps extends Omit<TablePaginationProps, 'classes'> {
+export interface ExplorerTablePaginationProps
+  extends Omit<TablePaginationProps, 'classes' | 'onChangePage' | 'onChangeRowsPerPage'> {
   classes?: {
     root?: string;
     pagination?: string;
@@ -66,6 +61,6 @@ const mapStateToProps = (state: IState) => {
 export const ExplorerTablePagination = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(ExplorerTablePaginationComponent));
+)(ExplorerTablePaginationComponent);
 
 export default ExplorerTablePagination;

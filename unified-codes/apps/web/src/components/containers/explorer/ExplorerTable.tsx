@@ -10,20 +10,23 @@ import ExplorerTableLayout from '../../layout/ExplorerTableLayout';
 
 import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
+import { Position } from '@unified-codes/ui/styles';
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     tableContainer: {
       marginTop: 5,
-      maxHeight: `calc(100vh - 370px)`,
+      maxHeight: `calc(100vh - 310px)`,
       overflowY: 'scroll' as Overflow,
     },
     table: {
       borderCollapse: 'separate' as BorderCollapse,
     },
-    paginationContainer: {
-      justifyContent: 'flex-end',
+    pagination: {
       background: theme.palette.background.toolbar,
+      bottom: 0,
+      justifyContent: 'flex-end',
+      position: 'sticky' as Position,
     },
   })
 );
@@ -37,7 +40,7 @@ export const ExplorerTableComponent = () => {
       classes={classes}
       header={<ExplorerTableHeader />}
       rows={<ExplorerTableRows />}
-      pagination={<ExplorerTablePagination />}
+      pagination={<ExplorerTablePagination classes={classes} />}
     />
   );
 };
