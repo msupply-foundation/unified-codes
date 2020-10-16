@@ -19,12 +19,16 @@ const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
 
   const onClear = () =>
     batch(() => {
+      dispatch(ExplorerActions.resetPage());
       dispatch(ExplorerActions.resetInput());
       dispatch(ExplorerActions.resetFilterBy());
       dispatch(ExplorerActions.updateEntities());
     });
 
-  const onSearch = () => dispatch(ExplorerActions.updateEntities());
+  const onSearch = () => {
+    dispatch(ExplorerActions.resetPage());
+    dispatch(ExplorerActions.updateEntities());
+  };
 
   return { onChange, onClear, onSearch };
 };

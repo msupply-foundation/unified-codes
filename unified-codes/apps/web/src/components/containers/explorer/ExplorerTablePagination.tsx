@@ -39,10 +39,16 @@ export const ExplorerTablePaginationComponent: ExplorerTablePagination = ({
 );
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
-  const onChangePage = (_: React.MouseEvent<HTMLButtonElement> | null, page: number) =>
+  const onChangePage = (_: React.MouseEvent<HTMLButtonElement> | null, page: number) => {
     dispatch(ExplorerActions.updatePage(page));
-  const onChangeRowsPerPage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+    dispatch(ExplorerActions.updateEntities());
+  };
+  const onChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     dispatch(ExplorerActions.updateRowsPerPage(+event.target.value));
+    dispatch(ExplorerActions.updateEntities());
+  };
 
   return { onChangePage, onChangeRowsPerPage };
 };
