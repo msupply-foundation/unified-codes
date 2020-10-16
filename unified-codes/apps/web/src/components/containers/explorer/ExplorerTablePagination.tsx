@@ -10,7 +10,7 @@ import {
 
 import { ExplorerActions, IExplorerAction } from '../../../actions';
 import { ExplorerSelectors } from '../../../selectors';
-import { IExplorerParameters, IState } from '../../../types';
+import { IState } from '../../../types';
 
 export interface ExplorerTablePaginationProps
   extends Omit<TablePaginationProps, 'classes' | 'onChangePage' | 'onChangeRowsPerPage'> {
@@ -36,7 +36,6 @@ export const ExplorerTablePaginationComponent: ExplorerTablePagination = ({
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
   const onChangePage = (_: React.MouseEvent<HTMLButtonElement> | null, page: number) =>
     dispatch(ExplorerActions.updatePage(page));
-
   const onChangeRowsPerPage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
     dispatch(ExplorerActions.updateRowsPerPage(+event.target.value));
 
