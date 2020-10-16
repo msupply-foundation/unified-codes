@@ -1,6 +1,6 @@
 import { Action } from 'redux';
+
 import { EEntityField, IEntity } from '@unified-codes/data';
-import { IExplorerParameters } from '../types';
 
 export interface IExplorerSearchBarUpdateInputAction extends Action<string> {
   input: string;

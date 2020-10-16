@@ -8,8 +8,6 @@ import {
   IExplorerTableFetchEntitiesSuccessAction,
   IExplorerTableUpdateOrderByAction,
   IExplorerTableUpdateOrderDescAction,
-  IExplorerTableUpdatePageAction,
-  IExplorerTableUpdateRowsPerPageAction,
 } from '../actions';
 
 const initialState: IExplorerState = {
@@ -128,17 +126,6 @@ export const ExplorerReducer = (
         toggleBar: { ...state.toggleBar, [EEntityType.OTHER]: !state.toggleBar[EEntityType.OTHER] },
       };
     }
-
-    case EXPLORER_ACTIONS.UPDATE_PAGE: {
-      const { page } = action as IExplorerTableUpdatePageAction;
-      return { ...state, table: { ...state.table, page } };
-    }
-
-    case EXPLORER_ACTIONS.UPDATE_ROWS_PER_PAGE: {
-      const { rowsPerPage } = action as IExplorerTableUpdateRowsPerPageAction;
-      return { ...state, table: { ...state.table, rowsPerPage } };
-    }
-  }
 
   return state;
 };
