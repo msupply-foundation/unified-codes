@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { IAlert } from '@unified-codes/data';
+import { Alert, Snackbar } from '@unified-codes/ui/components';
 
-import Alert from '../atoms/Alert';
-import Snackbar from '../atoms/Snackbar';
+import { IAlert } from '../../../types';
 
 export interface AlertBarProps extends IAlert {
   autoHideDuration?: number;

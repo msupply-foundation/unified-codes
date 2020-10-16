@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import { IAlert } from '@unified-codes/data';
+import { IAlert } from '../types';
 
 export const ALERT_ACTIONS = {
   RAISE: 'alertActions/raise',

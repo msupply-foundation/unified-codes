@@ -1,4 +1,3 @@
-export * from './Alert';
 export * from './ApolloService';
 export * from './AuthenticationService';
 export * from './AuthorisationService';
@@ -10,3 +9,5 @@ export * from './IdentityProvider';
 export * from './JWT';
 export * from './Property';
 export * from './User';
+export * from './EntitySearch';
+export * from './EntitySort';

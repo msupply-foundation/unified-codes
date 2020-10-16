@@ -1,9 +1,39 @@
 import React from 'react';
 
-import { AlertSeverity, IAlert } from '@unified-codes/data';
-
 import AlertBar from './AlertBar';
-import { useAlert } from '../../../hooks';
+
+import { AlertSeverity, IAlert } from '../../../types';
+
+const defaultAlert: IAlert = { isVisible: false, severity: AlertSeverity.info, text: '' };
+
+export const useAlert = (initialState: IAlert = defaultAlert) => {
+  const [alert, setAlert] = React.useState(initialState);
+
+  const resetAlert = React.useCallback(() => setAlert(defaultAlert), [setAlert]);
+
+  const setAlertIsVisible = React.useCallback(
+    (isVisible: boolean) => setAlert({ ...alert, isVisible }),
+    [setAlert]
+  );
+
+  const setAlertSeverity = React.useCallback(
+    (severity: AlertSeverity) => setAlert({ ...alert, severity }),
+    [setAlert]
+  );
+
+  const setAlertText = React.useCallback((text: string) => setAlert({ ...alert, text }), [
+    setAlert,
+  ]);
+
+  return {
+    alert,
+    setAlert,
+    resetAlert,
+    setAlertIsVisible,
+    setAlertSeverity,
+    setAlertText,
+  };
+};
 
 export default {
   component: AlertBar,

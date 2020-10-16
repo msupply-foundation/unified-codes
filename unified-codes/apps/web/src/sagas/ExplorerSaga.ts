@@ -1,10 +1,10 @@
 import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 
-import { AlertSeverity, IAlert, IEntity } from '@unified-codes/data';
+import { IEntity } from '@unified-codes/data';
 
 import { AlertActions, ExplorerActions, EXPLORER_ACTIONS, IExplorerAction } from '../actions';
 import { ExplorerSelectors } from '../selectors';
-import { ExplorerQuery, IExplorerParameters } from '../types';
+import { AlertSeverity, IAlert, ExplorerQuery, IExplorerParameters } from '../types';
 
 const ALERT_SEVERITY = {
   FETCH: AlertSeverity.info,

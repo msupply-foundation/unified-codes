@@ -1,19 +1,7 @@
-import { EEntityField, EEntityType } from './Entity';
-
-export interface IEntitySort {
-  field: EEntityField;
-  descending: boolean;
-}
-
-export interface IEntityFilter {
-  code: string;
-  description: string;
-  orderBy: IEntitySort;
-  type: EEntityType;
-}
+import IEntitySearch from './EntitySearch';
 
 export interface IEntityRequest {
-  filter: IEntityFilter;
+  filter: IEntitySearch;
   first: number;
   offset: number;
 }
