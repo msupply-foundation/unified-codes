@@ -11,40 +11,42 @@ import { IState } from '../../../types';
 import { DetailSelectors } from '../../../selectors';
 import { ITheme } from '../../../styles';
 
-const useStyles = makeStyles((_: ITheme) => createStyles({
+const useStyles = makeStyles((_: ITheme) =>
+  createStyles({
     root: {
-        width: '100%',
-    }
-}));
+      width: '100%',
+    },
+  })
+);
 
 export interface DetailEntityListProps {
-    entity?: IEntity;
+  entity?: IEntity;
 }
 
 export type DetailEntityList = React.FunctionComponent<DetailEntityListProps>;
 
 export const DetailEntityListComponent: DetailEntityList = ({ entity }) => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    // TODO: handle non-drug root entities.
-    const description = "Forms";
+  // TODO: handle non-drug root entities.
+  const description = 'Forms';
 
-    const { children: childEntities } = entity ?? {};
-    const { length: entityCount } = childEntities ?? [];
+  const { children: childEntities } = entity ?? {};
+  const { length: entityCount } = childEntities ?? [];
 
-    if (!entityCount) return null;
+  if (!entityCount) return null;
 
-    return (
-        <List className={classes.root}>
-            <DetailEntityListItem description={description} childEntities={childEntities} />
-        </List>
-    );
+  return (
+    <List className={classes.root}>
+      <DetailEntityListItem description={description} childEntities={childEntities} />
+    </List>
+  );
 };
 
 const mapStateToProps = (state: IState) => {
-    const entity = DetailSelectors.selectEntity(state);
-    return { entity };  
-}
+  const entity = DetailSelectors.selectEntity(state);
+  return { entity };
+};
 
 export const DetailEntityList = connect(mapStateToProps)(DetailEntityListComponent);
 

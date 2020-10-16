@@ -13,13 +13,13 @@ import { AlertActions, IAlertAction } from '../../../actions';
 
 export interface HeaderProps {
   classes?: {
-    root?: string,
-    title1?: string,
-    title2?: string,
-    menu?: string
-  },
-  alert: IAlert,
-  resetAlert: () => void,
+    root?: string;
+    title1?: string;
+    title2?: string;
+    menu?: string;
+  };
+  alert: IAlert;
+  resetAlert: () => void;
 }
 
 const styles = (theme: ITheme) => ({
@@ -31,7 +31,7 @@ const styles = (theme: ITheme) => ({
     ' & div': {
       flex: '0 1 0%',
     },
-    boxShadow: 'none'
+    boxShadow: 'none',
   },
   body: theme.typography.body1,
   logo: {
@@ -75,7 +75,7 @@ const Header: Header = ({ classes, alert, resetAlert }) => {
         </Grid>
         <Grid item style={{ flex: 1 }}>
           <Grid container className={classes?.menu}>
-          <Grid item>
+            <Grid item>
               <Link component={RouterLink} to="/">
                 Browse
               </Link>
