@@ -12,8 +12,7 @@ import { ExplorerActions, IExplorerAction } from '../../../actions';
 import { ExplorerSelectors } from '../../../selectors';
 import { IState } from '../../../types';
 
-export interface ExplorerTablePaginationProps
-  extends Omit<TablePaginationProps, 'classes' | 'onChangePage' | 'onChangeRowsPerPage'> {
+export interface ExplorerTablePaginationProps extends Omit<TablePaginationProps, 'classes'> {
   classes?: {
     root?: string;
     pagination?: string;
