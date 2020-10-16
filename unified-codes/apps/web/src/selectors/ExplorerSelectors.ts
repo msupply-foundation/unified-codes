@@ -84,15 +84,15 @@ const selectEntities = createSelector(
   (table: IExplorerTableState): IEntity[] => table?.entities
 );
 
+const selectFilterByDrug = createSelector(
+  selectToggleBar,
+  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.DRUG]
+);
+
 const selectTypes = createSelector(
   selectToggleBar,
   (toggleBar: IExplorerToggleBarState): EEntityType[] =>
     Object.keys(toggleBar).filter((type: EEntityType) => toggleBar[type]) as EEntityType[]
-);
-
-const selectFilterByDrug = createSelector(
-  selectToggleBar,
-  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.DRUG]
 );
 
 const selectFilterByMedicinalProduct = createSelector(
