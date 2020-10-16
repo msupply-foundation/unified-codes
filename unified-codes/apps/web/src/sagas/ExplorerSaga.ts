@@ -2,13 +2,7 @@ import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 
 import { AlertSeverity, IAlert, IEntity } from '@unified-codes/data';
 
-import {
-  AlertActions,
-  ExplorerActions,
-  EXPLORER_ACTIONS,
-  IExplorerAction,
-  IExplorerTableFetchEntitiesAction,
-} from '../actions';
+import { AlertActions, ExplorerActions, EXPLORER_ACTIONS, IExplorerAction } from '../actions';
 import { ExplorerSelectors } from '../selectors';
 import { ExplorerQuery, IExplorerParameters } from '../types';
 
@@ -54,15 +48,31 @@ const getEntities = async (url: string, query: ExplorerQuery): Promise<IEntity[]
   return entities;
 };
 
-function* fetchData(action: IExplorerTableFetchEntitiesAction) {
+function* fetchData() {
   yield put(AlertActions.raiseAlert(alertFetch));
   try {
     const url:
       | string
       | undefined = `${process.env.NX_DATA_SERVICE_URL}:${process.env.NX_DATA_SERVICE_PORT}/${process.env.NX_DATA_SERVICE_GRAPHQL}`;
     if (url) {
-      const parameters: IExplorerParameters =
-        action?.parameters || (yield select(ExplorerSelectors.selectParameters));
+      const code = yield select(ExplorerSelectors.selectCode);
+      const description = yield select(ExplorerSelectors.selectDescription);
+      const types = yield select(ExplorerSelectors.selectTypes);
+      const orderBy = yield select(ExplorerSelectors.selectOrderBy);
+      const orderDesc = yield select(ExplorerSelectors.selectOrderDesc);
+      const rowsPerPage = yield select(ExplorerSelectors.selectRowsPerPage);
+      const page = yield select(ExplorerSelectors.selectPage);
+
+      const parameters: IExplorerParameters = {
+        code,
+        description,
+        types,
+        orderBy,
+        orderDesc,
+        rowsPerPage,
+        page,
+      };
+
       const query = new ExplorerQuery(parameters);
       const entities = yield call(getEntities, url, query);
 

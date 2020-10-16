@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { batch, connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import {
   TableFooter,
@@ -11,7 +11,7 @@ import { withStyles, Position } from '@unified-codes/ui/styles';
 
 import { ExplorerActions, IExplorerAction } from '../../../actions';
 import { ExplorerSelectors } from '../../../selectors';
-import { IExplorerParameters, IState } from '../../../types';
+import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
 
 const styles = (theme: ITheme) => ({
