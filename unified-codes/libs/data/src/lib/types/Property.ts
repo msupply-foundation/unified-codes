@@ -2,7 +2,7 @@ export interface IProperty {
   type: string;
   value: string;
   properties?: IProperty[];
-};
+}
 
 export class Property {
   private _type: string;

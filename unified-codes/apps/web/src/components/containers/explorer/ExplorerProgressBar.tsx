@@ -10,35 +10,37 @@ import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
 import { ExplorerSelectors } from '../../../selectors';
 
-const useStyles = makeStyles((theme: ITheme) => createStyles({
+const useStyles = makeStyles((theme: ITheme) =>
+  createStyles({
     root: {
-        zIndex: theme.zIndex.drawer + 1,
-      },
-}));
+      zIndex: theme.zIndex.drawer + 1,
+    },
+  })
+);
 
 export interface ExplorerProgressBarProps {
-    isLoading: boolean;
+  isLoading: boolean;
 }
 
 export type ExplorerProgressBar = React.FunctionComponent<ExplorerProgressBarProps>;
 
 export const ExplorerProgressBarComponent: ExplorerProgressBar = ({ isLoading }) => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    // Uncomment to enable cat mode!
-    // return <ExplorerProgressCat />;
+  // Uncomment to enable cat mode!
+  // return <ExplorerProgressCat />;
 
-    return (
-        <Backdrop className={classes.root} open={isLoading}>
-            <CircularProgress color="inherit" />;
-        </Backdrop>
-    );
-}
+  return (
+    <Backdrop className={classes.root} open={isLoading}>
+      <CircularProgress color="inherit" />;
+    </Backdrop>
+  );
+};
 
 const mapStateToProps = (state: IState) => {
-    const isLoading = ExplorerSelectors.selectLoading(state);
-    return { isLoading };
-}
+  const isLoading = ExplorerSelectors.selectLoading(state);
+  return { isLoading };
+};
 
 export const ExplorerProgressBar = connect(mapStateToProps)(ExplorerProgressBarComponent);
 

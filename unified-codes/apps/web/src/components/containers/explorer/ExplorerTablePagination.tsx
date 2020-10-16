@@ -18,63 +18,37 @@ const styles = (theme: ITheme) => ({
   root: { background: theme.palette.background.toolbar, bottom: 0, position: 'sticky' as Position },
 });
 
-export interface ExplorerTablePaginationProps
-  extends Omit<TablePaginationProps, 'classes' | 'onChangePage' | 'onChangeRowsPerPage'> {
+export interface ExplorerTablePaginationProps extends Omit<TablePaginationProps, 'classes'> {
   classes?: {
     root?: string;
     pagination?: string;
   };
-  onChangePage?: (page: number, parameters?: IExplorerParameters) => void;
-  onChangeRowsPerPage?: (rowsPerPage: number, parameters?: IExplorerParameters) => void;
-  parameters?: IExplorerParameters;
 }
 
 export type ExplorerTablePagination = React.FunctionComponent<ExplorerTablePaginationProps>;
 
 export const ExplorerTablePaginationComponent: ExplorerTablePagination = ({
   classes,
-  parameters,
-  onChangePage,
-  onChangeRowsPerPage,
   ...props
-}) => {
-  const handleChangePage = (_: React.MouseEvent<HTMLButtonElement> | null, page: number) => {
-    onChangePage && onChangePage(page, parameters);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => {
-    const rowsPerPage = +event.target.value;
-    onChangeRowsPerPage && onChangeRowsPerPage(rowsPerPage, parameters);
-  };
-
-  return (
-    <TableFooter classes={{ root: classes?.root }}>
-      <TableRow>
-        <TablePagination
-          classes={{ root: classes?.pagination }}
-          {...props}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
-        />
-      </TableRow>
-    </TableFooter>
-  );
-};
+}) => (
+  <TableFooter classes={{ root: classes?.root }}>
+    <TableRow>
+      <TablePagination classes={{ root: classes?.pagination }} {...props} />
+    </TableRow>
+  </TableFooter>
+);
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
-  const onChangePage = (page: number, parameters: IExplorerParameters) =>
-    batch(() => {
-      dispatch(ExplorerActions.updatePage(page));
-      dispatch(ExplorerActions.updateEntities({ ...parameters, page }));
-    });
-
-  const onChangeRowsPerPage = (rowsPerPage: number, parameters: IExplorerParameters) =>
-    batch(() => {
-      dispatch(ExplorerActions.updateRowsPerPage(rowsPerPage));
-      dispatch(ExplorerActions.updateEntities({ ...parameters, rowsPerPage }));
-    });
+  const onChangePage = (_: React.MouseEvent<HTMLButtonElement> | null, page: number) => {
+    dispatch(ExplorerActions.updatePage(page));
+    dispatch(ExplorerActions.updateEntities());
+  };
+  const onChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    dispatch(ExplorerActions.updateRowsPerPage(+event.target.value));
+    dispatch(ExplorerActions.updateEntities());
+  };
 
   return { onChangePage, onChangeRowsPerPage };
 };
@@ -85,9 +59,8 @@ const mapStateToProps = (state: IState) => {
   const count = ExplorerSelectors.selectCount(state);
   const rowsPerPage = ExplorerSelectors.selectRowsPerPage(state);
   const page = ExplorerSelectors.selectPage(state);
-  const parameters = ExplorerSelectors.selectParameters(state);
 
-  return { rowsPerPageOptions, count, rowsPerPage, page, parameters };
+  return { rowsPerPageOptions, count, rowsPerPage, page };
 };
 
 export const ExplorerTablePagination = connect(

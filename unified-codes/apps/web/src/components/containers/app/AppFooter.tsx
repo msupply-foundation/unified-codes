@@ -9,10 +9,10 @@ import { ITheme } from '../../../styles';
 
 export interface FooterProps {
   classes?: {
-    root: string,
-    logo: string,
-    menu: string,
-  }
+    root: string;
+    logo: string;
+    menu: string;
+  };
 }
 
 const getStyles = (theme: ITheme) => ({
@@ -44,7 +44,7 @@ const getStyles = (theme: ITheme) => ({
       fontSize: 14,
       textTransform: 'uppercase',
     },
-  }
+  },
 });
 
 export type Footer = React.FunctionComponent<FooterProps>;

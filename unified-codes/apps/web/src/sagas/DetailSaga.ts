@@ -1,18 +1,8 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 
-import {
-  AlertSeverity,
-  IEntity,
-  IAlert,
-} from '@unified-codes/data';
+import { AlertSeverity, IEntity, IAlert } from '@unified-codes/data';
 
-import {
-  DETAIL_ACTIONS,
-  DetailActions,
-  AlertActions,
-  IDetailFetchEntityAction,
-} from '../actions';
-
+import { DETAIL_ACTIONS, DetailActions, AlertActions, IDetailFetchEntityAction } from '../actions';
 
 const ALERT_SEVERITY = {
   FETCH: AlertSeverity.info,
@@ -67,10 +57,7 @@ const getEntityQuery = (code: string) => `
   }
 }`;
 
-const getEntity = async (
-  url: string,
-  code: string
-): Promise<IEntity> => {
+const getEntity = async (url: string, code: string): Promise<IEntity> => {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -104,7 +91,6 @@ function* fetchDetails(action: IDetailFetchEntityAction) {
 function* fetchDetailsSaga() {
   yield takeEvery<IDetailFetchEntityAction>(DETAIL_ACTIONS.FETCH_ENTITY, fetchDetails);
 }
-
 
 export function* detailsSaga() {
   yield all([fetchDetailsSaga()]);

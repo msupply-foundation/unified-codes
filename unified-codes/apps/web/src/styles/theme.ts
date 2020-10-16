@@ -2,10 +2,10 @@ import { createMuiTheme, Palette, Theme, ThemeOptions } from '@unified-codes/ui/
 
 export interface IPalette extends Palette {
   background: {
-      default: string;
-      footer: string;
-      paper: string;
-      toolbar: string;
+    default: string;
+    footer: string;
+    paper: string;
+    toolbar: string;
   };
 }
 

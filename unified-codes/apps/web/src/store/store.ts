@@ -9,7 +9,13 @@ import {
 } from 'redux';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 
-import { AlertReducer, AuthenticatorReducer, DetailReducer, ExplorerReducer, UserReducer } from '../reducers';
+import {
+  AlertReducer,
+  AuthenticatorReducer,
+  DetailReducer,
+  ExplorerReducer,
+  UserReducer,
+} from '../reducers';
 import { rootSaga } from '../sagas';
 import { IState } from '../types';
 

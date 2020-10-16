@@ -30,9 +30,7 @@ export interface IExplorerTableUpdateFilterByAction extends Action<string> {
   filterBy: string;
 }
 
-export interface IExplorerTableFetchEntitiesAction extends Action<string> {
-  parameters?: IExplorerParameters;
-}
+export interface IExplorerTableFetchEntitiesAction extends Action<string> {}
 
 export interface IExplorerTableFetchEntitiesSuccessAction extends Action<string> {
   entities: { data: IEntity[]; totalLength: number };
@@ -154,9 +152,8 @@ const updateOrderDesc = (orderDesc: boolean) => ({
   orderDesc,
 });
 
-export const updateEntities = (parameters?: IExplorerParameters) => ({
+export const updateEntities = () => ({
   type: EXPLORER_TABLE_ACTIONS.UPDATE_ENTITIES,
-  parameters,
 });
 
 export const updateEntitiesSuccess = (entities: IEntity[]) => ({

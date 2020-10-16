@@ -11,37 +11,39 @@ import { IState } from '../../../types';
 import { DetailSelectors } from '../../../selectors';
 import { ITheme } from '../../../styles';
 
-const useStyles = makeStyles((_: ITheme) => createStyles({
+const useStyles = makeStyles((_: ITheme) =>
+  createStyles({
     root: {
-        width: '100%',
-    }
-}));
+      width: '100%',
+    },
+  })
+);
 
 export interface DetailPropertyListProps {
-    entity: IEntity;
+  entity: IEntity;
 }
 
 export type DetailPropertyList = React.FunctionComponent<DetailPropertyListProps>;
 
 export const DetailPropertyListComponent: DetailPropertyList = ({ entity }) => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    const { properties } = entity ?? {};
-    const { length: propertyCount } = properties ?? [];
+  const { properties } = entity ?? {};
+  const { length: propertyCount } = properties ?? [];
 
-    if (!propertyCount) return null;
+  if (!propertyCount) return null;
 
-    return (
-        <List className={classes.root}>
-            <DetailPropertyListItem description="Properties" properties={properties} />
-        </List>
-    );
+  return (
+    <List className={classes.root}>
+      <DetailPropertyListItem description="Properties" properties={properties} />
+    </List>
+  );
 };
 
 const mapStateToProps = (state: IState) => {
-    const entity = DetailSelectors.selectEntity(state);
-    return { entity };  
-}
+  const entity = DetailSelectors.selectEntity(state);
+  return { entity };
+};
 
 export const DetailPropertyList = connect(mapStateToProps)(DetailPropertyListComponent);
 
