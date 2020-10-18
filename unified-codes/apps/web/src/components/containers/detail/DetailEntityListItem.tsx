@@ -8,7 +8,7 @@ import {
   ListItemText,
   Collapse,
   ArrowUpIcon,
-  ArrowDownIcon
+  ArrowDownIcon,
 } from '@unified-codes/ui/components';
 import { useToggle } from '@unified-codes/ui/hooks';
 
