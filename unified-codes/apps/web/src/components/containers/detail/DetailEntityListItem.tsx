@@ -45,8 +45,7 @@ const DetailEntityListItem: DetailEntityListItem = ({ description, childEntities
 
   const EntityListToggleItemIcon = isOpen ? ArrowUpIcon : ArrowDownIcon;
 
-  const EntityListToggleItem =
-   () =>
+  const EntityListToggleItem = () =>
     !!childCount ? (
       <ListItem button onClick={onToggle}>
         <EntityListToggleItemText />
