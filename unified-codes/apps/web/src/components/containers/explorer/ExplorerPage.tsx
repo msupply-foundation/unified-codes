@@ -17,6 +17,7 @@ import { ITheme } from '../../../styles';
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     root: {
+      overflow: 'hidden',
       width: '100%',
     },
     tableContainer: {

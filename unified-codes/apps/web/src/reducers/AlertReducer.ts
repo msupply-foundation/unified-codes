@@ -1,7 +1,5 @@
-import { IAlert, AlertSeverity } from '@unified-codes/data';
-
 import { IAlertAction, ALERT_ACTIONS, IAlertRaiseAction } from '../actions';
-import { IAlertState } from '../types';
+import { IAlert, AlertSeverity, IAlertState } from '../types';
 
 const initialState = (): IAlertState => {
   const alert: IAlert = {

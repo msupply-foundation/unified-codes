@@ -60,11 +60,28 @@ const ExplorerTableRowsComponent: ExplorerTableRows = ({ classes, columns, entit
   const rows = entities.map((entity: IEntity, index) => {
     const rowKey = entity.code;
     const rowClass = index % 2 ? classes?.rowPrimary : classes?.rowSecondary;
-    const rowCells = columns.map((column) => (
-      <TableCell key={column} className={classes?.cell}>
-        {entity[column as EEntityField]}
-      </TableCell>
-    ));
+    const rowCells = columns.map((column) => {
+      switch (column) {
+        case EEntityField.CODE:
+          return (
+            <TableCell key="code" className={classes?.cell}>
+              {entity.code}
+            </TableCell>
+          );
+        case EEntityField.DESCRIPTION:
+          return (
+            <TableCell key="description" className={classes?.cell}>
+              {entity.description}
+            </TableCell>
+          );
+        case EEntityField.TYPE:
+          return (
+            <TableCell key="type" className={classes?.cell}>
+              {entity.type}
+            </TableCell>
+          );
+      }
+    });
 
     const onRowClick = () => viewEntity(entity);
 
