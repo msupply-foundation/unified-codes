@@ -80,7 +80,6 @@ export class EntityResolver {
     const order = `order${orderBy.descending ? 'desc' : 'asc'}: ${orderBy.field}`;
     const query = queries.entities(type, order, offset, first, description);
     const response = await dgraph.postQuery(query);
-    u;
     const entities: Array<IEntity> = response.data.query;
 
     return new EntityCollection(entities, response?.data?.counters[0]?.total);

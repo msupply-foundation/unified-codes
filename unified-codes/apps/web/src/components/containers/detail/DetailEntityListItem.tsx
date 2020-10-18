@@ -48,14 +48,14 @@ const DetailEntityListItem: DetailEntityListItem = ({ description, childEntities
   const EntityListToggleItem =
    () =>
     !!childCount ? (
-      <ListItem key={description} button onClick={onToggle}>
+      <ListItem button onClick={onToggle}>
         <EntityListToggleItemText />
         <ListItemIcon>
           <EntityListToggleItemIcon />
         </ListItemIcon>
       </ListItem>
     ) : (
-      <ListItem key={description}>
+      <ListItem>
         <EntityListToggleItemText />
       </ListItem>
     );
