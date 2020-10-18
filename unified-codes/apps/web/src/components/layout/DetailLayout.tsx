@@ -21,7 +21,7 @@ export const DetailLayout: DetailLayout = ({ classes, attributeList, childList, 
     <Grid item className={classes?.attributeListContainer}>
       {attributeList}
     </Grid>
-    <Grid item direction="row" className={classes?.childListContainer}>
+    <Grid item className={classes?.childListContainer}>
       {childList}
     </Grid>
     <Grid item className={classes?.propertyListContainer}>

@@ -64,7 +64,7 @@ const DetailPropertyListItem: DetailPropertyListItem = ({ description, propertie
     const childProperties = properties?.map((property: IProperty) => {
       const { type, value, properties } = property;
       const description = `${type}: ${value}`;
-      return <DetailPropertyListItem description={description} properties={properties} />;
+      return <DetailPropertyListItem key={description} description={description} properties={properties} />;
     });
     return <List>{childProperties}</List>;
   }, [properties]);

@@ -8,7 +8,7 @@ import {
   ListItemText,
   Collapse,
   ArrowUpIcon,
-  ArrowDownIcon,
+  ArrowDownIcon
 } from '@unified-codes/ui/components';
 import { useToggle } from '@unified-codes/ui/hooks';
 
@@ -45,16 +45,17 @@ const DetailEntityListItem: DetailEntityListItem = ({ description, childEntities
 
   const EntityListToggleItemIcon = isOpen ? ArrowUpIcon : ArrowDownIcon;
 
-  const EntityListToggleItem = () =>
+  const EntityListToggleItem =
+   () =>
     !!childCount ? (
-      <ListItem button onClick={onToggle}>
+      <ListItem key={description} button onClick={onToggle}>
         <EntityListToggleItemText />
         <ListItemIcon>
           <EntityListToggleItemIcon />
         </ListItemIcon>
       </ListItem>
     ) : (
-      <ListItem>
+      <ListItem key={description}>
         <EntityListToggleItemText />
       </ListItem>
     );
@@ -63,7 +64,7 @@ const DetailEntityListItem: DetailEntityListItem = ({ description, childEntities
     if (!childCount) return null;
     const childItems = childEntities?.map((child: IEntity) => {
       const { description, children } = child;
-      return <DetailEntityListItem description={description} childEntities={children} />;
+      return <DetailEntityListItem description={description} childEntities={children} key={child.description} />;
     });
     return <List>{childItems}</List>;
   }, [childEntities]);
