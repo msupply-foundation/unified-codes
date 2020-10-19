@@ -47,6 +47,7 @@ export class EntityResolver {
     const { token, authenticator, authoriser, dataSources } = ctx;
 
     const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
+    const rxnav: RxNavDataSource = dataSources.rxnav as RxNavDataSource;
 
     // TODO: add authorisation logic for any protected entities.
     if (token) {
@@ -77,22 +78,11 @@ export class EntityResolver {
   async interactions(
     @Root() entity: IEntity,
     @Ctx() ctx: IApolloServiceContext,
-    @Info() info: GraphQLResolveInfo
   ) {
     const { dataSources } = ctx;
     const { rxnav } = dataSources as { rxnav: RxNavDataSource };
 
-    // Workaround to prevent interaction requests for multiple entities
-    if (info.path.prev?.key == 'entity') {
-      const rxNavIds = entity.properties?.filter((properties) => properties.type == 'code_rxnav');
-
-      if (rxNavIds?.length) {
-        const rxCui = rxNavIds[0].value;
-        return rxnav.getInteractions(rxCui);
-      }
-      console.log(`No RxNavId found for entity with code: ${entity.code}`);
-    }
-    console.log(`Skipping interactions fetch for ${entity.description}`);
+    return entity.interactions ?? rxnav.getInteractions(entity);
   }
 }
 

@@ -1,6 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
-import { IDrugInteraction } from '@unified-codes/data';
+import { IEntity, Entity, IDrugInteraction } from '@unified-codes/data';
 
 // RxCui is stringified numerical ID.
 // Note: ts proposal for regex-validated types: https://github.com/Microsoft/TypeScript/issues/6579.
@@ -95,10 +95,18 @@ export class RxNavDataSource extends RESTDataSource {
     this.baseURL = `${process.env.NX_RXNAV_SERVICE_URL}/${process.env.NX_RXNAV_SERVICE_REST}`;
   }
 
-  async getInteractions(rxcui: string): Promise<IDrugInteraction[]> {
+  async getInteractions(entity: IEntity): Promise<IDrugInteraction[]> {
+    const rxNavId = new Entity(entity).getProperty('code_rxnav');
+
+    if (!rxNavId) {
+      console.log(`No rxNavId found for entity with code: ${entity.code}`);
+      return [];
+    }
+
     const body: IRxNavInteractionResponseBody = await this.get(RxNavDataSource.paths.interactions, {
-      rxcui,
+      rxcui: rxNavId.value,
     });
+
     const interactions = body.interactionTypeGroup.flatMap(
       (interactionTypeGroup: IRxNavInteractionTypeGroup) => {
         const { sourceName: source } = interactionTypeGroup;

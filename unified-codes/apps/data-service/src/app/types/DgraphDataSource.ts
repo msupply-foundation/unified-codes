@@ -1,6 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
-import { EntityCollection, IEntity, Entity, EEntityField, EEntityType } from '@unified-codes/data';
+import { EntityCollection, IEntity, IEntityCollection, EEntityField, EEntityType, Entity } from '@unified-codes/data';
 
 export class DgraphDataSource extends RESTDataSource {
   private static headers: { [key: string]: string } = {
@@ -75,9 +75,11 @@ export class DgraphDataSource extends RESTDataSource {
       DgraphDataSource.getEntitiesQuery(type, description, orderField, orderDesc, first, offset)
     );
 
-    const { counters, query } = data ?? {};
-    const entities: IEntity[] = query ?? [];
-    const [{ total: totalCount }] = counters ?? [];
+    const { counters: counterData, query: entityData } = data ?? {};
+    const [totalCount] = counterData?.total ?? [];
+    // Overwrite interactions to prevent large query delays.
+    const entities: IEntity[] = entityData?.map((entity: IEntity) => ({ ...entity, interactions: [] } )) ?? [];
+
     return new EntityCollection(entities, totalCount);
   }
 
