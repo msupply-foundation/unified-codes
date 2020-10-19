@@ -47,7 +47,6 @@ export class EntityResolver {
     const { token, authenticator, authoriser, dataSources } = ctx;
 
     const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
-    const rxnav: RxNavDataSource = dataSources.rxnav as RxNavDataSource;
 
     // TODO: add authorisation logic for any protected entities.
     if (token) {
