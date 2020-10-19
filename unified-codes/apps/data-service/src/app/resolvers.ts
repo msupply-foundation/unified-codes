@@ -56,33 +56,24 @@ export class EntityResolver {
       const user: User = await authenticator.authenticate(token);
       const isAuthorised = await authoriser.authorise(user);
     }
-
-    const query = queries.entity(code);
-    const response = await dgraph.postQuery(query);
-    const [entity] = response.data.query;
-    return entity;
+    
+    return dgraph.getEntity(code);
   }
 
   @Query((returns) => EntityCollectionType)
   async entities(@Args() args: GetEntitiesArgs, @Ctx() ctx: IApolloServiceContext) {
-    const { token, authenticator, authoriser, dataSources } = ctx;
-    const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
     const { filter, first, offset } = args;
+    const { token, authenticator, authoriser, dataSources } = ctx;
 
+    const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
+    
     // TODO: add authorisation logic for any protected entities.
     if (token) {
       const user: User = await authenticator.authenticate(token);
       const isAuthorised = await authoriser.authorise(user);
     }
-
-    const { type = EEntityType.DRUG, code, description, orderBy } = filter ?? {};
-    const order = `order${orderBy.descending ? 'desc' : 'asc'}: ${orderBy.field}`;
-    const query = queries.entities(type, order, offset, first, description);
-    const response = await dgraph.postQuery(query);
-
-    const entities: Array<IEntity> = response.data.query;
-
-    return new EntityCollection(entities, response?.data?.counters[0]?.total);
+    
+    return dgraph.getEntities(filter, first, offset);
   }
 
   @FieldResolver((returns) => [DrugInteractionType])

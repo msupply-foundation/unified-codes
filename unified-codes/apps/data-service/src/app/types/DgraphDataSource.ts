@@ -1,13 +1,51 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
+import { EntityCollection, IEntity, Entity, EEntityField, EEntityType } from '@unified-codes/data';
+
 export class DgraphDataSource extends RESTDataSource {
-  static headers: { [key: string]: string } = {
+  private static headers: { [key: string]: string } = {
     'Content-Type': 'application/graphql+-',
   };
 
-  static paths: { [key: string]: string } = {
+  private static paths: { [key: string]: string } = {
     query: 'query',
   };
+
+  private static getEntityQuery(code: string) {
+    return `{
+      query(func: eq(code, ${code}), first: 1) @recurse(loop: false)  {
+        code
+        description
+        type
+        value
+        children: has_child
+        properties: has_property
+      }
+    }`;
+  }
+
+  private static getEntitiesQuery(type, description, orderField, orderDesc, first, offset) {
+    const orderString = `${orderDesc ? 'orderdesc' : 'orderasc'}: ${orderField}`;
+    const filterString = description
+      ? `@filter(regexp(description, /.*${description}.*/i))`
+      : '@filter(has(description))';
+
+    return `{
+      all as counters(func: anyofterms(type, "${type}")) ${filterString} { 
+        total: count(uid)
+      }
+      
+      query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first}) @recurse(loop: false)  {
+        code
+        description
+        type
+        uid
+        value
+        children: has_child
+        properties: has_property
+      }
+    }`;
+  }
 
   constructor() {
     super();
@@ -20,7 +58,33 @@ export class DgraphDataSource extends RESTDataSource {
     );
   }
 
+  async getEntity(code: string) {
+    const data = await this.postQuery(
+      DgraphDataSource.getEntityQuery(code)
+    );
+
+    const { query } = data ?? {};
+    const [entity] = query ?? [];
+    return entity;
+  }
+
+  async getEntities(filter, first, offset) {
+    const { type = EEntityType.DRUG, description, orderBy } = filter ?? {};
+    const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = true } = orderBy ?? {};
+
+    const data = await this.postQuery(
+      DgraphDataSource.getEntitiesQuery(type, description, orderField, orderDesc, first, offset)
+    );
+
+    const { counters, query } = data ?? {};
+    const entities: IEntity[] = query ?? [];
+    const [{ total: totalCount }] = counters ?? [];
+    return new EntityCollection(entities, totalCount);
+  }
+
   async postQuery(query) {
-    return this.post(DgraphDataSource.paths.query, query);
+    const response = await this.post(DgraphDataSource.paths.query, query);
+    const { data } = response;
+    return data;
   }
 }
