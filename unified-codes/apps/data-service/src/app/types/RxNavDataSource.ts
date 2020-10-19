@@ -69,7 +69,7 @@ export interface IRxNavInteractionType {
 
 export interface IRxNavInteractionTypeGroup {
   sourceDisclaimer: string;
-  sourceName: string;
+  sourceName: RxNavSource;
   interactionType: IRxNavInteractionType[];
 }
 
