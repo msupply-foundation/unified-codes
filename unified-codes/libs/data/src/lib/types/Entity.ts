@@ -1,3 +1,4 @@
+import { IDrugInteraction } from './DrugInteraction';
 import { IProperty, Property } from './Property';
 
 export enum EEntityType {
@@ -17,6 +18,7 @@ export interface IEntity {
   code: string;
   description: string;
   type: EEntityType | string;
+  interactions?: IDrugInteraction[];
   children?: IEntity[];
   properties?: IProperty[];
 }
