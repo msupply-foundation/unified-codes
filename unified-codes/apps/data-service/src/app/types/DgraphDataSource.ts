@@ -1,14 +1,13 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
 export class DgraphDataSource extends RESTDataSource {
-  static headers: { [key: string]: string } = { 
-    'Content-Type': 'application/graphql+-'
+  static headers: { [key: string]: string } = {
+    'Content-Type': 'application/graphql+-',
   };
 
   static paths: { [key: string]: string } = {
-    query: 'query'
+    query: 'query',
   };
-
 
   constructor() {
     super();
@@ -16,7 +15,9 @@ export class DgraphDataSource extends RESTDataSource {
   }
 
   willSendRequest(request) {
-    Object.entries(DgraphDataSource.headers).forEach(([key, value]) => request.headers.set(key, value));
+    Object.entries(DgraphDataSource.headers).forEach(([key, value]) =>
+      request.headers.set(key, value)
+    );
   }
 
   async postQuery(query) {
