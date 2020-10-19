@@ -58,6 +58,16 @@ export class Entity implements IEntity {
     return this._properties;
   }
 
+  getChild(code: string) {
+    const [entity] = this._children?.filter((child: IEntity) => child.code === code);
+    return entity;
+  }
+
+  getProperty(type: string) {
+    const [property] = this.properties?.filter((property: IProperty) => property.type === type);
+    return property;
+  }
+
   matchesCode(pattern: string) {
     return this.code.toLowerCase().includes(pattern.toLowerCase());
   }
