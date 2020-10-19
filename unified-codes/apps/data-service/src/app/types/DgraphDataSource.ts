@@ -59,9 +59,7 @@ export class DgraphDataSource extends RESTDataSource {
   }
 
   async getEntity(code: string) {
-    const data = await this.postQuery(
-      DgraphDataSource.getEntityQuery(code)
-    );
+    const data = await this.postQuery(DgraphDataSource.getEntityQuery(code));
 
     const { query } = data ?? {};
     const [entity] = query ?? [];
@@ -70,7 +68,8 @@ export class DgraphDataSource extends RESTDataSource {
 
   async getEntities(filter, first, offset) {
     const { type = EEntityType.DRUG, description, orderBy } = filter ?? {};
-    const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = true } = orderBy ?? {};
+    const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = true } =
+      orderBy ?? {};
 
     const data = await this.postQuery(
       DgraphDataSource.getEntitiesQuery(type, description, orderField, orderDesc, first, offset)

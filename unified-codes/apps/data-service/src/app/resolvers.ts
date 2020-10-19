@@ -56,7 +56,7 @@ export class EntityResolver {
       const user: User = await authenticator.authenticate(token);
       const isAuthorised = await authoriser.authorise(user);
     }
-    
+
     return dgraph.getEntity(code);
   }
 
@@ -66,13 +66,13 @@ export class EntityResolver {
     const { token, authenticator, authoriser, dataSources } = ctx;
 
     const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
-    
+
     // TODO: add authorisation logic for any protected entities.
     if (token) {
       const user: User = await authenticator.authenticate(token);
       const isAuthorised = await authoriser.authorise(user);
     }
-    
+
     return dgraph.getEntities(filter, first, offset);
   }
 
