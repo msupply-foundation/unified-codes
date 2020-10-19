@@ -15,13 +15,10 @@ import {
 import {
   User,
   IEntity,
-  EntityCollection,
   IApolloServiceContext,
-  EEntityType,
 } from '@unified-codes/data';
 
 import { DgraphDataSource, RxNavDataSource } from './types';
-import { queries } from './queries';
 import { EntitySearchInput, EntityType, EntityCollectionType, DrugInteractionType } from './schema';
 
 @ArgsType()
