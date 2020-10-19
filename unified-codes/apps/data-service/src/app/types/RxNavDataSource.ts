@@ -1,6 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
-import { IEntity, Entity, IDrugInteraction } from '@unified-codes/data';
+import { Entity, IDrugInteraction, IEntity } from '@unified-codes/data';
 
 // RxCui is stringified numerical ID.
 // Note: ts proposal for regex-validated types: https://github.com/Microsoft/TypeScript/issues/6579.
@@ -11,26 +11,26 @@ export type RxNavSource = 'DrugBank' | 'ONCHigh';
 
 // See https://www.nlm.nih.gov/research/umls/rxnorm/docs/appendix5.html for details.
 export type RxNavTermType =
-  | 'IN'
-  | 'PIN'
-  | 'MIN'
-  | 'SCDC'
-  | 'SCDF'
-  | 'SCDG'
-  | 'SCD'
-  | 'GPCK'
   | 'BN'
+  | 'BPCK'
+  | 'DF'
+  | 'DFG'
+  | 'ET'
+  | 'GPCK'
+  | 'IN'
+  | 'MIN'
+  | 'PIN'
+  | 'PSN'
+  | 'SBD'
   | 'SBDC'
   | 'SBDF'
   | 'SBDG'
-  | 'SBD'
-  | 'BPCK'
-  | 'PSN'
+  | 'SCD'
+  | 'SCDC'
+  | 'SCDF'
+  | 'SCDG'
   | 'SY'
-  | 'TMSY'
-  | 'DF'
-  | 'ET'
-  | 'DFG';
+  | 'TMSY';
 
 // DrugBank contains no severity levels for interactions. ONCHigh interactions are all high-priority severity.
 export type RxNavInteractionSeverity = 'N/A' | 'high';

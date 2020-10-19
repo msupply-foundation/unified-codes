@@ -1,25 +1,19 @@
-import { GraphQLResolveInfo } from 'graphql/type';
 import {
-  Resolver,
-  Query,
-  Ctx,
   Args,
   ArgsType,
+  Ctx,
   Field,
   FieldResolver,
-  Root,
-  Info,
   Int,
+  Query,
+  Resolver,
+  Root,
 } from 'type-graphql';
 
-import {
-  User,
-  IEntity,
-  IApolloServiceContext,
-} from '@unified-codes/data';
+import { IApolloServiceContext, IEntity, User } from '@unified-codes/data';
 
 import { DgraphDataSource, RxNavDataSource } from './types';
-import { EntitySearchInput, EntityType, EntityCollectionType, DrugInteractionType } from './schema';
+import { DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityType } from './schema';
 
 @ArgsType()
 class GetEntityArgs {
@@ -74,10 +68,7 @@ export class EntityResolver {
   }
 
   @FieldResolver((returns) => [DrugInteractionType])
-  async interactions(
-    @Root() entity: IEntity,
-    @Ctx() ctx: IApolloServiceContext,
-  ) {
+  async interactions(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext) {
     const { dataSources } = ctx;
     const { rxnav } = dataSources as { rxnav: RxNavDataSource };
 
