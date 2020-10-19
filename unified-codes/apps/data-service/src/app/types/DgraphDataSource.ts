@@ -58,7 +58,7 @@ export class DgraphDataSource extends RESTDataSource {
     );
   }
 
-  async getEntity(code: string) {
+  async getEntity(code: string): Promise<IEntity> {
     const data = await this.postQuery(DgraphDataSource.getEntityQuery(code));
 
     const { query } = data ?? {};
@@ -66,7 +66,7 @@ export class DgraphDataSource extends RESTDataSource {
     return entity;
   }
 
-  async getEntities(filter, first, offset) {
+  async getEntities(filter, first, offset): Promise<IEntityCollection> {
     const { type = EEntityType.DRUG, description, orderBy } = filter ?? {};
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = true } =
       orderBy ?? {};
