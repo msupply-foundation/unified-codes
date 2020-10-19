@@ -20,9 +20,8 @@ import {
   EEntityType,
 } from '@unified-codes/data';
 
-import { DgraphDataSource, RxNavDataSource } from './data';
+import { DgraphDataSource, RxNavDataSource } from './types';
 import { queries } from './queries';
-import { mappers } from './mappers';
 import { EntitySearchInput, EntityType, EntityCollectionType, DrugInteractionType } from './schema';
 
 @ArgsType()
@@ -80,7 +79,7 @@ export class EntityResolver {
     const order = `order${orderBy.descending ? 'desc' : 'asc'}: ${orderBy.field}`;
     const query = queries.entities(type, order, offset, first, description);
     const response = await dgraph.postQuery(query);
-    u;
+
     const entities: Array<IEntity> = response.data.query;
 
     return new EntityCollection(entities, response?.data?.counters[0]?.total);
@@ -93,7 +92,7 @@ export class EntityResolver {
     @Info() info: GraphQLResolveInfo
   ) {
     const { dataSources } = ctx;
-    const rxNav: RxNavDataSource = dataSources.rxnav as RxNavDataSource;
+    const { rxnav } = dataSources as { rxnav: RxNavDataSource };
 
     // Workaround to prevent interaction requests for multiple entities
     if (info.path.prev?.key == 'entity') {
@@ -101,8 +100,7 @@ export class EntityResolver {
 
       if (rxNavIds?.length) {
         const rxCui = rxNavIds[0].value;
-        const rxNavResponse = await rxNav.getInteractions(rxCui);
-        return mappers.mapInteractionResponse(rxNavResponse);
+        return rxnav.getInteractions(rxCui);
       }
       console.log(`No RxNavId found for entity with code: ${entity.code}`);
     }
