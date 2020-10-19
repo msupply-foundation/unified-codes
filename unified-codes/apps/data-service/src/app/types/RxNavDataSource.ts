@@ -86,7 +86,7 @@ export interface IRxNavInteractionResponseBody {
 }
 
 export class RxNavDataSource extends RESTDataSource {
-  static paths: { [key: string]: string } = {
+  private static paths: { [key: string]: string } = {
     interactions: '/interaction/interaction.json',
   };
 
