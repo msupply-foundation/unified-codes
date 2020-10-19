@@ -73,13 +73,15 @@ export interface IRxNavInteractionTypeGroup {
   interactionType: IRxNavInteractionType[];
 }
 
+export interface IRxNavInteractionInput {
+  sources: RxNavSource[];
+  rxcui: RxNavCui;
+  tty: RxNavTermType;
+}
+
 export interface IRxNavInteractionResponseBody {
   nlmDisclaimer: string;
-  userInput: {
-    sources: RxNavSource[];
-    rxcui: RxNavCui;
-    tty: RxNavTermType;
-  };
+  userInput: IRxNavInteractionInput;
   interactionTypeGroup: IRxNavInteractionTypeGroup[];
 }
 
