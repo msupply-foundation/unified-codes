@@ -63,7 +63,7 @@ const DetailEntityListItem: DetailEntityListItem = ({ description, childEntities
     if (!childCount) return null;
     const childItems = childEntities?.map((child: IEntity) => {
       const { description, children } = child;
-      return <DetailEntityListItem description={description} childEntities={children} key={child.description} />;
+      return <DetailEntityListItem description={description} childEntities={children} key={child.code} />;
     });
     return <List>{childItems}</List>;
   }, [childEntities]);
