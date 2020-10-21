@@ -18,13 +18,13 @@ export type DetailLayout = React.FunctionComponent<DetailLayoutProps>;
 
 export const DetailLayout: DetailLayout = ({ classes, attributeList, childList, propertyList }) => (
   <Grid container direction="column" className={classes?.root}>
-    <Grid item className={classes?.attributeListContainer}>
+    <Grid container className={classes?.attributeListContainer}>
       {attributeList}
     </Grid>
-    <Grid item className={classes?.childListContainer}>
+    <Grid container className={classes?.childListContainer}>
       {childList}
     </Grid>
-    <Grid item className={classes?.propertyListContainer}>
+    <Grid container className={classes?.propertyListContainer}>
       {propertyList}
     </Grid>
   </Grid>
