@@ -60,7 +60,7 @@ export class EntitySearchInput implements Omit<IEntitySearch, 'type'> {
   @Field((type) => String, { nullable: true })
   description: string;
 
-  @Field((type) => EntitySortInput, { nullable: true })
+  @Field((type) => EntitySortInput)
   orderBy: IEntitySort;
 
   @Field((type) => String, { nullable: true })
