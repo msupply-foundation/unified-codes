@@ -60,7 +60,7 @@ export class EntitySearchInput implements Omit<IEntitySearch, 'type'> {
   @Field((type) => String, { nullable: true })
   description: string;
 
-  @Field((type) => EntitySortInput)
+  @Field((type) => EntitySortInput, { nullable: true })
   orderBy: IEntitySort;
 
   @Field((type) => String, { nullable: true })
@@ -69,10 +69,16 @@ export class EntitySearchInput implements Omit<IEntitySearch, 'type'> {
 
 @InputType()
 export class EntitySortInput implements Omit<IEntitySort, 'field'> {
-  @Field((type) => Boolean)
+  @Field((type) => Boolean, {
+    nullable: true,
+    description: 'Defaults to ascending search if not specified',
+  })
   descending: boolean;
 
-  @Field((type) => String)
+  @Field((type) => String, {
+    nullable: true,
+    description: 'Defaults to search on description if not specified',
+  })
   field: string;
 }
 
