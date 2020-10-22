@@ -24,7 +24,7 @@ export class EntityType implements IEntity {
   @Field((type) => [EntityType], { nullable: true })
   children: IEntity[];
 
-  @Field((type) => String, { nullable: true })
+  @Field((type) => String)
   code: string;
 
   @Field((type) => String, { nullable: true })
@@ -36,7 +36,7 @@ export class EntityType implements IEntity {
   @Field((type) => [PropertyType], { nullable: true })
   properties: IProperty[];
 
-  @Field((type) => String, { nullable: true })
+  @Field((type) => String)
   type: string;
 
   @Field((type) => ID)
