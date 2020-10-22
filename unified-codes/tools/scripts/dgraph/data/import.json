@@ -22595,7 +22595,11 @@
 										{
 											"value": 1666798,
 											"type": "code_rxnav"
-										}
+                    },
+                    {
+                      "value": "1.3, 2.3",
+                      "type": "who_eml"
+                    }
 									],
 									"type": "unit_of_use"
 								},
