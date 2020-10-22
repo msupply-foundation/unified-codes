@@ -1,6 +1,12 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
-import { EntityCollection, IEntity, Entity, EEntityField, EEntityType } from '@unified-codes/data';
+import {
+  EEntityField,
+  EEntityType,
+  EntityCollection,
+  IEntity,
+  IEntityCollection,
+} from '@unified-codes/data';
 
 export class DgraphDataSource extends RESTDataSource {
   private static headers: { [key: string]: string } = {
@@ -58,7 +64,7 @@ export class DgraphDataSource extends RESTDataSource {
     );
   }
 
-  async getEntity(code: string) {
+  async getEntity(code: string): Promise<IEntity> {
     const data = await this.postQuery(DgraphDataSource.getEntityQuery(code));
 
     const { query } = data ?? {};
@@ -66,7 +72,7 @@ export class DgraphDataSource extends RESTDataSource {
     return entity;
   }
 
-  async getEntities(filter, first, offset) {
+  async getEntities(filter, first, offset): Promise<IEntityCollection> {
     const { type = EEntityType.DRUG, description, orderBy } = filter ?? {};
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = true } =
       orderBy ?? {};
@@ -75,9 +81,12 @@ export class DgraphDataSource extends RESTDataSource {
       DgraphDataSource.getEntitiesQuery(type, description, orderField, orderDesc, first, offset)
     );
 
-    const { counters, query } = data ?? {};
-    const entities: IEntity[] = query ?? [];
-    const [{ total: totalCount }] = counters ?? [];
+    const { counters: counterData, query: entityData } = data ?? {};
+    const [totalCount] = counterData?.total ?? [];
+    // Overwrite interactions to prevent large query delays.
+    const entities: IEntity[] =
+      entityData?.map((entity: IEntity) => ({ ...entity, interactions: [] })) ?? [];
+
     return new EntityCollection(entities, totalCount);
   }
 

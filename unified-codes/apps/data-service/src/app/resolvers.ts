@@ -1,25 +1,19 @@
-import { GraphQLResolveInfo } from 'graphql/type';
 import {
-  Resolver,
-  Query,
-  Ctx,
   Args,
   ArgsType,
+  Ctx,
   Field,
   FieldResolver,
-  Root,
-  Info,
   Int,
+  Query,
+  Resolver,
+  Root,
 } from 'type-graphql';
 
-import {
-  User,
-  IEntity,
-  IApolloServiceContext,
-} from '@unified-codes/data';
+import { IApolloServiceContext, IEntity, User } from '@unified-codes/data';
 
 import { DgraphDataSource, RxNavDataSource } from './types';
-import { EntitySearchInput, EntityType, EntityCollectionType, DrugInteractionType } from './schema';
+import { DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityType } from './schema';
 
 @ArgsType()
 class GetEntityArgs {
@@ -74,25 +68,11 @@ export class EntityResolver {
   }
 
   @FieldResolver((returns) => [DrugInteractionType])
-  async interactions(
-    @Root() entity: IEntity,
-    @Ctx() ctx: IApolloServiceContext,
-    @Info() info: GraphQLResolveInfo
-  ) {
+  async interactions(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext) {
     const { dataSources } = ctx;
     const { rxnav } = dataSources as { rxnav: RxNavDataSource };
 
-    // Workaround to prevent interaction requests for multiple entities
-    if (info.path.prev?.key == 'entity') {
-      const rxNavIds = entity.properties?.filter((properties) => properties.type == 'code_rxnav');
-
-      if (rxNavIds?.length) {
-        const rxCui = rxNavIds[0].value;
-        return rxnav.getInteractions(rxCui);
-      }
-      console.log(`No RxNavId found for entity with code: ${entity.code}`);
-    }
-    console.log(`Skipping interactions fetch for ${entity.description}`);
+    return entity.interactions ?? rxnav.getInteractions(entity);
   }
 }
 
