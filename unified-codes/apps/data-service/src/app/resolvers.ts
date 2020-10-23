@@ -77,8 +77,15 @@ export class EntityResolver {
     }
 
     const { type = EEntityType.DRUG, code, description, orderBy } = filter ?? {};
-    const order = `order${orderBy.descending ? 'desc' : 'asc'}: ${orderBy.field}`;
-    const query = queries.entities(type, order, offset, first, description);
+    const orderDirection = `order${orderBy?.descending ? 'desc' : 'asc'}`;
+    const orderField = orderBy?.field ?? 'description';
+    const query = queries.entities(
+      type,
+      `${orderDirection}: ${orderField}`,
+      offset,
+      first,
+      description
+    );
     const response = await dgraph.postQuery(query);
     const entities: Array<IEntity> = response.data.query;
 
