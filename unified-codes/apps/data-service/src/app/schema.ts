@@ -1,4 +1,4 @@
-import { registerEnumType, ObjectType, InputType, Field, Int, ID } from 'type-graphql';
+import { Field, ID, InputType, Int, ObjectType, registerEnumType } from 'type-graphql';
 
 import {
   IEntity,

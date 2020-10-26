@@ -3,8 +3,6 @@ import 'reflect-metadata';
 import fastify from 'fastify';
 import { ApolloServer } from 'apollo-server-fastify';
 
-import * as Data from './data';
-
 import { ApolloService, KeyCloakIdentityProvider } from '@unified-codes/data';
 
 export const createApolloServer = async (
