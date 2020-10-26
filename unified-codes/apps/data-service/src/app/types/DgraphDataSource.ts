@@ -81,8 +81,10 @@ export class DgraphDataSource extends RESTDataSource {
       DgraphDataSource.getEntitiesQuery(type, description, orderField, orderDesc, first, offset)
     );
 
-    const { counters: counterData, query: entityData } = data ?? {};
+    const { counters: countersData, query: entityData } = data ?? {};
+    const [counterData] = countersData;
     const [totalCount] = counterData?.total ?? [];
+    
     // Overwrite interactions to prevent large query delays.
     const entities: IEntity[] =
       entityData?.map((entity: IEntity) => ({ ...entity, interactions: [] })) ?? [];

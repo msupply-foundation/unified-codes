@@ -21,26 +21,26 @@ import {
 
 @ObjectType()
 export class EntityType implements IEntity {
-  @Field((type) => ID)
-  uid: string;
+  @Field((type) => [EntityType], { nullable: true })
+  children: IEntity[];
 
-  @Field((type) => String, { nullable: true })
+  @Field((type) => String)
   code: string;
 
   @Field((type) => String, { nullable: true })
   description: string;
 
-  @Field((type) => String, { nullable: true })
-  type: string;
-
   @Field((type) => [DrugInteractionType], { nullable: true })
   interactions: IDrugInteraction[];
 
-  @Field((type) => [EntityType], { nullable: true })
-  children: IEntity[];
-
   @Field((type) => [PropertyType], { nullable: true })
   properties: IProperty[];
+
+  @Field((type) => String)
+  type: string;
+
+  @Field((type) => ID)
+  uid: string;
 }
 
 @ObjectType()
@@ -69,39 +69,45 @@ export class EntitySearchInput implements Omit<IEntitySearch, 'type'> {
 
 @InputType()
 export class EntitySortInput implements Omit<IEntitySort, 'field'> {
-  @Field((type) => String)
-  field: string;
-
-  @Field((type) => Boolean)
+  @Field((type) => Boolean, {
+    nullable: true,
+    description: 'Defaults to ascending search if not specified',
+  })
   descending: boolean;
+
+  @Field((type) => String, {
+    nullable: true,
+    description: 'Defaults to search on description if not specified',
+  })
+  field: string;
 }
 
 @ObjectType()
 export class PropertyType implements IProperty {
+  @Field((type) => [PropertyType], { nullable: true })
+  properties: IProperty[];
+
   @Field((type) => String)
   type: string;
 
   @Field((type) => String)
   value: string;
-
-  @Field((type) => [PropertyType], { nullable: true })
-  properties: IProperty[];
 }
 
 @ObjectType()
 export class DrugInteractionType implements IDrugInteraction {
   @Field((type) => String)
+  description: string;
+
+  @Field((type) => String)
   name: string;
 
   @Field((type) => String)
-  description: string;
+  rxcui: string;
 
   @Field((type) => String)
   severity: string;
 
   @Field((type) => String)
   source: string;
-
-  @Field((type) => String)
-  rxcui: string;
 }
