@@ -171,7 +171,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "tsConfig": ["apps/web/tsconfig.app.json", "apps/web/tsconfig.spec.json"],
+            "tsConfig": [
+              "apps/web/tsconfig.app.json",
+              "apps/web/tsconfig.spec.json",
+              "apps\\web\\.storybook\\tsconfig.json"
+            ],
             "exclude": ["**/node_modules/**", "!apps/web/**/*"]
           }
         },
@@ -253,7 +257,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "tsConfig": ["libs/ui/tsconfig.lib.json", "libs/ui/tsconfig.spec.json"],
+            "tsConfig": [
+              "libs/ui/tsconfig.lib.json",
+              "libs/ui/tsconfig.spec.json",
+              "libs\\ui\\.storybook\\tsconfig.json"
+            ],
             "exclude": ["**/node_modules/**", "!libs/ui/**/*"]
           }
         },

@@ -1,36 +1,29 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# compiled output
+# dependencies
+/node_modules
+migrations.json
+npm-debug.log
+yarn-error.log
+
+# typescript
 /dist
 /tmp
 /out-tsc
-
-# dependencies
-/node_modules
 
 # env
 .env
 .local.env
 
-# IDEs + editors
-/.idea
+# editors
+.idea
 .project
 .classpath
 .c9/
-*.launch
 .settings/
+.vscode/
+*.launch
 *.sublime-workspace
-.vscode/*
-
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
 
 # system
 .DS_Store
