@@ -14,7 +14,7 @@ export interface IApolloServiceContext {
   token?: JWTToken;
   authenticator: AuthenticationService;
   authoriser: AuthorisationService;
-  dataSources: { [key: string]: DataSource<object> };
+  dataSources: { [key: string]: DataSource<Record<string, unknown>> };
 }
 
 export class ApolloService {
