@@ -9,7 +9,7 @@
           "name": "Amoxicillin",
           "name@alt1": "Amoxicillin Anhydrous",
           "name@alt2": "Amoxicillin trihydrate",
-          "name@alt3": "Amoxicillin Amoxicillin sodium",
+          "name@alt3": "Amoxicillin sodium",
           "code": "4231441c",
           "dgraph.type": "ProductType",
           "children": [
