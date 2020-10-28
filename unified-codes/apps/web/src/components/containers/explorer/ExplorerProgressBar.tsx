@@ -14,25 +14,36 @@ const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     root: {
       zIndex: theme.zIndex.drawer + 1,
+      backgroundColor: 'rgba(249, 249, 251, 0.9)',
     },
   })
 );
 
+export type ProgressType = 'cat' | 'material-ui' | undefined;
+
 export interface ExplorerProgressBarProps {
   isLoading: boolean;
+  type: ProgressType;
 }
 
 export type ExplorerProgressBar = React.FunctionComponent<ExplorerProgressBarProps>;
 
-export const ExplorerProgressBarComponent: ExplorerProgressBar = ({ isLoading }) => {
-  const classes = useStyles();
+const getProgressIndicator = (type: ProgressType) => {
+  switch (type) {
+    case 'cat':
+      return <ExplorerProgressCat />;
+    default:
+      return <CircularProgress color="inherit" />;
+  }
+};
 
-  // Uncomment to enable cat mode!
-  // return <ExplorerProgressCat />;
+export const ExplorerProgressBarComponent: ExplorerProgressBar = ({ isLoading, type }) => {
+  const classes = useStyles();
+  const progressIndicator = getProgressIndicator(type);
 
   return (
     <Backdrop className={classes.root} open={isLoading}>
-      <CircularProgress color="inherit" />;
+      {progressIndicator}
     </Backdrop>
   );
 };

@@ -67,7 +67,7 @@ export const ExplorerPageComponent: ExplorerPage = ({
       table={<ExplorerTable />}
       toggleBar={<ExplorerToggleBar />}
       searchBar={<ExplorerSearchBar />}
-      progressBar={<ExplorerProgressBar />}
+      progressBar={<ExplorerProgressBar type="cat" />}
     />
   );
 };
