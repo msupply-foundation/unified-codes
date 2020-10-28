@@ -83,7 +83,7 @@ export class DgraphDataSource extends RESTDataSource {
 
     const { counters: countersData, query: entityData } = data ?? {};
     const [counterData] = countersData;
-    const [totalCount] = counterData?.total ?? [];
+    const totalCount = counterData?.total;
     
     // Overwrite interactions to prevent large query delays.
     const entities: IEntity[] =

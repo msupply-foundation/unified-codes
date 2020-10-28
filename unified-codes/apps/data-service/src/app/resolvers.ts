@@ -10,7 +10,7 @@ import {
   Root,
 } from 'type-graphql';
 
-import { IApolloServiceContext, IEntity, User } from '@unified-codes/data';
+import { IApolloServiceContext, IDrugInteraction, IEntity, IEntityCollection, User } from '@unified-codes/data';
 
 import { DgraphDataSource, RxNavDataSource } from './types';
 import { DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityType } from './schema';
@@ -36,7 +36,7 @@ class GetEntitiesArgs {
 @Resolver((of) => EntityType)
 export class EntityResolver {
   @Query((returns) => EntityType)
-  async entity(@Args() args: GetEntityArgs, @Ctx() ctx: IApolloServiceContext) {
+  async entity(@Args() args: GetEntityArgs, @Ctx() ctx: IApolloServiceContext): Promise<IEntity> {
     const { code } = args;
     const { token, authenticator, authoriser, dataSources } = ctx;
 
@@ -52,7 +52,7 @@ export class EntityResolver {
   }
 
   @Query((returns) => EntityCollectionType)
-  async entities(@Args() args: GetEntitiesArgs, @Ctx() ctx: IApolloServiceContext) {
+  async entities(@Args() args: GetEntitiesArgs, @Ctx() ctx: IApolloServiceContext): Promise<IEntityCollection> {
     const { filter, first, offset } = args;
     const { token, authenticator, authoriser, dataSources } = ctx;
 
@@ -68,7 +68,7 @@ export class EntityResolver {
   }
 
   @FieldResolver((returns) => [DrugInteractionType])
-  async interactions(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext) {
+  async interactions(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext): Promise<IDrugInteraction[]> {
     const { dataSources } = ctx;
     const { rxnav } = dataSources as { rxnav: RxNavDataSource };
 
