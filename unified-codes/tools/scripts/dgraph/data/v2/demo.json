@@ -26,7 +26,7 @@
                     {
                       "name": "250mg",
                       "code": "368c74bf",
-                      "dgraph.type": "PackUnit",
+                      "dgraph.type": "DoseUnit",
                       "children": [
                         {
                           "name": "100",
@@ -45,7 +45,7 @@
                     {
                       "code": "2edfb36f",
                       "name": "125mg/5mL",
-                      "dgraph.type": "PackUnit"
+                      "dgraph.type": "DoseUnit"
                     }
                   ],
                   "properties": [
@@ -107,6 +107,114 @@
             },
             {
               "value": "20023151000116107",
+              "type": "code_nzulm",
+              "dgraph.type": "Property"
+            }
+          ]
+        },
+        {
+          "name": "Paracetamol",
+          "code": "23332310",
+          "dgraph.type": "ProductType",
+          "children": [
+            {
+              "code": "5b74f17e",
+              "name": "oral",
+              "dgraph.type": "DoseType",
+              "children": [
+                {
+                  "code": "3448c507",
+                  "name": "liquid",
+                  "dgraph.type": "DoseForm",
+                  "children": [
+                    {
+                      "code": "bbfcf518",
+                      "name": "120mg/5mL",
+                      "dgraph.type": "DoseUnit",
+                      "properties": [
+                        {
+                          "value": "2.1, 7.1",
+                          "type": "who_eml",
+                          "dgraph.type": "Property"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": "aaecc38c",
+                  "name": "tablet",
+                  "dgraph.type": "DoseForm",
+                  "children": [
+                    {
+                      "code": "5589f4bf",
+                      "name": "300mg",
+                      "dgraph.type": "DoseUnit",
+                      "properties": [
+                        {
+                          "value": "2.1, 7.1",
+                          "type": "who_eml",
+                          "dgraph.type": "Property"
+                        }
+                      ]
+                    },
+                    {
+                      "code": "558e84bf",
+                      "name": "400mg",
+                      "dgraph.type": "DoseUnit",
+                      "properties": [
+                        {
+                          "value": "2.1, 7.1",
+                          "type": "who_eml",
+                          "dgraph.type": "Property"
+                        }
+                      ]
+                    },
+                    {
+                      "code": "559794bf",
+                      "name": "500mg",
+                      "dgraph.type": "DoseUnit",
+                      "properties": [
+                        {
+                          "value": "2.1, 7.1",
+                          "type": "who_eml",
+                          "dgraph.type": "Property"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": [
+            {
+              "value": "3 g O. P, R",
+              "type": "ddd",
+              "dgraph.type": "Property"
+            },
+            {
+              "value": 161,
+              "type": "code_rxnav",
+              "dgraph.type": "Property"
+            },
+            {
+              "value": "2.1, 7.1",
+              "type": "who_eml",
+              "dgraph.type": "Property"
+            },
+            {
+              "value": "N02BE01",
+              "type": "code_who_atc",
+              "dgraph.type": "Property"
+            },
+            {
+              "value": 51381701,
+              "type": "code_unspsc",
+              "dgraph.type": "Property"
+            },
+            {
+              "value": "10037191000116105",
               "type": "code_nzulm",
               "dgraph.type": "Property"
             }
