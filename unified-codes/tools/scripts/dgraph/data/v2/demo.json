@@ -1,0 +1,118 @@
+{
+  "set": [
+    {
+      "name": "Medicinal",
+      "dgraph.type": "ProductCategory",
+      "code": "MEDICINALCODE",
+      "children": [
+        {
+          "name": "Amoxicillin",
+          "name@alt1": "Amoxicillin Anhydrous",
+          "name@alt2": "Amoxicillin trihydrate",
+          "name@alt3": "Amoxicillin Amoxicillin sodium",
+          "code": "4231441c",
+          "dgraph.type": "ProductType",
+          "children": [
+            {
+              "code": "7693607d",
+              "name": "oral",
+              "dgraph.type": "DoseType",
+              "children": [
+                {
+                  "code": "2edfb36f",
+                  "name": "capsule",
+                  "dgraph.type": "DoseForm",
+                  "children": [
+                    {
+                      "name": "250mg",
+                      "code": "368c74bf",
+                      "dgraph.type": "PackUnit",
+                      "children": [
+                        {
+                          "name": "100",
+                          "code": "PLACEHOLDER",
+                          "dgraph.type": "PackSize"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": "eff75890",
+                  "name": "liquid",
+                  "dgraph.type": "DoseForm",
+                  "children": [
+                    {
+                      "code": "2edfb36f",
+                      "name": "125mg/5mL",
+                      "dgraph.type": "PackUnit"
+                    }
+                  ],
+                  "properties": [
+                    {
+                      "value": "250mg/5mL",
+                      "type": "strength",
+                      "dgraph.type": "Property"
+                    },
+                    {
+                      "value": "1.5 g",
+                      "type": "ddd",
+                      "dgraph.type": "Property"
+                    },
+                    {
+                      "value": 239191,
+                      "type": "code_rxnav",
+                      "dgraph.type": "Property"
+                    },
+                    {
+                      "value": "6.2.1",
+                      "type": "who_eml",
+                      "dgraph.type": "Property"
+                    },
+                    {
+                      "value": "10042641000116105",
+                      "type": "code_nzulm",
+                      "dgraph.type": "Property"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": [
+            {
+              "value": "1.5 g O; 3 g P",
+              "type": "ddd",
+              "dgraph.type": "Property"
+            },
+            {
+              "value": 723,
+              "type": "code_rxnav",
+              "dgraph.type": "Property"
+            },
+            {
+              "value": "6.2.1",
+              "type": "who_eml",
+              "dgraph.type": "Property"
+            },
+            {
+              "value": "J01CA04",
+              "type": "code_who_atc",
+              "dgraph.type": "Property"
+            },
+            {
+              "value": 51281702,
+              "type": "code_unspsc",
+              "dgraph.type": "Property"
+            },
+            {
+              "value": "20023151000116107",
+              "type": "code_nzulm",
+              "dgraph.type": "Property"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
