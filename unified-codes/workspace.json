@@ -1,60 +1,6 @@
 {
   "version": 1,
   "projects": {
-    "legacy-api": {
-      "root": "apps/legacy-api",
-      "sourceRoot": "apps/legacy-api/src",
-      "projectType": "application",
-      "prefix": "legacy-api",
-      "schematics": {},
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:build",
-          "options": {
-            "outputPath": "dist/apps/legacy-api",
-            "main": "apps/legacy-api/src/app/server.ts",
-            "tsConfig": "apps/legacy-api/tsconfig.app.json",
-            "assets": ["apps/legacy-api/src/assets"],
-            "externalDependencies": ["fastify"]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/legacy-api/src/environments/environment.ts",
-                  "with": "apps/legacy-api/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "legacy-api:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:lint",
-          "options": {
-            "linter": "eslint",
-            "tsConfig": ["apps/legacy-api/tsconfig.app.json", "apps/legacy-api/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!apps/api/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "apps/legacy-api/jest.config.js",
-            "tsConfig": "apps/legacy-api/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "data-service": {
       "root": "apps/data-service",
       "sourceRoot": "apps/data-service/src",
@@ -398,5 +344,5 @@
       }
     }
   },
-  "defaultProject": "legacy-api"
+  "defaultProject": "data-service"
 }
