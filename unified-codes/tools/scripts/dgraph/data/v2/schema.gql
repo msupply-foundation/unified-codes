@@ -14,6 +14,7 @@ type ProductCategory {
 type ProductType {
   code
   name
+  combines
   children
   properties
 }
@@ -57,5 +58,6 @@ code: string @index(exact, fulltext).
 name: string @lang @index(exact, term, trigram) .
 type: string @index(term) .
 value: string .
+combines: [uid] .
 properties: [uid] .
 children: [uid] . 
