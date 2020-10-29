@@ -1,4 +1,4 @@
-const items: { [key: string]: string } = {
+const itemQueries: { [key: string]: string } = {
   get: `query vars($code: string) {
     query (func: eq(code, $code)) {	
       code
@@ -25,6 +25,6 @@ const items: { [key: string]: string } = {
   }`,
 };
 
-export { items };
+export { itemQueries };
 
-export default { items };
+export default { itemQueries };

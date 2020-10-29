@@ -1,7 +1,7 @@
 import fastify from 'fastify';
 
-import schemas from './schemas';
-import handlers from './handlers';
+import schemas from './v2/schemas';
+import handlers from './v2/handlers';
 
 import { Server, Route, Options } from './types';
 
