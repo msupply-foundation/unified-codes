@@ -2,8 +2,8 @@ const fs = require('fs').promises;
 const excel = require('exceljs');
 const jsonFormat = require('json-format');
 
-const inputFilename = process.argv[2] || './data/products.xlsx';
-const outputFilename = process.argv[3] || './data/import.json';
+const inputFilename = process.argv[2] || './products.xlsx';
+const outputFilename = process.argv[3] || './import.json';
 const items = [];
 
 const properties = [
