@@ -12,7 +12,7 @@ import {
 
 import { IApolloServiceContext, IDrugInteraction, IEntity, IEntityCollection, User } from '@unified-codes/data';
 
-import { DgraphDataSource, RxNavDataSource } from './types';
+import { DgraphDataSource, RxNavDataSource } from '../types';
 import { DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityType } from './schema';
 
 @ArgsType()
