@@ -42,6 +42,7 @@
     "class-validator": "^0.12.2",
     "core-js": "^3.6.5",
     "cross-fetch": "^3.0.6",
+    "dgraph-js": "^20.3.1",
     "dgraph-js-http": "^20.7.1",
     "exceljs": "^4.2.0",
     "fastify": "^3.6.0",
