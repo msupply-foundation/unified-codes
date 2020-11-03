@@ -30,9 +30,9 @@ const insertRootNodes = async () => {
   req.setQuery(query);
   req.setMutationsList([mutation]);
   req.setCommitNow(true);
-  
+
   await dgraphClient.newTxn().doRequest(req);
-}
+};
 
 const processRow = (row, rowNumber) => {
   // Ignore header
@@ -45,13 +45,13 @@ const processRow = (row, rowNumber) => {
   // Process non combination drugs first
   if (!(product.indexOf('/') > -1)) {
     insertProduct(product, productCode, categoryCode);
-  };
-}
+  }
+};
 
 const insertProduct = async (product, productCode, categoryCode) => {
   const query = `query {
-    Category as var (func: eq(dgraph.type, Category)) @filter(eq(code, ${categoryCode}))
-    Product as var (func: eq(name, ${product})) 
+    Category as var(func: eq(dgraph.type, Category)) @filter(eq(code, ${categoryCode}))
+    Product as var(func: eq(code, ${productCode})) 
   }`;
 
   const mutation = new dgraph.Mutation();
@@ -66,9 +66,13 @@ const insertProduct = async (product, productCode, categoryCode) => {
   req.setQuery(query);
   req.setMutationsList([mutation]);
   req.setCommitNow(true);
-  
-  await dgraphClient.newTxn().doRequest(req);
-}
+
+  try {
+    await dgraphClient.newTxn().doRequest(req);
+  } catch (error) {
+    console.log(`Error importing ${product}`);
+  }
+};
 
 const createImport = async () => {
   let fileHandle;
