@@ -49,9 +49,9 @@ export class DgraphDataSource extends RESTDataSource {
           type
           value
         }
-        form: ~has_child {
-          category:  ~has_child {
-            product: ~has_child {          
+        parent: ~has_child {
+          parent:  ~has_child {
+            parent: ~has_child {          
               properties: has_property {
                 type
                 value

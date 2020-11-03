@@ -1,4 +1,5 @@
 import { IEntity } from './Entity';
+import { IProperty } from './Property';
 
 const productPropertyTypes = ['who_eml'];
 
@@ -16,30 +17,20 @@ export class EntityCollection implements IEntityCollection {
     this._totalLength = totalLength ?? data.length;
 
     data.forEach((entity) => {
-      const { form } = entity;
-      if (!form || !form.length) return;
-
-      const { category } = form[0];
-      if (!category || !category.length) return;
-
-      const { product } = category[0];
-      if (!product || !product.length) return;
-
-      const { properties } = product[0];
-      if (!properties || !properties.length) return;
-
-      productPropertyTypes.forEach((productPropertyType) => {
-        const parentProperty = properties.find((x) => x.type === productPropertyType);
-        const childProperty = entity.properties?.find((x) => x.type === productPropertyType);
-
-        if (parentProperty && !childProperty) {
-          if (!entity.properties) {
-            entity.properties = [parentProperty];
-          } else {
-            entity.properties.push(parentProperty);
+      let found = false,
+        { parent } = entity;
+      do {
+        if (parent && parent.length && parent[0]) {
+          if (parent[0].properties) {
+            this.updatePropertiesFromParent(entity, parent[0].properties);
+            found = true;
           }
+          parent = parent[0].parent;
+        } else {
+          parent = undefined;
         }
-      });
+      } while (!!parent && !found);
+      s;
     });
   }
 
@@ -50,4 +41,19 @@ export class EntityCollection implements IEntityCollection {
   get totalLength(): number {
     return this._totalLength;
   }
+
+  private updatePropertiesFromParent = (entity: IEntity, properties: IProperty[]) => {
+    productPropertyTypes.forEach((productPropertyType) => {
+      const parentProperty = properties.find((x) => x.type === productPropertyType);
+      const childProperty = entity.properties?.find((x) => x.type === productPropertyType);
+
+      if (parentProperty && !childProperty) {
+        if (!entity.properties) {
+          entity.properties = [parentProperty];
+        } else {
+          entity.properties.push(parentProperty);
+        }
+      }
+    });
+  };
 }

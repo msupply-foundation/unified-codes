@@ -13,16 +13,9 @@ export enum EEntityField {
   TYPE = 'type',
 }
 
-interface IEntityProduct {
+interface IEntityParent {
+  parent?: IEntityParent[];
   properties?: IProperty[];
-}
-
-interface IEntityCategory {
-  product?: IEntityProduct[];
-}
-
-interface IEntityForm {
-  category?: IEntityCategory[];
 }
 
 // TODO: complete EEntityType enum.
@@ -33,7 +26,7 @@ export interface IEntity {
   interactions?: IDrugInteraction[];
   children?: IEntity[];
   properties?: IProperty[];
-  form?: IEntityForm[];
+  parent?: IEntityParent[];
 }
 
 export class Entity implements IEntity {
