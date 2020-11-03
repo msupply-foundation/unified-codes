@@ -26,6 +26,7 @@ export class DgraphDataSource extends RESTDataSource {
         value
         children: has_child
         properties: has_property
+        parent: ~has_child 
       }
     }`;
   }
