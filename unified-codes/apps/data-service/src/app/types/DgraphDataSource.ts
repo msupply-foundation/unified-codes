@@ -41,14 +41,24 @@ export class DgraphDataSource extends RESTDataSource {
         total: count(uid)
       }
       
-      query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first}) @recurse(loop: false)  {
+      query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
         code
         description
         type
-        uid
-        value
-        children: has_child
-        properties: has_property
+        properties: has_property {
+          type
+          value
+        }
+        form: ~has_child {
+          category:  ~has_child {
+            product: ~has_child {          
+              properties: has_property {
+                type
+                value
+              }
+            }
+          }
+        }
       }
     }`;
   }
@@ -84,7 +94,7 @@ export class DgraphDataSource extends RESTDataSource {
     const { counters: countersData, query: entityData } = data ?? {};
     const [counterData] = countersData;
     const totalCount = counterData?.total;
-    
+
     // Overwrite interactions to prevent large query delays.
     const entities: IEntity[] =
       entityData?.map((entity: IEntity) => ({ ...entity, interactions: [] })) ?? [];

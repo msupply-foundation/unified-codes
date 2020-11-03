@@ -13,6 +13,18 @@ export enum EEntityField {
   TYPE = 'type',
 }
 
+interface IEntityProduct {
+  properties?: IProperty[];
+}
+
+interface IEntityCategory {
+  product?: IEntityProduct[];
+}
+
+interface IEntityForm {
+  category?: IEntityCategory[];
+}
+
 // TODO: complete EEntityType enum.
 export interface IEntity {
   code: string;
@@ -21,6 +33,7 @@ export interface IEntity {
   interactions?: IDrugInteraction[];
   children?: IEntity[];
   properties?: IProperty[];
+  form?: IEntityForm[];
 }
 
 export class Entity implements IEntity {
@@ -64,7 +77,8 @@ export class Entity implements IEntity {
   }
 
   getProperty(type: string): Property {
-    const [property] = this.properties?.filter((property: IProperty) => property.type === type) ?? [];
+    const [property] =
+      this.properties?.filter((property: IProperty) => property.type === type) ?? [];
     return property;
   }
 
