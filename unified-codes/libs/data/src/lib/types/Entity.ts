@@ -86,7 +86,7 @@ export class Entity implements IEntity {
   getParentProperty(type: string): Property {
     const properties = this.getParentProperties();
     const [property] = properties?.filter((property: IProperty) => property.type === type) ?? [];
-    return new Property(property);
+    return property ? new Property(property) : undefined;
   }
 
   matchesCode(pattern: string) {
