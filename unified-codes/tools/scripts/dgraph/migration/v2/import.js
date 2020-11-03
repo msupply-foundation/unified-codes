@@ -31,20 +31,22 @@ const insertRootNodes = async () => {
   req.setMutationsList([mutation]);
   req.setCommitNow(true);
 
-  await dgraphClient.newTxn().doRequest(req);
+  const txn = dgraphClient.newTxn();
+  try {
+    await txn.doRequest(req);
+  } finally {
+    txn.discard();
+  }
 };
 
-const processRow = (row, rowNumber) => {
-  // Ignore header
-  if (rowNumber === 1) return;
-
+const processRow = async (row) => {
   const categoryCode = row.getCell(9).value;
   const product = row.getCell(1).value;
   const productCode = row.getCell(10).value;
 
   // Process non combination drugs first
   if (!(product.indexOf('/') > -1)) {
-    insertProduct(product, productCode, categoryCode);
+    await insertProduct(product, productCode, categoryCode);
   }
 };
 
@@ -67,10 +69,14 @@ const insertProduct = async (product, productCode, categoryCode) => {
   req.setMutationsList([mutation]);
   req.setCommitNow(true);
 
+  const txn = dgraphClient.newTxn();
   try {
-    await dgraphClient.newTxn().doRequest(req);
+    await txn.doRequest(req);
+    console.log(`Successfully imported ${product}`)
   } catch (error) {
     console.log(`Error importing ${product}`);
+  } finally {
+    txn.discard();
   }
 };
 
@@ -87,7 +93,13 @@ const createImport = async () => {
     const workbook = new excel.Workbook();
     await workbook.xlsx.readFile(inputFilename);
     const worksheet = workbook.worksheets[0];
-    worksheet.eachRow(processRow);
+    
+    // Start at second row (ignore header). Intentionally synchronous (insertions rely on previous ones finishing first)
+    for (let i = 2; i <= worksheet.rowCount; i++) {
+      const row = worksheet.getRow(i);
+      await processRow(row);
+    }
+
   } catch (error) {
     console.error(error);
   } finally {

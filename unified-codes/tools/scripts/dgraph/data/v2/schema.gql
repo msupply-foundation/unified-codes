@@ -1,0 +1,70 @@
+type Property {
+  properties
+  type
+  value
+}
+
+type Category {
+  code
+  name
+  children
+  properties
+}
+
+type Product {
+  code
+  name
+  combines
+  children
+  properties
+}
+
+type Route {
+  code
+  name
+  children
+  properties
+}
+
+type DoseForm {
+  code
+  name
+  children
+  properties
+}
+
+type DoseQualification {
+  code
+  name
+  children
+  properties
+}
+
+type InnerPack {
+  code
+  name
+  children
+  properties
+}
+
+type PackSize {
+  code
+  name
+  children
+  properties
+}
+
+type OuterPack {
+  code
+  name
+  children
+  properties
+}
+
+code: string @index(exact, fulltext).
+name: string @lang @index(exact, term, trigram) .
+type: string @index(term) .
+value: string .
+combines: [uid] .
+properties: [uid] .
+children: [uid] . 
