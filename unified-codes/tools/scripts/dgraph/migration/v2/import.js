@@ -46,22 +46,33 @@ const processRow = async (row) => {
 
   // Process non combination drugs first
   if (!(product.indexOf('/') > -1)) {
-    await insertProduct(product, productCode, categoryCode);
+    const nameArray = product.split('(');
+    const [officialName] = nameArray;
+    const synonymString = nameArray[1] ? nameArray[1].slice(0, -1) : '';
+    const synonymList = synonymString ? synonymString.split(',') : [];
+
+    await insertProduct(officialName.trim(), productCode, categoryCode, synonymList);
   }
 };
 
-const insertProduct = async (product, productCode, categoryCode) => {
+const insertProduct = async (productName, productCode, categoryCode, synonyms) => {
   const query = `query {
     Category as var(func: eq(dgraph.type, Category)) @filter(eq(code, ${categoryCode}))
     Product as var(func: eq(code, ${productCode})) 
   }`;
 
+  let synonymMutation = '';
+  for (let i = 0; i < synonyms.length; i++) {
+    synonymMutation += `uid(Product) <name@alt${i}> "${synonyms[i]}" .\n`
+  }
+
   const mutation = new dgraph.Mutation();
   mutation.setSetNquads(`
-    uid(Product) <name> "${product}" .
+    uid(Product) <name> "${productName}" .
     uid(Product) <code> "${productCode}" .
     uid(Product) <dgraph.type> "Product" .
     uid(Category) <children> uid(Product) .
+    ${synonymMutation}
   `);
 
   const req = new dgraph.Request();
@@ -72,9 +83,9 @@ const insertProduct = async (product, productCode, categoryCode) => {
   const txn = dgraphClient.newTxn();
   try {
     await txn.doRequest(req);
-    console.log(`Successfully imported ${product}`)
+    console.log(`Successfully imported ${productName}`)
   } catch (error) {
-    console.log(`Error importing ${product}`);
+    console.log(`Error importing ${productName}`);
   } finally {
     txn.discard();
   }
