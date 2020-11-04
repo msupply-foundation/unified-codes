@@ -1685,10 +1685,6 @@
                     {
                       "value": "153mg",
                       "type": "strength"
-                    },
-                    {
-                      "value": "6.5.3.1",
-                      "type": "who_eml"
                     }
                   ],
                   "type": "unit_of_use"
@@ -1819,10 +1815,6 @@
                     {
                       "value": 308182,
                       "type": "code_rxnav"
-                    },
-                    {
-                      "value": "6.2.1",
-                      "type": "who_eml"
                     },
                     {
                       "value": "10042271000116104",

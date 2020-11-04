@@ -1,4 +1,4 @@
-import { IEntity } from './Entity';
+import { Entity, IEntity } from './Entity';
 
 export interface IEntityCollection {
   data: IEntity[];
@@ -10,7 +10,8 @@ export class EntityCollection implements IEntityCollection {
   _totalLength: number;
 
   constructor(data: IEntity[] = [], totalLength?: number) {
-    this._data = data;
+    this._data = data.map((entity) => new Entity(entity));
+    this._data.forEach((entity: Entity) => entity.updatePropertiesFromParent());
     this._totalLength = totalLength ?? data.length;
   }
 

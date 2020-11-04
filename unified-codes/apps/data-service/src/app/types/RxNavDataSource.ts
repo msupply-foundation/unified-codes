@@ -98,8 +98,7 @@ export class RxNavDataSource extends RESTDataSource {
   }
 
   async getInteractions(entity: IEntity, severity?: Severity): Promise<IDrugInteraction[]> {
-    const rxNavId = new Entity(entity).getProperty('code_rxnav');
-
+    const rxNavId = new Entity(entity).getParentProperty('code_rxnav');
     if (!rxNavId) {
       console.log(`No rxNavId found for entity with code: ${entity.code}`);
       return [];

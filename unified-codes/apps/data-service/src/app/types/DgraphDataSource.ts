@@ -27,6 +27,7 @@ export class DgraphDataSource extends RESTDataSource {
         value
         children: has_child
         properties: has_property
+        parent: ~has_child 
       }
     }`;
   }
@@ -64,14 +65,24 @@ export class DgraphDataSource extends RESTDataSource {
         total: count(uid)
       }
       
-      query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first}) @recurse(loop: false)  {
+      query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
         code
         description
         type
-        uid
-        value
-        children: has_child
-        properties: has_property
+        properties: has_property {
+          type
+          value
+        }
+        parent: ~has_child {
+          parent:  ~has_child {
+            parent: ~has_child {          
+              properties: has_property {
+                type
+                value
+              }
+            }
+          }
+        }
       }
     }`;
   }

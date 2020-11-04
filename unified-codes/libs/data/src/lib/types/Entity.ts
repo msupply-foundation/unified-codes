@@ -1,6 +1,8 @@
 import { IDrugInteraction } from './DrugInteraction';
 import { IProperty, Property } from './Property';
 
+const productPropertyTypes = ['who_eml'];
+
 export enum EEntityType {
   DRUG = 'drug',
   MEDICINAL_PRODUCT = 'medicinal_product',
@@ -13,6 +15,11 @@ export enum EEntityField {
   TYPE = 'type',
 }
 
+interface IEntityParent {
+  parent?: IEntityParent[];
+  properties?: IProperty[];
+}
+
 // TODO: complete EEntityType enum.
 export interface IEntity {
   code: string;
@@ -21,6 +28,7 @@ export interface IEntity {
   interactions?: IDrugInteraction[];
   children?: IEntity[];
   properties?: IProperty[];
+  parent?: IEntityParent[];
 }
 
 export class Entity implements IEntity {
@@ -28,6 +36,7 @@ export class Entity implements IEntity {
   private _description: string;
   private _type: string;
   private _children?: Entity[];
+  private _parent?: IEntityParent[];
   private _properties?: Property[];
 
   constructor(entity: IEntity) {
@@ -35,6 +44,7 @@ export class Entity implements IEntity {
     this._description = entity.description;
     this._type = entity.type;
     this._children = entity.children?.map((child: IEntity) => new Entity(child));
+    this._parent = entity.parent;
     this._properties = entity.properties?.map((property: IProperty) => new Property(property));
   }
 
@@ -54,6 +64,10 @@ export class Entity implements IEntity {
     return this._children;
   }
 
+  get parent(): IEntityParent[] | undefined {
+    return this._parent;
+  }
+
   get properties(): Property[] | undefined {
     return this._properties;
   }
@@ -67,6 +81,12 @@ export class Entity implements IEntity {
     const [property] =
       this.properties?.filter((property: IProperty) => property.type === type) ?? [];
     return property;
+  }
+
+  getParentProperty(type: string): Property {
+    const properties = this.getParentProperties();
+    const [property] = properties?.filter((property: IProperty) => property.type === type) ?? [];
+    return property ? new Property(property) : undefined;
   }
 
   matchesCode(pattern: string) {
@@ -83,6 +103,34 @@ export class Entity implements IEntity {
 
   matchesProperty(property: Property) {
     return this.properties?.includes(property);
+  }
+
+  getParentProperties() {
+    let { parent } = this;
+    do {
+      if (parent?.length) {
+        const [parentEntity] = parent;
+        if (parentEntity.properties) return parentEntity.properties;
+        parent = parentEntity.parent;
+      } else {
+        parent = undefined;
+      }
+    } while (!!parent);
+  }
+
+  updatePropertiesFromParent() {
+    productPropertyTypes.forEach((type) => {
+      const parentProperty = this.getParentProperty(type);
+      const childProperty = this.getProperty(type);
+
+      if (parentProperty && !childProperty) {
+        if (!this.properties) {
+          this._properties = [new Property(parentProperty)];
+        } else {
+          this._properties.push(new Property(parentProperty));
+        }
+      }
+    });
   }
 }
 
