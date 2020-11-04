@@ -8,6 +8,7 @@ import {
   IEntityCollection,
 } from '@unified-codes/data';
 import { EntitySearchInput, FilterMatch } from '../schema';
+import { Severity } from './RxNavDataSource';
 
 export class DgraphDataSource extends RESTDataSource {
   private static headers: { [key: string]: string } = {
@@ -87,12 +88,12 @@ export class DgraphDataSource extends RESTDataSource {
     );
   }
 
-  async getEntity(code: string): Promise<IEntity> {
+  async getEntity(code: string, interactionSeverity?: Severity): Promise<IEntity> {
     const data = await this.postQuery(DgraphDataSource.getEntityQuery(code));
 
     const { query } = data ?? {};
     const [entity] = query ?? [];
-    return entity;
+    return { ...entity, interactionSeverity };
   }
 
   async getEntities(

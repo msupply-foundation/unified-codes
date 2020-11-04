@@ -138,6 +138,8 @@ export class SeverityDirective extends SchemaDirectiveVisitor {
     });
 
     field.resolve = async function (source, { severity, ...otherArgs }, context, info) {
+      console.info('************ field ************* \n', field);
+      console.info('************ level ************* \n', severity);
       const interactions = await resolve.call(this, source, otherArgs, context, info);
       return interactions;
     };

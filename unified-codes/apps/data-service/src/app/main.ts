@@ -12,10 +12,10 @@ const start = async () => {
   let fastifyServer;
 
   try {
-    const { resolvers } = await buildTypeDefsAndResolvers({
+    const { typeDefs, resolvers } = await buildTypeDefsAndResolvers({
       resolvers: [EntityResolver],
     });
-    const typeDefs = gql`
+    const typeDefs2 = gql`
       directive @severity(severity: String) on FIELD_DEFINITION | FIELD
       type Query {
         entity(code: String!, interactionSeverity: String): EntityType!

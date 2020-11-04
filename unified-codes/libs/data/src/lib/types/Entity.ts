@@ -19,6 +19,7 @@ export interface IEntity {
   description: string;
   type: EEntityType | string;
   interactions?: IDrugInteraction[];
+  interactionSeverity?: string;
   children?: IEntity[];
   properties?: IProperty[];
 }
