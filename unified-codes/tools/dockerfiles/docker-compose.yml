@@ -1,17 +1,5 @@
-version: '3'
+version: '2'
 services:
-  legacy-api:
-    container_name: legacy-api
-    build: 
-      context: ../..
-      dockerfile: tools/dockerfiles/legacy-api.Dockerfile
-    image: unified-codes/legacy-api:latest
-    ports:
-      - "3000:3000"
-    env_file:
-      - .docker.env
-    volumes:
-      - ../../dist/apps/legacy-api:/usr/unified-codes/dist/apps/legacy-api
   data-service:
     build: 
       context: ../..

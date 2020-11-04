@@ -22,9 +22,6 @@
     }
   },
   "projects": {
-    "legacy-api": {
-      "tags": []
-    },
     "data-service": {
       "tags": []
     },
