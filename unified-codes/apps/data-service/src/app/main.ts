@@ -18,7 +18,7 @@ const start = async () => {
     const typeDefs = gql`
       directive @severity(severity: String) on FIELD_DEFINITION | FIELD
       type Query {
-        entity(code: String!, interactionSeverity: String): EntityType!
+        entity(code: String!): EntityType!
         entities(filter: EntitySearchInput!, first: Int!, offset: Int!): EntityCollectionType!
       }
 

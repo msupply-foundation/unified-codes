@@ -112,8 +112,6 @@ export class RxNavDataSource extends RESTDataSource {
       requestBody['sources'] = 'ONCHigh';
     }
 
-    console.info('request ==>', requestBody, severity, entity);
-
     const body: IRxNavInteractionResponseBody = await this.get(
       RxNavDataSource.paths.interactions,
       requestBody

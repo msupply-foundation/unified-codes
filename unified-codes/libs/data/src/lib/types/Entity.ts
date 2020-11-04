@@ -19,7 +19,6 @@ export interface IEntity {
   description: string;
   type: EEntityType | string;
   interactions?: IDrugInteraction[];
-  interactionSeverity?: string;
   children?: IEntity[];
   properties?: IProperty[];
 }
@@ -65,7 +64,8 @@ export class Entity implements IEntity {
   }
 
   getProperty(type: string): Property {
-    const [property] = this.properties?.filter((property: IProperty) => property.type === type) ?? [];
+    const [property] =
+      this.properties?.filter((property: IProperty) => property.type === type) ?? [];
     return property;
   }
 

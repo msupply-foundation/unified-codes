@@ -25,9 +25,6 @@ import { DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityTyp
 class GetEntityArgs {
   @Field((type) => String)
   code;
-
-  @Field((type) => String, { nullable: true })
-  interactionSeverity;
 }
 
 @ArgsType()
@@ -46,7 +43,7 @@ class GetEntitiesArgs {
 export class EntityResolver {
   @Query((returns) => EntityType)
   async entity(@Args() args: GetEntityArgs, @Ctx() ctx: IApolloServiceContext): Promise<IEntity> {
-    const { code, interactionSeverity } = args;
+    const { code } = args;
     const { token, authenticator, authoriser, dataSources } = ctx;
 
     const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
@@ -57,7 +54,7 @@ export class EntityResolver {
       const isAuthorised = await authoriser.authorise(user);
     }
 
-    return dgraph.getEntity(code, interactionSeverity);
+    return dgraph.getEntity(code);
   }
 
   @Query((returns) => EntityCollectionType)
