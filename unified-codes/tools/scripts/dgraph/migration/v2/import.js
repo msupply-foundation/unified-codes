@@ -1,7 +1,7 @@
 const excel = require('exceljs');
 const dgraph = require('dgraph-js');
 
-const inputFilename = process.argv[2] || './UC Spreadsheet 2.4.xlsm';
+const inputFilename = process.argv[2] || './UC Spreadsheet 2.5.xlsm';
 
 const clientStub = new dgraph.DgraphClientStub(`localhost:9080`);
 const dgraphClient = new dgraph.DgraphClient(clientStub);
@@ -40,30 +40,27 @@ const insertRootNodes = async () => {
 };
 
 const processRow = async (row) => {
-  const categoryCode = row.getCell(9).value;
   const product = row.getCell(1).value;
-  const productCode = row.getCell(10).value;
+  const synonyms = row.getCell(2).value;
+  const categoryCode = row.getCell(11).value;
+  const productCode = row.getCell(12).value;
 
   // Process non combination drugs first
   if (!(product.indexOf('/') > -1)) {
-    const nameArray = product.split('(');
-    const [officialName] = nameArray;
-    const synonymString = nameArray[1] ? nameArray[1].slice(0, -1) : '';
-    const synonymList = synonymString ? synonymString.split(',') : [];
-
-    await insertProduct(officialName.trim(), productCode, categoryCode, synonymList);
+    const synonymList = synonyms ? synonyms.split(',') : [];
+    await insertProduct(product, productCode, categoryCode, synonymList);
   }
 };
 
-const insertProduct = async (productName, productCode, categoryCode, synonyms) => {
+const insertProduct = async (productName, productCode, categoryCode, synonymsArray) => {
   const query = `query {
     Category as var(func: eq(dgraph.type, Category)) @filter(eq(code, ${categoryCode}))
     Product as var(func: eq(code, ${productCode})) 
   }`;
 
   let synonymMutation = '';
-  for (let i = 0; i < synonyms.length; i++) {
-    synonymMutation += `uid(Product) <name@alt${i}> "${synonyms[i]}" .\n`
+  for (let i = 0; i < synonymsArray.length; i++) {
+    synonymMutation += `uid(Product) <name@alt${i}> "${(synonymsArray[i]).trim()}" .\n`;
   }
 
   const mutation = new dgraph.Mutation();
@@ -83,7 +80,7 @@ const insertProduct = async (productName, productCode, categoryCode, synonyms) =
   const txn = dgraphClient.newTxn();
   try {
     await txn.doRequest(req);
-    console.log(`Successfully imported ${productName}`)
+    console.log(`Successfully imported ${productName}`);
   } catch (error) {
     console.log(`Error importing ${productName}`);
   } finally {
@@ -104,13 +101,12 @@ const createImport = async () => {
     const workbook = new excel.Workbook();
     await workbook.xlsx.readFile(inputFilename);
     const worksheet = workbook.worksheets[0];
-    
+
     // Start at second row (ignore header). Intentionally synchronous (insertions rely on previous ones finishing first)
     for (let i = 2; i <= worksheet.rowCount; i++) {
       const row = worksheet.getRow(i);
       await processRow(row);
     }
-
   } catch (error) {
     console.error(error);
   } finally {
