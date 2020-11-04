@@ -1,4 +1,13 @@
-import { Field, ID, InputType, Int, ObjectType /*, registerEnumType */ } from 'type-graphql';
+import {
+  Directive,
+  Field,
+  ID,
+  InputType,
+  Int,
+  ObjectType /*, registerEnumType */,
+} from 'type-graphql';
+import { SchemaDirectiveVisitor } from 'apollo-server-fastify';
+import { defaultFieldResolver, GraphQLString } from 'graphql';
 
 import {
   IEntity,
@@ -20,6 +29,7 @@ import {
 // });
 export type FilterMatch = 'begin' | 'contains' | 'exact' | undefined;
 
+@Directive('@severity')
 @ObjectType()
 export class EntityType implements IEntity {
   @Field((type) => [EntityType], { nullable: true })
@@ -31,6 +41,7 @@ export class EntityType implements IEntity {
   @Field((type) => String, { nullable: true })
   description: string;
 
+  @Directive('@severity')
   @Field((type) => [DrugInteractionType], { nullable: true })
   interactions: IDrugInteraction[];
 
@@ -114,4 +125,21 @@ export class DrugInteractionType implements IDrugInteraction {
 
   @Field((type) => String)
   source: string;
+}
+
+export class SeverityDirective extends SchemaDirectiveVisitor {
+  visitFieldDefinition(field) {
+    const { resolve = defaultFieldResolver } = field;
+    // const { defaultFormat } = this.args;
+
+    field.args.push({
+      name: 'severity',
+      type: GraphQLString,
+    });
+
+    field.resolve = async function (source, { severity, ...otherArgs }, context, info) {
+      const interactions = await resolve.call(this, source, otherArgs, context, info);
+      return interactions;
+    };
+  }
 }

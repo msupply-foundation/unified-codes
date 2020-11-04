@@ -1,4 +1,4 @@
-import { ApolloServer, Config } from 'apollo-server-fastify';
+import { ApolloServer, Config, SchemaDirectiveVisitor } from 'apollo-server-fastify';
 import { DataSource } from 'apollo-datasource';
 
 import AuthorisationService from './AuthorisationService';
@@ -23,18 +23,21 @@ export class ApolloService {
   dataSources: DataSources;
   authenticator: AuthenticationService;
   authoriser: AuthorisationService;
+  schemaDirectives?: Record<string, typeof SchemaDirectiveVisitor>;
 
   constructor(
     typeDefs: TypeDefs,
     resolvers: Resolvers,
     dataSources: DataSources,
-    identityProvider: IdentityProvider
+    identityProvider: IdentityProvider,
+    schemaDirectives?: Record<string, typeof SchemaDirectiveVisitor>
   ) {
     this.typeDefs = typeDefs;
     this.resolvers = resolvers;
     this.dataSources = dataSources;
     this.authenticator = new AuthenticationService(identityProvider);
     this.authoriser = new AuthorisationService(identityProvider);
+    this.schemaDirectives = schemaDirectives;
   }
 
   getServer() {
@@ -50,6 +53,7 @@ export class ApolloService {
           return { authenticator: this.authenticator, authoriser: this.authoriser };
         }
       },
+      schemaDirectives: this.schemaDirectives,
     });
   }
 }

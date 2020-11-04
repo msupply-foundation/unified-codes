@@ -85,6 +85,8 @@ export interface IRxNavInteractionResponseBody {
   interactionTypeGroup: IRxNavInteractionTypeGroup[];
 }
 
+export type Severity = 'high' | 'any' | undefined;
+
 export class RxNavDataSource extends RESTDataSource {
   private static paths: { [key: string]: string } = {
     interactions: '/interaction/interaction.json',
@@ -103,12 +105,21 @@ export class RxNavDataSource extends RESTDataSource {
       return [];
     }
 
-    const body: IRxNavInteractionResponseBody = await this.get(RxNavDataSource.paths.interactions, {
+    const { interactionSeverity: severity } = entity;
+    const requestBody = {
       rxcui: rxNavId.value,
-    });
+    };
+    if (severity === 'high') {
+      requestBody['sources'] = 'ONCHigh';
+    }
 
-    const interactions = body.interactionTypeGroup.flatMap(
-      (interactionTypeGroup: IRxNavInteractionTypeGroup) => {
+    const body: IRxNavInteractionResponseBody = await this.get(
+      RxNavDataSource.paths.interactions,
+      requestBody
+    );
+
+    const interactions =
+      body?.interactionTypeGroup?.flatMap((interactionTypeGroup: IRxNavInteractionTypeGroup) => {
         const { sourceName: source } = interactionTypeGroup;
         return interactionTypeGroup.interactionType.flatMap(
           (interactionType: IRxNavInteractionType) => {
@@ -131,8 +142,7 @@ export class RxNavDataSource extends RESTDataSource {
             );
           }
         );
-      }
-    );
+      }) ?? [];
     return interactions;
   }
 }

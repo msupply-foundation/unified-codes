@@ -4,6 +4,7 @@ import fastify from 'fastify';
 import { ApolloServer } from 'apollo-server-fastify';
 
 import { ApolloService, KeyCloakIdentityProvider } from '@unified-codes/data';
+import { SeverityDirective } from './schema';
 
 export const createApolloServer = async (
   typeDefs,
@@ -18,7 +19,14 @@ export const createApolloServer = async (
   };
 
   const identityProvider = new KeyCloakIdentityProvider(identityProviderConfig);
-  const apolloService = new ApolloService(typeDefs, resolvers, dataSources, identityProvider);
+  const schemaDirectives = { severity: SeverityDirective };
+  const apolloService = new ApolloService(
+    typeDefs,
+    resolvers,
+    dataSources,
+    identityProvider,
+    schemaDirectives
+  );
   const apolloServer = apolloService.getServer();
 
   return apolloServer;
