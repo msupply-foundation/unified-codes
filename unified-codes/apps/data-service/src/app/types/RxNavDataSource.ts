@@ -97,7 +97,7 @@ export class RxNavDataSource extends RESTDataSource {
     this.baseURL = `${process.env.NX_RXNAV_SERVICE_URL}/${process.env.NX_RXNAV_SERVICE_REST}`;
   }
 
-  async getInteractions(entity: IEntity): Promise<IDrugInteraction[]> {
+  async getInteractions(entity: IEntity, severity?: Severity): Promise<IDrugInteraction[]> {
     const rxNavId = new Entity(entity).getProperty('code_rxnav');
 
     if (!rxNavId) {
@@ -105,7 +105,6 @@ export class RxNavDataSource extends RESTDataSource {
       return [];
     }
 
-    const { interactionSeverity: severity } = entity;
     const requestBody = {
       rxcui: rxNavId.value,
     };

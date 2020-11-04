@@ -12,6 +12,7 @@ type DataSources = Config['dataSources'];
 
 export interface IApolloServiceContext {
   token?: JWTToken;
+  directiveArguments?: any;
   authenticator: AuthenticationService;
   authoriser: AuthorisationService;
   dataSources: { [key: string]: DataSource<Record<string, unknown>> };

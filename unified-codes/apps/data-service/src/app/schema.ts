@@ -19,6 +19,7 @@ import {
   // EEntityField,
   // EEntityType,
 } from '@unified-codes/data';
+import { RxNavDataSource } from './types';
 
 // registerEnumType(EEntityType, {
 //   name: "EEntityType",
@@ -29,7 +30,6 @@ import {
 // });
 export type FilterMatch = 'begin' | 'contains' | 'exact' | undefined;
 
-@Directive('@severity')
 @ObjectType()
 export class EntityType implements IEntity {
   @Field((type) => [EntityType], { nullable: true })
@@ -130,17 +130,16 @@ export class DrugInteractionType implements IDrugInteraction {
 export class SeverityDirective extends SchemaDirectiveVisitor {
   visitFieldDefinition(field) {
     const { resolve = defaultFieldResolver } = field;
-    // const { defaultFormat } = this.args;
 
     field.args.push({
       name: 'severity',
       type: GraphQLString,
     });
 
-    field.resolve = async function (source, { severity, ...otherArgs }, context, info) {
-      console.info('************ field ************* \n', field);
-      console.info('************ level ************* \n', severity);
-      const interactions = await resolve.call(this, source, otherArgs, context, info);
+    field.resolve = async function (source, args, context, info) {
+      context.directiveArguments = args;
+      const interactions = await resolve.call(this, source, args, context, info);
+
       return interactions;
     };
   }

@@ -84,10 +84,12 @@ export class EntityResolver {
     @Root() entity: IEntity,
     @Ctx() ctx: IApolloServiceContext
   ): Promise<IDrugInteraction[]> {
-    const { dataSources } = ctx;
+    const { dataSources, directiveArguments } = ctx;
     const { rxnav } = dataSources as { rxnav: RxNavDataSource };
-    console.info('===========>\n', entity);
-    return entity.interactions ?? rxnav.getInteractions(entity);
+    const { severity } = directiveArguments;
+
+    // TODO: cope with changes to severity - should return appropriate interactions not cached results
+    return entity.interactions ?? rxnav.getInteractions(entity, severity);
   }
 }
 

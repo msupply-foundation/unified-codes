@@ -12,10 +12,10 @@ const start = async () => {
   let fastifyServer;
 
   try {
-    const { typeDefs, resolvers } = await buildTypeDefsAndResolvers({
+    const { resolvers } = await buildTypeDefsAndResolvers({
       resolvers: [EntityResolver],
     });
-    const typeDefs2 = gql`
+    const typeDefs = gql`
       directive @severity(severity: String) on FIELD_DEFINITION | FIELD
       type Query {
         entity(code: String!, interactionSeverity: String): EntityType!
@@ -71,7 +71,7 @@ const start = async () => {
         field: String
       }
     `;
-    console.info('typedefs', typeDefs);
+    // console.info('typedefs', typeDefs);
 
     const dataSources = () => ({
       dgraph: new DgraphDataSource(),
