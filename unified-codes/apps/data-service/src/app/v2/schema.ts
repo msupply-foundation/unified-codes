@@ -21,27 +21,26 @@ import {
 
 @ObjectType()
 export class EntityType implements IEntity {
+  @Field((type) => ID, { nullable: false })
+  uid: string;
+
+  @Field((type) => String, { nullable: false })
+  code: string;
+
+  @Field((type) => String, { nullable: false })
+  name: string;
+
+  @Field((type) => String, { nullable: false })
+  type: string;
+
   @Field((type) => [EntityType], { nullable: true })
   children: IEntity[];
 
-  @Field((type) => String)
-  code: string;
-
-  @Field((type) => String, { nullable: true })
-  description: string;
-
-  @Field((type) => [DrugInteractionType], { nullable: true })
-  interactions: IDrugInteraction[];
-
   @Field((type) => [PropertyType], { nullable: true })
   properties: IProperty[];
-
-  @Field((type) => String)
-  type: string;
-
-  @Field((type) => ID)
-  uid: string;
 }
+
+
 
 @ObjectType()
 export class EntityCollectionType implements IEntityCollection {
