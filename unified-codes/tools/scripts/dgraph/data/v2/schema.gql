@@ -1,5 +1,4 @@
 type Property {
-  properties
   type
   value
 }
