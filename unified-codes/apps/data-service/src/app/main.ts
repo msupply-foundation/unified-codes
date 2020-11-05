@@ -3,9 +3,9 @@ import 'reflect-metadata';
 import fastifyCors from 'fastify-cors';
 import { buildTypeDefsAndResolvers } from 'type-graphql';
 
-import { EntityResolver } from './v1';
+import { EntityResolver } from './v1/resolvers';
+import { DgraphDataSource, RxNavDataSource } from './v1/types';
 
-import { DgraphDataSource, RxNavDataSource } from './types';
 import { createApolloServer, createFastifyServer } from './server';
 
 const start = async () => {
@@ -16,6 +16,7 @@ const start = async () => {
       resolvers: [EntityResolver],
     });
 
+    // TODO: add v2 schema.
     const { typeDefs: typeDefsV2, resolvers: resolversV2 } = await buildTypeDefsAndResolvers({
       resolvers: [EntityResolver],
     });
@@ -25,6 +26,7 @@ const start = async () => {
       rxnav: new RxNavDataSource(),
     });
 
+    // TODO: add v2 data sources.
     const dataSourcesV2 = () => ({
       dgraph: new DgraphDataSource(),
       rxnav: new RxNavDataSource(),

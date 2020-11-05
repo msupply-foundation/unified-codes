@@ -13,7 +13,8 @@ export interface IProperty {
   value: unknown;
 }
 
-export abstract class Property implements IProperty {
+// TODO: make Property abstract.
+export class Property implements IProperty {
   readonly type: EPropertyType;
   readonly value: unknown;
 
