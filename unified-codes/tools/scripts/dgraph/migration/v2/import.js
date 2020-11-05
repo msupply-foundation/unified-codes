@@ -40,15 +40,70 @@ const insertRootNodes = async () => {
 };
 
 const processRow = async (row) => {
-  const product = row.getCell(1).value;
-  const synonyms = row.getCell(2).value;
-  const categoryCode = row.getCell(11).value;
-  const productCode = row.getCell(12).value;
+  // Entities
+  const productDefinition = [
+    {
+      type: 'Product',
+      name: row.getCell(1).value,
+      code: row.getCell(12).value,
+    },  
+    {
+      type: 'Route',
+      name: row.getCell(4).value,
+      code: row.getCell(13).value,
+    },
+    {
+      type: 'DoseForm',
+      name: row.getCell(5).value,
+      code: row.getCell(14).value,
+    },
+    {
+      type: 'DoseQualification',
+      name: row.getCell(6).value,
+      code: row.getCell(15).value,
+    }, 
+    {
+      type: 'DoseUnit',
+      name: row.getCell(7).value,
+      code: row.getCell(16).value,
+    }
+  ]
 
-  // Process non combination drugs first
-  if (!(product.indexOf('/') > -1)) {
-    const synonymList = synonyms ? synonyms.split(',') : [];
-    await insertProduct(product, productCode, categoryCode, synonymList);
+  const synonyms = row.getCell(2).value;
+  const combinations = row.getCell(3).value;
+  const categoryCode = row.getCell(11).value;
+
+  // Properties
+  const gs1 = row.getCell(19).value;
+  const rxNavUC2 = row.getCell(20).value;
+  const rxNavUC67 = row.getCell(21).value;
+  const atc = row.getCell(22).value;
+  const ddd = row.getCell(23).value;
+  const emlUC2 = row.getCell(24).value;
+  const emlUC67 = row.getCell(25).value;
+  const unspsc = row.getCell(26).value;
+  const nzulmUC2 = row.getCell(27).value;
+  const nzulmUC67 = row.getCell(28).value;
+  const snomed = row.getCell(29).value;
+  const drugbank = row.getCell(30).value;
+  const usfda = row.getCell(31).value;
+
+  // Process non-combination drugs first
+  const [product] = productDefinition;
+
+  if (!(product.name.indexOf('/') > -1)) {
+    const synonymsArray = synonyms ? synonyms.split(',') : [];
+    await insertProduct(product.name, product.code, categoryCode, synonymsArray);
+
+    let parentIndex = 0;
+    let childIndex = 1;
+    while (childIndex < productDefinition.length) {
+      if (productDefinition[childIndex].name && productDefinition[childIndex].code) {
+        insertChild(productDefinition[parentIndex], productDefinition[childIndex]);
+        parentIndex++;
+      }
+      childIndex++;
+    }   
   }
 };
 
@@ -60,7 +115,7 @@ const insertProduct = async (productName, productCode, categoryCode, synonymsArr
 
   let synonymMutation = '';
   for (let i = 0; i < synonymsArray.length; i++) {
-    synonymMutation += `uid(Product) <name@alt${i}> "${(synonymsArray[i]).trim()}" .\n`;
+    synonymMutation += `uid(Product) <name@alt${i}> "${synonymsArray[i].trim()}" .\n`;
   }
 
   const mutation = new dgraph.Mutation();
@@ -83,6 +138,34 @@ const insertProduct = async (productName, productCode, categoryCode, synonymsArr
     console.log(`Successfully imported ${productName}`);
   } catch (error) {
     console.log(`Error importing ${productName}`);
+  } finally {
+    txn.discard();
+  }
+};
+
+const insertChild = async (parent, child) => {
+  const query = `query {
+    ${parent.type} as var(func: eq(code, ${parent.code})) 
+    ${child.type} as var(func: eq(dgraph.type, ${child.type})) @filter(eq(code, ${child.code}))
+  }`;
+
+  const mutation = new dgraph.Mutation();
+  mutation.setSetNquads(`
+    uid(${child.type}) <name> "${child.name}" .
+    uid(${child.type}) <code> "${child.code}" .
+    uid(${child.type}) <dgraph.type> "${child.type}" .
+    uid(${parent.type}) <children> uid(${child.type}) .
+  `);
+
+  const req = new dgraph.Request();
+  req.setQuery(query);
+  req.setMutationsList([mutation]);
+  req.setCommitNow(true);
+
+  const txn = dgraphClient.newTxn();
+  try {
+    await txn.doRequest(req);
+  } catch (error) {
   } finally {
     txn.discard();
   }
