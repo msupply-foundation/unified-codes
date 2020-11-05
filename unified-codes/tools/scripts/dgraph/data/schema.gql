@@ -17,4 +17,4 @@ description: string @index(exact, term, trigram) .
 type: string @index(term) .
 value: string .
 has_property: [uid] .
-has_child: [uid] @reverse . 
+has_child: [uid] . 

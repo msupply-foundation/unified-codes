@@ -31,6 +31,32 @@ export class DgraphDataSource extends RESTDataSource {
       }
     }`;
   }
+
+  // the @filter directive with regexp is needed due to what appears to be a limitation on depth
+  // without it the query only works for some nodes. limiting the size of the result set before
+  // applying the lower level filter ensures results are returned.
+  private static getProductQuery(code: string, name: string) {
+    return `{
+      query (func: eq(type, "drug")) @filter(regexp(description, /${name.substr(
+        0,
+        3
+      )}/i)) @cascade {
+        code
+        description
+        properties: has_property {
+          type
+          value
+        }
+        has_child {
+          has_child {
+            has_child @filter(eq(code, ${code})) {
+            }
+          }
+        }
+      }
+    }`;
+  }
+
   private static getEntitiesFilterString(description: string, match: FilterMatch) {
     if (!description) {
       return '@filter(has(description))';
@@ -73,16 +99,6 @@ export class DgraphDataSource extends RESTDataSource {
           type
           value
         }
-        parent: ~has_child {
-          parent:  ~has_child {
-            parent: ~has_child {          
-              properties: has_property {
-                type
-                value
-              }
-            }
-          }
-        }
       }
     }`;
   }
@@ -100,6 +116,14 @@ export class DgraphDataSource extends RESTDataSource {
 
   async getEntity(code: string): Promise<IEntity> {
     const data = await this.postQuery(DgraphDataSource.getEntityQuery(code));
+
+    const { query } = data ?? {};
+    const [entity] = query ?? [];
+    return entity;
+  }
+
+  async getProduct(code: string, name: string): Promise<IEntity> {
+    const data = await this.postQuery(DgraphDataSource.getProductQuery(code, name));
 
     const { query } = data ?? {};
     const [entity] = query ?? [];
