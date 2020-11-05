@@ -1,4 +1,4 @@
-import { Entity, IEntity } from './Entity';
+import { IEntity } from './Entity';
 
 export interface IEntityCollection {
   data: IEntity[];
