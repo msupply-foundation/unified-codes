@@ -3,10 +3,13 @@ import { RESTDataSource } from 'apollo-datasource-rest';
 import {
   EEntityField,
   EEntityType,
-  EntityCollection,
   IEntity,
-  IEntityCollection,
-} from '@unified-codes/data';
+} from './Entity';
+
+import { 
+  EntityCollection,
+  IEntityCollection
+} from './EntityCollection';
 
 export class DgraphDataSource extends RESTDataSource {
   private static headers: { [key: string]: string } = {
