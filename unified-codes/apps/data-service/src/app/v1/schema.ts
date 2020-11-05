@@ -28,7 +28,7 @@ export class EntityType implements IEntity {
   code: string;
 
   @Field((type) => String, { nullable: true })
-  description: string;
+  name: string;
 
   @Field((type) => [DrugInteractionType], { nullable: true })
   interactions: IDrugInteraction[];
@@ -60,8 +60,17 @@ export class EntitySearchInput implements Omit<IEntitySearch, 'type'> {
   @Field((type) => String, { nullable: true })
   description: string;
 
-  @Field((type) => EntitySortInput, { nullable: true })
-  orderBy: IEntitySort;
+  @Field((type) => Boolean, {
+    nullable: true,
+    defaultValue: true,
+  })
+  sortAscending: boolean;
+
+  @Field((type) => String, {
+    nullable: true,
+    defaultValue: 'description',
+  })
+  sortBy: string;
 
   @Field((type) => String, { nullable: true })
   type: string;
@@ -69,17 +78,7 @@ export class EntitySearchInput implements Omit<IEntitySearch, 'type'> {
 
 @InputType()
 export class EntitySortInput implements Omit<IEntitySort, 'field'> {
-  @Field((type) => Boolean, {
-    nullable: true,
-    description: 'Defaults to ascending search if not specified',
-  })
-  descending: boolean;
 
-  @Field((type) => String, {
-    nullable: true,
-    description: 'Defaults to search on description if not specified',
-  })
-  field: string;
 }
 
 @ObjectType()
