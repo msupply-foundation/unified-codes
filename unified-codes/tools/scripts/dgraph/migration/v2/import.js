@@ -99,8 +99,8 @@ const processRow = async (row) => {
     let childIndex = 1;
     while (childIndex < productDefinition.length) {
       if (productDefinition[childIndex].name && productDefinition[childIndex].code) {
-        insertChild(productDefinition[parentIndex], productDefinition[childIndex]);
-        parentIndex++;
+        await insertChild(productDefinition[parentIndex], productDefinition[childIndex]);
+        parentIndex = childIndex;
       }
       childIndex++;
     }   
@@ -145,7 +145,7 @@ const insertProduct = async (productName, productCode, categoryCode, synonymsArr
 
 const insertChild = async (parent, child) => {
   const query = `query {
-    ${parent.type} as var(func: eq(code, ${parent.code})) 
+    ${parent.type} as var(func: eq(dgraph.type, ${parent.type})) @filter(eq(code, ${parent.code})) 
     ${child.type} as var(func: eq(dgraph.type, ${child.type})) @filter(eq(code, ${child.code}))
   }`;
 
