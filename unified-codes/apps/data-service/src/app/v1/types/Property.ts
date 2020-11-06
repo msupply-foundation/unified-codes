@@ -5,26 +5,14 @@ export interface IProperty {
 }
 
 export class Property {
-    private _type: string;
-    private _value: string;
-    private _properties?: Property[];
+    readonly type: string;
+    readonly value: string;
+    readonly properties?: Property[];
 
     constructor(property: IProperty) {
-        this._type = property.type;
-        this._value = property.value;
-        this._properties = property.properties?.map((property: IProperty) => new Property(property));
-    }
-
-    get type(): string {
-        return this._type;
-    }
-
-    get value(): string {
-        return this._value;
-    }
-
-    get properties(): Property[] | undefined {
-        return this._properties;
+        this.type = property.type;
+        this.value = property.value;
+        this.properties = property.properties?.map((property: IProperty) => new Property(property));
     }
 }
 

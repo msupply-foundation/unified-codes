@@ -24,42 +24,22 @@ export interface IEntity {
 }
 
 export class Entity implements IEntity {
-  private _code: string;
-  private _description: string;
-  private _type: string;
-  private _children?: Entity[];
-  private _properties?: Property[];
+  readonly code: string;
+  readonly description: string;
+  readonly type: string;
+  readonly children?: Entity[];
+  readonly properties?: Property[];
 
   constructor(entity: IEntity) {
-    this._code = entity.code;
-    this._description = entity.description;
-    this._type = entity.type;
-    this._children = entity.children?.map((child: IEntity) => new Entity(child));
-    this._properties = entity.properties?.map((property: IProperty) => new Property(property));
-  }
-
-  get code(): string {
-    return this._code;
-  }
-
-  get description(): string {
-    return this._description;
-  }
-
-  get type(): string {
-    return this._type;
-  }
-
-  get children(): Entity[] | undefined {
-    return this._children;
-  }
-
-  get properties(): Property[] | undefined {
-    return this._properties;
+    this.code = entity.code;
+    this.description = entity.description;
+    this.type = entity.type;
+    this.children = entity.children?.map((child: IEntity) => new Entity(child));
+    this.properties = entity.properties?.map((property: IProperty) => new Property(property));
   }
 
   getChild(code: string): Entity {
-    const [entity] = this._children?.filter((child: IEntity) => child.code === code) ?? [];
+    const [entity] = this.children?.filter((child: IEntity) => child.code === code) ?? [];
     return entity;
   }
 
@@ -68,19 +48,19 @@ export class Entity implements IEntity {
     return property;
   }
 
-  matchesCode(pattern: string) {
+  matchesCode(pattern: string): boolean {
     return this.code.toLowerCase().includes(pattern.toLowerCase());
   }
 
-  matchesDescription(pattern: string) {
+  matchesDescription(pattern: string): boolean {
     return this.description.toLowerCase().includes(pattern.toLowerCase());
   }
 
-  matchesType(pattern: string) {
+  matchesType(pattern: string): boolean {
     return this.type.toLowerCase().includes(pattern.toLowerCase());
   }
 
-  matchesProperty(property: Property) {
+  matchesProperty(property: Property): boolean {
     return this.properties?.includes(property);
   }
 }
