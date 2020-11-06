@@ -46,7 +46,7 @@ const processRow = async (row) => {
       type: 'Product',
       name: row.getCell(1).value,
       code: row.getCell(12).value,
-    },  
+    },
     {
       type: 'Route',
       name: row.getCell(4).value,
@@ -61,13 +61,13 @@ const processRow = async (row) => {
       type: 'DoseQualification',
       name: row.getCell(6).value,
       code: row.getCell(15).value,
-    }, 
+    },
     {
       type: 'DoseUnit',
       name: row.getCell(7).value,
       code: row.getCell(16).value,
-    }
-  ]
+    },
+  ];
 
   const synonyms = row.getCell(2).value;
   const combinations = row.getCell(3).value;
@@ -103,7 +103,7 @@ const processRow = async (row) => {
         parentIndex = childIndex;
       }
       childIndex++;
-    }   
+    }
   }
 };
 
@@ -113,12 +113,12 @@ const insertProduct = async (productName, productCode, categoryCode, synonymsArr
     Product as var(func: eq(code, ${productCode})) 
   }`;
 
-  let synonymMutation = '';
-  for (let i = 0; i < synonymsArray.length; i++) {
-    synonymMutation += `uid(Product) <name@alt${i}> "${synonymsArray[i].trim()}" .\n`;
-  }
-
+  const synonymMutation = synonymsArray.reduce(
+    (mutation, synonym, i) => `${mutation}uid(Product) <name@alt${i}> "${synonym.trim()}" .\n`,
+    ''
+  );
   const mutation = new dgraph.Mutation();
+
   mutation.setSetNquads(`
     uid(Product) <name> "${productName}" .
     uid(Product) <code> "${productCode}" .
