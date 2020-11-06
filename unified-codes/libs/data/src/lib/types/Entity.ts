@@ -21,6 +21,7 @@ export interface IEntity {
   interactions?: IDrugInteraction[];
   children?: IEntity[];
   properties?: IProperty[];
+  product?: IEntity;
 }
 
 export class Entity implements IEntity {
@@ -28,6 +29,7 @@ export class Entity implements IEntity {
   private _description: string;
   private _type: string;
   private _children?: Entity[];
+  private _product?: Entity;
   private _properties?: Property[];
 
   constructor(entity: IEntity) {
@@ -35,6 +37,7 @@ export class Entity implements IEntity {
     this._description = entity.description;
     this._type = entity.type;
     this._children = entity.children?.map((child: IEntity) => new Entity(child));
+    this._product = new Entity(entity.product);
     this._properties = entity.properties?.map((property: IProperty) => new Property(property));
   }
 
@@ -54,6 +57,10 @@ export class Entity implements IEntity {
     return this._children;
   }
 
+  get product(): IEntity | undefined {
+    return this._product;
+  }
+
   get properties(): Property[] | undefined {
     return this._properties;
   }
@@ -64,7 +71,8 @@ export class Entity implements IEntity {
   }
 
   getProperty(type: string): Property {
-    const [property] = this.properties?.filter((property: IProperty) => property.type === type) ?? [];
+    const [property] =
+      this.properties?.filter((property: IProperty) => property.type === type) ?? [];
     return property;
   }
 

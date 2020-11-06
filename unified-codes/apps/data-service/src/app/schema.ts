@@ -1,4 +1,4 @@
-import { Field, ID, InputType, Int, ObjectType /*, registerEnumType */ } from 'type-graphql';
+import { Field, ID, InputType, Int, ObjectType } from 'type-graphql';
 
 import {
   IEntity,
@@ -7,17 +7,8 @@ import {
   IProperty,
   IEntityCollection,
   IEntitySearch,
-  // EEntityField,
-  // EEntityType,
 } from '@unified-codes/data';
 
-// registerEnumType(EEntityType, {
-//   name: "EEntityType",
-// });
-
-// registerEnumType(EEntityField, {
-//   name: "EEntityField",
-// });
 export type FilterMatch = 'begin' | 'contains' | 'exact' | undefined;
 
 @ObjectType()
@@ -42,6 +33,9 @@ export class EntityType implements IEntity {
 
   @Field((type) => ID)
   uid: string;
+
+  @Field((type) => EntityType, { nullable: true })
+  product: IEntity;
 }
 
 @ObjectType()

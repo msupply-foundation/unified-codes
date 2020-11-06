@@ -30,6 +30,32 @@ export class DgraphDataSource extends RESTDataSource {
       }
     }`;
   }
+
+  // the @filter directive with regexp is needed due to what appears to be a limitation on depth
+  // without it the query only works for some nodes. limiting the size of the result set before
+  // applying the lower level filter ensures results are returned.
+  private static getProductQuery(code: string, name: string) {
+    return `{
+      query (func: eq(type, "drug")) @filter(regexp(description, /${name.substr(
+        0,
+        3
+      )}/i)) @cascade {
+        code
+        description
+        properties: has_property {
+          type
+          value
+        }
+        has_child {
+          has_child {
+            has_child @filter(eq(code, ${code})) {
+            }
+          }
+        }
+      }
+    }`;
+  }
+
   private static getEntitiesFilterString(description: string, match: FilterMatch) {
     if (!description) {
       return '@filter(has(description))';
@@ -64,14 +90,14 @@ export class DgraphDataSource extends RESTDataSource {
         total: count(uid)
       }
       
-      query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first}) @recurse(loop: false)  {
+      query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
         code
         description
         type
-        uid
-        value
-        children: has_child
-        properties: has_property
+        properties: has_property {
+          type
+          value
+        }
       }
     }`;
   }
@@ -95,6 +121,14 @@ export class DgraphDataSource extends RESTDataSource {
     return entity;
   }
 
+  async getProduct(code: string, name: string): Promise<IEntity> {
+    const data = await this.postQuery(DgraphDataSource.getProductQuery(code, name));
+
+    const { query } = data ?? {};
+    const [entity] = query ?? [];
+    return entity;
+  }
+
   async getEntities(
     filter?: EntitySearchInput,
     first?: number,
@@ -104,18 +138,6 @@ export class DgraphDataSource extends RESTDataSource {
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = true } =
       orderBy ?? {};
 
-    console.warn(
-      'query: ',
-      DgraphDataSource.getEntitiesQuery(
-        type,
-        description,
-        orderField,
-        orderDesc,
-        first,
-        offset,
-        match
-      )
-    );
     const data = await this.postQuery(
       DgraphDataSource.getEntitiesQuery(
         type,

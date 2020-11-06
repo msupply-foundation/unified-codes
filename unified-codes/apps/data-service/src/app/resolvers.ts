@@ -10,7 +10,13 @@ import {
   Root,
 } from 'type-graphql';
 
-import { IApolloServiceContext, IDrugInteraction, IEntity, IEntityCollection, User } from '@unified-codes/data';
+import {
+  IApolloServiceContext,
+  IDrugInteraction,
+  IEntity,
+  IEntityCollection,
+  User,
+} from '@unified-codes/data';
 
 import { DgraphDataSource, RxNavDataSource } from './types';
 import { DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityType } from './schema';
@@ -19,6 +25,15 @@ import { DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityTyp
 class GetEntityArgs {
   @Field((type) => String)
   code;
+}
+
+@ArgsType()
+class GetProductArgs {
+  @Field((type) => String)
+  code;
+
+  @Field((type) => String)
+  description;
 }
 
 @ArgsType()
@@ -51,8 +66,20 @@ export class EntityResolver {
     return dgraph.getEntity(code);
   }
 
+  @FieldResolver((returns) => EntityType)
+  async product(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext): Promise<IEntity> {
+    const { code, description } = entity;
+    const { dataSources } = ctx;
+    const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
+
+    return dgraph.getProduct(code, description);
+  }
+
   @Query((returns) => EntityCollectionType)
-  async entities(@Args() args: GetEntitiesArgs, @Ctx() ctx: IApolloServiceContext): Promise<IEntityCollection> {
+  async entities(
+    @Args() args: GetEntitiesArgs,
+    @Ctx() ctx: IApolloServiceContext
+  ): Promise<IEntityCollection> {
     const { filter, first, offset } = args;
     const { token, authenticator, authoriser, dataSources } = ctx;
 
@@ -68,7 +95,10 @@ export class EntityResolver {
   }
 
   @FieldResolver((returns) => [DrugInteractionType])
-  async interactions(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext): Promise<IDrugInteraction[]> {
+  async interactions(
+    @Root() entity: IEntity,
+    @Ctx() ctx: IApolloServiceContext
+  ): Promise<IDrugInteraction[]> {
     const { dataSources } = ctx;
     const { rxnav } = dataSources as { rxnav: RxNavDataSource };
 
