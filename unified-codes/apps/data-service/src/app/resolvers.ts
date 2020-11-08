@@ -28,15 +28,6 @@ class GetEntityArgs {
 }
 
 @ArgsType()
-class GetProductArgs {
-  @Field((type) => String)
-  code;
-
-  @Field((type) => String)
-  description;
-}
-
-@ArgsType()
 class GetEntitiesArgs {
   @Field((type) => EntitySearchInput)
   filter;
@@ -68,11 +59,11 @@ export class EntityResolver {
 
   @FieldResolver((returns) => EntityType)
   async product(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext): Promise<IEntity> {
-    const { code, description } = entity;
+    const { code } = entity;
     const { dataSources } = ctx;
     const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
 
-    return dgraph.getProduct(code, description);
+    return dgraph.getProduct(code);
   }
 
   @Query((returns) => EntityCollectionType)
