@@ -1,6 +1,13 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
-import { Entity, IDrugInteraction, IEntity } from '@unified-codes/data';
+import {
+  DrugInteraction,
+  Entity,
+  IDrugInteraction,
+  IDrugInteractions,
+  IEntity,
+} from '@unified-codes/data';
+import { GraphQLError } from 'graphql';
 
 // RxCui is stringified numerical ID.
 // Note: ts proposal for regex-validated types: https://github.com/Microsoft/TypeScript/issues/6579.
@@ -90,24 +97,44 @@ export class RxNavDataSource extends RESTDataSource {
     interactions: '/interaction/interaction.json',
   };
 
+  private getInteractionsRequest(severity: string, rxcui: string) {
+    switch (severity) {
+      case 'high':
+        return { rxcui, sources: 'ONCHigh' };
+      default:
+        return { rxcui };
+    }
+  }
+
   constructor() {
     super();
     this.baseURL = `${process.env.NX_RXNAV_SERVICE_URL}/${process.env.NX_RXNAV_SERVICE_REST}`;
   }
 
-  async getInteractions(entity: IEntity): Promise<IDrugInteraction[]> {
-    const rxNavId = new Entity(entity).getProperty('code_rxnav');
+  async getInteractions(
+    entity: IEntity,
+    severity?: RxNavInteractionSeverity
+  ): Promise<IDrugInteractions> {
+    const rxcui = new Entity(entity).getProperty('code_rxnav')?.value || '';
+    const response: IDrugInteractions = {
+      data: [],
+      rxcui,
+      errors: [],
+    };
 
-    if (!rxNavId) {
-      console.log(`No rxNavId found for entity with code: ${entity.code}`);
-      return [];
+    if (!rxcui) {
+      response.errors.push(
+        new GraphQLError(`No rxNavId found for entity with code: ${entity.code}`)
+      );
+      return response;
     }
 
-    const body: IRxNavInteractionResponseBody = await this.get(RxNavDataSource.paths.interactions, {
-      rxcui: rxNavId.value,
-    });
+    const body: IRxNavInteractionResponseBody = await this.get(
+      RxNavDataSource.paths.interactions,
+      this.getInteractionsRequest(severity, rxcui)
+    );
 
-    const interactions = body.interactionTypeGroup.flatMap(
+    response.data = body.interactionTypeGroup.flatMap(
       (interactionTypeGroup: IRxNavInteractionTypeGroup) => {
         const { sourceName: source } = interactionTypeGroup;
         return interactionTypeGroup.interactionType.flatMap(
@@ -126,14 +153,14 @@ export class RxNavDataSource extends RESTDataSource {
                   description,
                   severity,
                 };
-                return interaction;
+                return new DrugInteraction(interaction);
               }
             );
           }
         );
       }
     );
-    return interactions;
+    return response;
   }
 }
 

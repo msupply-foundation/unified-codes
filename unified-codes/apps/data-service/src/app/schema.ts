@@ -3,11 +3,13 @@ import { Field, ID, InputType, Int, ObjectType } from 'type-graphql';
 import {
   IEntity,
   IEntitySort,
-  IDrugInteraction,
+  IDrugInteractions,
   IProperty,
   IEntityCollection,
   IEntitySearch,
+  IDrugInteraction,
 } from '@unified-codes/data';
+import { GraphQLError } from 'graphql';
 
 export type FilterMatch = 'begin' | 'contains' | 'exact' | undefined;
 
@@ -21,9 +23,6 @@ export class EntityType implements IEntity {
 
   @Field((type) => String, { nullable: true })
   description: string;
-
-  @Field((type) => [DrugInteractionType], { nullable: true })
-  interactions: IDrugInteraction[];
 
   @Field((type) => [PropertyType], { nullable: true })
   properties: IProperty[];
@@ -90,6 +89,18 @@ export class PropertyType implements IProperty {
 
   @Field((type) => String)
   value: string;
+}
+
+@ObjectType()
+export class DrugInteractionsType implements IDrugInteractions {
+  @Field((type) => [DrugInteractionType])
+  data: IDrugInteraction[];
+
+  @Field((type) => String)
+  errors: GraphQLError[];
+
+  @Field((type) => String)
+  rxcui: string;
 }
 
 @ObjectType()
