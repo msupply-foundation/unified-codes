@@ -123,7 +123,7 @@ export class DrugInteractionType implements IDrugInteraction {
 }
 
 @ObjectType()
-export class GraphQLErrorType implements GraphQLError {
+export class GraphQLErrorType {
   @Field((type) => String)
   message: string;
 
