@@ -123,9 +123,6 @@ export class RxNavDataSource extends RESTDataSource {
     };
 
     if (!rxcui) {
-      response.errors.push(
-        new GraphQLError(`No RxCUI code assigned to entity with code: ${entity.code}`)
-      );
       return response;
     }
 
