@@ -9,7 +9,8 @@ import {
   IEntitySearch,
   IDrugInteraction,
 } from '@unified-codes/data';
-import { GraphQLError } from 'graphql';
+import { ASTNode, GraphQLError } from 'graphql';
+import { Location as SourceLocation, Source } from 'graphql/language/source';
 
 export type FilterMatch = 'begin' | 'contains' | 'exact' | undefined;
 
@@ -96,7 +97,7 @@ export class DrugInteractionsType implements IDrugInteractions {
   @Field((type) => [DrugInteractionType])
   data: IDrugInteraction[];
 
-  @Field((type) => String)
+  @Field((type) => [GraphQLErrorType])
   errors: GraphQLError[];
 
   @Field((type) => String)
@@ -119,4 +120,67 @@ export class DrugInteractionType implements IDrugInteraction {
 
   @Field((type) => String)
   source: string;
+}
+
+@ObjectType()
+export class GraphQLErrorType implements GraphQLError {
+  @Field((type) => String)
+  message: string;
+
+  @Field((type) => String, { nullable: true })
+  locations: any[];
+
+  @Field((type) => [String], { nullable: true })
+  path: (string | number)[];
+
+  @Field((type) => String, { nullable: true })
+  nodes: ASTNode[];
+
+  @Field((type) => SourceType, { nullable: true })
+  source: Source;
+
+  @Field((type) => [Int], { nullable: true })
+  positions: number[];
+
+  @Field((type) => ErrorType, { nullable: true })
+  originalError: Error;
+
+  @Field((type) => String, { nullable: true })
+  name: string;
+
+  @Field((type) => String, { nullable: true })
+  stack: string;
+}
+
+@ObjectType()
+class SourceType implements Source {
+  @Field((type) => String)
+  body: string;
+
+  @Field((type) => String)
+  name: string;
+
+  @Field((type) => LocationType)
+  locationOffset: SourceLocation;
+}
+
+@ObjectType()
+class LocationType implements SourceLocation {
+  @Field((type) => Int)
+  line: number;
+
+  @Field((type) => Int)
+  column: number;
+}
+
+@ObjectType()
+class ErrorType implements Error {
+  @Field((type) => String)
+  name: string;
+
+  @Field((type) => String)
+  message: string;
+
+  @Field((type) => String)
+  stack?: string;
 }

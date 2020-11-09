@@ -124,7 +124,7 @@ export class RxNavDataSource extends RESTDataSource {
 
     if (!rxcui) {
       response.errors.push(
-        new GraphQLError(`No rxNavId found for entity with code: ${entity.code}`)
+        new GraphQLError(`No RxCUI code assigned to entity with code: ${entity.code}`)
       );
       return response;
     }
@@ -134,8 +134,8 @@ export class RxNavDataSource extends RESTDataSource {
       this.getInteractionsRequest(severity, rxcui)
     );
 
-    response.data = body.interactionTypeGroup.flatMap(
-      (interactionTypeGroup: IRxNavInteractionTypeGroup) => {
+    response.data =
+      body?.interactionTypeGroup?.flatMap((interactionTypeGroup: IRxNavInteractionTypeGroup) => {
         const { sourceName: source } = interactionTypeGroup;
         return interactionTypeGroup.interactionType.flatMap(
           (interactionType: IRxNavInteractionType) => {
@@ -158,8 +158,7 @@ export class RxNavDataSource extends RESTDataSource {
             );
           }
         );
-      }
-    );
+      }) || [];
     return response;
   }
 }

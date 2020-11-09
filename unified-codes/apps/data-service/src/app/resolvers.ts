@@ -101,9 +101,13 @@ export class EntityResolver {
     const { code, severity } = args;
     const { dataSources } = ctx;
     const { dgraph, rxnav } = dataSources as { dgraph: DgraphDataSource; rxnav: RxNavDataSource };
+    const product = await dgraph.getProduct(code);
     const entity = await dgraph.getEntity(code);
 
-    return rxnav.getInteractions(entity, severity as RxNavInteractionSeverity | undefined);
+    return rxnav.getInteractions(
+      product || entity,
+      severity as RxNavInteractionSeverity | undefined
+    );
   }
 }
 
