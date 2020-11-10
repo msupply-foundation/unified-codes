@@ -3,11 +3,14 @@ import { Field, ID, InputType, Int, ObjectType } from 'type-graphql';
 import {
   IEntity,
   IEntitySort,
-  IDrugInteraction,
+  IDrugInteractions,
   IProperty,
   IEntityCollection,
   IEntitySearch,
+  IDrugInteraction,
 } from '@unified-codes/data';
+import { ASTNode, GraphQLError } from 'graphql';
+import { Location as SourceLocation, Source } from 'graphql/language/source';
 
 export type FilterMatch = 'begin' | 'contains' | 'exact' | undefined;
 
@@ -21,9 +24,6 @@ export class EntityType implements IEntity {
 
   @Field((type) => String, { nullable: true })
   description: string;
-
-  @Field((type) => [DrugInteractionType], { nullable: true })
-  interactions: IDrugInteraction[];
 
   @Field((type) => [PropertyType], { nullable: true })
   properties: IProperty[];
@@ -93,6 +93,18 @@ export class PropertyType implements IProperty {
 }
 
 @ObjectType()
+export class DrugInteractionsType implements IDrugInteractions {
+  @Field((type) => [DrugInteractionType])
+  data: IDrugInteraction[];
+
+  @Field((type) => [GraphQLErrorType])
+  errors: GraphQLError[];
+
+  @Field((type) => String)
+  rxcui: string;
+}
+
+@ObjectType()
 export class DrugInteractionType implements IDrugInteraction {
   @Field((type) => String)
   description: string;
@@ -108,4 +120,67 @@ export class DrugInteractionType implements IDrugInteraction {
 
   @Field((type) => String)
   source: string;
+}
+
+@ObjectType()
+export class GraphQLErrorType {
+  @Field((type) => String)
+  message: string;
+
+  @Field((type) => String, { nullable: true })
+  locations: any[];
+
+  @Field((type) => [String], { nullable: true })
+  path: (string | number)[];
+
+  @Field((type) => String, { nullable: true })
+  nodes: ASTNode[];
+
+  @Field((type) => SourceType, { nullable: true })
+  source: Source;
+
+  @Field((type) => [Int], { nullable: true })
+  positions: number[];
+
+  @Field((type) => ErrorType, { nullable: true })
+  originalError: Error;
+
+  @Field((type) => String, { nullable: true })
+  name: string;
+
+  @Field((type) => String, { nullable: true })
+  stack: string;
+}
+
+@ObjectType()
+class SourceType implements Source {
+  @Field((type) => String)
+  body: string;
+
+  @Field((type) => String)
+  name: string;
+
+  @Field((type) => LocationType)
+  locationOffset: SourceLocation;
+}
+
+@ObjectType()
+class LocationType implements SourceLocation {
+  @Field((type) => Int)
+  line: number;
+
+  @Field((type) => Int)
+  column: number;
+}
+
+@ObjectType()
+class ErrorType implements Error {
+  @Field((type) => String)
+  name: string;
+
+  @Field((type) => String)
+  message: string;
+
+  @Field((type) => String)
+  stack?: string;
 }

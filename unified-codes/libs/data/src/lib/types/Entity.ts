@@ -1,4 +1,3 @@
-import { IDrugInteraction } from './DrugInteraction';
 import { IProperty, Property } from './Property';
 
 export enum EEntityType {
@@ -18,7 +17,6 @@ export interface IEntity {
   code: string;
   description: string;
   type: EEntityType | string;
-  interactions?: IDrugInteraction[];
   children?: IEntity[];
   properties?: IProperty[];
   product?: IEntity;
@@ -37,7 +35,7 @@ export class Entity implements IEntity {
     this._description = entity.description;
     this._type = entity.type;
     this._children = entity.children?.map((child: IEntity) => new Entity(child));
-    this._product = new Entity(entity.product);
+    if (entity.product) this._product = new Entity(entity.product);
     this._properties = entity.properties?.map((property: IProperty) => new Property(property));
   }
 
