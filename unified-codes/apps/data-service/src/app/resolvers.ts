@@ -10,30 +10,20 @@ import {
   Root,
 } from 'type-graphql';
 
-import {
-  IApolloServiceContext,
-  IDrugInteraction,
-  IEntity,
-  IEntityCollection,
-  User,
-} from '@unified-codes/data';
+import { IApolloServiceContext, IEntity, IEntityCollection, User } from '@unified-codes/data';
 
-import { DgraphDataSource, RxNavDataSource } from './types';
-import { DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityType } from './schema';
+import { DgraphDataSource, RxNavDataSource, RxNavInteractionSeverity } from './types';
+import {
+  DrugInteractionsType,
+  EntityCollectionType,
+  EntitySearchInput,
+  EntityType,
+} from './schema';
 
 @ArgsType()
 class GetEntityArgs {
   @Field((type) => String)
   code;
-}
-
-@ArgsType()
-class GetProductArgs {
-  @Field((type) => String)
-  code;
-
-  @Field((type) => String)
-  description;
 }
 
 @ArgsType()
@@ -46,6 +36,15 @@ class GetEntitiesArgs {
 
   @Field((type) => Int)
   offset;
+}
+
+@ArgsType()
+class GetInteractionsArgs {
+  @Field((type) => String)
+  code;
+
+  @Field((type) => String, { nullable: true })
+  severity;
 }
 
 @Resolver((of) => EntityType)
@@ -68,11 +67,11 @@ export class EntityResolver {
 
   @FieldResolver((returns) => EntityType)
   async product(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext): Promise<IEntity> {
-    const { code, description } = entity;
+    const { code } = entity;
     const { dataSources } = ctx;
     const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
 
-    return dgraph.getProduct(code, description);
+    return dgraph.getProduct(code);
   }
 
   @Query((returns) => EntityCollectionType)
@@ -94,15 +93,21 @@ export class EntityResolver {
     return dgraph.getEntities(filter, first, offset);
   }
 
-  @FieldResolver((returns) => [DrugInteractionType])
+  @Query((returns) => DrugInteractionsType)
   async interactions(
-    @Root() entity: IEntity,
+    @Args() args: GetInteractionsArgs,
     @Ctx() ctx: IApolloServiceContext
-  ): Promise<IDrugInteraction[]> {
+  ): Promise<DrugInteractionsType> {
+    const { code, severity } = args;
     const { dataSources } = ctx;
-    const { rxnav } = dataSources as { rxnav: RxNavDataSource };
+    const { dgraph, rxnav } = dataSources as { dgraph: DgraphDataSource; rxnav: RxNavDataSource };
+    const product = await dgraph.getProduct(code);
+    const entity = await dgraph.getEntity(code);
 
-    return entity.interactions ?? rxnav.getInteractions(entity);
+    return rxnav.getInteractions(
+      product || entity,
+      severity as RxNavInteractionSeverity | undefined
+    );
   }
 }
 

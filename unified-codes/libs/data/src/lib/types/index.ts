@@ -2,6 +2,7 @@ export * from './ApolloService';
 export * from './AuthenticationService';
 export * from './AuthorisationService';
 export * from './DrugInteraction';
+export * from './DrugInteractions';
 export * from './Entity';
 export * from './EntityCollection';
 export * from './EntityRequest';
