@@ -2,7 +2,7 @@
 
 ## Getting started
 
-### Dgraph
+### Dgraph 
 1. Install docker [here](https://docs.docker.com/get-docker/).
 2. Run standalone dgraph instance: `/unified-codes/tools/scripts/dgraph/run.sh`.
 3. Dgraph is now running, you can access Ratel at http://localhost:8000.
@@ -30,6 +30,6 @@ This will create a sample schema and populate data for you. Great if you want to
 
 #### Web
 1. Start service: `npx nx serve web`
-2. Browse at http://localhost:4200/
+2. Browse web at http://localhost:4200/
 3. Start storybook: `npx nx storybook ui` (ui shared component browser) or `npx nx storybook web` (web component browser)
 4. Browse storybook at http://localhost:4400/
