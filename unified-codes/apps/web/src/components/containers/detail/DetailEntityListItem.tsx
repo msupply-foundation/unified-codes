@@ -12,6 +12,7 @@ import {
   Collapse,
   ArrowUpIcon,
   ArrowDownIcon,
+  FormIcon,
 } from '@unified-codes/ui/components';
 import { useToggle } from '@unified-codes/ui/hooks';
 import { DetailActions, IDetailAction } from '../../../actions';
@@ -38,6 +39,7 @@ interface DetailEntityListItemProps {
   childEntities?: IEntity[];
   code?: string;
   description?: string;
+  form?: string;
   fetchEntity?: (code: string) => void;
 }
 
@@ -47,6 +49,7 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
   childEntities,
   code,
   description,
+  form,
   fetchEntity,
 }) => {
   const classes = useStyles();
@@ -81,19 +84,24 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
     ) : (
       <ListItem button onClick={onEntityClick}>
         <EntityListToggleItemText />
+        <ListItemIcon>
+          <FormIcon form={form} />
+        </ListItemIcon>
       </ListItem>
     );
 
   const EntityListChildItems = React.useCallback(() => {
     if (!childCount) return null;
     const childItems = childEntities?.map((child: IEntity) => {
-      const { description, children } = child;
+      const { description, children, type } = child;
+      const childForm = type === 'form' ? description : undefined;
       return (
         <DetailEntityListItem
           description={description}
           childEntities={children}
           key={child.code}
           code={child.code}
+          form={form || childForm}
         />
       );
     });
