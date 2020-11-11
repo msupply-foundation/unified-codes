@@ -1,4 +1,3 @@
-import { IDrugInteraction } from './DrugInteraction';
 import { IProperty, Property } from './Property';
 
 export enum EEntityType {
@@ -18,9 +17,9 @@ export interface IEntity {
   code: string;
   description: string;
   type: EEntityType | string;
-  interactions?: IDrugInteraction[];
   children?: IEntity[];
   properties?: IProperty[];
+  product?: IEntity;
 }
 
 export class Entity implements IEntity {
@@ -44,7 +43,8 @@ export class Entity implements IEntity {
   }
 
   getProperty(type: string): Property {
-    const [property] = this.properties?.filter((property: IProperty) => property.type === type) ?? [];
+    const [property] =
+      this.properties?.filter((property: IProperty) => property.type === type) ?? [];
     return property;
   }
 

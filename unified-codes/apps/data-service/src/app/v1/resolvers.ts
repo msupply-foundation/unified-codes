@@ -12,7 +12,7 @@ import {
 
 import { IApolloServiceContext, User } from '@unified-codes/data';
 
-import { DgraphDataSource, RxNavDataSource, IDrugInteraction, IEntity, IEntityCollection } from './types';
+import { DgraphDataSource, RxNavDataSource, IDrugInteractions, IEntity, IEntityCollection, RxNavInteractionSeverity } from './types';
 import { DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityType } from './schema';
 
 @ArgsType()
@@ -38,6 +38,15 @@ class GetEntitiesArgs {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+@ArgsType()
+class GetInteractionsArgs {
+  @Field((type) => String)
+  code;
+
+  @Field((type) => String, { nullable: true })
+  severity;
+}
+
 @Resolver((of) => EntityType)
 export class EntityResolver {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -59,8 +68,20 @@ export class EntityResolver {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @FieldResolver((returns) => EntityType)
+  async product(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext): Promise<IEntity> {
+    const { code } = entity;
+    const { dataSources } = ctx;
+    const dgraph: DgraphDataSource = dataSources.dgraph as DgraphDataSource;
+
+    return dgraph.getProduct(code);
+  }
+
   @Query((returns) => EntityCollectionType)
-  async entities(@Args() args: GetEntitiesArgs, @Ctx() ctx: IApolloServiceContext): Promise<IEntityCollection> {
+  async entities(
+    @Args() args: GetEntitiesArgs,
+    @Ctx() ctx: IApolloServiceContext
+  ): Promise<IEntityCollection> {
     const { filter, first, offset } = args;
     const { token, authenticator, authoriser, dataSources } = ctx;
 
@@ -77,12 +98,21 @@ export class EntityResolver {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @FieldResolver((returns) => [DrugInteractionType])
-  async interactions(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext): Promise<IDrugInteraction[]> {
+  @Query((returns) => DrugInteractionType)
+  async interactions(
+    @Args() args: GetInteractionsArgs,
+    @Ctx() ctx: IApolloServiceContext
+  ): Promise<IDrugInteractions> {
+    const { code, severity } = args;
     const { dataSources } = ctx;
-    const { rxnav } = dataSources as { rxnav: RxNavDataSource };
+    const { dgraph, rxnav } = dataSources as { dgraph: DgraphDataSource; rxnav: RxNavDataSource };
+    const product = await dgraph.getProduct(code);
+    const entity = await dgraph.getEntity(code);
 
-    return entity.interactions ?? rxnav.getInteractions(entity);
+    return rxnav.getInteractions(
+      product || entity,
+      severity as RxNavInteractionSeverity | undefined
+    );
   }
 }
 

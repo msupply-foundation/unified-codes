@@ -11,6 +11,8 @@ import {
   IEntityCollection
 } from './EntityCollection';
 
+import { EntitySearchInput, FilterMatch } from '../schema';
+
 export class DgraphDataSource extends RESTDataSource {
   private static headers: { [key: string]: string } = {
     'Content-Type': 'application/graphql+-',
@@ -33,25 +35,68 @@ export class DgraphDataSource extends RESTDataSource {
     }`;
   }
 
-  private static getEntitiesQuery(type, description, orderField, orderDesc, first, offset) {
+  private static getProductQuery(code: string) {
+    return `{
+      query (func: eq(type, "drug")) @cascade {
+        code
+        description
+        properties: has_property {
+          type
+          value
+        }
+        has_child {
+          has_child {
+            has_child @filter(alloftext(code, ${code})) {
+            }
+          }
+        }
+      }
+    }`;
+  }
+
+  private static getEntitiesFilterString(description: string, match: FilterMatch) {
+    if (!description) {
+      return '@filter(has(description))';
+    }
+
+    switch (match) {
+      case 'exact':
+        return `@filter(regexp(description, /^${description}$/i))`;
+
+      case 'contains':
+        return `@filter(regexp(description, /${description}/i))`;
+
+      default:
+        return `@filter(regexp(description, /^${description}/i))`;
+    }
+  }
+
+  private static getEntitiesQuery(
+    type: string,
+    description?: string,
+    orderField?: string,
+    orderDesc?: boolean,
+    first?: number,
+    offset?: number,
+    match?: FilterMatch
+  ) {
     const orderString = `${orderDesc ? 'orderdesc' : 'orderasc'}: ${orderField}`;
-    const filterString = description
-      ? `@filter(regexp(description, /.*${description}.*/i))`
-      : '@filter(has(description))';
+    const filterString = this.getEntitiesFilterString(description, match);
 
     return `{
       all as counters(func: anyofterms(type, "${type}")) ${filterString} { 
         total: count(uid)
       }
       
-      query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first}) @recurse(loop: false)  {
+      query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
         code
         description
         type
         uid
-        value
-        children: has_child
-        properties: has_property
+        properties: has_property {
+          type
+          value
+        }
       }
     }`;
   }
@@ -75,19 +120,39 @@ export class DgraphDataSource extends RESTDataSource {
     return entity;
   }
 
-  async getEntities(filter, first, offset): Promise<IEntityCollection> {
-    const { type = EEntityType.DRUG, description, orderBy } = filter ?? {};
+  async getProduct(code: string): Promise<IEntity> {
+    const data = await this.postQuery(DgraphDataSource.getProductQuery(code));
+
+    const { query } = data ?? {};
+    const [entity] = query ?? [];
+    return entity;
+  }
+
+  async getEntities(
+    filter?: EntitySearchInput,
+    first?: number,
+    offset?: number
+  ): Promise<IEntityCollection> {
+    const { type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = true } =
       orderBy ?? {};
 
     const data = await this.postQuery(
-      DgraphDataSource.getEntitiesQuery(type, description, orderField, orderDesc, first, offset)
+      DgraphDataSource.getEntitiesQuery(
+        type,
+        description,
+        orderField,
+        orderDesc,
+        first,
+        offset,
+        match
+      )
     );
 
     const { counters: countersData, query: entityData } = data ?? {};
     const [counterData] = countersData;
     const totalCount = counterData?.total;
-    
+
     // Overwrite interactions to prevent large query delays.
     const entities: IEntity[] =
       entityData?.map((entity: IEntity) => ({ ...entity, interactions: [] })) ?? [];

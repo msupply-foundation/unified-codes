@@ -1,8 +1,16 @@
+import { GraphQLError } from 'graphql';
+
 export interface IDrugInteraction {
     name: string;
     description: string;
     severity: string;
     source: string;
+    rxcui: string;
+  }
+
+  export interface IDrugInteractions {
+    data: IDrugInteraction[];
+    errors: GraphQLError[];
     rxcui: string;
   }
   
@@ -19,6 +27,18 @@ export interface IDrugInteraction {
       this.severity = interaction.severity;
       this.source = interaction.source;
       this.rxcui = interaction.rxcui;
+    }
+  }
+
+  export class DrugInteractions implements IDrugInteractions {
+    readonly data: DrugInteraction[];
+    readonly errors: GraphQLError[];
+    readonly rxcui: string;
+  
+    constructor(interactions: DrugInteraction[], rxcui: string, errors?: GraphQLError[]) {
+      this.data = interactions;
+      this.errors = errors || [];
+      this.rxcui = rxcui;
     }
   }
   
