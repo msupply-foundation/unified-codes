@@ -115,12 +115,15 @@ export class PropertyType implements IProperty {
 
 @ObjectType()
 export class DrugInteractionsType implements IDrugInteractions {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => [DrugInteractionType])
   data: IDrugInteraction[];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => [GraphQLErrorType])
   errors: GraphQLError[];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
   rxcui: string;
 }
@@ -150,63 +153,80 @@ export class DrugInteractionType implements IDrugInteraction {
 
 @ObjectType()
 export class GraphQLErrorType {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
   message: string;
 
+   // eslint-disable-next-line @typescript-eslint/no-unused-vars 
   @Field((type) => String, { nullable: true })
   locations: any[];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => [String], { nullable: true })
   path: (string | number)[];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String, { nullable: true })
   nodes: ASTNode[];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => SourceType, { nullable: true })
   source: Source;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => [Int], { nullable: true })
   positions: number[];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => ErrorType, { nullable: true })
   originalError: Error;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String, { nullable: true })
   name: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String, { nullable: true })
   stack: string;
 }
 
 @ObjectType()
 class SourceType implements Source {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
   body: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
   name: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => LocationType)
   locationOffset: SourceLocation;
 }
 
 @ObjectType()
 class LocationType implements SourceLocation {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => Int)
   line: number;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => Int)
   column: number;
 }
 
 @ObjectType()
 class ErrorType implements Error {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
   name: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
   message: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
   stack?: string;
 }
