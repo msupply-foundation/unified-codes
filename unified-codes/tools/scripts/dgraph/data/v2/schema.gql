@@ -39,6 +39,20 @@ type DoseQualification {
   properties
 }
 
+type DoseStrength {
+  code
+  name
+  children
+  properties
+}
+
+type DoseUnit {
+  code
+  name
+  children
+  properties
+}
+
 type InnerPack {
   code
   name

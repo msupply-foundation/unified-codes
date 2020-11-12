@@ -1,7 +1,7 @@
 const excel = require('exceljs');
 const dgraph = require('dgraph-js');
 
-const inputFilename = process.argv[2] || './UC Spreadsheet 2.5.xlsm';
+const inputFilename = process.argv[2] || './UC Spreadsheet 3.0.xlsm';
 
 const clientStub = new dgraph.DgraphClientStub(`localhost:9080`);
 const dgraphClient = new dgraph.DgraphClient(clientStub);
@@ -47,32 +47,39 @@ const processRow = async (row) => {
   const routeName = row.getCell(4).value;
   const doseFormName = row.getCell(5).value;
   const doseQualificationName = row.getCell(6).value;
-  const doseUnitName = row.getCell(7).value;
-  const immediatePackagingName = row.getCell(8).value;
+  const doseStrengthName = row.getCell(7).value;
+  const doseUnitName = row.getCell(8).value;
+  const immediatePackagingName = row.getCell(9).value;
+  const packSizeName = row.getCell(10).value;
+  const outerPackagingName = row.getCell(11).value;
 
-  const categoryCode = row.getCell(11).value;
-  const productCode = row.getCell(12).value;
-  const routeCode = row.getCell(13).value;
-  const doseFormCode = row.getCell(14).value;
-  const doseQualificationCode = row.getCell(15).value;
-  const doseUnitCode = row.getCell(16).value;
+  const categoryCode = row.getCell(12).value;
+  const productCode = row.getCell(13).value;
+  const routeCode = row.getCell(14).value;
+  const doseFormCode = row.getCell(15).value;
+  const doseQualificationCode = row.getCell(16).value;
+  const doseStrengthCode = row.getCell(17).value;
+  const doseUnitCode = row.getCell(18).value;
+  const immediatePackagingCode = row.getCell(19).value;
+  const packSizeCode = row.getCell(20).value;
+  const outerPackagingCode = row.getCell(21).value;
 
   // Properties
-  const gs1 = row.getCell(19).value;
-  const rxNavUC2 = row.getCell(20).value;
-  const rxNavUC67 = row.getCell(21).value;
-  const atcUC2 = row.getCell(22).value;
-  const dddUC2 = row.getCell(23).value;
-  const atcUC5 = row.getCell(24).value;
-  const dddUC5 = row.getCell(25).value;
-  const emlUC2 = row.getCell(26).value;
-  const emlUC67 = row.getCell(27).value;
-  const unspsc = row.getCell(28).value;
-  const nzulmUC2 = row.getCell(29).value;
-  const nzulmUC67 = row.getCell(30).value;
-  const snomed = row.getCell(31).value;
-  const drugbank = row.getCell(32).value;
-  const usfda = row.getCell(33).value;
+  const gs1 = row.getCell(22).value;
+  const rxNavUC2 = row.getCell(23).value;
+  const rxNavUC67 = row.getCell(24).value;
+  const atcUC2 = row.getCell(25).value;
+  const dddUC2 = row.getCell(26).value;
+  const atcUC5 = row.getCell(27).value;
+  const dddUC5 = row.getCell(28).value;
+  const emlUC2 = row.getCell(29).value;
+  const emlUC67 = row.getCell(30).value;
+  const unspsc = row.getCell(31).value;
+  const nzulmUC2 = row.getCell(32).value;
+  const nzulmUC67 = row.getCell(33).value;
+  const snomed = row.getCell(34).value;
+  const drugbank = row.getCell(35).value;
+  const usfda = row.getCell(36).value;
 
   const productDefinition = [
     {
@@ -110,14 +117,16 @@ const processRow = async (row) => {
       ],
     },
     {
+      type: 'DoseStrength',
+      name: doseStrengthName,
+      code: doseStrengthCode,
+      properties: []
+    },
+    {
       type: 'DoseUnit',
       name: doseUnitName,
       code: doseUnitCode,
-      properties: [
-        { type: 'code_nzulm', value: nzulmUC67 },
-        { type: 'code_rxnav', value: rxNavUC67 },
-        { type: 'who_eml', value: emlUC67 },
-      ],
+      properties: []
     },
   ];
 
@@ -141,13 +150,12 @@ const processRow = async (row) => {
 };
 
 const insertProduct = async (product, categoryCode, synonymsArray) => {
-  const propertiesQueries = propertyQueriesForNode(product);
-  const propertiesMutations = propertyMutationsForNode(product);
+  // const propertiesQueries = propertyQueriesForNode(product);
+  // const propertiesMutations = propertyMutationsForNode(product);
 
   const query = `query {
     Category as var(func: eq(dgraph.type, Category)) @filter(eq(code, ${categoryCode}))
     ${product.type} as var(func: eq(code, ${product.code})) 
-    ${propertiesQueries}
   }`;
 
   const synonymMutation = synonymsArray.reduce(
@@ -162,7 +170,6 @@ const insertProduct = async (product, categoryCode, synonymsArray) => {
     uid(${product.type}) <dgraph.type> "${product.type}" .
     uid(Category) <children> uid(${product.type}) .
     ${synonymMutation}
-    ${propertiesMutations}
   `);
 
   const req = new dgraph.Request();
@@ -182,13 +189,12 @@ const insertProduct = async (product, categoryCode, synonymsArray) => {
 };
 
 const insertChild = async (parent, child) => {
-  const propertiesQueries = propertyQueriesForNode(child);
-  const propertiesMutations = propertyMutationsForNode(child);
+  // const propertiesQueries = propertyQueriesForNode(child);
+  // const propertiesMutations = propertyMutationsForNode(child);
 
   const query = `query {
     ${parent.type} as var(func: eq(dgraph.type, ${parent.type})) @filter(eq(code, ${parent.code})) 
     ${child.type} as var(func: eq(dgraph.type, ${child.type})) @filter(eq(code, ${child.code})) 
-    ${propertiesQueries}
   }`;
 
   const mutation = new dgraph.Mutation();
@@ -197,7 +203,6 @@ const insertChild = async (parent, child) => {
     uid(${child.type}) <code> "${child.code}" .
     uid(${child.type}) <dgraph.type> "${child.type}" .
     uid(${parent.type}) <children> uid(${child.type}) .
-    ${propertiesMutations}
   `);
 
   const req = new dgraph.Request();
