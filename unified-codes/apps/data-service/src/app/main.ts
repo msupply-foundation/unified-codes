@@ -6,7 +6,7 @@ import { buildTypeDefsAndResolvers } from 'type-graphql';
 import { EntityResolver } from './v1/resolvers';
 import { DgraphDataSource, RxNavDataSource } from './v1/types';
 
-import { createApolloServer, createFastifyServer } from './server';
+import { createApolloServer, createFastifyServer, FastifyConfig } from './server';
 
 const start = async () => {
   let fastifyServer;
@@ -38,7 +38,7 @@ const start = async () => {
     const apolloPluginV1 = apolloServerV1.createHandler({ path: '/v1/graphql' });
     const apolloPluginV2 = apolloServerV2.createHandler({ path: '/v2/graphql', disableHealthCheck: true });
 
-    const fastifyConfig = { logger: true };
+    const fastifyConfig: FastifyConfig = { http2: true, https: {}, logger: true };
     const fastifyPlugins = [apolloPluginV1, apolloPluginV2, fastifyCors];
 
     fastifyServer = createFastifyServer(fastifyConfig, fastifyPlugins);
