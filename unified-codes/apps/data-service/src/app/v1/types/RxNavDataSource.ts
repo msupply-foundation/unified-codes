@@ -132,7 +132,7 @@ export class RxNavDataSource extends RESTDataSource {
             return interactionType.interactionPair.flatMap(
               (interactionPair: IRxNavInteractionPair) => {
                 const { interactionConcept, description, severity } = interactionPair;
-                const [_, interactionConceptItem] = interactionConcept;
+                const [, interactionConceptItem] = interactionConcept;
                 const { minConceptItem, sourceConceptItem } = interactionConceptItem;
                 const { rxcui } = minConceptItem;
                 const { name } = sourceConceptItem;

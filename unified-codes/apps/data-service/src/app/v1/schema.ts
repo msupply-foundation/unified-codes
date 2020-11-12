@@ -43,6 +43,7 @@ export class EntityType implements IEntity {
   @Field((type) => ID)
   uid: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => EntityType, { nullable: true })
   product: IEntity;
 }
@@ -159,6 +160,7 @@ export class GraphQLErrorType {
 
    // eslint-disable-next-line @typescript-eslint/no-unused-vars 
   @Field((type) => String, { nullable: true })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   locations: any[];
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
