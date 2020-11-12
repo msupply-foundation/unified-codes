@@ -13,7 +13,7 @@ import {
 import { IApolloServiceContext, User } from '@unified-codes/data';
 
 import { DgraphDataSource, RxNavDataSource, IDrugInteractions, IEntity, IEntityCollection, RxNavInteractionSeverity } from './types';
-import { DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityType } from './schema';
+import { DrugInteractionsType, DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityType } from './schema';
 
 @ArgsType()
 class GetEntityArgs {
@@ -98,7 +98,7 @@ export class EntityResolver {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @Query((returns) => DrugInteractionType)
+  @Query((returns) => DrugInteractionsType)
   async interactions(
     @Args() args: GetInteractionsArgs,
     @Ctx() ctx: IApolloServiceContext
