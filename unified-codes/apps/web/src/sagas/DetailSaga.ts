@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 
-import { IEntity } from '@unified-codes/data';
+import { IEntity } from '@unified-codes/data/v1';
 
 import { DETAIL_ACTIONS, DetailActions, AlertActions, IDetailFetchEntityAction } from '../actions';
 

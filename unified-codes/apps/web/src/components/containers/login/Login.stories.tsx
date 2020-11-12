@@ -6,7 +6,7 @@ import {
   AuthenticationService,
   User,
   JWTToken,
-} from '@unified-codes/data';
+} from '@unified-codes/data/v1';
 
 import { LoginComponent } from './Login';
 

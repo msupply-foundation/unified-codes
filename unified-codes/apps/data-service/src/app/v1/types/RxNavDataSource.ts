@@ -1,7 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
-import { Entity, IEntity } from './Entity';
-import { DrugInteraction, IDrugInteraction, IDrugInteractions } from './DrugInteraction';
+import {  DrugInteraction, IDrugInteraction, IDrugInteractions, Entity, IEntity } from '@unified-codes/data/v1';
 
 // RxCui is stringified numerical ID.
 // Note: ts proposal for regex-validated types: https://github.com/Microsoft/TypeScript/issues/6579.

@@ -10,10 +10,26 @@ import {
   Root,
 } from 'type-graphql';
 
-import { IApolloServiceContext, User } from '@unified-codes/data';
+import { 
+  IDrugInteractions,
+  IEntity, 
+  IEntityCollection,
+  IApolloServiceContext,
+  User
+} from '@unified-codes/data/v1';
 
-import { DgraphDataSource, RxNavDataSource, IDrugInteractions, IEntity, IEntityCollection, RxNavInteractionSeverity } from './types';
-import { DrugInteractionsType, DrugInteractionType, EntityCollectionType, EntitySearchInput, EntityType } from './schema';
+import {
+  DgraphDataSource, 
+  RxNavDataSource, 
+  RxNavInteractionSeverity,
+} from './types';
+
+import { 
+  DrugInteractionsType,
+  EntityCollectionType,
+  EntitySearchInput,
+  EntityType 
+} from './schema';
 
 @ArgsType()
 class GetEntityArgs {
@@ -40,13 +56,16 @@ class GetEntitiesArgs {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 @ArgsType()
 class GetInteractionsArgs {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
   code;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String, { nullable: true })
   severity;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 @Resolver((of) => EntityType)
 export class EntityResolver {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -77,6 +96,7 @@ export class EntityResolver {
     return dgraph.getProduct(code);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Query((returns) => EntityCollectionType)
   async entities(
     @Args() args: GetEntitiesArgs,

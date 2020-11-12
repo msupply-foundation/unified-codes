@@ -61,7 +61,7 @@ export class Entity implements IEntity {
   }
 
   matchesProperty(property: Property): boolean {
-    return this.properties?.includes(property);
+    return this.properties?.includes(property) ?? false;
   }
 }
 

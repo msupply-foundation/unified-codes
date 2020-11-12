@@ -9,7 +9,7 @@ import {
   TableRow,
 } from '@unified-codes/ui/components';
 import { withStyles, Position } from '@unified-codes/ui/styles';
-import { EEntityField } from '@unified-codes/data';
+import { EEntityField } from '@unified-codes/data/v1';
 
 import { ExplorerActions, IExplorerAction } from '../../../actions';
 import { ExplorerSelectors } from '../../../selectors';

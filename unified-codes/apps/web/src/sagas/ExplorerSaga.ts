@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all, select } from 'redux-saga/effects';
 
-import { IEntity } from '@unified-codes/data';
+import { IEntity } from '@unified-codes/data/v1';
 
 import { AlertActions, ExplorerActions, EXPLORER_ACTIONS, IExplorerAction } from '../actions';
 import { ExplorerSelectors } from '../selectors';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { Dialog, DialogContent, LoginForm } from '@unified-codes/ui/components';
-import { IUserCredentials } from '@unified-codes/data';
+import { IUserCredentials } from '@unified-codes/data/v1';
 
 import { AuthenticatorActions, IAuthenticatorAction } from '../../../actions';
 

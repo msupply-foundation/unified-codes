@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { IEntity } from '@unified-codes/data';
+import { IEntity } from '@unified-codes/data/v1';
 import { Grid, Typography } from '@unified-codes/ui/components';
 import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 

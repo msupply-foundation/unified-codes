@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { IEntity } from '@unified-codes/data';
+import { IEntity } from '@unified-codes/data/v1';
 
 import { IDetailState, IState } from '../types';
 

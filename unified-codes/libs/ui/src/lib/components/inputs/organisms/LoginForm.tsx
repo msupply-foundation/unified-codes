@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IUserCredentials } from '@unified-codes/data';
+import { IUserCredentials } from '@unified-codes/data/v1';
 
 import Button from '../atoms/Button';
 import Grid from '../../layout/atoms/Grid';

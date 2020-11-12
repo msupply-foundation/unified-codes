@@ -4,12 +4,9 @@ import {
   EEntityField,
   EEntityType,
   IEntity,
-} from './Entity';
-
-import { 
   EntityCollection,
   IEntityCollection
-} from './EntityCollection';
+} from '@unified-codes/data/v1';
 
 import { EntitySearchInput, FilterMatch } from '../schema';
 

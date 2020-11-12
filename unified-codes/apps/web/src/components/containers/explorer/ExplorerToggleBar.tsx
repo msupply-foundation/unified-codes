@@ -3,7 +3,7 @@ import { batch, connect } from 'react-redux';
 
 import { CheckCircleIcon, AddIcon, Grid } from '@unified-codes/ui/components';
 import { withStyles } from '@unified-codes/ui/styles';
-import { EEntityType } from '@unified-codes/data';
+import { EEntityType } from '@unified-codes/data/v1';
 
 import ExplorerToggleButton from './ExplorerToggleButton';
 

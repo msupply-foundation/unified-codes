@@ -6,7 +6,7 @@ import {
   IKeyCloakConfig,
   KeyCloakIdentityProvider,
   User,
-} from '@unified-codes/data';
+} from '@unified-codes/data/v1';
 
 import AuthenticatorActions, {
   IAuthenticateAction,

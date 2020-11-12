@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import fastify from 'fastify';
 import { ApolloServer } from 'apollo-server-fastify';
 
-import { ApolloService, KeyCloakIdentityProvider } from '@unified-codes/data';
+import { ApolloService, KeyCloakIdentityProvider } from '@unified-codes/data/v1';
 
 export const createApolloServer = async (
   typeDefs,

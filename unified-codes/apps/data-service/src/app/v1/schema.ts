@@ -9,7 +9,7 @@ import {
   IProperty,
   IEntityCollection,
   IEntitySearch,
-} from './types';
+} from '@unified-codes/data/v1';
 
 export type FilterMatch = 'begin' | 'contains' | 'exact' | undefined;
 

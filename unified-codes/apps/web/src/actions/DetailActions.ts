@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import { IEntity } from '@unified-codes/data';
+import { IEntity } from '@unified-codes/data/v1';
 
 export const DETAIL_ACTIONS = {
   FETCH_ENTITY: 'detail/fetchEntity',

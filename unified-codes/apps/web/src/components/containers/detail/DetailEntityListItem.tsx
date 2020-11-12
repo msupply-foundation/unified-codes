@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IEntity } from '@unified-codes/data';
+import { IEntity } from '@unified-codes/data/v1';
 import {
   List,
   ListItem,
