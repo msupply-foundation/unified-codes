@@ -1,14 +1,18 @@
 import 'reflect-metadata';
 
-import fastify from 'fastify';
 import { ApolloServer } from 'apollo-server-fastify';
+import fastify, { FastifyHttp2SecureOptions, FastifyInstance, FastifyLoggerInstance, FastifyPluginCallback, FastifyPluginOptions } from 'fastify';
+import { Http2SecureServer, Http2ServerRequest, Http2ServerResponse } from 'http2';
 
-import { ApolloService, KeyCloakIdentityProvider } from '@unified-codes/data';
+import { ApolloService, DataSources, KeyCloakIdentityProvider, Resolvers, TypeDefs } from '@unified-codes/data/v1';
+
+export type FastifyServer = FastifyInstance<Http2SecureServer, Http2ServerRequest, Http2ServerResponse, FastifyLoggerInstance>
+export type FastifyConfig = FastifyHttp2SecureOptions<Http2SecureServer, FastifyLoggerInstance>
 
 export const createApolloServer = async (
-  typeDefs,
-  resolvers,
-  dataSources
+  typeDefs: TypeDefs,
+  resolvers: Resolvers,
+  dataSources: DataSources
 ): Promise<ApolloServer> => {
   const identityProviderConfig = {
     baseUrl: `${process.env.NX_AUTHENTICATION_SERVICE_URL}:${process.env.NX_AUTHETICATION_SERVICE_PORT}/${process.env.NX_AUTHENTICATION_SERVICE_REALM}/${process.env.NX_AUTHENTICATION_SERVICE_AUTH}`,
@@ -24,7 +28,7 @@ export const createApolloServer = async (
   return apolloServer;
 };
 
-export const createFastifyServer = (config, plugins?) => {
+export const createFastifyServer = (config: FastifyConfig, plugins?: FastifyPluginCallback<FastifyPluginOptions>[]): FastifyServer => {
   const fastifyServer = fastify(config);
   plugins.forEach((plugin) => {
     fastifyServer.register(plugin);

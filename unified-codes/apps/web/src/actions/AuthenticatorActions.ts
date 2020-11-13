@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import { IUserCredentials, IUser, User } from '@unified-codes/data';
+import { IUserCredentials, IUser, User } from '@unified-codes/data/v1';
 
 export const AUTHENTICATOR_ACTIONS = {
   AUTHENTICATE: 'authenticatorActions/login',

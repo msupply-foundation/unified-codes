@@ -4,6 +4,7 @@ import {
   IUserAction,
   AUTHENTICATOR_ACTIONS,
 } from '../actions';
+
 import { IUserState } from '../types';
 
 const initialState = () => {

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { IState } from '../../../types';
 
-import { IEntity } from '@unified-codes/data';
+import { IEntity } from '@unified-codes/data/v1';
 import {
   List,
   ListItem,

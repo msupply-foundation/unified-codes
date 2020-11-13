@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IProperty } from '@unified-codes/data';
+import { IProperty } from '@unified-codes/data/v1';
 import {
   List,
   ListItem,

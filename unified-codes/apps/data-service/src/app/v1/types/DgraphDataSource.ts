@@ -1,12 +1,13 @@
-import { RESTDataSource } from 'apollo-datasource-rest';
+import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest';
 
 import {
   EEntityField,
   EEntityType,
-  EntityCollection,
   IEntity,
-  IEntityCollection,
-} from '@unified-codes/data';
+  EntityCollection,
+  IEntityCollection
+} from '@unified-codes/data/v1';
+
 import { EntitySearchInput, FilterMatch } from '../schema';
 
 export class DgraphDataSource extends RESTDataSource {
@@ -102,7 +103,7 @@ export class DgraphDataSource extends RESTDataSource {
     this.baseURL = `${process.env.NX_DGRAPH_SERVICE_URL}:${process.env.NX_DGRAPH_SERVICE_PORT}`;
   }
 
-  willSendRequest(request) {
+  willSendRequest(request: RequestOptions): void {
     Object.entries(DgraphDataSource.headers).forEach(([key, value]) =>
       request.headers.set(key, value)
     );
@@ -156,7 +157,8 @@ export class DgraphDataSource extends RESTDataSource {
     return new EntityCollection(entities, totalCount);
   }
 
-  async postQuery(query) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async postQuery(query: string): Promise<any> {
     const response = await this.post(DgraphDataSource.paths.query, query);
     const { data } = response;
     return data;

@@ -1,4 +1,4 @@
-import { IUser, EEntityField, IEntity, EEntityType } from '@unified-codes/data';
+import { IUser, EEntityField, IEntity, EEntityType } from '@unified-codes/data/v1';
 
 import { IAlert } from './Alert';
 

@@ -6,9 +6,9 @@ import IdentityProvider from './IdentityProvider';
 import JWT, { JWTToken } from './JWT';
 import AuthenticationService from './AuthenticationService';
 
-type TypeDefs = Config['typeDefs'];
-type Resolvers = Config['resolvers'];
-type DataSources = Config['dataSources'];
+export type TypeDefs = Config['typeDefs'];
+export type Resolvers = Config['resolvers'];
+export type DataSources = Config['dataSources'];
 
 export interface IApolloServiceContext {
   token?: JWTToken;

@@ -1,7 +1,7 @@
-import IEntitySearch from './EntitySearch';
+import IEntityRequestFilter from './EntityRequestFilter';
 
 export interface IEntityRequest {
-  filter: IEntitySearch;
+  filter: IEntityRequestFilter;
   first: number;
   offset: number;
 }

@@ -1,5 +1,7 @@
+import { EEntityField, EEntityType } from '@unified-codes/data/v1';
+
 import { IExplorerState } from '../types';
-import { EEntityField, EEntityType } from '@unified-codes/data';
+
 import {
   EXPLORER_ACTIONS,
   IExplorerAction,

@@ -10,45 +10,65 @@ import {
   Root,
 } from 'type-graphql';
 
-import { IApolloServiceContext, IEntity, IEntityCollection, User } from '@unified-codes/data';
+import { 
+  IDrugInteractions,
+  IEntity, 
+  IEntityCollection,
+  IApolloServiceContext,
+  User
+} from '@unified-codes/data/v1';
 
-import { DgraphDataSource, RxNavDataSource, RxNavInteractionSeverity } from './types';
 import {
+  DgraphDataSource, 
+  RxNavDataSource, 
+  RxNavInteractionSeverity,
+} from './types';
+
+import { 
   DrugInteractionsType,
   EntityCollectionType,
   EntitySearchInput,
-  EntityType,
+  EntityType 
 } from './schema';
 
 @ArgsType()
 class GetEntityArgs {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
   code;
 }
 
 @ArgsType()
 class GetEntitiesArgs {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => EntitySearchInput)
   filter;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => Int)
   first;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => Int)
   offset;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 @ArgsType()
 class GetInteractionsArgs {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
   code;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String, { nullable: true })
   severity;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 @Resolver((of) => EntityType)
 export class EntityResolver {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Query((returns) => EntityType)
   async entity(@Args() args: GetEntityArgs, @Ctx() ctx: IApolloServiceContext): Promise<IEntity> {
     const { code } = args;
@@ -59,12 +79,14 @@ export class EntityResolver {
     // TODO: add authorisation logic for any protected entities.
     if (token) {
       const user: User = await authenticator.authenticate(token);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const isAuthorised = await authoriser.authorise(user);
     }
 
     return dgraph.getEntity(code);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @FieldResolver((returns) => EntityType)
   async product(@Root() entity: IEntity, @Ctx() ctx: IApolloServiceContext): Promise<IEntity> {
     const { code } = entity;
@@ -74,6 +96,7 @@ export class EntityResolver {
     return dgraph.getProduct(code);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Query((returns) => EntityCollectionType)
   async entities(
     @Args() args: GetEntitiesArgs,
@@ -87,17 +110,19 @@ export class EntityResolver {
     // TODO: add authorisation logic for any protected entities.
     if (token) {
       const user: User = await authenticator.authenticate(token);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const isAuthorised = await authoriser.authorise(user);
     }
 
     return dgraph.getEntities(filter, first, offset);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Query((returns) => DrugInteractionsType)
   async interactions(
     @Args() args: GetInteractionsArgs,
     @Ctx() ctx: IApolloServiceContext
-  ): Promise<DrugInteractionsType> {
+  ): Promise<IDrugInteractions> {
     const { code, severity } = args;
     const { dataSources } = ctx;
     const { dgraph, rxnav } = dataSources as { dgraph: DgraphDataSource; rxnav: RxNavDataSource };

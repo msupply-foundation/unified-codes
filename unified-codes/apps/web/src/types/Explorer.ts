@@ -1,4 +1,4 @@
-import { EEntityField, EEntityType } from '@unified-codes/data';
+import { EEntityField, EEntityType } from '@unified-codes/data/v1';
 
 export interface IExplorerParameters {
   code?: string;

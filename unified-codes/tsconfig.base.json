@@ -21,7 +21,8 @@
       "@unified-codes/ui/styles": ["libs/ui/src/lib/styles/index.ts"],
       "@unified-codes/ui/types": ["libs/ui/src/lib/types/index.ts"],
       "@unified-codes/ui/hooks": ["libs/ui/src/lib/hooks/index.ts"],
-      "@unified-codes/data": ["libs/data/src/index.ts"]
+      "@unified-codes/data/v1": ["libs/data/src/lib/v1/index.ts"],
+      "@unified-codes/data/v2": ["libs/data/src/lib/v2/index.ts"]
     },
     "allowSyntheticDefaultImports": true
   },

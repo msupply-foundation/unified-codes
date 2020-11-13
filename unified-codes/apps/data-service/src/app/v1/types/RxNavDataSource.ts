@@ -1,13 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
-import {
-  DrugInteraction,
-  Entity,
-  IDrugInteraction,
-  IDrugInteractions,
-  IEntity,
-} from '@unified-codes/data';
-import { GraphQLError } from 'graphql';
+import {  DrugInteraction, IDrugInteraction, IDrugInteractions, Entity, IEntity } from '@unified-codes/data/v1';
 
 // RxCui is stringified numerical ID.
 // Note: ts proposal for regex-validated types: https://github.com/Microsoft/TypeScript/issues/6579.
@@ -139,7 +132,7 @@ export class RxNavDataSource extends RESTDataSource {
             return interactionType.interactionPair.flatMap(
               (interactionPair: IRxNavInteractionPair) => {
                 const { interactionConcept, description, severity } = interactionPair;
-                const [_, interactionConceptItem] = interactionConcept;
+                const [, interactionConceptItem] = interactionConcept;
                 const { minConceptItem, sourceConceptItem } = interactionConceptItem;
                 const { rxcui } = minConceptItem;
                 const { name } = sourceConceptItem;

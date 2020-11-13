@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import { TableCell, TableRow } from '@unified-codes/ui/components';
 import { withStyles } from '@unified-codes/ui/styles';
-import { EEntityField, IEntity } from '@unified-codes/data';
+import { EEntityField, IEntity } from '@unified-codes/data/v1';
 
 import { ExplorerSelectors } from '../../../selectors';
 import { IState } from '../../../types';
