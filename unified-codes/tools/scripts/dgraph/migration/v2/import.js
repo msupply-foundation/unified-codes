@@ -28,17 +28,7 @@ const insertRootNodes = async () => {
   `);
   // TODO: Source category codes from config or spreadsheet rather than hardcoding
 
-  const req = new dgraph.Request();
-  req.setQuery(query);
-  req.setMutationsList([mutation]);
-  req.setCommitNow(true);
-
-  const txn = dgraphClient.newTxn();
-  try {
-    await txn.doRequest(req);
-  } finally {
-    txn.discard();
-  }
+  await processDgraphUpsert(query, mutation);
 };
 
 const processRow = async (row) => {
@@ -178,19 +168,12 @@ const insertProduct = async (product, categoryCode, synonymsArray) => {
     ${synonymMutation}
   `);
 
-  const req = new dgraph.Request();
-  req.setQuery(query);
-  req.setMutationsList([mutation]);
-  req.setCommitNow(true);
-
-  const txn = dgraphClient.newTxn();
   try {
-    await txn.doRequest(req);
+    await processDgraphUpsert(query, mutation);
     console.log(`Successfully imported ${product.name}`);
-  } catch (error) {
+  }
+  catch (error) {
     console.log(`Error importing ${product.name}`);
-  } finally {
-    txn.discard();
   }
 };
 
@@ -211,18 +194,7 @@ const insertChild = async (parent, child) => {
     uid(${parent.type}) <children> uid(${child.type}) .
   `);
 
-  const req = new dgraph.Request();
-  req.setQuery(query);
-  req.setMutationsList([mutation]);
-  req.setCommitNow(true);
-
-  const txn = dgraphClient.newTxn();
-  try {
-    await txn.doRequest(req);
-  } catch (error) {
-  } finally {
-    txn.discard();
-  }
+  await processDgraphUpsert(query, mutation);
 };
 
 const createImport = async () => {
@@ -273,21 +245,25 @@ const processCombinations = async () => {
           uid(Component) <combines> uid(ProductCode) .
         `);
 
-        const req = new dgraph.Request();
-        req.setQuery(query);
-        req.setMutationsList([mutation]);
-        req.setCommitNow(true);
-
-        const txn = dgraphClient.newTxn();
-        try {
-          await txn.doRequest(req);
-        } finally {
-          txn.discard();
-        }
+        await processDgraphUpsert(query, mutation);
       }
     }
   }
 };
+
+const processDgraphUpsert = async (query, mutation) => {
+  const req = new dgraph.Request();
+  req.setQuery(query);
+  req.setMutationsList([mutation]);
+  req.setCommitNow(true);
+
+  const txn = dgraphClient.newTxn();
+  try {
+    await txn.doRequest(req);
+  } finally {
+    txn.discard();
+  }
+}
 
 const propertyQueriesForNode = (node) =>
   node.properties.reduce(
