@@ -6,6 +6,7 @@ const inputFilename = process.argv[2] || './UC Spreadsheet 3.0.xlsm';
 const clientStub = new dgraph.DgraphClientStub(`localhost:9080`);
 const dgraphClient = new dgraph.DgraphClient(clientStub);
 
+const combinationDrugs = [];
 
 const insertRootNodes = async () => {
   const query = `query {
@@ -120,32 +121,37 @@ const processRow = async (row) => {
       type: 'DoseStrength',
       name: doseStrengthName,
       code: doseStrengthCode,
-      properties: []
+      properties: [],
     },
     {
       type: 'DoseUnit',
       name: doseUnitName,
       code: doseUnitCode,
-      properties: []
+      properties: [],
     },
   ];
 
-  // Process non-combination drugs first
   const [product] = productDefinition;
 
-  if (!(product.name.indexOf('/') > -1)) {
-    const synonymsArray = synonyms ? synonyms.split(',') : [];
-    await insertProduct(product, categoryCode, synonymsArray);
+  if (product.name.indexOf('/') > -1) {
+    combinationDrugs.push({
+      productName,
+      productCode,
+      combinations,
+    });
+  }
 
-    let parentIndex = 0;
-    let childIndex = 1;
-    while (childIndex < productDefinition.length) {
-      if (productDefinition[childIndex].name && productDefinition[childIndex].code) {
-        await insertChild(productDefinition[parentIndex], productDefinition[childIndex]);
-        parentIndex = childIndex;
-      }
-      childIndex++;
+  const synonymsArray = synonyms ? synonyms.split(',') : [];
+  await insertProduct(product, categoryCode, synonymsArray);
+
+  let parentIndex = 0;
+  let childIndex = 1;
+  while (childIndex < productDefinition.length) {
+    if (productDefinition[childIndex].name && productDefinition[childIndex].code) {
+      await insertChild(productDefinition[parentIndex], productDefinition[childIndex]);
+      parentIndex = childIndex;
     }
+    childIndex++;
   }
 };
 
@@ -242,6 +248,44 @@ const createImport = async () => {
     console.error(error);
   } finally {
     if (fileHandle !== undefined) await fileHandle.close();
+  }
+
+  await processCombinations();
+};
+
+const processCombinations = async () => {
+  for (let i = 0; i < combinationDrugs.length; i++) {
+    const productCode = combinationDrugs[i].productCode;
+
+    // Split by ',' and '/' (spreadsheet formatting currently inconsistent)
+    const components = combinationDrugs[i].combinations?.split(/[,/]/);
+    
+    if (components?.length > 1) {
+      for (let j = 0; j < components.length; j++) {
+        // Add combination product via 'combines' relation to each component
+        const query = `query {
+          Component as var(func: eq(code, ${components[j].trim()}))
+          ProductCode as var(func: eq(code, ${productCode}))
+        }`;
+
+        const mutation = new dgraph.Mutation();
+        mutation.setSetNquads(`
+          uid(Component) <combines> uid(ProductCode) .
+        `);
+
+        const req = new dgraph.Request();
+        req.setQuery(query);
+        req.setMutationsList([mutation]);
+        req.setCommitNow(true);
+
+        const txn = dgraphClient.newTxn();
+        try {
+          await txn.doRequest(req);
+        } finally {
+          txn.discard();
+        }
+      }
+    }
   }
 };
 
