@@ -10,25 +10,21 @@ import {
   Root,
 } from 'type-graphql';
 
-import { 
+import {
   IDrugInteractions,
-  IEntity, 
+  IEntity,
   IEntityCollection,
   IApolloServiceContext,
-  User
+  User,
 } from '@unified-codes/data/v1';
 
-import {
-  DgraphDataSource, 
-  RxNavDataSource, 
-  RxNavInteractionSeverity,
-} from './types';
+import { DgraphDataSource, RxNavDataSource, RxNavInteractionSeverity } from './types';
 
-import { 
+import {
   DrugInteractionsType,
   EntityCollectionType,
   EntitySearchInput,
-  EntityType 
+  EntityType,
 } from './schema';
 
 @ArgsType()

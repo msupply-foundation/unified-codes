@@ -5,7 +5,7 @@ import {
   EEntityType,
   IEntity,
   EntityCollection,
-  IEntityCollection
+  IEntityCollection,
 } from '@unified-codes/data/v1';
 
 import { EntitySearchInput, FilterMatch } from '../schema';
@@ -37,6 +37,7 @@ export class DgraphDataSource extends RESTDataSource {
       query (func: eq(type, "drug")) @cascade {
         code
         description
+        type
         properties: has_property {
           type
           value
@@ -122,6 +123,7 @@ export class DgraphDataSource extends RESTDataSource {
 
     const { query } = data ?? {};
     const [entity] = query ?? [];
+
     return entity;
   }
 
