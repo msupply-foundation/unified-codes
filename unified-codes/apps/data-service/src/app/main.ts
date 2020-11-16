@@ -6,7 +6,7 @@ import { buildTypeDefsAndResolvers } from 'type-graphql';
 import { EntityResolver } from './v1/resolvers';
 import { DgraphDataSource, RxNavDataSource } from './v1/types';
 
-import { createApolloServer, createFastifyServer } from './server';
+import { createApolloServer, createFastifyServer, FastifyConfig } from './server';
 
 const start = async () => {
   let fastifyServer;
@@ -41,7 +41,7 @@ const start = async () => {
       disableHealthCheck: true,
     });
 
-    const fastifyConfig = { logger: true };
+    const fastifyConfig: FastifyConfig = { logger: true };
     const fastifyPlugins = [apolloPluginV1, apolloPluginV2, fastifyCors];
 
     fastifyServer = createFastifyServer(fastifyConfig, fastifyPlugins);

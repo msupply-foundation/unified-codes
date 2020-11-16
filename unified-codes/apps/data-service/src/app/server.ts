@@ -1,6 +1,8 @@
 import 'reflect-metadata';
-import fastify from 'fastify';
+
 import { ApolloServer } from 'apollo-server-fastify';
+import fastify, { FastifyServerOptions, FastifyInstance, FastifyLoggerInstance } from 'fastify';
+import { IncomingMessage, Server, ServerResponse } from 'http';
 
 import {
   ApolloService,
@@ -9,6 +11,14 @@ import {
   Resolvers,
   TypeDefs,
 } from '@unified-codes/data/v1';
+
+export type FastifyServer = FastifyInstance<
+  Server,
+  IncomingMessage,
+  ServerResponse,
+  FastifyLoggerInstance
+>;
+export type FastifyConfig = FastifyServerOptions<Server, FastifyLoggerInstance>;
 
 export const createApolloServer = async (
   typeDefs: TypeDefs,
