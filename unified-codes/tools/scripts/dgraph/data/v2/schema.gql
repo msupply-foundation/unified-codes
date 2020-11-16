@@ -53,7 +53,7 @@ type DoseUnit {
   properties
 }
 
-type InnerPack {
+type PackImmediate {
   code
   name
   children
