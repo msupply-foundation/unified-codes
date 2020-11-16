@@ -1,7 +1,11 @@
-import 'reflect-metadata';
-
 import { ApolloServer } from 'apollo-server-fastify';
-import fastify, { FastifyServerOptions, FastifyInstance, FastifyLoggerInstance } from 'fastify';
+import fastify, {
+  FastifyServerOptions,
+  FastifyInstance,
+  FastifyLoggerInstance,
+  FastifyPluginCallback,
+  FastifyPluginOptions,
+} from 'fastify';
 import { IncomingMessage, Server, ServerResponse } from 'http';
 
 import {
@@ -39,7 +43,10 @@ export const createApolloServer = async (
   return apolloServer;
 };
 
-export const createFastifyServer = (config, plugins?) => {
+export const createFastifyServer = (
+  config: FastifyConfig,
+  plugins?: FastifyPluginCallback<FastifyPluginOptions>[]
+): FastifyServer => {
   const fastifyServer = fastify(config);
   plugins.forEach((plugin) => {
     fastifyServer.register(plugin);
