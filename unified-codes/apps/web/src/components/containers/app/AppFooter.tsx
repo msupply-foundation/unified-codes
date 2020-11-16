@@ -64,6 +64,9 @@ const Footer: Footer = ({ classes }) => {
               Admin
             </Link>
           </Grid>
+          <Grid item>
+            <Link href="https://github.com/openmsupply/unified-codes/wiki">API</Link>
+          </Grid>
         </Grid>
       </Grid>
       <Grid item className={classes?.logo}>

@@ -1,4 +1,5 @@
 export const PATHS = {
+  ABOUT: '/about',
   DEFAULT: '/',
   DETAIL: '/detail/:code',
   EXPLORER: '/explorer',

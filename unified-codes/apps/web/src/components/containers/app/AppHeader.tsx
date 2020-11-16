@@ -69,7 +69,9 @@ const Header: Header = ({ classes, alert, resetAlert }) => {
           Universal&nbsp;Drug
         </Grid>
         <Grid item style={{ paddingLeft: 0, paddingRight: 0 }}>
-          <UCIcon />
+          <Link component={RouterLink} to="/">
+            <UCIcon />
+          </Link>
         </Grid>
         <Grid item className={classes?.title2}>
           Code&nbsp;Database
@@ -84,6 +86,11 @@ const Header: Header = ({ classes, alert, resetAlert }) => {
             <Grid item>
               <Link component={RouterLink} to="/login">
                 Admin
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link component={RouterLink} to="/about">
+                About
               </Link>
             </Grid>
           </Grid>
