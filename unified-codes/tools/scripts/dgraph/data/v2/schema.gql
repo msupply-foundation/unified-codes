@@ -67,7 +67,7 @@ type PackSize {
   properties
 }
 
-type OuterPack {
+type PackOuter {
   code
   name
   children
