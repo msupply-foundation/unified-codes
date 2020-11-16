@@ -16,8 +16,6 @@ import { ITheme } from '../../../styles';
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     root: {
-      width: '100%',
-
       borderBottomColor: theme.palette.divider,
       borderBottomStyle: 'solid',
       borderBottomWidth: 1,
