@@ -1,20 +1,30 @@
-#rm ./web.tar.gz 
-#rm ./dist/apps/web/*
-cp .dist.env .env
-mv .local.env .local.env.backup
+### unified codes release steps                     ###
+### before using, add your public key to the server ###
+### to allow scp & ssh                              ###
 
-nx build web --prod --optimization
-# tar -czvf web.tar.gz ./dist/apps/web
-rm .env
+################ web ################
+ cp .dist.env .env
+ mv .local.env .local.env.backup
 
-scp ./dist/apps/web/* root@codes.msupply.foundation:/var/www/unified-codes/web/
-mv .local.env.backup .local.env
+ nx build web --prod --optimization
+ rm .env
 
-ssh root@codes.msupply.foundation
+ scp ./dist/apps/web/* root@codes.msupply.foundation:/var/www/unified-codes/web/
+ mv .local.env.backup .local.env
+
+ ssh root@codes.msupply.foundation
+
+### and then run the following commands ###
 # systemctl restart nginx
 # exit
 
 
-#nx build data-service --prod --optimize
-#scp ./dist/apps/data-service/* root@codes.msupply.foundation:/var/www/unified-codes/data-service/
-#ssh root@codes.msupply.foundation
+
+################ data-service ###############
+# nx build data-service --prod --optimize
+# scp ./dist/apps/data-service/* root@codes.msupply.foundation:/var/www/unified-codes/data-service/
+# ssh root@codes.msupply.foundation
+
+### and then run the following commands ###
+# pm2 restart data-service
+# exit
