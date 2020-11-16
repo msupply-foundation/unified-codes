@@ -25,27 +25,28 @@ const useStyles = makeStyles((theme: ITheme) =>
     },
     childListContainer: {
       backgroundColor: theme.palette.background.default,
+      borderRadius: 5,
       margin: '-20px auto 0 auto',
       maxWidth: 900,
       width: '100%',
-      borderRadius: 5,
     },
     productContainer: {
       backgroundColor: theme.palette.background.default,
+      borderRadius: 5,
       margin: '0 auto 0 auto',
       maxWidth: 900,
       width: '100%',
-      borderRadius: 5,
       '& span': { color: theme.palette.action.active, display: 'block', fontSize: '0.8rem' },
       '& h6': { color: theme.palette.background.footer, paddingTop: 10 },
-      '& p': { cursor: 'pointer', marginLeft: 10 },
+      '& p': { cursor: 'pointer', marginBottom: 10, padding: 10 },
+      '& p:hover': { backgroundColor: '#f6f6f6' },
     },
     propertyListContainer: {
       backgroundColor: theme.palette.background.default,
+      borderRadius: 5,
       margin: '0 auto 0 auto',
       maxWidth: 900,
       width: '100%',
-      borderRadius: 5,
     },
   })
 );

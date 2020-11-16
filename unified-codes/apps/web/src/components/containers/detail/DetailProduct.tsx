@@ -13,9 +13,16 @@ import { DetailActions, IDetailAction } from '../../../actions';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 import { ITheme } from '../../../styles';
 
-const useStyles = makeStyles((_: ITheme) =>
+const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     root: {
+      width: '100%',
+
+      borderBottomColor: theme.palette.divider,
+      borderBottomStyle: 'solid',
+      borderBottomWidth: 1,
+    },
+    product: {
       width: '100%',
     },
   })
@@ -48,9 +55,9 @@ export const DetailProductComponent: DetailProduct = ({ entity, fetchEntity }) =
   };
 
   return (
-    <Container>
+    <Container className={classes.root}>
       <Typography variant="subtitle1">Product</Typography>
-      <Typography className={classes.root} onClick={onProductClick}>
+      <Typography className={classes.product} onClick={onProductClick}>
         {product.description}
         {product.code && <span>{product.code}</span>}
       </Typography>
