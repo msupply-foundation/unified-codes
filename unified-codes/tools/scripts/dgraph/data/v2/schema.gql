@@ -32,7 +32,7 @@ type DoseForm {
   properties
 }
 
-type DoseQualification {
+type DoseFormQualifier {
   code
   name
   children

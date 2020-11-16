@@ -37,7 +37,7 @@ const processRow = async (row) => {
   const combinations = row.getCell(3).value;
   const routeName = row.getCell(4).value;
   const doseFormName = row.getCell(5).value;
-  const doseQualificationName = row.getCell(6).value;
+  const doseFormQualifierName = row.getCell(6).value;
   const doseStrengthName = row.getCell(7).value;
   const doseUnitName = row.getCell(8).value;
   const immediatePackagingName = row.getCell(9).value;
@@ -48,7 +48,7 @@ const processRow = async (row) => {
   const productCode = row.getCell(13).value;
   const routeCode = row.getCell(14).value;
   const doseFormCode = row.getCell(15).value;
-  const doseQualificationCode = row.getCell(16).value;
+  const doseFormQualifierCode = row.getCell(16).value;
   const doseStrengthCode = row.getCell(17).value;
   const doseUnitCode = row.getCell(18).value;
   const immediatePackagingCode = row.getCell(19).value;
@@ -99,9 +99,9 @@ const processRow = async (row) => {
       properties: [],
     },
     {
-      type: 'DoseQualification',
-      name: doseQualificationName,
-      code: doseQualificationCode,
+      type: 'DoseFormQualifier',
+      name: doseFormQualifierName,
+      code: doseFormQualifierCode,
       properties: [
         { type: 'code_who_atc', value: atcUC5 },
         { type: 'ddd', value: dddUC5 },
