@@ -43,7 +43,7 @@ export const DetailProductComponent: DetailProduct = ({ entity, fetchEntity }) =
   const viewEntity = useViewEntity();
 
   const { product } = entity ?? {};
-
+const { code, description } = product ?? {};
   if (!product) return null;
 
   const onProductClick = () => {
