@@ -25,7 +25,7 @@ fi
 
 ################ web ################
 if [ $1 = "web" ] || [ $1 = "all" ]; then
-  printf -- '\033[97m building web **\033[0m\n';
+  printf -- '\033[97m** building web **\033[0m\n';
   cp .dist.env .env
   mv .local.env .local.env.backup
 

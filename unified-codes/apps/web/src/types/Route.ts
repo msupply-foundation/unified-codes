@@ -6,3 +6,4 @@ export interface IErrorRouteParams {
 }
 export interface IExplorerRouteParams {}
 export interface ILoginRouteParams {}
+export interface IAboutRouteParams {}

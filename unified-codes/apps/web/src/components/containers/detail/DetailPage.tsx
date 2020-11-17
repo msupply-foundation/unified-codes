@@ -6,6 +6,7 @@ import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 
 import DetailEntityAttributeList from './DetailEntityAttributeList';
 import DetailEntityList from './DetailEntityList';
+import DetailProduct from './DetailProduct';
 import DetailPropertyList from './DetailPropertyList';
 import DetailLayout from '../../layout/DetailLayout';
 
@@ -24,17 +25,25 @@ const useStyles = makeStyles((theme: ITheme) =>
     },
     childListContainer: {
       backgroundColor: theme.palette.background.default,
+      borderRadius: 5,
       margin: '-20px auto 0 auto',
       maxWidth: 900,
       width: '100%',
-      borderRadius: 5,
     },
-    propertyListContainer: {
+    productContainer: {
       backgroundColor: theme.palette.background.default,
+      borderRadius: 5,
       margin: '0 auto 0 auto',
       maxWidth: 900,
       width: '100%',
+      '& p:hover': { backgroundColor: '#f6f6f6' },
+    },
+    propertyListContainer: {
+      backgroundColor: theme.palette.background.default,
       borderRadius: 5,
+      margin: '0 auto 0 auto',
+      maxWidth: 900,
+      width: '100%',
     },
   })
 );
@@ -63,6 +72,7 @@ export const DetailPageComponent: DetailPage = ({
       classes={classes}
       attributeList={<DetailEntityAttributeList />}
       childList={<DetailEntityList />}
+      product={<DetailProduct />}
       propertyList={<DetailPropertyList />}
     />
   );
