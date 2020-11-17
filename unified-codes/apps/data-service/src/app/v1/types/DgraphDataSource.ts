@@ -5,7 +5,7 @@ import {
   EEntityType,
   IEntity,
   EntityCollection,
-  IEntityCollection
+  IEntityCollection,
 } from '@unified-codes/data/v1';
 
 import { EntitySearchInput, FilterMatch } from '../schema';
@@ -21,13 +21,14 @@ export class DgraphDataSource extends RESTDataSource {
 
   private static getEntityQuery(code: string) {
     return `{
-      query(func: eq(code, ${code}), first: 1) @recurse(loop: false)  {
+      query(func: eq(code, ${code}), first:1) @recurse(loop:false) {
         code
-        description
-        type
+        type: dgraph.type
+        description: name@*
         value
-        children: has_child
-        properties: has_property
+        combines
+        children
+        properties
       }
     }`;
   }
@@ -113,7 +114,16 @@ export class DgraphDataSource extends RESTDataSource {
     const data = await this.postQuery(DgraphDataSource.getEntityQuery(code));
 
     const { query } = data ?? {};
-    const [entity] = query ?? [];
+    const [entity]: [IEntity] = query ?? [];
+    [entity.type] = entity.type;
+
+    const mapChild = (child: IEntity) => {
+      [child.type] = child.type;
+      child.children && child.children.forEach(mapChild);
+    };
+
+    entity.children.forEach(mapChild);
+
     return entity;
   }
 
