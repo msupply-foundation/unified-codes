@@ -36,9 +36,12 @@ const start = async () => {
     const apolloServerV2 = await createApolloServer(typeDefsV2, resolversV2, dataSourcesV2);
 
     const apolloPluginV1 = apolloServerV1.createHandler({ path: '/v1/graphql' });
-    const apolloPluginV2 = apolloServerV2.createHandler({ path: '/v2/graphql', disableHealthCheck: true });
+    const apolloPluginV2 = apolloServerV2.createHandler({
+      path: '/v2/graphql',
+      disableHealthCheck: true,
+    });
 
-    const fastifyConfig: FastifyConfig = { http2: true, https: {}, logger: true };
+    const fastifyConfig: FastifyConfig = { logger: true };
     const fastifyPlugins = [apolloPluginV1, apolloPluginV2, fastifyCors];
 
     fastifyServer = createFastifyServer(fastifyConfig, fastifyPlugins);
