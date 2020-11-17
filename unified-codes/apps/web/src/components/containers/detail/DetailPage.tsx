@@ -36,9 +36,6 @@ const useStyles = makeStyles((theme: ITheme) =>
       margin: '0 auto 0 auto',
       maxWidth: 900,
       width: '100%',
-      '& span': { color: theme.palette.action.active, display: 'block', fontSize: '0.8rem' },
-      '& h6': { color: theme.palette.background.footer, paddingTop: 10 },
-      '& p': { cursor: 'pointer', marginBottom: 10, padding: 10 },
       '& p:hover': { backgroundColor: '#f6f6f6' },
     },
     propertyListContainer: {

@@ -20,9 +20,14 @@ const useStyles = makeStyles((theme: ITheme) =>
       borderBottomStyle: 'solid',
       borderBottomWidth: 1,
     },
+    code: { color: theme.palette.action.active, display: 'block', fontSize: '0.8rem' },
     product: {
+      cursor: 'pointer',
+      marginBottom: 10,
+      padding: 10,
       width: '100%',
     },
+    title: { color: theme.palette.background.footer, paddingTop: 10 },
   })
 );
 
@@ -43,21 +48,24 @@ export const DetailProductComponent: DetailProduct = ({ entity, fetchEntity }) =
   const viewEntity = useViewEntity();
 
   const { product } = entity ?? {};
-const { code, description } = product ?? {};
-  if (!product) return null;
+  const { code, description } = product ?? {};
+
+  if (!code) return null;
 
   const onProductClick = () => {
-    if (!product.code) return;
-    fetchEntity && fetchEntity(product.code);
-    viewEntity(product.code);
+    if (!code) return;
+    fetchEntity && fetchEntity(code);
+    viewEntity(code);
   };
 
   return (
     <Container className={classes.root}>
-      <Typography variant="subtitle1">Product</Typography>
+      <Typography variant="subtitle1" className={classes.title}>
+        Product
+      </Typography>
       <Typography className={classes.product} onClick={onProductClick}>
-        {product.description}
-        {product.code && <span>{product.code}</span>}
+        <Typography>{description}</Typography>
+        <Typography className={classes.code}>{code}</Typography>
       </Typography>
     </Container>
   );

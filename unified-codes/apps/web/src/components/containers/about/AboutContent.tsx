@@ -16,8 +16,8 @@ export const AboutContent = () => (
       <ul>
         <li>Code items on their generic name, not their trade name (good-bye GTINs etc...)</li>
         <li>
-          Code items based on their strength and dosage formulation (good-bye
-          https://www.unspsc.org/)
+          Code items based on their strength and dosage formulation (good-bye{' '}
+          <a href="https://www.unspsc.org/">https://www.unspsc.org/</a>)
         </li>
         <li>
           Not include the pack size (good-bye{' '}
