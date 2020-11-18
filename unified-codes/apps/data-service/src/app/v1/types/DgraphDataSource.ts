@@ -53,18 +53,18 @@ export class DgraphDataSource extends RESTDataSource {
 
   private static getEntitiesFilterString(description: string, match: FilterMatch) {
     if (!description) {
-      return '@filter(has(description))';
+      return '@filter(has(name))';
     }
 
     switch (match) {
       case 'exact':
-        return `@filter(regexp(description, /^${description}$/i))`;
+        return `@filter(regexp(name, /^${description}$/i))`;
 
       case 'contains':
-        return `@filter(regexp(description, /${description}/i))`;
+        return `@filter(regexp(name, /${description}/i))`;
 
       default:
-        return `@filter(regexp(description, /^${description}/i))`;
+        return `@filter(regexp(name, /^${description}/i))`;
     }
   }
 
@@ -77,20 +77,21 @@ export class DgraphDataSource extends RESTDataSource {
     offset?: number,
     match?: FilterMatch
   ) {
-    const orderString = `${orderDesc ? 'orderdesc' : 'orderasc'}: ${orderField}`;
+    const orderBy = orderField === EEntityField.DESCRIPTION ? 'name' : orderField;
+    const orderString = `${orderDesc ? 'orderdesc' : 'orderasc'}: ${orderBy}`;
     const filterString = this.getEntitiesFilterString(description, match);
 
     return `{
-      all as counters(func: anyofterms(type, "${type}")) ${filterString} { 
+      all as counters(func: eq(dgraph.type, "${type}")) ${filterString} { 
         total: count(uid)
       }
       
       query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
         code
-        description
+        description: name@*
         type
         uid
-        properties: has_property {
+        properties {
           type
           value
         }
@@ -133,7 +134,7 @@ export class DgraphDataSource extends RESTDataSource {
     const { type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = true } =
       orderBy ?? {};
-
+      
     const data = await this.postQuery(
       DgraphDataSource.getEntitiesQuery(
         type,
@@ -147,8 +148,8 @@ export class DgraphDataSource extends RESTDataSource {
     );
 
     const { counters: countersData, query: entityData } = data ?? {};
-    const [counterData] = countersData;
-    const totalCount = counterData?.total;
+    const [counterData] = countersData ?? [];
+    const totalCount = counterData?.total ?? 0;
 
     // Overwrite interactions to prevent large query delays.
     const entities: IEntity[] =
