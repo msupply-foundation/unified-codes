@@ -19,6 +19,33 @@ export class DgraphDataSource extends RESTDataSource {
     query: 'query',
   };
 
+  private static getEntitiesOrderString(orderField: string = EEntityField.DESCRIPTION, orderDesc = false) {
+    const orderBy = orderField === EEntityField.DESCRIPTION ? 'name' : orderField;
+    const orderString = `${orderDesc ? 'orderdesc' : 'orderasc'}: ${orderBy}`;
+    return orderString;
+  }
+
+  private static getEntityTypeString(type: string) {
+    switch(type) {
+      case EEntityType.DRUG:
+      case EEntityType.MEDICINAL_PRODUCT:
+      case EEntityType.OTHER:
+      default:
+        return 'Product'
+    }
+  }
+
+  private static getEntityCategoryString(type: string) {
+    switch(type) {
+      case EEntityType.DRUG:
+        return 'Drug';
+      case EEntityType.MEDICINAL_PRODUCT:
+        return 'Consumable';
+      case EEntityType.OTHER:
+        return 'Other';
+    }
+  }
+
   private static getEntityQuery(code: string) {
     return `{
       query(func: eq(code, ${code}), first: 1) @recurse(loop: false)  {
@@ -54,18 +81,18 @@ export class DgraphDataSource extends RESTDataSource {
 
   private static getEntitiesFilterString(description: string, match: FilterMatch) {
     if (!description) {
-      return '@filter(has(description))';
+      return '@filter(has(name))';
     }
 
     switch (match) {
       case 'exact':
-        return `@filter(regexp(description, /^${description}$/i))`;
+        return `@filter(regexp(name, /^${description}$/i))`;
 
       case 'contains':
-        return `@filter(regexp(description, /${description}/i))`;
+        return `@filter(regexp(name, /${description}/i))`;
 
       default:
-        return `@filter(regexp(description, /^${description}/i))`;
+        return `@filter(regexp(name, /^${description}/i))`;
     }
   }
 
@@ -78,25 +105,48 @@ export class DgraphDataSource extends RESTDataSource {
     offset?: number,
     match?: FilterMatch
   ) {
-    const orderString = `${orderDesc ? 'orderdesc' : 'orderasc'}: ${orderField}`;
+    const typeString = this.getEntityTypeString(type);
+    const categoryString = this.getEntityCategoryString(type);
+    const orderString = this.getEntitiesOrderString(orderField, orderDesc);
     const filterString = this.getEntitiesFilterString(description, match);
 
     return `{
-      all as counters(func: anyofterms(type, "${type}")) ${filterString} { 
+      all as counters(func: eq(dgraph.type, "${typeString}")) ${filterString} @cascade { 
+        ~children @filter(eq(name, "${categoryString}"))
         total: count(uid)
       }
       
       query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
         code
-        description
-        type
+        description: name@*
+        type: dgraph.type
         uid
-        properties: has_property {
+        properties {
           type
           value
         }
       }
     }`;
+  }
+
+  private static getEntityType(entity: IEntity): string {
+    const { type: types } = entity;
+    const [type] = types ?? [];
+  
+    switch (type) {
+      case "Product":
+        return "drug";
+      case "Route":
+        return "form_category";
+      case "DoseForm":
+        return "form";
+      case "DoseFormQualifier":
+      case "DoseStrength":
+      case "DoseUnit":
+        return "unit_of_use"
+      default:
+        return "n/a";
+    }
   }
 
   constructor() {
@@ -133,9 +183,9 @@ export class DgraphDataSource extends RESTDataSource {
     offset?: number
   ): Promise<IEntityCollection> {
     const { type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
-    const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = true } =
+    const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = false } =
       orderBy ?? {};
-
+      
     const data = await this.postQuery(
       DgraphDataSource.getEntitiesQuery(
         type,
@@ -149,12 +199,20 @@ export class DgraphDataSource extends RESTDataSource {
     );
 
     const { counters: countersData, query: entityData } = data ?? {};
-    const [counterData] = countersData;
-    const totalCount = counterData?.total;
+    const [counterData] = countersData ?? [];
+    const totalCount = counterData?.total ?? 0;
 
-    // Overwrite interactions to prevent large query delays.
+
     const entities: IEntity[] =
-      entityData?.map((entity: IEntity) => ({ ...entity, interactions: [] })) ?? [];
+      entityData?.map((entity: IEntity) => {
+        // Map native graph node types.
+        const type = DgraphDataSource.getEntityType(entity);
+
+        // Overwrite interactions to prevent large query delays.
+        const interactions = [];
+
+        return ({ ...entity, type, interactions });
+      });
 
     return new EntityCollection(entities, totalCount);
   }
