@@ -128,6 +128,26 @@ export class DgraphDataSource extends RESTDataSource {
     }`;
   }
 
+  private static getEntityType(entity: IEntity): string {
+    const { type: types } = entity;
+    const [type] = types ?? [];
+  
+    switch (type) {
+      case "Product":
+        return "drug";
+      case "Route":
+        return "form_category";
+      case "DoseForm":
+        return "form";
+      case "DoseFormQualifier":
+      case "DoseStrength":
+      case "DoseUnit":
+        return "unit_of_use"
+      default:
+        return "n/a";
+    }
+  }
+
   constructor() {
     super();
     this.baseURL = `${process.env.NX_DGRAPH_SERVICE_URL}:${process.env.NX_DGRAPH_SERVICE_PORT}`;
@@ -180,9 +200,17 @@ export class DgraphDataSource extends RESTDataSource {
     const [counterData] = countersData ?? [];
     const totalCount = counterData?.total ?? 0;
 
-    // Overwrite interactions to prevent large query delays.
+
     const entities: IEntity[] =
-      entityData?.map((entity: IEntity) => ({ ...entity, interactions: [] })) ?? [];
+      entityData?.map((entity: IEntity) => {
+        // Map native graph node types.
+        const type = DgraphDataSource.getEntityType(entity);
+
+        // Overwrite interactions to prevent large query delays.
+        const interactions = [];
+
+        return ({ ...entity, type, interactions });
+      });
 
     return new EntityCollection(entities, totalCount);
   }
