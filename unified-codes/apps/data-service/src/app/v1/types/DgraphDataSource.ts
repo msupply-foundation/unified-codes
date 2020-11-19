@@ -181,7 +181,7 @@ export class DgraphDataSource extends RESTDataSource {
     offset?: number
   ): Promise<IEntityCollection> {
     const { type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
-    const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = true } =
+    const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = false } =
       orderBy ?? {};
       
     const data = await this.postQuery(
