@@ -62,17 +62,17 @@ export class DgraphDataSource extends RESTDataSource {
 
   private static getProductQuery(code: string) {
     return `{
-      query (func: eq(type, "drug")) @cascade {
+      query (func: eq(dgraph.type, "Product")) @cascade {
         code
-        description
-        type
-        properties: has_property {
+        description: name
+        type: dgraph.type
+        properties {
           type
           value
         }
-        has_child {
-          has_child {
-            has_child @filter(alloftext(code, ${code})) {
+        children {
+          children {
+            children @filter(alloftext(code, ${code})) {
             }
           }
         }
@@ -166,10 +166,10 @@ export class DgraphDataSource extends RESTDataSource {
 
     const { query } = data ?? {};
     const [entity]: [IEntity] = query ?? [];
-    [entity.type] = entity.type;
+    entity.type = DgraphDataSource.getEntityType(entity);
 
     const mapChild = (child: IEntity) => {
-      [child.type] = child.type;
+      child.type = DgraphDataSource.getEntityType(child);
       child.children && child.children.forEach(mapChild);
     };
 
