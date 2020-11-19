@@ -104,19 +104,21 @@ export class DgraphDataSource extends RESTDataSource {
     offset?: number,
     match?: FilterMatch
   ) {
-    const orderBy = orderField === EEntityField.DESCRIPTION ? 'name' : orderField;
-    const orderString = `${orderDesc ? 'orderdesc' : 'orderasc'}: ${orderBy}`;
+    const typeString = this.getEntityTypeString(type);
+    const categoryString = this.getEntityCategoryString(type);
+    const orderString = this.getEntitiesOrderString(orderField, orderDesc);
     const filterString = this.getEntitiesFilterString(description, match);
 
     return `{
-      all as counters(func: eq(dgraph.type, "${type}")) ${filterString} { 
+      all as counters(func: eq(dgraph.type, "${typeString}")) ${filterString} @cascade { 
+        ~children @filter(eq(name, "${categoryString}"))
         total: count(uid)
       }
       
       query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
         code
         description: name@*
-        type
+        type: dgraph.type
         uid
         properties {
           type
