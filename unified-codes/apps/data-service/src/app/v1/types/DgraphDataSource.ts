@@ -19,6 +19,33 @@ export class DgraphDataSource extends RESTDataSource {
     query: 'query',
   };
 
+  private static getEntitiesOrderString(orderField: string = EEntityField.DESCRIPTION, orderDesc = false) {
+    const orderBy = orderField === EEntityField.DESCRIPTION ? 'name' : orderField;
+    const orderString = `${orderDesc ? 'orderdesc' : 'orderasc'}: ${orderBy}`;
+    return orderString;
+  }
+
+  private static getEntityTypeString(type: string) {
+    switch(type) {
+      case EEntityType.DRUG:
+      case EEntityType.MEDICINAL_PRODUCT:
+      case EEntityType.OTHER:
+      default:
+        return 'Product'
+    }
+  }
+
+  private static getEntityCategoryString(type: string) {
+    switch(type) {
+      case EEntityType.DRUG:
+        return 'Drug';
+      case EEntityType.MEDICINAL_PRODUCT:
+        return 'Consumable';
+      case EEntityType.OTHER:
+        return 'Other';
+    }
+  }
+
   private static getEntityQuery(code: string) {
     return `{
       query(func: eq(code, ${code}), first: 1) @recurse(loop: false)  {
