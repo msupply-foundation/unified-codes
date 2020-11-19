@@ -29,6 +29,7 @@ export const AppPage = ({ onMount = () => null, onUnmount = () => null }) => {
   const classes = useStyles();
 
   const {
+    ABOUT: AboutRoute,
     DETAIL: DetailRoute,
     EXPLORER: ExplorerRoute,
     LOGIN: LoginRoute,
@@ -36,6 +37,7 @@ export const AppPage = ({ onMount = () => null, onUnmount = () => null }) => {
   } = ROUTES;
 
   const {
+    ABOUT: aboutPath,
     DEFAULT: defaultPath,
     DETAIL: detailPath,
     EXPLORER: explorerPath,
@@ -61,6 +63,9 @@ export const AppPage = ({ onMount = () => null, onUnmount = () => null }) => {
         </Route>
         <Route exact path={loginPath}>
           <LoginRoute />
+        </Route>
+        <Route exact path={aboutPath}>
+          <AboutRoute />
         </Route>
         <Route>
           <Redirect to={errorNotFoundPath} />

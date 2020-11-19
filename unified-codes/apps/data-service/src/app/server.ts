@@ -30,7 +30,7 @@ export const createApolloServer = async (
   dataSources: DataSources
 ): Promise<ApolloServer> => {
   const identityProviderConfig = {
-    baseUrl: `${process.env.NX_AUTHENTICATION_SERVICE_URL}:${process.env.NX_AUTHENTICATION_SERVICE_PORT}/${process.env.NX_AUTHENTICATION_SERVICE_REALM}/${process.env.NX_AUTHENTICATION_SERVICE_AUTH}`,
+    baseUrl: `${process.env.NX_AUTHENTICATION_SERVICE_URL}:${process.env.NX_AUTHETICATION_SERVICE_PORT}/${process.env.NX_AUTHENTICATION_SERVICE_REALM}/${process.env.NX_AUTHENTICATION_SERVICE_AUTH}`,
     clientId: process.env.NX_AUTHENTICATION_SERVICE_CLIENT_ID,
     clientSecret: process.env.NX_AUTHENTICATION_SERVICE_CLIENT_SECRET,
     grantType: process.env.NX_AUTHENTICATION_SERVICE_GRANT_TYPE,
