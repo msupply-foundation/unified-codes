@@ -5,7 +5,7 @@ import {
   EEntityType,
   IEntity,
   EntityCollection,
-  IEntityCollection,
+  IEntityCollection
 } from '@unified-codes/data/v1';
 
 import { EntitySearchInput, FilterMatch } from '../schema';
@@ -36,14 +36,20 @@ export class DgraphDataSource extends RESTDataSource {
   }
 
   private static getEntityCategoryString(type: string) {
-    switch(type) {
-      case EEntityType.DRUG:
-        return 'Drug';
-      case EEntityType.MEDICINAL_PRODUCT:
-        return 'Consumable';
-      case EEntityType.OTHER:
-        return 'Other';
-    }
+    const types = type.replace(/[[\]]+/g, '').split(',');
+    const categories = types.map(type => {
+      switch(type) {
+        case EEntityType.DRUG:
+          return 'Drug';
+        case EEntityType.MEDICINAL_PRODUCT:
+          return 'Consumable';
+        case EEntityType.OTHER:
+          return 'Other';
+        default:
+          return type;
+      }
+    });
+    return JSON.stringify(categories);
   }
 
   private static getEntityQuery(code: string) {
@@ -64,7 +70,6 @@ export class DgraphDataSource extends RESTDataSource {
       query (func: eq(type, "drug")) @cascade {
         code
         description
-        type
         properties: has_property {
           type
           value
@@ -112,7 +117,7 @@ export class DgraphDataSource extends RESTDataSource {
 
     return `{
       all as counters(func: eq(dgraph.type, "${typeString}")) ${filterString} @cascade { 
-        ~children @filter(eq(name, "${categoryString}"))
+        ~children @filter(eq(name, ${categoryString}))
         total: count(uid)
       }
       
@@ -173,7 +178,6 @@ export class DgraphDataSource extends RESTDataSource {
 
     const { query } = data ?? {};
     const [entity] = query ?? [];
-
     return entity;
   }
 
