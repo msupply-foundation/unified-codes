@@ -48,30 +48,31 @@ export class DgraphDataSource extends RESTDataSource {
 
   private static getEntityQuery(code: string) {
     return `{
-      query(func: eq(code, ${code}), first: 1) @recurse(loop: false)  {
+      query(func: eq(code, ${code}), first:1) @recurse(loop:false) {
         code
-        description
-        type
+        type: dgraph.type
+        description: name@*
         value
-        children: has_child
-        properties: has_property
+        combines
+        children
+        properties
       }
     }`;
   }
 
   private static getProductQuery(code: string) {
     return `{
-      query (func: eq(type, "drug")) @cascade {
+      query (func: eq(dgraph.type, "Product")) @cascade {
         code
-        description
-        type
-        properties: has_property {
+        description: name
+        type: dgraph.type
+        properties {
           type
           value
         }
-        has_child {
-          has_child {
-            has_child @filter(alloftext(code, ${code})) {
+        children {
+          children {
+            children @filter(alloftext(code, ${code})) {
             }
           }
         }
@@ -164,8 +165,18 @@ export class DgraphDataSource extends RESTDataSource {
     const data = await this.postQuery(DgraphDataSource.getEntityQuery(code));
 
     const { query } = data ?? {};
-    const [entity] = query ?? [];
-    return entity;
+    const [entity]: [IEntity] = query ?? [];
+    entity.type = DgraphDataSource.getEntityType(entity);
+
+    const mapEntity = (entity: IEntity) => {
+      const type = DgraphDataSource.getEntityType(entity);
+      const children = entity.children?.map(child => mapEntity(child));
+      return { ...entity, type, children };
+    }
+    
+    const mappedEntity = mapEntity(entity);
+
+    return mappedEntity;
   }
 
   async getProduct(code: string): Promise<IEntity> {
