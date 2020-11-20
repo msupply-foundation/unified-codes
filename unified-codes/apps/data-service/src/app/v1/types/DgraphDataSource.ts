@@ -168,14 +168,15 @@ export class DgraphDataSource extends RESTDataSource {
     const [entity]: [IEntity] = query ?? [];
     entity.type = DgraphDataSource.getEntityType(entity);
 
-    const mapChild = (child: IEntity) => {
-      child.type = DgraphDataSource.getEntityType(child);
-      child.children && child.children.forEach(mapChild);
-    };
+    const mapEntity = (entity: IEntity) => {
+      const type = DgraphDataSource.getEntityType(entity);
+      const children = entity.children?.map(child => mapEntity(child));
+      return { ...entity, type, children };
+    }
+    
+    const mappedEntity = mapEntity(entity);
 
-    entity.children.forEach(mapChild);
-
-    return entity;
+    return mappedEntity;
   }
 
   async getProduct(code: string): Promise<IEntity> {
