@@ -56,6 +56,7 @@ export class DgraphDataSource extends RESTDataSource {
         combines
         children
         properties
+        parents: ~children
       }
     }`;
   }
@@ -140,9 +141,8 @@ export class DgraphDataSource extends RESTDataSource {
   
     switch (type) {
       case "Product":
-        const [parent] = entity.parents;
-        console.log(parent.description)
-        switch (parent.description) {
+        const [parent] = entity.parents ?? [];
+        switch (parent?.description) {
           case "Consumable":
             return EEntityType.MEDICINAL_PRODUCT;
           case "Other":
@@ -179,8 +179,6 @@ export class DgraphDataSource extends RESTDataSource {
 
     const { query } = data ?? {};
     const [entity]: [IEntity] = query ?? [];
-
-    entity.type = DgraphDataSource.getEntityType(entity);
 
     const mapEntity = (entity: IEntity) => {
       const type = DgraphDataSource.getEntityType(entity);
