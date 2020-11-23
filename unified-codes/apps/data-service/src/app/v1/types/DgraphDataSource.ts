@@ -141,7 +141,15 @@ export class DgraphDataSource extends RESTDataSource {
     switch (type) {
       case "Product":
         const [parent] = entity.parents;
-        return parent.description ?? "drug";
+        console.log(parent.description)
+        switch (parent.description) {
+          case "Consumable":
+            return EEntityType.MEDICINAL_PRODUCT;
+          case "Other":
+            return EEntityType.OTHER;
+          default:
+            return EEntityType.DRUG;
+        }
       case "Route":
         return "form_category";
       case "DoseForm":
