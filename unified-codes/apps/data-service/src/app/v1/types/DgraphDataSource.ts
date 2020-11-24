@@ -19,31 +19,40 @@ export class DgraphDataSource extends RESTDataSource {
     query: 'query',
   };
 
-  private static getEntitiesOrderString(orderField: string = EEntityField.DESCRIPTION, orderDesc = false) {
+  private static getEntitiesOrderString(
+    orderField: string = EEntityField.DESCRIPTION,
+    orderDesc = false
+  ) {
     const orderBy = orderField === EEntityField.DESCRIPTION ? 'name' : orderField;
     const orderString = `${orderDesc ? 'orderdesc' : 'orderasc'}: ${orderBy}`;
     return orderString;
   }
 
   private static getEntityTypeString(type: string) {
-    switch(type) {
+    switch (type) {
       case EEntityType.DRUG:
       case EEntityType.MEDICINAL_PRODUCT:
       case EEntityType.OTHER:
       default:
-        return 'Product'
+        return 'Product';
     }
   }
 
   private static getEntityCategoryString(type: string) {
-    switch(type) {
-      case EEntityType.DRUG:
-        return 'Drug';
-      case EEntityType.MEDICINAL_PRODUCT:
-        return 'Consumable';
-      case EEntityType.OTHER:
-        return 'Other';
-    }
+    const types = type.replace(/[[\]]+/g, '').split(',');
+    const categories = types.map((type) => {
+      switch (type) {
+        case EEntityType.DRUG:
+          return 'Drug';
+        case EEntityType.MEDICINAL_PRODUCT:
+          return 'Consumable';
+        case EEntityType.OTHER:
+          return 'Other';
+        default:
+          return type;
+      }
+    });
+    return JSON.stringify(categories);
   }
 
   private static getEntityQuery(code: string) {
@@ -55,8 +64,8 @@ export class DgraphDataSource extends RESTDataSource {
         value
         combines
         children
-        properties
         parents: ~children
+        properties
       }
     }`;
   }
@@ -65,8 +74,8 @@ export class DgraphDataSource extends RESTDataSource {
     return `{
       query (func: eq(dgraph.type, "Product")) @cascade {
         code
-        description: name
         type: dgraph.type
+        description: name@*
         properties {
           type
           value
@@ -114,7 +123,7 @@ export class DgraphDataSource extends RESTDataSource {
 
     return `{
       all as counters(func: eq(dgraph.type, "${typeString}")) ${filterString} @cascade { 
-        ~children @filter(eq(name, "${categoryString}"))
+        ~children @filter(eq(name, ${categoryString}))
         total: count(uid)
       }
       
@@ -138,28 +147,28 @@ export class DgraphDataSource extends RESTDataSource {
   private static getEntityType(entity: IEntity): string {
     const { type: types } = entity;
     const [type] = types ?? [];
-  
+
     switch (type) {
-      case "Product":
+      case 'Product':
         const [parent] = entity.parents ?? [];
         switch (parent?.description) {
-          case "Consumable":
+          case 'Consumable':
             return EEntityType.MEDICINAL_PRODUCT;
-          case "Other":
+          case 'Other':
             return EEntityType.OTHER;
           default:
             return EEntityType.DRUG;
         }
-      case "Route":
-        return "form_category";
-      case "DoseForm":
-        return "form";
-      case "DoseFormQualifier":
-      case "DoseStrength":
-      case "DoseUnit":
-        return "unit_of_use"
+      case 'Route':
+        return 'form_category';
+      case 'DoseForm':
+        return 'form';
+      case 'DoseFormQualifier':
+      case 'DoseStrength':
+      case 'DoseUnit':
+        return 'unit_of_use';
       default:
-        return "n/a";
+        return 'n/a';
     }
   }
 
@@ -182,10 +191,10 @@ export class DgraphDataSource extends RESTDataSource {
 
     const mapEntity = (entity: IEntity) => {
       const type = DgraphDataSource.getEntityType(entity);
-      const children = entity.children?.map(child => mapEntity(child));
+      const children = entity.children?.map((child) => mapEntity(child));
       return { ...entity, type, children };
-    }
-    
+    };
+
     const mappedEntity = mapEntity(entity);
 
     return mappedEntity;
@@ -196,7 +205,6 @@ export class DgraphDataSource extends RESTDataSource {
 
     const { query } = data ?? {};
     const [entity] = query ?? [];
-
     return entity;
   }
 
@@ -208,7 +216,7 @@ export class DgraphDataSource extends RESTDataSource {
     const { type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = false } =
       orderBy ?? {};
-      
+
     const data = await this.postQuery(
       DgraphDataSource.getEntitiesQuery(
         type,
@@ -225,16 +233,15 @@ export class DgraphDataSource extends RESTDataSource {
     const [counterData] = countersData ?? [];
     const totalCount = counterData?.total ?? 0;
 
-    const entities: IEntity[] =
-      entityData?.map((entity: IEntity) => {
-        // Map native graph node types.
-        const type = DgraphDataSource.getEntityType(entity);
+    const entities: IEntity[] = entityData?.map((entity: IEntity) => {
+      // Map native graph node types.
+      const type = DgraphDataSource.getEntityType(entity);
 
-        // Overwrite interactions to prevent large query delays.
-        const interactions = [];
+      // Overwrite interactions to prevent large query delays.
+      const interactions = [];
 
-        return ({ ...entity, type, interactions });
-      });
+      return { ...entity, type, interactions };
+    });
 
     return new EntityCollection(entities, totalCount);
   }
