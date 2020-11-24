@@ -18,6 +18,7 @@ export interface IEntity {
   description: string;
   type: EEntityType | string;
   children?: IEntity[];
+  parents?: IEntity[];
   properties?: IProperty[];
   product?: IEntity;
 }
@@ -27,6 +28,7 @@ export class Entity implements IEntity {
   readonly description: string;
   readonly type: string;
   readonly children?: Entity[];
+  readonly parents?: Entity[];
   readonly properties?: Property[];
 
   constructor(entity: IEntity) {
@@ -39,6 +41,11 @@ export class Entity implements IEntity {
 
   getChild(code: string): Entity {
     const [entity] = this.children?.filter((child: IEntity) => child.code === code) ?? [];
+    return entity;
+  }
+
+  getParent(code: string): Entity {
+    const [entity] = this.parents?.filter((parent: IEntity) => parent.code === code) ?? [];
     return entity;
   }
 
