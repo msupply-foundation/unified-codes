@@ -4,9 +4,9 @@ echo " * Deleting existing graph data..."
 bash ./clean.sh
 
 echo " * Initialising demo graph schema..."
-bash ./alter.sh ./data/schema.gql
+bash ./alter.sh ./data/v2/schema.gql
 
 echo " * Populating demo graph data..."
-bash ./mutate.sh ./data/import.json
+npx babel-node ./migration/v2/import.js ./data/v2/products_3_0.xlsm
 
 echo " * Done."
