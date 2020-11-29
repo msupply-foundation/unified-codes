@@ -40,7 +40,7 @@ type ITree = { [code: string]: INode };
 enum UCCode {
     Drug = '933f3f00',
     Consumable = '77fcbb00'
-} 
+}
 
 export abstract class DataParser {
     public readonly path: fs.PathLike;
@@ -106,14 +106,14 @@ export class CSVParser extends DataParser {
         roots.forEach(root => {
             const visited = {};
             const stack = [root];
-    
+
             while (stack.length > 0 && !hasCycle) {
                 const entity = stack.pop();
-    
+
                 if (!visited[entity.code]) {
                     visited[entity.code] = true;
                 }
-    
+
                 if (entity.children) {
                     for (let i = 0; i < entity.children.length && !hasCycle; i++) {
                         const child = entity.children[i];
@@ -164,8 +164,8 @@ export class CSVParser extends DataParser {
 
         // Parse entity tree.
         this.data.forEach(row => {
-            const { 
-                product, 
+            const {
+                product,
                 //product_synonym,
                 combination,
                 route,
@@ -187,8 +187,9 @@ export class CSVParser extends DataParser {
                 //uc9
             } = row;
 
-            // Each row defines an item at uc6.
-            if (uc6) { 
+            // If row include strength code...
+            if (uc6) {
+                // create strength node.
                 if (!(uc6 in this.tree)) {
                     this.tree[uc6] = {
                         code: uc6,
@@ -200,8 +201,9 @@ export class CSVParser extends DataParser {
                 }
             }
 
-            // If does not exist, create dose qualification node.
+            // IF row includes dose qualification code...
             if (uc5) {
+                // create dose qualification node.
                 if (!(uc5 in this.tree)) {
                     this.tree[uc5] = {
                         code: uc5,
@@ -212,17 +214,10 @@ export class CSVParser extends DataParser {
                     }
                 }
             }
- 
 
-            // If not linked, link parent dose qualification node to child.
-            if (uc5 && uc6) {
-                if (!(this.tree[uc5].children.map(child => child.code).includes(uc6))) {
-                    this.tree[uc5].children.push({ code: uc6 });
-                }
-            }
-
-            // If does not exist, create dose form node.
+            // If row includes dose form code...
             if (uc4) {
+                // create dose form node.
                 if (!(uc4 in this.tree)) {
                     this.tree[uc4] = {
                         code: uc4,
@@ -234,15 +229,9 @@ export class CSVParser extends DataParser {
                 }
             }
 
-            // If not linked, link parent dose form node to child.
-            if (uc4 && uc5) {
-                if (!(this.tree[uc4].children.map(child => child.code).includes(uc5))) {
-                    this.tree[uc4].children.push({ code: uc5 });
-                }
-            }
-
-            // If does not exist, create route node.
+            // If row includes route code...
             if (uc3) {
+                // create route node.
                 if (!(uc3 in this.tree)) {
                     this.tree[uc3] = {
                         code: uc3,
@@ -254,15 +243,9 @@ export class CSVParser extends DataParser {
                 }
             }
 
-            // If not linked, link parent route node to child.
-            if (uc3 && uc4) {
-                if (!(this.tree[uc3].children.map(child => child.code).includes(uc4))) {
-                    this.tree[uc3].children.push({ code: uc4 });
-                }
-            }
-
-            // If does not exist, create product node.
+            // If row includes product code.
             if (uc2) {
+                // create product node.
                 if (!(uc2 in this.tree)) {
                     this.tree[uc2] = {
                         code: uc2,
@@ -275,35 +258,99 @@ export class CSVParser extends DataParser {
                 }
             }
 
+            // If dose qualifier code exists... 
+            if (uc5) {
+                // and strength code exists...
+                if (uc6) {
+                    // link dose qualification to strength.
+                    if (!(this.tree[uc5].children.map(child => child.code).includes(uc6))) {
+                        this.tree[uc5].children.push({ code: uc6 });
+                    }
+                }
+
+            }
+
+            // If dose form code exists...
+            if (uc4) {
+                // and dose qualifier code exists...
+                if (uc5) {
+                    // link dose form to dose qualifier.
+                    if (!(this.tree[uc4].children.map(child => child.code).includes(uc5))) {
+                        this.tree[uc4].children.push({ code: uc5 });
+                    }
+                }
+                // and dose qualifier code does not exist...
+                else {
+                    // and strength code exists...
+                    if (uc6) {
+                        // link dose form to strength.
+                        if (!(this.tree[uc4].children.map(child => child.code).includes(uc6))) {
+                            this.tree[uc4].children.push({ code: uc6 });
+                        }
+                    }
+                }
+            }
+
+            // If route code exists...
+            if (uc3) {
+                // and dose form exists...
+                if (uc4) {
+                    // link route to dose form.
+                    if (!(this.tree[uc3].children.map(child => child.code).includes(uc4))) {
+                        this.tree[uc3].children.push({ code: uc4 });
+                    }
+                }
+            }
+
+            // If product code exists...
+            if (uc2) {
+                // and route code exists...
+                if (uc3) {
+                    // link product to route.
+                    if (!(this.tree[uc2].children.map(child => child.code).includes(uc3))) {
+                        this.tree[uc2].children.push({ code: uc3 });
+                    }
+                }
+                // and route code does not exists...
+                else {
+                    // and strength code exists...
+                    if (uc6) {
+                        // link product to strength.
+                        if (!(this.tree[uc2].children.map(child => child.code).includes(uc6))) {
+                            this.tree[uc2].children.push({ code: uc6 });
+                        }
+                    }
+                }
+
+            }
+
+            // If category code exists...
+            if (uc1) {
+                // and product code exists...
+                if (uc2) {
+                    // link category to product.
+                    if (!(this.tree[uc1].children.map(child => child.code).includes(uc2))) {
+                        this.tree[uc1].children.push({ code: uc2 });
+                    }
+                }
+            }
+
             // Parse product combinations.
             // TODO: consistent combination formatting.
             const combinations = combination
                 .split(/[,/]/)
                 .filter(uc => !!uc)
                 .map(uc => uc.trim());
-            
-            // If not linked, link product node to combination code.
+
+            // Link product to combination.
             combinations.forEach(uc => {
-                 if (uc2 && uc) {
+                if (uc2 && uc) {
                     if (!(this.tree[uc2].combines.map(sibling => sibling.code).includes(uc))) {
                         this.tree[uc2].combines.push({ code: uc });
                     }
                 }
             });
 
-            // If not linked, link parent product node to child.
-            if (uc2 && uc3) {
-                if (!(this.tree[uc2].children.map(child => child.code).includes(uc3))) {
-                    this.tree[uc2].children.push({ code: uc3 });
-                }
-            }
-
-            // IF not linked, link parent category to child.
-            if (uc1 && uc2) {
-                if (!(this.tree[uc1].children.map(child => child.code).includes(uc2))) {
-                    this.tree[uc1].children.push({ code: uc2 });
-                }
-            }
         });
 
         // Expand tree edges.
