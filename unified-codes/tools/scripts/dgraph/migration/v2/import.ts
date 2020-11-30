@@ -9,11 +9,19 @@ const main = async () => {
     const parser = new CSVParser(path);
 
     await parser.parseData();
-    parser.buildTree();
+    parser.buildGraph();
 
-    if (parser.validateTree()) {
+    if (parser.isValid()) {
         const loader = new JSONLoader(hostname, port);
-        await loader.load(await parser.getTree());
+        try {
+            const graph = await parser.getGraph();
+            await loader.load(graph);
+        } catch(err) {
+            console.log(`Failed to load data due to following error: ${err}`);
+        }
+    } else {
+        const cycles = parser.detectCycles();
+        console.log(`Failed to load data due to cycles in data: ${cycles}`)
     }
 }
 

@@ -24,12 +24,12 @@ export class JSONLoader extends DataLoader {
         const entities = Object.values(data);
 
         // Load entities.
-        entities.forEach(async entity => {
+        for await (const entity of entities) {         
             const req = new dgraph.Request();
             const query = `query {
                 Entity as var(func: eq(dgraph.type, ${entity.type})) @filter(eq(code, ${entity.code}))
             }`;
-            
+
             const mutation = new dgraph.Mutation();
             mutation.setSetNquads(`
                 uid(Entity) <name> "${entity.name}" .
@@ -42,18 +42,20 @@ export class JSONLoader extends DataLoader {
             req.setCommitNow(true);
 
             const txn = dgraphClient.newTxn();
+
             try {
                 await txn.doRequest(req);
-            } catch(err) {
-                console.log(err);
+                console.log(`Loaded entity with code ${entity.code}`);
+            } catch {
+                console.log(`Failed to load entity with code ${entity.code}`);
             } finally {
                 txn.discard();
-            }
-        });
+            }      
+        };
 
         // Link parents to children.
-        entities.forEach(async entity => {
-            entity.children.forEach(async child => {
+        for await (const entity of entities) {
+            for await (const child of entity.children) {
                 const req = new dgraph.Request();
                 const query = `query {
                     Entity as var(func: eq(dgraph.type, ${entity.type})) @filter(eq(code, ${entity.code}))
@@ -72,44 +74,44 @@ export class JSONLoader extends DataLoader {
                 const txn = dgraphClient.newTxn();
                 try {
                     await txn.doRequest(req);
-                } catch(err) {
-                    console.log(err);
+                    console.log(`Loaded child with code ${child.code} for entity with code ${entity.code}`);
+                } catch {
+                    console.log(`Failed to load child with code ${child.code} for entity with code ${entity.code}`);
                 } finally {
                     txn.discard();
                 }
-            })
-        });
+            }
+        }
 
         // Link products to combinations.
-        entities
-            .filter(entity => !!entity.combines)
-            .forEach(async entity => {
-                entity.combines.forEach(async sibling => {
-                    const req = new dgraph.Request();
-                    const query = `query {
-                        Entity as var(func: eq(dgraph.type, ${entity.type})) @filter(eq(code, ${entity.code}))
-                        Sibling as var(func: eq(dgraph.type, ${sibling.type})) @filter(eq(code, ${sibling.code}))
-                    }`;
+        for await (const entity of entities.filter(entity => !!entity.combines)) {
+            for await (const sibling of entity.combines) {
+                const req = new dgraph.Request();
+                const query = `query {
+                    Entity as var(func: eq(dgraph.type, ${entity.type})) @filter(eq(code, ${entity.code}))
+                    Sibling as var(func: eq(dgraph.type, ${sibling.type})) @filter(eq(code, ${sibling.code}))
+                }`;
 
-                    const mutation = new dgraph.Mutation();
-                    mutation.setSetNquads(`
-                        uid(Entity) <combines> uid(Sibling) .
-                    `);
+                const mutation = new dgraph.Mutation();
+                mutation.setSetNquads(`
+                    uid(Entity) <combines> uid(Sibling) .
+                `);
 
-                    req.setQuery(query);
-                    req.setMutationsList([mutation]);
-                    req.setCommitNow(true);
-        
-                    const txn = dgraphClient.newTxn();
-                    try {
-                        await txn.doRequest(req);
-                    } catch(err) {
-                        console.log(err);
-                    } finally {
-                        txn.discard();
-                    }
-                })
-            });
+                req.setQuery(query);
+                req.setMutationsList([mutation]);
+                req.setCommitNow(true);
+    
+                const txn = dgraphClient.newTxn();
+                try {
+                    await txn.doRequest(req);
+                    console.log(`Loaded combination with code ${sibling.code} for entity with code ${entity.code}`);
+                } catch(err) {
+                    console.log(`Failed to load combination with code ${sibling.code} for entity with code ${entity.code}`);
+                } finally {
+                    txn.discard();
+                }
+            }
+        } 
 
         return true;
     }
