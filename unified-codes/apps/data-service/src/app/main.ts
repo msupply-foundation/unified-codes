@@ -32,17 +32,19 @@ const start = async () => {
       rxnav: new RxNavDataSource(),
     });
 
+    const apolloServer = await createApolloServer(typeDefsV1, resolversV1, dataSourcesV1);
     const apolloServerV1 = await createApolloServer(typeDefsV1, resolversV1, dataSourcesV1);
     const apolloServerV2 = await createApolloServer(typeDefsV2, resolversV2, dataSourcesV2);
 
-    const apolloPluginV1 = apolloServerV1.createHandler({ path: '/v1/graphql' });
+    const apolloPlugin = apolloServer.createHandler({ path: '/graphql' });
+    const apolloPluginV1 = apolloServerV1.createHandler({ path: '/v1/graphql', disableHealthCheck: true });
     const apolloPluginV2 = apolloServerV2.createHandler({
       path: '/v2/graphql',
       disableHealthCheck: true,
     });
 
     const fastifyConfig: FastifyConfig = { logger: true };
-    const fastifyPlugins = [apolloPluginV1, apolloPluginV2, fastifyCors];
+    const fastifyPlugins = [apolloPlugin, apolloPluginV1, apolloPluginV2, fastifyCors];
 
     fastifyServer = createFastifyServer(fastifyConfig, fastifyPlugins);
 
