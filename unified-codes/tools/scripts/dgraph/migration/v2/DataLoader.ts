@@ -45,9 +45,9 @@ export class JSONLoader extends DataLoader {
 
             try {
                 await txn.doRequest(req);
-                console.log(`Loaded entity with code ${entity.code}`);
+                console.log(`INFO: Loaded entity with code ${entity.code}`);
             } catch {
-                console.log(`Failed to load entity with code ${entity.code}`);
+                console.log(`WARNING: Failed to load entity with code ${entity.code}`);
             } finally {
                 txn.discard();
             }      
@@ -74,9 +74,9 @@ export class JSONLoader extends DataLoader {
                 const txn = dgraphClient.newTxn();
                 try {
                     await txn.doRequest(req);
-                    console.log(`Loaded child with code ${child.code} for entity with code ${entity.code}`);
+                    console.log(`INFO: Loaded child with code ${child.code} for entity with code ${entity.code}`);
                 } catch {
-                    console.log(`Failed to load child with code ${child.code} for entity with code ${entity.code}`);
+                    console.log(`WARNING: Failed to load child with code ${child.code} for entity with code ${entity.code}`);
                 } finally {
                     txn.discard();
                 }
@@ -104,9 +104,9 @@ export class JSONLoader extends DataLoader {
                 const txn = dgraphClient.newTxn();
                 try {
                     await txn.doRequest(req);
-                    console.log(`Loaded combination with code ${sibling.code} for entity with code ${entity.code}`);
+                    console.log(`INFO: Loaded combination with code ${sibling.code} for entity with code ${entity.code}`);
                 } catch(err) {
-                    console.log(`Failed to load combination with code ${sibling.code} for entity with code ${entity.code}`);
+                    console.log(`WARNING: Failed to load combination with code ${sibling.code} for entity with code ${entity.code}`);
                 } finally {
                     txn.discard();
                 }

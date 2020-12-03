@@ -183,6 +183,9 @@ export class CSVParser extends DataParser {
         };
 
         try {
+            // Initialise duplicate codes.
+            const duplicates = [];
+
             // Parse entity graph.
             this.data.forEach(row => {
                 const {
@@ -227,13 +230,13 @@ export class CSVParser extends DataParser {
 
                         this.graph[uc6] = node;
 
-                        console.log(`Created strength node: ${JSON.stringify(node)}`);
+                        console.log(`INFO: Created strength node: ${JSON.stringify(node)}`);
                     }
                     // and node exists... 
                     else {
                         // check for conflicts.
                         if (this.graph[uc6].type != type) {
-                            console.log(`Warning: detected duplicate code ${uc6}!`)
+                            duplicates.push(uc6);
                         }
                     }
                 }
@@ -257,13 +260,13 @@ export class CSVParser extends DataParser {
 
                         this.graph[uc5] = node;
 
-                        console.log(`Created dose qualifier node: ${JSON.stringify(node)}`);
+                        console.log(`INFO: Created dose qualifier node: ${JSON.stringify(node)}`);
                     }
                     // and node exists...
                     else {
                         // check for conflicts.
                         if (this.graph[uc5].type != type) {
-                            console.log(`Warning: detected duplicate code ${uc5}!`)
+                            duplicates.push(uc5);
                         }
                     }
                 }
@@ -287,13 +290,13 @@ export class CSVParser extends DataParser {
 
                         this.graph[uc4] = node;
 
-                        console.log(`Created dose form node: ${JSON.stringify(node)}`);
+                        console.log(`INFO: Created dose form node: ${JSON.stringify(node)}`);
                     }
                     // and node exists...
                     else {
                         // check for conflicts.
                         if (this.graph[uc4].type != type) {
-                            console.log(`Warning: detected duplicate code ${uc4}!`)
+                            duplicates.push(uc4);
                         }
                     }
                 }
@@ -317,13 +320,13 @@ export class CSVParser extends DataParser {
 
                         this.graph[uc3] = node;
 
-                        console.log(`Created route node: ${JSON.stringify(node)}`);
+                        console.log(`INFO: Created route node: ${JSON.stringify(node)}`);
                     }
                     // and node exists...
                     else {
                         // check for conflicts.
                         if (this.graph[uc3].type != type) {
-                            console.log(`Warning: detected duplicate code ${uc3}!`)
+                            duplicates.push(uc3);
                         }
                     }
                 }
@@ -348,13 +351,13 @@ export class CSVParser extends DataParser {
 
                         this.graph[uc2] = node;
 
-                        console.log(`Created product node: ${JSON.stringify(node)}`);
+                        console.log(`INFO: Created product node: ${JSON.stringify(node)}`);
                     }
                     // and node exists...
                     else {
                         // check for conflicts.
                         if (this.graph[uc2].type != type) {
-                            console.log(`Warning: detected duplicate code ${uc2}!`)
+                            duplicates.push(uc2);
                         }
                     }
                 }
@@ -366,7 +369,7 @@ export class CSVParser extends DataParser {
                         // link dose qualification to strength.
                         if (!(this.graph[uc5].children.map(child => child.code).includes(uc6))) {
                             this.graph[uc5].children.push({ code: uc6 });
-                            console.log(`Linked dose qualifier with code ${uc5} to strength with code ${uc6}`);
+                            console.log(`INFO: Linked dose qualifier with code ${uc5} to strength with code ${uc6}`);
                         }
                     }
 
@@ -379,7 +382,7 @@ export class CSVParser extends DataParser {
                         // link dose form to dose qualifier.
                         if (!(this.graph[uc4].children.map(child => child.code).includes(uc5))) {
                             this.graph[uc4].children.push({ code: uc5 });
-                            console.log(`Linked dose form with code ${uc4} to dose qualifier with code ${uc5}`);
+                            console.log(`INFO: Linked dose form with code ${uc4} to dose qualifier with code ${uc5}`);
                         }
                     }
                     // and dose qualifier code does not exist...
@@ -389,7 +392,7 @@ export class CSVParser extends DataParser {
                             // link dose form to strength.
                             if (!(this.graph[uc4].children.map(child => child.code).includes(uc6))) {
                                 this.graph[uc4].children.push({ code: uc6 });
-                                console.log(`Linked dose form with code ${uc4} to strength with code ${uc6}`);
+                                console.log(`INFO: Linked dose form with code ${uc4} to strength with code ${uc6}`);
                             }
                         }
                     }
@@ -402,7 +405,7 @@ export class CSVParser extends DataParser {
                         // link route to dose form.
                         if (!(this.graph[uc3].children.map(child => child.code).includes(uc4))) {
                             this.graph[uc3].children.push({ code: uc4 });
-                            console.log(`Linked route with code ${uc3} to route with code ${uc4}`);
+                            console.log(`INFO: Linked route with code ${uc3} to route with code ${uc4}`);
                         }
                     }
                 }
@@ -414,7 +417,7 @@ export class CSVParser extends DataParser {
                         // link product to route.
                         if (!(this.graph[uc2].children.map(child => child.code).includes(uc3))) {
                             this.graph[uc2].children.push({ code: uc3 });
-                            console.log(`Linked product with code ${uc2} to route with code ${uc3}`);
+                            console.log(`INFO: Linked product with code ${uc2} to route with code ${uc3}`);
                         }
                     }
                     // and route code does not exists...
@@ -424,7 +427,7 @@ export class CSVParser extends DataParser {
                             // link product to strength.
                             if (!(this.graph[uc2].children.map(child => child.code).includes(uc6))) {
                                 this.graph[uc2].children.push({ code: uc6 });
-                                console.log(`Linked product with code ${uc2} to strength with code ${uc6}`);
+                                console.log(`INFO: Linked product with code ${uc2} to strength with code ${uc6}`);
                             }
                         }
                     }
@@ -438,7 +441,7 @@ export class CSVParser extends DataParser {
                         // link category to product.
                         if (!(this.graph[uc1].children.map(child => child.code).includes(uc2))) {
                             this.graph[uc1].children.push({ code: uc2 });
-                            console.log(`Linked category with code ${uc1} to product with code ${uc2}`);
+                            console.log(`INFO: Linked category with code ${uc1} to product with code ${uc2}`);
                         }
                     }
                 }
@@ -455,7 +458,7 @@ export class CSVParser extends DataParser {
                     if (uc2 && uc) {
                         if (!(this.graph[uc2].combines.map(sibling => sibling.code).includes(uc))) {
                             this.graph[uc2].combines.push({ code: uc });
-                            console.log(`Linked product with code ${uc2} to product with code ${uc}`);
+                            console.log(`INFO: Linked product with code ${uc2} to product with code ${uc}`);
                         }
                     }
                 });
@@ -466,8 +469,11 @@ export class CSVParser extends DataParser {
             Object.keys(this.graph).forEach(code => {
                 this.graph[code].combines = this.graph[code].combines?.map(uc2 => this.graph[uc2.code]);
                 this.graph[code].children = this.graph[code].children?.map(uc => this.graph[uc.code]);
-                console.log(`Expanded edges for node with code ${code}`);
+                console.log(`INFO: Expanded edges for node with code ${code}`);
             })
+
+            // Output warnings for any duplicate entity codes.
+            duplicates.forEach(uc => console.log(`WARNING: Detected duplicate code ${uc}!`));
 
             this.isBuilt = true;
         } catch (err) {
