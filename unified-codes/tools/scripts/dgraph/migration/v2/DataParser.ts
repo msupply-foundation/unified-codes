@@ -215,8 +215,7 @@ export class CSVParser extends DataParser {
                     if (!(uc6 in this.graph)) {
                         const code = uc6;
                         const name = strength;
-                        const type = 'Strength';
-
+                        const type = 'DoseStrength';
                         const node = {
                             code,
                             name,
