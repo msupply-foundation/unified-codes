@@ -115,31 +115,26 @@ export class CSVParser extends DataParser {
     public detectCycles(): INode[] {
         if (this.isTraversed) return this.cycles;
 
-        const drug = this.graph[UCCode.Drug];
-        const consumable = this.graph[UCCode.Consumable];
+        const visited = {};
+        const stack = [this.graph.root];
+        while (stack.length > 0) {
+            const entity = stack.pop();
 
-        [drug, consumable].forEach(root => {
-            const visited = {};
-            const stack = [root];
-            while (stack.length > 0) {
-                const entity = stack.pop();
-    
-                if (!visited[entity.code]) {
-                    visited[entity.code] = true;
-                }
-    
-                if (entity.children) {
-                    for (let i = 0; i < entity.children.length; i++) {
-                        const child = entity.children[i];
-                        if (!visited[child.code]) {
-                            stack.push(child)
-                        } else {
-                            this.cycles.push(child);
-                        }
-                    };
-                }
+            if (!visited[entity.code]) {
+                visited[entity.code] = true;
             }
-        })
+
+            if (entity.children) {
+                for (let i = 0; i < entity.children.length; i++) {
+                    const child = entity.children[i];
+                    if (!visited[child.code]) {
+                        stack.push(child)
+                    } else {
+                        this.cycles.push(child);
+                    }
+                };
+            }
+        }
 
         return this.cycles;
     }
@@ -172,13 +167,17 @@ export class CSVParser extends DataParser {
     public buildGraph(): IGraph {
         if (this.isBuilt) return this.graph;
 
-        // Initialise root nodes.
-        // TODO: get root category codes from input file.
+        // Initialise category nodes.
+        // TODO: get category codes from input file.
         const drug = { code: '933f3f00', name: 'Drug', type: 'Category', children: [], properties: [] };
         const consumable = { code: '77fcbb00', name: 'Consumable', type: 'Category', children: [], properties: [] };
 
+        // Initialise root node.
+        const root = { code: 'root', name: 'Root', type: 'Root', children: [], properties: [] };
+
         // Initialise adjacency list for storing graph.
         this.graph = {
+            root: root,
             [drug.code]: drug,
             [consumable.code]: consumable
         };
@@ -211,11 +210,13 @@ export class CSVParser extends DataParser {
 
                 // If row include strength code...
                 if (uc6) {
-                    // create strength node.
+                    const code = uc6;
+                    const name = strength;
+                    const type = 'DoseStrength';
+
+                    // and node does not exist...
                     if (!(uc6 in this.graph)) {
-                        const code = uc6;
-                        const name = strength;
-                        const type = 'DoseStrength';
+                        // create strength node.
                         const node = {
                             code,
                             name,
@@ -228,16 +229,24 @@ export class CSVParser extends DataParser {
 
                         console.log(`Created strength node: ${JSON.stringify(node)}`);
                     }
+                    // and node exists... 
+                    else {
+                        // check for conflicts.
+                        if (this.graph[uc6].type != type) {
+                            console.log(`Warning: detected duplicate code ${uc6}!`)
+                        }
+                    }
                 }
 
                 // IF row includes dose qualification code...
                 if (uc5) {
-                    // create dose qualification node.
-                    if (!(uc5 in this.graph)) {
-                        const code = uc5;
-                        const name = dose_qualification;
-                        const type = 'DoseQualifier';
+                    const code = uc5;
+                    const name = dose_qualification;
+                    const type = 'DoseQualifier';
 
+                    // and node does not exist...
+                    if (!(uc5 in this.graph)) {
+                        // create dose qualifier node.
                         const node = {
                             code,
                             name,
@@ -250,16 +259,24 @@ export class CSVParser extends DataParser {
 
                         console.log(`Created dose qualifier node: ${JSON.stringify(node)}`);
                     }
+                    // and node exists...
+                    else {
+                        // check for conflicts.
+                        if (this.graph[uc5].type != type) {
+                            console.log(`Warning: detected duplicate code ${uc5}!`)
+                        }
+                    }
                 }
 
                 // If row includes dose form code...
                 if (uc4) {
-                    // create dose form node.
-                    if (!(uc4 in this.graph)) {
-                        const code = uc4;
-                        const name = dose_form;
-                        const type = 'DoseForm';
+                    const code = uc4;
+                    const name = dose_form;
+                    const type = 'DoseForm';
 
+                    // and node does not exist...
+                    if (!(uc4 in this.graph)) {
+                        // create dose form node.
                         const node = {
                             code,
                             name,
@@ -272,16 +289,24 @@ export class CSVParser extends DataParser {
 
                         console.log(`Created dose form node: ${JSON.stringify(node)}`);
                     }
+                    // and node exists...
+                    else {
+                        // check for conflicts.
+                        if (this.graph[uc4].type != type) {
+                            console.log(`Warning: detected duplicate code ${uc4}!`)
+                        }
+                    }
                 }
 
                 // If row includes route code...
                 if (uc3) {
-                    // create route node.
-                    if (!(uc3 in this.graph)) {
-                        const code = uc3;
-                        const name = route;
-                        const type = 'Route';
+                    const code = uc3;
+                    const name = route;
+                    const type = 'Route';
 
+                    // and node does not exist...
+                    if (!(uc3 in this.graph)) {
+                        // create route node.
                         const node = {
                             code,
                             name,
@@ -294,16 +319,24 @@ export class CSVParser extends DataParser {
 
                         console.log(`Created route node: ${JSON.stringify(node)}`);
                     }
+                    // and node exists...
+                    else {
+                        // check for conflicts.
+                        if (this.graph[uc3].type != type) {
+                            console.log(`Warning: detected duplicate code ${uc3}!`)
+                        }
+                    }
                 }
 
                 // If row includes product code.
                 if (uc2) {
-                    // create product node.
-                    if (!(uc2 in this.graph)) {
-                        const code = uc2;
-                        const name = product;
-                        const type = 'Product';
+                    const code = uc2;
+                    const name = product;
+                    const type = 'Product';
 
+                    // and node does not exist...
+                    if (!(uc2 in this.graph)) {
+                        // create product node.
                         const node = {
                             code,
                             name,
@@ -316,6 +349,13 @@ export class CSVParser extends DataParser {
                         this.graph[uc2] = node;
 
                         console.log(`Created product node: ${JSON.stringify(node)}`);
+                    }
+                    // and node exists...
+                    else {
+                        // check for conflicts.
+                        if (this.graph[uc2].type != type) {
+                            console.log(`Warning: detected duplicate code ${uc2}!`)
+                        }
                     }
                 }
 
@@ -432,10 +472,10 @@ export class CSVParser extends DataParser {
             this.isBuilt = true;
         } catch (err) {
             this.isBuilt = false;
-        } finally { 
+        } finally {
             return this.graph;
         }
-    }   
+    }
 }
 
 export default DataParser;
