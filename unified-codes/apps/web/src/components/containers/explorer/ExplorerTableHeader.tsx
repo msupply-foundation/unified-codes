@@ -29,6 +29,7 @@ const styles = (theme: ITheme) => ({
     padding: '3px 16px',
     position: 'sticky' as Position,
     top: 0,
+    zIndex: 1,
     '&:last-child': { borderRight: 0 },
     '&:first-letter': { textTransform: 'capitalize' },
   },
