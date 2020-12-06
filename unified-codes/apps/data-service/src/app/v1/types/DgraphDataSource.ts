@@ -32,6 +32,7 @@ export class DgraphDataSource extends RESTDataSource {
     switch (type) {
       case EEntityType.DRUG:
       case EEntityType.MEDICINAL_PRODUCT:
+      case EEntityType.UNIT_OF_USE:
       case EEntityType.OTHER:
       default:
         return 'Product';
@@ -39,13 +40,15 @@ export class DgraphDataSource extends RESTDataSource {
   }
 
   private static getEntityCategoryString(type: string) {
-    const types = type.replace(/[[\]]+/g, '').split(',');
+    const types = type.replace(/[[\]]+/g, '').split(/[\s,]+/);
     const categories = types.map((type) => {
       switch (type) {
         case EEntityType.DRUG:
           return 'Drug';
         case EEntityType.MEDICINAL_PRODUCT:
           return 'Consumable';
+        case EEntityType.UNIT_OF_USE:
+          return 'DoseUnit'
         case EEntityType.OTHER:
           return 'Other';
         default:

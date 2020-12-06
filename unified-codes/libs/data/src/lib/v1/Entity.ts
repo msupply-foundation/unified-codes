@@ -3,6 +3,7 @@ import { IProperty, Property } from './Property';
 export enum EEntityType {
   DRUG = 'drug',
   MEDICINAL_PRODUCT = 'medicinal_product',
+  UNIT_OF_USE = 'unit_of_use',
   OTHER = 'other',
 }
 
