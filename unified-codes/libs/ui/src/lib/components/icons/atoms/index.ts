@@ -5,6 +5,7 @@ export * from './ArrowLeftIcon';
 export * from './ArrowDownIcon';
 export * from './CheckCircleIcon';
 export * from './ClearIcon';
+export * from './FileCopyIcon';
 export * from './SvgIcon';
 export * from './MenuIcon';
 export * from './PersonIcon';

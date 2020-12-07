@@ -40,6 +40,7 @@
     "apollo-datasource-rest": "^0.9.4",
     "apollo-server-fastify": "^2.18.2",
     "class-validator": "^0.12.2",
+    "clipboard-copy": "^4.0.1",
     "core-js": "^3.6.5",
     "cross-fetch": "^3.0.6",
     "csv-parser": "^2.3.3",
