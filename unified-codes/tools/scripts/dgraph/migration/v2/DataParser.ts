@@ -19,7 +19,7 @@ interface IRow {
   uc4: string;
   uc5: string;
   uc6: string;
-  //uc7,
+  uc7: string;
   //uc8,
   //uc9,
   rxnav: string;
@@ -239,7 +239,7 @@ export class CSVParser extends DataParser {
           uc4,
           uc5,
           uc6,
-          //uc7,
+          uc7,
           //uc8,
           //uc9,
           rxnav,
@@ -276,15 +276,18 @@ export class CSVParser extends DataParser {
         }
 
         // If row includes RxNav...
-        if (rxnav) {
+        if (rxnav && !uc7) {
           const property = { type: 'code_rxnav', value: rxnav };
 
           // And strength node exists
-          if (uc6) {
-            this.graph[uc6].properties.push(property);
-          } else {
-            this.graph[uc1].properties.push(property);
-          }
+          let done = false;
+          [uc6, uc5, uc4, uc3, uc2, uc1].forEach((code) => {
+            if (code && !done) {
+              console.log(`INFO: Property with value ${rxnav} added for ${code}`);
+              this.graph[code].properties.push(property);
+              done = true;
+            }
+          });
         }
 
         // IF row includes dose qualification code...
@@ -454,7 +457,7 @@ export class CSVParser extends DataParser {
             // link route to dose form.
             if (!this.graph[uc3].children.map((child) => child.code).includes(uc4)) {
               this.graph[uc3].children.push({ code: uc4 });
-              console.log(`INFO: Linked route with code ${uc3} to route with code ${uc4}`);
+              console.log(`INFO: Linked route with code ${uc3} to dose form with code ${uc4}`);
             }
           }
         }

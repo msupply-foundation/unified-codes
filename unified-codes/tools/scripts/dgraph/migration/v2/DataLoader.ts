@@ -88,19 +88,19 @@ export class JSONLoader extends DataLoader {
     }
 
     // Link properties to entities.
-    for await (const entity of entities) {
+    for await (const entity of entities.filter((entity) => !!entity.properties)) {
       for await (const property of entity.properties) {
         const req = new dgraph.Request();
         const query = `query {
                       Entity as var(func: eq(dgraph.type, ${entity.type})) @filter(eq(code, ${entity.code}))
-                      Property as var(func: eq(dgraph.type, ${property.type})) 
+                      Property as var(func: eq(dgraph.type, ${property.type}))
                   }`;
 
         const mutation = new dgraph.Mutation();
         mutation.setSetNquads(`
             uid(Property) <value> "${property.value}" .
             uid(Property) <dgraph.type> "${property.type}" .
-  
+
             uid(Entity) <properties> uid(Property) .
         `);
 

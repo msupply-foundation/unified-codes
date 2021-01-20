@@ -6,6 +6,7 @@ import {
   IEntity,
   EntityCollection,
   IEntityCollection,
+  IProperty,
 } from '@unified-codes/data/v1';
 
 import { EntitySearchInput, FilterMatch } from '../schema';
@@ -48,7 +49,7 @@ export class DgraphDataSource extends RESTDataSource {
         case EEntityType.MEDICINAL_PRODUCT:
           return 'Consumable';
         case EEntityType.UNIT_OF_USE:
-          return 'DoseUnit'
+          return 'DoseUnit';
         case EEntityType.OTHER:
           return 'Other';
         default:
@@ -80,7 +81,7 @@ export class DgraphDataSource extends RESTDataSource {
         type: dgraph.type
         description: name@*
         properties {
-          type
+          type: dgraph.type
           value
         }
         children {
@@ -136,7 +137,7 @@ export class DgraphDataSource extends RESTDataSource {
         type: dgraph.type
         uid
         properties {
-          type
+          type: dgraph.type
           value
         }
         parents: ~children {
@@ -175,6 +176,12 @@ export class DgraphDataSource extends RESTDataSource {
     }
   }
 
+  private static getPropertyType(property: IProperty): string {
+    const { type: types } = property;
+    const [type] = types ?? [];
+    return type;
+  }
+
   constructor() {
     super();
     this.baseURL = `${process.env.NX_DGRAPH_SERVICE_URL}:${process.env.NX_DGRAPH_SERVICE_PORT}`;
@@ -198,6 +205,10 @@ export class DgraphDataSource extends RESTDataSource {
       return { ...entity, type, children };
     };
 
+    entity.properties = entity.properties?.map((property) => ({
+      ...property,
+      type: DgraphDataSource.getPropertyType(property),
+    }));
     const mappedEntity = mapEntity(entity);
 
     return mappedEntity;
@@ -219,7 +230,18 @@ export class DgraphDataSource extends RESTDataSource {
     const { type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = false } =
       orderBy ?? {};
-
+    console.warn(
+      'doing this => ',
+      DgraphDataSource.getEntitiesQuery(
+        type,
+        description,
+        orderField,
+        orderDesc,
+        first,
+        offset,
+        match
+      )
+    );
     const data = await this.postQuery(
       DgraphDataSource.getEntitiesQuery(
         type,
