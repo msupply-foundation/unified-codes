@@ -58,8 +58,8 @@ export class JSONLoader extends DataLoader {
       for await (const child of entity.children) {
         const req = new dgraph.Request();
         const query = `query {
-                    Entity as var(func: eq(dgraph.type, ${entity.type})) @filter(eq(code, ${entity.code}))
-                    Child as var(func: eq(dgraph.type, ${child.type})) @filter(eq(code, ${child.code}))
+                    Entity as var(func: eq(code, ${entity.code}))
+                    Child as var(func: eq(code, ${child.code}))
                 }`;
 
         const mutation = new dgraph.Mutation();
