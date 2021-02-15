@@ -230,18 +230,6 @@ export class DgraphDataSource extends RESTDataSource {
     const { type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = false } =
       orderBy ?? {};
-    console.warn(
-      'doing this => ',
-      DgraphDataSource.getEntitiesQuery(
-        type,
-        description,
-        orderField,
-        orderDesc,
-        first,
-        offset,
-        match
-      )
-    );
     const data = await this.postQuery(
       DgraphDataSource.getEntitiesQuery(
         type,
