@@ -20,7 +20,7 @@ export class EntityType implements IEntity {
   children: IEntity[];
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @Field((type) => String, { nullable: true })
+  @Field((type) => String)
   code: string;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -106,7 +106,7 @@ export class PropertyType implements IProperty {
   properties: IProperty[];
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @Field((type) => String, { nullable: true })
+  @Field((type) => String)
   type: string;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
