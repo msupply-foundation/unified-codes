@@ -3,16 +3,17 @@ import * as fs from 'fs';
 
 interface IRow {
   product: string;
-  //product_synonym,
+  product_synonym;
   combination: string;
   route: string;
   dose_form: string;
   dose_qualification: string;
   strength: string;
-  //unit_of_presentation,
-  //immediate_packaging,
-  //pack_size,
-  //outer_packaging,
+  unit_of_presentation;
+  immediate_packaging;
+  pack_size;
+  outer_packaging;
+  brand;
   uc1: string;
   uc2: string;
   uc3: string;
@@ -20,9 +21,16 @@ interface IRow {
   uc5: string;
   uc6: string;
   uc7: string;
-  //uc8,
-  //uc9,
+  uc8_immediate;
+  uc8_pack;
+  uc9;
+  uc10;
   rxnav: string;
+  who_eml_product: string;
+  who_eml_item: string;
+  nzulm: string;
+  nzulm_item: string;
+  unspsc: string;
 }
 
 type IData = IRow[];
@@ -177,6 +185,8 @@ export class CSVParser extends DataParser {
               const key = column
                 .trim()
                 .toLowerCase()
+                .replace(/[\r\n]/g, '')
+                .replace(/(uc8) *\(([^)]*)\)/, '$1 $2')
                 .replace(/ *\([^)]*\) */g, '')
                 .replace(/ /g, '_');
               return { ...acc, [key]: value };
@@ -223,16 +233,17 @@ export class CSVParser extends DataParser {
       this.data.forEach((row) => {
         const {
           product,
-          //product_synonym,
+          product_synonym,
           combination,
           route,
           dose_form,
           dose_qualification,
           strength,
-          //unit_of_presentation,
-          //immediate_packaging,
-          //pack_size,
-          //outer_packaging,
+          unit_of_presentation,
+          immediate_packaging,
+          pack_size,
+          outer_packaging,
+          brand,
           uc1,
           uc2,
           uc3,
@@ -240,10 +251,26 @@ export class CSVParser extends DataParser {
           uc5,
           uc6,
           uc7,
-          //uc8,
-          //uc9,
+          uc8_immediate,
+          uc8_pack,
+          uc9,
+          uc10,
           rxnav,
+          who_eml_product,
+          who_eml_item,
+          nzulm,
+          nzulm_item,
+          unspsc,
         } = row;
+        console.info(row);
+        const productProperties = [];
+        const itemProperties = [];
+        productProperties.push({ type: 'code_rxnav', value: rxnav });
+        productProperties.push({ type: 'code_eml', value: who_eml_product });
+        itemProperties.push({ type: 'code_eml', value: who_eml_item });
+        productProperties.push({ type: 'code_nzulm', value: nzulm });
+        itemProperties.push({ type: 'code_nzulm', value: nzulm_item });
+        productProperties.push({ type: 'code_unspsc', value: unspsc });
 
         // If row include strength code...
         if (uc6) {
@@ -275,22 +302,7 @@ export class CSVParser extends DataParser {
           }
         }
 
-        // If row includes RxNav...
-        if (rxnav && !uc7) {
-          const property = { type: 'code_rxnav', value: rxnav };
-
-          // And strength node exists
-          let done = false;
-          [uc6, uc5, uc4, uc3, uc2, uc1].forEach((code) => {
-            if (code && !done) {
-              console.log(`INFO: Property with value ${rxnav} added for ${code}`);
-              this.graph[code].properties.push(property);
-              done = true;
-            }
-          });
-        }
-
-        // IF row includes dose qualification code...
+        // If row includes dose qualification code...
         if (uc5) {
           const code = uc5;
           const name = dose_qualification;
@@ -513,6 +525,24 @@ export class CSVParser extends DataParser {
             }
           }
         });
+
+        // Process external properties at product (UC2) level
+        productProperties.forEach((property) => {
+          // temporary restriction for uc7 - these are not currently imported
+          if (property.value && !uc7 && uc2) {
+            console.log(`INFO: Property with value ${property} added for ${uc2}`);
+            this.graph[uc2].properties.push(property);
+          }
+        });
+
+        // Process external properties at item (UC6) level
+        itemProperties.forEach((property) => {
+          // temporary restriction for uc7 - these are not currently imported
+          if (property.value && !uc7 && uc6) {
+            console.log(`INFO: Property with value ${property} added for ${uc6}`);
+            this.graph[uc6].properties.push(property);
+          }
+        });
       });
 
       // Expand graph edges.
@@ -527,6 +557,7 @@ export class CSVParser extends DataParser {
 
       this.isBuilt = true;
     } catch (err) {
+      console.error(err);
       this.isBuilt = false;
     } finally {
       return this.graph;
