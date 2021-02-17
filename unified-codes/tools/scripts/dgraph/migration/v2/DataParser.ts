@@ -262,7 +262,7 @@ export class CSVParser extends DataParser {
           nzulm_item,
           unspsc,
         } = row;
-        console.info(row);
+
         const productProperties = [];
         const itemProperties = [];
         productProperties.push({ type: 'code_rxnav', value: rxnav });
@@ -516,33 +516,46 @@ export class CSVParser extends DataParser {
           .filter((uc) => !!uc)
           .map((uc) => uc.trim());
 
-        // Link product to combination.
-        combinations.forEach((uc) => {
-          if (uc2 && uc) {
-            if (!this.graph[uc2].combines.map((sibling) => sibling.code).includes(uc)) {
-              this.graph[uc2].combines.push({ code: uc });
-              console.log(`INFO: Linked product with code ${uc2} to product with code ${uc}`);
-            }
-          }
-        });
+        // disabled for now as this creates a circular reference
+        // // Link product to combination.
+        // combinations.forEach((uc) => {
+        //   if (uc2 && uc) {
+        //     if (!this.graph[uc2].combines.map((sibling) => sibling.code).includes(uc)) {
+        //       this.graph[uc2].combines.push({ code: uc });
+        //       console.log(`INFO: Linked product with code ${uc2} to product with code ${uc}`);
+        //     }
+        //   }
+        // });
 
         // Process external properties at product (UC2) level
-        productProperties.forEach((property) => {
-          // temporary restriction for uc7 - these are not currently imported
-          if (property.value && !uc7 && uc2) {
-            console.log(`INFO: Property with value ${property} added for ${uc2}`);
-            this.graph[uc2].properties.push(property);
-          }
-        });
+        if (!uc7 && uc2) {
+          productProperties.forEach((property) => {
+            // temporary restriction for uc7 - these are not currently imported
+            if (property.value) {
+              console.log(
+                `INFO: Property of type ${property.type} with value ${property.value} added for ${uc2}`
+              );
+              if (!this.graph[uc2].properties.some((p) => p.type === property.type)) {
+                this.graph[uc2].properties.push(property);
+              }
+            }
+          });
+        }
 
         // Process external properties at item (UC6) level
-        itemProperties.forEach((property) => {
-          // temporary restriction for uc7 - these are not currently imported
-          if (property.value && !uc7 && uc6) {
-            console.log(`INFO: Property with value ${property} added for ${uc6}`);
-            this.graph[uc6].properties.push(property);
-          }
-        });
+        if (!uc7 && uc6) {
+          itemProperties.forEach((property) => {
+            // temporary restriction for uc7 - these are not currently imported
+            if (property.value) {
+              console.log(
+                `INFO: Property of type ${property.type} with value ${property.value} added for ${uc6}`
+              );
+              if (!this.graph[uc6].properties.some((p) => p.type === property.type)) {
+                this.graph[uc6].properties.push(property);
+              }
+            }
+          });
+        }
       });
 
       // Expand graph edges.
