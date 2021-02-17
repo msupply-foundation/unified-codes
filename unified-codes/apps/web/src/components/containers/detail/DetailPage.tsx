@@ -17,6 +17,7 @@ import { IState, IDetailRouteParams } from '../../../types';
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     root: {
+      paddingBottom: 120,
       width: '100%',
     },
     attributeListContainer: {
