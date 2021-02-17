@@ -35,7 +35,7 @@ export const DetailPropertyListComponent: DetailPropertyList = ({ entity }) => {
 
   return (
     <List className={classes.root}>
-      <DetailPropertyListItem description="Properties" properties={properties} />
+      <DetailPropertyListItem value="Properties" properties={properties} type="title" />
     </List>
   );
 };
