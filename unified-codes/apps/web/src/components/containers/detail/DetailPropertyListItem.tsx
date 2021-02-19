@@ -9,8 +9,10 @@ import {
   Collapse,
   ArrowUpIcon,
   ArrowDownIcon,
+  LinkIcon,
 } from '@unified-codes/ui/components';
 import { useToggle } from '@unified-codes/ui/hooks';
+import { propertyFormatter } from '../../../propertyFormats';
 
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
@@ -21,17 +23,29 @@ const useStyles = makeStyles((_: ITheme) =>
     root: {
       width: '100%',
     },
+    listItemRoot: { paddingBottom: 0, paddingTop: 0}
   })
 );
 
 interface DetailPropertyListItemProps {
-  description?: string;
   properties?: IProperty[];
+  type?: string;
+  value?: string;
+}
+
+const formatProperty = (type?: string, value?: string) => {
+  const formatted = propertyFormatter(type, value);
+  const { title, url } = formatted;
+
+  
+    return (<div>
+        <b>{title}</b><div>{value} {url && <a href={url} target="_blank"><LinkIcon /></a>}</div>
+    </div>);
 }
 
 export type DetailPropertyListItem = React.FunctionComponent<DetailPropertyListItemProps>;
 
-const DetailPropertyListItem: DetailPropertyListItem = ({ description, properties }) => {
+const DetailPropertyListItem: DetailPropertyListItem = ({ properties, type, value }) => {
   const classes = useStyles();
 
   const { isOpen, onToggle } = useToggle(false);
@@ -39,15 +53,18 @@ const DetailPropertyListItem: DetailPropertyListItem = ({ description, propertie
   const { length: childCount } = properties ?? [];
 
   const PropertyListToggleItemText = () => {
-    const itemText = !!childCount ? `${description} (${childCount})` : description;
-    return <ListItemText primary={itemText} />;
+    if (!!childCount) {
+      return <ListItemText primary={`${value} (${childCount})`} />;
+    }
+    
+    return <ListItemText primary={formatProperty(type, value)} />;
   };
 
   const PropertyListToggleItemIcon = isOpen ? ArrowUpIcon : ArrowDownIcon;
 
   const PropertyListToggleItem = () =>
     !!childCount ? (
-      <ListItem button onClick={onToggle}>
+      <ListItem button onClick={onToggle} >
         <PropertyListToggleItemText />
         <ListItemIcon>
           <PropertyListToggleItemIcon />
@@ -63,14 +80,14 @@ const DetailPropertyListItem: DetailPropertyListItem = ({ description, propertie
     if (!childCount) return null;
     const childProperties = properties?.map((property: IProperty) => {
       const { type, value, properties } = property;
-      const description = `${type}: ${value}`;
-      return <DetailPropertyListItem key={type} description={description} properties={properties} />;
+      
+      return <DetailPropertyListItem key={type} type={type} value={value} properties={properties} />;
     });
     return <List>{childProperties}</List>;
   }, [properties]);
 
   return (
-    <ListItem>
+    <ListItem classes={{root: classes.listItemRoot}}> 
       <List className={classes.root}>
         <PropertyListToggleItem />
         <Collapse in={isOpen}>
