@@ -61,7 +61,7 @@ export class DgraphDataSource extends RESTDataSource {
 
   private static getEntityQuery(code: string) {
     return `{
-      query(func: eq(code, ${code}), first:1) @recurse(loop:false) {
+      query(func: eq(code, ${code?.toLowerCase()}), first:1) @recurse(loop:false) {
         code
         type: dgraph.type
         description: name@*
@@ -183,6 +183,8 @@ export class DgraphDataSource extends RESTDataSource {
   }
 
   private static mapEntity = (entity: IEntity) => {
+    if (!entity) return entity;
+
     // Map native graph node types.
     const type = DgraphDataSource.getEntityType(entity);
     const children = entity.children?.map((child) => DgraphDataSource.mapEntity(child));
@@ -208,7 +210,6 @@ export class DgraphDataSource extends RESTDataSource {
 
   async getEntity(code: string): Promise<IEntity> {
     const data = await this.postQuery(DgraphDataSource.getEntityQuery(code));
-
     const { query } = data ?? {};
     const [entity]: [IEntity] = query ?? [];
 
