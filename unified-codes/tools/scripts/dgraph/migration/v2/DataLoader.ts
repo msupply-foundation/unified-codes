@@ -129,7 +129,7 @@ export class JSONLoader extends DataLoader {
         const req = new dgraph.Request();
         const query = `query {
                     Entity as var(func: eq(dgraph.type, ${entity.type})) @filter(eq(code, ${entity.code}))
-                    Sibling as var(func: eq(dgraph.type, ${sibling.type})) @filter(eq(code, ${sibling.code}))
+                    Sibling as var(func: eq(code, ${sibling.code}))
                 }`;
 
         const mutation = new dgraph.Mutation();
