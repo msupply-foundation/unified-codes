@@ -34,18 +34,14 @@ interface IRow {
 }
 
 type IData = IRow[];
-
-interface IProperty {
-  type: string;
-  value: string;
-}
 interface INode {
   code: string;
   name?: string;
   type?: string;
   combines?: INode[];
-  properties?: IProperty[];
+  properties?: INode[];
   children?: INode[];
+  value?: string;
 }
 
 type IGraph = { [code: string]: INode };
