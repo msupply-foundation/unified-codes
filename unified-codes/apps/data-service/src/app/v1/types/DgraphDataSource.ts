@@ -81,7 +81,7 @@ export class DgraphDataSource extends RESTDataSource {
         types: dgraph.type
         description: name@*
         properties {
-          type: dgraph.type
+          types: dgraph.type
           value
         }
         children {
@@ -134,14 +134,14 @@ export class DgraphDataSource extends RESTDataSource {
       query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
         code
         description: name@*
-        type: dgraph.type
+        types: dgraph.type
         uid
         properties {
-          type: dgraph.type
+          types: dgraph.type
           value
         }
         parents: ~children {
-          type: dgraph.type
+          types: dgraph.type
           description: name@*
         }
       }
@@ -149,7 +149,7 @@ export class DgraphDataSource extends RESTDataSource {
   }
 
   private static getEntityType(entity: IEntity): string {
-    const { type: types } = entity;
+    const { types } = entity;
     const [type] = types ?? [];
 
     switch (type) {
