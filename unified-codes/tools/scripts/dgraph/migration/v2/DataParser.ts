@@ -114,6 +114,10 @@ export abstract class DataParser {
     return this.graph;
   }
 }
+const REGEX_CR_LF = /[\r\n]/g;
+const REGEX_UC8_AND_DESCRIPTION_WITHIN_BRACKETS = /(uc8) *\(([^)]*)\)/;
+const REGEX_BRACKETED_DESCRIPTION = / *\([^)]*\) */g;
+const REGEX_SPACE = / /g;
 
 export class CSVParser extends DataParser {
   constructor(
@@ -185,10 +189,10 @@ export class CSVParser extends DataParser {
               const key = column
                 .trim()
                 .toLowerCase()
-                .replace(/[\r\n]/g, '')
-                .replace(/(uc8) *\(([^)]*)\)/, '$1 $2')
-                .replace(/ *\([^)]*\) */g, '')
-                .replace(/ /g, '_');
+                .replace(REGEX_CR_LF, '')
+                .replace(REGEX_UC8_AND_DESCRIPTION_WITHIN_BRACKETS, '$1 $2') // this is because there are two UC8 columns and we wish to retain the description to distinguish them
+                .replace(REGEX_BRACKETED_DESCRIPTION, '')
+                .replace(REGEX_SPACE, '_');
               return { ...acc, [key]: value };
             },
             {} as IRow
@@ -262,6 +266,15 @@ export class CSVParser extends DataParser {
           nzulm_item,
           unspsc,
         } = row;
+        console.info(row);
+        const productProperties = [];
+        const itemProperties = [];
+        productProperties.push({ type: 'code_rxnav', value: rxnav });
+        productProperties.push({ type: 'code_eml', value: who_eml_product });
+        itemProperties.push({ type: 'code_eml', value: who_eml_item });
+        productProperties.push({ type: 'code_nzulm', value: nzulm });
+        itemProperties.push({ type: 'code_nzulm', value: nzulm_item });
+        productProperties.push({ type: 'code_unspsc', value: unspsc });
 
         const productProperties: INode[] = [];
         const itemProperties: INode[] = [];
@@ -558,8 +571,27 @@ export class CSVParser extends DataParser {
                 this.graph[uc6].properties.push(property);
               }
             }
-          });
-        }
+
+          }
+        });
+
+        // Process external properties at product (UC2) level
+        productProperties.forEach((property) => {
+          // temporary restriction for uc7 - these are not currently imported
+          if (property.value && !uc7 && uc2) {
+            console.log(`INFO: Property with value ${property} added for ${uc2}`);
+            this.graph[uc2].properties.push(property);
+          }
+        });
+
+        // Process external properties at item (UC6) level
+        itemProperties.forEach((property) => {
+          // temporary restriction for uc7 - these are not currently imported
+          if (property.value && !uc7 && uc6) {
+            console.log(`INFO: Property with value ${property} added for ${uc6}`);
+            this.graph[uc6].properties.push(property);
+          }
+        });
       });
 
       // Expand graph edges.
@@ -574,6 +606,7 @@ export class CSVParser extends DataParser {
 
       this.isBuilt = true;
     } catch (err) {
+      console.error(err);
       this.isBuilt = false;
     } finally {
       return this.graph;

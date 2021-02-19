@@ -65,7 +65,7 @@ class GetInteractionsArgs {
 @Resolver((of) => EntityType)
 export class EntityResolver {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @Query((returns) => EntityType)
+  @Query((returns) => EntityType, { nullable: true })
   async entity(@Args() args: GetEntityArgs, @Ctx() ctx: IApolloServiceContext): Promise<IEntity> {
     const { code } = args;
     const { token, authenticator, authoriser, dataSources } = ctx;
