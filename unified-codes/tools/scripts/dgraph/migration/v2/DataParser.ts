@@ -34,18 +34,14 @@ interface IRow {
 }
 
 type IData = IRow[];
-
-interface IProperty {
-  type: string;
-  value: string;
-}
 interface INode {
   code: string;
   name?: string;
   type?: string;
   combines?: INode[];
-  properties?: IProperty[];
+  properties?: INode[];
   children?: INode[];
+  value?: string;
 }
 
 type IGraph = { [code: string]: INode };
@@ -54,7 +50,6 @@ enum UCCode {
   Drug = '933f3f00',
   Consumable = '77fcbb00',
 }
-
 export abstract class DataParser {
   public readonly path: fs.PathLike;
   public readonly options:
@@ -139,6 +134,11 @@ export class CSVParser extends DataParser {
   ) {
     super(path, options);
   }
+
+  private generateCode = (numCharacters = 8) =>
+    Math.round(Math.random() * Math.pow(16, numCharacters))
+      .toString(16)
+      .padStart(numCharacters, '0');
 
   public detectCycles(): INode[] {
     if (this.isTraversed) return this.cycles;
@@ -263,14 +263,18 @@ export class CSVParser extends DataParser {
           unspsc,
         } = row;
 
-        const productProperties = [];
-        const itemProperties = [];
-        productProperties.push({ type: 'code_rxnav', value: rxnav });
-        productProperties.push({ type: 'code_eml', value: who_eml_product });
-        itemProperties.push({ type: 'code_eml', value: who_eml_item });
-        productProperties.push({ type: 'code_nzulm', value: nzulm });
-        itemProperties.push({ type: 'code_nzulm', value: nzulm_item });
-        productProperties.push({ type: 'code_unspsc', value: unspsc });
+        const productProperties: INode[] = [];
+        const itemProperties: INode[] = [];
+        productProperties.push({ code: this.generateCode(), type: 'code_rxnav', value: rxnav });
+        productProperties.push({
+          code: this.generateCode(),
+          type: 'code_eml',
+          value: who_eml_product,
+        });
+        itemProperties.push({ code: this.generateCode(), type: 'code_eml', value: who_eml_item });
+        productProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm });
+        itemProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm_item });
+        productProperties.push({ code: this.generateCode(), type: 'code_unspsc', value: unspsc });
 
         // If row include strength code...
         if (uc6) {
