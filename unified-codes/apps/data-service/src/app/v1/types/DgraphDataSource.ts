@@ -182,6 +182,19 @@ export class DgraphDataSource extends RESTDataSource {
     return type;
   }
 
+  private static mapEntity = (entity: IEntity) => {
+    // Map native graph node types.
+    const type = DgraphDataSource.getEntityType(entity);
+    const children = entity.children?.map((child) => DgraphDataSource.mapEntity(child));
+
+    entity.properties = entity.properties?.map((property) => ({
+      ...property,
+      type: DgraphDataSource.getPropertyType(property),
+    }));
+
+    return { ...entity, type, children };
+  };
+
   constructor() {
     super();
     this.baseURL = `${process.env.NX_DGRAPH_SERVICE_URL}:${process.env.NX_DGRAPH_SERVICE_PORT}`;
@@ -199,19 +212,7 @@ export class DgraphDataSource extends RESTDataSource {
     const { query } = data ?? {};
     const [entity]: [IEntity] = query ?? [];
 
-    const mapEntity = (entity: IEntity) => {
-      const type = DgraphDataSource.getEntityType(entity);
-      const children = entity.children?.map((child) => mapEntity(child));
-      return { ...entity, type, children };
-    };
-
-    entity.properties = entity.properties?.map((property) => ({
-      ...property,
-      type: DgraphDataSource.getPropertyType(property),
-    }));
-    const mappedEntity = mapEntity(entity);
-
-    return mappedEntity;
+    return DgraphDataSource.mapEntity(entity);
   }
 
   async getProduct(code: string): Promise<IEntity> {
@@ -247,13 +248,10 @@ export class DgraphDataSource extends RESTDataSource {
     const totalCount = counterData?.total ?? 0;
 
     const entities: IEntity[] = entityData?.map((entity: IEntity) => {
-      // Map native graph node types.
-      const type = DgraphDataSource.getEntityType(entity);
-
       // Overwrite interactions to prevent large query delays.
       const interactions = [];
 
-      return { ...entity, type, interactions };
+      return { ...DgraphDataSource.mapEntity(entity), interactions };
     });
 
     return new EntityCollection(entities, totalCount);
