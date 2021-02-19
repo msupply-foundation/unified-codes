@@ -12,3 +12,4 @@ export * from './PersonIcon';
 export * from './SearchIcon';
 export * from './VisibilityIcon';
 export * from './VpnKeyIcon';
+export * from './LinkIcon';

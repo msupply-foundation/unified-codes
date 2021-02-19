@@ -50,7 +50,6 @@ enum UCCode {
   Drug = '933f3f00',
   Consumable = '77fcbb00',
 }
-
 export abstract class DataParser {
   public readonly path: fs.PathLike;
   public readonly options:
@@ -139,6 +138,11 @@ export class CSVParser extends DataParser {
   ) {
     super(path, options);
   }
+
+  private generateCode = (numCharacters = 8) =>
+    Math.round(Math.random() * Math.pow(16, numCharacters))
+      .toString(16)
+      .padStart(numCharacters, '0');
 
   public detectCycles(): INode[] {
     if (this.isTraversed) return this.cycles;
@@ -271,6 +275,19 @@ export class CSVParser extends DataParser {
         productProperties.push({ type: 'code_nzulm', value: nzulm });
         itemProperties.push({ type: 'code_nzulm', value: nzulm_item });
         productProperties.push({ type: 'code_unspsc', value: unspsc });
+
+        const productProperties: INode[] = [];
+        const itemProperties: INode[] = [];
+        productProperties.push({ code: this.generateCode(), type: 'code_rxnav', value: rxnav });
+        productProperties.push({
+          code: this.generateCode(),
+          type: 'code_eml',
+          value: who_eml_product,
+        });
+        itemProperties.push({ code: this.generateCode(), type: 'code_eml', value: who_eml_item });
+        productProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm });
+        itemProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm_item });
+        productProperties.push({ code: this.generateCode(), type: 'code_unspsc', value: unspsc });
 
         // If row include strength code...
         if (uc6) {
@@ -516,13 +533,45 @@ export class CSVParser extends DataParser {
           .filter((uc) => !!uc)
           .map((uc) => uc.trim());
 
-        // Link product to combination.
-        combinations.forEach((uc) => {
-          if (uc2 && uc) {
-            if (!this.graph[uc2].combines.map((sibling) => sibling.code).includes(uc)) {
-              this.graph[uc2].combines.push({ code: uc });
-              console.log(`INFO: Linked product with code ${uc2} to product with code ${uc}`);
+        // disabled for now as this creates a circular reference
+        // // Link product to combination.
+        // combinations.forEach((uc) => {
+        //   if (uc2 && uc) {
+        //     if (!this.graph[uc2].combines.map((sibling) => sibling.code).includes(uc)) {
+        //       this.graph[uc2].combines.push({ code: uc });
+        //       console.log(`INFO: Linked product with code ${uc2} to product with code ${uc}`);
+        //     }
+        //   }
+        // });
+
+        // Process external properties at product (UC2) level
+        if (!uc7 && uc2) {
+          productProperties.forEach((property) => {
+            // temporary restriction for uc7 - these are not currently imported
+            if (property.value) {
+              console.log(
+                `INFO: Property of type ${property.type} with value ${property.value} added for ${uc2}`
+              );
+              if (!this.graph[uc2].properties.some((p) => p.type === property.type)) {
+                this.graph[uc2].properties.push(property);
+              }
             }
+          });
+        }
+
+        // Process external properties at item (UC6) level
+        if (!uc7 && uc6) {
+          itemProperties.forEach((property) => {
+            // temporary restriction for uc7 - these are not currently imported
+            if (property.value) {
+              console.log(
+                `INFO: Property of type ${property.type} with value ${property.value} added for ${uc6}`
+              );
+              if (!this.graph[uc6].properties.some((p) => p.type === property.type)) {
+                this.graph[uc6].properties.push(property);
+              }
+            }
+
           }
         });
 
