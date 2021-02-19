@@ -63,7 +63,7 @@ export class DgraphDataSource extends RESTDataSource {
     return `{
       query(func: eq(code, ${code?.toLowerCase()}), first:1) @recurse(loop:false) {
         code
-        type: dgraph.type
+        types: dgraph.type
         description: name@*
         value
         combines
@@ -78,7 +78,7 @@ export class DgraphDataSource extends RESTDataSource {
     return `{
       query (func: eq(dgraph.type, "Product")) @cascade {
         code
-        type: dgraph.type
+        types: dgraph.type
         description: name@*
         properties {
           type: dgraph.type
@@ -177,7 +177,7 @@ export class DgraphDataSource extends RESTDataSource {
   }
 
   private static getPropertyType(property: IProperty): string {
-    const { type: types } = property;
+    const { types } = property;
     const [type] = types ?? [];
     return type;
   }

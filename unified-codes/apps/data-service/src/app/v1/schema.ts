@@ -106,8 +106,12 @@ export class PropertyType implements IProperty {
   properties: IProperty[];
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @Field((type) => String)
+  @Field((type) => String, { nullable: true })
   type: string;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @Field((type) => [String], { nullable: true })
+  types: string[];
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
