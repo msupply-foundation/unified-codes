@@ -115,6 +115,10 @@ export abstract class DataParser {
     return this.graph;
   }
 }
+const REGEX_CR_LF = /[\r\n]/g;
+const REGEX_UC8_AND_DESCRIPTION_WITHIN_BRACKETS = /(uc8) *\(([^)]*)\)/;
+const REGEX_BRACKETED_DESCRIPTION = / *\([^)]*\) */g;
+const REGEX_SPACE = / /g;
 
 export class CSVParser extends DataParser {
   constructor(
@@ -181,10 +185,10 @@ export class CSVParser extends DataParser {
               const key = column
                 .trim()
                 .toLowerCase()
-                .replace(/[\r\n]/g, '')
-                .replace(/(uc8) *\(([^)]*)\)/, '$1 $2')
-                .replace(/ *\([^)]*\) */g, '')
-                .replace(/ /g, '_');
+                .replace(REGEX_CR_LF, '')
+                .replace(REGEX_UC8_AND_DESCRIPTION_WITHIN_BRACKETS, '$1 $2') // this is because there are two UC8 columns and we wish to retain the description to distinguish them
+                .replace(REGEX_BRACKETED_DESCRIPTION, '')
+                .replace(REGEX_SPACE, '_');
               return { ...acc, [key]: value };
             },
             {} as IRow
