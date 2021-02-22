@@ -521,10 +521,11 @@ export class CSVParser extends DataParser {
 
         // Parse product combinations.
         // TODO: consistent combination formatting.
-        const combinations = combination
-          .split(/[,/]/)
-          .filter((uc) => !!uc)
-          .map((uc) => uc.trim());
+        const combinations =
+          combination
+            ?.split(/[,/]/)
+            .filter((uc) => !!uc)
+            .map((uc) => uc.trim()) ?? [];
 
         // disabled for now as this creates a circular reference
         // // Link product to combination.
