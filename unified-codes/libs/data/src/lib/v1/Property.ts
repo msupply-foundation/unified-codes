@@ -1,6 +1,5 @@
 export interface IProperty {
-  type?: string;
-  types?: string[];
+  type: string;
   value: string;
   properties?: IProperty[];
 }
@@ -11,7 +10,7 @@ export class Property {
   readonly properties?: Property[];
 
   constructor(property: IProperty) {
-    this.type = property.type || '';
+    this.type = property.type;
     this.value = property.value;
     this.properties = property.properties?.map((property: IProperty) => new Property(property));
   }

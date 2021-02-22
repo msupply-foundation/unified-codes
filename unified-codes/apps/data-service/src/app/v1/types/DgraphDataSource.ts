@@ -63,7 +63,7 @@ export class DgraphDataSource extends RESTDataSource {
     return `{
       query(func: eq(code, ${code?.toLowerCase()}), first:1) @recurse(loop:false) {
         code
-        types: dgraph.type
+        type: dgraph.type
         description: name@*
         value
         combines
@@ -78,10 +78,10 @@ export class DgraphDataSource extends RESTDataSource {
     return `{
       query (func: eq(dgraph.type, "Product")) @cascade {
         code
-        types: dgraph.type
+        type: dgraph.type
         description: name@*
         properties {
-          types: dgraph.type
+          type: dgraph.type
           value
         }
         children {
@@ -134,14 +134,14 @@ export class DgraphDataSource extends RESTDataSource {
       query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
         code
         description: name@*
-        types: dgraph.type
+        type: dgraph.type
         uid
         properties {
-          types: dgraph.type
+          type: dgraph.type
           value
         }
         parents: ~children {
-          types: dgraph.type
+          type: dgraph.type
           description: name@*
         }
       }
@@ -176,8 +176,10 @@ export class DgraphDataSource extends RESTDataSource {
     }
   }
 
+  // maps from the `type` property returned, which is of `dgraph.type` and therefore string[]
+  // to a single string value for `type`
   private static getPropertyType(property: IProperty): string {
-    const { types } = property;
+    const { type: types } = property;
     const [type] = types ?? [];
     return type;
   }
