@@ -149,7 +149,7 @@ export class DgraphDataSource extends RESTDataSource {
   }
 
   private static getEntityType(entity: IEntity): string {
-    const { types } = entity;
+    const { type: types } = entity;
     const [type] = types ?? [];
 
     switch (type) {
