@@ -567,24 +567,6 @@ export class CSVParser extends DataParser {
             }
           });
         }
-
-        // Process external properties at product (UC2) level
-        productProperties.forEach((property) => {
-          // temporary restriction for uc7 - these are not currently imported
-          if (property.value && !uc7 && uc2) {
-            console.log(`INFO: Property with value ${property} added for ${uc2}`);
-            this.graph[uc2].properties.push(property);
-          }
-        });
-
-        // Process external properties at item (UC6) level
-        itemProperties.forEach((property) => {
-          // temporary restriction for uc7 - these are not currently imported
-          if (property.value && !uc7 && uc6) {
-            console.log(`INFO: Property with value ${property} added for ${uc6}`);
-            this.graph[uc6].properties.push(property);
-          }
-        });
       });
 
       // Expand graph edges.
