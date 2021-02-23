@@ -39,6 +39,7 @@ interface DetailEntityListItemProps {
   childEntities?: IEntity[];
   code?: string;
   description?: string;
+  entityDescription?: string;
   form?: string;
   fetchEntity?: (code: string) => void;
 }
@@ -49,6 +50,7 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
   childEntities,
   code,
   description,
+  entityDescription,
   form,
   fetchEntity,
 }) => {
@@ -94,10 +96,21 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
     if (!childCount) return null;
     const childItems = childEntities?.map((child: IEntity) => {
       const { description, children, type } = child;
-      const childForm = type === 'form' ? description : undefined;
+      const childForm = type === 'form' ? description.toLowerCase() : undefined;
+      let fullDescription = description;
+      let parentDescription = entityDescription;
+      switch(type) {
+        case 'form':
+          parentDescription = `${entityDescription} ${description}`;
+          break;
+        case 'unit_of_use':
+          fullDescription =  `${entityDescription} ${description}`;
+          break;
+      }
       return (
         <DetailEntityListItem
-          description={description}
+          description={fullDescription}
+          entityDescription={parentDescription}
           childEntities={children}
           key={child.code}
           code={child.code}

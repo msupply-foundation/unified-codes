@@ -158,7 +158,7 @@ export class GraphQLErrorType {
   @Field((type) => String)
   message: string;
 
-   // eslint-disable-next-line @typescript-eslint/no-unused-vars 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String, { nullable: true })
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   locations: any[];

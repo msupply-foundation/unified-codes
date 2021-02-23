@@ -31,14 +31,14 @@ export const DetailEntityListComponent: DetailEntityList = ({ entity }) => {
   // TODO: handle non-drug root entities.
   const description = 'Forms';
 
-  const { children: childEntities } = entity ?? {};
+  const { children: childEntities, description: entityDescription } = entity ?? {};
   const { length: entityCount } = childEntities ?? [];
 
   if (!entityCount) return null;
 
   return (
     <List className={classes.root}>
-      <DetailEntityListItem description={description} childEntities={childEntities} />
+      <DetailEntityListItem description={description} childEntities={childEntities} entityDescription={entityDescription}/>
     </List>
   );
 };

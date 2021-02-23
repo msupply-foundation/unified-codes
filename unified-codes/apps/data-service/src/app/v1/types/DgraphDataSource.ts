@@ -6,6 +6,7 @@ import {
   IEntity,
   EntityCollection,
   IEntityCollection,
+  IProperty,
 } from '@unified-codes/data/v1';
 
 import { EntitySearchInput, FilterMatch } from '../schema';
@@ -48,7 +49,7 @@ export class DgraphDataSource extends RESTDataSource {
         case EEntityType.MEDICINAL_PRODUCT:
           return 'Consumable';
         case EEntityType.UNIT_OF_USE:
-          return 'DoseUnit'
+          return 'DoseUnit';
         case EEntityType.OTHER:
           return 'Other';
         default:
@@ -60,7 +61,7 @@ export class DgraphDataSource extends RESTDataSource {
 
   private static getEntityQuery(code: string) {
     return `{
-      query(func: eq(code, ${code}), first:1) @recurse(loop:false) {
+      query(func: eq(code, ${code?.toLowerCase()}), first:1) @recurse(loop:false) {
         code
         type: dgraph.type
         description: name@*
@@ -80,7 +81,7 @@ export class DgraphDataSource extends RESTDataSource {
         type: dgraph.type
         description: name@*
         properties {
-          type
+          type: dgraph.type
           value
         }
         children {
@@ -136,7 +137,7 @@ export class DgraphDataSource extends RESTDataSource {
         type: dgraph.type
         uid
         properties {
-          type
+          type: dgraph.type
           value
         }
         parents: ~children {
@@ -175,6 +176,29 @@ export class DgraphDataSource extends RESTDataSource {
     }
   }
 
+  // maps from the `type` property returned, which is of `dgraph.type` and therefore string[]
+  // to a single string value for `type`
+  private static getPropertyType(property: IProperty): string {
+    const { type: types } = property;
+    const [type] = types ?? [];
+    return type;
+  }
+
+  private static mapEntity = (entity: IEntity) => {
+    if (!entity) return entity;
+
+    // Map native graph node types.
+    const type = DgraphDataSource.getEntityType(entity);
+    const children = entity.children?.map((child) => DgraphDataSource.mapEntity(child));
+
+    entity.properties = entity.properties?.map((property) => ({
+      ...property,
+      type: DgraphDataSource.getPropertyType(property),
+    }));
+
+    return { ...entity, type, children };
+  };
+
   constructor() {
     super();
     this.baseURL = `${process.env.NX_DGRAPH_SERVICE_URL}:${process.env.NX_DGRAPH_SERVICE_PORT}`;
@@ -188,19 +212,10 @@ export class DgraphDataSource extends RESTDataSource {
 
   async getEntity(code: string): Promise<IEntity> {
     const data = await this.postQuery(DgraphDataSource.getEntityQuery(code));
-
     const { query } = data ?? {};
     const [entity]: [IEntity] = query ?? [];
 
-    const mapEntity = (entity: IEntity) => {
-      const type = DgraphDataSource.getEntityType(entity);
-      const children = entity.children?.map((child) => mapEntity(child));
-      return { ...entity, type, children };
-    };
-
-    const mappedEntity = mapEntity(entity);
-
-    return mappedEntity;
+    return DgraphDataSource.mapEntity(entity);
   }
 
   async getProduct(code: string): Promise<IEntity> {
@@ -219,7 +234,6 @@ export class DgraphDataSource extends RESTDataSource {
     const { type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = false } =
       orderBy ?? {};
-
     const data = await this.postQuery(
       DgraphDataSource.getEntitiesQuery(
         type,
@@ -237,13 +251,10 @@ export class DgraphDataSource extends RESTDataSource {
     const totalCount = counterData?.total ?? 0;
 
     const entities: IEntity[] = entityData?.map((entity: IEntity) => {
-      // Map native graph node types.
-      const type = DgraphDataSource.getEntityType(entity);
-
       // Overwrite interactions to prevent large query delays.
       const interactions = [];
 
-      return { ...entity, type, interactions };
+      return { ...DgraphDataSource.mapEntity(entity), interactions };
     });
 
     return new EntityCollection(entities, totalCount);
