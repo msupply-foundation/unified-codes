@@ -12,7 +12,7 @@ const propertyFormats = [
       `https://search.nzulm.org.nz/search/product?table=MP&id=${code}`,
   },
   {
-    type: 'code_eml',
+    type: 'who_eml',
     title: 'WHO EML Categories',
   },
   {
