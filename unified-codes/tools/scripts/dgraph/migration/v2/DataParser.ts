@@ -274,10 +274,10 @@ export class CSVParser extends DataParser {
         productProperties.push({ code: this.generateCode(), type: 'code_rxnav', value: rxnav });
         productProperties.push({
           code: this.generateCode(),
-          type: 'code_eml',
+          type: 'who_eml',
           value: who_eml_product,
         });
-        itemProperties.push({ code: this.generateCode(), type: 'code_eml', value: who_eml_item });
+        itemProperties.push({ code: this.generateCode(), type: 'who_eml', value: who_eml_item });
         productProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm });
         itemProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm_item });
         productProperties.push({ code: this.generateCode(), type: 'code_unspsc', value: unspsc });
