@@ -25,7 +25,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 242680,
+                      "value": "242680",
                       "type": "code_rxnav"
                     },
                     {
@@ -55,7 +55,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 242679,
+                      "value": "242679",
                       "type": "code_rxnav"
                     },
                     {
@@ -82,7 +82,7 @@
           "type": "ddd"
         },
         {
-          "value": 190521,
+          "value": "190521",
           "type": "code_rxnav"
         },
         {
@@ -94,7 +94,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51342501,
+          "value": "51342501",
           "type": "code_unspsc"
         },
         {
@@ -158,7 +158,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 602393,
+                      "value": "602393",
                       "type": "code_rxnav"
                     },
                     {
@@ -177,7 +177,7 @@
       ],
       "has_property": [
         {
-          "value": 614534,
+          "value": "614534",
           "type": "code_rxnav"
         },
         {
@@ -189,7 +189,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51343801,
+          "value": "51343801",
           "type": "code_unspsc"
         },
         {
@@ -247,7 +247,7 @@
           "type": "ddd"
         },
         {
-          "value": 167,
+          "value": "167",
           "type": "code_rxnav"
         },
         {
@@ -259,7 +259,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51141501,
+          "value": "51141501",
           "type": "code_unspsc"
         },
         {
@@ -305,7 +305,7 @@
       ],
       "has_property": [
         {
-          "value": 168,
+          "value": "168",
           "type": "code_rxnav"
         },
         {
@@ -317,7 +317,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51471602,
+          "value": "51471602",
           "type": "code_unspsc"
         },
         {
@@ -392,7 +392,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 465377,
+                      "value": "465377",
                       "type": "code_rxnav"
                     },
                     {
@@ -419,7 +419,7 @@
           "type": "ddd"
         },
         {
-          "value": 197,
+          "value": "197",
           "type": "code_rxnav"
         },
         {
@@ -431,7 +431,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51162701,
+          "value": "51162701",
           "type": "code_unspsc"
         },
         {
@@ -477,7 +477,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 103863,
+                      "value": "103863",
                       "type": "code_rxnav"
                     },
                     {
@@ -544,7 +544,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 199281,
+                      "value": "199281",
                       "type": "code_rxnav"
                     },
                     {
@@ -567,7 +567,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 198471,
+                      "value": "198471",
                       "type": "code_rxnav"
                     },
                     {
@@ -590,7 +590,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 243760,
+                      "value": "243760",
                       "type": "code_rxnav"
                     }
                   ],
@@ -605,7 +605,7 @@
       ],
       "has_property": [
         {
-          "value": 1191,
+          "value": "1191",
           "type": "code_rxnav"
         },
         {
@@ -613,7 +613,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51143103,
+          "value": "51143103",
           "type": "code_unspsc"
         },
         {
@@ -644,7 +644,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 199524,
+                      "value": "199524",
                       "type": "code_rxnav"
                     },
                     {
@@ -670,7 +670,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 307730,
+                      "value": "307730",
                       "type": "code_rxnav"
                     },
                     {
@@ -732,7 +732,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 199413,
+                      "value": "199413",
                       "type": "code_rxnav"
                     },
                     {
@@ -751,7 +751,7 @@
       ],
       "has_property": [
         {
-          "value": 281,
+          "value": "281",
           "type": "code_rxnav"
         },
         {
@@ -763,7 +763,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51342309,
+          "value": "51342309",
           "type": "code_unspsc"
         },
         {
@@ -813,7 +813,7 @@
           "type": "ddd"
         },
         {
-          "value": 430,
+          "value": "430",
           "type": "code_rxnav"
         },
         {
@@ -825,7 +825,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51451801,
+          "value": "51451801",
           "type": "code_unspsc"
         },
         {
@@ -982,7 +982,7 @@
           "type": "ddd"
         },
         {
-          "value": 519,
+          "value": "519",
           "type": "code_rxnav"
         },
         {
@@ -994,7 +994,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51192001,
+          "value": "51192001",
           "type": "code_unspsc"
         },
         {
@@ -1138,7 +1138,7 @@
           "type": "ddd"
         },
         {
-          "value": 641,
+          "value": "641",
           "type": "code_rxnav"
         },
         {
@@ -1150,7 +1150,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281627,
+          "value": "51281627",
           "type": "code_unspsc"
         },
         {
@@ -1181,7 +1181,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 977880,
+                      "value": "977880",
                       "type": "code_rxnav"
                     },
                     {
@@ -1204,7 +1204,7 @@
           "type": "ddd"
         },
         {
-          "value": 644,
+          "value": "644",
           "type": "code_rxnav"
         },
         {
@@ -1216,7 +1216,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51191506,
+          "value": "51191506",
           "type": "code_unspsc"
         },
         {
@@ -1276,7 +1276,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1724668,
+                      "value": "1724668",
                       "type": "code_rxnav"
                     }
                   ],
@@ -1295,7 +1295,7 @@
           "type": "ddd"
         },
         {
-          "value": 689,
+          "value": "689",
           "type": "code_rxnav"
         },
         {
@@ -1303,7 +1303,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51391602,
+          "value": "51391602",
           "type": "code_unspsc"
         },
         {
@@ -1334,7 +1334,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 835956,
+                      "value": "835956",
                       "type": "code_rxnav"
                     },
                     {
@@ -1367,7 +1367,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1663224,
+                      "value": "1663224",
                       "type": "code_rxnav"
                     },
                     {
@@ -1390,7 +1390,7 @@
           "type": "ddd"
         },
         {
-          "value": 703,
+          "value": "703",
           "type": "code_rxnav"
         },
         {
@@ -1402,7 +1402,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51123601,
+          "value": "51123601",
           "type": "code_unspsc"
         },
         {
@@ -1433,7 +1433,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 856783,
+                      "value": "856783",
                       "type": "code_rxnav"
                     },
                     {
@@ -1452,7 +1452,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 856834,
+                      "value": "856834",
                       "type": "code_rxnav"
                     },
                     {
@@ -1471,7 +1471,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 856853,
+                      "value": "856853",
                       "type": "code_rxnav"
                     },
                     {
@@ -1494,7 +1494,7 @@
           "type": "ddd"
         },
         {
-          "value": 704,
+          "value": "704",
           "type": "code_rxnav"
         },
         {
@@ -1506,7 +1506,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51293002,
+          "value": "51293002",
           "type": "code_unspsc"
         },
         {
@@ -1556,7 +1556,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51433924,
+          "value": "51433924",
           "type": "code_unspsc"
         },
         {
@@ -1606,7 +1606,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51433925,
+          "value": "51433925",
           "type": "code_unspsc"
         },
         {
@@ -1656,7 +1656,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51433928,
+          "value": "51433928",
           "type": "code_unspsc"
         },
         {
@@ -1713,7 +1713,7 @@
       ],
       "has_property": [
         {
-          "value": 720,
+          "value": "720",
           "type": "code_rxnav"
         },
         {
@@ -1721,7 +1721,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101913,
+          "value": "51101913",
           "type": "code_unspsc"
         }
       ],
@@ -1752,7 +1752,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 313797,
+                      "value": "313797",
                       "type": "code_rxnav"
                     },
                     {
@@ -1779,7 +1779,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 239191,
+                      "value": "239191",
                       "type": "code_rxnav"
                     },
                     {
@@ -1813,7 +1813,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 308182,
+                      "value": "308182",
                       "type": "code_rxnav"
                     },
                     {
@@ -1836,7 +1836,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 308191,
+                      "value": "308191",
                       "type": "code_rxnav"
                     },
                     {
@@ -1863,7 +1863,7 @@
           "type": "ddd"
         },
         {
-          "value": 723,
+          "value": "723",
           "type": "code_rxnav"
         },
         {
@@ -1875,7 +1875,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281702,
+          "value": "51281702",
           "type": "code_unspsc"
         },
         {
@@ -1910,7 +1910,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 617302,
+                      "value": "617302",
                       "type": "code_rxnav"
                     },
                     {
@@ -1937,7 +1937,7 @@
           "type": "ddd"
         },
         {
-          "value": 19711,
+          "value": "19711",
           "type": "code_rxnav"
         },
         {
@@ -1980,7 +1980,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 617322,
+                      "value": "617322",
                       "type": "code_rxnav"
                     },
                     {
@@ -2007,7 +2007,7 @@
           "type": "ddd"
         },
         {
-          "value": 19711,
+          "value": "19711",
           "type": "code_rxnav"
         },
         {
@@ -2050,7 +2050,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 617296,
+                      "value": "617296",
                       "type": "code_rxnav"
                     },
                     {
@@ -2077,7 +2077,7 @@
           "type": "ddd"
         },
         {
-          "value": 19711,
+          "value": "19711",
           "type": "code_rxnav"
         },
         {
@@ -2116,7 +2116,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 967385,
+                      "value": "967385",
                       "type": "code_rxnav"
                     },
                     {
@@ -2139,7 +2139,7 @@
       ],
       "has_property": [
         {
-          "value": 732,
+          "value": "732",
           "type": "code_rxnav"
         },
         {
@@ -2147,7 +2147,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51302401,
+          "value": "51302401",
           "type": "code_unspsc"
         },
         {
@@ -2178,7 +2178,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 239240,
+                      "value": "239240",
                       "type": "code_rxnav"
                     },
                     {
@@ -2201,7 +2201,7 @@
       ],
       "has_property": [
         {
-          "value": 732,
+          "value": "732",
           "type": "code_rxnav"
         },
         {
@@ -2209,7 +2209,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51302401,
+          "value": "51302401",
           "type": "code_unspsc"
         },
         {
@@ -2361,7 +2361,7 @@
       ],
       "has_property": [
         {
-          "value": 733,
+          "value": "733",
           "type": "code_rxnav"
         },
         {
@@ -2369,7 +2369,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51281703,
+          "value": "51281703",
           "type": "code_unspsc"
         }
       ],
@@ -2419,7 +2419,7 @@
           "type": "ddd"
         },
         {
-          "value": 84857,
+          "value": "84857",
           "type": "code_rxnav"
         },
         {
@@ -2431,7 +2431,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111875,
+          "value": "51111875",
           "type": "code_unspsc"
         },
         {
@@ -2628,7 +2628,7 @@
       ],
       "has_property": [
         {
-          "value": 18343,
+          "value": "18343",
           "type": "code_rxnav"
         },
         {
@@ -2636,7 +2636,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51102901,
+          "value": "51102901",
           "type": "code_unspsc"
         }
       ],
@@ -2663,7 +2663,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 847731,
+                      "value": "847731",
                       "type": "code_rxnav"
                     },
                     {
@@ -2731,7 +2731,7 @@
       ],
       "has_property": [
         {
-          "value": 282448,
+          "value": "282448",
           "type": "code_rxnav"
         },
         {
@@ -2739,7 +2739,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101908,
+          "value": "51101908",
           "type": "code_unspsc"
         },
         {
@@ -2789,7 +2789,7 @@
       ],
       "has_property": [
         {
-          "value": 282448,
+          "value": "282448",
           "type": "code_rxnav"
         },
         {
@@ -2797,7 +2797,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101908,
+          "value": "51101908",
           "type": "code_unspsc"
         },
         {
@@ -2891,7 +2891,7 @@
           "type": "ddd"
         },
         {
-          "value": 18346,
+          "value": "18346",
           "type": "code_rxnav"
         },
         {
@@ -2903,7 +2903,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51101914,
+          "value": "51101914",
           "type": "code_unspsc"
         },
         {
@@ -2953,7 +2953,7 @@
       ],
       "has_property": [
         {
-          "value": 18346,
+          "value": "18346",
           "type": "code_rxnav"
         },
         {
@@ -2961,7 +2961,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101914,
+          "value": "51101914",
           "type": "code_unspsc"
         },
         {
@@ -3140,7 +3140,7 @@
       ],
       "has_property": [
         {
-          "value": 1151,
+          "value": "1151",
           "type": "code_rxnav"
         },
         {
@@ -3148,7 +3148,7 @@
           "type": "who_eml"
         },
         {
-          "value": 12162201,
+          "value": "12162201",
           "type": "code_unspsc"
         },
         {
@@ -3179,7 +3179,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 150889,
+                      "value": "150889",
                       "type": "code_rxnav"
                     },
                     {
@@ -3198,7 +3198,7 @@
       ],
       "has_property": [
         {
-          "value": 1156,
+          "value": "1156",
           "type": "code_rxnav"
         },
         {
@@ -3206,7 +3206,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51111901,
+          "value": "51111901",
           "type": "code_unspsc"
         }
       ],
@@ -3290,7 +3290,7 @@
           "type": "ddd"
         },
         {
-          "value": 343047,
+          "value": "343047",
           "type": "code_rxnav"
         },
         {
@@ -3302,7 +3302,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51342701,
+          "value": "51342701",
           "type": "code_unspsc"
         },
         {
@@ -3417,7 +3417,7 @@
           "type": "ddd"
         },
         {
-          "value": 1202,
+          "value": "1202",
           "type": "code_rxnav"
         },
         {
@@ -3425,7 +3425,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51263101,
+          "value": "51263101",
           "type": "code_unspsc"
         },
         {
@@ -3456,7 +3456,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 966768,
+                      "value": "966768",
                       "type": "code_rxnav"
                     },
                     {
@@ -3475,7 +3475,7 @@
       ],
       "has_property": [
         {
-          "value": 1218,
+          "value": "1218",
           "type": "code_rxnav"
         },
         {
@@ -3483,7 +3483,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51152001,
+          "value": "51152001",
           "type": "code_unspsc"
         }
       ],
@@ -3510,7 +3510,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1190570,
+                      "value": "1190570",
                       "type": "code_rxnav"
                     },
                     {
@@ -3573,7 +3573,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1190795,
+                      "value": "1190795",
                       "type": "code_rxnav"
                     },
                     {
@@ -3592,7 +3592,7 @@
       ],
       "has_property": [
         {
-          "value": 1223,
+          "value": "1223",
           "type": "code_rxnav"
         },
         {
@@ -3600,7 +3600,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51151616,
+          "value": "51151616",
           "type": "code_unspsc"
         }
       ],
@@ -3627,7 +3627,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 239983,
+                      "value": "239983",
                       "type": "code_rxnav"
                     },
                     {
@@ -3683,7 +3683,7 @@
           "type": "ddd"
         },
         {
-          "value": 1256,
+          "value": "1256",
           "type": "code_rxnav"
         },
         {
@@ -3695,7 +3695,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51203401,
+          "value": "51203401",
           "type": "code_unspsc"
         },
         {
@@ -3815,7 +3815,7 @@
           "type": "ddd"
         },
         {
-          "value": 18631,
+          "value": "18631",
           "type": "code_rxnav"
         },
         {
@@ -3827,7 +3827,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51282301,
+          "value": "51282301",
           "type": "code_unspsc"
         },
         {
@@ -3949,7 +3949,7 @@
           "type": "ddd"
         },
         {
-          "value": 1364504,
+          "value": "1364504",
           "type": "code_rxnav"
         },
         {
@@ -4018,7 +4018,7 @@
       ],
       "has_property": [
         {
-          "value": 134547,
+          "value": "134547",
           "type": "code_rxnav"
         },
         {
@@ -4030,7 +4030,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51112503,
+          "value": "51112503",
           "type": "code_unspsc"
         },
         {
@@ -4091,7 +4091,7 @@
       ],
       "has_property": [
         {
-          "value": 7982,
+          "value": "7982",
           "type": "code_rxnav"
         },
         {
@@ -4175,7 +4175,7 @@
       ],
       "has_property": [
         {
-          "value": 18994,
+          "value": "18994",
           "type": "code_rxnav"
         },
         {
@@ -4183,7 +4183,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101637,
+          "value": "51101637",
           "type": "code_unspsc"
         }
       ],
@@ -4255,7 +4255,7 @@
       ],
       "has_property": [
         {
-          "value": 1418,
+          "value": "1418",
           "type": "code_rxnav"
         },
         {
@@ -4267,7 +4267,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51241237,
+          "value": "51241237",
           "type": "code_unspsc"
         },
         {
@@ -4313,7 +4313,7 @@
       ],
       "has_property": [
         {
-          "value": 19044,
+          "value": "19044",
           "type": "code_rxnav"
         },
         {
@@ -4321,7 +4321,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51452202,
+          "value": "51452202",
           "type": "code_unspsc"
         }
       ],
@@ -4382,7 +4382,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51283414,
+          "value": "51283414",
           "type": "code_unspsc"
         }
       ],
@@ -4443,7 +4443,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51283416,
+          "value": "51283416",
           "type": "code_unspsc"
         }
       ],
@@ -4470,7 +4470,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 259034,
+                      "value": "259034",
                       "type": "code_rxnav"
                     },
                     {
@@ -4489,11 +4489,11 @@
       ],
       "has_property": [
         {
-          "value": 46967,
+          "value": "46967",
           "type": "code_rxnav"
         },
         {
-          "value": 51161702,
+          "value": "51161702",
           "type": "code_unspsc"
         },
         {
@@ -4569,7 +4569,7 @@
       ],
       "has_property": [
         {
-          "value": 1514,
+          "value": "1514",
           "type": "code_rxnav"
         },
         {
@@ -4581,7 +4581,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51422303,
+          "value": "51422303",
           "type": "code_unspsc"
         },
         {
@@ -4612,7 +4612,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1657066,
+                      "value": "1657066",
                       "type": "code_rxnav"
                     },
                     {
@@ -4635,7 +4635,7 @@
       ],
       "has_property": [
         {
-          "value": 253337,
+          "value": "253337",
           "type": "code_rxnav"
         },
         {
@@ -4647,7 +4647,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111731,
+          "value": "51111731",
           "type": "code_unspsc"
         },
         {
@@ -4705,7 +4705,7 @@
           "type": "ddd"
         },
         {
-          "value": 83008,
+          "value": "83008",
           "type": "code_rxnav"
         },
         {
@@ -4717,7 +4717,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111802,
+          "value": "51111802",
           "type": "code_unspsc"
         },
         {
@@ -4753,7 +4753,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 857395,
+                      "value": "857395",
                       "type": "code_rxnav"
                     },
                     {
@@ -4801,7 +4801,7 @@
       ],
       "has_property": [
         {
-          "value": 1589,
+          "value": "1589",
           "type": "code_rxnav"
         },
         {
@@ -4832,7 +4832,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 865154,
+                      "value": "865154",
                       "type": "code_rxnav"
                     },
                     {
@@ -4855,7 +4855,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 854905,
+                      "value": "854905",
                       "type": "code_rxnav"
                     },
                     {
@@ -4882,7 +4882,7 @@
           "type": "ddd"
         },
         {
-          "value": 19484,
+          "value": "19484",
           "type": "code_rxnav"
         },
         {
@@ -4894,7 +4894,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51263105,
+          "value": "51263105",
           "type": "code_unspsc"
         },
         {
@@ -4925,7 +4925,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1726673,
+                      "value": "1726673",
                       "type": "code_rxnav"
                     },
                     {
@@ -4948,7 +4948,7 @@
       ],
       "has_property": [
         {
-          "value": 1622,
+          "value": "1622",
           "type": "code_rxnav"
         },
         {
@@ -4960,7 +4960,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111733,
+          "value": "51111733",
           "type": "code_unspsc"
         },
         {
@@ -4991,7 +4991,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 247691,
+                      "value": "247691",
                       "type": "code_rxnav"
                     },
                     {
@@ -5055,7 +5055,7 @@
           "type": "ddd"
         },
         {
-          "value": 19831,
+          "value": "19831",
           "type": "code_rxnav"
         },
         {
@@ -5067,7 +5067,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51421802,
+          "value": "51421802",
           "type": "code_unspsc"
         },
         {
@@ -5117,7 +5117,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 2178759,
+                      "value": "2178759",
                       "type": "code_rxnav"
                     },
                     {
@@ -5140,7 +5140,7 @@
       ],
       "has_property": [
         {
-          "value": 1815,
+          "value": "1815",
           "type": "code_rxnav"
         },
         {
@@ -5152,7 +5152,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51271603,
+          "value": "51271603",
           "type": "code_unspsc"
         },
         {
@@ -5183,7 +5183,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 849931,
+                      "value": "849931",
                       "type": "code_rxnav"
                     },
                     {
@@ -5220,7 +5220,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 849928,
+                      "value": "849928",
                       "type": "code_rxnav"
                     },
                     {
@@ -5243,7 +5243,7 @@
       ],
       "has_property": [
         {
-          "value": 20033,
+          "value": "20033",
           "type": "code_rxnav"
         },
         {
@@ -5308,7 +5308,7 @@
       ],
       "has_property": [
         {
-          "value": 1895,
+          "value": "1895",
           "type": "code_rxnav"
         },
         {
@@ -5395,7 +5395,7 @@
       ],
       "has_property": [
         {
-          "value": 225852,
+          "value": "225852",
           "type": "code_rxnav"
         },
         {
@@ -5449,7 +5449,7 @@
       ],
       "has_property": [
         {
-          "value": 1908,
+          "value": "1908",
           "type": "code_rxnav"
         },
         {
@@ -5461,7 +5461,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51191915,
+          "value": "51191915",
           "type": "code_unspsc"
         },
         {
@@ -5538,7 +5538,7 @@
       ],
       "has_property": [
         {
-          "value": 194000,
+          "value": "194000",
           "type": "code_rxnav"
         },
         {
@@ -5550,7 +5550,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51112001,
+          "value": "51112001",
           "type": "code_unspsc"
         },
         {
@@ -5596,11 +5596,11 @@
       ],
       "has_property": [
         {
-          "value": 78903,
+          "value": "78903",
           "type": "code_rxnav"
         },
         {
-          "value": 51281628,
+          "value": "51281628",
           "type": "code_unspsc"
         },
         {
@@ -5654,7 +5654,7 @@
           "type": "ddd"
         },
         {
-          "value": 1998,
+          "value": "1998",
           "type": "code_rxnav"
         },
         {
@@ -5662,7 +5662,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51432401,
+          "value": "51432401",
           "type": "code_unspsc"
         },
         {
@@ -5798,7 +5798,7 @@
           "type": "ddd"
         },
         {
-          "value": 2002,
+          "value": "2002",
           "type": "code_rxnav"
         },
         {
@@ -5810,7 +5810,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51141513,
+          "value": "51141513",
           "type": "code_unspsc"
         },
         {
@@ -5917,7 +5917,7 @@
       ],
       "has_property": [
         {
-          "value": 40048,
+          "value": "40048",
           "type": "code_rxnav"
         },
         {
@@ -5929,7 +5929,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51112701,
+          "value": "51112701",
           "type": "code_unspsc"
         },
         {
@@ -6040,7 +6040,7 @@
           "type": "ddd"
         },
         {
-          "value": 20352,
+          "value": "20352",
           "type": "code_rxnav"
         },
         {
@@ -6048,7 +6048,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51262002,
+          "value": "51262002",
           "type": "code_unspsc"
         },
         {
@@ -6147,7 +6147,7 @@
           "type": "ddd"
         },
         {
-          "value": 2231,
+          "value": "2231",
           "type": "code_rxnav"
         },
         {
@@ -6159,7 +6159,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51282503,
+          "value": "51282503",
           "type": "code_unspsc"
         },
         {
@@ -6213,7 +6213,7 @@
           "type": "ddd"
         },
         {
-          "value": 2180,
+          "value": "2180",
           "type": "code_rxnav"
         },
         {
@@ -6225,7 +6225,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51282511,
+          "value": "51282511",
           "type": "code_unspsc"
         },
         {
@@ -6275,7 +6275,7 @@
       ],
       "has_property": [
         {
-          "value": 25033,
+          "value": "25033",
           "type": "code_rxnav"
         },
         {
@@ -6283,7 +6283,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51284106,
+          "value": "51284106",
           "type": "code_unspsc"
         }
       ],
@@ -6329,7 +6329,7 @@
           "type": "ddd"
         },
         {
-          "value": 2186,
+          "value": "2186",
           "type": "code_rxnav"
         },
         {
@@ -6341,7 +6341,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51284109,
+          "value": "51284109",
           "type": "code_unspsc"
         },
         {
@@ -6414,7 +6414,7 @@
           "type": "ddd"
         },
         {
-          "value": 2191,
+          "value": "2191",
           "type": "code_rxnav"
         },
         {
@@ -6426,7 +6426,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51284108,
+          "value": "51284108",
           "type": "code_unspsc"
         },
         {
@@ -6499,7 +6499,7 @@
           "type": "ddd"
         },
         {
-          "value": 2193,
+          "value": "2193",
           "type": "code_rxnav"
         },
         {
@@ -6511,7 +6511,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51284119,
+          "value": "51284119",
           "type": "code_unspsc"
         },
         {
@@ -6580,7 +6580,7 @@
       ],
       "has_property": [
         {
-          "value": 2346,
+          "value": "2346",
           "type": "code_rxnav"
         },
         {
@@ -6592,7 +6592,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51112505,
+          "value": "51112505",
           "type": "code_unspsc"
         },
         {
@@ -6712,7 +6712,7 @@
       ],
       "has_property": [
         {
-          "value": 2348,
+          "value": "2348",
           "type": "code_rxnav"
         },
         {
@@ -6724,7 +6724,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51282004,
+          "value": "51282004",
           "type": "code_unspsc"
         },
         {
@@ -6766,7 +6766,7 @@
       ],
       "has_property": [
         {
-          "value": 2358,
+          "value": "2358",
           "type": "code_rxnav"
         },
         {
@@ -6774,7 +6774,7 @@
           "type": "who_eml"
         },
         {
-          "value": 5142803,
+          "value": "5142803",
           "type": "code_unspsc"
         }
       ],
@@ -6857,7 +6857,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51472805,
+          "value": "51472805",
           "type": "code_unspsc"
         }
       ],
@@ -6899,7 +6899,7 @@
       ],
       "has_property": [
         {
-          "value": 1310122,
+          "value": "1310122",
           "type": "code_rxnav"
         },
         {
@@ -6907,7 +6907,7 @@
           "type": "who_eml"
         },
         {
-          "value": 12141901,
+          "value": "12141901",
           "type": "code_unspsc"
         }
       ],
@@ -7024,7 +7024,7 @@
       ],
       "has_property": [
         {
-          "value": 2393,
+          "value": "2393",
           "type": "code_rxnav"
         },
         {
@@ -7032,7 +7032,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101905,
+          "value": "51101905",
           "type": "code_unspsc"
         },
         {
@@ -7082,7 +7082,7 @@
       ],
       "has_property": [
         {
-          "value": 20877,
+          "value": "20877",
           "type": "code_rxnav"
         },
         {
@@ -7094,7 +7094,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51473302,
+          "value": "51473302",
           "type": "code_unspsc"
         },
         {
@@ -7256,7 +7256,7 @@
           "type": "ddd"
         },
         {
-          "value": 2403,
+          "value": "2403",
           "type": "code_rxnav"
         },
         {
@@ -7268,7 +7268,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51332807,
+          "value": "51332807",
           "type": "code_unspsc"
         },
         {
@@ -7339,7 +7339,7 @@
       ],
       "has_property": [
         {
-          "value": 2418,
+          "value": "2418",
           "type": "code_rxnav"
         },
         {
@@ -7404,7 +7404,7 @@
       ],
       "has_property": [
         {
-          "value": 3008,
+          "value": "3008",
           "type": "code_rxnav"
         },
         {
@@ -7412,7 +7412,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51203101,
+          "value": "51203101",
           "type": "code_unspsc"
         },
         {
@@ -7562,7 +7562,7 @@
           "type": "ddd"
         },
         {
-          "value": 2551,
+          "value": "2551",
           "type": "code_rxnav"
         },
         {
@@ -7574,7 +7574,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51282909,
+          "value": "51282909",
           "type": "code_unspsc"
         },
         {
@@ -7643,7 +7643,7 @@
       ],
       "has_property": [
         {
-          "value": 2555,
+          "value": "2555",
           "type": "code_rxnav"
         },
         {
@@ -7655,7 +7655,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51112702,
+          "value": "51112702",
           "type": "code_unspsc"
         },
         {
@@ -7713,7 +7713,7 @@
           "type": "ddd"
         },
         {
-          "value": 21212,
+          "value": "21212",
           "type": "code_rxnav"
         },
         {
@@ -7725,7 +7725,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51282302,
+          "value": "51282302",
           "type": "code_unspsc"
         },
         {
@@ -7838,7 +7838,7 @@
       ],
       "has_property": [
         {
-          "value": 2582,
+          "value": "2582",
           "type": "code_rxnav"
         },
         {
@@ -7850,7 +7850,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51283002,
+          "value": "51283002",
           "type": "code_unspsc"
         },
         {
@@ -7931,7 +7931,7 @@
           "type": "ddd"
         },
         {
-          "value": 2592,
+          "value": "2592",
           "type": "code_rxnav"
         },
         {
@@ -7943,7 +7943,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51283110,
+          "value": "51283110",
           "type": "code_unspsc"
         },
         {
@@ -7993,7 +7993,7 @@
           "type": "ddd"
         },
         {
-          "value": 2596,
+          "value": "2596",
           "type": "code_rxnav"
         },
         {
@@ -8005,7 +8005,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51181919,
+          "value": "51181919",
           "type": "code_unspsc"
         },
         {
@@ -8070,7 +8070,7 @@
           "type": "ddd"
         },
         {
-          "value": 2597,
+          "value": "2597",
           "type": "code_rxnav"
         },
         {
@@ -8082,7 +8082,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51292902,
+          "value": "51292902",
           "type": "code_unspsc"
         },
         {
@@ -8159,7 +8159,7 @@
           "type": "ddd"
         },
         {
-          "value": 32968,
+          "value": "32968",
           "type": "code_rxnav"
         },
         {
@@ -8171,7 +8171,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51131629,
+          "value": "51131629",
           "type": "code_unspsc"
         },
         {
@@ -8270,7 +8270,7 @@
       ],
       "has_property": [
         {
-          "value": 2623,
+          "value": "2623",
           "type": "code_rxnav"
         },
         {
@@ -8282,7 +8282,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51302308,
+          "value": "51302308",
           "type": "code_unspsc"
         },
         {
@@ -8409,7 +8409,7 @@
       ],
       "has_property": [
         {
-          "value": 2625,
+          "value": "2625",
           "type": "code_rxnav"
         },
         {
@@ -8417,7 +8417,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51283501,
+          "value": "51283501",
           "type": "code_unspsc"
         }
       ],
@@ -8540,7 +8540,7 @@
           "type": "ddd"
         },
         {
-          "value": 2626,
+          "value": "2626",
           "type": "code_rxnav"
         },
         {
@@ -8552,7 +8552,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51332703,
+          "value": "51332703",
           "type": "code_unspsc"
         },
         {
@@ -8613,7 +8613,7 @@
       ],
       "has_property": [
         {
-          "value": 221099,
+          "value": "221099",
           "type": "code_rxnav"
         },
         {
@@ -8621,7 +8621,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51131819,
+          "value": "51131819",
           "type": "code_unspsc"
         }
       ],
@@ -8667,7 +8667,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51131821,
+          "value": "51131821",
           "type": "code_unspsc"
         }
       ],
@@ -8709,7 +8709,7 @@
       ],
       "has_property": [
         {
-          "value": 2635,
+          "value": "2635",
           "type": "code_rxnav"
         },
         {
@@ -8721,7 +8721,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 30121501,
+          "value": "30121501",
           "type": "code_unspsc"
         },
         {
@@ -8767,7 +8767,7 @@
       ],
       "has_property": [
         {
-          "value": 2670,
+          "value": "2670",
           "type": "code_rxnav"
         },
         {
@@ -8934,7 +8934,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 309618,
+                      "value": "309618",
                       "type": "code_rxnav"
                     },
                     {
@@ -8961,7 +8961,7 @@
           "type": "ddd"
         },
         {
-          "value": 2977,
+          "value": "2977",
           "type": "code_rxnav"
         },
         {
@@ -8973,7 +8973,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51171809,
+          "value": "51171809",
           "type": "code_unspsc"
         },
         {
@@ -9057,7 +9057,7 @@
       ],
       "has_property": [
         {
-          "value": 3001,
+          "value": "3001",
           "type": "code_rxnav"
         },
         {
@@ -9069,7 +9069,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51241138,
+          "value": "51241138",
           "type": "code_unspsc"
         },
         {
@@ -9133,7 +9133,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1734917,
+                      "value": "1734917",
                       "type": "code_rxnav"
                     },
                     {
@@ -9156,7 +9156,7 @@
       ],
       "has_property": [
         {
-          "value": 3002,
+          "value": "3002",
           "type": "code_rxnav"
         },
         {
@@ -9168,7 +9168,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51112507,
+          "value": "51112507",
           "type": "code_unspsc"
         },
         {
@@ -9218,7 +9218,7 @@
           "type": "ddd"
         },
         {
-          "value": 3007,
+          "value": "3007",
           "type": "code_rxnav"
         },
         {
@@ -9230,7 +9230,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51283301,
+          "value": "51283301",
           "type": "code_unspsc"
         },
         {
@@ -9276,7 +9276,7 @@
       ],
       "has_property": [
         {
-          "value": 3041,
+          "value": "3041",
           "type": "code_rxnav"
         },
         {
@@ -9288,7 +9288,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111602,
+          "value": "51111602",
           "type": "code_unspsc"
         },
         {
@@ -9319,7 +9319,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1731340,
+                      "value": "1731340",
                       "type": "code_rxnav"
                     },
                     {
@@ -9338,7 +9338,7 @@
       ],
       "has_property": [
         {
-          "value": 3098,
+          "value": "3098",
           "type": "code_rxnav"
         },
         {
@@ -9350,7 +9350,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51112402,
+          "value": "51112402",
           "type": "code_unspsc"
         },
         {
@@ -9400,7 +9400,7 @@
           "type": "ddd"
         },
         {
-          "value": 1606218,
+          "value": "1606218",
           "type": "code_rxnav"
         },
         {
@@ -9412,7 +9412,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51341807,
+          "value": "51341807",
           "type": "code_unspsc"
         },
         {
@@ -9462,7 +9462,7 @@
       ],
       "has_property": [
         {
-          "value": 3100,
+          "value": "3100",
           "type": "code_rxnav"
         },
         {
@@ -9474,7 +9474,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51282001,
+          "value": "51282001",
           "type": "code_unspsc"
         },
         {
@@ -9574,7 +9574,7 @@
           "type": "ddd"
         },
         {
-          "value": 3108,
+          "value": "3108",
           "type": "code_rxnav"
         },
         {
@@ -9586,7 +9586,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51287004,
+          "value": "51287004",
           "type": "code_unspsc"
         },
         {
@@ -9617,7 +9617,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 824338,
+                      "value": "824338",
                       "type": "code_rxnav"
                     },
                     {
@@ -9640,7 +9640,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 670026,
+                      "value": "670026",
                       "type": "code_rxnav"
                     },
                     {
@@ -9663,7 +9663,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 831868,
+                      "value": "831868",
                       "type": "code_rxnav"
                     },
                     {
@@ -9686,7 +9686,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1359269,
+                      "value": "1359269",
                       "type": "code_rxnav"
                     },
                     {
@@ -9713,7 +9713,7 @@
           "type": "ddd"
         },
         {
-          "value": 460132,
+          "value": "460132",
           "type": "code_rxnav"
         },
         {
@@ -9725,7 +9725,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51341801,
+          "value": "51341801",
           "type": "code_unspsc"
         },
         {
@@ -9783,7 +9783,7 @@
           "type": "ddd"
         },
         {
-          "value": 1597381,
+          "value": "1597381",
           "type": "code_rxnav"
         },
         {
@@ -9837,7 +9837,7 @@
       ],
       "has_property": [
         {
-          "value": 3109,
+          "value": "3109",
           "type": "code_rxnav"
         },
         {
@@ -9849,7 +9849,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281805,
+          "value": "51281805",
           "type": "code_unspsc"
         },
         {
@@ -9880,7 +9880,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1731350,
+                      "value": "1731350",
                       "type": "code_rxnav"
                     },
                     {
@@ -9903,7 +9903,7 @@
       ],
       "has_property": [
         {
-          "value": 3131,
+          "value": "3131",
           "type": "code_rxnav"
         },
         {
@@ -9911,7 +9911,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51172301,
+          "value": "51172301",
           "type": "code_unspsc"
         },
         {
@@ -9984,7 +9984,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1723232,
+                      "value": "1723232",
                       "type": "code_rxnav"
                     },
                     {
@@ -10007,7 +10007,7 @@
           "type": "ddd"
         },
         {
-          "value": 42634,
+          "value": "42634",
           "type": "code_rxnav"
         },
         {
@@ -10019,7 +10019,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51182108,
+          "value": "51182108",
           "type": "code_unspsc"
         },
         {
@@ -10257,7 +10257,7 @@
           "type": "ddd"
         },
         {
-          "value": 3264,
+          "value": "3264",
           "type": "code_rxnav"
         },
         {
@@ -10269,7 +10269,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51422306,
+          "value": "51422306",
           "type": "code_unspsc"
         },
         {
@@ -10315,7 +10315,7 @@
       ],
       "has_property": [
         {
-          "value": 3274,
+          "value": "3274",
           "type": "code_rxnav"
         },
         {
@@ -10514,7 +10514,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 801961,
+                      "value": "801961",
                       "type": "code_rxnav"
                     }
                   ],
@@ -10529,7 +10529,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 801957,
+                      "value": "801957",
                       "type": "code_rxnav"
                     }
                   ],
@@ -10544,7 +10544,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 801966,
+                      "value": "801966",
                       "type": "code_rxnav"
                     }
                   ],
@@ -10596,7 +10596,7 @@
           "type": "ddd"
         },
         {
-          "value": 3322,
+          "value": "3322",
           "type": "code_rxnav"
         },
         {
@@ -10608,7 +10608,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51401518,
+          "value": "51401518",
           "type": "code_unspsc"
         },
         {
@@ -10673,7 +10673,7 @@
           "type": "ddd"
         },
         {
-          "value": 3384,
+          "value": "3384",
           "type": "code_rxnav"
         },
         {
@@ -10685,7 +10685,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51452402,
+          "value": "51452402",
           "type": "code_unspsc"
         },
         {
@@ -10716,7 +10716,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 197606,
+                      "value": "197606",
                       "type": "code_rxnav"
                     },
                     {
@@ -10739,7 +10739,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 245273,
+                      "value": "245273",
                       "type": "code_rxnav"
                     },
                     {
@@ -10769,7 +10769,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 393245,
+                      "value": "393245",
                       "type": "code_rxnav"
                     },
                     {
@@ -10806,7 +10806,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 104208,
+                      "value": "104208",
                       "type": "code_rxnav"
                     },
                     {
@@ -10833,7 +10833,7 @@
           "type": "ddd"
         },
         {
-          "value": 3407,
+          "value": "3407",
           "type": "code_rxnav"
         },
         {
@@ -10845,7 +10845,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51124404,
+          "value": "51124404",
           "type": "code_unspsc"
         },
         {
@@ -10903,7 +10903,7 @@
           "type": "ddd"
         },
         {
-          "value": 67182,
+          "value": "67182",
           "type": "code_rxnav"
         },
         {
@@ -10961,7 +10961,7 @@
       ],
       "has_property": [
         {
-          "value": 3445,
+          "value": "3445",
           "type": "code_rxnav"
         },
         {
@@ -10973,7 +10973,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51172303,
+          "value": "51172303",
           "type": "code_unspsc"
         },
         {
@@ -11030,7 +11030,7 @@
       ],
       "has_property": [
         {
-          "value": 3510,
+          "value": "3510",
           "type": "code_rxnav"
         },
         {
@@ -11081,7 +11081,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1860480,
+                      "value": "1860480",
                       "type": "code_rxnav"
                     },
                     {
@@ -11104,7 +11104,7 @@
       ],
       "has_property": [
         {
-          "value": 72962,
+          "value": "72962",
           "type": "code_rxnav"
         },
         {
@@ -11116,7 +11116,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51101929,
+          "value": "51101929",
           "type": "code_unspsc"
         },
         {
@@ -11192,7 +11192,7 @@
           "type": "ddd"
         },
         {
-          "value": 71722,
+          "value": "71722",
           "type": "code_rxnav"
         },
         {
@@ -11204,7 +11204,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51171656,
+          "value": "51171656",
           "type": "code_unspsc"
         },
         {
@@ -11258,7 +11258,7 @@
           "type": "ddd"
         },
         {
-          "value": 3628,
+          "value": "3628",
           "type": "code_rxnav"
         },
         {
@@ -11270,7 +11270,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51392403,
+          "value": "51392403",
           "type": "code_unspsc"
         },
         {
@@ -11339,7 +11339,7 @@
       ],
       "has_property": [
         {
-          "value": 3639,
+          "value": "3639",
           "type": "code_rxnav"
         },
         {
@@ -11351,7 +11351,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281806,
+          "value": "51281806",
           "type": "code_unspsc"
         },
         {
@@ -11445,7 +11445,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 597520,
+                      "value": "597520",
                       "type": "code_rxnav"
                     },
                     {
@@ -11505,7 +11505,7 @@
           "type": "ddd"
         },
         {
-          "value": 3640,
+          "value": "3640",
           "type": "code_rxnav"
         },
         {
@@ -11517,7 +11517,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51284006,
+          "value": "51284006",
           "type": "code_unspsc"
         },
         {
@@ -11638,7 +11638,7 @@
       ],
       "has_property": [
         {
-          "value": 195085,
+          "value": "195085",
           "type": "code_rxnav"
         },
         {
@@ -11646,7 +11646,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51341903,
+          "value": "51341903",
           "type": "code_unspsc"
         },
         {
@@ -11677,7 +11677,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 643066,
+                      "value": "643066",
                       "type": "code_rxnav"
                     },
                     {
@@ -11700,7 +11700,7 @@
       ],
       "has_property": [
         {
-          "value": 1007761,
+          "value": "1007761",
           "type": "code_rxnav"
         },
         {
@@ -11708,7 +11708,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51343803,
+          "value": "51343803",
           "type": "code_unspsc"
         },
         {
@@ -11754,7 +11754,7 @@
       ],
       "has_property": [
         {
-          "value": 569,
+          "value": "569",
           "type": "code_rxnav"
         },
         {
@@ -11766,7 +11766,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51101602,
+          "value": "51101602",
           "type": "code_unspsc"
         },
         {
@@ -11797,7 +11797,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 476556,
+                      "value": "476556",
                       "type": "code_rxnav"
                     },
                     {
@@ -11820,7 +11820,7 @@
       ],
       "has_property": [
         {
-          "value": 1008145,
+          "value": "1008145",
           "type": "code_rxnav"
         },
         {
@@ -11828,7 +11828,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51343804,
+          "value": "51343804",
           "type": "code_unspsc"
         },
         {
@@ -11859,7 +11859,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 858804,
+                      "value": "858804",
                       "type": "code_rxnav"
                     },
                     {
@@ -11878,7 +11878,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 858813,
+                      "value": "858813",
                       "type": "code_rxnav"
                     },
                     {
@@ -11905,7 +11905,7 @@
           "type": "ddd"
         },
         {
-          "value": 3827,
+          "value": "3827",
           "type": "code_rxnav"
         },
         {
@@ -11917,7 +11917,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51432803,
+          "value": "51432803",
           "type": "code_unspsc"
         },
         {
@@ -12165,7 +12165,7 @@
       ],
       "has_property": [
         {
-          "value": 67108,
+          "value": "67108",
           "type": "code_rxnav"
         },
         {
@@ -12173,7 +12173,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51131607,
+          "value": "51131607",
           "type": "code_unspsc"
         }
       ],
@@ -12200,7 +12200,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 485536,
+                      "value": "485536",
                       "type": "code_rxnav"
                     },
                     {
@@ -12276,7 +12276,7 @@
           "type": "ddd"
         },
         {
-          "value": 306266,
+          "value": "306266",
           "type": "code_rxnav"
         },
         {
@@ -12288,7 +12288,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51342304,
+          "value": "51342304",
           "type": "code_unspsc"
         },
         {
@@ -12319,7 +12319,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1116233,
+                      "value": "1116233",
                       "type": "code_rxnav"
                     },
                     {
@@ -12338,7 +12338,7 @@
       ],
       "has_property": [
         {
-          "value": 3966,
+          "value": "3966",
           "type": "code_rxnav"
         },
         {
@@ -12346,7 +12346,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51391717,
+          "value": "51391717",
           "type": "code_unspsc"
         }
       ],
@@ -12421,7 +12421,7 @@
       ],
       "has_property": [
         {
-          "value": 3992,
+          "value": "3992",
           "type": "code_rxnav"
         },
         {
@@ -12493,7 +12493,7 @@
       ],
       "has_property": [
         {
-          "value": 4018,
+          "value": "4018",
           "type": "code_rxnav"
         },
         {
@@ -12501,7 +12501,7 @@
           "type": "who_eml"
         },
         {
-          "value": 50501516,
+          "value": "50501516",
           "type": "code_unspsc"
         }
       ],
@@ -12528,7 +12528,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 238011,
+                      "value": "238011",
                       "type": "code_rxnav"
                     },
                     {
@@ -12551,7 +12551,7 @@
           "type": "ddd"
         },
         {
-          "value": 4021,
+          "value": "4021",
           "type": "code_rxnav"
         },
         {
@@ -12563,7 +12563,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51182204,
+          "value": "51182204",
           "type": "code_unspsc"
         },
         {
@@ -12652,7 +12652,7 @@
       ],
       "has_property": [
         {
-          "value": 4053,
+          "value": "4053",
           "type": "code_rxnav"
         },
         {
@@ -12664,7 +12664,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51282304,
+          "value": "51282304",
           "type": "code_unspsc"
         },
         {
@@ -12816,7 +12816,7 @@
           "type": "ddd"
         },
         {
-          "value": 4110,
+          "value": "4110",
           "type": "code_rxnav"
         },
         {
@@ -12828,7 +12828,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281501,
+          "value": "51281501",
           "type": "code_unspsc"
         },
         {
@@ -12870,7 +12870,7 @@
       ],
       "has_property": [
         {
-          "value": 821005,
+          "value": "821005",
           "type": "code_rxnav"
         }
       ],
@@ -12954,7 +12954,7 @@
       ],
       "has_property": [
         {
-          "value": 814321,
+          "value": "814321",
           "type": "code_rxnav"
         },
         {
@@ -13004,7 +13004,7 @@
       ],
       "has_property": [
         {
-          "value": 448,
+          "value": "448",
           "type": "code_rxnav"
         },
         {
@@ -13016,7 +13016,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 15101802,
+          "value": "15101802",
           "type": "code_unspsc"
         },
         {
@@ -13058,7 +13058,7 @@
       ],
       "has_property": [
         {
-          "value": 448,
+          "value": "448",
           "type": "code_rxnav"
         },
         {
@@ -13108,7 +13108,7 @@
       ],
       "has_property": [
         {
-          "value": 214558,
+          "value": "214558",
           "type": "code_rxnav"
         },
         {
@@ -13116,7 +13116,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51352413,
+          "value": "51352413",
           "type": "code_unspsc"
         },
         {
@@ -13162,7 +13162,7 @@
       ],
       "has_property": [
         {
-          "value": 352377,
+          "value": "352377",
           "type": "code_rxnav"
         },
         {
@@ -13239,7 +13239,7 @@
           "type": "ddd"
         },
         {
-          "value": 4127,
+          "value": "4127",
           "type": "code_rxnav"
         },
         {
@@ -13251,7 +13251,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281507,
+          "value": "51281507",
           "type": "code_unspsc"
         },
         {
@@ -13335,7 +13335,7 @@
           "type": "ddd"
         },
         {
-          "value": 4135,
+          "value": "4135",
           "type": "code_rxnav"
         },
         {
@@ -13347,7 +13347,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51141508,
+          "value": "51141508",
           "type": "code_unspsc"
         },
         {
@@ -13401,7 +13401,7 @@
           "type": "ddd"
         },
         {
-          "value": 14584,
+          "value": "14584",
           "type": "code_rxnav"
         },
         {
@@ -13413,7 +13413,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51352005,
+          "value": "51352005",
           "type": "code_unspsc"
         },
         {
@@ -13481,7 +13481,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 310248,
+                      "value": "310248",
                       "type": "code_rxnav"
                     },
                     {
@@ -13504,7 +13504,7 @@
       ],
       "has_property": [
         {
-          "value": 4179,
+          "value": "4179",
           "type": "code_rxnav"
         },
         {
@@ -13516,7 +13516,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111739,
+          "value": "51111739",
           "type": "code_unspsc"
         },
         {
@@ -13672,7 +13672,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 727535,
+                      "value": "727535",
                       "type": "code_rxnav"
                     },
                     {
@@ -13695,7 +13695,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 727544,
+                      "value": "727544",
                       "type": "code_rxnav"
                     },
                     {
@@ -13725,7 +13725,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1649944,
+                      "value": "1649944",
                       "type": "code_rxnav"
                     },
                     {
@@ -13748,7 +13748,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1649963,
+                      "value": "1649963",
                       "type": "code_rxnav"
                     },
                     {
@@ -13771,7 +13771,7 @@
           "type": "ddd"
         },
         {
-          "value": 68442,
+          "value": "68442",
           "type": "code_rxnav"
         },
         {
@@ -13783,7 +13783,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51201802,
+          "value": "51201802",
           "type": "code_unspsc"
         },
         {
@@ -13896,7 +13896,7 @@
       ],
       "has_property": [
         {
-          "value": 4450,
+          "value": "4450",
           "type": "code_rxnav"
         },
         {
@@ -13908,7 +13908,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51303402,
+          "value": "51303402",
           "type": "code_unspsc"
         },
         {
@@ -13939,7 +13939,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 105320,
+                      "value": "105320",
                       "type": "code_rxnav"
                     },
                     {
@@ -13999,7 +13999,7 @@
           "type": "ddd"
         },
         {
-          "value": 4451,
+          "value": "4451",
           "type": "code_rxnav"
         },
         {
@@ -14011,7 +14011,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51303001,
+          "value": "51303001",
           "type": "code_unspsc"
         },
         {
@@ -14042,7 +14042,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 828706,
+                      "value": "828706",
                       "type": "code_rxnav"
                     },
                     {
@@ -14075,7 +14075,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1740864,
+                      "value": "1740864",
                       "type": "code_rxnav"
                     },
                     {
@@ -14094,7 +14094,7 @@
       ],
       "has_property": [
         {
-          "value": 24698,
+          "value": "24698",
           "type": "code_rxnav"
         },
         {
@@ -14106,7 +14106,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51442001,
+          "value": "51442001",
           "type": "code_unspsc"
         },
         {
@@ -14137,7 +14137,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 313979,
+                      "value": "313979",
                       "type": "code_rxnav"
                     },
                     {
@@ -14160,7 +14160,7 @@
           "type": "ddd"
         },
         {
-          "value": 4452,
+          "value": "4452",
           "type": "code_rxnav"
         },
         {
@@ -14172,7 +14172,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51422410,
+          "value": "51422410",
           "type": "code_unspsc"
         },
         {
@@ -14218,7 +14218,7 @@
       ],
       "has_property": [
         {
-          "value": 25138,
+          "value": "25138",
           "type": "code_rxnav"
         },
         {
@@ -14226,7 +14226,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51441603,
+          "value": "51441603",
           "type": "code_unspsc"
         }
       ],
@@ -14301,7 +14301,7 @@
       ],
       "has_property": [
         {
-          "value": 4492,
+          "value": "4492",
           "type": "code_rxnav"
         },
         {
@@ -14313,7 +14313,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51442004,
+          "value": "51442004",
           "type": "code_unspsc"
         },
         {
@@ -14367,7 +14367,7 @@
           "type": "ddd"
         },
         {
-          "value": 4493,
+          "value": "4493",
           "type": "code_rxnav"
         },
         {
@@ -14379,7 +14379,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51292011,
+          "value": "51292011",
           "type": "code_unspsc"
         },
         {
@@ -14429,7 +14429,7 @@
           "type": "ddd"
         },
         {
-          "value": 25190,
+          "value": "25190",
           "type": "code_rxnav"
         },
         {
@@ -14441,7 +14441,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51332848,
+          "value": "51332848",
           "type": "code_unspsc"
         },
         {
@@ -14487,7 +14487,7 @@
       ],
       "has_property": [
         {
-          "value": 30129,
+          "value": "30129",
           "type": "code_rxnav"
         },
         {
@@ -14495,7 +14495,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51332848,
+          "value": "51332848",
           "type": "code_unspsc"
         }
       ],
@@ -14579,7 +14579,7 @@
           "type": "ddd"
         },
         {
-          "value": 4511,
+          "value": "4511",
           "type": "code_rxnav"
         },
         {
@@ -14591,7 +14591,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51191918,
+          "value": "51191918",
           "type": "code_unspsc"
         },
         {
@@ -14637,7 +14637,7 @@
       ],
       "has_property": [
         {
-          "value": 15226,
+          "value": "15226",
           "type": "code_rxnav"
         },
         {
@@ -14645,7 +14645,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51172313,
+          "value": "51172313",
           "type": "code_unspsc"
         }
       ],
@@ -14740,7 +14740,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 310429,
+                      "value": "310429",
                       "type": "code_rxnav"
                     },
                     {
@@ -14759,7 +14759,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 313988,
+                      "value": "313988",
                       "type": "code_rxnav"
                     },
                     {
@@ -14829,7 +14829,7 @@
       ],
       "has_property": [
         {
-          "value": 4603,
+          "value": "4603",
           "type": "code_rxnav"
         },
         {
@@ -14837,7 +14837,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51191549,
+          "value": "51191549",
           "type": "code_unspsc"
         }
       ],
@@ -14894,7 +14894,7 @@
       ],
       "has_property": [
         {
-          "value": 12574,
+          "value": "12574",
           "type": "code_rxnav"
         },
         {
@@ -14906,7 +14906,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111617,
+          "value": "51111617",
           "type": "code_unspsc"
         },
         {
@@ -14996,7 +14996,7 @@
       ],
       "has_property": [
         {
-          "value": 1596450,
+          "value": "1596450",
           "type": "code_rxnav"
         },
         {
@@ -15008,7 +15008,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281607,
+          "value": "51281607",
           "type": "code_unspsc"
         },
         {
@@ -15054,7 +15054,7 @@
           "type": "ddd"
         },
         {
-          "value": 4815,
+          "value": "4815",
           "type": "code_rxnav"
         },
         {
@@ -15062,7 +15062,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51184004,
+          "value": "51184004",
           "type": "code_unspsc"
         },
         {
@@ -15093,7 +15093,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 433856,
+                      "value": "433856",
                       "type": "code_rxnav"
                     },
                     {
@@ -15127,7 +15127,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 199285,
+                      "value": "199285",
                       "type": "code_rxnav"
                     },
                     {
@@ -15150,7 +15150,7 @@
           "type": "ddd"
         },
         {
-          "value": 4816,
+          "value": "4816",
           "type": "code_rxnav"
         },
         {
@@ -15162,7 +15162,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51184007,
+          "value": "51184007",
           "type": "code_unspsc"
         },
         {
@@ -15228,7 +15228,7 @@
           "type": "ddd"
         },
         {
-          "value": 4832,
+          "value": "4832",
           "type": "code_rxnav"
         },
         {
@@ -15240,7 +15240,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51183602,
+          "value": "51183602",
           "type": "code_unspsc"
         },
         {
@@ -15316,7 +15316,7 @@
       ],
       "has_property": [
         {
-          "value": 4850,
+          "value": "4850",
           "type": "code_rxnav"
         },
         {
@@ -15373,7 +15373,7 @@
       ],
       "has_property": [
         {
-          "value": 108190,
+          "value": "108190",
           "type": "code_rxnav"
         },
         {
@@ -15415,7 +15415,7 @@
       ],
       "has_property": [
         {
-          "value": 4888,
+          "value": "4888",
           "type": "code_rxnav"
         },
         {
@@ -15446,7 +15446,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 249767,
+                      "value": "249767",
                       "type": "code_rxnav"
                     },
                     {
@@ -15465,7 +15465,7 @@
       ],
       "has_property": [
         {
-          "value": 4917,
+          "value": "4917",
           "type": "code_rxnav"
         },
         {
@@ -15473,7 +15473,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51411605,
+          "value": "51411605",
           "type": "code_unspsc"
         }
       ],
@@ -15561,7 +15561,7 @@
       ],
       "has_property": [
         {
-          "value": 5021,
+          "value": "5021",
           "type": "code_rxnav"
         },
         {
@@ -15569,7 +15569,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51301904,
+          "value": "51301904",
           "type": "code_unspsc"
         }
       ],
@@ -15708,7 +15708,7 @@
           "type": "ddd"
         },
         {
-          "value": 5093,
+          "value": "5093",
           "type": "code_rxnav"
         },
         {
@@ -15720,7 +15720,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51332501,
+          "value": "51332501",
           "type": "code_unspsc"
         },
         {
@@ -15812,7 +15812,7 @@
           "type": "ddd"
         },
         {
-          "value": 9877,
+          "value": "9877",
           "type": "code_rxnav"
         },
         {
@@ -15888,7 +15888,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51201607,
+          "value": "51201607",
           "type": "code_unspsc"
         }
       ],
@@ -15948,7 +15948,7 @@
       ],
       "has_property": [
         {
-          "value": 27084,
+          "value": "27084",
           "type": "code_rxnav"
         },
         {
@@ -15956,7 +15956,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51151644,
+          "value": "51151644",
           "type": "code_unspsc"
         },
         {
@@ -16065,7 +16065,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 905225,
+                      "value": "905225",
                       "type": "code_rxnav"
                     },
                     {
@@ -16084,7 +16084,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 905395,
+                      "value": "905395",
                       "type": "code_rxnav"
                     },
                     {
@@ -16107,7 +16107,7 @@
           "type": "ddd"
         },
         {
-          "value": 5470,
+          "value": "5470",
           "type": "code_rxnav"
         },
         {
@@ -16119,7 +16119,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51433303,
+          "value": "51433303",
           "type": "code_unspsc"
         },
         {
@@ -16229,7 +16229,7 @@
           "type": "ddd"
         },
         {
-          "value": 5487,
+          "value": "5487",
           "type": "code_rxnav"
         },
         {
@@ -16241,7 +16241,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51191515,
+          "value": "51191515",
           "type": "code_unspsc"
         },
         {
@@ -16464,7 +16464,7 @@
           "type": "ddd"
         },
         {
-          "value": 5492,
+          "value": "5492",
           "type": "code_rxnav"
         },
         {
@@ -16476,7 +16476,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51422415,
+          "value": "51422415",
           "type": "code_unspsc"
         },
         {
@@ -16522,7 +16522,7 @@
       ],
       "has_property": [
         {
-          "value": 236302,
+          "value": "236302",
           "type": "code_rxnav"
         },
         {
@@ -16568,7 +16568,7 @@
       ],
       "has_property": [
         {
-          "value": 1947247,
+          "value": "1947247",
           "type": "code_rxnav"
         },
         {
@@ -16663,7 +16663,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 200342,
+                      "value": "200342",
                       "type": "code_rxnav"
                     },
                     {
@@ -16697,7 +16697,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 200343,
+                      "value": "200343",
                       "type": "code_rxnav"
                     },
                     {
@@ -16716,7 +16716,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 200344,
+                      "value": "200344",
                       "type": "code_rxnav"
                     },
                     {
@@ -16735,7 +16735,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 197797,
+                      "value": "197797",
                       "type": "code_rxnav"
                     },
                     {
@@ -16754,7 +16754,7 @@
       ],
       "has_property": [
         {
-          "value": 5552,
+          "value": "5552",
           "type": "code_rxnav"
         },
         {
@@ -16766,7 +16766,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111606,
+          "value": "51111606",
           "type": "code_unspsc"
         },
         {
@@ -16797,7 +16797,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 979092,
+                      "value": "979092",
                       "type": "code_rxnav"
                     },
                     {
@@ -16820,7 +16820,7 @@
           "type": "ddd"
         },
         {
-          "value": 5521,
+          "value": "5521",
           "type": "code_rxnav"
         },
         {
@@ -16832,7 +16832,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51101912,
+          "value": "51101912",
           "type": "code_unspsc"
         },
         {
@@ -16882,7 +16882,7 @@
           "type": "ddd"
         },
         {
-          "value": 1851,
+          "value": "1851",
           "type": "code_rxnav"
         },
         {
@@ -16980,7 +16980,7 @@
       ],
       "has_property": [
         {
-          "value": 1851,
+          "value": "1851",
           "type": "code_rxnav"
         },
         {
@@ -17131,7 +17131,7 @@
           "type": "ddd"
         },
         {
-          "value": 5640,
+          "value": "5640",
           "type": "code_rxnav"
         },
         {
@@ -17143,7 +17143,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51384509,
+          "value": "51384509",
           "type": "code_unspsc"
         },
         {
@@ -17219,7 +17219,7 @@
       ],
       "has_property": [
         {
-          "value": 5657,
+          "value": "5657",
           "type": "code_rxnav"
         },
         {
@@ -17231,7 +17231,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51112510,
+          "value": "51112510",
           "type": "code_unspsc"
         },
         {
@@ -17300,7 +17300,7 @@
       ],
       "has_property": [
         {
-          "value": 282388,
+          "value": "282388",
           "type": "code_rxnav"
         },
         {
@@ -17312,7 +17312,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51112005,
+          "value": "51112005",
           "type": "code_unspsc"
         },
         {
@@ -17343,7 +17343,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1726204,
+                      "value": "1726204",
                       "type": "code_rxnav"
                     }
                   ],
@@ -17358,7 +17358,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1726214,
+                      "value": "1726214",
                       "type": "code_rxnav"
                     }
                   ],
@@ -17373,11 +17373,11 @@
       ],
       "has_property": [
         {
-          "value": 34482,
+          "value": "34482",
           "type": "code_rxnav"
         },
         {
-          "value": 51284903,
+          "value": "51284903",
           "type": "code_unspsc"
         }
       ],
@@ -17460,7 +17460,7 @@
       ],
       "has_property": [
         {
-          "value": 1605101,
+          "value": "1605101",
           "type": "code_rxnav"
         },
         {
@@ -17677,7 +17677,7 @@
       ],
       "has_property": [
         {
-          "value": 5933,
+          "value": "5933",
           "type": "code_rxnav"
         },
         {
@@ -17806,7 +17806,7 @@
       ],
       "has_property": [
         {
-          "value": 5956,
+          "value": "5956",
           "type": "code_rxnav"
         },
         {
@@ -17818,7 +17818,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51442421,
+          "value": "51442421",
           "type": "code_unspsc"
         },
         {
@@ -17868,7 +17868,7 @@
           "type": "ddd"
         },
         {
-          "value": 203212,
+          "value": "203212",
           "type": "code_rxnav"
         },
         {
@@ -17880,7 +17880,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51161705,
+          "value": "51161705",
           "type": "code_unspsc"
         },
         {
@@ -17956,7 +17956,7 @@
       ],
       "has_property": [
         {
-          "value": 51499,
+          "value": "51499",
           "type": "code_rxnav"
         },
         {
@@ -17968,7 +17968,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111642,
+          "value": "51111642",
           "type": "code_unspsc"
         },
         {
@@ -18074,7 +18074,7 @@
           "type": "ddd"
         },
         {
-          "value": 6038,
+          "value": "6038",
           "type": "code_rxnav"
         },
         {
@@ -18086,7 +18086,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281502,
+          "value": "51281502",
           "type": "code_unspsc"
         },
         {
@@ -18143,7 +18143,7 @@
       ],
       "has_property": [
         {
-          "value": 214662,
+          "value": "214662",
           "type": "code_rxnav"
         },
         {
@@ -18151,7 +18151,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51162101,
+          "value": "51162101",
           "type": "code_unspsc"
         }
       ],
@@ -18189,7 +18189,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 199756,
+                      "value": "199756",
                       "type": "code_rxnav"
                     },
                     {
@@ -18234,7 +18234,7 @@
       ],
       "has_property": [
         {
-          "value": 106876,
+          "value": "106876",
           "type": "code_rxnav"
         },
         {
@@ -18242,7 +18242,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51162103,
+          "value": "51162103",
           "type": "code_unspsc"
         }
       ],
@@ -18269,7 +18269,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 197841,
+                      "value": "197841",
                       "type": "code_rxnav"
                     },
                     {
@@ -18288,7 +18288,7 @@
       ],
       "has_property": [
         {
-          "value": 6058,
+          "value": "6058",
           "type": "code_rxnav"
         },
         {
@@ -18296,7 +18296,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51191554,
+          "value": "51191554",
           "type": "code_unspsc"
         }
       ],
@@ -18346,7 +18346,7 @@
           "type": "ddd"
         },
         {
-          "value": 6069,
+          "value": "6069",
           "type": "code_rxnav"
         },
         {
@@ -18358,7 +18358,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51452801,
+          "value": "51452801",
           "type": "code_unspsc"
         },
         {
@@ -18421,11 +18421,11 @@
       ],
       "has_property": [
         {
-          "value": 6099,
+          "value": "6099",
           "type": "code_rxnav"
         },
         {
-          "value": 51281616,
+          "value": "51281616",
           "type": "code_unspsc"
         }
       ],
@@ -18452,7 +18452,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 238084,
+                      "value": "238084",
                       "type": "code_rxnav"
                     },
                     {
@@ -18471,7 +18471,7 @@
       ],
       "has_property": [
         {
-          "value": 6130,
+          "value": "6130",
           "type": "code_rxnav"
         },
         {
@@ -18483,7 +18483,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51272204,
+          "value": "51272204",
           "type": "code_unspsc"
         },
         {
@@ -18533,7 +18533,7 @@
           "type": "ddd"
         },
         {
-          "value": 6218,
+          "value": "6218",
           "type": "code_rxnav"
         },
         {
@@ -18545,7 +18545,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51171605,
+          "value": "51171605",
           "type": "code_unspsc"
         },
         {
@@ -18576,7 +18576,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 242692,
+                      "value": "242692",
                       "type": "code_rxnav"
                     },
                     {
@@ -18595,7 +18595,7 @@
       ],
       "has_property": [
         {
-          "value": 68244,
+          "value": "68244",
           "type": "code_rxnav"
         },
         {
@@ -18603,7 +18603,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51343110,
+          "value": "51343110",
           "type": "code_unspsc"
         }
       ],
@@ -18630,7 +18630,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 900625,
+                      "value": "900625",
                       "type": "code_rxnav"
                     }
                   ],
@@ -18652,7 +18652,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 757690,
+                      "value": "757690",
                       "type": "code_rxnav"
                     }
                   ],
@@ -18667,11 +18667,11 @@
       ],
       "has_property": [
         {
-          "value": 758660,
+          "value": "758660",
           "type": "code_rxnav"
         },
         {
-          "value": 51343005,
+          "value": "51343005",
           "type": "code_unspsc"
         }
       ],
@@ -18698,7 +18698,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 687064,
+                      "value": "687064",
                       "type": "code_rxnav"
                     },
                     {
@@ -18739,7 +18739,7 @@
       ],
       "has_property": [
         {
-          "value": 687428,
+          "value": "687428",
           "type": "code_rxnav"
         },
         {
@@ -18747,7 +18747,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51343802,
+          "value": "51343802",
           "type": "code_unspsc"
         }
       ],
@@ -18774,7 +18774,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 200082,
+                      "value": "200082",
                       "type": "code_rxnav"
                     },
                     {
@@ -18793,7 +18793,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 900630,
+                      "value": "900630",
                       "type": "code_rxnav"
                     },
                     {
@@ -18812,7 +18812,7 @@
       ],
       "has_property": [
         {
-          "value": 214671,
+          "value": "214671",
           "type": "code_rxnav"
         },
         {
@@ -18820,7 +18820,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51343806,
+          "value": "51343806",
           "type": "code_unspsc"
         }
       ],
@@ -18900,7 +18900,7 @@
       ],
       "has_property": [
         {
-          "value": 68244,
+          "value": "68244",
           "type": "code_rxnav"
         },
         {
@@ -18908,7 +18908,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51343110,
+          "value": "51343110",
           "type": "code_unspsc"
         }
       ],
@@ -18935,7 +18935,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 314072,
+                      "value": "314072",
                       "type": "code_rxnav"
                     },
                     {
@@ -18954,7 +18954,7 @@
       ],
       "has_property": [
         {
-          "value": 43611,
+          "value": "43611",
           "type": "code_rxnav"
         },
         {
@@ -18966,7 +18966,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51241110,
+          "value": "51241110",
           "type": "code_unspsc"
         },
         {
@@ -18997,7 +18997,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1591943,
+                      "value": "1591943",
                       "type": "code_rxnav"
                     },
                     {
@@ -19016,7 +19016,7 @@
       ],
       "has_property": [
         {
-          "value": 1591942,
+          "value": "1591942",
           "type": "code_rxnav"
         },
         {
@@ -19062,7 +19062,7 @@
           "type": "ddd"
         },
         {
-          "value": 42375,
+          "value": "42375",
           "type": "code_rxnav"
         },
         {
@@ -19074,7 +19074,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111876,
+          "value": "51111876",
           "type": "code_unspsc"
         },
         {
@@ -19143,7 +19143,7 @@
           "type": "ddd"
         },
         {
-          "value": 6371,
+          "value": "6371",
           "type": "code_rxnav"
         },
         {
@@ -19155,7 +19155,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51201808,
+          "value": "51201808",
           "type": "code_unspsc"
         },
         {
@@ -19186,7 +19186,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 197443,
+                      "value": "197443",
                       "type": "code_rxnav"
                     },
                     {
@@ -19205,7 +19205,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 197444,
+                      "value": "197444",
                       "type": "code_rxnav"
                     },
                     {
@@ -19224,7 +19224,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 197445,
+                      "value": "197445",
                       "type": "code_rxnav"
                     },
                     {
@@ -19243,7 +19243,7 @@
       ],
       "has_property": [
         {
-          "value": 103990,
+          "value": "103990",
           "type": "code_rxnav"
         },
         {
@@ -19251,7 +19251,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51143502,
+          "value": "51143502",
           "type": "code_unspsc"
         }
       ],
@@ -19339,7 +19339,7 @@
           "type": "ddd"
         },
         {
-          "value": 82122,
+          "value": "82122",
           "type": "code_rxnav"
         },
         {
@@ -19351,7 +19351,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51282926,
+          "value": "51282926",
           "type": "code_unspsc"
         },
         {
@@ -19401,7 +19401,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 105510,
+                      "value": "105510",
                       "type": "code_rxnav"
                     },
                     {
@@ -19439,7 +19439,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 259218,
+                      "value": "259218",
                       "type": "code_rxnav"
                     },
                     {
@@ -19462,7 +19462,7 @@
           "type": "ddd"
         },
         {
-          "value": 6373,
+          "value": "6373",
           "type": "code_rxnav"
         },
         {
@@ -19474,7 +19474,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51352006,
+          "value": "51352006",
           "type": "code_unspsc"
         },
         {
@@ -19524,7 +19524,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51352006,
+          "value": "51352006",
           "type": "code_unspsc"
         }
       ],
@@ -19551,7 +19551,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 892246,
+                      "value": "892246",
                       "type": "code_rxnav"
                     },
                     {
@@ -19570,7 +19570,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 966220,
+                      "value": "966220",
                       "type": "code_rxnav"
                     },
                     {
@@ -19589,7 +19589,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 966221,
+                      "value": "966221",
                       "type": "code_rxnav"
                     },
                     {
@@ -19608,7 +19608,7 @@
       ],
       "has_property": [
         {
-          "value": 10582,
+          "value": "10582",
           "type": "code_rxnav"
         },
         {
@@ -19616,7 +19616,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51181608,
+          "value": "51181608",
           "type": "code_unspsc"
         }
       ],
@@ -19643,7 +19643,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1011093,
+                      "value": "1011093",
                       "type": "code_rxnav"
                     },
                     {
@@ -19662,7 +19662,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1737761,
+                      "value": "1737761",
                       "type": "code_rxnav"
                     },
                     {
@@ -19681,7 +19681,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 340122,
+                      "value": "340122",
                       "type": "code_rxnav"
                     },
                     {
@@ -19700,7 +19700,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1737568,
+                      "value": "1737568",
                       "type": "code_rxnav"
                     },
                     {
@@ -19719,7 +19719,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 340128,
+                      "value": "340128",
                       "type": "code_rxnav"
                     },
                     {
@@ -19738,7 +19738,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1737757,
+                      "value": "1737757",
                       "type": "code_rxnav"
                     },
                     {
@@ -19757,7 +19757,7 @@
       ],
       "has_property": [
         {
-          "value": 6387,
+          "value": "6387",
           "type": "code_rxnav"
         },
         {
@@ -19765,7 +19765,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51271613,
+          "value": "51271613",
           "type": "code_unspsc"
         }
       ],
@@ -19803,7 +19803,7 @@
       ],
       "has_property": [
         {
-          "value": 107602,
+          "value": "107602",
           "type": "code_rxnav"
         },
         {
@@ -19849,7 +19849,7 @@
       ],
       "has_property": [
         {
-          "value": 107602,
+          "value": "107602",
           "type": "code_rxnav"
         },
         {
@@ -19895,7 +19895,7 @@
       ],
       "has_property": [
         {
-          "value": 107602,
+          "value": "107602",
           "type": "code_rxnav"
         },
         {
@@ -19941,7 +19941,7 @@
       ],
       "has_property": [
         {
-          "value": 107602,
+          "value": "107602",
           "type": "code_rxnav"
         },
         {
@@ -19987,7 +19987,7 @@
       ],
       "has_property": [
         {
-          "value": 107602,
+          "value": "107602",
           "type": "code_rxnav"
         },
         {
@@ -20018,7 +20018,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 311345,
+                      "value": "311345",
                       "type": "code_rxnav"
                     },
                     {
@@ -20096,7 +20096,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1662285,
+                      "value": "1662285",
                       "type": "code_rxnav"
                     },
                     {
@@ -20119,7 +20119,7 @@
           "type": "ddd"
         },
         {
-          "value": 190376,
+          "value": "190376",
           "type": "code_rxnav"
         },
         {
@@ -20131,7 +20131,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51283303,
+          "value": "51283303",
           "type": "code_unspsc"
         },
         {
@@ -20162,7 +20162,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 197890,
+                      "value": "197890",
                       "type": "code_rxnav"
                     },
                     {
@@ -20185,7 +20185,7 @@
           "type": "ddd"
         },
         {
-          "value": 42351,
+          "value": "42351",
           "type": "code_rxnav"
         },
         {
@@ -20197,7 +20197,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51331901,
+          "value": "51331901",
           "type": "code_unspsc"
         },
         {
@@ -20228,7 +20228,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 978006,
+                      "value": "978006",
                       "type": "code_rxnav"
                     },
                     {
@@ -20251,7 +20251,7 @@
           "type": "ddd"
         },
         {
-          "value": 6468,
+          "value": "6468",
           "type": "code_rxnav"
         },
         {
@@ -20263,7 +20263,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51171702,
+          "value": "51171702",
           "type": "code_unspsc"
         },
         {
@@ -20324,7 +20324,7 @@
       ],
       "has_property": [
         {
-          "value": 284640,
+          "value": "284640",
           "type": "code_rxnav"
         },
         {
@@ -20370,7 +20370,7 @@
       ],
       "has_property": [
         {
-          "value": 284640,
+          "value": "284640",
           "type": "code_rxnav"
         },
         {
@@ -20427,7 +20427,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 692873,
+                      "value": "692873",
                       "type": "code_rxnav"
                     },
                     {
@@ -20450,7 +20450,7 @@
           "type": "ddd"
         },
         {
-          "value": 28889,
+          "value": "28889",
           "type": "code_rxnav"
         },
         {
@@ -20462,7 +20462,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51312204,
+          "value": "51312204",
           "type": "code_unspsc"
         },
         {
@@ -20493,7 +20493,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1665188,
+                      "value": "1665188",
                       "type": "code_rxnav"
                     },
                     {
@@ -20512,7 +20512,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1665326,
+                      "value": "1665326",
                       "type": "code_rxnav"
                     },
                     {
@@ -20535,7 +20535,7 @@
           "type": "ddd"
         },
         {
-          "value": 6470,
+          "value": "6470",
           "type": "code_rxnav"
         },
         {
@@ -20547,7 +20547,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51401533,
+          "value": "51401533",
           "type": "code_unspsc"
         },
         {
@@ -20631,7 +20631,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1658221,
+                      "value": "1658221",
                       "type": "code_rxnav"
                     },
                     {
@@ -20650,7 +20650,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1658244,
+                      "value": "1658244",
                       "type": "code_rxnav"
                     },
                     {
@@ -20669,7 +20669,7 @@
       ],
       "has_property": [
         {
-          "value": 6585,
+          "value": "6585",
           "type": "code_rxnav"
         },
         {
@@ -20677,7 +20677,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51141566,
+          "value": "51141566",
           "type": "code_unspsc"
         }
       ],
@@ -20734,7 +20734,7 @@
       ],
       "has_property": [
         {
-          "value": 6628,
+          "value": "6628",
           "type": "code_rxnav"
         },
         {
@@ -20746,7 +20746,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51191509,
+          "value": "51191509",
           "type": "code_unspsc"
         },
         {
@@ -20808,7 +20808,7 @@
       ],
       "has_property": [
         {
-          "value": 51201646,
+          "value": "51201646",
           "type": "code_unspsc"
         }
       ],
@@ -20851,7 +20851,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 105347,
+                      "value": "105347",
                       "type": "code_rxnav"
                     },
                     {
@@ -20870,7 +20870,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1855385,
+                      "value": "1855385",
                       "type": "code_rxnav"
                     },
                     {
@@ -20893,7 +20893,7 @@
           "type": "ddd"
         },
         {
-          "value": 6672,
+          "value": "6672",
           "type": "code_rxnav"
         },
         {
@@ -20905,7 +20905,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51452401,
+          "value": "51452401",
           "type": "code_unspsc"
         },
         {
@@ -20951,7 +20951,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1000126,
+                      "value": "1000126",
                       "type": "code_rxnav"
                     },
                     {
@@ -21007,7 +21007,7 @@
           "type": "ddd"
         },
         {
-          "value": 1000112,
+          "value": "1000112",
           "type": "code_rxnav"
         },
         {
@@ -21019,7 +21019,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51351612,
+          "value": "51351612",
           "type": "code_unspsc"
         },
         {
@@ -21050,7 +21050,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 835913,
+                      "value": "835913",
                       "type": "code_rxnav"
                     },
                     {
@@ -21073,7 +21073,7 @@
           "type": "ddd"
         },
         {
-          "value": 6694,
+          "value": "6694",
           "type": "code_rxnav"
         },
         {
@@ -21085,7 +21085,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51101902,
+          "value": "51101902",
           "type": "code_unspsc"
         },
         {
@@ -21131,7 +21131,7 @@
       ],
       "has_property": [
         {
-          "value": 319866,
+          "value": "319866",
           "type": "code_rxnav"
         },
         {
@@ -21139,7 +21139,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101604,
+          "value": "51101604",
           "type": "code_unspsc"
         }
       ],
@@ -21177,7 +21177,7 @@
       ],
       "has_property": [
         {
-          "value": 52527,
+          "value": "52527",
           "type": "code_rxnav"
         },
         {
@@ -21227,7 +21227,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101616,
+          "value": "51101616",
           "type": "code_unspsc"
         }
       ],
@@ -21284,7 +21284,7 @@
       ],
       "has_property": [
         {
-          "value": 103,
+          "value": "103",
           "type": "code_rxnav"
         },
         {
@@ -21296,7 +21296,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51203403,
+          "value": "51203403",
           "type": "code_unspsc"
         },
         {
@@ -21342,7 +21342,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 204870,
+                      "value": "204870",
                       "type": "code_rxnav"
                     },
                     {
@@ -21413,7 +21413,7 @@
       ],
       "has_property": [
         {
-          "value": 44,
+          "value": "44",
           "type": "code_rxnav"
         },
         {
@@ -21425,7 +21425,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51172324,
+          "value": "51172324",
           "type": "code_unspsc"
         },
         {
@@ -21456,7 +21456,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 861007,
+                      "value": "861007",
                       "type": "code_rxnav"
                     },
                     {
@@ -21479,7 +21479,7 @@
           "type": "ddd"
         },
         {
-          "value": 6809,
+          "value": "6809",
           "type": "code_rxnav"
         },
         {
@@ -21491,7 +21491,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51183505,
+          "value": "51183505",
           "type": "code_unspsc"
         },
         {
@@ -21522,7 +21522,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 991147,
+                      "value": "991147",
                       "type": "code_rxnav"
                     },
                     {
@@ -21560,7 +21560,7 @@
           "type": "ddd"
         },
         {
-          "value": 6813,
+          "value": "6813",
           "type": "code_rxnav"
         },
         {
@@ -21572,7 +21572,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51371907,
+          "value": "51371907",
           "type": "code_unspsc"
         },
         {
@@ -21651,7 +21651,7 @@
       ],
       "has_property": [
         {
-          "value": 6851,
+          "value": "6851",
           "type": "code_rxnav"
         },
         {
@@ -21663,7 +21663,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111610,
+          "value": "51111610",
           "type": "code_unspsc"
         },
         {
@@ -21717,7 +21717,7 @@
           "type": "ddd"
         },
         {
-          "value": 6876,
+          "value": "6876",
           "type": "code_rxnav"
         },
         {
@@ -21729,7 +21729,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51431803,
+          "value": "51431803",
           "type": "code_unspsc"
         },
         {
@@ -21760,7 +21760,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 996828,
+                      "value": "996828",
                       "type": "code_rxnav"
                     }
                   ],
@@ -21775,7 +21775,7 @@
       ],
       "has_property": [
         {
-          "value": 84158,
+          "value": "84158",
           "type": "code_rxnav"
         }
       ],
@@ -21817,7 +21817,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1743779,
+                      "value": "1743779",
                       "type": "code_rxnav"
                     },
                     {
@@ -21836,7 +21836,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1743855,
+                      "value": "1743855",
                       "type": "code_rxnav"
                     },
                     {
@@ -21859,7 +21859,7 @@
           "type": "ddd"
         },
         {
-          "value": 6902,
+          "value": "6902",
           "type": "code_rxnav"
         },
         {
@@ -21871,7 +21871,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51422312,
+          "value": "51422312",
           "type": "code_unspsc"
         },
         {
@@ -21902,7 +21902,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1737852,
+                      "value": "1737852",
                       "type": "code_rxnav"
                     },
                     {
@@ -21921,7 +21921,7 @@
       ],
       "has_property": [
         {
-          "value": 6878,
+          "value": "6878",
           "type": "code_rxnav"
         },
         {
@@ -21929,7 +21929,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51172308,
+          "value": "51172308",
           "type": "code_unspsc"
         }
       ],
@@ -21982,7 +21982,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 104884,
+                      "value": "104884",
                       "type": "code_rxnav"
                     },
                     {
@@ -22015,7 +22015,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 311760,
+                      "value": "311760",
                       "type": "code_rxnav"
                     },
                     {
@@ -22038,7 +22038,7 @@
           "type": "ddd"
         },
         {
-          "value": 6915,
+          "value": "6915",
           "type": "code_rxnav"
         },
         {
@@ -22050,7 +22050,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51171806,
+          "value": "51171806",
           "type": "code_unspsc"
         },
         {
@@ -22103,11 +22103,11 @@
       ],
       "has_property": [
         {
-          "value": 6918,
+          "value": "6918",
           "type": "code_rxnav"
         },
         {
-          "value": 51263139,
+          "value": "51263139",
           "type": "code_unspsc"
         }
       ],
@@ -22134,7 +22134,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 250261,
+                      "value": "250261",
                       "type": "code_rxnav"
                     },
                     {
@@ -22153,7 +22153,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 199959,
+                      "value": "199959",
                       "type": "code_rxnav"
                     },
                     {
@@ -22250,7 +22250,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 105304,
+                      "value": "105304",
                       "type": "code_rxnav"
                     },
                     {
@@ -22273,7 +22273,7 @@
           "type": "ddd"
         },
         {
-          "value": 6922,
+          "value": "6922",
           "type": "code_rxnav"
         },
         {
@@ -22285,7 +22285,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51282808,
+          "value": "51282808",
           "type": "code_unspsc"
         },
         {
@@ -22316,7 +22316,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 311683,
+                      "value": "311683",
                       "type": "code_rxnav"
                     },
                     {
@@ -22335,7 +22335,7 @@
       ],
       "has_property": [
         {
-          "value": 6922,
+          "value": "6922",
           "type": "code_rxnav"
         },
         {
@@ -22343,7 +22343,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51282808,
+          "value": "51282808",
           "type": "code_unspsc"
         }
       ],
@@ -22392,7 +22392,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 998442,
+                      "value": "998442",
                       "type": "code_rxnav"
                     },
                     {
@@ -22411,7 +22411,7 @@
       ],
       "has_property": [
         {
-          "value": 6932,
+          "value": "6932",
           "type": "code_rxnav"
         },
         {
@@ -22423,7 +22423,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51302320,
+          "value": "51302320",
           "type": "code_unspsc"
         },
         {
@@ -22548,7 +22548,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 422410,
+                      "value": "422410",
                       "type": "code_rxnav"
                     },
                     {
@@ -22585,7 +22585,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 1666798,
+                      "value": "1666798",
                       "type": "code_rxnav"
                     },
                     {
@@ -22608,7 +22608,7 @@
                       "type": "ddd"
                     },
                     {
-                      "value": 1666814,
+                      "value": "1666814",
                       "type": "code_rxnav"
                     },
                     {
@@ -22631,7 +22631,7 @@
           "type": "ddd"
         },
         {
-          "value": 6960,
+          "value": "6960",
           "type": "code_rxnav"
         },
         {
@@ -22643,7 +22643,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51401538,
+          "value": "51401538",
           "type": "code_unspsc"
         },
         {
@@ -22750,7 +22750,7 @@
       ],
       "has_property": [
         {
-          "value": 1494066,
+          "value": "1494066",
           "type": "code_rxnav"
         },
         {
@@ -22758,7 +22758,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101668,
+          "value": "51101668",
           "type": "code_unspsc"
         }
       ],
@@ -22785,7 +22785,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 317128,
+                      "value": "317128",
                       "type": "code_rxnav"
                     },
                     {
@@ -22823,7 +22823,7 @@
           "type": "ddd"
         },
         {
-          "value": 42331,
+          "value": "42331",
           "type": "code_rxnav"
         },
         {
@@ -22835,7 +22835,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51182214,
+          "value": "51182214",
           "type": "code_unspsc"
         },
         {
@@ -22974,7 +22974,7 @@
           "type": "ddd"
         },
         {
-          "value": 235751,
+          "value": "235751",
           "type": "code_rxnav"
         },
         {
@@ -22986,7 +22986,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51372031,
+          "value": "51372031",
           "type": "code_unspsc"
         },
         {
@@ -23036,7 +23036,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 895016,
+                      "value": "895016",
                       "type": "code_rxnav"
                     }
                   ],
@@ -23089,7 +23089,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 892589,
+                      "value": "892589",
                       "type": "code_rxnav"
                     },
                     {
@@ -23168,7 +23168,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 895014,
+                      "value": "895014",
                       "type": "code_rxnav"
                     },
                     {
@@ -23276,7 +23276,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1731993,
+                      "value": "1731993",
                       "type": "code_rxnav"
                     },
                     {
@@ -23299,7 +23299,7 @@
           "type": "ddd"
         },
         {
-          "value": 30236,
+          "value": "30236",
           "type": "code_rxnav"
         },
         {
@@ -23311,7 +23311,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51372036,
+          "value": "51372036",
           "type": "code_unspsc"
         },
         {
@@ -23358,7 +23358,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 311877,
+                      "value": "311877",
                       "type": "code_rxnav"
                     },
                     {
@@ -23384,7 +23384,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 106346,
+                      "value": "106346",
                       "type": "code_rxnav"
                     },
                     {
@@ -23403,7 +23403,7 @@
       ],
       "has_property": [
         {
-          "value": 42372,
+          "value": "42372",
           "type": "code_rxnav"
         },
         {
@@ -23415,7 +23415,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51286501,
+          "value": "51286501",
           "type": "code_unspsc"
         },
         {
@@ -23446,7 +23446,7 @@
                       "type": "strength"
                     },
                     {
-                      "value": 1659929,
+                      "value": "1659929",
                       "type": "code_rxnav"
                     },
                     {
@@ -23465,7 +23465,7 @@
       ],
       "has_property": [
         {
-          "value": 7242,
+          "value": "7242",
           "type": "code_rxnav"
         },
         {
@@ -23477,7 +23477,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51142302,
+          "value": "51142302",
           "type": "code_unspsc"
         },
         {
@@ -23571,7 +23571,7 @@
       ],
       "has_property": [
         {
-          "value": 7315,
+          "value": "7315",
           "type": "code_rxnav"
         },
         {
@@ -23579,7 +23579,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51151512,
+          "value": "51151512",
           "type": "code_unspsc"
         }
       ],
@@ -23665,7 +23665,7 @@
       ],
       "has_property": [
         {
-          "value": 53654,
+          "value": "53654",
           "type": "code_rxnav"
         },
         {
@@ -23673,7 +23673,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51343002,
+          "value": "51343002",
           "type": "code_unspsc"
         }
       ],
@@ -23715,7 +23715,7 @@
       ],
       "has_property": [
         {
-          "value": 7402,
+          "value": "7402",
           "type": "code_rxnav"
         },
         {
@@ -23723,7 +23723,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51451907,
+          "value": "51451907",
           "type": "code_unspsc"
         }
       ],
@@ -23765,7 +23765,7 @@
       ],
       "has_property": [
         {
-          "value": 7405,
+          "value": "7405",
           "type": "code_rxnav"
         },
         {
@@ -23773,7 +23773,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51191920,
+          "value": "51191920",
           "type": "code_unspsc"
         }
       ],
@@ -23924,7 +23924,7 @@
           "type": "ddd"
         },
         {
-          "value": 7417,
+          "value": "7417",
           "type": "code_rxnav"
         },
         {
@@ -23936,7 +23936,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51433903,
+          "value": "51433903",
           "type": "code_unspsc"
         },
         {
@@ -24016,7 +24016,7 @@
       ],
       "has_property": [
         {
-          "value": 7421,
+          "value": "7421",
           "type": "code_rxnav"
         },
         {
@@ -24024,7 +24024,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101673,
+          "value": "51101673",
           "type": "code_unspsc"
         }
       ],
@@ -24096,7 +24096,7 @@
           "type": "ddd"
         },
         {
-          "value": 7454,
+          "value": "7454",
           "type": "code_rxnav"
         },
         {
@@ -24108,7 +24108,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51285307,
+          "value": "51285307",
           "type": "code_unspsc"
         },
         {
@@ -24161,7 +24161,7 @@
       ],
       "has_property": [
         {
-          "value": 31984,
+          "value": "31984",
           "type": "code_rxnav"
         }
       ],
@@ -24398,7 +24398,7 @@
           "type": "ddd"
         },
         {
-          "value": 7597,
+          "value": "7597",
           "type": "code_rxnav"
         },
         {
@@ -24410,7 +24410,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51302404,
+          "value": "51302404",
           "type": "code_unspsc"
         },
         {
@@ -24456,7 +24456,7 @@
       ],
       "has_property": [
         {
-          "value": 7623,
+          "value": "7623",
           "type": "code_rxnav"
         },
         {
@@ -24464,7 +24464,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51282956,
+          "value": "51282956",
           "type": "code_unspsc"
         }
       ],
@@ -24506,7 +24506,7 @@
       ],
       "has_property": [
         {
-          "value": 1597378,
+          "value": "1597378",
           "type": "code_rxnav"
         },
         {
@@ -24664,7 +24664,7 @@
           "type": "ddd"
         },
         {
-          "value": 7646,
+          "value": "7646",
           "type": "code_rxnav"
         },
         {
@@ -24676,7 +24676,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51171909,
+          "value": "51171909",
           "type": "code_unspsc"
         },
         {
@@ -24815,7 +24815,7 @@
           "type": "ddd"
         },
         {
-          "value": 26225,
+          "value": "26225",
           "type": "code_rxnav"
         },
         {
@@ -24827,7 +24827,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51171816,
+          "value": "51171816",
           "type": "code_unspsc"
         },
         {
@@ -24885,7 +24885,7 @@
       ],
       "has_property": [
         {
-          "value": 51201616,
+          "value": "51201616",
           "type": "code_unspsc"
         }
       ],
@@ -25168,7 +25168,7 @@
           "type": "ddd"
         },
         {
-          "value": 260101,
+          "value": "260101",
           "type": "code_rxnav"
         },
         {
@@ -25180,7 +25180,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51341802,
+          "value": "51341802",
           "type": "code_unspsc"
         },
         {
@@ -25282,7 +25282,7 @@
       ],
       "has_property": [
         {
-          "value": 32592,
+          "value": "32592",
           "type": "code_rxnav"
         },
         {
@@ -25294,7 +25294,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51112705,
+          "value": "51112705",
           "type": "code_unspsc"
         },
         {
@@ -25362,7 +25362,7 @@
       ],
       "has_property": [
         {
-          "value": 7778,
+          "value": "7778",
           "type": "code_rxnav"
         },
         {
@@ -25370,7 +25370,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51453201,
+          "value": "51453201",
           "type": "code_unspsc"
         }
       ],
@@ -25432,7 +25432,7 @@
           "type": "ddd"
         },
         {
-          "value": 7824,
+          "value": "7824",
           "type": "code_rxnav"
         },
         {
@@ -25444,7 +25444,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51182203,
+          "value": "51182203",
           "type": "code_unspsc"
         },
         {
@@ -25512,7 +25512,7 @@
       ],
       "has_property": [
         {
-          "value": 7833,
+          "value": "7833",
           "type": "code_rxnav"
         },
         {
@@ -25558,7 +25558,7 @@
       ],
       "has_property": [
         {
-          "value": 56946,
+          "value": "56946",
           "type": "code_rxnav"
         },
         {
@@ -25570,7 +25570,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111904,
+          "value": "51111904",
           "type": "code_unspsc"
         },
         {
@@ -25710,7 +25710,7 @@
           "type": "ddd"
         },
         {
-          "value": 161,
+          "value": "161",
           "type": "code_rxnav"
         },
         {
@@ -25722,7 +25722,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51381701,
+          "value": "51381701",
           "type": "code_unspsc"
         },
         {
@@ -25772,7 +25772,7 @@
           "type": "ddd"
         },
         {
-          "value": 7934,
+          "value": "7934",
           "type": "code_rxnav"
         },
         {
@@ -25784,7 +25784,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281620,
+          "value": "51281620",
           "type": "code_unspsc"
         },
         {
@@ -25852,7 +25852,7 @@
       ],
       "has_property": [
         {
-          "value": 120608,
+          "value": "120608",
           "type": "code_rxnav"
         },
         {
@@ -25950,7 +25950,7 @@
       ],
       "has_property": [
         {
-          "value": 253453,
+          "value": "253453",
           "type": "code_rxnav"
         },
         {
@@ -26004,7 +26004,7 @@
           "type": "ddd"
         },
         {
-          "value": 7975,
+          "value": "7975",
           "type": "code_rxnav"
         },
         {
@@ -26016,7 +26016,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51202303,
+          "value": "51202303",
           "type": "code_unspsc"
         },
         {
@@ -26110,7 +26110,7 @@
           "type": "ddd"
         },
         {
-          "value": 7994,
+          "value": "7994",
           "type": "code_rxnav"
         },
         {
@@ -26122,7 +26122,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51101613,
+          "value": "51101613",
           "type": "code_unspsc"
         },
         {
@@ -26190,7 +26190,7 @@
       ],
       "has_property": [
         {
-          "value": 33199,
+          "value": "33199",
           "type": "code_rxnav"
         },
         {
@@ -26358,7 +26358,7 @@
       ],
       "has_property": [
         {
-          "value": 8134,
+          "value": "8134",
           "type": "code_rxnav"
         },
         {
@@ -26366,7 +26366,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51361918,
+          "value": "51361918",
           "type": "code_unspsc"
         }
       ],
@@ -26430,7 +26430,7 @@
       ],
       "has_property": [
         {
-          "value": 7984,
+          "value": "7984",
           "type": "code_rxnav"
         },
         {
@@ -26438,7 +26438,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51283406,
+          "value": "51283406",
           "type": "code_unspsc"
         }
       ],
@@ -26602,7 +26602,7 @@
           "type": "ddd"
         },
         {
-          "value": 8183,
+          "value": "8183",
           "type": "code_rxnav"
         },
         {
@@ -26614,7 +26614,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51141507,
+          "value": "51141507",
           "type": "code_unspsc"
         },
         {
@@ -26679,7 +26679,7 @@
           "type": "ddd"
         },
         {
-          "value": 8308,
+          "value": "8308",
           "type": "code_rxnav"
         },
         {
@@ -26748,7 +26748,7 @@
       ],
       "has_property": [
         {
-          "value": 8328,
+          "value": "8328",
           "type": "code_rxnav"
         },
         {
@@ -26756,7 +26756,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51151504,
+          "value": "51151504",
           "type": "code_unspsc"
         }
       ],
@@ -26809,7 +26809,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51201615,
+          "value": "51201615",
           "type": "code_unspsc"
         }
       ],
@@ -26877,7 +26877,7 @@
       ],
       "has_property": [
         {
-          "value": 8462,
+          "value": "8462",
           "type": "code_rxnav"
         },
         {
@@ -26885,7 +26885,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51241215,
+          "value": "51241215",
           "type": "code_unspsc"
         }
       ],
@@ -26934,7 +26934,7 @@
       ],
       "has_property": [
         {
-          "value": 8521,
+          "value": "8521",
           "type": "code_rxnav"
         },
         {
@@ -26942,7 +26942,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51131901,
+          "value": "51131901",
           "type": "code_unspsc"
         },
         {
@@ -26984,11 +26984,11 @@
       ],
       "has_property": [
         {
-          "value": 236381,
+          "value": "236381",
           "type": "code_rxnav"
         },
         {
-          "value": 51161709,
+          "value": "51161709",
           "type": "code_unspsc"
         }
       ],
@@ -27073,7 +27073,7 @@
       ],
       "has_property": [
         {
-          "value": 8591,
+          "value": "8591",
           "type": "code_rxnav"
         },
         {
@@ -27081,7 +27081,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51191802,
+          "value": "51191802",
           "type": "code_unspsc"
         },
         {
@@ -27174,7 +27174,7 @@
       ],
       "has_property": [
         {
-          "value": 8597,
+          "value": "8597",
           "type": "code_rxnav"
         },
         {
@@ -27186,7 +27186,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51181607,
+          "value": "51181607",
           "type": "code_unspsc"
         },
         {
@@ -27232,7 +27232,7 @@
       ],
       "has_property": [
         {
-          "value": 8604,
+          "value": "8604",
           "type": "code_rxnav"
         },
         {
@@ -27244,7 +27244,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 12352312,
+          "value": "12352312",
           "type": "code_unspsc"
         },
         {
@@ -27290,7 +27290,7 @@
       ],
       "has_property": [
         {
-          "value": 8597,
+          "value": "8597",
           "type": "code_rxnav"
         },
         {
@@ -27298,7 +27298,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51471505,
+          "value": "51471505",
           "type": "code_unspsc"
         }
       ],
@@ -27363,7 +27363,7 @@
           "type": "ddd"
         },
         {
-          "value": 8628,
+          "value": "8628",
           "type": "code_rxnav"
         },
         {
@@ -27375,7 +27375,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51452701,
+          "value": "51452701",
           "type": "code_unspsc"
         },
         {
@@ -27499,7 +27499,7 @@
           "type": "ddd"
         },
         {
-          "value": 8638,
+          "value": "8638",
           "type": "code_rxnav"
         },
         {
@@ -27511,7 +27511,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51422315,
+          "value": "51422315",
           "type": "code_unspsc"
         },
         {
@@ -27576,7 +27576,7 @@
           "type": "ddd"
         },
         {
-          "value": 8687,
+          "value": "8687",
           "type": "code_rxnav"
         },
         {
@@ -27588,7 +27588,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51101903,
+          "value": "51101903",
           "type": "code_unspsc"
         },
         {
@@ -27653,7 +27653,7 @@
           "type": "ddd"
         },
         {
-          "value": 7983,
+          "value": "7983",
           "type": "code_rxnav"
         },
         {
@@ -27665,7 +27665,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51283409,
+          "value": "51283409",
           "type": "code_unspsc"
         },
         {
@@ -27715,7 +27715,7 @@
       ],
       "has_property": [
         {
-          "value": 8702,
+          "value": "8702",
           "type": "code_rxnav"
         },
         {
@@ -27727,7 +27727,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51112404,
+          "value": "51112404",
           "type": "code_unspsc"
         },
         {
@@ -27777,7 +27777,7 @@
           "type": "ddd"
         },
         {
-          "value": 8727,
+          "value": "8727",
           "type": "code_rxnav"
         },
         {
@@ -27789,7 +27789,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51351514,
+          "value": "51351514",
           "type": "code_unspsc"
         },
         {
@@ -27835,7 +27835,7 @@
       ],
       "has_property": [
         {
-          "value": 2382,
+          "value": "2382",
           "type": "code_rxnav"
         },
         {
@@ -27843,7 +27843,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101906,
+          "value": "51101906",
           "type": "code_unspsc"
         }
       ],
@@ -27900,7 +27900,7 @@
       ],
       "has_property": [
         {
-          "value": 8782,
+          "value": "8782",
           "type": "code_rxnav"
         },
         {
@@ -27912,7 +27912,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51272901,
+          "value": "51272901",
           "type": "code_unspsc"
         },
         {
@@ -27977,7 +27977,7 @@
           "type": "ddd"
         },
         {
-          "value": 8787,
+          "value": "8787",
           "type": "code_rxnav"
         },
         {
@@ -27989,7 +27989,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51262907,
+          "value": "51262907",
           "type": "code_unspsc"
         },
         {
@@ -28043,7 +28043,7 @@
           "type": "ddd"
         },
         {
-          "value": 8794,
+          "value": "8794",
           "type": "code_rxnav"
         },
         {
@@ -28055,7 +28055,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51181606,
+          "value": "51181606",
           "type": "code_unspsc"
         },
         {
@@ -28101,7 +28101,7 @@
       ],
       "has_property": [
         {
-          "value": 598,
+          "value": "598",
           "type": "code_rxnav"
         },
         {
@@ -28147,7 +28147,7 @@
       ],
       "has_property": [
         {
-          "value": 3478,
+          "value": "3478",
           "type": "code_rxnav"
         },
         {
@@ -28193,7 +28193,7 @@
       ],
       "has_property": [
         {
-          "value": 8825,
+          "value": "8825",
           "type": "code_rxnav"
         },
         {
@@ -28205,7 +28205,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51172305,
+          "value": "51172305",
           "type": "code_unspsc"
         },
         {
@@ -28277,7 +28277,7 @@
           "type": "ddd"
         },
         {
-          "value": 8984,
+          "value": "8984",
           "type": "code_rxnav"
         },
         {
@@ -28289,7 +28289,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51452301,
+          "value": "51452301",
           "type": "code_unspsc"
         },
         {
@@ -28413,7 +28413,7 @@
           "type": "ddd"
         },
         {
-          "value": 8987,
+          "value": "8987",
           "type": "code_rxnav"
         },
         {
@@ -28425,7 +28425,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281504,
+          "value": "51281504",
           "type": "code_unspsc"
         },
         {
@@ -28500,7 +28500,7 @@
       ],
       "has_property": [
         {
-          "value": 9000,
+          "value": "9000",
           "type": "code_rxnav"
         },
         {
@@ -28508,7 +28508,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51151514,
+          "value": "51151514",
           "type": "code_unspsc"
         }
       ],
@@ -28554,7 +28554,7 @@
           "type": "ddd"
         },
         {
-          "value": 684879,
+          "value": "684879",
           "type": "code_rxnav"
         },
         {
@@ -28616,7 +28616,7 @@
           "type": "ddd"
         },
         {
-          "value": 9010,
+          "value": "9010",
           "type": "code_rxnav"
         },
         {
@@ -28628,7 +28628,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51101907,
+          "value": "51101907",
           "type": "code_unspsc"
         },
         {
@@ -28674,7 +28674,7 @@
       ],
       "has_property": [
         {
-          "value": 9073,
+          "value": "9073",
           "type": "code_rxnav"
         },
         {
@@ -28720,7 +28720,7 @@
       ],
       "has_property": [
         {
-          "value": 9074,
+          "value": "9074",
           "type": "code_rxnav"
         },
         {
@@ -28770,7 +28770,7 @@
           "type": "ddd"
         },
         {
-          "value": 9075,
+          "value": "9075",
           "type": "code_rxnav"
         },
         {
@@ -28894,7 +28894,7 @@
           "type": "ddd"
         },
         {
-          "value": 9143,
+          "value": "9143",
           "type": "code_rxnav"
         },
         {
@@ -29114,7 +29114,7 @@
       ],
       "has_property": [
         {
-          "value": 11246,
+          "value": "11246",
           "type": "code_rxnav"
         },
         {
@@ -29122,7 +29122,7 @@
           "type": "who_eml"
         },
         {
-          "value": 50501515,
+          "value": "50501515",
           "type": "code_unspsc"
         }
       ],
@@ -29254,7 +29254,7 @@
           "type": "ddd"
         },
         {
-          "value": 9344,
+          "value": "9344",
           "type": "code_rxnav"
         },
         {
@@ -29266,7 +29266,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51342503,
+          "value": "51342503",
           "type": "code_unspsc"
         },
         {
@@ -29312,7 +29312,7 @@
       ],
       "has_property": [
         {
-          "value": 9346,
+          "value": "9346",
           "type": "code_rxnav"
         },
         {
@@ -29374,7 +29374,7 @@
           "type": "ddd"
         },
         {
-          "value": 9346,
+          "value": "9346",
           "type": "code_rxnav"
         },
         {
@@ -29386,7 +29386,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281902,
+          "value": "51281902",
           "type": "code_unspsc"
         },
         {
@@ -29473,7 +29473,7 @@
           "type": "ddd"
         },
         {
-          "value": 9384,
+          "value": "9384",
           "type": "code_rxnav"
         },
         {
@@ -29485,7 +29485,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51283601,
+          "value": "51283601",
           "type": "code_unspsc"
         },
         {
@@ -29527,7 +29527,7 @@
       ],
       "has_property": [
         {
-          "value": 106876,
+          "value": "106876",
           "type": "code_rxnav"
         },
         {
@@ -29535,7 +29535,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51162103,
+          "value": "51162103",
           "type": "code_unspsc"
         }
       ],
@@ -29577,7 +29577,7 @@
       ],
       "has_property": [
         {
-          "value": 214662,
+          "value": "214662",
           "type": "code_rxnav"
         },
         {
@@ -29585,7 +29585,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51162101,
+          "value": "51162101",
           "type": "code_unspsc"
         }
       ],
@@ -29631,7 +29631,7 @@
       ],
       "has_property": [
         {
-          "value": 35617,
+          "value": "35617",
           "type": "code_rxnav"
         },
         {
@@ -29639,7 +29639,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51283603,
+          "value": "51283603",
           "type": "code_unspsc"
         }
       ],
@@ -29803,7 +29803,7 @@
           "type": "ddd"
         },
         {
-          "value": 35636,
+          "value": "35636",
           "type": "code_rxnav"
         },
         {
@@ -29815,7 +29815,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51333601,
+          "value": "51333601",
           "type": "code_unspsc"
         },
         {
@@ -29906,7 +29906,7 @@
           "type": "ddd"
         },
         {
-          "value": 85762,
+          "value": "85762",
           "type": "code_rxnav"
         },
         {
@@ -29918,7 +29918,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51343203,
+          "value": "51343203",
           "type": "code_unspsc"
         },
         {
@@ -29979,7 +29979,7 @@
       ],
       "has_property": [
         {
-          "value": 121191,
+          "value": "121191",
           "type": "code_rxnav"
         },
         {
@@ -29991,7 +29991,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111716,
+          "value": "51111716",
           "type": "code_unspsc"
         },
         {
@@ -30107,7 +30107,7 @@
           "type": "ddd"
         },
         {
-          "value": 435,
+          "value": "435",
           "type": "code_rxnav"
         },
         {
@@ -30119,7 +30119,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51391703,
+          "value": "51391703",
           "type": "code_unspsc"
         },
         {
@@ -30161,7 +30161,7 @@
       ],
       "has_property": [
         {
-          "value": 9525,
+          "value": "9525",
           "type": "code_rxnav"
         }
       ],
@@ -30199,11 +30199,11 @@
       ],
       "has_property": [
         {
-          "value": 83395,
+          "value": "83395",
           "type": "code_rxnav"
         },
         {
-          "value": 51342402,
+          "value": "51342402",
           "type": "code_unspsc"
         }
       ],
@@ -30245,7 +30245,7 @@
       ],
       "has_property": [
         {
-          "value": 36345,
+          "value": "36345",
           "type": "code_rxnav"
         },
         {
@@ -30321,7 +30321,7 @@
       ],
       "has_property": [
         {
-          "value": 36387,
+          "value": "36387",
           "type": "code_rxnav"
         },
         {
@@ -30367,7 +30367,7 @@
       ],
       "has_property": [
         {
-          "value": 9793,
+          "value": "9793",
           "type": "code_rxnav"
         },
         {
@@ -30375,7 +30375,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51283904,
+          "value": "51283904",
           "type": "code_unspsc"
         }
       ],
@@ -30421,7 +30421,7 @@
           "type": "ddd"
         },
         {
-          "value": 1482790,
+          "value": "1482790",
           "type": "code_rxnav"
         },
         {
@@ -30536,7 +30536,7 @@
           "type": "ddd"
         },
         {
-          "value": 36567,
+          "value": "36567",
           "type": "code_rxnav"
         },
         {
@@ -30548,7 +30548,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51322704,
+          "value": "51322704",
           "type": "code_unspsc"
         },
         {
@@ -30594,7 +30594,7 @@
       ],
       "has_property": [
         {
-          "value": 1903,
+          "value": "1903",
           "type": "code_rxnav"
         },
         {
@@ -30640,7 +30640,7 @@
       ],
       "has_property": [
         {
-          "value": 9863,
+          "value": "9863",
           "type": "code_rxnav"
         },
         {
@@ -30727,7 +30727,7 @@
       ],
       "has_property": [
         {
-          "value": 36676,
+          "value": "36676",
           "type": "code_rxnav"
         },
         {
@@ -30773,7 +30773,7 @@
       ],
       "has_property": [
         {
-          "value": 9897,
+          "value": "9897",
           "type": "code_rxnav"
         },
         {
@@ -30827,7 +30827,7 @@
       ],
       "has_property": [
         {
-          "value": 9895,
+          "value": "9895",
           "type": "code_rxnav"
         },
         {
@@ -30877,7 +30877,7 @@
           "type": "ddd"
         },
         {
-          "value": 8010,
+          "value": "8010",
           "type": "code_rxnav"
         },
         {
@@ -30889,7 +30889,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51101677,
+          "value": "51101677",
           "type": "code_unspsc"
         },
         {
@@ -30964,7 +30964,7 @@
       ],
       "has_property": [
         {
-          "value": 36726,
+          "value": "36726",
           "type": "code_rxnav"
         },
         {
@@ -30976,7 +30976,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51172315,
+          "value": "51172315",
           "type": "code_unspsc"
         },
         {
@@ -31030,7 +31030,7 @@
           "type": "ddd"
         },
         {
-          "value": 1484911,
+          "value": "1484911",
           "type": "code_rxnav"
         },
         {
@@ -31042,7 +31042,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51341806,
+          "value": "51341806",
           "type": "code_unspsc"
         },
         {
@@ -31088,7 +31088,7 @@
       ],
       "has_property": [
         {
-          "value": 270,
+          "value": "270",
           "type": "code_rxnav"
         },
         {
@@ -31096,7 +31096,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51281602,
+          "value": "51281602",
           "type": "code_unspsc"
         }
       ],
@@ -31198,7 +31198,7 @@
           "type": "ddd"
         },
         {
-          "value": 9997,
+          "value": "9997",
           "type": "code_rxnav"
         },
         {
@@ -31210,7 +31210,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51191507,
+          "value": "51191507",
           "type": "code_unspsc"
         },
         {
@@ -31292,11 +31292,11 @@
       ],
       "has_property": [
         {
-          "value": 59763,
+          "value": "59763",
           "type": "code_rxnav"
         },
         {
-          "value": 51343004,
+          "value": "51343004",
           "type": "code_unspsc"
         }
       ],
@@ -31342,7 +31342,7 @@
           "type": "ddd"
         },
         {
-          "value": 10106,
+          "value": "10106",
           "type": "code_rxnav"
         },
         {
@@ -31354,7 +31354,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51131703,
+          "value": "51131703",
           "type": "code_unspsc"
         },
         {
@@ -31404,7 +31404,7 @@
           "type": "ddd"
         },
         {
-          "value": 10109,
+          "value": "10109",
           "type": "code_rxnav"
         },
         {
@@ -31416,7 +31416,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51281624,
+          "value": "51281624",
           "type": "code_unspsc"
         },
         {
@@ -31462,11 +31462,11 @@
       ],
       "has_property": [
         {
-          "value": 3446,
+          "value": "3446",
           "type": "code_rxnav"
         },
         {
-          "value": 51172316,
+          "value": "51172316",
           "type": "code_unspsc"
         }
       ],
@@ -31516,7 +31516,7 @@
           "type": "ddd"
         },
         {
-          "value": 10171,
+          "value": "10171",
           "type": "code_rxnav"
         },
         {
@@ -31528,7 +31528,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51283908,
+          "value": "51283908",
           "type": "code_unspsc"
         },
         {
@@ -31574,7 +31574,7 @@
       ],
       "has_property": [
         {
-          "value": 203218,
+          "value": "203218",
           "type": "code_rxnav"
         },
         {
@@ -31582,7 +31582,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51102904,
+          "value": "51102904",
           "type": "code_unspsc"
         }
       ],
@@ -31654,7 +31654,7 @@
       ],
       "has_property": [
         {
-          "value": 10831,
+          "value": "10831",
           "type": "code_rxnav"
         },
         {
@@ -31662,7 +31662,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51284911,
+          "value": "51284911",
           "type": "code_unspsc"
         }
       ],
@@ -31704,7 +31704,7 @@
       ],
       "has_property": [
         {
-          "value": 10831,
+          "value": "10831",
           "type": "code_rxnav"
         },
         {
@@ -31712,7 +31712,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51284911,
+          "value": "51284911",
           "type": "code_unspsc"
         }
       ],
@@ -31769,7 +31769,7 @@
       ],
       "has_property": [
         {
-          "value": 10831,
+          "value": "10831",
           "type": "code_rxnav"
         },
         {
@@ -31777,7 +31777,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51284911,
+          "value": "51284911",
           "type": "code_unspsc"
         }
       ],
@@ -31882,7 +31882,7 @@
           "type": "ddd"
         },
         {
-          "value": 9524,
+          "value": "9524",
           "type": "code_rxnav"
         },
         {
@@ -31894,7 +31894,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51202204,
+          "value": "51202204",
           "type": "code_unspsc"
         },
         {
@@ -31944,7 +31944,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51101688,
+          "value": "51101688",
           "type": "code_unspsc"
         }
       ],
@@ -32016,7 +32016,7 @@
       ],
       "has_property": [
         {
-          "value": 10154,
+          "value": "10154",
           "type": "code_rxnav"
         },
         {
@@ -32024,7 +32024,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51152046,
+          "value": "51152046",
           "type": "code_unspsc"
         }
       ],
@@ -32128,7 +32128,7 @@
           "type": "ddd"
         },
         {
-          "value": 10324,
+          "value": "10324",
           "type": "code_rxnav"
         },
         {
@@ -32140,7 +32140,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111873,
+          "value": "51111873",
           "type": "code_unspsc"
         },
         {
@@ -32186,7 +32186,7 @@
       ],
       "has_property": [
         {
-          "value": 322248,
+          "value": "322248",
           "type": "code_rxnav"
         },
         {
@@ -32194,7 +32194,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51343512,
+          "value": "51343512",
           "type": "code_unspsc"
         }
       ],
@@ -32232,7 +32232,7 @@
       ],
       "has_property": [
         {
-          "value": 1598388,
+          "value": "1598388",
           "type": "code_rxnav"
         }
       ],
@@ -32302,7 +32302,7 @@
       ],
       "has_property": [
         {
-          "value": 1008789,
+          "value": "1008789",
           "type": "code_rxnav"
         }
       ],
@@ -32370,7 +32370,7 @@
           "type": "ddd"
         },
         {
-          "value": 37801,
+          "value": "37801",
           "type": "code_rxnav"
         },
         {
@@ -32382,7 +32382,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51302502,
+          "value": "51302502",
           "type": "code_unspsc"
         },
         {
@@ -32428,11 +32428,11 @@
       ],
       "has_property": [
         {
-          "value": 37859,
+          "value": "37859",
           "type": "code_rxnav"
         },
         {
-          "value": 51182071,
+          "value": "51182071",
           "type": "code_unspsc"
         }
       ],
@@ -32522,7 +32522,7 @@
       ],
       "has_property": [
         {
-          "value": 10391,
+          "value": "10391",
           "type": "code_rxnav"
         },
         {
@@ -32530,7 +32530,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51272111,
+          "value": "51272111",
           "type": "code_unspsc"
         }
       ],
@@ -32576,7 +32576,7 @@
           "type": "ddd"
         },
         {
-          "value": 10395,
+          "value": "10395",
           "type": "code_rxnav"
         },
         {
@@ -32588,7 +32588,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51284017,
+          "value": "51284017",
           "type": "code_unspsc"
         },
         {
@@ -32634,7 +32634,7 @@
       ],
       "has_property": [
         {
-          "value": 10454,
+          "value": "10454",
           "type": "code_rxnav"
         },
         {
@@ -32642,7 +32642,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51191909,
+          "value": "51191909",
           "type": "code_unspsc"
         }
       ],
@@ -32714,7 +32714,7 @@
           "type": "ddd"
         },
         {
-          "value": 10600,
+          "value": "10600",
           "type": "code_rxnav"
         },
         {
@@ -32726,7 +32726,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51263136,
+          "value": "51263136",
           "type": "code_unspsc"
         },
         {
@@ -32772,7 +32772,7 @@
       ],
       "has_property": [
         {
-          "value": 10485,
+          "value": "10485",
           "type": "code_rxnav"
         },
         {
@@ -32780,7 +32780,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51111665,
+          "value": "51111665",
           "type": "code_unspsc"
         }
       ],
@@ -32826,7 +32826,7 @@
           "type": "ddd"
         },
         {
-          "value": 10691,
+          "value": "10691",
           "type": "code_rxnav"
         },
         {
@@ -32838,7 +32838,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51131811,
+          "value": "51131811",
           "type": "code_unspsc"
         },
         {
@@ -32895,7 +32895,7 @@
       ],
       "has_property": [
         {
-          "value": 224905,
+          "value": "224905",
           "type": "code_rxnav"
         },
         {
@@ -32907,7 +32907,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111717,
+          "value": "51111717",
           "type": "code_unspsc"
         },
         {
@@ -32949,11 +32949,11 @@
       ],
       "has_property": [
         {
-          "value": 10753,
+          "value": "10753",
           "type": "code_rxnav"
         },
         {
-          "value": 51191923,
+          "value": "51191923",
           "type": "code_unspsc"
         }
       ],
@@ -32999,7 +32999,7 @@
       ],
       "has_property": [
         {
-          "value": 2118525,
+          "value": "2118525",
           "type": "code_rxnav"
         },
         {
@@ -33007,7 +33007,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51451606,
+          "value": "51451606",
           "type": "code_unspsc"
         }
       ],
@@ -33086,7 +33086,7 @@
           "type": "ddd"
         },
         {
-          "value": 10829,
+          "value": "10829",
           "type": "code_rxnav"
         },
         {
@@ -33094,7 +33094,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51285203,
+          "value": "51285203",
           "type": "code_unspsc"
         },
         {
@@ -33140,7 +33140,7 @@
       ],
       "has_property": [
         {
-          "value": 10869,
+          "value": "10869",
           "type": "code_rxnav"
         },
         {
@@ -33152,7 +33152,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51151606,
+          "value": "51151606",
           "type": "code_unspsc"
         },
         {
@@ -33406,7 +33406,7 @@
       ],
       "has_property": [
         {
-          "value": 11002,
+          "value": "11002",
           "type": "code_rxnav"
         },
         {
@@ -33468,7 +33468,7 @@
           "type": "ddd"
         },
         {
-          "value": 275891,
+          "value": "275891",
           "type": "code_rxnav"
         },
         {
@@ -33480,7 +33480,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51342308,
+          "value": "51342308",
           "type": "code_unspsc"
         },
         {
@@ -33615,7 +33615,7 @@
       ],
       "has_property": [
         {
-          "value": 11118,
+          "value": "11118",
           "type": "code_rxnav"
         },
         {
@@ -33623,7 +33623,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51141531,
+          "value": "51141531",
           "type": "code_unspsc"
         }
       ],
@@ -33669,7 +33669,7 @@
           "type": "ddd"
         },
         {
-          "value": 11124,
+          "value": "11124",
           "type": "code_rxnav"
         },
         {
@@ -33681,7 +33681,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51282702,
+          "value": "51282702",
           "type": "code_unspsc"
         },
         {
@@ -33738,7 +33738,7 @@
       ],
       "has_property": [
         {
-          "value": 81535,
+          "value": "81535",
           "type": "code_rxnav"
         },
         {
@@ -33746,7 +33746,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51152004,
+          "value": "51152004",
           "type": "code_unspsc"
         }
       ],
@@ -33836,7 +33836,7 @@
           "type": "ddd"
         },
         {
-          "value": 11170,
+          "value": "11170",
           "type": "code_rxnav"
         },
         {
@@ -33848,7 +33848,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51431609,
+          "value": "51431609",
           "type": "code_unspsc"
         },
         {
@@ -33894,7 +33894,7 @@
       ],
       "has_property": [
         {
-          "value": 11198,
+          "value": "11198",
           "type": "code_rxnav"
         },
         {
@@ -33906,7 +33906,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111766,
+          "value": "51111766",
           "type": "code_unspsc"
         },
         {
@@ -33967,7 +33967,7 @@
       ],
       "has_property": [
         {
-          "value": 11202,
+          "value": "11202",
           "type": "code_rxnav"
         },
         {
@@ -33979,7 +33979,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111767,
+          "value": "51111767",
           "type": "code_unspsc"
         },
         {
@@ -34040,7 +34040,7 @@
       ],
       "has_property": [
         {
-          "value": 39541,
+          "value": "39541",
           "type": "code_rxnav"
         },
         {
@@ -34052,7 +34052,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51111772,
+          "value": "51111772",
           "type": "code_unspsc"
         },
         {
@@ -34158,7 +34158,7 @@
           "type": "ddd"
         },
         {
-          "value": 11289,
+          "value": "11289",
           "type": "code_rxnav"
         },
         {
@@ -34170,7 +34170,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51131604,
+          "value": "51131604",
           "type": "code_unspsc"
         },
         {
@@ -34246,7 +34246,7 @@
       ],
       "has_property": [
         {
-          "value": 11295,
+          "value": "11295",
           "type": "code_rxnav"
         },
         {
@@ -34307,7 +34307,7 @@
           "type": "ddd"
         },
         {
-          "value": 39841,
+          "value": "39841",
           "type": "code_rxnav"
         },
         {
@@ -34319,7 +34319,7 @@
           "type": "code_who_atc"
         },
         {
-          "value": 51162747,
+          "value": "51162747",
           "type": "code_unspsc"
         },
         {
@@ -34468,7 +34468,7 @@
       ],
       "has_property": [
         {
-          "value": 11413,
+          "value": "11413",
           "type": "code_rxnav"
         },
         {
@@ -34476,7 +34476,7 @@
           "type": "who_eml"
         },
         {
-          "value": 51343116,
+          "value": "51343116",
           "type": "code_unspsc"
         }
       ],
@@ -34518,7 +34518,7 @@
       ],
       "has_property": [
         {
-          "value": 39954,
+          "value": "39954",
           "type": "code_rxnav"
         },
         {
