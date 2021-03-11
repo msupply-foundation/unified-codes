@@ -321,7 +321,7 @@ export class DgraphDataSource extends RESTDataSource {
 
 
     if (isMsupply) {
-      let mSupplyEntities = [];
+      const mSupplyEntities = [];
       entities.forEach(product => {
         if (product.children) {
           product.children.forEach(route => {
@@ -331,23 +331,42 @@ export class DgraphDataSource extends RESTDataSource {
                   doseForm.children.forEach(doseQualifierOrDoseStrength => {
                       if (doseQualifierOrDoseStrength.children) {
                         doseQualifierOrDoseStrength.children.forEach(doseStrength => {
-                          const entity = {
-                            code: doseStrength.code,
-                            description: product.description + " " + doseQualifierOrDoseStrength.description + " " + doseStrength.description,
-                            type: product.type,
-                          }
-                          mSupplyEntities.push(entity);
+                          const { code } = doseStrength;
+                          const { type } = product;
+
+                          const { description: productDescription } = product;
+                          const { description: routeDescription } = route;
+                          const { description: doseFormDescription } = doseForm;
+                          const { description: doseQualifierDescription } = doseQualifierOrDoseStrength;
+                          const { description: doseStrengthDescrpition }= doseStrength;
+
+                          const description = `${productDescription} ${routeDescription} ${doseFormDescription} ${doseQualifierDescription} ${doseStrengthDescrpition}`;
+
+                          mSupplyEntities.push({
+                            code,
+                            type,
+                            description
+                          });
                         })
                       }
                       else {
-                        const entity = {
-                          code: doseQualifierOrDoseStrength.code,
-                          description: product.description + " " + doseQualifierOrDoseStrength.description,
-                          type: product.type,
-                        }
-                        mSupplyEntities.push(entity);
+                        const { code } = doseQualifierOrDoseStrength;
+                        const { type } = product;
+
+                        const { description: productDescription } = product;
+                        const { description: routeDescription } = route;
+                        const { description: doseFormDescription } = doseForm;
+                        const { description: doseStrengthDescription } = doseQualifierOrDoseStrength;
+
+                        const description = `${productDescription} ${routeDescription} ${doseFormDescription} ${doseStrengthDescription}`;
+
+                        mSupplyEntities.push({
+                          code,
+                          type,
+                          description
+                        });
                       }
-                    })
+                  })
                 }
               })
             }
