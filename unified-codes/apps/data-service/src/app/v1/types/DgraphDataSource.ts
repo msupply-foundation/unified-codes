@@ -281,7 +281,8 @@ export class DgraphDataSource extends RESTDataSource {
 
     const { query } = data ?? {};
     const [entity] = query ?? [];
-    return entity;
+
+    return DgraphDataSource.mapEntity(entity);
   }
 
   async getEntities(
