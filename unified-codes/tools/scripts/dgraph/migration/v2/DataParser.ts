@@ -281,6 +281,7 @@ export class CSVParser extends DataParser {
         productProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm });
         itemProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm_item });
         productProperties.push({ code: this.generateCode(), type: 'code_unspsc', value: unspsc });
+        itemProperties.push({ code: this.generateCode(), type: 'strength', value: strength });
 
         // If row include strength code...
         if (uc6) {
