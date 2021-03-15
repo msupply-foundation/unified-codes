@@ -19,6 +19,10 @@ const propertyFormats = [
     type: 'code_unspsc',
     title: 'UNSPSC Code',
   },
+  {
+    type: 'strength',
+    title: 'Strength',
+  },
 ];
 
 export const propertyFormatter = (type?: string, value?: string) => {
