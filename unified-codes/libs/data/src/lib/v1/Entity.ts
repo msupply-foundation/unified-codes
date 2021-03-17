@@ -1,10 +1,17 @@
 import { IProperty, Property } from './Property';
 
-export enum EEntityType {
+export enum EEntityCategory {
   DRUG = 'drug',
   MEDICINAL_PRODUCT = 'medicinal_product',
-  UNIT_OF_USE = 'unit_of_use',
   OTHER = 'other',
+}
+
+export enum EEntityType {
+  DRUG = 'drug',
+  FORM_CATEGORY = 'form_category',
+  FORM = 'form',
+  UNIT_OF_USE = 'unit_of_use',
+  STRENGTH = 'strength',
 }
 
 export enum EEntityField {
