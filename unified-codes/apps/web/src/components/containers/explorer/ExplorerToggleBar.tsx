@@ -3,7 +3,7 @@ import { batch, connect } from 'react-redux';
 
 import { CheckCircleIcon, AddIcon, Grid } from '@unified-codes/ui/components';
 import { withStyles } from '@unified-codes/ui/styles';
-import { EEntityType } from '@unified-codes/data/v1';
+import { EEntityCategory } from '@unified-codes/data/v1';
 
 import ExplorerToggleButton from './ExplorerToggleButton';
 
@@ -46,13 +46,13 @@ const mergeProps = (stateProps: any, dispatchProps: any) => {
   } = dispatchProps;
 
   const drugButtonLabel = 'Drug';
-  const drugButtonKey = EEntityType.DRUG;
+  const drugButtonKey = EEntityCategory.DRUG;
   const drugButtonColor = filterByDrug ? 'primary' : 'secondary';
   const drugButtonStartIcon = filterByDrug ? <CheckCircleIcon /> : <AddIcon />;
   const drugButtonOnClick = onToggleFilterByDrug;
 
   const medicinalProductButtonLabel = 'Medicinal product';
-  const medicinalProductButtonKey = EEntityType.MEDICINAL_PRODUCT;
+  const medicinalProductButtonKey = EEntityCategory.MEDICINAL_PRODUCT;
   const medicinalProductButtonColor = filterByMedicinalProduct ? 'primary' : 'secondary';
   const medicinalProductButtonStartIcon = filterByMedicinalProduct ? (
     <CheckCircleIcon />
@@ -62,7 +62,7 @@ const mergeProps = (stateProps: any, dispatchProps: any) => {
   const medicinalProductButtonOnClick = onToggleFilterByMedicinalProduct;
 
   const otherButtonLabel = 'Other';
-  const otherButtonKey = EEntityType.OTHER;
+  const otherButtonKey = EEntityCategory.OTHER;
   const otherButtonColor = filterByOther ? 'primary' : 'secondary';
   const otherButtonStartIcon = filterByOther ? <CheckCircleIcon /> : <AddIcon />;
   const otherButtonOnClick = onToggleFilterByOther;

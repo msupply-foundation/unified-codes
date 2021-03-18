@@ -1,10 +1,11 @@
-import { EEntityField, EEntityType } from '@unified-codes/data/v1';
+import { EEntityCategory, EEntityField, EEntityType } from '@unified-codes/data/v1';
 
 export interface IExplorerParameters {
   code?: string;
   description?: string;
   orderBy?: EEntityField;
   orderDesc?: boolean;
+  categories?: EEntityCategory[];
   types?: EEntityType[];
   page?: number;
   rowsPerPage?: number;
@@ -15,6 +16,7 @@ export class ExplorerQuery {
   private _description: string;
   private _orderBy: EEntityField;
   private _orderDesc: boolean;
+  private _categories: EEntityCategory[];
   private _types: EEntityType[];
   private _page: number;
   private _rowsPerPage: number;
@@ -24,7 +26,8 @@ export class ExplorerQuery {
     description = '',
     orderBy = EEntityField.DESCRIPTION,
     orderDesc = false,
-    types = [EEntityType.MEDICINAL_PRODUCT],
+    categories = [EEntityCategory.DRUG, EEntityCategory.MEDICINAL_PRODUCT, EEntityCategory.OTHER],
+    types = [EEntityType.DRUG],
     page = 0,
     rowsPerPage = 25,
   }: IExplorerParameters) {
@@ -32,6 +35,7 @@ export class ExplorerQuery {
     this._description = description;
     this._orderBy = orderBy;
     this._orderDesc = orderDesc;
+    this._categories = categories;
     this._types = types;
     this._page = page;
     this._rowsPerPage = rowsPerPage;
@@ -46,11 +50,20 @@ export class ExplorerQuery {
   }
 
   private get _filterString(): string {
-    const filterCode = `code: "${this._code}"`;
-    const filterDescription = `description: "${this._description}"`;
-    const filterTypes = `type: "[${this._types}]"`;
-    const filterOrderBy = `orderBy: { field: "${this._orderBy}" descending: ${this._orderDesc} }`;
-    return `{ ${filterCode} ${filterDescription} ${filterTypes} ${filterOrderBy} }`;
+    const codeFilterString = JSON.stringify(this._code);
+    const categoryFilterString = JSON.stringify(this._categories);
+    const descriptionFilterString = JSON.stringify(this._description);
+    // TODO: update mSupply to query types as JSON array.
+    const typesFilterString = `"${this._types}"`;
+    const orderByFilterString = JSON.stringify(this._orderBy);
+    const orderDescFilterString = JSON.stringify(this._orderDesc);
+    
+    const codeFilter = `code: ${codeFilterString}`;
+    const categoryFilter = `categories: ${categoryFilterString}`;
+    const descriptionFilter = `description: ${descriptionFilterString}`;
+    const typesFilter = `type: ${typesFilterString}`;
+    const orderByFilter = `orderBy: { field: ${orderByFilterString} descending: ${orderDescFilterString} }`;
+    return `{ ${codeFilter} ${categoryFilter} ${descriptionFilter} ${typesFilter} ${orderByFilter} }`;
   }
 
   public toString(): string {

@@ -1,8 +1,9 @@
 import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest';
 
 import {
-  EEntityField,
+  EEntityCategory,
   EEntityType,
+  EEntityField,
   IEntity,
   EntityCollection,
   IEntityCollection,
@@ -29,34 +30,33 @@ export class DgraphDataSource extends RESTDataSource {
     return orderString;
   }
 
-  private static getEntityTypeString(type: string) {
-    switch (type) {
-      case EEntityType.DRUG:
-      case EEntityType.MEDICINAL_PRODUCT:
-      case EEntityType.UNIT_OF_USE:
-      case EEntityType.OTHER:
-      default:
-        return 'Product';
-    }
+  private static getEntityTypeString(types: string[]) {
+    return JSON.stringify(types.map(type => {
+      switch (type) {
+        case EEntityType.FORM_CATEGORY:
+        case EEntityType.FORM:
+          return 'Form';
+        case EEntityType.UNIT_OF_USE:
+        case EEntityType.STRENGTH:
+          return 'Unit';
+        case EEntityType.DRUG:
+        default:
+          return 'Product';
+      }
+    }));
   }
 
-  private static getEntityCategoryString(type: string) {
-    const types = type.replace(/[[\]]+/g, '').split(/[\s,]+/);
-    const categories = types.map((type) => {
-      switch (type) {
-        case EEntityType.DRUG:
+  private static getEntityCategoryString(categories: string[]) {
+    return JSON.stringify(categories.map(category => {
+      switch(category) {
+        case EEntityCategory.DRUG:
           return 'Drug';
-        case EEntityType.MEDICINAL_PRODUCT:
+        case EEntityCategory.MEDICINAL_PRODUCT:
           return 'Consumable';
-        case EEntityType.UNIT_OF_USE:
-          return 'DoseUnit';
-        case EEntityType.OTHER:
+        case EEntityCategory.OTHER:
           return 'Other';
-        default:
-          return type;
       }
-    });
-    return JSON.stringify(categories);
+    }));
   }
 
   private static getEntityQuery(code: string) {
@@ -112,7 +112,8 @@ export class DgraphDataSource extends RESTDataSource {
   }
 
   private static getEntitiesQuery(
-    type: string,
+    types: string[],
+    categories?: string[],
     description?: string,
     orderField?: string,
     orderDesc?: boolean,
@@ -120,17 +121,16 @@ export class DgraphDataSource extends RESTDataSource {
     offset?: number,
     match?: FilterMatch
   ) {
-    const typeString = this.getEntityTypeString(type);
-    const categoryString = this.getEntityCategoryString(type);
+    const typeString = this.getEntityTypeString(types);    
+    const categoryString = this.getEntityCategoryString(categories);
     const orderString = this.getEntitiesOrderString(orderField, orderDesc);
     const filterString = this.getEntitiesFilterString(description, match);
-
-    const types = type.replace(/[[\]]+/g, '').split(/[\s,]+/);
+  
     const isMsupply = types.includes(EEntityType.UNIT_OF_USE);
 
     if (isMsupply) {
       return `{
-        all as counters(func: eq(dgraph.type, "${typeString}")) ${filterString} @cascade { 
+        all as counters(func: eq(dgraph.type, ${typeString})) ${filterString} @cascade { 
           ~children @filter(eq(name, ${categoryString}))
           total: count(uid)
         }
@@ -183,7 +183,7 @@ export class DgraphDataSource extends RESTDataSource {
     }
 
     return `{
-      all as counters(func: eq(dgraph.type, "${typeString}")) ${filterString} @cascade { 
+      all as counters(func: eq(dgraph.type, ${typeString})) ${filterString} @cascade { 
         ~children @filter(eq(name, ${categoryString}))
         total: count(uid)
       }
@@ -202,7 +202,7 @@ export class DgraphDataSource extends RESTDataSource {
           description: name@*
         }
       }
-    }`;
+    }`;    
   }
 
   private static getEntityType(entity: IEntity): string {
@@ -214,21 +214,21 @@ export class DgraphDataSource extends RESTDataSource {
         const [parent] = entity.parents ?? [];
         switch (parent?.description) {
           case 'Consumable':
-            return EEntityType.MEDICINAL_PRODUCT;
+            return EEntityCategory.MEDICINAL_PRODUCT;
           case 'Other':
-            return EEntityType.OTHER;
+            return EEntityCategory.OTHER;
           default:
-            return EEntityType.DRUG;
+            return EEntityCategory.DRUG;
         }
       case 'Route':
-        return 'form_category';
+        return EEntityType.FORM_CATEGORY;
       case 'DoseForm':
-        return 'form';
       case 'DoseFormQualifier':
-        return 'form_qualifier';
+        return EEntityType.FORM;
       case 'DoseStrength':
+        return EEntityType.STRENGTH;
       case 'DoseUnit':
-        return 'unit_of_use';
+        return EEntityType.UNIT_OF_USE;
       default:
         return 'n/a';
     }
@@ -290,16 +290,19 @@ export class DgraphDataSource extends RESTDataSource {
     first?: number,
     offset?: number
   ): Promise<IEntityCollection> {
-    const { type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
+    const { categories = [EEntityCategory.DRUG, EEntityCategory.MEDICINAL_PRODUCT, EEntityCategory.OTHER], type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = false } =
       orderBy ?? {};
     
     const types = type.replace(/[[\]]+/g, '').split(/[\s,]+/);
+
+    // Backwards compatibility until mSupply can be migrated.
     const isMsupply = types.includes(EEntityType.UNIT_OF_USE);
-    
+
     const data = await this.postQuery(
       DgraphDataSource.getEntitiesQuery(
-        type,
+        types,
+        categories,
         description,
         orderField,
         orderDesc,

@@ -1,4 +1,4 @@
-import { EEntityField, EEntityType } from '@unified-codes/data/v1';
+import { EEntityField, EEntityCategory } from '@unified-codes/data/v1';
 
 import { IExplorerState } from '../types';
 
@@ -29,9 +29,9 @@ const initialState: IExplorerState = {
     page: 0,
   },
   toggleBar: {
-    [EEntityType.DRUG]: true,
-    [EEntityType.MEDICINAL_PRODUCT]: false,
-    [EEntityType.OTHER]: false,
+    [EEntityCategory.DRUG]: true,
+    [EEntityCategory.MEDICINAL_PRODUCT]: false,
+    [EEntityCategory.OTHER]: false,
   },
 };
 
@@ -110,7 +110,7 @@ export const ExplorerReducer = (
     case EXPLORER_ACTIONS.TOGGLE_FILTER_BY_DRUG: {
       return {
         ...state,
-        toggleBar: { ...state.toggleBar, [EEntityType.DRUG]: !state.toggleBar[EEntityType.DRUG] },
+        toggleBar: { ...state.toggleBar, [EEntityCategory.DRUG]: !state.toggleBar[EEntityCategory.DRUG] },
       };
     }
 
@@ -119,7 +119,7 @@ export const ExplorerReducer = (
         ...state,
         toggleBar: {
           ...state.toggleBar,
-          [EEntityType.MEDICINAL_PRODUCT]: !state.toggleBar[EEntityType.MEDICINAL_PRODUCT],
+          [EEntityCategory.MEDICINAL_PRODUCT]: !state.toggleBar[EEntityCategory.MEDICINAL_PRODUCT],
         },
       };
     }
@@ -127,7 +127,7 @@ export const ExplorerReducer = (
     case EXPLORER_ACTIONS.TOGGLE_FILTER_BY_OTHER: {
       return {
         ...state,
-        toggleBar: { ...state.toggleBar, [EEntityType.OTHER]: !state.toggleBar[EEntityType.OTHER] },
+        toggleBar: { ...state.toggleBar, [EEntityCategory.OTHER]: !state.toggleBar[EEntityCategory.OTHER] },
       };
     }
 
