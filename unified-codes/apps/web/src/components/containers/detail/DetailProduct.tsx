@@ -64,8 +64,8 @@ export const DetailProductComponent: DetailProduct = ({ entity, fetchEntity }) =
         Product
       </Typography>
       <Typography className={classes.product} onClick={onProductClick}>
-        <Typography>{description}</Typography>
-        <Typography className={classes.code}>{code}</Typography>
+        {description}
+        <span className={classes.code}>{code}</span>
       </Typography>
     </Container>
   );
