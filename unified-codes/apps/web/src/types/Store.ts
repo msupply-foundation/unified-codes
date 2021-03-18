@@ -1,4 +1,4 @@
-import { IUser, EEntityField, IEntity, EEntityType } from '@unified-codes/data/v1';
+import { IUser, EEntityField, IEntity, EEntityType, EEntityCategory } from '@unified-codes/data/v1';
 
 import { IAlert } from './Alert';
 
@@ -24,9 +24,9 @@ export interface IExplorerTableState {
 }
 
 export interface IExplorerToggleBarState {
-  [EEntityType.DRUG]: boolean;
-  [EEntityType.MEDICINAL_PRODUCT]: boolean;
-  [EEntityType.OTHER]: boolean;
+  [EEntityCategory.DRUG]: boolean;
+  [EEntityCategory.MEDICINAL_PRODUCT]: boolean;
+  [EEntityCategory.OTHER]: boolean;
 }
 
 export interface IDetailState {

@@ -74,6 +74,10 @@ export class EntitySearchInput implements Omit<IEntitySearch, 'type'> {
   orderBy: IEntitySort;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @Field((type) => [String], { nullable: true })
+  categories: string[];
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String, { nullable: true })
   type: string;
 

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { EEntityField, EEntityType, IEntity } from '@unified-codes/data/v1';
+import { EEntityField, EEntityType, IEntity, EEntityCategory } from '@unified-codes/data/v1';
 
 import {
   IExplorerSearchBarState,
@@ -86,23 +86,23 @@ const selectEntities = createSelector(
 
 const selectFilterByDrug = createSelector(
   selectToggleBar,
-  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.DRUG]
+  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityCategory.DRUG]
 );
 
 const selectFilterByMedicinalProduct = createSelector(
   selectToggleBar,
-  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.MEDICINAL_PRODUCT]
+  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityCategory.MEDICINAL_PRODUCT]
 );
 
 const selectFilterByOther = createSelector(
   selectToggleBar,
-  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityType.OTHER]
+  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityCategory.OTHER]
 );
 
-const selectTypes = createSelector(
+const selectCategories = createSelector(
   selectToggleBar,
-  (toggleBar: IExplorerToggleBarState): EEntityType[] =>
-    Object.keys(toggleBar).filter((type: EEntityType) => toggleBar[type]) as EEntityType[]
+  (toggleBar: IExplorerToggleBarState): EEntityCategory[] =>
+    Object.keys(toggleBar).filter((category: EEntityCategory) => toggleBar[category]) as EEntityCategory[]
 );
 
 const selectLoading = createSelector(
@@ -126,7 +126,7 @@ export const TableSelectors = {
   selectOrderDesc,
   selectPage,
   selectRowsPerPage,
-  selectTypes,
+  selectCategories,
 };
 
 export const ToggleBarSelectors = {
