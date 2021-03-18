@@ -1,5 +1,11 @@
 import { IProperty, Property } from '../Property';
 
+export enum EEntityCategory {
+  DRUG = 'drug',
+  CONSUMABLE = 'consumable',
+  OTHER = 'other',
+}
+
 export enum EEntityField {
   Code = 'code',
   Name = 'name',
