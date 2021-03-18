@@ -52,8 +52,9 @@ export class DgraphDataSource extends RESTDataSource {
         case EEntityCategory.DRUG:
           return 'Drug';
         case EEntityCategory.MEDICINAL_PRODUCT:
-        case EEntityCategory.OTHER:
           return 'Consumable';
+        case EEntityCategory.OTHER:
+          return 'Other';
       }
     }));
   }
