@@ -57,7 +57,7 @@ function* fetchData() {
     if (url) {
       const code = yield select(ExplorerSelectors.selectCode);
       const description = yield select(ExplorerSelectors.selectDescription);
-      const types = yield select(ExplorerSelectors.selectTypes);
+      const categories = yield select(ExplorerSelectors.selectCategories);
       const orderBy = yield select(ExplorerSelectors.selectOrderBy);
       const orderDesc = yield select(ExplorerSelectors.selectOrderDesc);
       const rowsPerPage = yield select(ExplorerSelectors.selectRowsPerPage);
@@ -66,7 +66,7 @@ function* fetchData() {
       const parameters: IExplorerParameters = {
         code,
         description,
-        types,
+        categories,
         orderBy,
         orderDesc,
         rowsPerPage,
