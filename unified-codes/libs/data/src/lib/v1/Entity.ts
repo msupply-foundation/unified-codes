@@ -24,8 +24,7 @@ export enum EEntityField {
 export interface IEntity {
   code: string;
   description: string;
-  type?: EEntityType | string;
-  types?: string[];
+  type: EEntityType | string;
   children?: IEntity[];
   parents?: IEntity[];
   properties?: IProperty[];
