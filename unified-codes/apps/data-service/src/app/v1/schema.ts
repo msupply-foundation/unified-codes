@@ -20,6 +20,10 @@ export class EntityType implements IEntity {
   children: IEntity[];
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @Field((type) => [EntityType], { nullable: true })
+  parents: IEntity[];
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field((type) => String)
   code: string;
 
