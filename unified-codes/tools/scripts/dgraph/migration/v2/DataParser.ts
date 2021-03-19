@@ -32,11 +32,12 @@ interface IRow {
   dose_form: string;
   dose_qualification: string;
   strength: string;
-  unit_of_presentation;
-  immediate_packaging;
-  pack_size;
-  outer_packaging;
-  brand;
+  unit_of_presentation: string;
+  immediate_packaging: string;
+  pack_size: string;
+  outer_packaging: string;
+  manufacturer: string;
+  brand: string;
   uc1: string;
   uc2: string;
   uc3: string;
@@ -44,10 +45,11 @@ interface IRow {
   uc5: string;
   uc6: string;
   uc7: string;
-  uc8_immediate;
-  uc8_pack;
-  uc9;
-  uc10;
+  uc8: string;
+  uc9: string;
+  uc10: string;
+  uc11: string;
+  uc12: string;
   rxnav: string;
   who_eml_product: string;
   who_eml_item: string;
@@ -245,7 +247,6 @@ export class CSVParser extends DataParser {
                 .trim()
                 .toLowerCase()
                 .replace(REGEX.CR_LF, '')
-                .replace(REGEX.UC8_AND_DESCRIPTION_WITHIN_BRACKETS, '$1 $2') // this is because there are two UC8 columns and we wish to retain the description to distinguish them
                 .replace(REGEX.BRACKETED_DESCRIPTION, '')
                 .replace(REGEX.SPACE, '_');
               return { ...acc, [key]: value };
@@ -281,7 +282,7 @@ export class CSVParser extends DataParser {
       this.data.forEach((row) => {
         const {
           product,
-          product_synonym,
+          //product_synonym,
           combination,
           route,
           dose_form,
@@ -290,8 +291,9 @@ export class CSVParser extends DataParser {
           unit_of_presentation,
           immediate_packaging,
           pack_size,
-          outer_packaging,
-          brand,
+          //outer_packaging,
+          //manufacturer,
+          //brand,
           uc1,
           uc2,
           uc3,
@@ -299,10 +301,11 @@ export class CSVParser extends DataParser {
           uc5,
           uc6,
           uc7,
-          uc8_immediate,
-          uc8_pack,
+          uc8,
           uc9,
-          uc10,
+          //uc10,
+          //uc11,
+          //uc12,
           rxnav,
           who_eml_product,
           who_eml_item,
@@ -310,24 +313,96 @@ export class CSVParser extends DataParser {
           nzulm_item,
           unspsc,
         } = row;
+
         const productProperties: INode[] = [];
         const itemProperties: INode[] = [];
+
         productProperties.push({ code: this.generateCode(), type: 'code_rxnav', value: rxnav });
         productProperties.push({
           code: this.generateCode(),
           type: 'who_eml',
           value: who_eml_product,
         });
+
         itemProperties.push({ code: this.generateCode(), type: 'who_eml', value: who_eml_item });
         productProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm });
         itemProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm_item });
         productProperties.push({ code: this.generateCode(), type: 'code_unspsc', value: unspsc });
 
+        // If row includes pack size code...
+        if (uc9) {
+            const code = uc9;
+            const name = pack_size;
+            const type = EEntityType.PackSize;
+
+            // and node does not exist...
+            if (!(uc9 in this.graph)) {
+                // create pack size node.
+                const node = {
+                    code,
+                    name,
+                    type,
+                    children: [],
+                    properties: [],
+                };
+
+                this.graph[uc9] = node;
+
+                console.log(`INFO: Created node of type ${type}: ${JSON.stringify(node)}`);
+            }
+        }
+
+        // If row includes immediate packaging code...
+        if (uc8) {
+            const code = uc8;
+            const name = immediate_packaging;
+            const type = EEntityType.PackImmediate;
+
+            // and node does not exist...
+            if (!(uc8 in this.graph)) {
+                // create unit node.
+                const node = {
+                    code,
+                    name,
+                    type,
+                    children: [],
+                    properties: [],
+                };
+
+                this.graph[uc8] = node;
+
+                console.log(`INFO: Created node of type ${type}: ${JSON.stringify(node)}`);
+            }
+        }
+
+        // If row includes unit of presentation code...
+        if (uc7) {
+            const code = uc7;
+            const name = unit_of_presentation;
+            const type = EEntityType.Unit;
+
+            // and node does not exist...
+            if (!(uc7 in this.graph)) {
+                // create unit node.
+                const node = {
+                    code,
+                    name,
+                    type,
+                    children: [],
+                    properties: [],
+                };
+
+                this.graph[uc7] = node;
+
+                console.log(`INFO: Created node of type ${type}: ${JSON.stringify(node)}`);
+            }
+        }
+
         // If row include strength code...
         if (uc6) {
           const code = uc6;
           const name = strength;
-          const type = 'DoseStrength';
+          const type = EEntityType.DoseStrength;
 
           // and node does not exist...
           if (!(uc6 in this.graph)) {
@@ -342,7 +417,7 @@ export class CSVParser extends DataParser {
 
             this.graph[uc6] = node;
 
-            console.log(`INFO: Created strength node: ${JSON.stringify(node)}`);
+            console.log(`INFO: Created node of type ${type}: ${JSON.stringify(node)}`);
           }
           // and node exists...
           else {
@@ -357,7 +432,7 @@ export class CSVParser extends DataParser {
         if (uc5) {
           const code = uc5;
           const name = dose_qualification;
-          const type = 'DoseQualifier';
+          const type = 'DoseFormQualifier';
 
           // and node does not exist...
           if (!(uc5 in this.graph)) {
@@ -474,6 +549,48 @@ export class CSVParser extends DataParser {
           }
         }
 
+        // If pack immediate code exists...
+        if (uc8) {
+          // and pack size code exists...
+          if (uc9) {
+            // link pack immediate to pack size.
+            if (!this.graph[uc8].children.map((child) => child.code).includes(uc9)) {
+              this.graph[uc8].children.push({ code: uc9 });
+              console.log(
+                `INFO: Linked pack immediate with code ${uc8} to pack size with code ${uc9}`
+              );
+            }
+          }
+        }
+
+        // If unit code exists...
+        if (uc7) {
+          // and pack immediate code exists...
+          if (uc8) {
+            // link unit to pack immediate.
+            if (!this.graph[uc7].children.map((child) => child.code).includes(uc8)) {
+              this.graph[uc7].children.push({ code: uc8 });
+              console.log(
+                `INFO: Linked unit with code ${uc7} to pack immediate with code ${uc8}`
+              );
+            }
+          }
+        }
+
+        // If dose strength code exists...
+        if (uc6) {
+          // and unit code exists...
+          if (uc7) {
+            // link dose strength to unit.
+            if (!this.graph[uc6].children.map((child) => child.code).includes(uc7)) {
+              this.graph[uc6].children.push({ code: uc7 });
+              console.log(
+                `INFO: Linked dose strength with code ${uc6} to unit with code ${uc7}`
+              );
+            }
+          }
+        }
+
         // If dose qualifier code exists...
         if (uc5) {
           // and strength code exists...
@@ -482,7 +599,7 @@ export class CSVParser extends DataParser {
             if (!this.graph[uc5].children.map((child) => child.code).includes(uc6)) {
               this.graph[uc5].children.push({ code: uc6 });
               console.log(
-                `INFO: Linked dose qualifier with code ${uc5} to strength with code ${uc6}`
+                `INFO: Linked dose qualifier with code ${uc5} to dose strength with code ${uc6}`
               );
             }
           }
