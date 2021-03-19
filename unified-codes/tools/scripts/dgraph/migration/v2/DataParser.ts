@@ -67,12 +67,48 @@ interface INode {
   value?: string;
 }
 
+interface INode {
+    code: string;
+    name?: string;
+    type?: string;
+    combines?: INode[];
+    properties?: INode[];
+    children?: INode[];
+    value?: string;
+  }
+
 type IGraph = { [code: string]: INode };
 
 enum UCCode {
+  Root = 'root',
   Drug = '933f3f00',
   Consumable = '77fcbb00',
 }
+
+const Root: INode = {
+    code: UCCode.Root,
+    name: 'Root', 
+    type: EEntityType.Root,
+    children: [], 
+    properties: []
+};
+
+const Drug: INode = {
+    code: UCCode.Drug,
+    name: 'Drug',
+    type: EEntityType.Category,
+    children: [], 
+    properties: []
+};
+
+const Consumable: INode = {
+    code: UCCode.Consumable,
+    name: 'Consumable',
+    type: EEntityType.Category,
+    children: [],
+    properties: [],
+}
+
 export abstract class DataParser {
   public readonly path: fs.PathLike;
   public readonly options:
@@ -227,25 +263,14 @@ export class CSVParser extends DataParser {
   public buildGraph(): IGraph {
     if (this.isBuilt) return this.graph;
 
-    // Initialise category nodes.
-    // TODO: get category codes from input file.
-    const drug = { code: '933f3f00', name: 'Drug', type: 'Category', children: [], properties: [] };
-    const consumable = {
-      code: '77fcbb00',
-      name: 'Consumable',
-      type: 'Category',
-      children: [],
-      properties: [],
-    };
-
     // Initialise root node.
-    const root = { code: 'root', name: 'Root', type: 'Root', children: [], properties: [] };
+    const root = { code: 'root', name: 'Root', type: EEntityType.Root, children: [], properties: [] };
 
     // Initialise adjacency list for storing graph.
     this.graph = {
       root: root,
-      [drug.code]: drug,
-      [consumable.code]: consumable,
+      [Drug.code]: Drug,
+      [Consumable.code]: Consumable,
     };
 
     try {
