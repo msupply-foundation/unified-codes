@@ -1,6 +1,22 @@
 import * as csv from 'csv-parser';
 import * as fs from 'fs';
 
+enum EEntityType {
+  Root = 'Root',
+  Category = 'Category',
+  Product = 'Product',
+  Route = 'Route',
+  Form = 'Form',
+  FormQualifier = 'FormQualifier',
+  DoseStrength = 'DoseStrength',
+  Unit = 'Unit',
+  PackImmediate = 'PackImmediate',
+  PackSize = 'PackSize',
+  PackOuter = 'PackOuter',
+  Manufacturer = 'Manufacturer',
+  Brand = 'Brand',
+}
+
 const REGEX = {
   CR_LF: /[\r\n]/g,
   UC8_AND_DESCRIPTION_WITHIN_BRACKETS: /(uc8) *\(([^)]*)\)/,
