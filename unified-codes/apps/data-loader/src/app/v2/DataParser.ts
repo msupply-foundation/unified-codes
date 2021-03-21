@@ -39,7 +39,7 @@ const UC_ENTITY: { [name: string]: IEntityNode } = {
   }
 };
 
-export class CSVParser {
+export class DataParser {
   public readonly path: fs.PathLike;
   public readonly options:
     | string
@@ -648,9 +648,10 @@ export class CSVParser {
   public getData() {
     return this.data;
   }
+
   public getGraph() {
     return this.graph;
   }
 }
 
-export default CSVParser;
+export default DataParser;

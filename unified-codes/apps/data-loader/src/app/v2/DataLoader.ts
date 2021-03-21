@@ -1,17 +1,100 @@
-import DgraphClient from './DgraphClient';
+
+import dgraph from 'dgraph-js';
 
 import { IEntityNode, IEntityGraph } from './types';
 
-export class DgraphLoader {
-  private readonly dgraph: DgraphClient;
+export class DgraphClient {
+  public readonly host: string;
+  public readonly port: string;
+  
+  private readonly stub: dgraph.DgraphClientStub;
+  private readonly client: dgraph.DgraphClient;
 
-  constructor(dgraph: DgraphClient) {
-    this.dgraph = dgraph;
+  constructor(host: string, port: string) {
+    this.host = host;
+    this.port = port;
+
+    this.stub = new dgraph.DgraphClientStub(`${this.host}:${this.port}`);
+    this.client = new dgraph.DgraphClient(this.stub);
   }
 
-  public async load(graph: IEntityGraph): Promise<boolean> {
+  async alter(schema: string) {
+    const operation: dgraph.Operation = new dgraph.Operation();
+    operation.setSchema(schema);
+    await this.client.alter(operation);
+  }
+
+  async dropAll() {
+    const operation: dgraph.Operation = new dgraph.Operation();
+    operation.setDropAll(true);
+    await this.client.alter(operation);
+  }
+
+  async mutate(nQuads: string, commitNow: boolean = true) {
+    const mutation: dgraph.Mutation = new dgraph.Mutation;
+    mutation.setSetNquads(nQuads);
+
+    const request: dgraph.Request = new dgraph.Request();
+    request.setCommitNow(commitNow);
+    request.setMutationsList([mutation]);
+
+    const txn: dgraph.Txn = this.client.newTxn();
+
+    try {
+      await txn.doRequest(request);
+      txn.discard();
+      return true;
+    } catch {
+      txn.discard();
+      return false;
+    }
+  }
+
+  async upsert(query: string, nQuads: string, commitNow: boolean = true) {
+    const mutation = new dgraph.Mutation();
+    mutation.setSetNquads(nQuads);
+
+    const request = new dgraph.Request();
+    request.setCommitNow(commitNow);
+    request.setMutationsList([mutation]);
+
+    request.setQuery(query);
+
+    const txn: dgraph.Txn = this.client.newTxn();
+
+    try {
+      await txn.doRequest(request);
+      txn.discard();
+      return true;
+    } catch {
+      txn.discard();
+      return false;
+    }
+  }
+}
+
+export class DataLoader {
+  private readonly dgraph: DgraphClient;
+
+  constructor(host: string, port: string) {
+    this.dgraph = new DgraphClient(host, port);
+  }
+
+  public async load(schema: string, graph: IEntityGraph): Promise<boolean> {
+    // Delete all existing data.
+    await this.dgraph.dropAll();
+
+    console.log(`INFO: Dropped existing Dgraph data`);
+
+    // Load schema.
+    await this.dgraph.alter(schema);
+
+    console.log(`INFO: Loaded Dgraph schema`);
+
     // Extract entity nodes from graph.
     const entities: IEntityNode[] = Object.values(graph);
+
+    console.log(`INFO: Extracted entity nodes`);
 
     // Load individual entities.
     for await (const entity of entities) {

@@ -1,122 +1,38 @@
 import path from 'path';
 
-import { CSVParser } from './v2/CSVParser';
-import DgraphClient from './v2/DgraphClient';
-import { DgraphLoader } from './v2/DgraphLoader';
+import { DataLoader, DataParser, SchemaParser } from './v2';
 
 const hostname = 'localhost';
 const port = '9080';
 
-const dirPath = '../../../data';
-const filePath = 'v2/products.csv';
 
-const data = path.resolve(__dirname, `${dirPath}/${filePath}`);
+const dirPath = '../../../data';
+const schemaPath = 'v2/schema.gql'
+const dataPath = 'v2/products.csv';
+
+const schemaFile = path.resolve(__dirname, `${dirPath}/${schemaPath}`);
+const dataFile = path.resolve(__dirname, `${dirPath}/${dataPath}`);
 
 const main = async () => { 
-  const parser = new CSVParser(data);
-  
-  await parser.parseData();
-  parser.buildGraph();
+  const schemaParser = new SchemaParser(schemaFile);
+  await schemaParser.parseSchema();
 
-  if (parser.isValid()) {
-    const dgraph = new DgraphClient(hostname, port);
+  const dataParser = new DataParser(dataFile);
+  await dataParser.parseData();
+  dataParser.buildGraph();
 
-    dgraph.alter(`
-      type Property {
-        type
-        value
-      }
-      
-      type Category {
-        code
-        name
-        children
-        properties
-      }
-      
-      type Product {
-        code
-        name
-        combines
-        children
-        properties
-      }
-      
-      type Route {
-        code
-        name
-        children
-        properties
-      }
-      
-      type DoseForm {
-        code
-        name
-        children
-        properties
-      }
-      
-      type DoseFormQualifier {
-        code
-        name
-        children
-        properties
-      }
-      
-      type DoseStrength {
-        code
-        name
-        children
-        properties
-      }
-      
-      type DoseUnit {
-        code
-        name
-        children
-        properties
-      }
-      
-      type PackImmediate {
-        code
-        name
-        children
-        properties
-      }
-      
-      type PackSize {
-        code
-        name
-        children
-        properties
-      }
-      
-      type PackOuter {
-        code
-        name
-        children
-        properties
-      }
-      
-      code: string @index(exact, fulltext).
-      name: string @lang @index(exact, term, trigram) .
-      type: string @index(term) .
-      value: string .
-      combines: [uid] .
-      properties: [uid] .
-      children: [uid] @reverse . 
-    `);
-
-    const loader = new DgraphLoader(dgraph);
+  if (dataParser.isValid()) {
+    const loader = new DataLoader(hostname, port);
 
     try {
-      const graph = await parser.getGraph();
-      await loader.load(graph);
+      const schema = schemaParser.getSchema();
+      const graph = dataParser.getGraph();
+      await loader.load(schema, graph);
     } catch (err) {
       console.log(`Failed to load data due to following error: ${err}`);
     }
   } else {
-    const cycles = parser.detectCycles();
+    const cycles = dataParser.detectCycles();
     console.log(`Failed to load data due to cycles in data: ${cycles}`);
   }
 };
