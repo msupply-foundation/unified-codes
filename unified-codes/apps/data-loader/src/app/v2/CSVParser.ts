@@ -1,30 +1,7 @@
 import * as csv from 'csv-parser';
 import * as fs from 'fs';
 
-import { IRow, IData } from './Data';
-import { INode, IGraph } from './Graph';
-
-enum EEntityType {
-  Root = 'Root',
-  Category = 'Category',
-  Product = 'Product',
-  Route = 'Route',
-  Form = 'Form',
-  FormQualifier = 'FormQualifier',
-  DoseStrength = 'DoseStrength',
-  Unit = 'Unit',
-  PackImmediate = 'PackImmediate',
-  PackSize = 'PackSize',
-  PackOuter = 'PackOuter',
-  Manufacturer = 'Manufacturer',
-  Brand = 'Brand',
-}
-
-const REGEX = {
-  CR_LF: /[\r\n]/g,
-  BRACKETED_DESCRIPTION: / *\([^)]*\) */g,
-  SPACE: / /g,
-};
+import { ICSVRow, ICSVData, IEntityGraph, IEntityNode, IPropertyNode, EEntityType, EPropertyType } from './types';
 
 enum UCCode {
   Root = 'root',
@@ -32,31 +9,37 @@ enum UCCode {
   Consumable = '77fcbb00',
 }
 
-const Root: INode = {
+enum UCName {
+  Root = 'Root',
+  Drug = 'Drug',
+  Consumable = 'Consumable',
+}
+
+const UC_ENTITY: { [name: string]: IEntityNode } = {
+  ROOT: {
     code: UCCode.Root,
-    name: 'Root', 
+    name: UCName.Root, 
     type: EEntityType.Root,
     children: [], 
     properties: []
-};
-
-const Drug: INode = {
+  },
+  DRUG: {
     code: UCCode.Drug,
-    name: 'Drug',
+    name: UCName.Drug,
     type: EEntityType.Category,
     children: [], 
     properties: []
-};
-
-const Consumable: INode = {
+  },
+  CONSUMABLE: {
     code: UCCode.Consumable,
-    name: 'Consumable',
+    name: UCName.Consumable,
     type: EEntityType.Category,
     children: [],
     properties: [],
-}
+  }
+};
 
-export abstract class DataParser {
+export class CSVParser {
   public readonly path: fs.PathLike;
   public readonly options:
     | string
@@ -72,13 +55,13 @@ export abstract class DataParser {
         highWaterMark?: number;
       };
 
-  protected data: IData;
-  protected graph: IGraph;
-  protected cycles: INode[];
+  private data: ICSVData;
+  private graph: IEntityGraph;
+  private cycles: IEntityNode[];
 
-  protected isParsed: boolean;
-  protected isBuilt: boolean;
-  protected isTraversed: boolean;
+  private isParsed: boolean;
+  private isBuilt: boolean;
+  private isTraversed: boolean;
 
   constructor(
     path: fs.PathLike,
@@ -108,77 +91,29 @@ export abstract class DataParser {
     this.cycles = [];
   }
 
-  public abstract parseData(): Promise<IData>;
-  public abstract buildGraph(): IGraph;
-  public abstract detectCycles(): INode[];
-  public abstract isValid(): boolean;
-
-  public getData() {
-    return this.data;
-  }
-  public getGraph() {
-    return this.graph;
-  }
-}
-
-export class CSVParser extends DataParser {
-  constructor(
-    path: fs.PathLike,
-    options?:
-      | string
-      | {
-          flags?: string;
-          encoding?: BufferEncoding;
-          fd?: number;
-          mode?: number;
-          autoClose?: boolean;
-          emitClose?: boolean;
-          start?: number;
-          end?: number;
-          highWaterMark?: number;
-        }
-  ) {
-    super(path, options);
-  }
-
-  private generateCode = (numCharacters = 8) =>
-    Math.round(Math.random() * Math.pow(16, numCharacters))
+  private generateCode(numCharacters = 8) {
+    return Math.round(Math.random() * Math.pow(16, numCharacters))
       .toString(16)
       .padStart(numCharacters, '0');
-
-  public detectCycles(): INode[] {
-    if (this.isTraversed) return this.cycles;
-
-    const visited = {};
-    const stack = [this.graph.root];
-    while (stack.length > 0) {
-      const entity = stack.pop();
-
-      if (!visited[entity.code]) {
-        visited[entity.code] = true;
-      }
-
-      if (entity.children) {
-        for (let i = 0; i < entity.children.length; i++) {
-          const child = entity.children[i];
-          if (!visited[child.code]) {
-            stack.push(child);
-          } else {
-            this.cycles.push(child);
-          }
-        }
-      }
-    }
-
-    return this.cycles;
   }
 
-  public isValid(): boolean {
-    return !!this.detectCycles();
-  }
-
-  public async parseData(): Promise<IData> {
+  public async parseData(): Promise<ICSVData> {
     if (this.isParsed) return this.data;
+
+    const parseColumn = column => {
+      const REGEX = {
+        CR_LF: /[\r\n]/g,
+        BRACKETED_DESCRIPTION: / *\([^)]*\) */g,
+        SPACE: / /g,
+      };
+
+      return column
+        .trim()
+        .toLowerCase()
+        .replace(REGEX.CR_LF, '')
+        .replace(REGEX.BRACKETED_DESCRIPTION, '')
+        .replace(REGEX.SPACE, '_');
+    }
 
     // Read data stream.
     const stream = await fs.createReadStream(this.path, this.options);
@@ -187,16 +122,11 @@ export class CSVParser extends DataParser {
         .pipe(csv())
         .on('data', (row) => {
           const entity = Object.entries<string>(row).reduce(
-            (acc: IRow, [column, value]: [string, string]) => {
-              const key = column
-                .trim()
-                .toLowerCase()
-                .replace(REGEX.CR_LF, '')
-                .replace(REGEX.BRACKETED_DESCRIPTION, '')
-                .replace(REGEX.SPACE, '_');
+            (acc: ICSVRow, [column, value]: [string, string]) => {
+              const key = parseColumn(column);
               return { ...acc, [key]: value };
             },
-            {} as IRow
+            {} as ICSVRow
           );
           this.data.push(entity);
         })
@@ -206,17 +136,14 @@ export class CSVParser extends DataParser {
     return this.data;
   }
 
-  public buildGraph(): IGraph {
+  public buildGraph(): IEntityGraph {
     if (this.isBuilt) return this.graph;
-
-    // Initialise root node.
-    const root = { code: 'root', name: 'Root', type: EEntityType.Root, children: [], properties: [] };
 
     // Initialise adjacency list for storing graph.
     this.graph = {
-      root: root,
-      [Drug.code]: Drug,
-      [Consumable.code]: Consumable,
+      [UC_ENTITY.ROOT.code]: UC_ENTITY.ROOT,
+      [UC_ENTITY.DRUG.code]: UC_ENTITY.DRUG,
+      [UC_ENTITY.CONSUMABLE.code]: UC_ENTITY.CONSUMABLE,
     };
 
     try {
@@ -258,21 +185,17 @@ export class CSVParser extends DataParser {
           nzulm_item,
           unspsc,
         } = row;
+      
+        const productProperties: IPropertyNode[] = [];
+        const itemProperties: IPropertyNode[] = [];
 
-        const productProperties: INode[] = [];
-        const itemProperties: INode[] = [];
+        productProperties.push({ code: this.generateCode(), type: EPropertyType.RxNav, value: rxnav });
+        productProperties.push({ code: this.generateCode(), type: EPropertyType.WHOEML, value: who_eml_product });
 
-        productProperties.push({ code: this.generateCode(), type: 'code_rxnav', value: rxnav });
-        productProperties.push({
-          code: this.generateCode(),
-          type: 'who_eml',
-          value: who_eml_product,
-        });
-
-        itemProperties.push({ code: this.generateCode(), type: 'who_eml', value: who_eml_item });
-        productProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm });
-        itemProperties.push({ code: this.generateCode(), type: 'code_nzulm', value: nzulm_item });
-        productProperties.push({ code: this.generateCode(), type: 'code_unspsc', value: unspsc });
+        itemProperties.push({ code: this.generateCode(), type: EPropertyType.WHOEML, value: who_eml_item });
+        productProperties.push({ code: this.generateCode(), type: EPropertyType.NZULM, value: nzulm });
+        itemProperties.push({ code: this.generateCode(), type: EPropertyType.NZULM, value: nzulm_item });
+        productProperties.push({ code: this.generateCode(), type: EPropertyType.UNSPSC, value: unspsc });
 
         // If row includes pack size code...
         if (uc9) {
@@ -377,7 +300,7 @@ export class CSVParser extends DataParser {
         if (uc5) {
           const code = uc5;
           const name = dose_qualification;
-          const type = 'DoseFormQualifier';
+          const type = EEntityType.FormQualifier;
 
           // and node does not exist...
           if (!(uc5 in this.graph)) {
@@ -407,7 +330,7 @@ export class CSVParser extends DataParser {
         if (uc4) {
           const code = uc4;
           const name = dose_form;
-          const type = 'DoseForm';
+          const type = EEntityType.Form;
 
           // and node does not exist...
           if (!(uc4 in this.graph)) {
@@ -437,7 +360,7 @@ export class CSVParser extends DataParser {
         if (uc3) {
           const code = uc3;
           const name = route;
-          const type = 'Route';
+          const type = EEntityType.Route;
 
           // and node does not exist...
           if (!(uc3 in this.graph)) {
@@ -467,7 +390,7 @@ export class CSVParser extends DataParser {
         if (uc2) {
           const code = uc2;
           const name = product;
-          const type = 'Product';
+          const type = EEntityType.Product;
 
           // and node does not exist...
           if (!(uc2 in this.graph)) {
@@ -690,6 +613,44 @@ export class CSVParser extends DataParser {
       return this.graph;
     }
   }
+
+  public detectCycles(): IEntityNode[] {
+    if (this.isTraversed) return this.cycles;
+
+    const visited = {};
+    const stack = [this.graph.root];
+    while (stack.length > 0) {
+      const entity = stack.pop();
+
+      if (!visited[entity.code]) {
+        visited[entity.code] = true;
+      }
+
+      if (entity.children) {
+        for (let i = 0; i < entity.children.length; i++) {
+          const child = entity.children[i];
+          if (!visited[child.code]) {
+            stack.push(child);
+          } else {
+            this.cycles.push(child);
+          }
+        }
+      }
+    }
+
+    return this.cycles;
+  }
+
+  public isValid(): boolean {
+    return !!this.detectCycles();
+  }
+
+  public getData() {
+    return this.data;
+  }
+  public getGraph() {
+    return this.graph;
+  }
 }
 
-export default DataParser;
+export default CSVParser;

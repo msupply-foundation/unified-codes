@@ -1,6 +1,6 @@
 import path from 'path';
 
-import { CSVParser } from './v2/DataParser';
+import { CSVParser } from './v2/CSVParser';
 import DgraphClient from './v2/DgraphClient';
 import { DgraphLoader } from './v2/DgraphLoader';
 

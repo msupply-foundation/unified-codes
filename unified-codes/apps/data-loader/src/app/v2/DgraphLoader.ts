@@ -1,6 +1,6 @@
 import DgraphClient from './DgraphClient';
 
-import { INode, IGraph } from './Graph';
+import { IEntityNode, IEntityGraph } from './types';
 
 export class DgraphLoader {
   private readonly dgraph: DgraphClient;
@@ -9,9 +9,9 @@ export class DgraphLoader {
     this.dgraph = dgraph;
   }
 
-  public async load(graph: IGraph): Promise<boolean> {
+  public async load(graph: IEntityGraph): Promise<boolean> {
     // Extract entity nodes from graph.
-    const entities: INode[] = Object.values(graph);
+    const entities: IEntityNode[] = Object.values(graph);
 
     // Load individual entities.
     for await (const entity of entities) {
