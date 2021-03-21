@@ -1,13 +1,19 @@
-import { CSVParser } from './DataParser';
-import { JSONLoader } from './DataLoader';
+import path from 'path';
+
+import { CSVParser } from './v2/DataParser';
+import { JSONLoader } from './v2/DataLoader';
 
 const hostname = 'localhost';
 const port = '9080';
-const path = './data/v2/products.csv';
 
-const main = async () => {
-  const parser = new CSVParser(path);
+const dirPath = '../../../data';
+const filePath = 'v2/products.csv';
 
+const data = path.resolve(__dirname, `${dirPath}/${filePath}`);
+
+const main = async () => { 
+  const parser = new CSVParser(data);
+  
   await parser.parseData();
   parser.buildGraph();
 

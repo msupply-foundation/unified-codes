@@ -37,6 +37,9 @@
     },
     "data": {
       "tags": []
+    },
+    "data-loader": {
+      "tags": []
     }
   }
 }

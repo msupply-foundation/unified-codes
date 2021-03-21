@@ -15,7 +15,7 @@ const mutateItem = (item) => {
 };
 
 const processItem = (item) => {
-    mutateItem(item);
+  mutateItem(item);
   if (!item.has_child) return item;
 
   item.has_child.forEach(processItem);

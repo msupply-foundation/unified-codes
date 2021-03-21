@@ -19,7 +19,6 @@ enum EEntityType {
 
 const REGEX = {
   CR_LF: /[\r\n]/g,
-  UC8_AND_DESCRIPTION_WITHIN_BRACKETS: /(uc8) *\(([^)]*)\)/,
   BRACKETED_DESCRIPTION: / *\([^)]*\) */g,
   SPACE: / /g,
 };
@@ -59,6 +58,7 @@ interface IRow {
 }
 
 type IData = IRow[];
+
 interface INode {
   code: string;
   name?: string;
