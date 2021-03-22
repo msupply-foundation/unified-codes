@@ -11,7 +11,7 @@ import {
   IProperty,
 } from '@unified-codes/data/v1';
 
-import { 
+import {
   EEntityCategory as EEntityCategoryV2,
   EEntityType as EEntityTypeV2,
   EEntityField as EEntityFieldV2
@@ -56,13 +56,14 @@ export class DgraphDataSource extends RESTDataSource {
 
   private static getEntityCategoryString(categories: string[]) {
     return JSON.stringify(categories.map(category => {
-      switch(category) {
+      switch (category) {
         case EEntityCategory.DRUG:
           return EEntityCategoryV2.DRUG;
         case EEntityCategory.MEDICINAL_PRODUCT:
           return EEntityCategoryV2.CONSUMABLE;
         case EEntityCategory.OTHER:
-          return EEntityCategoryV2.OTHER;      }
+          return EEntityCategoryV2.OTHER;
+      }
     }));
   }
 
@@ -128,11 +129,11 @@ export class DgraphDataSource extends RESTDataSource {
     offset?: number,
     match?: FilterMatch
   ) {
-    const typeString = this.getEntityTypeString(types);    
+    const typeString = this.getEntityTypeString(types);
     const categoryString = this.getEntityCategoryString(categories);
     const orderString = this.getEntitiesOrderString(orderField, orderDesc);
     const filterString = this.getEntitiesFilterString(description, match);
-    const isMsupply = types.includes(EEntityType.UNIT_OF_USE);   
+    const isMsupply = types.includes(EEntityType.UNIT_OF_USE);
 
     if (isMsupply) {
       return `{
@@ -208,7 +209,7 @@ export class DgraphDataSource extends RESTDataSource {
           description: name@*
         }
       }
-    }`;    
+    }`;
   }
 
   private static getEntityType(entity: IEntity): string {
@@ -299,7 +300,7 @@ export class DgraphDataSource extends RESTDataSource {
     const { categories = [EEntityCategory.DRUG, EEntityCategory.MEDICINAL_PRODUCT, EEntityCategory.OTHER], type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = false } =
       orderBy ?? {};
-    
+
     const types = type.replace(/[[\]]+/g, '').split(/[\s,]+/);
 
     // Backwards compatibility with existing mSupply query.
@@ -339,20 +340,20 @@ export class DgraphDataSource extends RESTDataSource {
               route.children.forEach(doseForm => {
                 if (doseForm.children) {
                   doseForm.children.forEach(doseQualifierOrDoseStrength => {
-                      if (doseQualifierOrDoseStrength.type === EEntityTypeV2.DoseStrength) {
+                    if (doseQualifierOrDoseStrength.type === EEntityTypeV2.DoseStrength) {
                       doseQualifierOrDoseStrength.children.forEach(doseStrength => {
                         if (doseStrength.children) {
                           doseStrength.children.forEach(unit => {
                             const { code } = unit;
                             const { type } = product;
-  
+
                             const { description: productDescription } = product;
                             const { description: routeDescription } = route;
                             const { description: doseFormDescription } = doseForm;
                             const { description: doseQualifierDescription } = doseQualifierOrDoseStrength;
-                            const { description: doseStrengthDescription }= doseStrength;
+                            const { description: doseStrengthDescription } = doseStrength;
                             const { description: unitDescription } = unit;
-  
+
                             const description = `${productDescription} ${routeDescription} ${doseFormDescription} ${doseQualifierDescription} ${doseStrengthDescription} ${unitDescription}`;
 
                             mSupplyEntities.push({
@@ -370,7 +371,7 @@ export class DgraphDataSource extends RESTDataSource {
                           const { description: routeDescription } = route;
                           const { description: doseFormDescription } = doseForm;
                           const { description: doseQualifierDescription } = doseQualifierOrDoseStrength;
-                          const { description: doseStrengthDescription }= doseStrength;
+                          const { description: doseStrengthDescription } = doseStrength;
 
                           const description = `${productDescription} ${routeDescription} ${doseFormDescription} ${doseQualifierDescription} ${doseStrengthDescription}`;
 
@@ -380,8 +381,8 @@ export class DgraphDataSource extends RESTDataSource {
                             description
                           });
                         }
-                    })
-                   } else {
+                      })
+                    } else {
                       if (doseQualifierOrDoseStrength.children) {
                         doseQualifierOrDoseStrength.children.forEach(unit => {
                           const { code } = unit;
@@ -409,7 +410,7 @@ export class DgraphDataSource extends RESTDataSource {
                         const { description: productDescription } = product;
                         const { description: routeDescription } = route;
                         const { description: doseFormDescription } = doseForm;
-                        const { description: doseStrengthDescription }= doseQualifierOrDoseStrength;
+                        const { description: doseStrengthDescription } = doseQualifierOrDoseStrength;
 
                         const description = `${productDescription} ${routeDescription} ${doseFormDescription} ${doseStrengthDescription}`;
 
