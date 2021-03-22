@@ -1,11 +1,5 @@
 import { IProperty, Property } from '../Property';
 
-export enum EEntityCategory {
-  DRUG = 'drug',
-  CONSUMABLE = 'consumable',
-  OTHER = 'other',
-}
-
 export enum EEntityField {
   Code = 'code',
   Name = 'name',
@@ -14,18 +8,26 @@ export enum EEntityField {
   Properties = 'properties',
 };
 
+export enum EEntityCategory {
+  DRUG = 'Drug',
+  CONSUMABLE = 'Consumable',
+  OTHER = 'Other',
+}
+
 export enum EEntityType {
-  Category = 'category',
-  Product = 'product',
-  Route = 'route',
-  Form = 'form',
-  FormQualifier = 'form_qualifier',
-  Unit = 'unit',
-  PackImmediate = 'pack_immediate',
-  PackSize = 'pack_size',
-  PackOuter = 'pack_outer',
-  Manufacturer = 'manufacturer',
-  Brand = 'brand',
+  Root = 'Root',
+  Category = 'Category',
+  Product = 'Product',
+  Route = 'Route',
+  Form = 'Form',
+  FormQualifier = 'FormQualifier',
+  DoseStrength = 'DoseStrength',
+  Unit = 'Unit',
+  PackImmediate = 'PackImmediate',
+  PackSize = 'PackSize',
+  PackOuter = 'PackOuter',
+  Manufacturer = 'Manufacturer',
+  Brand = 'Brand',
 }
 
 export interface IEntity {

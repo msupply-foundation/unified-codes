@@ -42,4 +42,4 @@ export class DrugInteractionProperty extends Property implements IDrugInteractio
   }
 }
 
-export default DrugInteraction;
+export default DrugInteractionProperty;
