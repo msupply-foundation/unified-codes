@@ -2,34 +2,53 @@
 
 ## Getting started
 
-### Dgraph 
-1. Install docker [here](https://docs.docker.com/get-docker/).
-2. Run standalone dgraph instance: `/unified-codes/tools/scripts/dgraph/run.sh`.
-3. Dgraph is now running, you can access Ratel at http://localhost:8000.
+1. Install dependencies: `npm install`.
+2. Follow application instructions below.
 
+## Applications
 
-#### Usage
+### data-loader
 
-Scripts subdirectory: `/unified-codes/tools/scripts/dgraph/`
-Note: Prior to running the shell scripts you may have to allow execute permission: `chmod +x alter.sh mutate.sh init.sh`
+Application for parsing product data and populating Dgraph database.
 
-#### Initialise Sample Database
-This will create a sample schema and populate data for you. Great if you want to get up and running quickly!
+1. Setup Dgraph (see instructions [here](unified-codes/tools/scripts/dgraph/README.md)).
+3. Populate graph schema and demo data: `npx nx serve data-loader`.
+4. Dgraph is now running, you can access at [http://localhost:9080](http://localhost:9080).
 
-```
-./setup.sh
-```
+### data-service
 
-### Applications
-1. Install dependencies: `npm install`
+Backend GraphQL server for accessing product data.
 
-#### Data-Service (serves GraphQL api)
-1. Start service: `npx nx serve data-service`
+1. Run GraphQL server: `npx nx serve data-service`.
 2. Access v1 api at http://localhost:4000/v1/graphql  
 3. Access v2 api at http://localhost:4000/v2/graphql
 
-#### Web
-1. Start service: `npx nx serve web`
-2. Browse web at http://localhost:4200/
-3. Start storybook: `npx nx storybook ui` (ui shared component browser) or `npx nx storybook web` (web component browser)
-4. Browse storybook at http://localhost:4400/
+### web 
+
+Frontend for browsing and searching product data.
+
+1. Run web server: `npx nx serve web`.
+2. Browse web at http://localhost:4200/.
+
+## Libraries
+
+### data
+
+Reusable types and interfaces used by both frontend and backend code.
+
+### ui
+
+Reusable frontend React components. Component grouping based on [material-ui][https://material-ui.com/] and [atomic design](https://bradfrost.com/blog/post/atomic-web-design/) principles.
+
+## Testing
+
+### web
+
+1. Start storybook: `npx nx storybook web` (web components).
+2. Browse storybook at http://localhost:4400/.
+
+### ui
+
+1. Start storybook: `npx nx storybook ui` (library components).
+2. Browse storybook at http://localhost:4400/.
+
