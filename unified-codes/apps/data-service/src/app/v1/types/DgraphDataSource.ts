@@ -5,10 +5,17 @@ import {
   EEntityType,
   EEntityField,
   IEntity,
+  EEntitySortOrder,
   EntityCollection,
   IEntityCollection,
   IProperty,
 } from '@unified-codes/data/v1';
+
+import { 
+  EEntityCategory as EEntityCategoryV2,
+  EEntityType as EEntityTypeV2,
+  EEntityField as EEntityFieldV2
+} from '@unified-codes/data/v2';
 
 import { EntitySearchInput, FilterMatch } from '../schema';
 
@@ -25,8 +32,9 @@ export class DgraphDataSource extends RESTDataSource {
     orderField: string = EEntityField.DESCRIPTION,
     orderDesc = false
   ) {
-    const orderBy = orderField === EEntityField.DESCRIPTION ? 'name' : orderField;
-    const orderString = `${orderDesc ? 'orderdesc' : 'orderasc'}: ${orderBy}`;
+    const orderFieldString = orderField === EEntityField.DESCRIPTION ? EEntityFieldV2.Name : orderField;
+    const orderDescString = orderDesc ? EEntitySortOrder.Desc : EEntitySortOrder.Asc;
+    const orderString = `${orderFieldString} : ${orderDescString}`;
     return orderString;
   }
 
@@ -35,13 +43,13 @@ export class DgraphDataSource extends RESTDataSource {
       switch (type) {
         case EEntityType.FORM_CATEGORY:
         case EEntityType.FORM:
-          return 'Form';
+          return EEntityTypeV2.Form;
         case EEntityType.UNIT_OF_USE:
         case EEntityType.STRENGTH:
-          return 'Unit';
+          return EEntityTypeV2.Unit;
         case EEntityType.DRUG:
         default:
-          return 'Product';
+          return EEntityTypeV2.Product;
       }
     }));
   }
@@ -50,12 +58,11 @@ export class DgraphDataSource extends RESTDataSource {
     return JSON.stringify(categories.map(category => {
       switch(category) {
         case EEntityCategory.DRUG:
-          return 'Drug';
+          return EEntityCategoryV2.DRUG;
         case EEntityCategory.MEDICINAL_PRODUCT:
-          return 'Consumable';
+          return EEntityCategoryV2.CONSUMABLE;
         case EEntityCategory.OTHER:
-          return 'Other';
-      }
+          return EEntityCategoryV2.OTHER;      }
     }));
   }
 
