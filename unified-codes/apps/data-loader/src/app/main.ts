@@ -5,7 +5,6 @@ import { DataLoader, DataParser, SchemaParser } from './v2';
 const hostname = 'localhost';
 const port = '9080';
 
-
 const dirPath = '../../../data';
 const schemaPath = 'v2/schema.gql'
 const dataPath = 'v2/products.csv';
@@ -19,17 +18,18 @@ const main = async () => {
 
   const dataParser = new DataParser(dataFile);
   await dataParser.parseData();
+
   dataParser.buildGraph();
 
   if (dataParser.isValid()) {
-    const loader = new DataLoader(hostname, port);
+    const schema = schemaParser.getSchema();
+    const graph = dataParser.getGraph();
 
-    try {
-      const schema = schemaParser.getSchema();
-      const graph = dataParser.getGraph();
+    try { 
+      const loader = new DataLoader(hostname, port);
       await loader.load(schema, graph);
-    } catch (err) {
-      console.log(`Failed to load data due to following error: ${err}`);
+    } catch (err) { 
+      console.log(`Failed to load data due to following error: ${err}`); 
     }
   } else {
     const cycles = dataParser.detectCycles();
