@@ -41,6 +41,7 @@ const getEntityQuery = (code: string) => `
     # product
     product {
       code
+      type
       description
     }
     parents {
