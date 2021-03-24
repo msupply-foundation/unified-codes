@@ -156,9 +156,11 @@ export class DgraphDataSource extends RESTDataSource {
             description: name@*
           }
           children {
+            code
             description: name@*
             type: dgraph.type
             children {
+              code
               description: name@*
               type: dgraph.type
               properties {
@@ -331,14 +333,13 @@ export class DgraphDataSource extends RESTDataSource {
       return { ...DgraphDataSource.mapEntity(entity), interactions };
     });
 
-
     if (isMsupply) {
       const mSupplyEntities = [];
       entities.forEach(product => {
         if (product.children) {
-          product.children.forEach(route => {
-            if (route.children) {
-              route.children.forEach(doseForm => {
+          product.children.forEach(routeOrUnitOfUse => {
+            if (routeOrUnitOfUse.children) {
+              routeOrUnitOfUse.children.forEach(doseForm => {
                 if (doseForm.children) {
                   doseForm.children.forEach(doseQualifierOrDoseStrength => {
                     if (doseQualifierOrDoseStrength.type === EEntityTypeV2.DoseStrength) {
@@ -349,7 +350,7 @@ export class DgraphDataSource extends RESTDataSource {
                             const { type } = product;
 
                             const { description: productDescription } = product;
-                            const { description: routeDescription } = route;
+                            const { description: routeDescription } = routeOrUnitOfUse;
                             const { description: doseFormDescription } = doseForm;
                             const { description: doseQualifierDescription } = doseQualifierOrDoseStrength;
                             const { description: doseStrengthDescription } = doseStrength;
@@ -369,7 +370,7 @@ export class DgraphDataSource extends RESTDataSource {
                           const { type } = product;
 
                           const { description: productDescription } = product;
-                          const { description: routeDescription } = route;
+                          const { description: routeDescription } = routeOrUnitOfUse;
                           const { description: doseFormDescription } = doseForm;
                           const { description: doseQualifierDescription } = doseQualifierOrDoseStrength;
                           const { description: doseStrengthDescription } = doseStrength;
@@ -390,7 +391,7 @@ export class DgraphDataSource extends RESTDataSource {
                           const { type } = product;
 
                           const { description: productDescription } = product;
-                          const { description: routeDescription } = route;
+                          const { description: routeDescription } = routeOrUnitOfUse;
                           const { description: doseFormDescription } = doseForm;
                           const { description: doseStrengthDescription } = doseQualifierOrDoseStrength;
                           const { description: unitDescription } = unit;
@@ -409,7 +410,7 @@ export class DgraphDataSource extends RESTDataSource {
                         const { type } = product;
 
                         const { description: productDescription } = product;
-                        const { description: routeDescription } = route;
+                        const { description: routeDescription } = routeOrUnitOfUse;
                         const { description: doseFormDescription } = doseForm;
                         const { description: doseStrengthDescription } = doseQualifierOrDoseStrength;
 
@@ -425,6 +426,22 @@ export class DgraphDataSource extends RESTDataSource {
                   })
                 }
               })
+            }
+            else {
+              // This is an edge case where the product is directly linked to a unit of use
+              const { code } = routeOrUnitOfUse;
+              const { type } = product;
+
+              const { description: productDescription } = product;
+              const { description: unitOfUseDescription } = routeOrUnitOfUse;
+
+              const description = `${productDescription} ${unitOfUseDescription}`;
+
+              mSupplyEntities.push({
+                code,
+                type,
+                description
+              });
             }
           })
         }
