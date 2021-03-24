@@ -495,6 +495,13 @@ export class DataParser {
                 console.log(`INFO: Linked dose form with code ${uc4} to strength with code ${uc6}`);
               }
             }
+            else if (uc7) {
+              // link dose form to unit of presentation.
+              if (!this.graph[uc4].children.map((child) => child.code).includes(uc7)) {
+                this.graph[uc4].children.push({ code: uc7 });
+                console.log(`INFO: Linked dose form with code ${uc4} to unit of presentation with code ${uc7}`);
+              }
+            }
           }
         }
 
