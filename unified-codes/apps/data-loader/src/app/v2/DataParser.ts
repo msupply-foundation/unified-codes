@@ -537,6 +537,13 @@ export class DataParser {
                 console.log(`INFO: Linked product with code ${uc2} to strength with code ${uc6}`);
               }
             }
+            else if (uc7) {
+              // link product to unit of presentation.
+              if (!this.graph[uc2].children.map((child) => child.code).includes(uc7)) {
+                this.graph[uc2].children.push({ code: uc7 });
+                console.log(`INFO: Linked product with code ${uc2} to unit of presentation with code ${uc7}`);
+              }
+            }
           }
         }
 
