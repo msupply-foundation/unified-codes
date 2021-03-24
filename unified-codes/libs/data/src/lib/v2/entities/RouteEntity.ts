@@ -1,6 +1,7 @@
 import Entity, { EEntityField, EEntityType, IEntity } from './Entity';
 import FormEntity, { IFormEntity } from './FormEntity';
-import { IProperty, Property } from '../Property';
+import { IProperty, Property } from '../properties';
+
 
 export type ERouteField = EEntityField;
 

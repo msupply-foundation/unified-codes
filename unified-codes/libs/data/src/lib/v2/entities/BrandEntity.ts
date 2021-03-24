@@ -1,5 +1,5 @@
 import { EEntityField, EEntityType, IEntity, Entity } from './Entity';
-import { IProperty, Property } from '../Property/Property';
+import { IProperty, Property } from '../properties';
 
 export type EBrandEntityField = EEntityField;
 

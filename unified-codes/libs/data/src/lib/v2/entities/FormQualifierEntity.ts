@@ -1,6 +1,7 @@
 import { EEntityField, EEntityType, IEntity, Entity } from './Entity';
 import { IUnitEntity, UnitEntity } from './UnitEntity';
-import { IProperty, Property } from '../Property';
+import { IProperty, Property } from '../properties';
+
 
 export type EFormQualifierField = EEntityField;
 
