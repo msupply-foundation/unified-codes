@@ -44,6 +44,7 @@ export class Entity implements IEntity {
     this.description = entity.description;
     this.type = entity.type;
     this.children = entity.children?.map((child: IEntity) => new Entity(child));
+    this.parents = entity.parents?.map((parent: IEntity) => new Entity(parent));
     this.properties = entity.properties?.map((property: IProperty) => new Property(property));
   }
 

@@ -255,13 +255,14 @@ export class DgraphDataSource extends RESTDataSource {
     // Map native graph node types.
     const type = DgraphDataSource.getEntityType(entity);
     const children = entity.children?.map((child) => DgraphDataSource.mapEntity(child));
+    const parents = entity.parents?.map((parent) => DgraphDataSource.mapEntity(parent));
 
     entity.properties = entity.properties?.map((property) => ({
       ...property,
       type: DgraphDataSource.getPropertyType(property),
     }));
 
-    return { ...entity, type, children };
+    return { ...entity, type, children, parents };
   };
 
   constructor() {

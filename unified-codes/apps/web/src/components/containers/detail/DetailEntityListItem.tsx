@@ -104,6 +104,7 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
           parentDescription = `${entityDescription} ${description}`;
           break;
         case 'unit_of_use':
+        case 'strength':
           fullDescription =  `${entityDescription} ${description}`;
           break;
       }

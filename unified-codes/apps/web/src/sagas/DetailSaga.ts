@@ -38,11 +38,17 @@ const getEntityQuery = (code: string) => `
       type
       value
     }
-    # product
-    product {
+    parents {
       code
-      type
       description
+      parents {
+        code
+        description
+        parents {
+          code
+          description
+        }
+      }
     }
     # form_category
     children {
