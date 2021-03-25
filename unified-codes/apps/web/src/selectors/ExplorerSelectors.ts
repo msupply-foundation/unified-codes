@@ -89,9 +89,9 @@ const selectFilterByDrug = createSelector(
   (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityCategory.DRUG]
 );
 
-const selectFilterByMedicinalProduct = createSelector(
+const selectFilterByConsumable = createSelector(
   selectToggleBar,
-  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityCategory.MEDICINAL_PRODUCT]
+  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityCategory.CONSUMABLES]
 );
 
 const selectFilterByOther = createSelector(
@@ -131,7 +131,7 @@ export const TableSelectors = {
 
 export const ToggleBarSelectors = {
   selectFilterByDrug,
-  selectFilterByMedicinalProduct,
+  selectFilterByConsumable,
   selectFilterByOther,
 };
 

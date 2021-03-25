@@ -30,7 +30,7 @@ const initialState: IExplorerState = {
   },
   toggleBar: {
     [EEntityCategory.DRUG]: true,
-    [EEntityCategory.MEDICINAL_PRODUCT]: false,
+    [EEntityCategory.CONSUMABLES]: false,
     [EEntityCategory.OTHER]: false,
   },
 };
@@ -114,12 +114,12 @@ export const ExplorerReducer = (
       };
     }
 
-    case EXPLORER_ACTIONS.TOGGLE_FILTER_BY_MEDICINAL_PRODUCT: {
+    case EXPLORER_ACTIONS.TOGGLE_FILTER_BY_CONSUMABLE: {
       return {
         ...state,
         toggleBar: {
           ...state.toggleBar,
-          [EEntityCategory.MEDICINAL_PRODUCT]: !state.toggleBar[EEntityCategory.MEDICINAL_PRODUCT],
+          [EEntityCategory.CONSUMABLES]: !state.toggleBar[EEntityCategory.CONSUMABLES],
         },
       };
     }

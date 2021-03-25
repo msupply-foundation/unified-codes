@@ -109,10 +109,10 @@ export const EXPLORER_TABLE_ACTIONS = {
 
 export const EXPLORER_TOGGLE_BAR_ACTIONS = {
   UPDATE_FILTER_BY_DRUG: 'explorer/toggleBar/updateFilterByDrug',
-  UPDATE_FILTER_BY_MEDICINAL_PRODUCT: 'explorer/toggleBar/updateFilterByUnitOfUse',
+  UPDATE_FILTER_BY_CONSUMABLE: 'explorer/toggleBar/updateFilterByUnitOfUse',
   UPDATE_FILTER_BY_OTHER: 'explorer/toggleBar/updateFilterByOther',
   TOGGLE_FILTER_BY_DRUG: 'explorer/toggleBar/toggleFilterByDrug',
-  TOGGLE_FILTER_BY_MEDICINAL_PRODUCT: 'explorer/toggleBar/toggleFilterByMedicinalProduct',
+  TOGGLE_FILTER_BY_CONSUMABLE: 'explorer/toggleBar/toggleFilterByConsumable',
   TOGGLE_FILTER_BY_OTHER: 'explorer/toggleBar/toggleFilterByOther',
 };
 
@@ -181,9 +181,9 @@ const updateFilterByDrug = (filterByDrug: boolean) => ({
   filterByDrug,
 });
 
-const updateFilterByMedicinalProduct = (filterByMedicinalProduct: boolean) => ({
-  type: EXPLORER_TOGGLE_BAR_ACTIONS.UPDATE_FILTER_BY_MEDICINAL_PRODUCT,
-  filterByMedicinalProduct,
+const updateFilterByConsumable = (filterByConsumable: boolean) => ({
+  type: EXPLORER_TOGGLE_BAR_ACTIONS.UPDATE_FILTER_BY_CONSUMABLE,
+  filterByConsumable,
 });
 
 const updateFilterByOther = (filterByOther: boolean) => ({
@@ -195,8 +195,8 @@ const toggleFilterByDrug = () => ({
   type: EXPLORER_TOGGLE_BAR_ACTIONS.TOGGLE_FILTER_BY_DRUG,
 });
 
-const toggleFilterByMedicinalProduct = () => ({
-  type: EXPLORER_TOGGLE_BAR_ACTIONS.TOGGLE_FILTER_BY_MEDICINAL_PRODUCT,
+const toggleFilterByConsumable = () => ({
+  type: EXPLORER_TOGGLE_BAR_ACTIONS.TOGGLE_FILTER_BY_CONSUMABLE,
 });
 
 const toggleFilterByOther = () => ({
@@ -227,10 +227,10 @@ export const ExplorerTableActions = {
 
 export const ExplorerToggleBarActions = {
   updateFilterByDrug,
-  updateFilterByMedicinalProduct,
+  updateFilterByConsumable,
   updateFilterByOther,
   toggleFilterByDrug,
-  toggleFilterByMedicinalProduct,
+  toggleFilterByConsumable,
   toggleFilterByOther,
 };
 
