@@ -1,50 +1,96 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 
-import { IEntity, IProperty } from '@unified-codes/data/v1';
-import { List, ListItem, ListItemText } from '@unified-codes/ui/components';
-import { createStyles, makeStyles } from '@unified-codes/ui/styles';
+import { IProperty } from '@unified-codes/data/v1';
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Collapse,
+  ArrowUpIcon,
+  ArrowDownIcon,
+  LinkIcon,
+} from '@unified-codes/ui/components';
+import { useToggle } from '@unified-codes/ui/hooks';
+
 
 import DetailPropertyListItem from './DetailPropertyListItem';
 
-import { IState } from '../../../types';
-import { DetailSelectors } from '../../../selectors';
-import { ITheme } from '../../../styles';
+import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
-const useStyles = makeStyles((_: ITheme) =>
+import { ITheme } from '../../../styles';
+import { IconButton } from '@material-ui/core';
+
+const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
-    root: {
+    list: {
+      margin: '0px 0px 0px 0px',
+      paddingTop: '0px',
+      paddingBottom: '0px',
       width: '100%',
     },
+    icon: {
+      marginRight: '8px',
+      '&:hover': { backgroundColor: theme.palette.background.default },
+    },
+    item: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 16px',
+    },
+    textItem: {
+      margin: '1px 0px 1px 0px',
+    },
+    toggleItem: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 8px',
+      width: '100%',
+      '& p': { color: theme.palette.action.active },
+    }
   })
 );
 
-export interface DetailPropertyListProps {
-  entity: IEntity;
+interface DetailPropertyListProps {
+  description?: string;
+  properties?: IProperty[];
 }
 
 export type DetailPropertyList = React.FunctionComponent<DetailPropertyListProps>;
 
-export const DetailPropertyListComponent: DetailPropertyList = ({ entity }) => {
+const DetailPropertyList: DetailPropertyList = ({ description, properties }) => {
   const classes = useStyles();
 
-  const { properties } = entity ?? {};
-  const { length: propertyCount } = properties ?? [];
+  const { isOpen, onToggle } = useToggle(false);
 
-  if (!propertyCount) return null;
+  const { length: childCount } = properties ?? [];
+
+  const PropertyListToggleItemText = () => <ListItemText className={classes.textItem} primary={description} />;
+  const PropertyListToggleItemIcon = () => <IconButton className={classes.icon} onClick={(e) => { onToggle(); e.stopPropagation() }}>{ isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}</IconButton>;
+
+  const PropertyListToggleItem = () =>
+    !!childCount ? (
+      <ListItem className={classes.toggleItem} button onClick={onToggle} >
+        <ListItemIcon>
+          <PropertyListToggleItemIcon />
+        </ListItemIcon>
+        <PropertyListToggleItemText />
+      </ListItem>
+    ) : null;
+
+  const PropertyListChildItems = React.useCallback(() => {
+    const childItems = properties?.map((property: IProperty) => {
+      return <DetailPropertyListItem property={property} />;
+    });
+    return childItems;
+  }, [properties]);
 
   return (
-    <List className={classes.root}>
-      <DetailPropertyListItem value="Properties" properties={properties} type="title" />
+    <List className={classes.list}>
+      <PropertyListToggleItem />
+      <Collapse in={isOpen}>
+        <List className={classes.list}><PropertyListChildItems /></List>
+      </Collapse>
     </List>
   );
 };
-
-const mapStateToProps = (state: IState) => {
-  const entity = DetailSelectors.selectEntity(state);
-  return { entity };
-};
-
-export const DetailPropertyList = connect(mapStateToProps)(DetailPropertyListComponent);
 
 export default DetailPropertyList;
