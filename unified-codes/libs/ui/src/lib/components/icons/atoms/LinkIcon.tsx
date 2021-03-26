@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { Link as MLink } from '@material-ui/icons';
+import { SvgIconProps as MLinkProps } from '@material-ui/core';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface LinkIconProps {}
+export type LinkIconProps = MLinkProps;
 
 export type LinkIcon = React.FunctionComponent<LinkIconProps>;
 
