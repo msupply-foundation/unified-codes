@@ -1,53 +1,92 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 
 import { IEntity } from '@unified-codes/data/v1';
-import { List, ListItem, ListItemText } from '@unified-codes/ui/components';
+import { List, ListItem, ListItemText, Collapse, ListItemIcon, ArrowUpIcon, ArrowDownIcon } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
 import DetailEntityListItem from './DetailEntityListItem';
 
-import { IState } from '../../../types';
-import { DetailSelectors } from '../../../selectors';
-import { ITheme } from '../../../styles';
+import { useToggle } from '@unified-codes/ui/hooks';
 
-const useStyles = makeStyles((_: ITheme) =>
+import { ITheme } from '../../../styles';
+import { IconButton } from '@material-ui/core';
+
+const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
-    root: {
+    icon: {
+      marginRight: '8px',
+      '&:hover': { backgroundColor: theme.palette.background.default },
+    },
+    item: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 16px',
+    },
+    list: {
+      margin: '0px 0px 0px 0px',
+      paddingTop: '0px',
+      paddingBottom: '0px',
       width: '100%',
     },
+    textItem: {
+      margin: '1px 0px 1px 0px',
+    },
+    toggleItem: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 8px',
+      width: '100%',
+      '& p': { color: theme.palette.action.active },
+    }
   })
 );
 
+
 export interface DetailEntityListProps {
-  entity?: IEntity;
+  description: string;
+  entities: IEntity[];
 }
 
 export type DetailEntityList = React.FunctionComponent<DetailEntityListProps>;
 
-export const DetailEntityListComponent: DetailEntityList = ({ entity }) => {
+export const DetailEntityListComponent: DetailEntityList = ({ description, entities }) => {
   const classes = useStyles();
 
-  // TODO: handle non-drug root entities.
-  const description = 'Forms';
+  const { isOpen, onToggle } = useToggle(false);
 
-  const { children: childEntities, description: entityDescription } = entity ?? {};
-  const { length: entityCount } = childEntities ?? [];
+  const entityCount = entities.length;
 
-  if (!entityCount) return null;
+  const EntityListToggleItemText = () => <ListItemText className={classes.textItem} primary={description} />;
+  const EntityListToggleItemIcon = () => <IconButton className={classes.icon} onClick={(e) => { onToggle(); e.stopPropagation() }}>{ isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}</IconButton>;
+
+  const EntityListToggleItem = () =>
+    !!entityCount ? (
+      <ListItem className={classes.toggleItem} button onClick={onToggle}>
+        <ListItemIcon>
+          <EntityListToggleItemIcon />
+        </ListItemIcon>
+        <EntityListToggleItemText />
+      </ListItem>
+    ): null;
+
+  const EntityListChildItems = React.useCallback(() => {
+    const childItems = entities.map((entity: IEntity) => {
+      return (
+        <DetailEntityListItem
+          entity={entity}
+          key={entity.code}
+        />
+      );
+    });
+    return childItems;
+  }, [entities]);
 
   return (
-    <List className={classes.root}>
-      <DetailEntityListItem description={description} childEntities={childEntities} entityDescription={entityDescription}/>
+    <List className={classes.list}>
+        <EntityListToggleItem />
+        <Collapse in={isOpen}><List className={classes.list}><EntityListChildItems/></List></Collapse>
     </List>
   );
 };
 
-const mapStateToProps = (state: IState) => {
-  const entity = DetailSelectors.selectEntity(state);
-  return { entity };
-};
-
-export const DetailEntityList = connect(mapStateToProps)(DetailEntityListComponent);
+export const DetailEntityList = DetailEntityListComponent;
 
 export default DetailEntityList;
