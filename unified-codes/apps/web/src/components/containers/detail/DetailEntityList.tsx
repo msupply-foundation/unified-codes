@@ -42,12 +42,13 @@ const useStyles = makeStyles((theme: ITheme) =>
 
 export interface DetailEntityListProps {
   description: string;
+  parent: IEntity;
   entities: IEntity[];
 }
 
 export type DetailEntityList = React.FunctionComponent<DetailEntityListProps>;
 
-export const DetailEntityListComponent: DetailEntityList = ({ description, entities }) => {
+export const DetailEntityListComponent: DetailEntityList = ({ description, parent, entities }) => {
   const classes = useStyles();
 
   const { isOpen, onToggle } = useToggle(false);
@@ -67,22 +68,25 @@ export const DetailEntityListComponent: DetailEntityList = ({ description, entit
       </ListItem>
     ): null;
 
-  const EntityListChildItems = React.useCallback(() => {
-    const childItems = entities.map((entity: IEntity) => {
+  const EntityListToggleList = React.useCallback(() => {
+    const entityListItems = entities.map((entity: IEntity) => {
       return (
         <DetailEntityListItem
-          entity={entity}
           key={entity.code}
+          parent={parent}
+          entity={entity}
         />
       );
     });
-    return childItems;
+    return <List className={classes.list}>{entityListItems}</List>;
   }, [entities]);
+
+  const EntityListToggleCollapse = () => <Collapse in={isOpen}><EntityListToggleList/></Collapse>;
 
   return (
     <List className={classes.list}>
         <EntityListToggleItem />
-        <Collapse in={isOpen}><List className={classes.list}><EntityListChildItems/></List></Collapse>
+        <EntityListToggleCollapse />
     </List>
   );
 };

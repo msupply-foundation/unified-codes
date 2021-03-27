@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IProperty } from '@unified-codes/data/v1';
+import { IEntity, IProperty } from '@unified-codes/data/v1';
 import {
   List,
   ListItem,
@@ -51,12 +51,13 @@ const useStyles = makeStyles((theme: ITheme) =>
 
 interface DetailPropertyListProps {
   description?: string;
+  parent: IEntity;
   properties?: IProperty[];
 }
 
 export type DetailPropertyList = React.FunctionComponent<DetailPropertyListProps>;
 
-const DetailPropertyList: DetailPropertyList = ({ description, properties }) => {
+const DetailPropertyList: DetailPropertyList = ({ description, parent, properties }) => {
   const classes = useStyles();
 
   const { isOpen, onToggle } = useToggle(false);
@@ -78,7 +79,7 @@ const DetailPropertyList: DetailPropertyList = ({ description, properties }) => 
 
   const PropertyListChildItems = React.useCallback(() => {
     const childItems = properties?.map((property: IProperty) => {
-      return <DetailPropertyListItem property={property} />;
+      return <DetailPropertyListItem key={property.type} parent={parent} property={property} />;
     });
     return childItems;
   }, [properties]);

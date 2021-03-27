@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IProperty } from '@unified-codes/data/v1';
+import { IEntity, IProperty } from '@unified-codes/data/v1';
 import { ListItem, LinkIcon, ListItemText, Link } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
@@ -34,12 +34,14 @@ const useStyles = makeStyles((theme: ITheme) =>
 );
 
 interface DetailPropertyListItemProps {
+  parent: IEntity,
   property: IProperty,
 }
 
 export type DetailPropertyListItem = React.FunctionComponent<DetailPropertyListItemProps>;
 
 const DetailPropertyListItem: DetailPropertyListItem = ({
+  parent,
   property,
 }) => {
   const classes = useStyles();

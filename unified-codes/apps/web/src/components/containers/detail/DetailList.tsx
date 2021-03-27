@@ -32,7 +32,7 @@ export const DetailListComponent: DetailList = ({ entity }) => {
   if (!entity) return null;
 
   return <List className={classes.list}>
-    <DetailEntityListItem entity={entity}/>
+    <DetailEntityListItem parent={entity} entity={entity}/>
   </List>
 };
 

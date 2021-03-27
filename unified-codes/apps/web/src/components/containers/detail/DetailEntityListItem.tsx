@@ -27,6 +27,18 @@ const useStyles = makeStyles((theme: ITheme) =>
       marginRight: '8px',
       '&:hover': { backgroundColor: theme.palette.background.default },
     },
+    typeItem: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 0px',
+      width: '100%',
+      '& p': { color: theme.palette.action.active },
+    },
+    typeList: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 0px',
+      width: '100%',
+      '&:hover': { backgroundColor: theme.palette.background.default },
+    },
     item: {
       margin: '0px 0px 0px 0px',
       padding: '0px 0px 0px 16px',
@@ -58,6 +70,7 @@ const useStyles = makeStyles((theme: ITheme) =>
 );
 
 interface DetailEntityListItemProps {
+  parent: IEntity,
   entity: IEntity,
   onCopy: (code: string) => null,
 }
@@ -65,6 +78,7 @@ interface DetailEntityListItemProps {
 export type DetailEntityListItem = React.FunctionComponent<DetailEntityListItemProps>;
 
 const DetailEntityListItemComponent: DetailEntityListItem = ({
+  parent,
   entity,
   onCopy,
 }) => {
@@ -72,7 +86,9 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
 
   const { isOpen, onToggle } = useToggle(false);
 
-  const { code, type, description, children = [], properties = [] } = entity;
+  const { code, description, children = [], properties = [] } = entity;
+
+  const isRoot = parent === entity;
 
   const childCount = children?.length ?? 0;
   const propertyCount = properties?.length ?? 0;
@@ -99,7 +115,7 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
       </ListItem>
     );
 
-    const EntityList = () => {
+    const EntityTypeList = () => {
       const entitiesByType = children.reduce((acc, child) => {
         const { type } = child;
         if (!acc[type]) acc[type] = [];
@@ -107,27 +123,34 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
         return acc;
       }, {});
 
-      return Object.keys(entitiesByType).map(type => {
+      const entityTypeListItems = Object.keys(entitiesByType).map(type => {
         const entities = entitiesByType[type];
         const typeFormatted = typeFormatter(type);
         const description = `${typeFormatted} (${childCount})`;
-        return <DetailEntityList description={description} entities={entities}/>;
+        return <ListItem key={type} className={classes.typeItem}><DetailEntityList description={description} parent={entity} entities={entities}/></ListItem>;
       });
+
+      return <List className={classes.typeList}>{entityTypeListItems}</List>
     }
 
     const PropertyList = () => {
       if (!propertyCount) return null;
       const description = `Properties (${propertyCount})`;
-      return <DetailPropertyList description={description} properties={properties}/>;
+      return <DetailPropertyList description={description} parent={entity} properties={properties}/>;
     };
     
-    const ChildList = () => <ListItem className={classes.item} style={{ flexDirection: 'column' }}><EntityList/><PropertyList/></ListItem>
+    const ChildList = () => (
+      <List className={classes.list}>
+        <ListItem className={classes.item}><EntityTypeList/></ListItem>
+        <ListItem className={classes.item}><PropertyList/></ListItem>
+      </List>
+    );
 
     return (
-      <ListItem className={type === EEntityType.DRUG ? classes.rootItem : classes.item}> 
+      <ListItem className={isRoot ? classes.rootItem : classes.item}> 
         <List className={classes.list} >
           <ChildListToggleItem />
-          <Collapse in={isOpen}><List className={classes.list}><ChildList/></List></Collapse>
+          <Collapse in={isOpen}><ChildList/></Collapse>
         </List>
       </ListItem>
     );
