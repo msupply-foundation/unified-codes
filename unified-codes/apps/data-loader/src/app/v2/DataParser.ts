@@ -146,6 +146,8 @@ export class DataParser {
       [UC_ENTITY.CONSUMABLE.code]: UC_ENTITY.CONSUMABLE,
     };
 
+    UC_ENTITY.ROOT.children = [UC_ENTITY.DRUG, UC_ENTITY.CONSUMABLE];
+
     try {
       // Initialise duplicate codes.
       const duplicates = [];
@@ -602,20 +604,18 @@ export class DataParser {
         console.log(`INFO: Expanded edges for node with code ${code}`);
       });
 
-      const updateChildNames = node => updateName(node, null);
-
       // Traverse graph and update names.
-      const updateName = (node, name) => {
-        if (name) {
-          node.name = `${name} ${node.name}`;
-          console.log(`INFO: Renamed node with code ${node.code} to ${node.name}`);
-        }
-
+      const updateName = (node, name = '') => {
+        node.name = `${name} ${node.name}`;
+        node.name = node.name.trim();
+        console.log(`INFO: Renamed node with code ${node.code} to ${node.name}`);
         node.children?.forEach(child => updateName(child, node.name));
       };
-      
-      this.graph[UCCode.Drug].children?.forEach(child => updateChildNames(child));
 
+      this.graph[UCCode.Root].children?.forEach(category => {
+        category.children?.forEach(product => updateName(product));
+      });
+      
       // Output warnings for any duplicate entity codes.
       duplicates.forEach((uc) => console.log(`WARNING: Detected duplicate code ${uc}!`));
 
