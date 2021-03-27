@@ -46,10 +46,10 @@ const DetailPropertyListItem: DetailPropertyListItem = ({
 }) => {
   const classes = useStyles();
 
+  const { description } = parent;
   const { type, value } = property;
 
-  const formatted = propertyFormatter(type, value);
-  const { title, url } = formatted;
+  const { title, url } = propertyFormatter(description, type, value);
 
   const link = url ? <Link className={classes.link} href={url} target="_blank">{value}<LinkIcon className={classes.icon}/></Link> : value;
 

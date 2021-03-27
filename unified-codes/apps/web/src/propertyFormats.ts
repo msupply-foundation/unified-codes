@@ -21,15 +21,15 @@ const propertyFormats = [
   },
 ];
 
-export const propertyFormatter = (type?: string, value?: string) => {
+export const propertyFormatter = (description: string, type: string, value: string) => {
   const format = propertyFormats.find((pf) => pf.type === type);
-  if (!format) return { title: type };
+  if (!format) return { title: `${description} - ${type}` };
 
   const { title, urlFormatter } = format;
   const url = urlFormatter && value ? urlFormatter(value) : undefined;
 
   return {
-    title,
+    title: `${description} - ${title}`,
     url,
   };
 };
