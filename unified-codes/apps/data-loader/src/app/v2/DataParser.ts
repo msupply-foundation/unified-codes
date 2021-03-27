@@ -602,6 +602,20 @@ export class DataParser {
         console.log(`INFO: Expanded edges for node with code ${code}`);
       });
 
+      const updateChildNames = node => updateName(node, null);
+
+      // Traverse graph and update names.
+      const updateName = (node, name) => {
+        if (name) {
+          node.name = `${name} ${node.name}`;
+          console.log(`INFO: Renamed node with code ${node.code} to ${node.name}`);
+        }
+
+        node.children?.forEach(child => updateName(child, node.name));
+      };
+      
+      this.graph[UCCode.Drug].children?.forEach(child => updateChildNames(child));
+
       // Output warnings for any duplicate entity codes.
       duplicates.forEach((uc) => console.log(`WARNING: Detected duplicate code ${uc}!`));
 
