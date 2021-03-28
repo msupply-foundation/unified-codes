@@ -115,24 +115,6 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
       </ListItem>
     );
 
-    const EntityTypeList = () => {
-      const entitiesByType = children.reduce((acc, child) => {
-        const { type } = child;
-        if (!acc[type]) acc[type] = [];
-        acc[type] = [ ...acc[type], child ];
-        return acc;
-      }, {});
-
-      const entityTypeListItems = Object.keys(entitiesByType).map(type => {
-        const entities = entitiesByType[type];
-        const typeFormatted = typeFormatter(type);
-        const description = `${typeFormatted} (${childCount})`;
-        return <ListItem key={type} className={classes.typeItem}><DetailEntityList description={description} parent={entity} entities={entities}/></ListItem>;
-      });
-
-      return <List className={classes.typeList}>{entityTypeListItems}</List>
-    }
-
     const PropertyList = () => {
       if (!propertyCount) return null;
       const description = `Properties (${propertyCount})`;
@@ -141,7 +123,7 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
     
     const ChildList = () => (
       <List className={classes.list}>
-        <ListItem className={classes.item}><EntityTypeList/></ListItem>
+        <ListItem className={classes.item}><DetailEntityTypeList parent={entity} entities={children}/></ListItem>
         <ListItem className={classes.item}><PropertyList/></ListItem>
       </List>
     );
