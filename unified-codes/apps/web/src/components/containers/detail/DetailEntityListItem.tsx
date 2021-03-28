@@ -25,18 +25,6 @@ const useStyles = makeStyles((theme: ITheme) =>
       marginRight: '8px',
       '&:hover': { backgroundColor: theme.palette.background.default },
     },
-    typeItem: {
-      margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 0px',
-      width: '100%',
-      '& p': { color: theme.palette.action.active },
-    },
-    typeList: {
-      margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 0px',
-      width: '100%',
-      '&:hover': { backgroundColor: theme.palette.background.default },
-    },
     item: {
       margin: '0px 0px 0px 0px',
       padding: '0px 0px 0px 16px',
