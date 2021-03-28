@@ -1,6 +1,6 @@
 import { EEntityType, IEntity, Entity } from './Entity';
 import { IRouteEntity, RouteEntity } from './RouteEntity';
-import { IProperty, Property } from '../properties';
+import { IProperty, Property } from '../properties/Property';
 
 
 export enum EProductField {

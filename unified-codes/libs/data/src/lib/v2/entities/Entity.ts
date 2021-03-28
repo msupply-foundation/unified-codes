@@ -1,4 +1,4 @@
-import { IProperty, Property } from '../properties';
+import { IProperty, Property } from '../properties/Property';
 
 export enum EEntityField {
   Code = 'code',

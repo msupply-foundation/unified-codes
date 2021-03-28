@@ -1,7 +1,7 @@
 import { EEntityType, IEntity, Entity } from './Entity';
 import { IFormQualifierEntity, FormQualifierEntity } from './FormQualifierEntity';
 import { IUnitEntity, UnitEntity } from './UnitEntity';
-import { IProperty, Property } from '../properties';
+import { IProperty, Property } from '../properties/Property';
 
 export enum EFormField {
     Code = 'code',

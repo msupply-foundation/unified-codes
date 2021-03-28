@@ -1,6 +1,6 @@
 import { EEntityField, EEntityType, IEntity, Entity } from './Entity';
 import { IPackSizeEntity, PackSizeEntity } from './PackSizeEntity';
-import { IProperty, Property } from '../properties';
+import { IProperty, Property } from '../properties/Property';
 
 export type EPackImmediateEntityField = EEntityField;
 
