@@ -42,11 +42,13 @@ export class DgraphDataSource extends RESTDataSource {
     return JSON.stringify(types.map(type => {
       switch (type) {
         case EEntityType.FORM_CATEGORY:
-        case EEntityType.FORM:
           return EEntityTypeV2.Form;
+        case EEntityType.FORM:
+          return EEntityTypeV2.FormQualifier;
         case EEntityType.UNIT_OF_USE:
-        case EEntityType.STRENGTH:
           return EEntityTypeV2.Unit;
+        case EEntityType.STRENGTH:
+          return EEntityTypeV2.DoseStrength;
         case EEntityType.DRUG:
         default:
           return EEntityTypeV2.Product;
