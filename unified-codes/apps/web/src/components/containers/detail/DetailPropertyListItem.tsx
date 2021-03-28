@@ -1,101 +1,59 @@
 import * as React from 'react';
 
-import { IProperty } from '@unified-codes/data/v1';
-import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Collapse,
-  ArrowUpIcon,
-  ArrowDownIcon,
-  LinkIcon,
-} from '@unified-codes/ui/components';
-import { useToggle } from '@unified-codes/ui/hooks';
-import { propertyFormatter } from '../../../propertyFormats';
-
+import { IEntity, IProperty } from '@unified-codes/data/v1';
+import { ListItem, LinkIcon, ListItemText, Link } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
-import { ITheme } from '../../../styles';
+import { propertyFormatter } from '../../../propertyFormats';
 
-const useStyles = makeStyles((_: ITheme) =>
+import { ITheme } from '../../../styles';
+import { ListItemIcon } from '@material-ui/core';
+
+const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
-    root: {
+    icon: {
+      verticalAlign: 'bottom',
+      marginLeft: '4px',
+      marginRight: '8px',
+    },
+    item: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 0px',
       width: '100%',
     },
-    listItemRoot: { paddingBottom: 0, paddingTop: 0}
+    link: {
+      color: theme.palette.action.active,
+      textDecoration: 'none',
+      marginTop: '-5px',
+      marginBottom: '0px',
+    },
+    textItem: {
+      margin: '1px 0px 1px 0px',
+    }
   })
 );
 
 interface DetailPropertyListItemProps {
-  properties?: IProperty[];
-  type?: string;
-  value?: string;
-}
-
-const formatProperty = (type?: string, value?: string) => {
-  const formatted = propertyFormatter(type, value);
-  const { title, url } = formatted;
-
-  
-    return (<div>
-        <b>{title}</b><div>{value} {url && <a href={url} target="_blank"><LinkIcon /></a>}</div>
-    </div>);
+  parent: IEntity,
+  property: IProperty,
 }
 
 export type DetailPropertyListItem = React.FunctionComponent<DetailPropertyListItemProps>;
 
-const DetailPropertyListItem: DetailPropertyListItem = ({ properties, type, value }) => {
+const DetailPropertyListItem: DetailPropertyListItem = ({
+  parent,
+  property,
+}) => {
   const classes = useStyles();
 
-  const { isOpen, onToggle } = useToggle(false);
+  const { description } = parent;
+  const { type, value } = property;
 
-  const { length: childCount } = properties ?? [];
+  const { title, url } = propertyFormatter(description, type, value);
 
-  const PropertyListToggleItemText = () => {
-    if (!!childCount) {
-      return <ListItemText primary={`${value} (${childCount})`} />;
-    }
-    
-    return <ListItemText primary={formatProperty(type, value)} />;
-  };
+  const link = url ? <Link className={classes.link} href={url} target="_blank">{value}<LinkIcon className={classes.icon}/></Link> : value;
 
-  const PropertyListToggleItemIcon = isOpen ? ArrowUpIcon : ArrowDownIcon;
-
-  const PropertyListToggleItem = () =>
-    !!childCount ? (
-      <ListItem button onClick={onToggle} >
-        <PropertyListToggleItemText />
-        <ListItemIcon>
-          <PropertyListToggleItemIcon />
-        </ListItemIcon>
-      </ListItem>
-    ) : (
-      <ListItem>
-        <PropertyListToggleItemText />
-      </ListItem>
-    );
-
-  const PropertyListChildItems = React.useCallback(() => {
-    if (!childCount) return null;
-    const childProperties = properties?.map((property: IProperty) => {
-      const { type, value, properties } = property;
-      
-      return <DetailPropertyListItem key={type} type={type} value={value} properties={properties} />;
-    });
-    return <List>{childProperties}</List>;
-  }, [properties]);
-
-  return (
-    <ListItem classes={{root: classes.listItemRoot}}> 
-      <List className={classes.root}>
-        <PropertyListToggleItem />
-        <Collapse in={isOpen}>
-          <PropertyListChildItems />
-        </Collapse>
-      </List>
-    </ListItem>
-  );
+  return <ListItem className={classes.item}><ListItemIcon/><ListItemText className={classes.textItem} primary={title} secondary={link}/></ListItem>
 };
 
 export default DetailPropertyListItem;

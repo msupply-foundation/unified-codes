@@ -4,10 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 
-import DetailEntityAttributeList from './DetailEntityAttributeList';
-import DetailEntityList from './DetailEntityList';
-import DetailProduct from './DetailProduct';
-import DetailPropertyList from './DetailPropertyList';
+import DetailAttributeList from './DetailAttributeList';
+import DetailList from './DetailList';
 import DetailLayout from '../../layout/DetailLayout';
 
 import { DetailActions, IDetailAction } from '../../../actions';
@@ -24,28 +22,13 @@ const useStyles = makeStyles((theme: ITheme) =>
       backgroundColor: theme.palette.background.footer,
       paddingBottom: 44,
     },
-    childListContainer: {
+    detailListContainer: {
       backgroundColor: theme.palette.background.default,
       borderRadius: 5,
       margin: '-20px auto 0 auto',
       maxWidth: 900,
       width: '100%',
-    },
-    productContainer: {
-      backgroundColor: theme.palette.background.default,
-      borderRadius: 5,
-      margin: '0 auto 0 auto',
-      maxWidth: 900,
-      width: '100%',
-      '& p:hover': { backgroundColor: '#f6f6f6' },
-    },
-    propertyListContainer: {
-      backgroundColor: theme.palette.background.default,
-      borderRadius: 5,
-      margin: '0 auto 0 auto',
-      maxWidth: 900,
-      width: '100%',
-    },
+    }
   })
 );
 
@@ -71,10 +54,8 @@ export const DetailPageComponent: DetailPage = ({
   return (
     <DetailLayout
       classes={classes}
-      attributeList={<DetailEntityAttributeList />}
-      childList={<DetailEntityList />}
-      product={<DetailProduct />}
-      propertyList={<DetailPropertyList />}
+      attributeList={<DetailAttributeList />}
+      detailList={<DetailList />}
     />
   );
 };

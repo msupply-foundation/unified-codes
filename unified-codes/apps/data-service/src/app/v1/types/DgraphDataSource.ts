@@ -42,11 +42,13 @@ export class DgraphDataSource extends RESTDataSource {
     return JSON.stringify(types.map(type => {
       switch (type) {
         case EEntityType.FORM_CATEGORY:
-        case EEntityType.FORM:
           return EEntityTypeV2.Form;
+        case EEntityType.FORM:
+          return EEntityTypeV2.FormQualifier;
         case EEntityType.UNIT_OF_USE:
-        case EEntityType.STRENGTH:
           return EEntityTypeV2.Unit;
+        case EEntityType.STRENGTH:
+          return EEntityTypeV2.DoseStrength;
         case EEntityType.DRUG:
         default:
           return EEntityTypeV2.Product;
@@ -133,16 +135,15 @@ export class DgraphDataSource extends RESTDataSource {
     const categoryString = this.getEntityCategoryString(categories);
     const orderString = this.getEntitiesOrderString(orderField, orderDesc);
     const filterString = this.getEntitiesFilterString(description, match);
-    const isMsupply = types.includes(EEntityType.UNIT_OF_USE);
 
+    // Required for backwards compatiblility with broken mSupply query. 
+    // Query incorrectly specifies medical_product as a type instead of category.
+    const isMsupply = types.includes(EEntityCategory.MEDICINAL_PRODUCT);
+
+    // TODO: migrate query to mSupply and remove hardcoded query mapping.
     if (isMsupply) {
       return `{
-        all as counters(func: eq(dgraph.type, ${typeString})) ${filterString} @cascade { 
-          ~children @filter(eq(name, ${categoryString}))
-          total: count(uid)
-        }
-        
-        query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
+        query(func: eq(dgraph.type, ["Unit", "DoseStrength"]), ${orderString}, offset: ${offset}, first: ${first}) ${filterString}  {
           code
           description: name@*
           type: dgraph.type
@@ -150,40 +151,6 @@ export class DgraphDataSource extends RESTDataSource {
           properties {
             type: dgraph.type
             value
-          }
-          parents: ~children {
-            type: dgraph.type
-            description: name@*
-          }
-          children {
-            description: name@*
-            type: dgraph.type
-            children {
-              description: name@*
-              type: dgraph.type
-              properties {
-                type: dgraph.type
-                value
-              }
-              children {
-                code
-                description: name@*
-                type: dgraph.type
-                properties {
-                  type: dgraph.type
-                  value
-                }
-                children {
-                  code
-                  description: name@*
-                  type: dgraph.type
-                  properties {
-                    type: dgraph.type
-                    value
-                  }
-                }
-              }
-            }
           }
         }
       }`
@@ -217,27 +184,28 @@ export class DgraphDataSource extends RESTDataSource {
     const [type] = types ?? [];
 
     switch (type) {
-      case 'Product':
+      case EEntityTypeV2.Product:
         const [parent] = entity.parents ?? [];
         switch (parent?.description) {
-          case 'Consumable':
+          case EEntityCategoryV2.CONSUMABLE:
             return EEntityCategory.CONSUMABLE;
-          case 'Other':
+          case EEntityCategoryV2.OTHER:
             return EEntityCategory.OTHER;
           default:
             return EEntityCategory.DRUG;
         }
-      case 'Route':
+      case EEntityTypeV2.Route:
         return EEntityType.FORM_CATEGORY;
-      case 'DoseForm':
-      case 'DoseFormQualifier':
+      case EEntityTypeV2.Form:
         return EEntityType.FORM;
-      case 'DoseStrength':
+      case EEntityTypeV2.FormQualifier:
+        return EEntityType.FORM_QUALIFIER;
+      case EEntityTypeV2.DoseStrength:
         return EEntityType.STRENGTH;
-      case 'DoseUnit':
+      case EEntityTypeV2.Unit:
         return EEntityType.UNIT_OF_USE;
       default:
-        return 'n/a';
+        return type;
     }
   }
 
@@ -303,9 +271,6 @@ export class DgraphDataSource extends RESTDataSource {
 
     const types = type.replace(/[[\]]+/g, '').split(/[\s,]+/);
 
-    // Backwards compatibility with existing mSupply query.
-    const isMsupply = type === `${EEntityType.DRUG} ${EEntityType.UNIT_OF_USE} ${EEntityCategory.MEDICINAL_PRODUCT}`
-
     const data = await this.postQuery(
       DgraphDataSource.getEntitiesQuery(
         types,
@@ -329,110 +294,6 @@ export class DgraphDataSource extends RESTDataSource {
 
       return { ...DgraphDataSource.mapEntity(entity), interactions };
     });
-
-
-    if (isMsupply) {
-      const mSupplyEntities = [];
-      entities.forEach(product => {
-        if (product.children) {
-          product.children.forEach(route => {
-            if (route.children) {
-              route.children.forEach(doseForm => {
-                if (doseForm.children) {
-                  doseForm.children.forEach(doseQualifierOrDoseStrength => {
-                    if (doseQualifierOrDoseStrength.type === EEntityTypeV2.DoseStrength) {
-                      doseQualifierOrDoseStrength.children.forEach(doseStrength => {
-                        if (doseStrength.children) {
-                          doseStrength.children.forEach(unit => {
-                            const { code } = unit;
-                            const { type } = product;
-
-                            const { description: productDescription } = product;
-                            const { description: routeDescription } = route;
-                            const { description: doseFormDescription } = doseForm;
-                            const { description: doseQualifierDescription } = doseQualifierOrDoseStrength;
-                            const { description: doseStrengthDescription } = doseStrength;
-                            const { description: unitDescription } = unit;
-
-                            const description = `${productDescription} ${routeDescription} ${doseFormDescription} ${doseQualifierDescription} ${doseStrengthDescription} ${unitDescription}`;
-
-                            mSupplyEntities.push({
-                              code,
-                              type,
-                              description
-                            });
-
-                          })
-                        } else {
-                          const { code } = doseStrength;
-                          const { type } = product;
-
-                          const { description: productDescription } = product;
-                          const { description: routeDescription } = route;
-                          const { description: doseFormDescription } = doseForm;
-                          const { description: doseQualifierDescription } = doseQualifierOrDoseStrength;
-                          const { description: doseStrengthDescription } = doseStrength;
-
-                          const description = `${productDescription} ${routeDescription} ${doseFormDescription} ${doseQualifierDescription} ${doseStrengthDescription}`;
-
-                          mSupplyEntities.push({
-                            code,
-                            type,
-                            description
-                          });
-                        }
-                      })
-                    } else {
-                      if (doseQualifierOrDoseStrength.children) {
-                        doseQualifierOrDoseStrength.children.forEach(unit => {
-                          const { code } = unit;
-                          const { type } = product;
-
-                          const { description: productDescription } = product;
-                          const { description: routeDescription } = route;
-                          const { description: doseFormDescription } = doseForm;
-                          const { description: doseStrengthDescription } = doseQualifierOrDoseStrength;
-                          const { description: unitDescription } = unit;
-
-                          const description = `${productDescription} ${routeDescription} ${doseFormDescription} ${doseStrengthDescription} ${unitDescription}`;
-
-                          mSupplyEntities.push({
-                            code,
-                            type,
-                            description
-                          });
-
-                        })
-                      } else {
-                        const { code } = doseQualifierOrDoseStrength;
-                        const { type } = product;
-
-                        const { description: productDescription } = product;
-                        const { description: routeDescription } = route;
-                        const { description: doseFormDescription } = doseForm;
-                        const { description: doseStrengthDescription } = doseQualifierOrDoseStrength;
-
-                        const description = `${productDescription} ${routeDescription} ${doseFormDescription} ${doseStrengthDescription}`;
-
-                        mSupplyEntities.push({
-                          code,
-                          type,
-                          description
-                        });
-                      }
-                    }
-                  })
-                }
-              })
-            }
-          })
-        }
-      });
-
-      const mSupplyEntityCount = mSupplyEntities.length;
-
-      return new EntityCollection(mSupplyEntities, mSupplyEntityCount);
-    }
 
     return new EntityCollection(entities, totalCount);
   }

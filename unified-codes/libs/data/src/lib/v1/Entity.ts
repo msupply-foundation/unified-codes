@@ -10,6 +10,7 @@ export enum EEntityType {
   DRUG = 'drug',
   FORM_CATEGORY = 'form_category',
   FORM = 'form',
+  FORM_QUALIFIER = 'form_qualifier',
   UNIT_OF_USE = 'unit_of_use',
   STRENGTH = 'strength',
 }
