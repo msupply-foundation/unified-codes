@@ -217,7 +217,7 @@ export class DgraphDataSource extends RESTDataSource {
     const [type] = types ?? [];
 
     switch (type) {
-      case 'Product':
+      case EEntityTypeV2.Product:
         const [parent] = entity.parents ?? [];
         switch (parent?.description) {
           case 'Consumable':
@@ -227,17 +227,18 @@ export class DgraphDataSource extends RESTDataSource {
           default:
             return EEntityCategory.DRUG;
         }
-      case 'Route':
+      case EEntityTypeV2.Route:
         return EEntityType.FORM_CATEGORY;
-      case 'DoseForm':
-      case 'DoseFormQualifier':
+      case EEntityTypeV2.Form:
         return EEntityType.FORM;
-      case 'DoseStrength':
+      case EEntityTypeV2.FormQualifier:
+        return EEntityType.FORM_QUALIFIER;
+      case EEntityTypeV2.DoseStrength:
         return EEntityType.STRENGTH;
-      case 'DoseUnit':
+      case EEntityTypeV2.Unit:
         return EEntityType.UNIT_OF_USE;
       default:
-        return 'n/a';
+        return type;
     }
   }
 

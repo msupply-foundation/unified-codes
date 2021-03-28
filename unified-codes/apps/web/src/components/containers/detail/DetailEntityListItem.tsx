@@ -1,143 +1,172 @@
 import * as React from 'react';
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { IState } from '../../../types';
+import * as copy from 'clipboard-copy';
 
-import { IEntity } from '@unified-codes/data/v1';
-import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Collapse,
-  ArrowUpIcon,
-  ArrowDownIcon,
-  FormIcon,
-} from '@unified-codes/ui/components';
-import { useToggle } from '@unified-codes/ui/hooks';
-import { DetailActions, IDetailAction } from '../../../actions';
+import { AlertActions, IAlertAction } from '../../../actions';
+import { ITheme } from '../../../styles';
+import { typeFormatter } from '../../../typeFormats';
+import { AlertSeverity, IState } from '../../../types';
 
+import DetailEntityList from './DetailEntityList';
+import DetailPropertyList from './DetailPropertyList';
+
+import { EEntityType, IEntity } from '@unified-codes/data/v1';
+
+import { List, ListItem, IconButton, ListItemText, Collapse, ListItemIcon, ArrowUpIcon, ArrowDownIcon, FileCopyIcon } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
-import { ITheme } from '../../../styles';
+import { useToggle } from '@unified-codes/ui/hooks';
 
+// TODO: pass styles down to children!
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
-    root: {
-      '& p': { color: theme.palette.action.active },
-      width: '100%',
+    copyButton: {
+      marginRight: '8px',
     },
+    icon: {
+      marginRight: '8px',
+      '&:hover': { backgroundColor: theme.palette.background.default },
+    },
+    typeItem: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 0px',
+      width: '100%',
+      '& p': { color: theme.palette.action.active },
+    },
+    typeList: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 0px',
+      width: '100%',
+      '&:hover': { backgroundColor: theme.palette.background.default },
+    },
+    item: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 16px',
+      width: '100%',
+      '& p': { color: theme.palette.action.active },
+    },   
+    list: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 0px',
+      width: '100%',
+      '&:hover': { backgroundColor: theme.palette.background.default },
+    },
+    rootItem: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 8px',
+      width: '100%',
+      '& p': { color: theme.palette.action.active },
+    },   
+    textItem: {
+      margin: '1px 0px 1px 0px',
+    },
+    toggleItem: {
+      margin: '0px 0px 0px 0px',
+      padding: '0px 0px 0px 8px',
+      width: '100%',
+      '& p': { color: theme.palette.action.active },
+    }
   })
 );
 
-const useViewEntity = () => {
-  const history = useHistory();
-  return (code?: string) => code && history.push(`/detail/${code}`);
-};
-
 interface DetailEntityListItemProps {
-  childEntities?: IEntity[];
-  code?: string;
-  description?: string;
-  entityDescription?: string;
-  form?: string;
-  fetchEntity?: (code: string) => void;
+  parent: IEntity,
+  entity: IEntity,
+  onCopy: (code: string) => null,
 }
 
 export type DetailEntityListItem = React.FunctionComponent<DetailEntityListItemProps>;
 
 const DetailEntityListItemComponent: DetailEntityListItem = ({
-  childEntities,
-  code,
-  description,
-  entityDescription,
-  form,
-  fetchEntity,
+  parent,
+  entity,
+  onCopy,
 }) => {
   const classes = useStyles();
-  const viewEntity = useViewEntity();
 
   const { isOpen, onToggle } = useToggle(false);
 
-  const { length: childCount } = childEntities ?? [];
+  const { code, description, children = [], properties = [] } = entity;
 
-  const EntityListToggleItemText = () => {
-    const itemText = !!childCount ? `${description} (${childCount})` : description;
-    const secondaryText = !childCount ? code : undefined;
+  const isRoot = parent === entity;
 
-    return <ListItemText primary={itemText} secondary={secondaryText} />;
-  };
+  const childCount = children?.length ?? 0;
+  const propertyCount = properties?.length ?? 0;
 
-  const EntityListToggleItemIcon = isOpen ? ArrowUpIcon : ArrowDownIcon;
-  const onEntityClick = () => {
-    if (!code) return;
-    fetchEntity && fetchEntity(code);
-    viewEntity(code);
-  };
+  if (!childCount) return (
+    <ListItem className={classes.item}>
+      <ListItemIcon/>
+      <ListItemText className={classes.textItem} primary={description} secondary={code}/>
+      <IconButton className={classes.copyButton} onClick={(e) => { onCopy(code); e.stopPropagation() }}><FileCopyIcon/></IconButton>
+    </ListItem> 
+  );
 
-  const EntityListToggleItem = () =>
-    !!childCount ? (
-      <ListItem button onClick={onToggle}>
-        <EntityListToggleItemText />
+  const ChildListToggleItemText = () => <ListItemText className={classes.textItem} primary={description} secondary={code} />;
+  const ChildListToggleItemIcon = () => <IconButton className={classes.icon} onClick={(e) => { onToggle(); e.stopPropagation() }}>{ isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}</IconButton>;
+
+  const ChildListToggleItem = () =>
+    (
+      <ListItem className={classes.toggleItem} button onClick={(e) => { onToggle(); e.stopPropagation() }}>
         <ListItemIcon>
-          <EntityListToggleItemIcon />
+          <ChildListToggleItemIcon />
         </ListItemIcon>
-      </ListItem>
-    ) : (
-      <ListItem button onClick={onEntityClick}>
-        <EntityListToggleItemText />
-        <ListItemIcon>
-          <FormIcon form={form} />
-        </ListItemIcon>
+        <ChildListToggleItemText />
+        <IconButton className={classes.copyButton} onClick={(e) => { onCopy(code); e.stopPropagation() }}><FileCopyIcon/></IconButton>
       </ListItem>
     );
 
-  const EntityListChildItems = React.useCallback(() => {
-    if (!childCount) return null;
-    const childItems = childEntities?.map((child: IEntity) => {
-      const { description, children, type } = child;
-      const childForm = type === 'form' ? description.toLowerCase() : undefined;
-      let fullDescription = description;
-      let parentDescription = entityDescription;
-      switch(type) {
-        case 'form':
-          parentDescription = `${entityDescription} ${description}`;
-          break;
-        case 'unit_of_use':
-          fullDescription =  `${entityDescription} ${description}`;
-          break;
-      }
-      return (
-        <DetailEntityListItem
-          description={fullDescription}
-          entityDescription={parentDescription}
-          childEntities={children}
-          key={child.code}
-          code={child.code}
-          form={form || childForm}
-        />
-      );
-    });
-    return <List>{childItems}</List>;
-  }, [childEntities]);
+    const EntityTypeList = () => {
+      const entitiesByType = children.reduce((acc, child) => {
+        const { type } = child;
+        if (!acc[type]) acc[type] = [];
+        acc[type] = [ ...acc[type], child ];
+        return acc;
+      }, {});
 
-  return (
-    <ListItem>
-      <List className={classes.root}>
-        <EntityListToggleItem />
-        <Collapse in={isOpen}>
-          <EntityListChildItems />
-        </Collapse>
+      const entityTypeListItems = Object.keys(entitiesByType).map(type => {
+        const entities = entitiesByType[type];
+        const typeFormatted = typeFormatter(type);
+        const description = `${typeFormatted} (${childCount})`;
+        return <ListItem key={type} className={classes.typeItem}><DetailEntityList description={description} parent={entity} entities={entities}/></ListItem>;
+      });
+
+      return <List className={classes.typeList}>{entityTypeListItems}</List>
+    }
+
+    const PropertyList = () => {
+      if (!propertyCount) return null;
+      const description = `Properties (${propertyCount})`;
+      return <DetailPropertyList description={description} parent={entity} properties={properties}/>;
+    };
+    
+    const ChildList = () => (
+      <List className={classes.list}>
+        <ListItem className={classes.item}><EntityTypeList/></ListItem>
+        <ListItem className={classes.item}><PropertyList/></ListItem>
       </List>
-    </ListItem>
-  );
+    );
+
+    return (
+      <ListItem className={isRoot ? classes.rootItem : classes.item}> 
+        <List className={classes.list} >
+          <ChildListToggleItem />
+          <Collapse in={isOpen}><ChildList/></Collapse>
+        </List>
+      </ListItem>
+    );
 };
 
-const mapDispatchToProps = (dispatch: React.Dispatch<IDetailAction>) => {
-  const fetchEntity = (code: string) => {
-    dispatch(DetailActions.fetchEntity(code));
-  };
-  return { fetchEntity };
+const mapDispatchToProps = (dispatch: React.Dispatch<IAlertAction>) => {
+  const onCopy = (code: string) => {
+    copy(code);
+    dispatch(AlertActions.raiseAlert({
+      severity: AlertSeverity.Info,
+      text: `Code ${code} copied to clipboard`,
+      isVisible: true
+    }));
+  }
+
+  return { onCopy };
 };
 
 const mapStateToProps = (_: IState) => ({});
