@@ -26,7 +26,7 @@ export class ExplorerQuery {
     description = '',
     orderBy = EEntityField.DESCRIPTION,
     orderDesc = false,
-    categories = [EEntityCategory.DRUG, EEntityCategory.MEDICINAL_PRODUCT, EEntityCategory.OTHER],
+    categories = [EEntityCategory.DRUG, EEntityCategory.CONSUMABLE, EEntityCategory.OTHER],
     types = [EEntityType.DRUG],
     page = 0,
     rowsPerPage = 25,
