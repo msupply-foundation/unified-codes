@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { IEntity, IProperty } from '@unified-codes/data/v1';
+
 import {
   List,
   ListItem,
@@ -10,16 +11,14 @@ import {
   ArrowUpIcon,
   ArrowDownIcon,
   LinkIcon,
+  IconButton
 } from '@unified-codes/ui/components';
 import { useToggle } from '@unified-codes/ui/hooks';
-
+import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
 import DetailPropertyListItem from './DetailPropertyListItem';
 
-import { createStyles, makeStyles } from '@unified-codes/ui/styles';
-
 import { ITheme } from '../../../styles';
-import { IconButton } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({

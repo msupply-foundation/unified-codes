@@ -1,13 +1,12 @@
 import * as React from 'react';
 
 import { IEntity, IProperty } from '@unified-codes/data/v1';
-import { ListItem, LinkIcon, ListItemText, Link } from '@unified-codes/ui/components';
+
+import { ListItem, LinkIcon, ListItemText, ListItemIcon, Link } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
 import { propertyFormatter } from '../../../propertyFormats';
-
 import { ITheme } from '../../../styles';
-import { ListItemIcon } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({

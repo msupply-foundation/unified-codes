@@ -2,20 +2,18 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import * as copy from 'clipboard-copy';
 
-import { AlertActions, IAlertAction } from '../../../actions';
-import { ITheme } from '../../../styles';
-import { typeFormatter } from '../../../typeFormats';
-import { AlertSeverity, IState } from '../../../types';
-
-import DetailEntityList from './DetailEntityList';
-import DetailPropertyList from './DetailPropertyList';
-
-import { EEntityType, IEntity } from '@unified-codes/data/v1';
+import { IEntity } from '@unified-codes/data/v1';
 
 import { List, ListItem, IconButton, ListItemText, Collapse, ListItemIcon, ArrowUpIcon, ArrowDownIcon, FileCopyIcon } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
-
 import { useToggle } from '@unified-codes/ui/hooks';
+
+import DetailPropertyList from './DetailPropertyList';
+import DetailEntityTypeList from './DetailEntityTypeList';
+
+import { AlertActions, IAlertAction } from '../../../actions';
+import { ITheme } from '../../../styles';
+import { AlertSeverity, IState } from '../../../types';
 
 // TODO: pass styles down to children!
 const useStyles = makeStyles((theme: ITheme) =>
