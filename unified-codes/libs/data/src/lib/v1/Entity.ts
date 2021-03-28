@@ -2,7 +2,7 @@ import { IProperty, Property } from './Property';
 
 export enum EEntityCategory {
   DRUG = 'drug',
-  CONSUMABLES = 'consumables',
+  CONSUMABLE = 'consumable',
   OTHER = 'other',
 }
 

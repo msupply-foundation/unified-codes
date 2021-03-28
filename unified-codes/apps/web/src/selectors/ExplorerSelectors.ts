@@ -91,7 +91,7 @@ const selectFilterByDrug = createSelector(
 
 const selectFilterByConsumable = createSelector(
   selectToggleBar,
-  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityCategory.CONSUMABLES]
+  (toggleBar: IExplorerToggleBarState): boolean => toggleBar?.[EEntityCategory.CONSUMABLE]
 );
 
 const selectFilterByOther = createSelector(

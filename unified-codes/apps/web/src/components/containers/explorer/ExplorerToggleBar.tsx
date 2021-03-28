@@ -52,7 +52,7 @@ const mergeProps = (stateProps: any, dispatchProps: any) => {
   const drugButtonOnClick = onToggleFilterByDrug;
 
   const consumableButtonLabel = 'Consumables';
-  const consumableButtonKey = EEntityCategory.CONSUMABLES;
+  const consumableButtonKey = EEntityCategory.CONSUMABLE;
   const consumableButtonColor = filterByConsumable ? 'primary' : 'secondary';
   const consumableButtonStartIcon = filterByConsumable ? (
     <CheckCircleIcon />

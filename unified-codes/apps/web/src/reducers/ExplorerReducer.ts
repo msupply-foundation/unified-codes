@@ -30,7 +30,7 @@ const initialState: IExplorerState = {
   },
   toggleBar: {
     [EEntityCategory.DRUG]: true,
-    [EEntityCategory.CONSUMABLES]: false,
+    [EEntityCategory.CONSUMABLE]: false,
     [EEntityCategory.OTHER]: false,
   },
 };
@@ -119,7 +119,7 @@ export const ExplorerReducer = (
         ...state,
         toggleBar: {
           ...state.toggleBar,
-          [EEntityCategory.CONSUMABLES]: !state.toggleBar[EEntityCategory.CONSUMABLES],
+          [EEntityCategory.CONSUMABLE]: !state.toggleBar[EEntityCategory.CONSUMABLE],
         },
       };
     }
