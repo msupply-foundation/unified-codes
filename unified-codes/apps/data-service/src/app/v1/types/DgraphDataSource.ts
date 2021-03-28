@@ -222,9 +222,9 @@ export class DgraphDataSource extends RESTDataSource {
       case EEntityTypeV2.Product:
         const [parent] = entity.parents ?? [];
         switch (parent?.description) {
-          case 'Consumable':
+          case EEntityCategoryV2.CONSUMABLE:
             return EEntityCategory.MEDICINAL_PRODUCT;
-          case 'Other':
+          case EEntityCategoryV2.OTHER:
             return EEntityCategory.OTHER;
           default:
             return EEntityCategory.DRUG;
