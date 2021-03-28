@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: ITheme) =>
 );
 
 interface DetailEntityTypeListItemProps {
-    type: EEntityType,
+    type: string,
     parent: IEntity,
     entities: IEntity[],
 };
