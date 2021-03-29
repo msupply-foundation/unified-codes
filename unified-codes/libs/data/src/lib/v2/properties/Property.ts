@@ -1,7 +1,7 @@
 export enum EPropertyField {
   Type = 'type',
   Value = 'value',
-};
+}
 
 export enum EPropertyType {
   DrugInteraction = 'drug_interaction',

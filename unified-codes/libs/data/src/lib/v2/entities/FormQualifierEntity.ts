@@ -26,8 +26,12 @@ export class FormQualifierEntity extends Entity implements IFormQualifierEntity 
   constructor(formQualifier: IFormQualifierEntity) {
     super(formQualifier);
     this.type = EEntityType.FormQualifier;
-    this.children = formQualifier.children?.map((child: IFormQualifierEntityChild) => new UnitEntity(child));
-    this.properties = formQualifier.properties?.map((property: IProperty) => new Property(property));
+    this.children = formQualifier.children?.map(
+      (child: IFormQualifierEntityChild) => new UnitEntity(child)
+    );
+    this.properties = formQualifier.properties?.map(
+      (property: IProperty) => new Property(property)
+    );
   }
 }
 

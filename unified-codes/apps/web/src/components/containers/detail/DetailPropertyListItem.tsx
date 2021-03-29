@@ -5,8 +5,8 @@ import { IEntity, IProperty } from '@unified-codes/data/v1';
 import { ListItem, LinkIcon, ListItemText, ListItemIcon, Link } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 
-import { propertyFormatter } from '../../../propertyFormats';
 import { ITheme } from '../../../styles';
+import { PROPERTY_LABEL, PROPERTY_URL } from 'apps/web/src/types';
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
@@ -28,31 +28,42 @@ const useStyles = makeStyles((theme: ITheme) =>
     },
     textItem: {
       margin: '1px 0px 1px 0px',
-    }
+    },
   })
 );
 
 interface DetailPropertyListItemProps {
-  parent: IEntity,
-  property: IProperty,
+  parent: IEntity;
+  property: IProperty;
 }
 
 export type DetailPropertyListItem = React.FunctionComponent<DetailPropertyListItemProps>;
 
-const DetailPropertyListItem: DetailPropertyListItem = ({
-  parent,
-  property,
-}) => {
+const DetailPropertyListItem: DetailPropertyListItem = ({ parent, property }) => {
   const classes = useStyles();
 
   const { description } = parent;
   const { type, value } = property;
 
-  const { title, url } = propertyFormatter(description, type, value);
+  const label = PROPERTY_LABEL[type];
+  const url = PROPERTY_URL[type] ? PROPERTY_URL[type](value) : '';
 
-  const link = url ? <Link className={classes.link} href={url} target="_blank">{value}<LinkIcon className={classes.icon}/></Link> : value;
+  const primary = `${description} - ${label}`;
+  const secondary = url ? (
+    <Link className={classes.link} href={url} target="_blank">
+      {value}
+      <LinkIcon className={classes.icon} />
+    </Link>
+  ) : (
+    value
+  );
 
-  return <ListItem className={classes.item}><ListItemIcon/><ListItemText className={classes.textItem} primary={title} secondary={link}/></ListItem>
+  return (
+    <ListItem className={classes.item}>
+      <ListItemIcon />
+      <ListItemText className={classes.textItem} primary={primary} secondary={secondary} />
+    </ListItem>
+  );
 };
 
 export default DetailPropertyListItem;

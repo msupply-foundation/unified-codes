@@ -1,4 +1,3 @@
-
 import dgraph from 'dgraph-js';
 
 import { IEntityNode, IEntityGraph } from './types';
@@ -6,7 +5,7 @@ import { IEntityNode, IEntityGraph } from './types';
 export class DgraphClient {
   public readonly host: string;
   public readonly port: string;
-  
+
   private readonly stub: dgraph.DgraphClientStub;
   private readonly client: dgraph.DgraphClient;
 
@@ -31,7 +30,7 @@ export class DgraphClient {
   }
 
   async mutate(nQuads: string, commitNow: boolean = true) {
-    const mutation: dgraph.Mutation = new dgraph.Mutation;
+    const mutation: dgraph.Mutation = new dgraph.Mutation();
     mutation.setSetNquads(nQuads);
 
     const request: dgraph.Request = new dgraph.Request();
@@ -188,7 +187,7 @@ export class DataLoader {
             console.log(
               `WARNING: Failed to load combination with code ${sibling.code} for entity with code ${entity.code}`
             );
-          } 
+          }
         }
       }
     }

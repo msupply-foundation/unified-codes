@@ -1,8 +1,8 @@
 import {
-  IAuthenticatorAction,
-  IAuthenticationSuccessAction,
-  IUserAction,
   AUTHENTICATOR_ACTIONS,
+  IAuthenticationSuccessAction,
+  IAuthenticatorAction,
+  IUserAction,
 } from '../actions';
 
 import { IUserState } from '../types';

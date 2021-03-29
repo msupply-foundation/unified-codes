@@ -24,7 +24,9 @@ export class ManufacturerEntity extends Entity implements IManufacturerEntity {
   constructor(manufacturer: IManufacturerEntity) {
     super(manufacturer);
     this.type = EEntityType.Manufacturer;
-    this.children = manufacturer.children?.map((child: IManufacturerEntityChild) => new BrandEntity(child));
+    this.children = manufacturer.children?.map(
+      (child: IManufacturerEntityChild) => new BrandEntity(child)
+    );
     this.properties = manufacturer.properties?.map((property: IProperty) => new Property(property));
   }
 }

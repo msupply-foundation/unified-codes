@@ -1,6 +1,6 @@
 export * from './about';
-export * from './app';
 export * from './alert';
+export * from './app';
 export * from './detail';
 export * from './error';
 export * from './explorer';

@@ -6,7 +6,7 @@ export enum EEntityField {
   Type = 'type',
   Children = 'children',
   Properties = 'properties',
-};
+}
 
 export enum EEntityCategory {
   DRUG = 'Drug',
@@ -56,7 +56,8 @@ export abstract class Entity implements IEntity {
   }
 
   getProperty(type: string): IProperty {
-    const [property] = this.properties?.filter((property: IProperty) => property.type === type) ?? [];
+    const [property] =
+      this.properties?.filter((property: IProperty) => property.type === type) ?? [];
     return property;
   }
 

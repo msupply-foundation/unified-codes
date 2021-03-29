@@ -39,11 +39,7 @@ const ExplorerToggleBarComponent: ExplorerToggleBar = ({ classes, buttons }) => 
 
 const mergeProps = (stateProps: any, dispatchProps: any) => {
   const { filterByDrug, filterByConsumable, filterByOther } = stateProps;
-  const {
-    onToggleFilterByDrug,
-    onToggleFilterByConsumable,
-    onToggleFilterByOther,
-  } = dispatchProps;
+  const { onToggleFilterByDrug, onToggleFilterByConsumable, onToggleFilterByOther } = dispatchProps;
 
   const drugButtonLabel = 'Drugs';
   const drugButtonKey = EEntityCategory.DRUG;
@@ -54,11 +50,7 @@ const mergeProps = (stateProps: any, dispatchProps: any) => {
   const consumableButtonLabel = 'Consumables';
   const consumableButtonKey = EEntityCategory.CONSUMABLE;
   const consumableButtonColor = filterByConsumable ? 'primary' : 'secondary';
-  const consumableButtonStartIcon = filterByConsumable ? (
-    <CheckCircleIcon />
-  ) : (
-    <AddIcon />
-  );
+  const consumableButtonStartIcon = filterByConsumable ? <CheckCircleIcon /> : <AddIcon />;
   const consumableButtonOnClick = onToggleFilterByConsumable;
 
   const otherButtonLabel = 'Other';

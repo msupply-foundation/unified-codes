@@ -11,7 +11,7 @@ import {
   ArrowUpIcon,
   ArrowDownIcon,
   LinkIcon,
-  IconButton
+  IconButton,
 } from '@unified-codes/ui/components';
 import { useToggle } from '@unified-codes/ui/hooks';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: ITheme) =>
       padding: '0px 0px 0px 8px',
       width: '100%',
       '& p': { color: theme.palette.action.active },
-    }
+    },
   })
 );
 
@@ -63,12 +63,24 @@ const DetailPropertyList: DetailPropertyList = ({ description, parent, propertie
 
   const { length: childCount } = properties ?? [];
 
-  const PropertyListToggleItemText = () => <ListItemText className={classes.textItem} primary={description} />;
-  const PropertyListToggleItemIcon = () => <IconButton className={classes.icon} onClick={(e) => { onToggle(); e.stopPropagation() }}>{ isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}</IconButton>;
+  const PropertyListToggleItemText = () => (
+    <ListItemText className={classes.textItem} primary={description} />
+  );
+  const PropertyListToggleItemIcon = () => (
+    <IconButton
+      className={classes.icon}
+      onClick={(e) => {
+        onToggle();
+        e.stopPropagation();
+      }}
+    >
+      {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+    </IconButton>
+  );
 
   const PropertyListToggleItem = () =>
     !!childCount ? (
-      <ListItem className={classes.toggleItem} button onClick={onToggle} >
+      <ListItem className={classes.toggleItem} button onClick={onToggle}>
         <ListItemIcon>
           <PropertyListToggleItemIcon />
         </ListItemIcon>
@@ -87,7 +99,9 @@ const DetailPropertyList: DetailPropertyList = ({ description, parent, propertie
     <List className={classes.list}>
       <PropertyListToggleItem />
       <Collapse in={isOpen}>
-        <List className={classes.list}><PropertyListChildItems /></List>
+        <List className={classes.list}>
+          <PropertyListChildItems />
+        </List>
       </Collapse>
     </List>
   );

@@ -2,7 +2,16 @@ import * as React from 'react';
 
 import { IEntity } from '@unified-codes/data/v1';
 
-import { List, ListItem, ListItemText, Collapse, ListItemIcon, ArrowUpIcon, ArrowDownIcon, IconButton } from '@unified-codes/ui/components';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Collapse,
+  ListItemIcon,
+  ArrowUpIcon,
+  ArrowDownIcon,
+  IconButton,
+} from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 import { useToggle } from '@unified-codes/ui/hooks';
 
@@ -34,10 +43,9 @@ const useStyles = makeStyles((theme: ITheme) =>
       padding: '0px 0px 0px 8px',
       width: '100%',
       '& p': { color: theme.palette.action.active },
-    }
+    },
   })
 );
-
 
 export interface DetailEntityListProps {
   description: string;
@@ -54,8 +62,20 @@ export const DetailEntityListComponent: DetailEntityList = ({ description, paren
 
   const entityCount = entities.length;
 
-  const EntityListToggleItemText = () => <ListItemText className={classes.textItem} primary={description} />;
-  const EntityListToggleItemIcon = () => <IconButton className={classes.icon} onClick={(e) => { onToggle(); e.stopPropagation() }}>{ isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}</IconButton>;
+  const EntityListToggleItemText = () => (
+    <ListItemText className={classes.textItem} primary={description} />
+  );
+  const EntityListToggleItemIcon = () => (
+    <IconButton
+      className={classes.icon}
+      onClick={(e) => {
+        onToggle();
+        e.stopPropagation();
+      }}
+    >
+      {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+    </IconButton>
+  );
 
   const EntityListToggleItem = () =>
     !!entityCount ? (
@@ -65,27 +85,25 @@ export const DetailEntityListComponent: DetailEntityList = ({ description, paren
         </ListItemIcon>
         <EntityListToggleItemText />
       </ListItem>
-    ): null;
+    ) : null;
 
   const EntityListToggleList = React.useCallback(() => {
     const entityListItems = entities.map((entity: IEntity) => {
-      return (
-        <DetailEntityListItem
-          key={entity.code}
-          parent={parent}
-          entity={entity}
-        />
-      );
+      return <DetailEntityListItem key={entity.code} parent={parent} entity={entity} />;
     });
     return <List className={classes.list}>{entityListItems}</List>;
   }, [entities]);
 
-  const EntityListToggleCollapse = () => <Collapse in={isOpen}><EntityListToggleList/></Collapse>;
+  const EntityListToggleCollapse = () => (
+    <Collapse in={isOpen}>
+      <EntityListToggleList />
+    </Collapse>
+  );
 
   return (
     <List className={classes.list}>
-        <EntityListToggleItem />
-        <EntityListToggleCollapse />
+      <EntityListToggleItem />
+      <EntityListToggleCollapse />
     </List>
   );
 };

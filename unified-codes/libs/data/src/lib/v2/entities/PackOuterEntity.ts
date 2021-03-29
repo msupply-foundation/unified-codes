@@ -25,7 +25,9 @@ export class PackOuterEntity extends Entity implements IPackOuterEntity {
 
   constructor(packOuter: IPackOuterEntity) {
     super(packOuter);
-    this.children = packOuter.children?.map((child: IPackOuterEntityChild) => new ManufacturerEntity(child));
+    this.children = packOuter.children?.map(
+      (child: IPackOuterEntityChild) => new ManufacturerEntity(child)
+    );
     this.properties = packOuter.properties?.map((property: IProperty) => new Property(property));
   }
 }

@@ -6,13 +6,13 @@ const hostname = 'localhost';
 const port = '9080';
 
 const dirPath = '../../../data';
-const schemaPath = 'v2/schema.gql'
+const schemaPath = 'v2/schema.gql';
 const dataPath = 'v2/products.csv';
 
 const schemaFile = path.resolve(__dirname, `${dirPath}/${schemaPath}`);
 const dataFile = path.resolve(__dirname, `${dirPath}/${dataPath}`);
 
-const main = async () => { 
+const main = async () => {
   const schemaParser = new SchemaParser(schemaFile);
   await schemaParser.parseSchema();
 
@@ -25,11 +25,11 @@ const main = async () => {
     const schema = schemaParser.getSchema();
     const graph = dataParser.getGraph();
 
-    try { 
+    try {
       const loader = new DataLoader(hostname, port);
       await loader.load(schema, graph);
-    } catch (err) { 
-      console.log(`Failed to load data due to following error: ${err}`); 
+    } catch (err) {
+      console.log(`Failed to load data due to following error: ${err}`);
     }
   } else {
     const cycles = dataParser.detectCycles();
