@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { EEntityType, IEntity } from '@unified-codes/data/v1';
+import { IEntity } from '@unified-codes/data/v1';
 
 import { ListItem } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
@@ -8,7 +8,9 @@ import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 import DetailEntityList from './DetailEntityList';
 
 import { ITheme } from '../../../styles';
-import { typeFormatter } from '../../../typeFormats';
+import { ENTITY_TYPE_LABEL } from '../../../types';
+
+
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
@@ -31,11 +33,12 @@ export type DetailEntityTypeListItem = React.FunctionComponent<DetailEntityTypeL
 
 export const DetailEntityTypeListItem: DetailEntityTypeListItem = ({ type, parent, entities }) => {
     const classes = useStyles();
-
-    const entityCount = entities?.length;
  
-    const typeFormatted = typeFormatter(type);
-    const description = `${typeFormatted} (${entityCount})`;
+    const description = React.useMemo(() => {
+      const entityCount = entities?.length;
+      const entityTypeLabel = ENTITY_TYPE_LABEL[type];
+      return `${entityTypeLabel} (${entityCount})`;
+    }, [type, entities])
 
     return (
         <ListItem key={type} className={classes.item}>
