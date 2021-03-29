@@ -2,15 +2,14 @@ import { EEntityType, IEntity, Entity } from './Entity';
 import { IRouteEntity, RouteEntity } from './RouteEntity';
 import { IProperty, Property } from '../properties/Property';
 
-
 export enum EProductField {
-    Code = 'code',
-    Name = 'name',
-    Type = 'type',
-    Combines = 'combines',
-    Children = 'children',
-    Properties = 'properties',
-};
+  Code = 'code',
+  Name = 'name',
+  Type = 'type',
+  Combines = 'combines',
+  Children = 'children',
+  Properties = 'properties',
+}
 
 export type IProductEntityChild = IRouteEntity;
 export type IProductEntityChildren = IProductEntityChild[];
@@ -36,7 +35,9 @@ export class ProductEntity extends Entity implements IProductEntity {
     this.type = EEntityType.Product;
     this.combines = product.combines?.map((sibling: IProductEntity) => new ProductEntity(sibling));
     this.children = product.children?.map((child: IProductEntityChild) => new RouteEntity(child));
-    this.properties = product.properties?.map((property: IProductEntityProperty) => new Property(property));
+    this.properties = product.properties?.map(
+      (property: IProductEntityProperty) => new Property(property)
+    );
   }
 }
 

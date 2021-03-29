@@ -1,9 +1,8 @@
-
 export enum EPropertyType {
   RX_NAV = 'code_rxnav',
   NZULM = 'code_nzulm',
   WHO_EML = 'who_eml',
-  UNSPSC = 'code_unspsc'
+  UNSPSC = 'code_unspsc',
 }
 
 export interface IProperty {

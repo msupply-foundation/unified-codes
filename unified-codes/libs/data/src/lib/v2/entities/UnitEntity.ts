@@ -13,7 +13,7 @@ export type IUnitEntityProperties = IUnitEntityProperty[];
 
 export interface IUnitEntity extends IEntity {
   type: EEntityType.Unit;
-  children?: IUnitEntityChildren
+  children?: IUnitEntityChildren;
   properties?: IUnitEntityProperties;
 }
 

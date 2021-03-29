@@ -25,8 +25,12 @@ export class PackImmediateEntity extends Entity implements IPackImmediateEntity 
 
   constructor(packImmediate: IPackImmediateEntity) {
     super(packImmediate);
-    this.children = packImmediate.children?.map((child: IPackImmediateEntityChild) => new PackSizeEntity(child));
-    this.properties = packImmediate.properties?.map((property: IProperty) => new Property(property));
+    this.children = packImmediate.children?.map(
+      (child: IPackImmediateEntityChild) => new PackSizeEntity(child)
+    );
+    this.properties = packImmediate.properties?.map(
+      (property: IProperty) => new Property(property)
+    );
   }
 }
 

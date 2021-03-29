@@ -1,4 +1,3 @@
-  
 import { EEntityType } from './Entity';
 
 import IEntitySort from './EntitySort';

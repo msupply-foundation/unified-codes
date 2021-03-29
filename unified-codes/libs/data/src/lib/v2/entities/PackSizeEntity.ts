@@ -3,7 +3,6 @@ import { EEntityField, EEntityType, IEntity, Entity } from './Entity';
 import { IPackOuterEntity, PackOuterEntity } from './PackOuterEntity';
 import { IProperty, Property } from '../properties/Property';
 
-
 export type EPackSizeEntityField = EEntityField;
 
 export type IPackSizeEntityChild = IPackOuterEntity | IManufacturerEntity;
@@ -28,8 +27,8 @@ export class PackSizeEntity extends Entity implements IPackSizeEntity {
   constructor(packSize: IPackSizeEntity) {
     super(packSize);
     this.children = packSize.children?.map((child: IPackSizeEntityChild) => {
-        if (child.type === EEntityType.PackOuter) return new PackOuterEntity(child);
-        else return new ManufacturerEntity(child);
+      if (child.type === EEntityType.PackOuter) return new PackOuterEntity(child);
+      else return new ManufacturerEntity(child);
     });
     this.properties = packSize.properties?.map((property: IProperty) => new Property(property));
   }

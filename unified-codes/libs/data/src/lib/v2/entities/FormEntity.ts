@@ -4,12 +4,12 @@ import { IUnitEntity, UnitEntity } from './UnitEntity';
 import { IProperty, Property } from '../properties/Property';
 
 export enum EFormField {
-    Code = 'code',
-    Name = 'name',
-    Type = 'type',
-    Children = 'children',
-    Properties = 'properties',
-};
+  Code = 'code',
+  Name = 'name',
+  Type = 'type',
+  Children = 'children',
+  Properties = 'properties',
+}
 
 export type IFormEntityChild = IFormQualifierEntity | IUnitEntity;
 export type IFormEntityChildren = IFormEntityChild[];
@@ -31,8 +31,8 @@ export class FormEntity extends Entity implements IFormEntity {
   constructor(form: IFormEntity) {
     super(form);
     this.children = form.children?.map((child: IFormEntityChild) => {
-        if (child.type === EEntityType.FormQualifier) return new FormQualifierEntity(child);
-        else return new UnitEntity(child);
+      if (child.type === EEntityType.FormQualifier) return new FormQualifierEntity(child);
+      else return new UnitEntity(child);
     });
     this.properties = form.properties?.map((property: IProperty) => new Property(property));
   }
