@@ -37,7 +37,10 @@ const start = async () => {
     const apolloServerV2 = await createApolloServer(typeDefsV2, resolversV2, dataSourcesV2);
 
     const apolloPlugin = apolloServer.createHandler({ path: '/graphql' });
-    const apolloPluginV1 = apolloServerV1.createHandler({ path: '/v1/graphql', disableHealthCheck: true });
+    const apolloPluginV1 = apolloServerV1.createHandler({
+      path: '/v1/graphql',
+      disableHealthCheck: true,
+    });
     const apolloPluginV2 = apolloServerV2.createHandler({
       path: '/v2/graphql',
       disableHealthCheck: true,

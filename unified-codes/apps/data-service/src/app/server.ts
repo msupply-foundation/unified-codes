@@ -48,8 +48,10 @@ export const createFastifyServer = (
   plugins?: FastifyPluginCallback<FastifyPluginOptions>[]
 ): FastifyServer => {
   const fastifyServer = fastify(config);
+
   plugins.forEach((plugin) => {
     fastifyServer.register(plugin);
   });
+
   return fastifyServer;
 };
