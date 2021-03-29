@@ -3,7 +3,7 @@ import { IProperty, Property } from './Property';
 export enum EEntityCategory {
   DRUG = 'drug',
   CONSUMABLE = 'consumable',
-  MEDICINAL_PRODUCT = 'medicinal_product', // Not a real category, but mSupply still thinks it is
+  MEDICINAL_PRODUCT = 'medicinal_product', // DEPRECATED: retain for mSupply compatibility
   OTHER = 'other',
 }
 
