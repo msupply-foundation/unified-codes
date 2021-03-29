@@ -63,6 +63,7 @@ export interface ExplorerTableRowsProps {
   };
   columns: EEntityField[];
   entities: IEntity[];
+  onCopy: (code: string) => null;
 }
 
 export type ExplorerTableRows = React.FunctionComponent<ExplorerTableRowsProps>;

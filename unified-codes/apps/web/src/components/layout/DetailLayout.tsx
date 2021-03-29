@@ -6,14 +6,10 @@ export interface DetailLayoutProps {
   classes?: {
     root?: string;
     attributeListContainer?: string;
-    childListContainer?: string;
-    productContainer?: string;
-    propertyListContainer?: string;
+    detailListContainer?: string;
   };
   attributeList: React.ReactElement;
-  childList: React.ReactElement;
-  product: React.ReactElement;
-  propertyList: React.ReactElement;
+  detailList: React.ReactElement;
 }
 
 export type DetailLayout = React.FunctionComponent<DetailLayoutProps>;
@@ -21,22 +17,14 @@ export type DetailLayout = React.FunctionComponent<DetailLayoutProps>;
 export const DetailLayout: DetailLayout = ({
   classes,
   attributeList,
-  childList,
-  product,
-  propertyList,
+  detailList,
 }) => (
   <Grid container direction="column" className={classes?.root}>
     <Grid container className={classes?.attributeListContainer}>
       {attributeList}
     </Grid>
-    <Grid container className={classes?.childListContainer}>
-      {childList}
-    </Grid>
-    <Grid container className={classes?.productContainer}>
-      {product}
-    </Grid>
-    <Grid container className={classes?.propertyListContainer}>
-      {propertyList}
+    <Grid container className={classes?.detailListContainer}>
+      {detailList}
     </Grid>
   </Grid>
 );

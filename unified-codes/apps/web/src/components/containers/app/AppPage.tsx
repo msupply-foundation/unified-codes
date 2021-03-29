@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: ITheme) =>
     root: {
       backgroundColor: theme.palette.background.paper,
       marginTop: 96,
-      height: 'calc(100vh - 90px)',
+      height: '100%',
       paddingBottom: 10,
     },
   })

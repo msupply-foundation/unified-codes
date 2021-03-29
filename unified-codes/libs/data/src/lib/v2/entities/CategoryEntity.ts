@@ -1,6 +1,7 @@
 import { EEntityField, EEntityType, IEntity, Entity } from './Entity';
 import { IProductEntity, ProductEntity } from './ProductEntity';
-import { IProperty, Property } from '../Property/Property';
+import { IProperty, Property } from '../properties/Property';
+
 
 export enum ECategoryEntityName {
   Drug = 'drug',

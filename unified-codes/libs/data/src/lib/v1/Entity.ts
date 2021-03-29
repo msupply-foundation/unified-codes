@@ -2,7 +2,8 @@ import { IProperty, Property } from './Property';
 
 export enum EEntityCategory {
   DRUG = 'drug',
-  MEDICINAL_PRODUCT = 'medicinal_product',
+  CONSUMABLE = 'consumable',
+  MEDICINAL_PRODUCT = 'medicinal_product', // Not a real category, but mSupply still thinks it is
   OTHER = 'other',
 }
 
@@ -10,6 +11,7 @@ export enum EEntityType {
   DRUG = 'drug',
   FORM_CATEGORY = 'form_category',
   FORM = 'form',
+  FORM_QUALIFIER = 'form_qualifier',
   UNIT_OF_USE = 'unit_of_use',
   STRENGTH = 'strength',
 }

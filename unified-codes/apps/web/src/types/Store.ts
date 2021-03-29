@@ -25,7 +25,7 @@ export interface IExplorerTableState {
 
 export interface IExplorerToggleBarState {
   [EEntityCategory.DRUG]: boolean;
-  [EEntityCategory.MEDICINAL_PRODUCT]: boolean;
+  [EEntityCategory.CONSUMABLE]: boolean;
   [EEntityCategory.OTHER]: boolean;
 }
 
