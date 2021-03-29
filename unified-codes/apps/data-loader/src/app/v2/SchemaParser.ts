@@ -59,7 +59,6 @@ export class SchemaParser {
     return this.schema;
   }
 
-    
   public getSchema() {
     return this.schema;
   }

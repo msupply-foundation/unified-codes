@@ -6,7 +6,7 @@ export interface ICSVRow {
   [ECSVColumn.Combination]: string;
   [ECSVColumn.Route]: string;
   [ECSVColumn.DoseForm]: string;
-  [ECSVColumn.DoseQualification]: string;  
+  [ECSVColumn.DoseQualification]: string;
   [ECSVColumn.Strength]: string;
   [ECSVColumn.UnitOfPresentation]: string;
   [ECSVColumn.ImmediatePackaging]: string;
@@ -32,6 +32,6 @@ export interface ICSVRow {
   [ECSVColumn.NZULM]: string;
   [ECSVColumn.NZULMItem]: string;
   [ECSVColumn.UNSPSC]: string;
-};
+}
 
 export default ICSVRow;

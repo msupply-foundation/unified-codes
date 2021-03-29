@@ -1,7 +1,15 @@
 import * as csv from 'csv-parser';
 import * as fs from 'fs';
 
-import { ICSVRow, ICSVData, IEntityGraph, IEntityNode, IPropertyNode, EEntityType, EPropertyType } from './types';
+import {
+  ICSVRow,
+  ICSVData,
+  IEntityGraph,
+  IEntityNode,
+  IPropertyNode,
+  EEntityType,
+  EPropertyType,
+} from './types';
 
 enum UCCode {
   Root = 'root',
@@ -18,17 +26,17 @@ enum UCName {
 const UC_ENTITY: { [name: string]: IEntityNode } = {
   ROOT: {
     code: UCCode.Root,
-    name: UCName.Root, 
+    name: UCName.Root,
     type: EEntityType.Root,
-    children: [], 
-    properties: []
+    children: [],
+    properties: [],
   },
   DRUG: {
     code: UCCode.Drug,
     name: UCName.Drug,
     type: EEntityType.Category,
-    children: [], 
-    properties: []
+    children: [],
+    properties: [],
   },
   CONSUMABLE: {
     code: UCCode.Consumable,
@@ -36,7 +44,7 @@ const UC_ENTITY: { [name: string]: IEntityNode } = {
     type: EEntityType.Category,
     children: [],
     properties: [],
-  }
+  },
 };
 
 export class DataParser {
@@ -100,7 +108,7 @@ export class DataParser {
   public async parseData(): Promise<ICSVData> {
     if (this.isParsed) return this.data;
 
-    const parseColumn = column => {
+    const parseColumn = (column) => {
       const REGEX = {
         CR_LF: /[\r\n]/g,
         BRACKETED_DESCRIPTION: / *\([^)]*\) */g,
@@ -113,7 +121,7 @@ export class DataParser {
         .replace(REGEX.CR_LF, '')
         .replace(REGEX.BRACKETED_DESCRIPTION, '')
         .replace(REGEX.SPACE, '_');
-    }
+    };
 
     // Read data stream.
     const stream = await fs.createReadStream(this.path, this.options);
@@ -187,85 +195,109 @@ export class DataParser {
           nzulm_item,
           unspsc,
         } = row;
-      
+
         const productProperties: IPropertyNode[] = [];
         const itemProperties: IPropertyNode[] = [];
 
-        productProperties.push({ code: this.generateCode(), type: EPropertyType.RxNav, value: rxnav });
-        productProperties.push({ code: this.generateCode(), type: EPropertyType.WHOEML, value: who_eml_product });
+        productProperties.push({
+          code: this.generateCode(),
+          type: EPropertyType.RxNav,
+          value: rxnav,
+        });
+        productProperties.push({
+          code: this.generateCode(),
+          type: EPropertyType.WHOEML,
+          value: who_eml_product,
+        });
 
-        itemProperties.push({ code: this.generateCode(), type: EPropertyType.WHOEML, value: who_eml_item });
-        productProperties.push({ code: this.generateCode(), type: EPropertyType.NZULM, value: nzulm });
-        itemProperties.push({ code: this.generateCode(), type: EPropertyType.NZULM, value: nzulm_item });
-        productProperties.push({ code: this.generateCode(), type: EPropertyType.UNSPSC, value: unspsc });
+        itemProperties.push({
+          code: this.generateCode(),
+          type: EPropertyType.WHOEML,
+          value: who_eml_item,
+        });
+        productProperties.push({
+          code: this.generateCode(),
+          type: EPropertyType.NZULM,
+          value: nzulm,
+        });
+        itemProperties.push({
+          code: this.generateCode(),
+          type: EPropertyType.NZULM,
+          value: nzulm_item,
+        });
+        productProperties.push({
+          code: this.generateCode(),
+          type: EPropertyType.UNSPSC,
+          value: unspsc,
+        });
 
         // If row includes pack size code...
         if (uc9) {
-            const code = uc9;
-            const name = pack_size;
-            const type = EEntityType.PackSize;
+          const code = uc9;
+          const name = pack_size;
+          const type = EEntityType.PackSize;
 
-            // and node does not exist...
-            if (!(uc9 in this.graph)) {
-                // create pack size node.
-                const node = {
-                    code,
-                    name,
-                    type,
-                    children: [],
-                    properties: [],
-                };
+          // and node does not exist...
+          if (!(uc9 in this.graph)) {
+            // create pack size node.
+            const node = {
+              code,
+              name,
+              type,
+              children: [],
+              properties: [],
+            };
 
-                this.graph[uc9] = node;
+            this.graph[uc9] = node;
 
-                console.log(`INFO: Created node of type ${type}: ${JSON.stringify(node)}`);
-            }
+            console.log(`INFO: Created node of type ${type}: ${JSON.stringify(node)}`);
+          }
         }
 
         // If row includes immediate packaging code...
         if (uc8) {
-            const code = uc8;
-            const name = immediate_packaging;
-            const type = EEntityType.PackImmediate;
+          const code = uc8;
+          const name = immediate_packaging;
+          const type = EEntityType.PackImmediate;
 
-            // and node does not exist...
-            if (!(uc8 in this.graph)) {
-                // create unit node.
-                const node = {
-                    code,
-                    name,
-                    type,
-                    children: [],
-                    properties: [],
-                };
+          // and node does not exist...
+          if (!(uc8 in this.graph)) {
+            // create unit node.
+            const node = {
+              code,
+              name,
+              type,
+              children: [],
+              properties: [],
+            };
 
-                this.graph[uc8] = node;
+            this.graph[uc8] = node;
 
-                console.log(`INFO: Created node of type ${type}: ${JSON.stringify(node)}`);
-            }
+            console.log(`INFO: Created node of type ${type}: ${JSON.stringify(node)}`);
+          }
         }
 
         // If row includes unit of presentation code...
         if (uc7) {
-            const code = uc7;
-            const name = unit_of_presentation;
-            const type = EEntityType.Unit;
+          const code = uc7;
+          const name = unit_of_presentation;
+          const type = EEntityType.Unit;
 
-            // and node does not exist...
-            if (!(uc7 in this.graph)) {
-                // create unit node.
-                const node = {
-                    code,
-                    name,
-                    type,
-                    children: [],
-                    properties: [],
-                };
+          // and node does not exist...
+          if (!(uc7 in this.graph)) {
+            // create unit node.
+            const node = {
+              code,
+              name,
+              type,
+              children: [],
+              properties: [],
+            };
 
-                this.graph[uc7] = node;
+            this.graph[uc7] = node;
 
-                console.log(`INFO: Created node of type ${type}: ${JSON.stringify(node)}`);
-            }
+            console.log(`INFO: Created node of type ${type}: ${JSON.stringify(node)}`);
+          }
         }
 
         // If row include strength code...
@@ -440,9 +472,7 @@ export class DataParser {
             // link unit to pack immediate.
             if (!this.graph[uc7].children.map((child) => child.code).includes(uc8)) {
               this.graph[uc7].children.push({ code: uc8 });
-              console.log(
-                `INFO: Linked unit with code ${uc7} to pack immediate with code ${uc8}`
-              );
+              console.log(`INFO: Linked unit with code ${uc7} to pack immediate with code ${uc8}`);
             }
           }
         }
@@ -454,9 +484,7 @@ export class DataParser {
             // link dose strength to unit.
             if (!this.graph[uc6].children.map((child) => child.code).includes(uc7)) {
               this.graph[uc6].children.push({ code: uc7 });
-              console.log(
-                `INFO: Linked dose strength with code ${uc6} to unit with code ${uc7}`
-              );
+              console.log(`INFO: Linked dose strength with code ${uc6} to unit with code ${uc7}`);
             }
           }
         }
@@ -609,13 +637,13 @@ export class DataParser {
         node.name = `${name} ${node.name}`;
         node.name = node.name.trim();
         console.log(`INFO: Renamed node with code ${node.code} to ${node.name}`);
-        node.children?.forEach(child => updateName(child, node.name));
+        node.children?.forEach((child) => updateName(child, node.name));
       };
 
-      this.graph[UCCode.Root].children?.forEach(category => {
-        category.children?.forEach(product => updateName(product));
+      this.graph[UCCode.Root].children?.forEach((category) => {
+        category.children?.forEach((product) => updateName(product));
       });
-      
+
       // Output warnings for any duplicate entity codes.
       duplicates.forEach((uc) => console.log(`WARNING: Detected duplicate code ${uc}!`));
 

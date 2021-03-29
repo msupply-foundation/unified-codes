@@ -19,13 +19,13 @@ export enum EPropertyType {
   WHOEML = 'who_eml',
   NZULM = 'code_nzulm',
   UNSPSC = 'code_unspsc',
-};
+}
 
 export interface IPropertyNode {
   code: string;
   type?: string;
   value?: string;
-};
+}
 
 export interface IEntityNode {
   code: string;
@@ -35,6 +35,6 @@ export interface IEntityNode {
   properties?: IPropertyNode[];
   children?: IEntityNode[];
   value?: string;
-};
-  
+}
+
 export default IEntityNode;
