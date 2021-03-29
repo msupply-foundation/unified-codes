@@ -61,7 +61,7 @@ export class DgraphDataSource extends RESTDataSource {
       switch (category) {
         case EEntityCategory.DRUG:
           return EEntityCategoryV2.DRUG;
-        case EEntityCategory.MEDICINAL_PRODUCT:
+        case EEntityCategory.CONSUMABLE:
           return EEntityCategoryV2.CONSUMABLE;
         case EEntityCategory.OTHER:
           return EEntityCategoryV2.OTHER;
@@ -188,7 +188,7 @@ export class DgraphDataSource extends RESTDataSource {
         const [parent] = entity.parents ?? [];
         switch (parent?.description) {
           case EEntityCategoryV2.CONSUMABLE:
-            return EEntityCategory.MEDICINAL_PRODUCT;
+            return EEntityCategory.CONSUMABLE;
           case EEntityCategoryV2.OTHER:
             return EEntityCategory.OTHER;
           default:
@@ -265,7 +265,7 @@ export class DgraphDataSource extends RESTDataSource {
     first?: number,
     offset?: number
   ): Promise<IEntityCollection> {
-    const { categories = [EEntityCategory.DRUG, EEntityCategory.MEDICINAL_PRODUCT, EEntityCategory.OTHER], type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
+    const { categories = [EEntityCategory.DRUG, EEntityCategory.CONSUMABLE, EEntityCategory.OTHER], type = EEntityType.DRUG, description, match, orderBy } = filter ?? {};
     const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = false } =
       orderBy ?? {};
 

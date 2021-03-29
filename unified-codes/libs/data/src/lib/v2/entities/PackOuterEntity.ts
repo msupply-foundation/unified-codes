@@ -1,6 +1,6 @@
 import { IManufacturerEntity, ManufacturerEntity } from './ManufacturerEntity';
 import { EEntityField, EEntityType, IEntity, Entity } from './Entity';
-import { IProperty, Property } from '../Property';
+import { IProperty, Property } from '../properties/Property';
 
 export type EPackOuterEntityField = EEntityField;
 
