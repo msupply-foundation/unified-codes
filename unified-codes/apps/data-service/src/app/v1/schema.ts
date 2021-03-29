@@ -1,14 +1,15 @@
 import { ASTNode, GraphQLError, Source, SourceLocation } from 'graphql';
+
 import { Field, ID, InputType, Int, ObjectType } from 'type-graphql';
 
 import {
-  IEntity,
-  IEntitySort,
   IDrugInteraction,
   IDrugInteractions,
-  IProperty,
+  IEntity,
   IEntityCollection,
   IEntitySearch,
+  IEntitySort,
+  IProperty,
 } from '@unified-codes/data/v1';
 
 export type FilterMatch = 'begin' | 'contains' | 'exact' | undefined;

@@ -1,10 +1,10 @@
 import { ApolloServer } from 'apollo-server-fastify';
 import fastify, {
-  FastifyServerOptions,
   FastifyInstance,
   FastifyLoggerInstance,
   FastifyPluginCallback,
   FastifyPluginOptions,
+  FastifyServerOptions,
 } from 'fastify';
 import { IncomingMessage, Server, ServerResponse } from 'http';
 

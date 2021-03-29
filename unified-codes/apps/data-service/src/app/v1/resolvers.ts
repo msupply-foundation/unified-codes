@@ -11,10 +11,10 @@ import {
 } from 'type-graphql';
 
 import {
+  IApolloServiceContext,
   IDrugInteractions,
   IEntity,
   IEntityCollection,
-  IApolloServiceContext,
   User,
 } from '@unified-codes/data/v1';
 
