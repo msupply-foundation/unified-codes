@@ -1,2 +1,2 @@
-export * from './AboutPage';
 export * from './AboutContent';
+export * from './AboutPage';

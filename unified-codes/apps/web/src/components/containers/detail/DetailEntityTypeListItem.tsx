@@ -10,8 +10,6 @@ import DetailEntityList from './DetailEntityList';
 import { ITheme } from '../../../styles';
 import { ENTITY_TYPE_LABEL } from '../../../types';
 
-
-
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     item: {
@@ -19,32 +17,32 @@ const useStyles = makeStyles((theme: ITheme) =>
       padding: '0px 0px 0px 0px',
       width: '100%',
       '& p': { color: theme.palette.action.active },
-    }
+    },
   })
 );
 
 interface DetailEntityTypeListItemProps {
-    type: string,
-    parent: IEntity,
-    entities: IEntity[],
-};
-  
+  type: string;
+  parent: IEntity;
+  entities: IEntity[];
+}
+
 export type DetailEntityTypeListItem = React.FunctionComponent<DetailEntityTypeListItemProps>;
 
 export const DetailEntityTypeListItem: DetailEntityTypeListItem = ({ type, parent, entities }) => {
-    const classes = useStyles();
- 
-    const description = React.useMemo(() => {
-      const entityCount = entities?.length;
-      const entityTypeLabel = ENTITY_TYPE_LABEL[type];
-      return `${entityTypeLabel} (${entityCount})`;
-    }, [type, entities])
+  const classes = useStyles();
 
-    return (
-        <ListItem key={type} className={classes.item}>
-            <DetailEntityList description={description} parent={parent} entities={entities}/>
-        </ListItem>
-    );
+  const description = React.useMemo(() => {
+    const entityCount = entities?.length;
+    const entityTypeLabel = ENTITY_TYPE_LABEL[type];
+    return `${entityTypeLabel} (${entityCount})`;
+  }, [type, entities]);
+
+  return (
+    <ListItem key={type} className={classes.item}>
+      <DetailEntityList description={description} parent={parent} entities={entities} />
+    </ListItem>
+  );
 };
 
 export default DetailEntityTypeListItem;

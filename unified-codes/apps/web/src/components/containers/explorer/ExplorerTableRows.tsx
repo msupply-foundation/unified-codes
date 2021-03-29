@@ -3,7 +3,14 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as copy from 'clipboard-copy';
 
-import { FileCopyIcon, Grid, IconButton, TableBody, TableCell, TableRow } from '@unified-codes/ui/components';
+import {
+  FileCopyIcon,
+  Grid,
+  IconButton,
+  TableBody,
+  TableCell,
+  TableRow,
+} from '@unified-codes/ui/components';
 import { withStyles } from '@unified-codes/ui/styles';
 import { EEntityField, IEntity } from '@unified-codes/data/v1';
 
@@ -11,8 +18,6 @@ import { AlertActions, IAlertAction, IExplorerAction } from '../../../actions';
 import { ExplorerSelectors } from '../../../selectors';
 import { AlertSeverity, IState } from '../../../types';
 import { ITheme } from '../../../styles';
-
-
 
 const styles = (theme: ITheme) => {
   const row = {
@@ -23,9 +28,9 @@ const styles = (theme: ITheme) => {
   };
 
   const icon = {
-    padding: '4px'
+    padding: '4px',
   };
-  
+
   return {
     root: {},
     rowPrimary: {
@@ -88,11 +93,17 @@ const ExplorerTableRowsComponent: ExplorerTableRows = ({ classes, columns, entit
           return (
             <TableCell key="code" className={classes?.cell}>
               <Grid container direction="row" justify="space-around" alignItems="center">
+                <Grid item>{entity.code}</Grid>
                 <Grid item>
-                  {entity.code}
-                </Grid>
-                <Grid item>
-                  <IconButton className={iconClass} onClick={(e) => { onCopy(code); e.stopPropagation() }}><FileCopyIcon/></IconButton>
+                  <IconButton
+                    className={iconClass}
+                    onClick={(e) => {
+                      onCopy(code);
+                      e.stopPropagation();
+                    }}
+                  >
+                    <FileCopyIcon />
+                  </IconButton>
                 </Grid>
               </Grid>
             </TableCell>
@@ -129,13 +140,15 @@ const ExplorerTableRowsComponent: ExplorerTableRows = ({ classes, columns, entit
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction | IAlertAction>) => {
   const onCopy = (code: string) => {
     copy(code);
-    dispatch(AlertActions.raiseAlert({
-      severity: AlertSeverity.Info,
-      text: `Code ${code} copied to clipboard`,
-      isVisible: true
-    }));
-  }
-  
+    dispatch(
+      AlertActions.raiseAlert({
+        severity: AlertSeverity.Info,
+        text: `Code ${code} copied to clipboard`,
+        isVisible: true,
+      })
+    );
+  };
+
   return { onCopy };
 };
 
@@ -146,8 +159,9 @@ const mapStateToProps = (state: IState) => {
   return { columns, entities };
 };
 
-export const ExplorerTableRows = connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles)(ExplorerTableRowsComponent)
-);
+export const ExplorerTableRows = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(ExplorerTableRowsComponent));
 
 export default ExplorerTableRows;

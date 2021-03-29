@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: ITheme) =>
       margin: '-20px auto 0 auto',
       maxWidth: 900,
       width: '100%',
-    }
+    },
   })
 );
 

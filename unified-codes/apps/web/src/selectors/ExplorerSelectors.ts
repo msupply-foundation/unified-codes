@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { EEntityField, EEntityType, IEntity, EEntityCategory } from '@unified-codes/data/v1';
+import { EEntityField, IEntity, EEntityCategory } from '@unified-codes/data/v1';
 
 import {
   IExplorerSearchBarState,

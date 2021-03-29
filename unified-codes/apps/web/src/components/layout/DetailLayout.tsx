@@ -14,11 +14,7 @@ export interface DetailLayoutProps {
 
 export type DetailLayout = React.FunctionComponent<DetailLayoutProps>;
 
-export const DetailLayout: DetailLayout = ({
-  classes,
-  attributeList,
-  detailList,
-}) => (
+export const DetailLayout: DetailLayout = ({ classes, attributeList, detailList }) => (
   <Grid container direction="column" className={classes?.root}>
     <Grid container className={classes?.attributeListContainer}>
       {attributeList}

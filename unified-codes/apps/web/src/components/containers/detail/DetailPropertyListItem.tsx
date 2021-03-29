@@ -28,21 +28,18 @@ const useStyles = makeStyles((theme: ITheme) =>
     },
     textItem: {
       margin: '1px 0px 1px 0px',
-    }
+    },
   })
 );
 
 interface DetailPropertyListItemProps {
-  parent: IEntity,
-  property: IProperty,
+  parent: IEntity;
+  property: IProperty;
 }
 
 export type DetailPropertyListItem = React.FunctionComponent<DetailPropertyListItemProps>;
 
-const DetailPropertyListItem: DetailPropertyListItem = ({
-  parent,
-  property,
-}) => {
+const DetailPropertyListItem: DetailPropertyListItem = ({ parent, property }) => {
   const classes = useStyles();
 
   const { description } = parent;
@@ -51,10 +48,22 @@ const DetailPropertyListItem: DetailPropertyListItem = ({
   const label = PROPERTY_LABEL[type];
   const url = PROPERTY_URL[type] ? PROPERTY_URL[type](value) : '';
 
-  const primary = `${description} - ${label}`
-  const secondary = url ? <Link className={classes.link} href={url} target="_blank">{value}<LinkIcon className={classes.icon}/></Link> : value;
+  const primary = `${description} - ${label}`;
+  const secondary = url ? (
+    <Link className={classes.link} href={url} target="_blank">
+      {value}
+      <LinkIcon className={classes.icon} />
+    </Link>
+  ) : (
+    value
+  );
 
-  return <ListItem className={classes.item}><ListItemIcon/><ListItemText className={classes.textItem} primary={primary} secondary={secondary}/></ListItem>
+  return (
+    <ListItem className={classes.item}>
+      <ListItemIcon />
+      <ListItemText className={classes.textItem} primary={primary} secondary={secondary} />
+    </ListItem>
+  );
 };
 
 export default DetailPropertyListItem;

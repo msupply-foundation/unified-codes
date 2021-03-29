@@ -32,9 +32,11 @@ export const DetailListComponent: DetailList = ({ entity }) => {
 
   if (!entity) return null;
 
-  return <List className={classes.list}>
-    <DetailEntityListItem parent={entity} entity={entity}/>
-  </List>
+  return (
+    <List className={classes.list}>
+      <DetailEntityListItem parent={entity} entity={entity} />
+    </List>
+  );
 };
 
 const mapStateToProps = (state: IState) => {
