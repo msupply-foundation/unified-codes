@@ -1,15 +1,14 @@
 import * as React from 'react';
 
 import { IEntity } from '@unified-codes/data/v1';
-import { List, ListItem, ListItemText, Collapse, ListItemIcon, ArrowUpIcon, ArrowDownIcon } from '@unified-codes/ui/components';
+
+import { List, ListItem, ListItemText, Collapse, ListItemIcon, ArrowUpIcon, ArrowDownIcon, IconButton } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
+import { useToggle } from '@unified-codes/ui/hooks';
 
 import DetailEntityListItem from './DetailEntityListItem';
 
-import { useToggle } from '@unified-codes/ui/hooks';
-
 import { ITheme } from '../../../styles';
-import { IconButton } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({

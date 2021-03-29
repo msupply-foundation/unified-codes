@@ -2,20 +2,18 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import * as copy from 'clipboard-copy';
 
-import { AlertActions, IAlertAction } from '../../../actions';
-import { ITheme } from '../../../styles';
-import { typeFormatter } from '../../../typeFormats';
-import { AlertSeverity, IState } from '../../../types';
-
-import DetailEntityList from './DetailEntityList';
-import DetailPropertyList from './DetailPropertyList';
-
-import { EEntityType, IEntity } from '@unified-codes/data/v1';
+import { IEntity } from '@unified-codes/data/v1';
 
 import { List, ListItem, IconButton, ListItemText, Collapse, ListItemIcon, ArrowUpIcon, ArrowDownIcon, FileCopyIcon } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
-
 import { useToggle } from '@unified-codes/ui/hooks';
+
+import DetailPropertyList from './DetailPropertyList';
+import DetailEntityTypeList from './DetailEntityTypeList';
+
+import { AlertActions, IAlertAction } from '../../../actions';
+import { ITheme } from '../../../styles';
+import { AlertSeverity, IState } from '../../../types';
 
 // TODO: pass styles down to children!
 const useStyles = makeStyles((theme: ITheme) =>
@@ -25,18 +23,6 @@ const useStyles = makeStyles((theme: ITheme) =>
     },
     icon: {
       marginRight: '8px',
-      '&:hover': { backgroundColor: theme.palette.background.default },
-    },
-    typeItem: {
-      margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 0px',
-      width: '100%',
-      '& p': { color: theme.palette.action.active },
-    },
-    typeList: {
-      margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 0px',
-      width: '100%',
       '&:hover': { backgroundColor: theme.palette.background.default },
     },
     item: {
@@ -115,24 +101,6 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
       </ListItem>
     );
 
-    const EntityTypeList = () => {
-      const entitiesByType = children.reduce((acc, child) => {
-        const { type } = child;
-        if (!acc[type]) acc[type] = [];
-        acc[type] = [ ...acc[type], child ];
-        return acc;
-      }, {});
-
-      const entityTypeListItems = Object.keys(entitiesByType).map(type => {
-        const entities = entitiesByType[type];
-        const typeFormatted = typeFormatter(type);
-        const description = `${typeFormatted} (${childCount})`;
-        return <ListItem key={type} className={classes.typeItem}><DetailEntityList description={description} parent={entity} entities={entities}/></ListItem>;
-      });
-
-      return <List className={classes.typeList}>{entityTypeListItems}</List>
-    }
-
     const PropertyList = () => {
       if (!propertyCount) return null;
       const description = `Properties (${propertyCount})`;
@@ -141,7 +109,7 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({
     
     const ChildList = () => (
       <List className={classes.list}>
-        <ListItem className={classes.item}><EntityTypeList/></ListItem>
+        <ListItem className={classes.item}><DetailEntityTypeList parent={entity} entities={children}/></ListItem>
         <ListItem className={classes.item}><PropertyList/></ListItem>
       </List>
     );
