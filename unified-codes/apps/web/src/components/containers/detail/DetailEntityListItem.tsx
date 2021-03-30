@@ -28,18 +28,9 @@ import { AlertSeverity, IState } from '../../../types';
 // TODO: pass styles down to children!
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
-    copyButton: {
-      marginRight: '8px',
-    },
-    icon: {
+    button: {
       marginRight: '8px',
       '&:hover': { backgroundColor: theme.palette.background.default },
-    },
-    item: {
-      margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 16px',
-      width: '100%',
-      '& p': { color: theme.palette.action.active },
     },
     list: {
       margin: '0px 0px 0px 0px',
@@ -47,18 +38,18 @@ const useStyles = makeStyles((theme: ITheme) =>
       width: '100%',
       '&:hover': { backgroundColor: theme.palette.background.default },
     },
-    rootItem: {
+    listItem: {
       margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 8px',
+      padding: '0px 0px 0px 10px',
       width: '100%',
       '& p': { color: theme.palette.action.active },
     },
-    textItem: {
+    listItemText: {
       margin: '1px 0px 1px 0px',
     },
-    toggleItem: {
+    root: {
       margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 8px',
+      padding: '0px 0px 0px 0px',
       width: '100%',
       '& p': { color: theme.palette.action.active },
     },
@@ -82,8 +73,8 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({ parent, entity, o
 
   const isRoot = parent === entity;
 
-  const childCount = children?.length ?? 0;
-  const propertyCount = properties?.length ?? 0;
+  const EntityListItemText = () => (
+    <ListItemText className={classes.listItemText} primary={description} secondary={code} />
 
   if (!childCount)
     return (
@@ -100,7 +91,7 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({ parent, entity, o
           <FileCopyIcon />
         </IconButton>
       </ListItem>
-    );
+  );
 
   const ChildListToggleItemText = () => (
     <ListItemText className={classes.textItem} primary={description} secondary={code} />

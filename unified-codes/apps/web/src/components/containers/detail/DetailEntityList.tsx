@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: ITheme) =>
     },
     toggleItem: {
       margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 8px',
+      padding: '0px 0px 0px 10px',
       width: '100%',
       '& p': { color: theme.palette.action.active },
     },

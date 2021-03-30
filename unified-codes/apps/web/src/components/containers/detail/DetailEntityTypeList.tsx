@@ -11,18 +11,12 @@ import { ITheme } from '../../../styles';
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
-    item: {
-      margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 0px',
-      width: '100%',
-      '& p': { color: theme.palette.action.active },
-    },
     list: {
       margin: '0px 0px 0px 0px',
       padding: '0px 0px 0px 0px',
       width: '100%',
       '&:hover': { backgroundColor: theme.palette.background.default },
-    },
+    }
   })
 );
 
