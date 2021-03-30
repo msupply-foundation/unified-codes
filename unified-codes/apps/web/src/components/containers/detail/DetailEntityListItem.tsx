@@ -5,15 +5,14 @@ import * as copy from 'clipboard-copy';
 import { IEntity } from '@unified-codes/data/v1';
 
 import {
+  Collapse,
+  CopyIconButton,
+  IconButton,
   List,
   ListItem,
-  IconButton,
-  ListItemText,
-  Collapse,
   ListItemIcon,
-  ArrowUpIcon,
-  ArrowDownIcon,
-  FileCopyIcon,
+  ListItemText,
+  ToggleIconButton,
 } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 import { useToggle } from '@unified-codes/ui/hooks';
@@ -71,91 +70,60 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({ parent, entity, o
 
   const { code, description, children = [], properties = [] } = entity;
 
-  const isRoot = parent === entity;
+  const isRoot = React.useMemo(() => parent === entity, [parent, entity]);
+  const childCount = React.useMemo(() => children?.length ?? 0, [children]);
+  const propertyCount = React.useMemo(() => properties?.length ?? 0, [properties]);
 
   const EntityListItemText = () => (
     <ListItemText className={classes.listItemText} primary={description} secondary={code} />
-
-  if (!childCount)
-    return (
-      <ListItem className={classes.item}>
-        <ListItemIcon />
-        <ListItemText className={classes.textItem} primary={description} secondary={code} />
-        <IconButton
-          className={classes.copyButton}
-          onClick={(e) => {
-            onCopy(code);
-            e.stopPropagation();
-          }}
-        >
-          <FileCopyIcon />
-        </IconButton>
-      </ListItem>
   );
 
-  const ChildListToggleItemText = () => (
-    <ListItemText className={classes.textItem} primary={description} secondary={code} />
-  );
-  const ChildListToggleItemIcon = () => (
-    <IconButton
-      className={classes.icon}
-      onClick={(e) => {
-        onToggle();
-        e.stopPropagation();
-      }}
-    >
-      {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
-    </IconButton>
-  );
+  const EntityListItemToggleButton = () => {
+    const onClick = (e) => { onToggle(); e.stopPropagation(); }
+    const ListButton = () => !!childCount || !!propertyCount ? 
+      <ToggleIconButton classes={{ root: classes.button }} isOpen={isOpen} onClick={onClick}/> :
+      <IconButton/>
 
-  const ChildListToggleItem = () => (
-    <ListItem
-      className={classes.toggleItem}
-      button
-      onClick={(e) => {
-        onToggle();
-        e.stopPropagation();
-      }}
-    >
-      <ListItemIcon>
-        <ChildListToggleItemIcon />
-      </ListItemIcon>
-      <ChildListToggleItemText />
-      <IconButton
-        className={classes.copyButton}
-        onClick={(e) => {
-          onCopy(code);
-          e.stopPropagation();
-        }}
-      >
-        <FileCopyIcon />
-      </IconButton>
+    return <ListItemIcon><ListButton/></ListItemIcon>;
+  };
+
+  const EntityListItemCopyButton = () => {
+    const onClick = (e) => { onCopy(code); e.stopPropagation(); }
+    return <CopyIconButton classes={{ root: classes.button}} onClick={onClick}/>
+  }
+
+  const EntityListItem = () => (
+    <ListItem className={classes.listItem}>
+      <EntityListItemToggleButton />
+      <EntityListItemText />
+      <EntityListItemCopyButton/>
     </ListItem>
   );
 
-  const PropertyList = () => {
+  const PropertyChildList = () => {
     if (!propertyCount) return null;
     const description = `Properties (${propertyCount})`;
     return <DetailPropertyList description={description} parent={entity} properties={properties} />;
   };
 
-  const ChildList = () => (
-    <List className={classes.list}>
-      <ListItem className={classes.item}>
-        <DetailEntityTypeList parent={entity} entities={children} />
-      </ListItem>
-      <ListItem className={classes.item}>
-        <PropertyList />
-      </ListItem>
-    </List>
-  );
+  const EntityChildList = () => {
+    if (!childCount) return null;
+    return <DetailEntityTypeList parent={entity} entities={children}/>
+  };
 
   return (
-    <ListItem className={isRoot ? classes.rootItem : classes.item}>
+    <ListItem className={isRoot ? classes.root : classes.listItem}>
       <List className={classes.list}>
-        <ChildListToggleItem />
+        <EntityListItem />
         <Collapse in={isOpen}>
-          <ChildList />
+          <List className={classes.list}>
+            <ListItem className={classes.listItem}>
+              <EntityChildList/>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              <PropertyChildList />
+            </ListItem>
+          </List>
         </Collapse>
       </List>
     </ListItem>
