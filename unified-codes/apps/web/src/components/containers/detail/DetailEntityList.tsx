@@ -95,16 +95,12 @@ export const DetailEntityListComponent: DetailEntityList = ({ description, paren
     return <List className={classes.list}>{entityListItems}</List>;
   };
 
-  const EntityListToggleCollapse = () => (
-    <Collapse in={isOpen}>
-      <EntityListToggleList />
-    </Collapse>
-  );
-
   return (
     <List className={classes.list}>
       <EntityListToggleItem />
-      <EntityListToggleCollapse />
+      <Collapse in={isOpen}>
+        <EntityListToggleList />
+      </Collapse>
     </List>
   );
 };
