@@ -30,27 +30,19 @@ export type DetailEntityTypeList = React.FunctionComponent<DetailEntityTypeListP
 export const DetailEntityTypeList: DetailEntityTypeList = ({ parent, entities }) => {
   const classes = useStyles();
 
-  const entityTypeGroups = React.useMemo(
-    () =>
-      entities.reduce((acc, child) => {
-        const { type } = child;
-        if (!acc[type]) acc[type] = [];
-        acc[type] = [...acc[type], child];
-        return acc;
-      }, {}),
-    [entities]
-  );
+  const entityTypeGroups = entities.reduce((acc, child) => {
+    const { type } = child;
+    if (!acc[type]) acc[type] = [];
+    acc[type] = [...acc[type], child];
+    return acc;
+  }, {});
 
-  const entityTypeListItems = React.useMemo(
-    () =>
-      Object.keys(entityTypeGroups).map((type) => {
-        const entities = entityTypeGroups[type];
-        return (
-          <DetailEntityTypeListItem key={type} type={type} parent={parent} entities={entities} />
-        );
-      }),
-    [entityTypeGroups]
-  );
+  const entityTypeListItems = Object.keys(entityTypeGroups).map((type) => {
+      const entities = entityTypeGroups[type];
+      return (
+        <DetailEntityTypeListItem key={type} type={type} parent={parent} entities={entities} />
+      );
+    });
 
   return <List className={classes.list}>{entityTypeListItems}</List>;
 };
