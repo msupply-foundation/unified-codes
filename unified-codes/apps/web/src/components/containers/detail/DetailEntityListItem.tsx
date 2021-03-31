@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import * as copy from 'clipboard-copy';
+import { default as copy } from 'clipboard-copy';
 
 import { IEntity } from '@unified-codes/data/v1';
 
@@ -79,7 +79,7 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({ parent, entity, o
   );
 
   const EntityListItemToggleButton = () => {
-    const onClick = (e) => { onToggle(); e.stopPropagation(); }
+    const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => { onToggle(); e.stopPropagation(); }
     const ListButton = () => !!childCount || !!propertyCount ? 
       <ToggleIconButton classes={{ root: classes.button }} isOpen={isOpen} onClick={onClick}/> :
       <IconButton/>
@@ -88,7 +88,7 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({ parent, entity, o
   };
 
   const EntityListItemCopyButton = () => {
-    const onClick = (e) => { onCopy(code); e.stopPropagation(); }
+    const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => { onCopy(code); e.stopPropagation(); }
     return <CopyIconButton classes={{ root: classes.button}} onClick={onClick}/>
   }
 

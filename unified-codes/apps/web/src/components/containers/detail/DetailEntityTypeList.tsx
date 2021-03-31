@@ -30,7 +30,7 @@ export type DetailEntityTypeList = React.FunctionComponent<DetailEntityTypeListP
 export const DetailEntityTypeList: DetailEntityTypeList = ({ parent, entities }) => {
   const classes = useStyles();
 
-  const entityTypeGroups = entities.reduce((acc, child) => {
+  const entityTypeGroups = entities.reduce((acc: { [type: string]: IEntity[] }, child) => {
     const { type } = child;
     if (!acc[type]) acc[type] = [];
     acc[type] = [...acc[type], child];

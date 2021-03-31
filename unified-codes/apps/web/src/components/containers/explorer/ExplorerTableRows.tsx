@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import * as copy from 'clipboard-copy';
+import { default as copy } from 'clipboard-copy';
 
 import {
   FileCopyIcon,
