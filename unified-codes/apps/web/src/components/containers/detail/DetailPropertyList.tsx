@@ -88,20 +88,23 @@ const DetailPropertyList: DetailPropertyList = ({ description, parent, propertie
       </ListItem>
     ) : null;
 
-  const PropertyListChildItems = React.useCallback(() => {
-    const childItems = properties?.map((property: IProperty) => {
+  const PropertyListToggleList = () => {
+    const propertyListItems = properties?.map((property: IProperty) => {
       return <DetailPropertyListItem key={property.type} parent={parent} property={property} />;
     });
-    return childItems;
-  }, [properties]);
+
+    return (
+      <List className={classes.list}>
+        {propertyListItems}
+      </List>
+    );
+  };
 
   return (
     <List className={classes.list}>
       <PropertyListToggleItem />
       <Collapse in={isOpen}>
-        <List className={classes.list}>
-          <PropertyListChildItems />
-        </List>
+        <PropertyListToggleList/>
       </Collapse>
     </List>
   );

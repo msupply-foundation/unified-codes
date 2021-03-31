@@ -101,8 +101,9 @@ const selectFilterByOther = createSelector(
 
 const selectCategories = createSelector(
   selectToggleBar,
-  (toggleBar: IExplorerToggleBarState): EEntityCategory[] =>
-    Object.keys(toggleBar).filter((category: EEntityCategory) => toggleBar[category]) as EEntityCategory[]
+  (toggleBar: IExplorerToggleBarState): (EEntityCategory.DRUG | EEntityCategory.CONSUMABLE | EEntityCategory.OTHER)[] =>
+    Object.keys(toggleBar).filter((category: EEntityCategory.DRUG | EEntityCategory.CONSUMABLE | EEntityCategory.OTHER) =>
+      toggleBar[category]) as (EEntityCategory.DRUG | EEntityCategory.CONSUMABLE | EEntityCategory.OTHER)[]
 );
 
 const selectLoading = createSelector(
