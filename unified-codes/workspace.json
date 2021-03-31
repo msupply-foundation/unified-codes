@@ -16,8 +16,7 @@
             "main": "apps/data-service/src/app/main.ts",
             "tsConfig": "apps/data-service/tsconfig.app.json",
             "assets": ["apps/data-service/src/assets"],
-            "generatePackageJson": true,
-            "externalDependencies": ["fastify"]
+            "generatePackageJson": true
           },
           "configurations": {
             "production": {
