@@ -290,7 +290,8 @@
             "outputPath": "dist/apps/data-loader",
             "main": "apps/data-loader/src/app/main.ts",
             "tsConfig": "apps/data-loader/tsconfig.app.json",
-            "assets": ["apps/data-loader/src/assets"]
+            "assets": ["apps/data-loader/src/assets"],
+            "generatePackageJson": true
           },
           "configurations": {
             "production": {

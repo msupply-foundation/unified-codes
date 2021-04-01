@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+    data-loader:
+        build: 
+            context: ../..
+            dockerfile: tools/dockerfiles/data-loader.Dockerfile
+        container_name: data-loader
+        image: unified-codes/data-loader:latest
+        env_file:
+            - .docker.env
+networks:
+    default:
+        external:
+            name: net

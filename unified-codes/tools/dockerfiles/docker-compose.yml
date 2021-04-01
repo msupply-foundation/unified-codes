@@ -1,5 +1,14 @@
-version: '2'
+version: '3.9'
 services:
+  dgraph-standalone:
+    container_name: dgraph-standalone
+    image: dgraph/standalone:v20.03.0
+    ports:
+      - "8000:8000"
+      - "8080:8080"
+      - "9080:9080"
+    volumes:
+      - ~/dgraph:/dgraph  
   data-service:
     build: 
       context: ../..
@@ -12,21 +21,11 @@ services:
       - .docker.env
     volumes:
       - ../../dist/apps/data-service:/usr/unified-codes/dist/apps/data-service
-  dgraph-standalone:
-    container_name: dgraph-standalone
-    image: dgraph/standalone:v20.03.0
-    ports: 
-      - "8080:8080"
-      - "9080:9080"
-      - "8000:8000"
-    volumes:
-      - ~/dgraph:/dgraph
-  keycloak:
-    container_name: keycloak
-    image: jboss/keycloak
-    ports: 
-      - "9990:8080"
-    env_file:
-      - .docker.env
+
+networks:
+  default:
+    external:
+      name: net
+
 volumes:
   logvolume01: {}

@@ -2,8 +2,8 @@ import path from 'path';
 
 import { DataLoader, DataParser, SchemaParser } from './v2';
 
-const hostname = 'localhost';
-const port = '9080';
+const hostname = process.env.NX_DGRAPH_SERVICE_RPC_HOST;
+const port = process.env.NX_DGRAPH_SERVICE_RPC_PORT;
 
 const dirPath = '../../../data';
 const schemaPath = 'v2/schema.gql';
@@ -35,6 +35,6 @@ const main = async () => {
     const cycles = dataParser.detectCycles();
     console.log(`Failed to load data due to cycles in data: ${cycles}`);
   }
-};
+}
 
 main();
