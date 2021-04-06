@@ -5,15 +5,14 @@ import * as copy from 'clipboard-copy';
 import { IEntity } from '@unified-codes/data/v1';
 
 import {
+  Collapse,
+  CopyIconButton,
+  IconButton,
   List,
   ListItem,
-  IconButton,
-  ListItemText,
-  Collapse,
   ListItemIcon,
-  ArrowUpIcon,
-  ArrowDownIcon,
-  FileCopyIcon,
+  ListItemText,
+  ToggleIconButton,
 } from '@unified-codes/ui/components';
 import { createStyles, makeStyles } from '@unified-codes/ui/styles';
 import { useToggle } from '@unified-codes/ui/hooks';
@@ -28,18 +27,9 @@ import { AlertSeverity, IState } from '../../../types';
 // TODO: pass styles down to children!
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
-    copyButton: {
-      marginRight: '8px',
-    },
-    icon: {
+    button: {
       marginRight: '8px',
       '&:hover': { backgroundColor: theme.palette.background.default },
-    },
-    item: {
-      margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 16px',
-      width: '100%',
-      '& p': { color: theme.palette.action.active },
     },
     list: {
       margin: '0px 0px 0px 0px',
@@ -47,18 +37,18 @@ const useStyles = makeStyles((theme: ITheme) =>
       width: '100%',
       '&:hover': { backgroundColor: theme.palette.background.default },
     },
-    rootItem: {
+    listItem: {
       margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 8px',
+      padding: '0px 0px 0px 10px',
       width: '100%',
       '& p': { color: theme.palette.action.active },
     },
-    textItem: {
+    listItemText: {
       margin: '1px 0px 1px 0px',
     },
-    toggleItem: {
+    root: {
       margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 8px',
+      padding: '0px 0px 0px 0px',
       width: '100%',
       '& p': { color: theme.palette.action.active },
     },
@@ -80,66 +70,35 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({ parent, entity, o
 
   const { code, description, children = [], properties = [] } = entity;
 
-  const isRoot = parent === entity;
-
-  const childCount = children?.length ?? 0;
-  const propertyCount = properties?.length ?? 0;
+  const isRoot = React.useMemo(() => parent === entity, [parent, entity]);
+  const childCount = React.useMemo(() => children?.length ?? 0, [children]);
+  const propertyCount = React.useMemo(() => properties?.length ?? 0, [properties]);
 
   const EntityListItemText = () => (
-    <ListItemText className={classes.textItem} primary={description} secondary={code} />
+    <ListItemText className={classes.listItemText} primary={description} secondary={code} />
   );
 
   const EntityListItemToggleButton = () => {
-    const ToggleIcon = () => !!childCount || !!propertyCount ? (
-      <IconButton
-        className={classes.icon}
-        onClick={(e) => {
-          onToggle();
-          e.stopPropagation();
-        }}
-      >
-        {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
-      </IconButton>
-    ) : null;
+    const onClick = (e) => { onToggle(); e.stopPropagation(); }
+    const ListButton = () => !!childCount || !!propertyCount ? 
+      <ToggleIconButton classes={{ root: classes.button }} isOpen={isOpen} onClick={onClick}/> :
+      <IconButton/>
 
-    return (
-      <ListItemIcon>
-        <ToggleIcon/>
-      </ListItemIcon>
-    )
+    return <ListItemIcon><ListButton/></ListItemIcon>;
+  };
+
+  const EntityListItemCopyButton = () => {
+    const onClick = (e) => { onCopy(code); e.stopPropagation(); }
+    return <CopyIconButton classes={{ root: classes.button}} onClick={onClick}/>
   }
 
-  const EntityListItemCopyButton = () => (
-    <IconButton
-        className={classes.copyButton}
-        onClick={(e) => {
-          onCopy(code);
-          e.stopPropagation();
-        }}
-      >
-        <FileCopyIcon />
-      </IconButton>
-  )
-
   const EntityListItem = () => (
-    <ListItem
-      className={classes.toggleItem}
-      button
-      onClick={(e) => {
-        onToggle();
-        e.stopPropagation();
-      }}
-    >
+    <ListItem className={classes.listItem}>
       <EntityListItemToggleButton />
       <EntityListItemText />
       <EntityListItemCopyButton/>
     </ListItem>
   );
-
-  const EntityChildList = () => {
-    if (!childCount) return null;
-    return <DetailEntityTypeList parent={entity} entities={children} />
-  };
 
   const PropertyChildList = () => {
     if (!propertyCount) return null;
@@ -147,16 +106,21 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({ parent, entity, o
     return <DetailPropertyList description={description} parent={entity} properties={properties} />;
   };
 
+  const EntityChildList = () => {
+    if (!childCount) return null;
+    return <DetailEntityTypeList parent={entity} entities={children}/>
+  };
+
   return (
-    <ListItem className={isRoot ? classes.rootItem : classes.item}>
+    <ListItem className={isRoot ? classes.root : classes.listItem}>
       <List className={classes.list}>
         <EntityListItem />
         <Collapse in={isOpen}>
           <List className={classes.list}>
-            <ListItem className={classes.item}>
+            <ListItem className={classes.listItem}>
               <EntityChildList/>
             </ListItem>
-            <ListItem className={classes.item}>
+            <ListItem className={classes.listItem}>
               <PropertyChildList />
             </ListItem>
           </List>

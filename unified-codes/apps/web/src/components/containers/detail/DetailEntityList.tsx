@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: ITheme) =>
     },
     toggleItem: {
       margin: '0px 0px 0px 0px',
-      padding: '0px 0px 0px 8px',
+      padding: '0px 0px 0px 10px',
       width: '100%',
       '& p': { color: theme.palette.action.active },
     },
@@ -65,6 +65,7 @@ export const DetailEntityListComponent: DetailEntityList = ({ description, paren
   const EntityListToggleItemText = () => (
     <ListItemText className={classes.textItem} primary={description} />
   );
+
   const EntityListToggleItemIcon = () => (
     <IconButton
       className={classes.icon}
@@ -87,23 +88,19 @@ export const DetailEntityListComponent: DetailEntityList = ({ description, paren
       </ListItem>
     ) : null;
 
-  const EntityListToggleList = React.useCallback(() => {
+  const EntityListToggleList = () => {
     const entityListItems = entities.map((entity: IEntity) => {
       return <DetailEntityListItem key={entity.code} parent={parent} entity={entity} />;
     });
     return <List className={classes.list}>{entityListItems}</List>;
-  }, [entities]);
-
-  const EntityListToggleCollapse = () => (
-    <Collapse in={isOpen}>
-      <EntityListToggleList />
-    </Collapse>
-  );
+  };
 
   return (
     <List className={classes.list}>
       <EntityListToggleItem />
-      <EntityListToggleCollapse />
+      <Collapse in={isOpen}>
+        <EntityListToggleList />
+      </Collapse>
     </List>
   );
 };
