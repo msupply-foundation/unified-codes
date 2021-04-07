@@ -603,7 +603,7 @@ export class DataParser {
         // });
 
         // Process external properties at product (UC2) level
-        if (!uc7 && uc2) {
+        if (uc2) {
           productProperties.forEach((property) => {
             // temporary restriction for uc7 - these are not currently imported
             if (property.value) {
@@ -618,7 +618,7 @@ export class DataParser {
         }
 
         // Process external properties at item (UC6) level
-        if (uc6) {
+        if (!uc7 && uc6) {
           itemProperties.forEach((property) => {
             // temporary restriction for uc7 - these are not currently imported
             if (property.value) {
