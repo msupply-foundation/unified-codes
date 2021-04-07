@@ -142,6 +142,7 @@ export class DataLoader {
 
     // Link entities with properties.
     for await (const entity of entities) {
+      console.log(entity);
       if (!!entity.properties) {
         for await (const property of entity.properties) {
           const query = `query {
