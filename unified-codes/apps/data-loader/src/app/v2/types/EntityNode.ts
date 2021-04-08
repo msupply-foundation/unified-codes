@@ -22,6 +22,7 @@ export enum EPropertyType {
 }
 
 export interface IPropertyNode {
+  code: string;
   type?: string;
   value?: string;
 }
@@ -30,8 +31,8 @@ export interface IEntityNode {
   code: string;
   name?: string;
   type?: EEntityType;
-  combines?: IEntityNode[];
-  properties?: IEntityNode[];
+  combines?: IPropertyNode[];
+  properties?: IPropertyNode[];
   children?: IEntityNode[];
   value?: string;
 }
