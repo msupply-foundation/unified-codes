@@ -200,27 +200,33 @@ export class DataParser {
         const itemProperties: IPropertyNode[] = [];
 
         productProperties.push({
+          code: this.generateCode(),
           type: EPropertyType.RxNav,
           value: rxnav,
         });
         productProperties.push({
+          code: this.generateCode(),
           type: EPropertyType.WHOEML,
           value: who_eml_product,
         });
 
         itemProperties.push({
+          code: this.generateCode(),
           type: EPropertyType.WHOEML,
           value: who_eml_item,
         });
         productProperties.push({
+          code: this.generateCode(),
           type: EPropertyType.NZULM,
           value: nzulm,
         });
         itemProperties.push({
+          code: this.generateCode(),
           type: EPropertyType.NZULM,
           value: nzulm_item,
         });
         productProperties.push({
+          code: this.generateCode(),
           type: EPropertyType.UNSPSC,
           value: unspsc,
         });
