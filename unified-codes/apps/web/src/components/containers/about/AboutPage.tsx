@@ -17,7 +17,7 @@ const useStyles = makeStyles((_: ITheme) =>
     contentContainer: {
       flexDirection: 'row',
       justifyContent: 'center',
-      padding: '20px 0 20px 0',
+      padding: '20px 0 75px 0',
       '& div': { marginBottom: 25 },
     },
   })
