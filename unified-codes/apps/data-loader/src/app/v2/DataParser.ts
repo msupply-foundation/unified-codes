@@ -501,6 +501,16 @@ export class DataParser {
               );
             }
           }
+          // if strength doesn't exist but unit of presentation does
+          else if (uc7) {
+            // link dose qualification to unit of presentation
+            if (!this.graph[uc5].children.map((child) => child.code).includes(uc7)) {
+              this.graph[uc5].children.push({ code: uc7 });
+              console.log(
+                `INFO: Linked dose qualifier with code ${uc5} to unit of presentation with code ${uc7}`
+              );
+            }
+          }
         }
 
         // If dose form code exists...
