@@ -46,6 +46,10 @@ const useStyles = makeStyles((theme: ITheme) =>
     listItemText: {
       margin: '1px 0px 1px 0px',
     },
+    listItemTextChild: {
+      margin: '1px 0px 1px 0px',
+      fontWeight: 'bold'
+    },
     root: {
       margin: '0px 0px 0px 0px',
       padding: '0px 0px 0px 0px',
@@ -66,7 +70,7 @@ export type DetailEntityListItem = React.FunctionComponent<DetailEntityListItemP
 const DetailEntityListItemComponent: DetailEntityListItem = ({ parent, entity, onCopy }) => {
   const classes = useStyles();
 
-  const { isOpen, onToggle } = useToggle(false);
+  const { isOpen, onToggle } = useToggle(true);
 
   const { code, description, children = [], properties = [] } = entity;
 
@@ -75,7 +79,13 @@ const DetailEntityListItemComponent: DetailEntityListItem = ({ parent, entity, o
   const propertyCount = React.useMemo(() => properties?.length ?? 0, [properties]);
 
   const EntityListItemText = () => (
-    <ListItemText className={classes.listItemText} primary={description} secondary={code} />
+    <ListItemText
+      classes={
+        childCount ? { root:classes.listItemText } : { primary: classes.listItemTextChild, secondary: classes.listItemTextChild }
+      }
+      primary={description}
+      secondary={code}
+    />
   );
 
   const EntityListItemToggleButton = () => {
