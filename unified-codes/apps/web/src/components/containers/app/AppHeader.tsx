@@ -96,7 +96,7 @@ const Header: Header = ({ classes, alert, resetAlert }) => {
           </Grid>
         </Grid>
         <Grid item>
-          <Avatar />
+          <Avatar style={{ display: "none" }} />
         </Grid>
       </AppBar>
       <AlertBar
