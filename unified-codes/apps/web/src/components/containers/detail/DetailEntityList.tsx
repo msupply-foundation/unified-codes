@@ -58,7 +58,7 @@ export type DetailEntityList = React.FunctionComponent<DetailEntityListProps>;
 export const DetailEntityListComponent: DetailEntityList = ({ description, parent, entities }) => {
   const classes = useStyles();
 
-  const { isOpen, onToggle } = useToggle(false);
+  const { isOpen, onToggle } = useToggle(true);
 
   const entityCount = entities.length;
 
