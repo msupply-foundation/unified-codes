@@ -36,8 +36,9 @@ const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
 const mapStateToProps = (state: IState) => {
   const input = ExplorerSelectors.selectInput(state);
   const label = ExplorerSelectors.selectLabel(state);
+  const placeholder = ExplorerSelectors.selectPlaceholder(state);
 
-  return { input, label };
+  return { input, label, placeholder };
 };
 
 export const ExplorerSearchBar = connect(

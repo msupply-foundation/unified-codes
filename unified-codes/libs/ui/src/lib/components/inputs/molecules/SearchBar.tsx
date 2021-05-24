@@ -13,6 +13,8 @@ export interface SearchBarProps {
   };
   input: string;
   label?: string;
+  helperText?: string;
+  placeholder?: string;
   onChange?: (input: string) => void;
   onClear?: () => void;
   onSearch?: (input: string) => void;
@@ -20,7 +22,7 @@ export interface SearchBarProps {
 
 export type SearchBar = React.FunctionComponent<SearchBarProps>;
 
-export const SearchBar: SearchBar = ({ classes, input, label, onChange, onClear, onSearch }) => {
+export const SearchBar: SearchBar = ({ classes, input, label, helperText, placeholder, onChange, onClear, onSearch }) => {
   const onChangeText = React.useCallback(
     (event) => {
       event.preventDefault();
@@ -43,6 +45,8 @@ export const SearchBar: SearchBar = ({ classes, input, label, onChange, onClear,
         <ClearInput
           classes={{ root: classes?.input }}
           fullWidth
+          placeholder={placeholder}
+          helperText={helperText}
           label={label}
           value={input}
           onChange={onChangeText}
