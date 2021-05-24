@@ -47,6 +47,7 @@ export const SearchBar: SearchBar = ({ classes, input, label, helperText, placeh
           fullWidth
           placeholder={placeholder}
           helperText={helperText}
+          FormHelperTextProps={{classes}}
           label={label}
           value={input}
           onChange={onChangeText}
