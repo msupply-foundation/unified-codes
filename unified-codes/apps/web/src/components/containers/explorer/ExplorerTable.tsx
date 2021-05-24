@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     tableContainer: {
       marginTop: 5,
-      maxHeight: `calc(100vh - 310px)`,
+      maxHeight: `calc(100vh - 325px)`,
       overflowY: 'scroll' as Overflow,
     },
     table: {
