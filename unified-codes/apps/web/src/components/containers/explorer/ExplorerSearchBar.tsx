@@ -29,7 +29,15 @@ export interface ExplorerSearchBarProps {
 
 export type ExplorerSearchBarType = React.FunctionComponent<ExplorerSearchBarProps>;
 
-export const ExplorerSearchBarComponent: ExplorerSearchBarType = ({ helperText, input, label, placeholder}) => {
+export const ExplorerSearchBarComponent: ExplorerSearchBarType = ({
+  helperText,
+  input,
+  label,
+  placeholder,
+  onChange,
+  onClear,
+  onSearch,
+}) => {
   const classes = useStyles();
   return (
     <SearchBar
@@ -38,6 +46,9 @@ export const ExplorerSearchBarComponent: ExplorerSearchBarType = ({ helperText, 
       label={label}
       placeholder={placeholder}
       helperText={helperText}
+      onChange={onChange}
+      onClear={onClear}
+      onSearch={onSearch}
     />
   );
 };
@@ -71,6 +82,7 @@ const mapStateToProps = (state: IState) => {
 
 export const ExplorerSearchBar = connect(
   mapStateToProps,
-  mapDispatchToProps)(ExplorerSearchBarComponent);
+  mapDispatchToProps
+)(ExplorerSearchBarComponent);
 
 export default ExplorerSearchBar;
