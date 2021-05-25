@@ -40,6 +40,7 @@ export const ClearInput: ClearInput = ({ classes, onClear, ...other }) => {
   return (
     <TextField
       classes={{ root: classes?.root }}
+      InputLabelProps={{ classes: { root: classes?.root } }}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
