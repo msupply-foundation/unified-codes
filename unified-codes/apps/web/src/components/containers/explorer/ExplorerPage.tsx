@@ -66,7 +66,7 @@ export const ExplorerPageComponent: ExplorerPage = ({
       classes={classes}
       table={<ExplorerTable />}
       toggleBar={<ExplorerToggleBar />}
-      searchBar={<ExplorerSearchBar helperText="Use * to indicate any characters" />}
+      searchBar={<ExplorerSearchBar helperText="Use * in place of one or more letters at the start" />}
       progressBar={<ExplorerProgressBar type="material-ui" />}
     />
   );
