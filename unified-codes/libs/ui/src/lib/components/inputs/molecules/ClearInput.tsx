@@ -39,7 +39,8 @@ export const ClearInput: ClearInput = ({ classes, onClear, ...other }) => {
   const onClick = React.useMemo(() => onClear ?? undefined, [onClear]);
   return (
     <TextField
-      classes={{ root: classes?.root }}
+      classes={ classes }
+      InputLabelProps={{ classes }}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">

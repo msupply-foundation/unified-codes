@@ -2,17 +2,56 @@ import * as React from 'react';
 import { batch, connect } from 'react-redux';
 
 import { SearchBar } from '@unified-codes/ui/components';
-import { withStyles } from '@unified-codes/ui/styles';
+import { makeStyles, createStyles } from '@unified-codes/ui/styles';
 
 import { ExplorerActions, IExplorerAction } from '../../../actions';
 import { ExplorerSelectors } from '../../../selectors';
 import { IState } from '../../../types';
 import { ITheme } from '../../../styles';
 
-const styles = (_: ITheme) => ({
-  input: { paddingLeft: 15 },
-  button: { marginTop: 15 },
-});
+const useStyles = makeStyles((theme: ITheme) =>
+  createStyles({
+    root: { color: theme.palette.text.primary },
+    input: { paddingLeft: 15, color: '#a2a2a2' },
+    button: { marginTop: 15 },
+  })
+);
+
+export interface ExplorerSearchBarProps {
+  helperText?: string;
+  input?: string;
+  label?: string;
+  placeholder?: string;
+  onChange: () => void;
+  onClear: () => void;
+  onSearch: () => void;
+}
+
+export type ExplorerSearchBarType = React.FunctionComponent<ExplorerSearchBarProps>;
+
+export const ExplorerSearchBarComponent: ExplorerSearchBarType = ({
+  helperText,
+  input,
+  label,
+  placeholder,
+  onChange,
+  onClear,
+  onSearch,
+}) => {
+  const classes = useStyles();
+  return (
+    <SearchBar
+      classes={classes}
+      input={input}
+      label={label}
+      placeholder={placeholder}
+      helperText={helperText}
+      onChange={onChange}
+      onClear={onClear}
+      onSearch={onSearch}
+    />
+  );
+};
 
 const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
   const onChange = (input: string) => dispatch(ExplorerActions.updateInput(input));
@@ -36,13 +75,14 @@ const mapDispatchToProps = (dispatch: React.Dispatch<IExplorerAction>) => {
 const mapStateToProps = (state: IState) => {
   const input = ExplorerSelectors.selectInput(state);
   const label = ExplorerSelectors.selectLabel(state);
+  const placeholder = ExplorerSelectors.selectPlaceholder(state);
 
-  return { input, label };
+  return { input, label, placeholder };
 };
 
 export const ExplorerSearchBar = connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(SearchBar));
+)(ExplorerSearchBarComponent);
 
 export default ExplorerSearchBar;

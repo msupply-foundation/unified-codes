@@ -45,6 +45,17 @@ const selectLabel = createSelector(selectFilterBy, (filterBy: EEntityField): str
   }
 });
 
+const selectPlaceholder = createSelector(selectFilterBy, (filterBy: EEntityField): string => {
+  switch (filterBy) {
+    case EEntityField.CODE:
+      return 'e.g. 4231441c';
+    case EEntityField.DESCRIPTION:
+      return 'e.g. amoxicillin, amox, *mox';
+    default:
+      return '';
+  }
+});
+
 const selectCode = createSelector(
   selectInput,
   selectFilterBy,
@@ -114,6 +125,7 @@ export const SearchBarSelectors = {
   selectFilterBy,
   selectInput,
   selectLabel,
+  selectPlaceholder,
 };
 
 export const TableSelectors = {
