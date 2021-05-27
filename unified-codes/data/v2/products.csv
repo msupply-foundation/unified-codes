@@ -1,4 +1,4 @@
-﻿Product ,Product Synonym,Combination,Route,Dose Form,Dose Qualification,Strength,Unit of Presentation,Immediate Packaging,Pack Size,Outer Packaging,Manufacturer,Brand,UC1,"UC2 
+Product ,Product Synonym,Combination,Route,Dose Form,Dose Qualification,Strength,Unit of Presentation,Immediate Packaging,Pack Size,Outer Packaging,Manufacturer,Brand,UC1,"UC2 
 (Product)","UC3 
 (Route)","UC4 
 (form)","UC5 
@@ -734,6 +734,7 @@ Loratadine,,,Oral,Solution,,1mg per mL,60mL,,,,,,933f3f00,9e10dc74,0a51c500,0dfd
 Loratadine,,,Oral,Tablet,,10mg,,,,,,,933f3f00,9e10dc74,0a51c500,bbc75b00,,479554bf,,,,,,,28889,3,3,10056971000116105,10056991000116109,51312204,,,,,,,,,,,,,
 Lorazepam,,,Parenteral,Solution,,2mg per mL,1mL,,,,,,933f3f00,34d0e9cb,7374b200,a7f2cb00,,e8b26200,483d14bf,,,,,,6470,5,5,10079261000116103,44272271000116109,51401533,,,,,,,,,,,,,
 Lorazepam,,,Parenteral,Solution,,4mg per mL,1mL,,,,,,933f3f00,34d0e9cb,7374b200,a7f2cb00,,458f9d00,4840e4bf,,,,,,6470,5,5,10079261000116103,10079571000116105,51401533,,,,,,,,,,,,,
+Lubricant,,,,,,,4mL,,,,,,77fcbb00,eefd6cf43,,,,,22333a62,,,,,,,,,,,42181503,,,,,,,,,,,,,
 Lugol's Solution,,,Oral,Solution,,130mg iodide per mL,50mL,,,,,,933f3f00,af3fe02c,5288ad00,12f8bc00,,47c104bf,782f4300,,,,,,,18.7,18.7,,,,,,,,,,,,,,,,
 Lugol's Solution,,,Oral,Solution,,130mg iodide per mL,60mL,,,,,,933f3f00,af3fe02c,5288ad00,12f8bc00,,47c104bf,1fdcfa00,,,,,,,18.7,18.7,,,,,,,,,,,,,,,,
 Lugol's Solution,,,Oral,Solution,,130mg iodide per mL,100mL,,,,,,933f3f00,af3fe02c,5288ad00,12f8bc00,,47c104bf,286fd500,,,,,,,18.7,18.7,,,,,,,,,,,,,,,,
@@ -968,6 +969,7 @@ Prednisolone,,,Eye,Drop,,0.5%,0.5mL,,,,,,933f3f00,9ed83656,a6a33d00,74e90c00,,55
 Prednisolone,,,Oral,Solution,,5mg per mL,30mL,,,,,,933f3f00,9ed83656,f739c800,df116b00,,55a274bf,b6329800,,,,,,8638,"3, 8.2.4, 21.2","3, 8.2.4",10606051000116102,20015361000116100,51422315,,,,,,,,,,,,,
 Prednisolone,,,Oral,Tablet,,25mg,,,,,,,933f3f00,9ed83656,f739c800,85d68200,,55a884bf,,,,,,,8638,"3, 8.2.4, 21.2","3, 8.2.4",10606051000116102,,51422315,,,,,,,,,,,,,
 Prednisolone,,,Oral,Tablet,,5mg,,,,,,,933f3f00,9ed83656,f739c800,85d68200,,55a584bf,,,,,,,8638,"3, 8.2.4, 21.2","3, 8.2.4",10606051000116102,10606511000116109,51422315,,,,,,,,,,,,,
+Pregnancy Test,HCG Test; Human Chorionic Gonadotropin (HCG Test),,,,,Strip,,,,,,,77fcbb00,a05a22468,,,,89911a62,,,,,,,,,,,,41142002,,,,,,,,,,,,,
 Primaquine,,,Oral,Tablet,,15mg,,,,,,,933f3f00,97840623,28139f00,a49fe600,,5de7d4bf,,,,,,,8687,6.5.3.1,6.5.3.1,20051001000116105,47162661000116101,51101903,,,,,,,,,,,,,
 Primaquine,,,Oral,Tablet,,7.5mg,,,,,,,933f3f00,97840623,28139f00,a49fe600,,5de2a4bf,,,,,,,8687,6.5.3.1,6.5.3.1,20051001000116105,10573881000116109,51101903,,,,,,,,,,,,,
 Procaine Benzylpenicillin,Penicillin G Procaine,,Parenteral,Powder for reconstitution,,1g [1000000IU],,,,,,,933f3f00,2637f6bd,9cd71100,da9d9000,,556ce4bf,,,,,,,7983,6.2.1,6.2.1,10180211000116107,,51283409,,,,,,,,,,,,,
@@ -1100,11 +1102,14 @@ Sulfasalazine,,,Rectal,Suppository,,500mg,,,,,,,933f3f00,55b6735e,9a47d400,7634e
 Suramin sodium,,,Parenteral,Powder for reconstitution,,1g,,,,,,,933f3f00,79533d05,a637f900,c41ad800,,62b944bf,,,,,,,10256,6.5.5.1,6.5.5.1,,,,,,,,,,,,,,,,
 Surgical Mask,,,,,,,1,,,,,,77fcbb00,be581a6e2,,,,,098885da,,,,,,,,,,,42131713,,,,,,,,,,,,,
 Suxamethonium,"Succinylcholine, Suxamthonium Chloride",,Parenteral,Solution,,50mg per mL,2mL,,,,,,933f3f00,b05302ba,10ae3b00,dd141000,,50a29300,63fa14bf,,,,,,10154,20,20,10760701000116105,"10277071000116101, 20056761000116101",51152046,,,,,,,,,,,,,
-Syringe disposable,,,,,,1mL,,,,,,,77fcbb00,a8af4dce,,,,615f7cdc,,,,,,,,,,,,,,,,,,,,,,,,,
-Syringe disposable,,,,,,5mL,,,,,,,77fcbb00,a8af4dce,,,,dd586cdc,,,,,,,,,,,,,,,,,,,,,,,,,
+Syringe Disposable,,,,,,1mL,,,,,,,77fcbb00,a8af4dce,,,,615f7cdc,,,,,,,,,,,,,,,,,,,,,,,,,
+Syringe Disposable,,,,,,5mL,,,,,,,77fcbb00,a8af4dce,,,,dd586cdc,,,,,,,,,,,,,,,,,,,,,,,,,
+Syringe Autodisable,Syringe SoloShot,,,,,,1mL,,,,,,77fcbb00,b8837bb6e,,,,,bcf59ab7,,,,,,,,,,,42142600,,,,,,,,,,,,,
+Syringe Autodisable,Syringe SoloShot,,,,,,2mL,,,,,,77fcbb00,b8837bb6e,,,,,78a4da62,,,,,,,,,,,42142600,,,,,,,,,,,,,
 Tamoxifen,,,Oral,Tablet,,10mg,,,,,,,933f3f00,07647bc5,19a68d00,0d1f1c00,,66a554bf,,,,,,,10324,8.2.4,,10034981000116101,10035091000116104,51111873,,,,,,,,,,,,,
 Tamoxifen,,,Oral,Tablet,,25mg,,,,,,,933f3f00,07647bc5,19a68d00,0d1f1c00,,66d964bf,,,,,,,10324,8.2.4,8.2.4,10034981000116101,,51111873,,,,,,,,,,,,,
 Tenofovir Disoproxil Fumarate,TDF,,Oral,Tablet,,300mg,,,,,,,933f3f00,dc841f56,8bb16f00,d98b6400,,653ec4bf,,,,,,,322248,"6.4.2.1, 6.4.4.1.1","6.4.2.1, 6.4.4.1.1",10728881000116104,10728901000116101,51343512,,,,,,,,,,,,,
+Tent,,,,,,42 Meter Squared with UNFPA Logo,,,,,,,77fcbb00,13a83f706,,,,a07baa62,,,,,,,,,,,,,,,,,,,,,,,,,
 Terbinafine,,,Topical,Cream,,1%,15g,,,,,,933f3f00,6e3b7e38,118c9700,2214fe00,,647904bf,47c30a00,,,,,,37801,13.1,13.1,10050921000116109,10365421000116103,51302502,,,,,,,,,,,,,
 Terbinafine,,,Topical,Cream,,1%,30g,,,,,,933f3f00,6e3b7e38,118c9700,2214fe00,,647904bf,9cfda500,,,,,,37801,13.1,13.1,10050921000116109,,51302502,,,,,,,,,,,,,
 Terbinafine,,,Topical,Ointment,,1%,7.5g,,,,,,933f3f00,6e3b7e38,118c9700,f6d7c900,,647df4bf,ac166400,,,,,,37801,13.1,13.1,10050921000116109,,51302502,,,,,,,,,,,,,
@@ -1122,6 +1127,7 @@ Thiamine,Vitamin B1,,Oral,Tablet,,50mg,,,,,,,933f3f00,47ebe523,f8808600,6bb53100
 Timolol,,,Eye,Drop,,0.25%,5mL,,,,,,933f3f00,61c5d25a,0e833000,e0d53300,,658294bf,a2f6ee00,,,,,,10600,21.4,21.4,10063181000116107,"10063381000116105, 10680431000116101, 45213421000116103",51263136,,,,,,,,,,,,,
 Timolol,,,Eye,Drop,,0.5%,5mL,,,,,,933f3f00,61c5d25a,0e833000,e0d53300,,656604bf,a7f1f900,,,,,,10600,21.4,21.4,10063181000116107,"10680301000116102, 10063291000116101, 45213671000116102",51263136,,,,,,,,,,,,,
 Tioguanine,Thioguanine,,Oral,Tablet,,40mg,,,,,,,933f3f00,0ac56303,29ab2a00,3fc54500,,654404bf,,,,,,,10485,8.2.1,8.2.1,10368501000116100,10368521000116107,51111665,,,,,,,,,,,,,
+Training Model,,,,,,Arm Subcutaneous Implant,,,,,,,77fcbb00,7cd635629,,,,52251a62,,,,,,,,,,,,42301501,,,,,,,,,,,,,
 Tranexamic Acid,,,Parenteral,Solution,,100mg per mL, 10mL,,,,,,933f3f00,d0e483ee,9ba2f400,26ecd800,,b0383b00,65c144bf,,,,,,10691,"10.2, 22.5","10.2, 22.5",10230411000116101,"10230641000116102, 43915991000116101",51131811,,,,,,,,,,,,,
 Trastuzumab,,,Parenteral,Powder for reconstitution,,150mg,,,,,,,933f3f00,62c7df6d,f1a21200,c5808d00,,65e6e4bf,,,,,,,224905,8.2.2,8.2.2,10318351000116107,10318461000116104,51111717,,,,,,,,,,,,,
 Trastuzumab,,,Parenteral,Powder for reconstitution,,400mg,,,,,,,933f3f00,62c7df6d,f1a21200,c5808d00,,1ca24554,,,,,,,224905,8.2.2,,10318351000116107,,51111717,,,,,,,,,,,,,
@@ -1133,6 +1139,9 @@ Trimethoprim,,,Oral,Tablet,,200mg,,,,,,,933f3f00,60729a62,c3be3200,c18e3c00,,665
 Tropicamide,,,Eye,Drop,,0.5%,0.5mL,,,,,,933f3f00,327df6eb,92e40f00,71ee9600,,6603d4bf,7707bf00,,,,,,10869,14.1,14.1,10449641000116105,10449661000116106,51551606,,,,,,,,,,,,,
 Tuberculin PPD,"Mantoux, Tuberculin Purified Protein Derivative",,Parenteral,Solution,,50TU per mL,1mL,,,,,,933f3f00,64a4e4bf,112b0e00,d5d59900,,33c1f800,c638db00,,,,,,10908,19.1,,10691581000116108,10691851000116101,51201651,,,,,,,,,,,,,
 Tuberculin PPD,"Mantoux, Tuberculin Purified Protein Derivative",,Parenteral,Solution,,50TU per mL,5mL,,,,,,933f3f00,64a4e4bf,112b0e00,d5d59900,,33c1f800,fa203200,,,,,,10908,19.1,,10691581000116108,,51201651,,,,,,,,,,,,,
+UNFPA Consumable Kit for Contraceptive Implants Insertion or Removal,,,,,,Standard,,,,,,,77fcbb00,ad73d65c3,,,,46d38a62,,,,,,,,,,,,,,,,,,,,,,,,,
+UNFPA Dignity Kit,,,,,,Women with Disability (WWD),,,,,,,77fcbb00,5b5c29e4e,,,,7e428a62,,,,,,,,,,,,,,,,,,,,,,,,,
+UNFPA Dignity Kit,,,,,,Standard,,,,,,,77fcbb00,5b5c29e4e,,,,eaa2aa62,,,,,,,,,,,,,,,,,,,,,,,,,
 UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,0 Administration Training Supplies,,,,,,,77fcbb00,802ebeaa,,,,f2f89000,,,,,,,,,,,,,,,,,,,,,,,,,
 UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,1 Condoms,,,,,,,77fcbb00,802ebeaa,,,,40f51300,,,,,,,,,,,,,,,,,,,,,,,,,
 UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,10 Vacuum Extraction Delivery,,,,,,,77fcbb00,802ebeaa,,,,32c65400,,,,,,,,,,,,,,,,,,,,,,,,,
