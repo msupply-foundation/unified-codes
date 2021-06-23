@@ -248,7 +248,6 @@ export class DataParser {
         // This avoids having to manually define each combination of 'levels' that are able to be connected 
         let parentIndex = 0;
         let childIndex = 1;
-        console.log(productDefinition)
         while (childIndex < productDefinition.length) {
           const parent = productDefinition[parentIndex];
           const child = productDefinition[childIndex];
