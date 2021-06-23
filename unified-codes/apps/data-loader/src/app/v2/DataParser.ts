@@ -232,7 +232,7 @@ export class DataParser {
           }
         });
 
-        const productCode = productDefinition[0].code;
+        const productCode = productDefinition.find(item => item.type === EEntityType.Product)?.code;
         // If category code exists, and product code exists
         if (uc1 && productCode) {
 
@@ -297,8 +297,8 @@ export class DataParser {
           });
         }
 
-        const strengthCode = productDefinition[4].code; // UC6
-        const unitCode = productDefinition[5].code;     // UC7
+        const strengthCode = productDefinition.find(item => item.type === EEntityType.DoseStrength)?.code;  // UC6
+        const unitCode = productDefinition.find(item => item.type === EEntityType.Unit)?.code;      // UC7
 
         // Process external properties at item (UC6) level
         if (!unitCode && strengthCode) {
