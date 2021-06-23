@@ -170,45 +170,19 @@ export class DataParser {
           // { name: row.brand, code: row.uc12, type: EEntityType.Brand },
         ];
 
-        const {
-          uc1,
-          combination,
-          rxnav,
-          who_eml_product,
-          who_eml_item,
-          nzulm,
-          nzulm_item,
-          unspsc,
-        } = row;
+        const { uc1, combination } = row;
 
-        const productProperties: IPropertyNode[] = [];
-        const itemProperties: IPropertyNode[] = [];
+        const productProperties: IPropertyNode[] = [
+          { type: EPropertyType.RxNav, value: row.rxnav },
+          { type: EPropertyType.WHOEML, value: row.who_eml_product },
+          { type: EPropertyType.NZULM, value: row.nzulm },
+          { type: EPropertyType.UNSPSC, value: row.unspsc }
+        ];
 
-        productProperties.push({
-          type: EPropertyType.RxNav,
-          value: rxnav,
-        });
-        productProperties.push({
-          type: EPropertyType.WHOEML,
-          value: who_eml_product,
-        });
-
-        itemProperties.push({
-          type: EPropertyType.WHOEML,
-          value: who_eml_item,
-        });
-        productProperties.push({
-          type: EPropertyType.NZULM,
-          value: nzulm,
-        });
-        itemProperties.push({
-          type: EPropertyType.NZULM,
-          value: nzulm_item,
-        });
-        productProperties.push({
-          type: EPropertyType.UNSPSC,
-          value: unspsc,
-        });
+        const itemProperties: IPropertyNode[] = [
+          { type: EPropertyType.WHOEML, value: row.who_eml_item },
+          { type: EPropertyType.NZULM, value: row.who_eml_item },
+        ];
 
         productDefinition.forEach(item => {
           if (item.code && !(item.code in this.graph)) {
