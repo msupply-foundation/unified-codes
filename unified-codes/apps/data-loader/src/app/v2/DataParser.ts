@@ -185,7 +185,15 @@ export class DataParser {
         ];
 
         productDefinition.forEach(item => {
-          if (item.code && !(item.code in this.graph)) {
+          if (!item.code) return;
+          
+          if (item.code in this.graph) {
+            // check for conflicts.
+            if (item.type && this.graph[item.code].type != item.type) {
+              duplicates.push(item.code);
+            }
+          }
+          else {
             const node = { 
               code: item.code,
               name: item.name,
@@ -197,12 +205,6 @@ export class DataParser {
             this.graph[item.code] = node;
 
             console.log(`INFO: Created ${item.type} node: ${JSON.stringify(node)}`);
-          }
-          else if (item.code) {
-            // check for conflicts.
-            if (item.type && this.graph[item.code].type != item.type) {
-              duplicates.push(item.code);
-            }
           }
         });
 
