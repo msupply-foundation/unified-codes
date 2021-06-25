@@ -14,6 +14,7 @@ export enum EEntityType {
   FORM_QUALIFIER = 'form_qualifier',
   UNIT_OF_USE = 'unit_of_use',
   STRENGTH = 'strength',
+  PACK_IMMEDIATE = 'PackImmediate',
 }
 
 export enum EEntityField {
