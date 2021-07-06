@@ -20,4 +20,5 @@ export const ENTITY_TYPE_LABEL = {
     [EEntityType.FORM_QUALIFIER]: 'Forms (qualifiers)',
     [EEntityType.STRENGTH]: 'Strengths',
     [EEntityType.UNIT_OF_USE]: 'Units',
+    [EEntityType.PACK_IMMEDIATE]: 'Immediate Packaging',
 }
