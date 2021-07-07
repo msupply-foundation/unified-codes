@@ -228,7 +228,7 @@ export class DataParser {
           const parent = productDefinition[parentIndex];
           const child = productDefinition[childIndex];
           if (child.name && child.code) {
-            if (!this.graph[parent.code].children.map((child) => child.code).includes(child.code)) {
+            if (!this.graph[parent.code].children.map((existingGraphChild) => existingGraphChild.code).includes(child.code)) {
               this.graph[parent.code].children.push(child);
               console.log(
                 `INFO: Linked ${parent.type} with code ${parent.code} to ${child.type} with code ${child.code}`
