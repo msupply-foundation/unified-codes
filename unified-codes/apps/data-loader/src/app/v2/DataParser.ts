@@ -181,7 +181,7 @@ export class DataParser {
 
         const itemProperties: IPropertyNode[] = [
           { type: EPropertyType.WHOEML, value: row.who_eml_item },
-          { type: EPropertyType.NZULM, value: row.who_eml_item },
+          { type: EPropertyType.NZULM, value: row.nzulm_item },
         ];
 
         productDefinition.forEach(item => {
