@@ -24,7 +24,7 @@ const styles = (theme: ITheme) => {
     cursor: 'pointer',
     '&:hover': { backgroundColor: theme.palette.background.toolbar },
     '& td:last-child': { borderRight: 0 },
-    '& td:first-child': { fontWeight: 700 },
+    '& td:first-child': { fontWeight: 700, minWidth: 125 },
   };
 
   const icon = {
