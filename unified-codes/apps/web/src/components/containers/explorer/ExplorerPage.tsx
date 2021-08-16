@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme: ITheme) =>
       backgroundColor: theme.palette.background.default,
       margin: '0 auto 0 auto',
       maxHeight: '100%',
+      minWidth: 400,
+      maxWidth: 900,
       width: '60%',
       borderRadius: 5,
     },
@@ -31,6 +33,8 @@ const useStyles = makeStyles((theme: ITheme) =>
       backgroundColor: theme.palette.background.default,
       margin: '-20px auto 0 auto',
       width: '60%',
+      minWidth: 400,
+      maxWidth: 900,
       borderRadius: 5,
     },
     toggleBarContainer: {
