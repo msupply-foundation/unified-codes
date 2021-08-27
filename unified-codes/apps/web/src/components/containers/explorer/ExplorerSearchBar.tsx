@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     root: { color: theme.palette.text.primary },
     input: { paddingLeft: 15, color: '#a2a2a2' },
-    button: { marginTop: 15 },
+    button: { marginTop: 15, minWidth: 0 },
   })
 );
 
