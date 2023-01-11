@@ -50,7 +50,7 @@
     "fastify-cors": "^4.1.0",
     "graphql": "^15.3.0",
     "json-format": "^1.0.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "net": "^1.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
