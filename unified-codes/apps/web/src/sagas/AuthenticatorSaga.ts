@@ -28,7 +28,7 @@ function* authenticate(action: IAuthenticateAction) {
   try {
     const identityProvider: IdentityProvider = new KeyCloakIdentityProvider(keycloakConfig);
     const authenticator: AuthenticationService = new AuthenticationService(identityProvider);
-    const user: User = yield call(authenticator.login, credentials);
+    const user: User = yield call(authenticator.login.bind(authenticator), credentials);
     yield put(AuthenticatorActions.authenticationSuccess(user));
   } catch (error) {
     yield put(AuthenticatorActions.authenticationFailure(error.messages));
