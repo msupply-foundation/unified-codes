@@ -12,8 +12,8 @@ declare const BUGSNAG_API_KEY: string;
 const isProductionBuild = process.env['NODE_ENV'] === 'production';
 const { port, hostname, protocol } = window.location;
 
-const defaultDevelopmentApiHost = `${protocol}//${hostname}:8007`;
-const productionApiHost = `${protocol}//${hostname}:${port}`;
+const defaultDevelopmentApiHost = `${protocol}//${hostname}:4000/v1`;
+const productionApiHost = `${protocol}//${hostname}:${port}/v1`;
 
 const developmentApiHost =
   (typeof API_HOST !== 'undefined' && API_HOST) || defaultDevelopmentApiHost;
@@ -24,7 +24,10 @@ const version =
   typeof APP_BUILD_VERSION !== 'undefined' && APP_BUILD_VERSION
     ? APP_BUILD_VERSION
     : '0.0.0';
-const bugsnagApiKey = typeof BUGSNAG_API_KEY !== 'undefined' && BUGSNAG_API_KEY ? BUGSNAG_API_KEY : '';
+const bugsnagApiKey =
+  typeof BUGSNAG_API_KEY !== 'undefined' && BUGSNAG_API_KEY
+    ? BUGSNAG_API_KEY
+    : '';
 
 export const Environment = {
   API_HOST: apiHost,
