@@ -17,7 +17,6 @@ import { AppDrawer, AppBar, Footer, NotFound } from './components';
 import { CommandK } from './CommandK';
 import { AppRoute } from '@uc-frontend/config';
 import { Settings } from './Admin/Settings';
-import { RequireAuthentication } from './components/Navigation/RequireAuthentication';
 import { QueryErrorHandler } from './QueryErrorHandler';
 
 export const Site: FC = () => {
@@ -30,30 +29,28 @@ export const Site: FC = () => {
   }, [location]);
 
   return (
-    <RequireAuthentication>
-      <CommandK>
-        <SnackbarProvider maxSnack={3}>
-          <AppDrawer />
-          <Box flex={1} display="flex" flexDirection="column" overflow="hidden">
-            <AppBar />
-            <Box display="flex" flex={1} overflow="auto">
-              <Routes>
-                <Route
-                  path={RouteBuilder.create(AppRoute.Admin)
-                    .addWildCard()
-                    .build()}
-                  element={<Settings />}
-                />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Box>
-            <AppFooter />
-            <AppFooterPortal SessionDetails={<Footer />} />
+    // <RequireAuthentication>
+    <CommandK>
+      <SnackbarProvider maxSnack={3}>
+        <AppDrawer />
+        <Box flex={1} display="flex" flexDirection="column" overflow="hidden">
+          <AppBar />
+          <Box display="flex" flex={1} overflow="auto">
+            <Routes>
+              <Route
+                path={RouteBuilder.create(AppRoute.Admin).addWildCard().build()}
+                element={<Settings />}
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
           </Box>
-          <DetailPanel />
-          <QueryErrorHandler />
-        </SnackbarProvider>
-      </CommandK>
-    </RequireAuthentication>
+          <AppFooter />
+          <AppFooterPortal SessionDetails={<Footer />} />
+        </Box>
+        <DetailPanel />
+        <QueryErrorHandler />
+      </SnackbarProvider>
+    </CommandK>
+    // </RequireAuthentication>
   );
 };
