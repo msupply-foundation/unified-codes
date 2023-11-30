@@ -63,6 +63,25 @@ _Cons:_
   - If we're likely to extend UC much in the future, the pain of it being in a different stack may be felt more than if we just need to keep the lights on
 - If we decide to replace Dgraph/rewrite the app in future, we will have a greater amount of code to replace
 
+### 4. Replace UI layer
+
+A potentially left-field option: retain dgraph but replace the react layer with a copy of the codebase used for other web projects. This gives a good platform for building the admin interface, using existing patterns and toolset. 
+
+_Pros:_
+
+- The database layer is working and has a graphQL API; the current UI package is using a graphQL API
+- Consistent front end codebase, and
+- potentially, consistent UI and component reuse
+- A graph database allows us to do a lot of interesting things with the data
+- A good platform for developing the admin interface, in a familiar environment
+
+_Cons:_
+
+- We're left with an unfamiliar database engine to maintain
+- We aren't using any of the cool graph database features, so why bother with the overhead of maintaining a different server?
+- The current UI is working, so there's overhead in replacing
+
+
 ## Decision
 
 ## Consequences
