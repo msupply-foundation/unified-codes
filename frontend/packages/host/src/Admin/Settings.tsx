@@ -8,8 +8,8 @@ import {
 } from '@uc-frontend/common';
 import { LanguageMenu } from '../components';
 import { Setting } from './Setting';
-import { useHost } from '../api/hooks';
 import { Environment } from '@uc-frontend/config';
+import { useHost } from '../api/hooks';
 
 export const Settings: React.FC = () => {
   const t = useTranslation('host');
