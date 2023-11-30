@@ -1,0 +1,25 @@
+mutation initiatePasswordReset($emailOrUserId: String!) {
+  initiatePasswordReset(email: $emailOrUserId) {
+    ... on PasswordResetResponseMessage {
+      __typename
+      message
+    }
+  }
+}
+
+mutation validatePasswordResetToken($token: String!) {
+  validatePasswordResetToken(token: $token) {
+    ... on PasswordResetResponseMessage {
+      message
+    }
+  }
+}
+
+mutation resetPasswordUsingToken($token: String!, $password: String!) {
+  resetPasswordUsingToken(token: $token, password: $password) {
+    ... on PasswordResetResponseMessage {
+      __typename
+      message
+    }
+  }
+}

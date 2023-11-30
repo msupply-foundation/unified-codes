@@ -1,0 +1,27 @@
+overwrite: true
+schema: 'http://127.0.0.1:8007/graphql'
+generates:
+  ./packages/common/src/types/schema.ts:
+    plugins:
+      - typescript
+    config:
+      nonOptionalTypename: true
+      scalars:
+        DateTime: string
+        NaiveDate: string
+        NaiveDateTime: string
+  packages/:
+    documents:
+      - ./**/*.graphql
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.ts
+      baseTypesPath: ~@uc-frontend/common
+    plugins:
+      - typescript-operations
+      - typescript-graphql-request
+    config:
+      nonOptionalTypename: true
+      scalars:
+        DateTime: string
+        NaiveDate: string
