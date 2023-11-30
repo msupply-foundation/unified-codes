@@ -2,8 +2,8 @@
 
 - _Date_: 28 November 2023
 - _Deciders_: Mark, James, Laché
-- _Status_: NOT DECIDED
-- _Outcome_: ...
+- _Status_: DECIDED
+- _Outcome_: Option 4 - Replace Frontend
 
 ## Context
 
@@ -65,7 +65,7 @@ _Cons:_
 
 ### 4. Replace UI layer
 
-A potentially left-field option: retain dgraph but replace the react layer with a copy of the codebase used for other web projects. This gives a good platform for building the admin interface, using existing patterns and toolset. 
+A potentially left-field option: retain dgraph but replace the react layer with a copy of the codebase used for other web projects. This gives a good platform for building the admin interface, using existing patterns and toolset.
 
 _Pros:_
 
@@ -81,7 +81,20 @@ _Cons:_
 - We aren't using any of the cool graph database features, so why bother with the overhead of maintaining a different server?
 - The current UI is working, so there's overhead in replacing
 
-
 ## Decision
 
+The decision has been made in favour of **Option 4: Replace UI layer**.
+
+Given the backend exposes a GraphQL API, we should be able to drop our current frontend package in pretty easily.
+
+The current UC frontend is fairly simple, so shouldn't take too long to replace. It also could use some UX improvements, so we can make these along the way.
+
+A significant component of the admin interface work will be building a sensible UI for it, so it will be beneficial to build this in a familiar environment.
+
+If we have time/budget left at the end, we could then consider replacing DGraph. By that point, we'd also have a better sense of its pain points and how much risk there is in keeping vs replacing it.
+
 ## Consequences
+
+We will be left with a DGraph database (and a TypeScript backend, as opposed to Rust), which will require additional learning/relearning overhead as we maintain UC.
+
+We're also going to build out a lot in the backend as we implement this admin interface (all the mutations, as well as implementing auth) which will make it a lot more work to move away from the DGraph/TS backend in future.
