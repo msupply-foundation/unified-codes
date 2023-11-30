@@ -118,7 +118,8 @@ export const createGql = (
   url: string,
   skipRequest?: SkipRequest
 ): { client: GQLClient } => {
-  const client = new GQLClient(url, { credentials: 'include' }, skipRequest);
+  const client = new GQLClient(url, { credentials: 'omit' }, skipRequest);
+  // const client = new GQLClient(url, { credentials: 'include' }, skipRequest);
   return { client };
 };
 
