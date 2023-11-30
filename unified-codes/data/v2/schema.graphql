@@ -1,0 +1,55 @@
+interface Entity {
+  id: ID!
+  code: String @dgraph(pred: "code") @search
+  description: String @dgraph(pred: "name")
+  properties: [Property] @dgraph(pred: "properties")
+  # children: [Entity] @dgraph(pred: "children")
+  children: [Entity] @hasInverse(field: parent) @dgraph(pred: "children")
+  parent: Entity
+}
+
+type Category implements Entity
+type Route implements Entity
+type Form implements Entity # DoseForm
+type FormQualifier implements Entity # DoseFormQualifier
+type DoseStrength implements Entity
+type Unit implements Entity #DoseUnit
+type PackImmediate implements Entity
+type PackSize implements Entity
+
+type Product implements Entity {
+  combines: [Product]
+  # children: [Route] @hasInverse(field: parent) @dgraph(pred: "children")
+  # parent: Category
+}
+# type Category implements Entity {
+#   children: [Product] @hasInverse(field: parent) @dgraph(pred: "children")
+# }
+# type Route implements Entity {
+#   children: [Form] @hasInverse(field: parent) @dgraph(pred: "children")
+#   parent: Product
+# }
+# type Form implements Entity { # DoseForm
+#   parent: Route
+# }
+
+# Unfortunately we can't have unions here... started experimenting with the above, defining the child/parent types - this creates a stricter hierarchy...
+# union EntityType =
+#     Category
+#   | Product
+#   | Form
+#   | FormQualifier
+#   | DoseStrength
+#   | Unit
+#   | PackImmediate
+#   | PackSize
+
+interface Property {
+  id: ID!
+  value: String @dgraph(pred: "value")
+}
+
+type who_eml implements Property
+type code_nzulm implements Property
+type code_rxnav implements Property
+type code_unspsc implements Property
