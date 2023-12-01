@@ -3,7 +3,7 @@
 # }
 
 query entity($code: String!) {
-  entity(code: $code) {
+  entity2(code: $code) {
     code
     description
     type

@@ -10,7 +10,7 @@ export const getHostQueries = (sdk: Sdk) => ({
     },
     entity: async (code: string) => {
       const result = await sdk.entity({ code });
-      return result.entity;
+      return result.entity2;
     },
   },
 });

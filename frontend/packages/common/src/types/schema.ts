@@ -108,6 +108,7 @@ export type Query = {
   __typename: 'Query';
   entities: EntityCollectionType;
   entity?: Maybe<EntityType>;
+  entity2?: Maybe<EntityType>;
   interactions: DrugInteractionsType;
 };
 
@@ -120,6 +121,11 @@ export type QueryEntitiesArgs = {
 
 
 export type QueryEntityArgs = {
+  code: Scalars['String']['input'];
+};
+
+
+export type QueryEntity2Args = {
   code: Scalars['String']['input'];
 };
 

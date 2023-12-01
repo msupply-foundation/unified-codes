@@ -8,12 +8,12 @@ export type EntityQueryVariables = Types.Exact<{
 }>;
 
 
-export type EntityQuery = { __typename: 'Query', entity?: { __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null }> | null }> | null }> | null }> | null } | null };
+export type EntityQuery = { __typename: 'Query', entity2?: { __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null }> | null }> | null }> | null }> | null } | null };
 
 
 export const EntityDocument = gql`
     query entity($code: String!) {
-  entity(code: $code) {
+  entity2(code: $code) {
     code
     description
     type
