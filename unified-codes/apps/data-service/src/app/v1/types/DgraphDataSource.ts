@@ -185,8 +185,12 @@ export class DgraphDataSource extends RESTDataSource {
   }
 
   private static getEntityType(entity: IEntity): string {
-    const { type: types } = entity;
-    const [type] = types ?? [];
+    const { type: dgraphType } = entity;
+    const types = (dgraphType as unknown) as string[]; // dgraph.type is string[]
+
+    // "Entity" is an additional type to allow graphql querying across many entity types
+    // We want the specific type here
+    const type = (types ?? []).find((t) => t !== 'Entity');
 
     switch (type) {
       case EEntityTypeV2.Product:

@@ -107,6 +107,7 @@ export class DataLoader {
         uid(Entity) <name> "${entity.name}" .
         uid(Entity) <code> "${entity.code}" .
         uid(Entity) <dgraph.type> "${entity.type}" .
+        uid(Entity) <dgraph.type> "Entity" .
       `;
 
       if (await this.dgraph.upsert(query, nQuads)) {
