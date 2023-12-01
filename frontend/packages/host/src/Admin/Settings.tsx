@@ -35,7 +35,7 @@ export const Settings: React.FC = () => {
         icon={<TranslateIcon />}
       />
       <Typography variant="h5" color="primary" style={{ paddingBottom: 25 }}>
-        Entity Query
+        Entity Query (c7750265)
       </Typography>
       <Entity entity={entity} />
       <Grid style={{ position: 'absolute', right: 0, bottom: 30 }}>
