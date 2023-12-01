@@ -79,7 +79,7 @@ export class DgraphDataSource extends RESTDataSource {
       query(func: eq(code, ${code?.toLowerCase()}), first:1) @recurse(loop:false) {
         code
         type: dgraph.type
-        description: name@*
+        description: name
         value
         combines
         children
@@ -94,7 +94,7 @@ export class DgraphDataSource extends RESTDataSource {
       query (func: eq(dgraph.type, "Product")) @cascade {
         code
         type: dgraph.type
-        description: name@*
+        description: name
         properties {
           type: dgraph.type
           value
@@ -150,7 +150,7 @@ export class DgraphDataSource extends RESTDataSource {
       return `{
         query(func: eq(dgraph.type, ["Unit", "DoseStrength"]), ${orderString}, offset: ${offset}, first: ${first}) ${filterString}  {
           code
-          description: name@*
+          description: name
           type: dgraph.type
           uid
           properties {
@@ -169,7 +169,7 @@ export class DgraphDataSource extends RESTDataSource {
       
       query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
         code
-        description: name@*
+        description: name
         type: dgraph.type
         uid
         properties {
@@ -178,7 +178,7 @@ export class DgraphDataSource extends RESTDataSource {
         }
         parents: ~children {
           type: dgraph.type
-          description: name@*
+          description: name
         }
       }
     }`;
