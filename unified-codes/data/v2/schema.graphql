@@ -7,8 +7,8 @@ interface Entity {
   code: String @dgraph(pred: "code") @search(by: [exact, fulltext])
   description: String @dgraph(pred: "name") @search(by: [exact, term, trigram])
   properties: [Property] @dgraph(pred: "properties")
-  children: [Entity] @hasInverse(field: parent) @dgraph(pred: "children")
-  parent: Entity
+  children: [Entity] @dgraph(pred: "children")
+  parents: [Entity] @dgraph(pred: "~children")
 }
 
 type Category implements Entity

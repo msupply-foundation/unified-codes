@@ -1,6 +1,6 @@
 export const getEntityQuery = (code: string) => `
 {
-  queryEntity(filter: {code: {alloftext: "${code}"}}) {
+  queryEntity(filter: {code: {eq: "${code}"}}) {
     code
     description
     type: __typename
