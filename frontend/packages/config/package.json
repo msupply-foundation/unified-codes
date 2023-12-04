@@ -1,0 +1,18 @@
+{
+  "name": "@uc-frontend/config",
+  "main": "./src/index.ts",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "private": true,
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^12.3.8",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5"
+  },
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "dependencies": {}
+}
