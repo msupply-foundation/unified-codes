@@ -25,8 +25,8 @@ export class IdentityProviderError extends Error {
 }
 
 export abstract class IdentityProvider {
-  abstract async getIdentityToken(credentials: IUserCredentials): Promise<JWTToken>;
-  abstract async verifyIdentityToken(token: JWTToken): Promise<boolean>;
+  abstract getIdentityToken(credentials: IUserCredentials): Promise<JWTToken>;
+  abstract verifyIdentityToken(token: JWTToken): Promise<boolean>;
 }
 
 export class KeyCloakIdentityProvider extends IdentityProvider {

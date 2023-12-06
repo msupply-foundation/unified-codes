@@ -38,7 +38,7 @@ export class JWT {
     const headerPattern = '[A-Za-z0-9-_=]+';
     const payloadPattern = '[A-Za-z0-9-_=]+';
     const signaturePattern = '?[A-Za-z0-9-_.+/=]*';
-    const jwtExpected = `^${headerPattern}\.${payloadPattern}\.${signaturePattern}$`;
+    const jwtExpected = `^${headerPattern}.${payloadPattern}.${signaturePattern}$`;
     const jwtActual = token.toString();
     const regex = new RegExp(jwtExpected);
     return regex.test(jwtActual);

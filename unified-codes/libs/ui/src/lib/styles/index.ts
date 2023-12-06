@@ -3,7 +3,7 @@ export {
   default as createMuiTheme,
   Theme,
   ThemeOptions,
-} from '@material-ui/core/styles/createMuiTheme';
+} from '@material-ui/core/styles/createTheme';
 export { default as createPalette, Palette } from '@material-ui/core/styles/createPalette';
 
 export { default as CssBaseline } from '@material-ui/core/CssBaseline';

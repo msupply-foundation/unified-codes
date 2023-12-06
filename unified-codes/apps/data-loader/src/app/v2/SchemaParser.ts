@@ -1,40 +1,35 @@
-import * as csv from 'csv-parser';
 import * as fs from 'fs';
 
 export class SchemaParser {
   public readonly path: fs.PathLike;
-  public readonly options:
-    | string
-    | {
-        flags?: string;
-        encoding?: BufferEncoding;
-        fd?: number;
-        mode?: number;
-        autoClose?: boolean;
-        emitClose?: boolean;
-        start?: number;
-        end?: number;
-        highWaterMark?: number;
-      };
+  public readonly options: {
+    flags?: string;
+    encoding?: BufferEncoding;
+    fd?: number;
+    mode?: number;
+    autoClose?: boolean;
+    emitClose?: boolean;
+    start?: number;
+    end?: number;
+    highWaterMark?: number;
+  };
 
   private schema: string;
   private isParsed: boolean;
 
   constructor(
     path: fs.PathLike,
-    options?:
-      | string
-      | {
-          flags?: string;
-          encoding?: BufferEncoding;
-          fd?: number;
-          mode?: number;
-          autoClose?: boolean;
-          emitClose?: boolean;
-          start?: number;
-          end?: number;
-          highWaterMark?: number;
-        }
+    options?: {
+      flags?: string;
+      encoding?: BufferEncoding;
+      fd?: number;
+      mode?: number;
+      autoClose?: boolean;
+      emitClose?: boolean;
+      start?: number;
+      end?: number;
+      highWaterMark?: number;
+    }
   ) {
     this.path = path;
     this.options = options;

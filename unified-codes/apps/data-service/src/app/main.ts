@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import fastifyCors from 'fastify-cors';
+import fastifyCors from '@fastify/cors';
 import { buildTypeDefsAndResolvers } from 'type-graphql';
 
 import { EntityResolver } from './v1/resolvers';
