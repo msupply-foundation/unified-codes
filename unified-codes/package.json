@@ -44,7 +44,7 @@
     "class-validator": "^0.14.0",
     "clipboard-copy": "^4.0.1",
     "core-js": "^3.6.5",
-    "cross-fetch": "^3.0.6",
+    "cross-fetch": "^4.0.0",
     "csv-parser": "^2.3.3",
     "dgraph-js": "^21.3.1",
     "exceljs": "^4.2.0",
