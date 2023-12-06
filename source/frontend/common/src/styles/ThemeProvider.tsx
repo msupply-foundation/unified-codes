@@ -7,7 +7,7 @@ import { useAppTheme } from './useAppTheme';
 import { RTLProvider } from './RTLProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import { PropsWithChildrenOnly } from 'frontend/common/src/types';
+import { PropsWithChildrenOnly } from '@common/types';
 
 /**
  * Need a cache with the rtl plugin for when we are using rtl.

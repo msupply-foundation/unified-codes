@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { CircularProgress, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import { LocaleKey, useTranslation } from 'frontend/common/src/intl';
+import { LocaleKey, useTranslation } from '@common/intl';
 
 interface BasicSpinnerProps {
   messageKey?: LocaleKey;

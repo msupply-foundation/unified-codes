@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import { Column } from '../../columns/types';
-import { RecordWithId } from 'frontend/common/src/types';
+import { RecordWithId } from '@common/types';
 import {
   useExpanded,
   useIsDisabled,

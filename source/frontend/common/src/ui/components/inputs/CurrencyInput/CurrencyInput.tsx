@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import RCInput, {
   CurrencyInputProps as RCInputProps,
 } from 'react-currency-input-field';
-import { useCurrency } from 'frontend/common/src/intl';
+import { useCurrency } from '@common/intl';
 
 interface CurrencyInputProps extends RCInputProps {
   onChangeNumber: (value: number) => void;

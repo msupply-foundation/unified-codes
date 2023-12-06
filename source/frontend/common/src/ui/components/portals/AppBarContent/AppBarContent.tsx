@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef } from 'react';
 import { Box, BoxProps, Portal } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useHostContext } from 'frontend/common/src/hooks';
+import { useHostContext } from '@common/hooks';
 
 // TODO: Create a function which creates the two below components?
 // createPortalPair(refName) => { Container, Portal }

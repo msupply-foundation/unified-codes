@@ -1,5 +1,5 @@
 import { useContext, useCallback } from 'react';
-import { PartialBy } from 'frontend/common/src/types';
+import { PartialBy } from '@common/types';
 import {
   ConfirmationModalContext,
   ConfirmationModalState,

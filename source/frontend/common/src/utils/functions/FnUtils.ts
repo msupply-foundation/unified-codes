@@ -1,4 +1,4 @@
-import { UUID } from 'frontend/common/src/types';
+import { UUID } from '@common/types';
 import { v4 } from 'uuid';
 
 export const FnUtils = {

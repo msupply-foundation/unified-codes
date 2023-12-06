@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { Formatter } from 'frontend/common/src/utils';
-import { DateUtils } from 'frontend/common/src/intl';
-import { RecordWithId } from 'frontend/common/src/types';
+import { Formatter } from '@common/utils';
+import { DateUtils } from '@common/intl';
+import { RecordWithId } from '@common/types';
 import { CellProps } from '../../../columns/types';
 
 export const ExpiryDateCell = <T extends RecordWithId>({

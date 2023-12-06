@@ -1,4 +1,4 @@
-import { RecordPatch, RecordWithId } from 'frontend/common/src/types';
+import { RecordPatch, RecordWithId } from '@common/types';
 import groupBy from 'lodash/groupBy';
 import uniqBy from 'lodash/uniqBy';
 

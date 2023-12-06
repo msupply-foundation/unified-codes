@@ -1,12 +1,9 @@
 import React from 'react';
-import { RecordWithId } from 'frontend/common/src/types';
+import { RecordWithId } from '@common/types';
 import { ColumnAlign, ColumnDefinition } from '../types';
-import { MessageSquareIcon } from 'frontend/common/src/ui/icons';
-import {
-  PaperHoverPopover,
-  PaperPopoverSection,
-} from 'frontend/common/src/ui/components';
-import { useTranslation } from 'frontend/common/src/intl';
+import { MessageSquareIcon } from '@common/icons';
+import { PaperHoverPopover, PaperPopoverSection } from '@common/components';
+import { useTranslation } from '@common/intl';
 
 export const getCommentPopoverColumn = <T extends RecordWithId>(
   label?: string

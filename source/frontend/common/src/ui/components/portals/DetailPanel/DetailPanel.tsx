@@ -10,10 +10,10 @@ import {
   useDetailPanelStore,
   useHostContext,
   useIsLargeScreen,
-} from 'frontend/common/src/hooks';
-import { useTranslation } from 'frontend/common/src/intl';
+} from '@common/hooks';
+import { useTranslation } from '@common/intl';
 import { FlatButton } from '../../buttons';
-import { CloseIcon } from 'frontend/common/src/ui/icons';
+import { CloseIcon } from '@common/icons';
 import { Divider } from '../../divider/Divider';
 import { LocalStorage } from '../../../../localStorage';
 

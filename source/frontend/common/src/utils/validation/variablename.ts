@@ -1,4 +1,4 @@
-import { LocaleKey, TypedTFunction } from 'frontend/common/src/intl';
+import { LocaleKey, TypedTFunction } from '@common/intl';
 
 const MIN_LENGTH = 3;
 const invalidVariableName = new RegExp('[^0-9A-Za-z_]');

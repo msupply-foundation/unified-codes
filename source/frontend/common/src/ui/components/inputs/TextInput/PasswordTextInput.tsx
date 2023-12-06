@@ -1,11 +1,8 @@
 import React, { FC, useState } from 'react';
 import { IconButton, StandardTextFieldProps } from '@mui/material';
 import { BasicTextInput } from './BasicTextInput';
-import {
-  VisibilityIcon,
-  VisibilityOffIcon,
-} from 'frontend/common/src/ui/icons';
-import { useTranslation } from 'frontend/common/src/intl';
+import { VisibilityIcon, VisibilityOffIcon } from '@common/icons';
+import { useTranslation } from '@common/intl';
 
 export type PasswordTextInputProps = StandardTextFieldProps & {
   fixedHeight?: boolean;

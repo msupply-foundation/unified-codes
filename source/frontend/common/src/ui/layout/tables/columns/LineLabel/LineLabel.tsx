@@ -1,7 +1,7 @@
 import React from 'react';
-import { RecordWithId } from 'frontend/common/src/types';
+import { RecordWithId } from '@common/types';
 import { ColumnAlign, ColumnDefinition } from '../types';
-import { useTranslation } from 'frontend/common/src/intl';
+import { useTranslation } from '@common/intl';
 
 export const getLineLabelColumn = <
   T extends RecordWithId

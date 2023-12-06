@@ -7,7 +7,7 @@ import React, {
   PropsWithChildren,
 } from 'react';
 import { BasePopoverProps } from '.';
-import { useDebounceCallback } from 'frontend/common/src/hooks';
+import { useDebounceCallback } from '@common/hooks';
 import { BasePopover } from './BasePopover';
 
 type VirtualElement = { getBoundingClientRect: () => DOMRect };

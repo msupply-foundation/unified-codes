@@ -1,4 +1,4 @@
-import { LocaleKey } from 'frontend/common/src/intl';
+import { LocaleKey } from '@common/intl';
 
 interface RouteMapping {
   title?: LocaleKey;

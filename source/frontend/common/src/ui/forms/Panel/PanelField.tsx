@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import { PropsWithChildrenOnly } from 'frontend/common/src/types';
+import { PropsWithChildrenOnly } from '@common/types';
 
 export const PanelField: React.FC<PropsWithChildrenOnly> = props => (
   <Grid

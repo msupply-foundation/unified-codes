@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useFormatDateTime } from 'frontend/common/src/intl/utils/DateUtils';
+import { useFormatDateTime } from '@common/intl/utils/DateUtils';
 
 export interface RelativeTimeDateProps {
   d: string | number | Date | null | undefined;

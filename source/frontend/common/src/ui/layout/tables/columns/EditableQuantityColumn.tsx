@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { InputAdornment, Tooltip, Typography } from '@mui/material';
 import { ColumnDefinition } from './types';
-import { RecordWithId } from 'frontend/common/src/types';
-import { NumericTextInput } from 'frontend/common/src/ui/components';
+import { RecordWithId } from '@common/types';
+import { NumericTextInput } from '@common/components';
 
 interface SomeQuantityEntity extends RecordWithId {
   quantity: number;

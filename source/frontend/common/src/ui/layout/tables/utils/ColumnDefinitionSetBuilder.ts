@@ -1,5 +1,5 @@
 import { getCheckboxSelectionColumn } from '../columns/CheckboxSelectionColumn';
-import { RecordWithId } from 'frontend/common/src/types';
+import { RecordWithId } from '@common/types';
 import { ColumnDefinition } from '../columns/types';
 
 const createColumn = <T extends RecordWithId>(

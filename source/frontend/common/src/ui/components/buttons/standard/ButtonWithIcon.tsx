@@ -1,7 +1,7 @@
 import React from 'react';
 import { ButtonProps, Tooltip } from '@mui/material';
 import { ShrinkableBaseButton } from './ShrinkableBaseButton';
-import { useIsScreen } from 'frontend/common/src/hooks';
+import { useIsScreen } from '@common/hooks';
 
 export interface ButtonWithIconProps extends ButtonProps {
   title?: string;

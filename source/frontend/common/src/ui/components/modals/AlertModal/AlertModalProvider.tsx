@@ -6,9 +6,9 @@ import {
 } from './AlertModalContext';
 import { Grid, Typography } from '@mui/material';
 import { DialogButton } from '../../buttons';
-import { AlertIcon } from 'frontend/common/src/ui/icons';
-import { BasicModal } from 'frontend/common/src/ui/components';
-import { PropsWithChildrenOnly } from 'frontend/common/src/types';
+import { AlertIcon } from '@common/icons';
+import { BasicModal } from '@common/components';
+import { PropsWithChildrenOnly } from '@common/types';
 
 const AlertModal = ({
   open,

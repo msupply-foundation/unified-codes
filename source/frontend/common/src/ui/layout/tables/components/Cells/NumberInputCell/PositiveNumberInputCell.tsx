@@ -1,8 +1,8 @@
 import React from 'react';
 import { CellProps } from '../../../columns';
-import { PositiveNumberInput } from 'frontend/common/src/ui/components';
-import { RecordWithId } from 'frontend/common/src/types';
-import { useBufferState, useDebounceCallback } from 'frontend/common/src/hooks';
+import { PositiveNumberInput } from '@common/components';
+import { RecordWithId } from '@common/types';
+import { useBufferState, useDebounceCallback } from '@common/hooks';
 
 // where Positive is n > 0
 export const PositiveNumberInputCell = <T extends RecordWithId>({

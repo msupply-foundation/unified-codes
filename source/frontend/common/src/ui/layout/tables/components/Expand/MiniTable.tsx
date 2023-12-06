@@ -1,7 +1,7 @@
 import React, { JSXElementConstructor } from 'react';
 import { Column } from '../../columns/types';
 import { Box, alpha } from '@mui/material';
-import { RecordWithId } from 'frontend/common/src/types';
+import { RecordWithId } from '@common/types';
 import { DataTable } from '../../DataTable';
 import { createTableStore, TableProvider } from '../../context/TableContext';
 

@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
 import { BasicTextInput } from '../TextInput';
-import { CloseIcon, SearchIcon } from 'frontend/common/src/ui/icons';
-import { useDebounceCallback } from 'frontend/common/src/hooks';
+import { CloseIcon, SearchIcon } from '@common/icons';
+import { useDebounceCallback } from '@common/hooks';
 import { InlineSpinner } from '../../loading';
-import { useTranslation } from 'frontend/common/src/intl';
-import { IconButton, InputAdornment } from 'frontend/common/src/ui/components';
+import { useTranslation } from '@common/intl';
+import { IconButton, InputAdornment } from '@common/components';
 
 interface SearchBarProps {
   value: string;

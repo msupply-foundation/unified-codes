@@ -5,7 +5,7 @@ import LocalStorageBackend from 'i18next-localstorage-backend';
 import HttpApi from 'i18next-http-backend';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { PropsWithChildrenOnly } from 'frontend/common/src/types';
+import { PropsWithChildrenOnly } from '@common/types';
 
 declare const LANG_VERSION: string; // Created by webpack DefinePlugin see webpack.config.js
 

@@ -1,5 +1,5 @@
 import { useCallback, DependencyList } from 'react';
-import { FnUtils } from 'frontend/common/src/utils';
+import { FnUtils } from '@common/utils';
 
 export const useDebounceCallback = <T extends (...args: any[]) => any>(
   callback: T,

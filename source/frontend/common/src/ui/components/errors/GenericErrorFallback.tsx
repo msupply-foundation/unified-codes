@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Box, Typography } from '@mui/material';
 import { ErrorBoundaryFallbackProps } from './types';
-import { UnhappyMan } from 'frontend/common/src/ui/icons';
-import { useTranslation } from 'frontend/common/src/intl';
+import { UnhappyMan } from '@common/icons';
+import { useTranslation } from '@common/intl';
 import { BaseButton } from '../buttons';
 
 export const GenericErrorFallback: FC<ErrorBoundaryFallbackProps> = ({

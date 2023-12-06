@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { DataField } from './DataField';
-import { TestingProvider } from 'frontend/common/src/utils';
+import { TestingProvider } from '@common/utils';
 
 describe('DataField', () => {
   it('displays value when provided', () => {

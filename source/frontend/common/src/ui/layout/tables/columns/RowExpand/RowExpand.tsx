@@ -2,13 +2,10 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { ColumnAlign, ColumnDefinition } from '../types';
 import { useExpanded, useTableStore } from '../../context';
-import { IconButton } from 'frontend/common/src/ui/components';
-import { RecordWithId } from 'frontend/common/src/types';
-import {
-  ChevronDownIcon,
-  ChevronsDownIcon,
-} from 'frontend/common/src/ui/icons';
-import { useTranslation } from 'frontend/common/src/intl';
+import { IconButton } from '@common/components';
+import { RecordWithId } from '@common/types';
+import { ChevronDownIcon, ChevronsDownIcon } from '@common/icons';
+import { useTranslation } from '@common/intl';
 
 type RowExpandLabels = {
   header: string;

@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, PropsWithChildren } from 'react';
-import { CloseIcon } from 'frontend/common/src/ui/icons';
+import { CloseIcon } from '@common/icons';
 import { Box, IconButton } from '@mui/material';
 import { BasePopoverProps } from '../BasePopover';
 

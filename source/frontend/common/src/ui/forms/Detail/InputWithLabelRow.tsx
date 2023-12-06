@@ -6,7 +6,7 @@ import {
   StandardTextFieldProps,
   Typography,
 } from '@mui/material';
-import { BasicTextInput } from 'frontend/common/src/ui/components';
+import { BasicTextInput } from '@common/components';
 
 interface InputWithLabelRowProps {
   Input?: ReactNode;

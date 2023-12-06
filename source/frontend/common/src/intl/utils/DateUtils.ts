@@ -1,4 +1,4 @@
-import { IntlUtils } from 'frontend/common/src/intl';
+import { IntlUtils } from '@common/intl';
 import {
   isValid,
   differenceInMonths,

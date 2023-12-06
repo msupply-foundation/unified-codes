@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React, { useRef } from 'react';
 import { render, renderHook } from '@testing-library/react';
-import { useAppBarRect, useAppBarRectStore } from 'frontend/common/src/hooks';
+import { useAppBarRect, useAppBarRectStore } from '@common/hooks';
 
 const original = {
   innerWidth: window.innerWidth,

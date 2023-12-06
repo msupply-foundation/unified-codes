@@ -1,4 +1,4 @@
-import { SupportedLocales } from 'frontend/common/src/intl';
+import { SupportedLocales } from '@common/intl';
 import { ThemeOptions } from '@mui/material';
 import { AuthError } from '../authentication/AuthContext';
 

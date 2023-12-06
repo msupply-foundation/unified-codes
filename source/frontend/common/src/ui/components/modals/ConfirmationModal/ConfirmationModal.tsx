@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 import { BasicModal } from '../BasicModal';
-import { AlertIcon, InfoIcon } from 'frontend/common/src/ui/icons';
+import { AlertIcon, InfoIcon } from '@common/icons';
 import { DialogButton, LoadingButton } from '../../buttons';
 
 interface ConfirmationModalProps {

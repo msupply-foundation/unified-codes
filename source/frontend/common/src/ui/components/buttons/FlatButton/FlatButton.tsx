@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button as MuiButton, styled, SxProps, Theme } from '@mui/material';
 import { Property } from 'csstype';
-import { IntlUtils } from 'frontend/common/src/intl';
+import { IntlUtils } from '@common/intl';
 interface ButtonProps {
   color?: 'inherit' | 'primary' | 'secondary';
   endIcon?: React.ReactNode;

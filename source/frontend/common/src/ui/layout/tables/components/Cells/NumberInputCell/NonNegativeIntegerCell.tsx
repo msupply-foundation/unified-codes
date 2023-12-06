@@ -1,8 +1,8 @@
 import React from 'react';
 import { CellProps } from '../../../columns';
-import { NonNegativeNumberInput } from 'frontend/common/src/ui/components';
-import { RecordWithId } from 'frontend/common/src/types';
-import { useBufferState, useDebounceCallback } from 'frontend/common/src/hooks';
+import { NonNegativeNumberInput } from '@common/components';
+import { RecordWithId } from '@common/types';
+import { useBufferState, useDebounceCallback } from '@common/hooks';
 
 // where NonNegative is n >=0
 export const NonNegativeIntegerCell = <T extends RecordWithId>({

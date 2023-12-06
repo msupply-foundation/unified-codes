@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { StyledBaseButton } from './BaseButton';
-import { IntlUtils } from 'frontend/common/src/intl';
+import { IntlUtils } from '@common/intl';
 
 export const StyledShrinkableBaseButton = styled(StyledBaseButton, {
   shouldForwardProp: prop => prop !== 'shrink' && prop !== 'isRtl',

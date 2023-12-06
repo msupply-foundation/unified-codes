@@ -3,8 +3,8 @@ import { styled } from '@mui/material/styles';
 import { Breadcrumbs as MuiBreadcrumbs } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useRegisterActions, useBreadcrumbs } from '@uc-frontend/common';
-import { useTranslation } from 'frontend/common/src/intl';
-import { UrlPart } from 'frontend/common/src/hooks';
+import { useTranslation } from '@common/intl';
+import { UrlPart } from '@common/hooks';
 
 const Breadcrumb = styled(Link)({
   color: 'inherit',

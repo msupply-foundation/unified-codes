@@ -1,6 +1,6 @@
 import React from 'react';
-import { Typography } from 'frontend/common/src/ui/components';
-import { useTranslation } from 'frontend/common/src/intl';
+import { Typography } from '@common/components';
+import { useTranslation } from '@common/intl';
 
 export const DataField = ({
   label,

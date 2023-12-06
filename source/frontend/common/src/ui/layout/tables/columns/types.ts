@@ -1,7 +1,7 @@
 import { JSXElementConstructor } from 'react';
-import { SortBy } from 'frontend/common/src/hooks';
-import { useTranslation, LocaleKey } from 'frontend/common/src/intl';
-import { RecordWithId } from 'frontend/common/src/types';
+import { SortBy } from '@common/hooks';
+import { useTranslation, LocaleKey } from '@common/intl';
+import { RecordWithId } from '@common/types';
 
 export interface CellProps<T extends RecordWithId> {
   rowData: T;

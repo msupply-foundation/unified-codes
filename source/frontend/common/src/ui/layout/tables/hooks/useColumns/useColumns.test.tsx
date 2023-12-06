@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { ColumnAlign, ColumnFormat } from '../../columns';
 import { useColumns } from './useColumns';
-import { RecordWithId } from 'frontend/common/src/types';
+import { RecordWithId } from '@common/types';
 
 interface Test extends RecordWithId {
   id: string;

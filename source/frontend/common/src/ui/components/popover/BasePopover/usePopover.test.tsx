@@ -8,7 +8,7 @@ import {
 } from '@testing-library/react';
 import { BaseButton } from '../../buttons';
 import { usePopover } from './usePopover';
-import { TestingProvider } from 'frontend/common/src/utils';
+import { TestingProvider } from '@common/utils';
 
 describe('usePopover', () => {
   const Example = () => {

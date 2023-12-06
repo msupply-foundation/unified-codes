@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { CircularProgress, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useTranslation } from 'frontend/common/src/intl';
+import { useTranslation } from '@common/intl';
 
 interface InlineSpinnerProps {
   color?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';

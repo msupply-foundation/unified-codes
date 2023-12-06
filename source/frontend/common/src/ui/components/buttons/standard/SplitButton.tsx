@@ -4,7 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { ChevronDownIcon } from '../../../icons';
 import { ButtonWithIcon, ButtonWithIconProps } from './ButtonWithIcon';
-import { ShrinkableBaseButton } from 'frontend/common/src/ui/components';
+import { ShrinkableBaseButton } from '@common/components';
 
 export interface SplitButtonOption<T> {
   label: string;

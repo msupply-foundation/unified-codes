@@ -1,6 +1,6 @@
 import { ReactNode, FC } from 'react';
-import { RecordWithId } from 'frontend/common/src/types';
-import { Pagination, SortRule } from 'frontend/common/src/hooks';
+import { RecordWithId } from '@common/types';
+import { Pagination, SortRule } from '@common/hooks';
 import { Column } from './columns/types';
 
 export interface QueryProps<D> {

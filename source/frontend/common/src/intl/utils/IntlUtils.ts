@@ -1,6 +1,6 @@
 import { i18n } from 'i18next';
 import { useTranslation as useTranslationNext } from 'react-i18next';
-import { EnvUtils } from 'frontend/common/src/utils';
+import { EnvUtils } from '@common/utils';
 
 export { useTranslationNext };
 

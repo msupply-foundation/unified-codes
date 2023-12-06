@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Paper } from '@mui/material';
 import Dropzone, { Accept } from 'react-dropzone';
 import { UploadFileIcon } from '../../../icons/UploadFile';
-import { useTranslation } from 'frontend/common/src/intl';
+import { useTranslation } from '@common/intl';
 
 export interface UploadProps {
   onUpload: <T extends File>(files: T[]) => void;

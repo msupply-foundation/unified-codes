@@ -1,5 +1,5 @@
 import { DependencyList, useMemo } from 'react';
-import { RecordWithId } from 'frontend/common/src/types';
+import { RecordWithId } from '@common/types';
 import {
   ColumnDataAccessor,
   ColumnDefinition,
@@ -12,9 +12,9 @@ import {
   useFormatDateTime,
   DateUtils,
   useFormatNumber,
-} from 'frontend/common/src/intl';
+} from '@common/intl';
 import { BasicCell, BasicHeader } from '../../components';
-import { SortBy } from 'frontend/common/src/hooks';
+import { SortBy } from '@common/hooks';
 import { ColumnDefinitionSetBuilder, ColumnKey } from '../../utils';
 
 const getSortType = (column: { format?: ColumnFormat }) => {

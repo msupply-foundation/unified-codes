@@ -15,8 +15,8 @@ import { TableProps } from './types';
 import { DataRow } from './components/DataRow/DataRow';
 import { PaginationRow } from './columns/PaginationRow';
 import { HeaderCell, HeaderRow } from './components/Header';
-import { RecordWithId } from 'frontend/common/src/types';
-import { useTranslation } from 'frontend/common/src/intl';
+import { RecordWithId } from '@common/types';
+import { useTranslation } from '@common/intl';
 import { useTableStore } from './context';
 
 export const DataTableComponent = <T extends RecordWithId>({

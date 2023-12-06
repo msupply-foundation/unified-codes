@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuthApi } from './useAuthApi';
 import { useQuery } from 'react-query';
-import { useDebounceCallback } from 'frontend/common/src/hooks';
+import { useDebounceCallback } from '@common/hooks';
 
 export const useGetRefreshToken = (
   token: string,

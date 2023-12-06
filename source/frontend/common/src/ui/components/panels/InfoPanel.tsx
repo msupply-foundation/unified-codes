@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { InfoIcon } from 'frontend/common/src/ui/icons';
+import { InfoIcon } from '@common/icons';
 
 export const InfoPanel = ({ message }: { message: string }) => (
   <Box

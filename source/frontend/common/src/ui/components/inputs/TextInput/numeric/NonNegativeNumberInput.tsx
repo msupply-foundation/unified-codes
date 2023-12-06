@@ -1,5 +1,5 @@
 import React, { ForwardedRef } from 'react';
-import { NumUtils } from 'frontend/common/src/utils';
+import { NumUtils } from '@common/utils';
 import { NumericTextInputProps, NumericTextInput } from './NumericTextInput';
 
 interface NonNegativeNumberProps

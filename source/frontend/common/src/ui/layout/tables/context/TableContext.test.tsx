@@ -4,7 +4,7 @@ import { renderHook } from '@testing-library/react';
 import { useIsGrouped } from './hooks';
 import { TableStore, TableProvider, createTableStore } from './TableContext';
 import { LocalStorage } from '../../../../localStorage';
-import { PropsWithChildrenOnly } from 'frontend/common/src/types';
+import { PropsWithChildrenOnly } from '@common/types';
 
 const useStore = createTableStore();
 

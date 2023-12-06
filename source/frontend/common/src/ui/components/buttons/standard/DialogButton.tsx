@@ -1,11 +1,11 @@
 import React from 'react';
-import { LocaleKey, useTranslation } from 'frontend/common/src/intl';
+import { LocaleKey, useTranslation } from '@common/intl';
 import {
   ArrowRightIcon,
   CheckIcon,
   CloseIcon,
   DownloadIcon,
-} from 'frontend/common/src/ui/icons';
+} from '@common/icons';
 import { ButtonWithIcon } from './ButtonWithIcon';
 
 type DialogButtonVariant =

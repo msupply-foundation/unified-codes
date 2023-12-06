@@ -1,7 +1,7 @@
 import React from 'react';
-import { ExpiryDateInput } from 'frontend/common/src/ui/components';
-import { RecordWithId } from 'frontend/common/src/types';
-import { TypeUtils, EnvUtils } from 'frontend/common/src/utils';
+import { ExpiryDateInput } from '@common/components';
+import { RecordWithId } from '@common/types';
+import { TypeUtils, EnvUtils } from '@common/utils';
 import { ColumnDefinition } from '..';
 
 export const getExpiryDateInputColumn = <

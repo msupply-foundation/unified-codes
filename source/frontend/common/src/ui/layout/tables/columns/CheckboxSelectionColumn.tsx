@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { RecordWithId } from 'frontend/common/src/types';
-import { Checkbox } from 'frontend/common/src/ui/components';
+import { RecordWithId } from '@common/types';
+import { Checkbox } from '@common/components';
 import { useTableStore, TableStore } from '../context';
 import { ColumnAlign, ColumnDefinition, GenericColumnKey } from './types';
 

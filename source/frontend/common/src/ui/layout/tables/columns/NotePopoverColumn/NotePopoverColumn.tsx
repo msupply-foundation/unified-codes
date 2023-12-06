@@ -1,13 +1,10 @@
 import React, { FC } from 'react';
-import { RecordWithId } from 'frontend/common/src/types';
+import { RecordWithId } from '@common/types';
 import { ColumnAlign, ColumnDefinition } from '../types';
-import { MessageSquareIcon } from 'frontend/common/src/ui/icons';
-import {
-  PaperHoverPopover,
-  PaperPopoverSection,
-} from 'frontend/common/src/ui/components';
-import { useTranslation } from 'frontend/common/src/intl';
-import { EnvUtils } from 'frontend/common/src/utils';
+import { MessageSquareIcon } from '@common/icons';
+import { PaperHoverPopover, PaperPopoverSection } from '@common/components';
+import { useTranslation } from '@common/intl';
+import { EnvUtils } from '@common/utils';
 
 interface NoteObject {
   header: string;

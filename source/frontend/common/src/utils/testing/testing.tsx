@@ -1,7 +1,7 @@
 import React, { FC, PropsWithChildren, useEffect } from 'react';
-import { AppThemeProvider } from 'frontend/common/src/styles';
-import { SupportedLocales } from 'frontend/common/src/intl';
-import { PropsWithChildrenOnly } from 'frontend/common/src/types';
+import { AppThemeProvider } from '@common/styles';
+import { SupportedLocales } from '@common/intl';
+import { PropsWithChildrenOnly } from '@common/types';
 import mediaQuery from 'css-mediaquery';
 import { SnackbarProvider } from 'notistack';
 import { QueryClientProvider, QueryClient } from 'react-query';
@@ -12,9 +12,9 @@ import { Environment } from '@uc-frontend/config';
 import { renderHook } from '@testing-library/react';
 import i18next from 'i18next';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
-import host from 'frontend/common/src/intl/locales/en/host.json';
-import system from 'frontend/common/src/intl/locales/en/system.json';
-import common from 'frontend/common/src/intl/locales/en/common.json';
+import host from '@common/intl/locales/en/host.json';
+import system from '@common/intl/locales/en/system.json';
+import common from '@common/intl/locales/en/common.json';
 import hostFr from '@common/intl/locales/fr/host.json';
 import commonFr from '@common/intl/locales/fr/common.json';
 

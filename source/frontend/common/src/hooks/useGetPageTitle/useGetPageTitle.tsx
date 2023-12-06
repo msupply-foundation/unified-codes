@@ -1,5 +1,5 @@
-import { useTranslation } from 'frontend/common/src/intl';
-import { EnvUtils } from 'frontend/common/src/utils';
+import { useTranslation } from '@common/intl';
+import { EnvUtils } from '@common/utils';
 
 export const useGetPageTitle = () => {
   const t = useTranslation(['host']);

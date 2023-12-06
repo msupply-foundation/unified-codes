@@ -5,7 +5,7 @@ import {
   ConfirmationModalControllerState,
 } from './ConfirmationModalContext';
 import { ConfirmationModal } from './ConfirmationModal';
-import { PropsWithChildrenOnly } from 'frontend/common/src/types';
+import { PropsWithChildrenOnly } from '@common/types';
 
 export const ConfirmationModalProvider: FC<PropsWithChildrenOnly> = ({
   children,

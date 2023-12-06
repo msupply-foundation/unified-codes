@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Box, Typography } from '@mui/material';
-import { AlertIcon } from 'frontend/common/src/ui/icons';
+import { AlertIcon } from '@common/icons';
 
 export interface AlertPanelProps {
   message: string;

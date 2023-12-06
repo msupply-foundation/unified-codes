@@ -4,7 +4,7 @@ import {
   AutocompleteOptionRenderer,
   AutocompleteListProps,
 } from '../../inputs';
-import { useWindowDimensions } from 'frontend/common/src/hooks';
+import { useWindowDimensions } from '@common/hooks';
 import { BasicModal } from '../BasicModal';
 import { ModalTitle } from '../ModalTitle';
 

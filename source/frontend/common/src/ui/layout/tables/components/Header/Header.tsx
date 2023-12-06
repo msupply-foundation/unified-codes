@@ -1,10 +1,10 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { TableCell, TableRow, TableSortLabel, Tooltip } from '@mui/material';
 import { Column } from '../../columns/types';
-import { SortDescIcon } from 'frontend/common/src/ui/icons';
-import { RecordWithId } from 'frontend/common/src/types';
-import { useDebounceCallback } from 'frontend/common/src/hooks';
-import { useTranslation } from 'frontend/common/src/intl';
+import { SortDescIcon } from '@common/icons';
+import { RecordWithId } from '@common/types';
+import { useDebounceCallback } from '@common/hooks';
+import { useTranslation } from '@common/intl';
 
 export const HeaderRow: FC<PropsWithChildren<{ dense?: boolean }>> = ({
   dense,

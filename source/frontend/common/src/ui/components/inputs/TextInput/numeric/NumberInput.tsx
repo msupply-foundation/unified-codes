@@ -1,6 +1,6 @@
 import React, { ForwardedRef } from 'react';
-import { NumericTextInput } from 'frontend/common/src/ui/components';
-import { NumUtils } from 'frontend/common/src/utils';
+import { NumericTextInput } from '@common/components';
+import { NumUtils } from '@common/utils';
 import { NumericTextInputProps } from './NumericTextInput';
 
 interface NumberProps extends Omit<NumericTextInputProps, 'onChange'> {

@@ -3,8 +3,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent, { DialogContentProps } from '@mui/material/DialogContent';
 import { TransitionProps } from '@mui/material/transitions';
 import { Slide } from '../../ui/animations';
-import { BasicModal, ModalTitle } from 'frontend/common/src/ui/components';
-import { IntlUtils } from 'frontend/common/src/intl';
+import { BasicModal, ModalTitle } from '@common/components';
+import { IntlUtils } from '@common/intl';
 import { SxProps, Theme } from '@mui/material';
 
 export interface ButtonProps {

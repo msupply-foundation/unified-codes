@@ -1,5 +1,5 @@
 import { ColumnDefinitionSetBuilder } from './ColumnDefinitionSetBuilder';
-import { RecordWithId } from 'frontend/common/src/types';
+import { RecordWithId } from '@common/types';
 
 interface SomeTestItem extends RecordWithId {
   id: string;

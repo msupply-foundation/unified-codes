@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { BasePopover } from './BasePopover';
-import { TestingProvider } from 'frontend/common/src/utils';
+import { TestingProvider } from '@common/utils';
 
 type VirtualElement = { getBoundingClientRect: () => DOMRect };
 

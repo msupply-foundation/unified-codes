@@ -1,4 +1,4 @@
-import { RecordWithId } from 'frontend/common/src/types';
+import { RecordWithId } from '@common/types';
 import { Column } from '../../ui/layout/tables';
 
 export interface FilterByConditionByType {

@@ -1,5 +1,5 @@
 import React, { createContext, useMemo, useState, useEffect, FC } from 'react';
-import { IntlUtils } from 'frontend/common/src/intl';
+import { IntlUtils } from '@common/intl';
 import { LocalStorage, useLocalStorage } from '../localStorage';
 import Cookies from 'js-cookie';
 import { addMinutes } from 'date-fns';
@@ -8,10 +8,7 @@ import { useGetRefreshToken } from './api/hooks';
 import { useGetAuthToken } from './api/hooks/useGetAuthToken';
 import { useUserDetails } from './api/hooks/useUserDetails';
 import { AuthenticationResponse } from './api';
-import {
-  PermissionNode,
-  PropsWithChildrenOnly,
-} from 'frontend/common/src/types';
+import { PermissionNode, PropsWithChildrenOnly } from '@common/types';
 import { DefinitionNode, DocumentNode, OperationDefinitionNode } from 'graphql';
 
 const DEFAULT_COOKIE_LIFETIME_MINUTES = 60;

@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import TabContext from '@mui/lab/TabContext';
 import { Box, SxProps, Theme } from '@mui/material';
-import { LocaleKey, useTranslation } from 'frontend/common/src/intl';
+import { LocaleKey, useTranslation } from '@common/intl';
 import { ShortTabList, Tab } from './Tabs';
 import { ModalTab } from './ModalTab';
 import { TabDefinition } from './DetailTabs';

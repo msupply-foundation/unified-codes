@@ -1,6 +1,6 @@
 import { act } from 'react-dom/test-utils';
-import { IntlUtils } from 'frontend/common/src/intl';
-import { renderHookWithProvider } from 'frontend/common/src/utils';
+import { IntlUtils } from '@common/intl';
+import { renderHookWithProvider } from '@common/utils';
 
 describe('RTLProvider', () => {
   it('Sets the direction of the body to be rtl when a rtl language is the current locale', () => {

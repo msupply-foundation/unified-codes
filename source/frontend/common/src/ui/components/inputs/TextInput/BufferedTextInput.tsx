@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { BasicTextInput, BasicTextInputProps } from './BasicTextInput';
-import { useBufferState } from 'frontend/common/src/hooks';
+import { useBufferState } from '@common/hooks';
 
 export type BufferedTextInputProps = BasicTextInputProps;
 

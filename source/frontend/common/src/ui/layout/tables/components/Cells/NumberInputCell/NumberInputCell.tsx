@@ -1,8 +1,8 @@
 import React from 'react';
 import { CellProps } from '../../../columns';
-import { BasicTextInput } from 'frontend/common/src/ui/components';
-import { RecordWithId } from 'frontend/common/src/types';
-import { useBufferState, useDebounceCallback } from 'frontend/common/src/hooks';
+import { BasicTextInput } from '@common/components';
+import { RecordWithId } from '@common/types';
+import { useBufferState, useDebounceCallback } from '@common/hooks';
 
 export const NumberInputCell = <T extends RecordWithId>({
   rowData,

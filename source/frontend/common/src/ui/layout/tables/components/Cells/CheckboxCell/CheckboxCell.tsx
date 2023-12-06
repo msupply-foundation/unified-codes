@@ -1,8 +1,8 @@
 import React from 'react';
 import { CellProps } from '../../../columns';
-import { Checkbox } from 'frontend/common/src/ui/components';
-import { RecordWithId } from 'frontend/common/src/types';
-import { useBufferState } from 'frontend/common/src/hooks';
+import { Checkbox } from '@common/components';
+import { RecordWithId } from '@common/types';
+import { useBufferState } from '@common/hooks';
 
 export const CheckboxCell = <T extends RecordWithId>({
   rowData,

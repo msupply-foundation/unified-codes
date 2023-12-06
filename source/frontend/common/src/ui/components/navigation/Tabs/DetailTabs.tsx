@@ -1,12 +1,12 @@
 import React, { FC, ReactNode, useState, useEffect } from 'react';
 import { TabContext } from '@mui/lab';
 import { Box } from '@mui/material';
-import { useDrawer } from 'frontend/common/src/hooks';
-import { LocaleKey, useTranslation } from 'frontend/common/src/intl';
+import { useDrawer } from '@common/hooks';
+import { LocaleKey, useTranslation } from '@common/intl';
 import { debounce } from 'lodash';
 import { DetailTab } from './DetailTab';
 import { ShortTabList, Tab } from './Tabs';
-import { useUrlQuery } from 'frontend/common/src/hooks';
+import { useUrlQuery } from '@common/hooks';
 import { AppBarTabsPortal } from '../../portals';
 
 export type TabDefinition = {

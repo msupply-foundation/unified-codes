@@ -7,8 +7,8 @@ import {
   useDetailPanel,
 } from '@uc-frontend/common';
 import { DetailPanel, DetailPanelPortal } from './DetailPanel';
-import { TestingProvider } from 'frontend/common/src/utils';
-import { PropsWithChildrenOnly } from 'frontend/common/src/types';
+import { TestingProvider } from '@common/utils';
+import { PropsWithChildrenOnly } from '@common/types';
 
 describe('DetailPanel', () => {
   const DetailPanelExample: FC<PropsWithChildrenOnly> = ({ children }) => {

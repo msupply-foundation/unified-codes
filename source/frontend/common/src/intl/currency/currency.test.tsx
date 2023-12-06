@@ -1,4 +1,4 @@
-import { renderHookWithProvider } from 'frontend/common/src/utils';
+import { renderHookWithProvider } from '@common/utils';
 import { useCurrency } from './currency';
 
 describe('currency formatting - en', () => {

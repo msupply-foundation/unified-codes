@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
-import { useTranslation } from 'frontend/common/src/intl';
+import { useTranslation } from '@common/intl';
 import { Box, Stack, Typography, Button } from '@mui/material';
 const nothingHere = require('./nothing-here.gif');
 

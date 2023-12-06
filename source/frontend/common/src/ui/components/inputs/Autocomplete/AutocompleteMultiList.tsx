@@ -4,10 +4,10 @@ import {
   AutocompleteOptionRenderer,
   Checkbox,
   IconButton,
-} from 'frontend/common/src/ui/components';
-import { CloseIcon } from 'frontend/common/src/ui/icons';
-import { useTranslation } from 'frontend/common/src/intl';
-import { RegexUtils } from 'frontend/common/src/utils';
+} from '@common/components';
+import { CloseIcon } from '@common/icons';
+import { useTranslation } from '@common/intl';
+import { RegexUtils } from '@common/utils';
 import {
   AutocompleteRenderInputParams,
   Box,

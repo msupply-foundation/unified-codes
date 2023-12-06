@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { LocaleKey } from 'frontend/common/src/intl';
+import { LocaleKey } from '@common/intl';
 import create from 'zustand';
 
 export interface UrlPart {
