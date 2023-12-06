@@ -40,6 +40,8 @@ export const createApolloServer = async (
   const apolloService = new ApolloService(typeDefs, resolvers, dataSources, identityProvider);
   const apolloServer = apolloService.getServer();
 
+  await apolloServer.start();
+
   return apolloServer;
 };
 
