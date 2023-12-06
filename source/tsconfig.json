@@ -1,0 +1,46 @@
+{
+  "exclude": ["frontend/**/operations.generated.ts"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@common/components": ["frontend/common/src/ui/components"],
+      "@common/hooks": ["frontend/common/src/hooks"],
+      "@common/icons": ["frontend/common/src/ui/icons"],
+      "@common/intl": ["frontend/common/src/intl"],
+      "@common/intl/*": ["frontend/common/src/intl/*"],
+      "@common/styles": ["frontend/common/src/styles"],
+      "@common/types": ["frontend/common/src/types"],
+      "@common/utils": ["frontend/common/src/utils"],
+      "@common/ui": ["frontend/common/src/ui"],
+      "@common/authentication": ["frontend/common/src/authentication"]
+    },
+    "resolveJsonModule": true,
+    "target": "es2015",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "removeComments": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    "noEmit": true,
+
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
