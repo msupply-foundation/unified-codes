@@ -45,7 +45,7 @@
     "core-js": "^3.6.5",
     "cross-fetch": "^3.0.6",
     "csv-parser": "^2.3.3",
-    "dgraph-js": "^20.3.1",
+    "dgraph-js": "^21.3.1",
     "exceljs": "^4.2.0",
     "fastify": "^3.6.0",
     "fastify-cors": "^4.1.0",
