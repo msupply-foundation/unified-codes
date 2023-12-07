@@ -49,19 +49,17 @@ const UC_ENTITY: { [name: string]: IEntityNode } = {
 
 export class DataParser {
   public readonly path: fs.PathLike;
-  public readonly options:
-    | string
-    | {
-        flags?: string;
-        encoding?: BufferEncoding;
-        fd?: number;
-        mode?: number;
-        autoClose?: boolean;
-        emitClose?: boolean;
-        start?: number;
-        end?: number;
-        highWaterMark?: number;
-      };
+  public readonly options: {
+    flags?: string;
+    encoding?: BufferEncoding;
+    fd?: number;
+    mode?: number;
+    autoClose?: boolean;
+    emitClose?: boolean;
+    start?: number;
+    end?: number;
+    highWaterMark?: number;
+  };
 
   private data: ICSVData;
   private graph: IEntityGraph;
@@ -73,19 +71,17 @@ export class DataParser {
 
   constructor(
     path: fs.PathLike,
-    options?:
-      | string
-      | {
-          flags?: string;
-          encoding?: BufferEncoding;
-          fd?: number;
-          mode?: number;
-          autoClose?: boolean;
-          emitClose?: boolean;
-          start?: number;
-          end?: number;
-          highWaterMark?: number;
-        }
+    options?: {
+      flags?: string;
+      encoding?: BufferEncoding;
+      fd?: number;
+      mode?: number;
+      autoClose?: boolean;
+      emitClose?: boolean;
+      start?: number;
+      end?: number;
+      highWaterMark?: number;
+    }
   ) {
     this.path = path;
     this.options = options;
@@ -170,13 +166,13 @@ export class DataParser {
           // { name: row.brand, code: row.uc12, type: EEntityType.Brand },
         ];
 
-        const { uc1, combination } = row;
+        const { uc1 } = row;
 
         const productProperties: IPropertyNode[] = [
           { type: EPropertyType.RxNav, value: row.rxnav },
           { type: EPropertyType.WHOEML, value: row.who_eml_product },
           { type: EPropertyType.NZULM, value: row.nzulm },
-          { type: EPropertyType.UNSPSC, value: row.unspsc }
+          { type: EPropertyType.UNSPSC, value: row.unspsc },
         ];
 
         const itemProperties: IPropertyNode[] = [
@@ -184,51 +180,56 @@ export class DataParser {
           { type: EPropertyType.NZULM, value: row.nzulm_item },
         ];
 
-        productDefinition.forEach(item => {
+        productDefinition.forEach((item) => {
           if (!item.code) return;
-          
+
           if (item.code in this.graph) {
             // check for conflicts.
             if (item.type && this.graph[item.code].type != item.type) {
               duplicates.push(item.code);
             }
-          }
-          else {
-            const node = { 
+          } else {
+            const node = {
               code: item.code,
               name: item.name,
               type: item.type,
               combines: [],
               children: [],
-              properties: [], 
-            }
+              properties: [],
+            };
             this.graph[item.code] = node;
 
             console.log(`INFO: Created ${item.type} node: ${JSON.stringify(node)}`);
           }
         });
 
-        const productCode = productDefinition.find(item => item.type === EEntityType.Product)?.code;
+        const productCode = productDefinition.find((item) => item.type === EEntityType.Product)
+          ?.code;
         // If category code exists, and product code exists
         if (uc1 && productCode) {
-
           // link category to product.
           if (!this.graph[uc1].children.map((child) => child.code).includes(productCode)) {
             this.graph[uc1].children.push({ code: productCode });
-            console.log(`INFO: Linked category with code ${uc1} to product with code ${productCode}`);
+            console.log(
+              `INFO: Linked category with code ${uc1} to product with code ${productCode}`
+            );
           }
         }
 
-        // Iterate through and assign children to parents 
+        // Iterate through and assign children to parents
         // This starts at the top of the graph and for each node, finds the closest lower level node that has a code and name
-        // This avoids having to manually define each combination of 'levels' that are able to be connected 
+        // This avoids having to manually define each combination of 'levels' that are able to be connected
         let parentIndex = 0;
         let childIndex = 1;
         while (childIndex < productDefinition.length) {
           const parent = productDefinition[parentIndex];
           const child = productDefinition[childIndex];
           if (child.name && child.code) {
-            if (!this.graph[parent.code].children.map((existingGraphChild) => existingGraphChild.code).includes(child.code)) {
+            if (
+              !this.graph[parent.code].children
+                .map((existingGraphChild) => existingGraphChild.code)
+                .includes(child.code)
+            ) {
               this.graph[parent.code].children.push(child);
               console.log(
                 `INFO: Linked ${parent.type} with code ${parent.code} to ${child.type} with code ${child.code}`
@@ -241,11 +242,11 @@ export class DataParser {
 
         // Parse product combinations.
         // TODO: consistent combination formatting.
-        const combinations =
-          combination
-            ?.split(/[,/]/)
-            .filter((uc) => !!uc)
-            .map((uc) => uc.trim()) ?? [];
+        // const combinations =
+        //   row.combination
+        //     ?.split(/[,/]/)
+        //     .filter((uc) => !!uc)
+        //     .map((uc) => uc.trim()) ?? [];
 
         // disabled for now as this creates a circular reference
         // // Link product to combination.
@@ -273,8 +274,10 @@ export class DataParser {
           });
         }
 
-        const strengthCode = productDefinition.find(item => item.type === EEntityType.DoseStrength)?.code;  // UC6
-        const unitCode = productDefinition.find(item => item.type === EEntityType.Unit)?.code;      // UC7
+        const strengthCode = productDefinition.find(
+          (item) => item.type === EEntityType.DoseStrength
+        )?.code; // UC6
+        const unitCode = productDefinition.find((item) => item.type === EEntityType.Unit)?.code; // UC7
 
         // Process external properties at item (UC6) level
         if (!unitCode && strengthCode) {
@@ -319,6 +322,7 @@ export class DataParser {
       console.error(err);
       this.isBuilt = false;
     } finally {
+      // eslint-disable-next-line no-unsafe-finally
       return this.graph;
     }
   }

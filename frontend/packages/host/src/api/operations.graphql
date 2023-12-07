@@ -1,0 +1,60 @@
+# query apiVersion {
+#   apiVersion
+# }
+
+query entity($code: String!) {
+  entity2(code: $code) {
+    code
+    description
+    type
+    properties {
+      type
+      value
+    }
+    children {
+      code
+      description
+      type
+      properties {
+        type
+        value
+      }
+      children {
+        code
+        description
+        type
+        properties {
+          type
+          value
+        }
+        children {
+          code
+          description
+          type
+          properties {
+            type
+            value
+          }
+          children {
+            code
+            description
+            type
+            properties {
+              type
+              value
+            }
+            children {
+              code
+              description
+              type
+              properties {
+                type
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

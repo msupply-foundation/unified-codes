@@ -1,12 +1,13 @@
 import 'reflect-metadata';
 
-import fastifyCors from 'fastify-cors';
+import fastifyCors from '@fastify/cors';
 import { buildTypeDefsAndResolvers } from 'type-graphql';
 
 import { EntityResolver } from './v1/resolvers';
 import { DgraphDataSource, RxNavDataSource } from './v1/types';
 
 import { createApolloServer, createFastifyServer, FastifyConfig } from './server';
+import { DgraphGqlDataSource } from './v1/types/DgraphGqlDataSource';
 
 const start = async () => {
   let fastifyServer;
@@ -23,12 +24,14 @@ const start = async () => {
 
     const dataSourcesV1 = () => ({
       dgraph: new DgraphDataSource(),
+      dgraphGql: new DgraphGqlDataSource(),
       rxnav: new RxNavDataSource(),
     });
 
     // TODO: add v2 data sources.
     const dataSourcesV2 = () => ({
       dgraph: new DgraphDataSource(),
+      dgraphGql: new DgraphGqlDataSource(),
       rxnav: new RxNavDataSource(),
     });
 

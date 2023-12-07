@@ -26,6 +26,7 @@ import {
   EntitySearchInput,
   EntityType,
 } from './schema';
+import { DgraphGqlDataSource } from './types/DgraphGqlDataSource';
 
 @ArgsType()
 class GetEntityArgs {
@@ -80,6 +81,23 @@ export class EntityResolver {
     }
 
     return dgraph.getEntity(code);
+  }
+
+  @Query((returns) => EntityType, { nullable: true })
+  async entity2(@Args() args: GetEntityArgs, @Ctx() ctx: IApolloServiceContext): Promise<IEntity> {
+    const { code } = args;
+    const { token, authenticator, authoriser, dataSources } = ctx;
+
+    const dgraphGql: DgraphGqlDataSource = dataSources.dgraphGql as DgraphGqlDataSource;
+
+    // TODO: add authorisation logic for any protected entities.
+    if (token) {
+      const user: User = await authenticator.authenticate(token);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const isAuthorised = await authoriser.authorise(user);
+    }
+
+    return dgraphGql.getEntity(code);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

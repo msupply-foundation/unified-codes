@@ -75,7 +75,7 @@ type PackOuter {
 }
 
 code: string @index(exact, fulltext).
-name: string @lang @index(exact, term, trigram) .
+name: string @index(exact, term, trigram) .
 type: string @index(term) .
 value: string .
 combines: [uid] .

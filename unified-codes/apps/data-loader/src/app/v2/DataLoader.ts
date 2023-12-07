@@ -29,7 +29,7 @@ export class DgraphClient {
     await this.client.alter(operation);
   }
 
-  async mutate(nQuads: string, commitNow: boolean = true) {
+  async mutate(nQuads: string, commitNow = true) {
     const mutation: dgraph.Mutation = new dgraph.Mutation();
     mutation.setSetNquads(nQuads);
 
@@ -49,7 +49,7 @@ export class DgraphClient {
     }
   }
 
-  async upsert(query: string, nQuads: string, commitNow: boolean = true) {
+  async upsert(query: string, nQuads: string, commitNow = true) {
     const mutation = new dgraph.Mutation();
     mutation.setSetNquads(nQuads);
 
@@ -107,6 +107,7 @@ export class DataLoader {
         uid(Entity) <name> "${entity.name}" .
         uid(Entity) <code> "${entity.code}" .
         uid(Entity) <dgraph.type> "${entity.type}" .
+        uid(Entity) <dgraph.type> "Entity" .
       `;
 
       if (await this.dgraph.upsert(query, nQuads)) {
@@ -142,7 +143,7 @@ export class DataLoader {
 
     // Link entities with properties.
     for await (const entity of entities) {
-      if (!!entity.properties) {
+      if (entity.properties) {
         for await (const property of entity.properties) {
           const query = `query {
             Entity as var(func: eq(dgraph.type, ${entity.type})) @filter(eq(code, ${entity.code}))
@@ -170,7 +171,7 @@ export class DataLoader {
 
     // Link product entities with combinations.
     for await (const entity of entities) {
-      if (!!entity.combines) {
+      if (entity.combines) {
         for await (const sibling of entity.combines) {
           const query = `query {
                       Entity as var(func: eq(dgraph.type, ${entity.type})) @filter(eq(code, ${entity.code}))
