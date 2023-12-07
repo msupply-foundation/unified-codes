@@ -2,7 +2,7 @@ import * as fs from 'fs';
 
 export class SchemaParser {
   public readonly path: fs.PathLike;
-  public readonly options: {
+  public readonly options?: {
     flags?: string;
     encoding?: BufferEncoding;
     fd?: number;
@@ -43,9 +43,9 @@ export class SchemaParser {
 
     // Read data stream.
     const stream = await fs.createReadStream(this.path, this.options);
-    await new Promise((resolve) => {
+    await new Promise(resolve => {
       stream
-        .on('data', (line) => {
+        .on('data', line => {
           this.schema += line;
         })
         .on('end', () => resolve(null));

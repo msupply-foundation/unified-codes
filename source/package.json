@@ -4,13 +4,14 @@
   "sideEffects": false,
   "private": true,
   "scripts": {
-    "start": "lerna run --scope @uc-frontend/* --parallel start",
-    "build": "lerna run --scope @uc-frontend/* build",
-    "build-windows": "lerna run --scope @uc-frontend/* build-windows",
-    "build-stats": "lerna run --scope @uc-frontend/* build-stats",
-    "serve": "lerna run --scope @uc-frontend/* --parallel serve",
-    "clean": "lerna run --scope @uc-frontend/* --parallel clean",
-    "compile": "lerna run --scope @uc-frontend/* --parallel tsc -- --incremental --noEmit",
+    "load-data": "lerna run --scope @universal-codes/data-loader start --stream",
+    "start-frontend": "lerna run --scope @uc-frontend/* --parallel start",
+    "build-frontend": "lerna run --scope @uc-frontend/* build",
+    "build-frontend-windows": "lerna run --scope @uc-frontend/* build-windows",
+    "build-frontend-stats": "lerna run --scope @uc-frontend/* build-stats",
+    "serve-frontend": "lerna run --scope @uc-frontend/* --parallel serve",
+    "clean-frontend": "lerna run --scope @uc-frontend/* --parallel clean",
+    "compile-frontend": "lerna run --scope @uc-frontend/* --parallel tsc -- --incremental --noEmit",
     "prepare": "cd .. && husky install",
     "pre-commit-lint": "yarn compile && yarn lint-staged",
     "test": "jest --config ./jest.config.js --maxWorkers=50%",
@@ -21,6 +22,7 @@
   },
   "workspaces": {
     "packages": [
+      "data-loader",
       "frontend/*"
     ]
   },

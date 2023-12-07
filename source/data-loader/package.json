@@ -1,0 +1,18 @@
+{
+  "name": "@universal-codes/data-loader",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "main": "./src/app/main.ts",
+  "private": true,
+  "scripts": {
+    "start": "ts-node src/app/main.ts"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "dgraph-js": "^21.3.1",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}

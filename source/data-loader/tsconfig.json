@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "rootDir": ".",
+    "types": ["node"],
+    // TODO: remove these and fix compilation errors!
+    "strict": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false
+  },
+  "include": ["**/*.ts"]
+}

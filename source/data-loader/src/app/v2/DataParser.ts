@@ -1,4 +1,4 @@
-import * as csv from 'csv-parser';
+import csv from 'csv-parser';
 import * as fs from 'fs';
 
 import {
@@ -49,7 +49,7 @@ const UC_ENTITY: { [name: string]: IEntityNode } = {
 
 export class DataParser {
   public readonly path: fs.PathLike;
-  public readonly options: {
+  public readonly options?: {
     flags?: string;
     encoding?: BufferEncoding;
     fd?: number;
@@ -98,7 +98,7 @@ export class DataParser {
   public async parseData(): Promise<ICSVData> {
     if (this.isParsed) return this.data;
 
-    const parseColumn = (column) => {
+    const parseColumn = (column: string) => {
       const REGEX = {
         CR_LF: /[\r\n]/g,
         BRACKETED_DESCRIPTION: / *\([^)]*\) */g,
@@ -115,10 +115,10 @@ export class DataParser {
 
     // Read data stream.
     const stream = await fs.createReadStream(this.path, this.options);
-    await new Promise((resolve) => {
+    await new Promise(resolve => {
       stream
         .pipe(csv())
-        .on('data', (row) => {
+        .on('data', (row: string) => {
           const entity = Object.entries<string>(row).reduce(
             (acc: ICSVRow, [column, value]: [string, string]) => {
               const key = parseColumn(column);
@@ -148,18 +148,30 @@ export class DataParser {
 
     try {
       // Initialise duplicate codes.
-      const duplicates = [];
+      const duplicates: string[] = [];
 
       // Parse entity graph.
-      this.data.forEach((row) => {
+      this.data.forEach(row => {
         const productDefinition = [
           { name: row.product, code: row.uc2, type: EEntityType.Product },
           { name: row.route, code: row.uc3, type: EEntityType.Route },
           { name: row.dose_form, code: row.uc4, type: EEntityType.Form },
-          { name: row.dose_qualification, code: row.uc5, type: EEntityType.FormQualifier },
+          {
+            name: row.dose_qualification,
+            code: row.uc5,
+            type: EEntityType.FormQualifier,
+          },
           { name: row.strength, code: row.uc6, type: EEntityType.DoseStrength },
-          { name: row.unit_of_presentation, code: row.uc7, type: EEntityType.Unit },
-          { name: row.immediate_packaging, code: row.uc8, type: EEntityType.PackImmediate },
+          {
+            name: row.unit_of_presentation,
+            code: row.uc7,
+            type: EEntityType.Unit,
+          },
+          {
+            name: row.immediate_packaging,
+            code: row.uc8,
+            type: EEntityType.PackImmediate,
+          },
           { name: row.pack_size, code: row.uc9, type: EEntityType.PackSize },
           // { name: row.outer_packaging, code: row.uc10, type: EEntityType.PackOuter },
           // { name: row.manufacturer, code: row.uc11, type: EEntityType.Manufacturer },
@@ -180,7 +192,7 @@ export class DataParser {
           { type: EPropertyType.NZULM, value: row.nzulm_item },
         ];
 
-        productDefinition.forEach((item) => {
+        productDefinition.forEach(item => {
           if (!item.code) return;
 
           if (item.code in this.graph) {
@@ -199,16 +211,23 @@ export class DataParser {
             };
             this.graph[item.code] = node;
 
-            console.log(`INFO: Created ${item.type} node: ${JSON.stringify(node)}`);
+            console.log(
+              `INFO: Created ${item.type} node: ${JSON.stringify(node)}`
+            );
           }
         });
 
-        const productCode = productDefinition.find((item) => item.type === EEntityType.Product)
-          ?.code;
+        const productCode = productDefinition.find(
+          item => item.type === EEntityType.Product
+        )?.code;
         // If category code exists, and product code exists
         if (uc1 && productCode) {
           // link category to product.
-          if (!this.graph[uc1].children.map((child) => child.code).includes(productCode)) {
+          if (
+            !this.graph[uc1].children
+              .map(child => child.code)
+              .includes(productCode)
+          ) {
             this.graph[uc1].children.push({ code: productCode });
             console.log(
               `INFO: Linked category with code ${uc1} to product with code ${productCode}`
@@ -227,7 +246,7 @@ export class DataParser {
           if (child.name && child.code) {
             if (
               !this.graph[parent.code].children
-                .map((existingGraphChild) => existingGraphChild.code)
+                .map(existingGraphChild => existingGraphChild.code)
                 .includes(child.code)
             ) {
               this.graph[parent.code].children.push(child);
@@ -261,13 +280,17 @@ export class DataParser {
 
         // Process external properties at product (UC2) level
         if (productCode) {
-          productProperties.forEach((property) => {
+          productProperties.forEach(property => {
             // temporary restriction for uc7 - these are not currently imported
             if (property.value) {
               console.log(
                 `INFO: Property of type ${property.type} with value ${property.value} added for ${productCode}`
               );
-              if (!this.graph[productCode].properties.some((p) => p.type === property.type)) {
+              if (
+                !this.graph[productCode].properties.some(
+                  p => p.type === property.type
+                )
+              ) {
                 this.graph[productCode].properties.push(property);
               }
             }
@@ -275,19 +298,25 @@ export class DataParser {
         }
 
         const strengthCode = productDefinition.find(
-          (item) => item.type === EEntityType.DoseStrength
+          item => item.type === EEntityType.DoseStrength
         )?.code; // UC6
-        const unitCode = productDefinition.find((item) => item.type === EEntityType.Unit)?.code; // UC7
+        const unitCode = productDefinition.find(
+          item => item.type === EEntityType.Unit
+        )?.code; // UC7
 
         // Process external properties at item (UC6) level
         if (!unitCode && strengthCode) {
-          itemProperties.forEach((property) => {
+          itemProperties.forEach(property => {
             // temporary restriction for uc7 - these are not currently imported
             if (property.value) {
               console.log(
                 `INFO: Property of type ${property.type} with value ${property.value} added for ${strengthCode}`
               );
-              if (!this.graph[strengthCode].properties.some((p) => p.type === property.type)) {
+              if (
+                !this.graph[strengthCode].properties.some(
+                  p => p.type === property.type
+                )
+              ) {
                 this.graph[strengthCode].properties.push(property);
               }
             }
@@ -296,9 +325,11 @@ export class DataParser {
       });
 
       // Expand graph edges.
-      Object.keys(this.graph).forEach((code) => {
-        //this.graph[code].combines = this.graph[code].combines?.map((uc2) => this.graph[uc2.code]);
-        this.graph[code].children = this.graph[code].children?.map((uc) => this.graph[uc.code]);
+      Object.keys(this.graph).forEach(code => {
+        // this.graph[code].combines = this.graph[code].combines?.map((uc2) => this.graph[uc2.code]);
+        this.graph[code].children = this.graph[code].children?.map(
+          uc => this.graph[uc.code]
+        );
         console.log(`INFO: Expanded edges for node with code ${code}`);
       });
 
@@ -306,16 +337,20 @@ export class DataParser {
       const updateName = (node, name = '') => {
         node.name = `${name} ${node.name}`;
         node.name = node.name.trim();
-        console.log(`INFO: Renamed node with code ${node.code} to ${node.name}`);
-        node.children?.forEach((child) => updateName(child, node.name));
+        console.log(
+          `INFO: Renamed node with code ${node.code} to ${node.name}`
+        );
+        node.children?.forEach(child => updateName(child, node.name));
       };
 
-      this.graph[UCCode.Root].children?.forEach((category) => {
-        category.children?.forEach((product) => updateName(product));
+      this.graph[UCCode.Root].children?.forEach(category => {
+        category.children?.forEach(product => updateName(product));
       });
 
       // Output warnings for any duplicate entity codes.
-      duplicates.forEach((uc) => console.log(`WARNING: Detected duplicate code ${uc}!`));
+      duplicates.forEach(uc =>
+        console.log(`WARNING: Detected duplicate code ${uc}!`)
+      );
 
       this.isBuilt = true;
     } catch (err) {

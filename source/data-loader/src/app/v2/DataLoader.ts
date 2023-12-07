@@ -119,7 +119,7 @@ export class DataLoader {
 
     // Link parent entities to children.
     for await (const entity of entities) {
-      for await (const child of entity.children) {
+      for await (const child of entity.children ?? []) {
         const query = `
           query {
             Entity as var(func: eq(code, ${entity.code}))
