@@ -7,5 +7,4 @@ module.exports = {
     },
   },
   coverageDirectory: '../../coverage/apps/data-service',
-  projects: ['<rootDir>/data-service'],
 };
