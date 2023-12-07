@@ -1,3 +1,9 @@
+/**
+ * GraphQL API Integration tests
+ *
+ * @group integration
+ */
+
 require('isomorphic-fetch');
 
 const url = 'http://localhost:4000/v1/graphql';
@@ -166,25 +172,21 @@ test('Web UI Search - ace', () => {
             code: '33d71824',
             description: 'Acetazolamide',
             type: 'drug',
-            uid: '0x186d1',
           },
           {
             code: '7c8c2b5b',
             description: 'Acetic Acid',
             type: 'drug',
-            uid: '0x186d5',
           },
           {
             code: 'c8ba31a5',
             description: 'Acetylcysteine',
             type: 'drug',
-            uid: '0x186da',
           },
           {
             code: 'cf00cc3f',
             description: 'Acetylsalicylic Acid',
             type: 'drug',
-            uid: '0x186e6',
           },
         ],
         totalLength: 4,
@@ -202,7 +204,6 @@ test('Web UI Search - ace', () => {
                     code
                     description
                     type
-                    uid
                 },
                 totalLength,
             }
@@ -257,5 +258,90 @@ test('mSupply Search - ace', () => {
       for (const expectedCode of expectedCodes) {
         expect(res.data.entities.data.map((entity) => entity.code)).toContain(expectedCode);
       }
+    });
+});
+
+test('full entity type', () => {
+  // Note: Deliberately not querying uid, as it is not stable
+  const query = `
+query FullEntity {
+  entity(code: "12e6911d") {
+    type
+    code
+    description
+    interactions {
+      name
+      description
+      severity
+      rxcui
+      source
+    }
+    parents {
+      code
+    }
+    product {
+      code
+    }
+    properties {
+      type
+      value
+    }
+    children {
+      code
+    }
+  }
+}
+  `;
+
+  const expected = {
+    data: {
+      entity: {
+        type: 'drug',
+        code: '12e6911d',
+        description: 'Benzylpenicillin Sodium',
+        interactions: null,
+        parents: [
+          {
+            code: '933f3f00',
+          },
+        ],
+        product: null,
+        properties: [
+          {
+            type: 'code_rxnav',
+            value: '9900',
+          },
+          {
+            type: 'who_eml',
+            value: '6.2.1',
+          },
+          {
+            type: 'code_nzulm',
+            value: '10091071000116105',
+          },
+          {
+            type: 'code_unspsc',
+            value: '51283416',
+          },
+        ],
+        children: [
+          {
+            code: '54e9ed00',
+          },
+        ],
+      },
+    },
+  };
+
+  return fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: query,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      expect(res).toEqual(expected);
     });
 });
