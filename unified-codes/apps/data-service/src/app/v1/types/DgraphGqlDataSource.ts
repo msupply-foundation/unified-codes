@@ -47,7 +47,13 @@ export class DgraphGqlDataSource extends RESTDataSource {
         query,
       })
     );
-    const { data } = response;
+    const { data, errors } = response;
+
+    if (!data) {
+      console.error('Error querying DGraph: ', JSON.stringify(errors));
+      throw new Error('Could not query data');
+    }
+
     return data;
   }
 }
