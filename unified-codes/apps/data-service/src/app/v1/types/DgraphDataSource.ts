@@ -78,6 +78,7 @@ export class DgraphDataSource extends RESTDataSource {
     return `{
       query(func: eq(code, ${code?.toLowerCase()}), first:1) @recurse(loop:false) {
         code
+        uid
         type: dgraph.type
         description: name
         value
@@ -93,6 +94,7 @@ export class DgraphDataSource extends RESTDataSource {
     return `{
       query (func: eq(dgraph.type, "Product")) @cascade {
         code
+        uid
         type: dgraph.type
         description: name
         properties {
@@ -186,7 +188,7 @@ export class DgraphDataSource extends RESTDataSource {
 
   private static getEntityType(entity: IEntity): string {
     const { type: dgraphType, parents } = entity;
-    const types = (dgraphType as unknown) as string[]; // dgraph.type is string[]
+    const types = dgraphType as unknown as string[]; // dgraph.type is string[]
 
     // "Entity" is an additional type to allow graphql querying across many entity types
     // We want the specific type here
