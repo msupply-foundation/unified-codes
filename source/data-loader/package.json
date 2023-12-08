@@ -2,10 +2,10 @@
   "name": "@universal-codes/data-loader",
   "version": "0.0.0",
   "sideEffects": false,
-  "main": "./src/app/main.ts",
+  "main": "./src/main.ts",
   "private": true,
   "scripts": {
-    "start": "ts-node src/app/main.ts"
+    "start": "ts-node src/main.ts"
   },
   "dependencies": {
     "csv-parser": "^3.0.0",

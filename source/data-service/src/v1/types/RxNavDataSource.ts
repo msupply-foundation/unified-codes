@@ -6,7 +6,7 @@ import {
   IDrugInteraction,
   IDrugInteractions,
   IEntity,
-} from '../../../lib/v1';
+} from '../../lib/v1';
 
 // RxCui is stringified numerical ID.
 // Note: ts proposal for regex-validated types: https://github.com/Microsoft/TypeScript/issues/6579.

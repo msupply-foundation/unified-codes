@@ -10,7 +10,7 @@ import {
   IEntitySearch,
   IEntitySort,
   IProperty,
-} from '../../lib/v1';
+} from '../lib/v1';
 
 export type FilterMatch = 'begin' | 'contains' | 'exact' | undefined;
 

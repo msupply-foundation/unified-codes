@@ -2,10 +2,10 @@
   "name": "@universal-codes/data-service",
   "version": "0.0.0",
   "sideEffects": false,
-  "main": "./src/app/main.ts",
+  "main": "./src/main.ts",
   "private": true,
   "scripts": {
-    "start": "nodemon src/app/main.ts"
+    "start": "nodemon src/main.ts"
   },
   "dependencies": {
     "@fastify/cors": "^7.0.0",

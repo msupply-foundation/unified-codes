@@ -1,6 +1,6 @@
 import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest';
 
-import { IEntity } from '../../../lib/v1';
+import { IEntity } from '../../lib/v1';
 
 import { getEntityQuery } from './queries/entityQuery';
 

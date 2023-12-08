@@ -16,7 +16,7 @@ import {
   IEntity,
   IEntityCollection,
   User,
-} from '../../lib/v1';
+} from '../lib/v1';
 
 import {
   DgraphDataSource,

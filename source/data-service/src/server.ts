@@ -14,7 +14,7 @@ import {
   KeyCloakIdentityProvider,
   Resolvers,
   TypeDefs,
-} from '../lib/v1';
+} from './lib/v1';
 
 export type FastifyServer = FastifyInstance<
   Server,

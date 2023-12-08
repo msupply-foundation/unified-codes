@@ -9,13 +9,13 @@ import {
   IEntity,
   IEntityCollection,
   IProperty,
-} from '../../../lib/v1';
+} from '../../lib/v1';
 
 import {
   EEntityCategory as EEntityCategoryV2,
   EEntityField as EEntityFieldV2,
   EEntityType as EEntityTypeV2,
-} from '../../../lib/v2';
+} from '../../lib/v2';
 
 import { EntitySearchInput, FilterMatch } from '../schema';
 
