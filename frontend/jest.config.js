@@ -13,7 +13,6 @@ module.exports = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   moduleNameMapper: {
-    // kbar: '<rootDir>/__mocks__/kbar.ts',
     ...pathsToModuleNameMapper(compilerOptions.paths, {
       prefix: '<rootDir>/../',
     }),
