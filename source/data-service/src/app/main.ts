@@ -11,14 +11,14 @@ import {
   createApolloServer,
   createFastifyServer,
   FastifyConfig,
+  FastifyServer,
 } from './server';
 import { DgraphGqlDataSource } from './v1/types/DgraphGqlDataSource';
 
 dotenv.config({ path: '../.env' });
-// dotenv.config();
 
 const start = async () => {
-  let fastifyServer;
+  let fastifyServer: FastifyServer;
 
   try {
     const { typeDefs: typeDefsV1, resolvers: resolversV1 } =
