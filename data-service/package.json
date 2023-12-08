@@ -5,7 +5,8 @@
   "main": "./src/main.ts",
   "private": true,
   "scripts": {
-    "start": "nodemon src/main.ts"
+    "start": "nodemon src/main.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "@fastify/cors": "^7.0.0",

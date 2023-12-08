@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "rootDir": ".",
+    "outDir": "./dist",
     "types": ["node"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

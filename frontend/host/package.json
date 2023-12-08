@@ -25,7 +25,8 @@
   },
   "scripts": {
     "start": "webpack-cli serve",
-    "build": "webpack --env production --env APP_BUILD_VERSION=$APP_BUILD_VERSION",
+    "build": "webpack",
+    "build-prod": "webpack --env production --env APP_BUILD_VERSION=$APP_BUILD_VERSION",
     "build-windows": "webpack --env production --env APP_BUILD_VERSION=%APP_BUILD_VERSION%",
     "build-stats": "webpack --env stats --env production",
     "serve": "serve dist -p 4201",

@@ -1,37 +1,50 @@
 name: CI
 on: push
 jobs:
-  build-push-docker:
+  # build-push-docker:
+  build-test:
     runs-on: ubuntu-latest
-    env:
-      workspace-directory: ./unified-codes
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install modules
-        run: npm install
-        working-directory: ${{env.workspace-directory}}
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
       - name: Build data-service
-        run: npx nx build data-service
-        working-directory: ${{env.workspace-directory}}
-        # Proof of concept only with temp access token! Credentials should be moved to GitHub secrets
-      - name: Build and push docker image unifiedcodes/dependencies
-        uses: docker/build-push-action@v1
-        with:
-          username: katms
-          password: ${{secrets.UNIFIED_CODES_DOCKER_HUB_PASSWORD}}
-          path: ${{env.workspace-directory}}
-          dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/dependencies.Dockerfile
-          repository: unifiedcodes/dependencies
-          tags: latest
-          push: true
-      - name: Build and push docker image unifiedcodes/data-service
-        uses: docker/build-push-action@v1
-        with:
-          username: katms
-          password: ${{secrets.UNIFIED_CODES_DOCKER_HUB_PASSWORD}}
-          path: ${{env.workspace-directory}}
-          dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/data-service.Dockerfile
-          repository: unifiedcodes/data-service
-          tags: latest
-          push: true
+        run: yarn build-data-service
+
+      - name: Build data-loader
+        run: yarn build-data-service
+
+      - name: Build frontend
+        run: yarn build-frontend
+
+      - name: Test frontend
+        run: yarn test-frontend
+
+      - name: Test data-service
+        run: echo "Put backend test script here when there is one!"
+
+      # TODO: do we still want these?
+      # Proof of concept only with temp access token! Credentials should be moved to GitHub secrets
+      # - name: Build and push docker image unifiedcodes/dependencies
+      #   uses: docker/build-push-action@v1
+      #   with:
+      #     username: katms
+      #     password: ${{secrets.UNIFIED_CODES_DOCKER_HUB_PASSWORD}}
+      #     path: ${{env.workspace-directory}}
+      #     dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/dependencies.Dockerfile
+      #     repository: unifiedcodes/dependencies
+      #     tags: latest
+      #     push: true
+      # - name: Build and push docker image unifiedcodes/data-service
+      #   uses: docker/build-push-action@v1
+      #   with:
+      #     username: katms
+      #     password: ${{secrets.UNIFIED_CODES_DOCKER_HUB_PASSWORD}}
+      #     path: ${{env.workspace-directory}}
+      #     dockerfile: ${{env.workspace-directory}}/tools/dockerfiles/data-service.Dockerfile
+      #     repository: unifiedcodes/data-service
+      #     tags: latest
+      #     push: true
