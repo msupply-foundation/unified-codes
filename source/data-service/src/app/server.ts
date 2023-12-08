@@ -14,7 +14,7 @@ import {
   KeyCloakIdentityProvider,
   Resolvers,
   TypeDefs,
-} from '@unified-codes/data/v1';
+} from '../lib/v1';
 
 export type FastifyServer = FastifyInstance<
   Server,
@@ -30,14 +30,19 @@ export const createApolloServer = async (
   dataSources: DataSources
 ): Promise<ApolloServer> => {
   const identityProviderConfig = {
-    baseUrl: `${process.env.NX_AUTHENTICATION_SERVICE_URL}:${process.env.NX_AUTHETICATION_SERVICE_PORT}/${process.env.NX_AUTHENTICATION_SERVICE_REALM}/${process.env.NX_AUTHENTICATION_SERVICE_AUTH}`,
-    clientId: process.env.NX_AUTHENTICATION_SERVICE_CLIENT_ID,
-    clientSecret: process.env.NX_AUTHENTICATION_SERVICE_CLIENT_SECRET,
-    grantType: process.env.NX_AUTHENTICATION_SERVICE_GRANT_TYPE,
+    baseUrl: `${process.env.AUTHENTICATION_SERVICE_URL}:${process.env.AUTHETICATION_SERVICE_PORT}/${process.env.AUTHENTICATION_SERVICE_REALM}/${process.env.AUTHENTICATION_SERVICE_AUTH}`,
+    clientId: process.env.AUTHENTICATION_SERVICE_CLIENT_ID,
+    clientSecret: process.env.AUTHENTICATION_SERVICE_CLIENT_SECRET,
+    grantType: process.env.AUTHENTICATION_SERVICE_GRANT_TYPE,
   };
 
   const identityProvider = new KeyCloakIdentityProvider(identityProviderConfig);
-  const apolloService = new ApolloService(typeDefs, resolvers, dataSources, identityProvider);
+  const apolloService = new ApolloService(
+    typeDefs,
+    resolvers,
+    dataSources,
+    identityProvider
+  );
   const apolloServer = apolloService.getServer();
 
   await apolloServer.start();
@@ -50,7 +55,7 @@ export const createFastifyServer = (
   plugins?: FastifyPluginCallback<FastifyPluginOptions>[]
 ): FastifyServer => {
   const fastifyServer = fastify(config);
-  plugins.forEach((plugin) => {
+  plugins.forEach(plugin => {
     fastifyServer.register(plugin);
   });
   return fastifyServer;

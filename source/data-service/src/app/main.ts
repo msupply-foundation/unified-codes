@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import dotenv from 'dotenv';
 
 import fastifyCors from '@fastify/cors';
 import { buildTypeDefsAndResolvers } from 'type-graphql';
@@ -6,21 +7,30 @@ import { buildTypeDefsAndResolvers } from 'type-graphql';
 import { EntityResolver } from './v1/resolvers';
 import { DgraphDataSource, RxNavDataSource } from './v1/types';
 
-import { createApolloServer, createFastifyServer, FastifyConfig } from './server';
+import {
+  createApolloServer,
+  createFastifyServer,
+  FastifyConfig,
+} from './server';
 import { DgraphGqlDataSource } from './v1/types/DgraphGqlDataSource';
+
+dotenv.config({ path: '../.env' });
+// dotenv.config();
 
 const start = async () => {
   let fastifyServer;
 
   try {
-    const { typeDefs: typeDefsV1, resolvers: resolversV1 } = await buildTypeDefsAndResolvers({
-      resolvers: [EntityResolver],
-    });
+    const { typeDefs: typeDefsV1, resolvers: resolversV1 } =
+      await buildTypeDefsAndResolvers({
+        resolvers: [EntityResolver],
+      });
 
     // TODO: add v2 schema.
-    const { typeDefs: typeDefsV2, resolvers: resolversV2 } = await buildTypeDefsAndResolvers({
-      resolvers: [EntityResolver],
-    });
+    const { typeDefs: typeDefsV2, resolvers: resolversV2 } =
+      await buildTypeDefsAndResolvers({
+        resolvers: [EntityResolver],
+      });
 
     const dataSourcesV1 = () => ({
       dgraph: new DgraphDataSource(),
@@ -35,9 +45,21 @@ const start = async () => {
       rxnav: new RxNavDataSource(),
     });
 
-    const apolloServer = await createApolloServer(typeDefsV1, resolversV1, dataSourcesV1);
-    const apolloServerV1 = await createApolloServer(typeDefsV1, resolversV1, dataSourcesV1);
-    const apolloServerV2 = await createApolloServer(typeDefsV2, resolversV2, dataSourcesV2);
+    const apolloServer = await createApolloServer(
+      typeDefsV1,
+      resolversV1,
+      dataSourcesV1
+    );
+    const apolloServerV1 = await createApolloServer(
+      typeDefsV1,
+      resolversV1,
+      dataSourcesV1
+    );
+    const apolloServerV2 = await createApolloServer(
+      typeDefsV2,
+      resolversV2,
+      dataSourcesV2
+    );
 
     const apolloPlugin = apolloServer.createHandler({ path: '/graphql' });
     const apolloPluginV1 = apolloServerV1.createHandler({
@@ -50,11 +72,16 @@ const start = async () => {
     });
 
     const fastifyConfig: FastifyConfig = { logger: true };
-    const fastifyPlugins = [apolloPlugin, apolloPluginV1, apolloPluginV2, fastifyCors];
+    const fastifyPlugins = [
+      apolloPlugin,
+      apolloPluginV1,
+      apolloPluginV2,
+      fastifyCors,
+    ];
 
     fastifyServer = createFastifyServer(fastifyConfig, fastifyPlugins);
 
-    await fastifyServer.listen(process.env.NX_DATA_SERVICE_PORT, '0.0.0.0');
+    await fastifyServer.listen(process.env.DATA_SERVICE_PORT, '0.0.0.0');
   } catch (err) {
     console.log(err);
     if (fastifyServer) {

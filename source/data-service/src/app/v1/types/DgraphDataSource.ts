@@ -9,13 +9,13 @@ import {
   IEntity,
   IEntityCollection,
   IProperty,
-} from '@unified-codes/data/v1';
+} from '../../../lib/v1';
 
 import {
   EEntityCategory as EEntityCategoryV2,
   EEntityField as EEntityFieldV2,
   EEntityType as EEntityTypeV2,
-} from '@unified-codes/data/v2';
+} from '../../../lib/v2';
 
 import { EntitySearchInput, FilterMatch } from '../schema';
 
@@ -32,16 +32,19 @@ export class DgraphDataSource extends RESTDataSource {
     orderField: string = EEntityField.DESCRIPTION,
     orderDesc = false
   ) {
-    const orderDescString = (orderDesc && EEntitySortOrder.Desc) || EEntitySortOrder.Asc;
+    const orderDescString =
+      (orderDesc && EEntitySortOrder.Desc) || EEntitySortOrder.Asc;
     const orderFieldString =
-      orderField === EEntityField.DESCRIPTION ? EEntityFieldV2.Name : orderField;
+      orderField === EEntityField.DESCRIPTION
+        ? EEntityFieldV2.Name
+        : orderField;
     const orderString = `${orderDescString} : ${orderFieldString}`;
     return orderString;
   }
 
   private static getEntityTypeString(types: string[]) {
     return JSON.stringify(
-      types.map((type) => {
+      types.map(type => {
         switch (type) {
           case EEntityType.FORM_CATEGORY:
             return EEntityTypeV2.Form;
@@ -61,7 +64,7 @@ export class DgraphDataSource extends RESTDataSource {
 
   private static getEntityCategoryString(categories: string[]) {
     return JSON.stringify(
-      categories.map((category) => {
+      categories.map(category => {
         switch (category) {
           case EEntityCategory.DRUG:
             return EEntityCategoryV2.DRUG;
@@ -109,7 +112,10 @@ export class DgraphDataSource extends RESTDataSource {
     }`;
   }
 
-  private static getEntitiesFilterString(description: string, match: FilterMatch) {
+  private static getEntitiesFilterString(
+    description: string,
+    match: FilterMatch
+  ) {
     if (!description) {
       return '@filter(has(name))';
     }
@@ -186,11 +192,11 @@ export class DgraphDataSource extends RESTDataSource {
 
   private static getEntityType(entity: IEntity): string {
     const { type: dgraphType, parents } = entity;
-    const types = (dgraphType as unknown) as string[]; // dgraph.type is string[]
+    const types = dgraphType as unknown as string[]; // dgraph.type is string[]
 
     // "Entity" is an additional type to allow graphql querying across many entity types
     // We want the specific type here
-    const type = (types ?? []).find((t) => t !== 'Entity');
+    const type = (types ?? []).find(t => t !== 'Entity');
 
     const [parent] = parents ?? [];
 
@@ -232,10 +238,14 @@ export class DgraphDataSource extends RESTDataSource {
 
     // Map native graph node types.
     const type = DgraphDataSource.getEntityType(entity);
-    const children = entity.children?.map((child) => DgraphDataSource.mapEntity(child));
-    const parents = entity.parents?.map((parent) => DgraphDataSource.mapEntity(parent));
+    const children = entity.children?.map(child =>
+      DgraphDataSource.mapEntity(child)
+    );
+    const parents = entity.parents?.map(parent =>
+      DgraphDataSource.mapEntity(parent)
+    );
 
-    entity.properties = entity.properties?.map((property) => ({
+    entity.properties = entity.properties?.map(property => ({
       ...property,
       type: DgraphDataSource.getPropertyType(property),
     }));
@@ -245,7 +255,7 @@ export class DgraphDataSource extends RESTDataSource {
 
   constructor() {
     super();
-    this.baseURL = `${process.env.NX_DGRAPH_SERVICE_URL}:${process.env.NX_DGRAPH_SERVICE_PORT}`;
+    this.baseURL = `${process.env.DGRAPH_SERVICE_URL}:${process.env.DGRAPH_SERVICE_PORT}`;
   }
 
   willSendRequest(request: RequestOptions): void {
@@ -277,14 +287,20 @@ export class DgraphDataSource extends RESTDataSource {
     offset?: number
   ): Promise<IEntityCollection> {
     const {
-      categories = [EEntityCategory.DRUG, EEntityCategory.CONSUMABLE, EEntityCategory.OTHER],
+      categories = [
+        EEntityCategory.DRUG,
+        EEntityCategory.CONSUMABLE,
+        EEntityCategory.OTHER,
+      ],
       type = EEntityType.DRUG,
       description,
       match,
       orderBy,
     } = filter ?? {};
-    const { field: orderField = EEntityField.DESCRIPTION, descending: orderDesc = false } =
-      orderBy ?? {};
+    const {
+      field: orderField = EEntityField.DESCRIPTION,
+      descending: orderDesc = false,
+    } = orderBy ?? {};
 
     const types = type.replace(/[[\]]+/g, '').split(/[\s,]+/);
 

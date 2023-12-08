@@ -1,6 +1,6 @@
 import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest';
 
-import { IEntity } from '@unified-codes/data/v1';
+import { IEntity } from '../../../lib/v1';
 
 import { getEntityQuery } from './queries/entityQuery';
 
@@ -11,7 +11,7 @@ export class DgraphGqlDataSource extends RESTDataSource {
 
   constructor() {
     super();
-    this.baseURL = `${process.env.NX_DGRAPH_SERVICE_URL}:${process.env.NX_DGRAPH_SERVICE_PORT}`;
+    this.baseURL = `${process.env.DGRAPH_SERVICE_URL}:${process.env.DGRAPH_SERVICE_PORT}`;
   }
 
   willSendRequest(request: RequestOptions): void {
@@ -22,7 +22,9 @@ export class DgraphGqlDataSource extends RESTDataSource {
 
   // map empty properties arrays to a null value as it is in the existing schema..
   private static mapEntity(entity: IEntity) {
-    const children = entity.children?.map((c) => DgraphGqlDataSource.mapEntity(c));
+    const children = entity.children?.map(c =>
+      DgraphGqlDataSource.mapEntity(c)
+    );
 
     const properties = entity.properties.length ? entity.properties : null;
 

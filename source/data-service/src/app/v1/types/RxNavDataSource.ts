@@ -6,7 +6,7 @@ import {
   IDrugInteraction,
   IDrugInteractions,
   IEntity,
-} from '@unified-codes/data/v1';
+} from '../../../lib/v1';
 
 // RxCui is stringified numerical ID.
 // Note: ts proposal for regex-validated types: https://github.com/Microsoft/TypeScript/issues/6579.
@@ -59,7 +59,10 @@ export interface IRxNavInteractionConceptItem {
 }
 
 // First item represents the query item, second represents the interacting item.
-export type IRxNavInteractionConcept = [IRxNavInteractionConceptItem, IRxNavInteractionConceptItem];
+export type IRxNavInteractionConcept = [
+  IRxNavInteractionConceptItem,
+  IRxNavInteractionConceptItem
+];
 
 export interface IRxNavInteractionPair {
   interactionConcept: IRxNavInteractionConcept;
@@ -107,7 +110,7 @@ export class RxNavDataSource extends RESTDataSource {
 
   constructor() {
     super();
-    this.baseURL = `${process.env.NX_RXNAV_SERVICE_URL}/${process.env.NX_RXNAV_SERVICE_REST}`;
+    this.baseURL = `${process.env.RXNAV_SERVICE_URL}/${process.env.RXNAV_SERVICE_REST}`;
   }
 
   async getInteractions(
@@ -131,30 +134,34 @@ export class RxNavDataSource extends RESTDataSource {
     );
 
     response.data =
-      body?.interactionTypeGroup?.flatMap((interactionTypeGroup: IRxNavInteractionTypeGroup) => {
-        const { sourceName: source } = interactionTypeGroup;
-        return interactionTypeGroup.interactionType.flatMap(
-          (interactionType: IRxNavInteractionType) => {
-            return interactionType.interactionPair.flatMap(
-              (interactionPair: IRxNavInteractionPair) => {
-                const { interactionConcept, description, severity } = interactionPair;
-                const [, interactionConceptItem] = interactionConcept;
-                const { minConceptItem, sourceConceptItem } = interactionConceptItem;
-                const { rxcui } = minConceptItem;
-                const { name } = sourceConceptItem;
-                const interaction: IDrugInteraction = {
-                  source,
-                  name,
-                  rxcui,
-                  description,
-                  severity,
-                };
-                return new DrugInteraction(interaction);
-              }
-            );
-          }
-        );
-      }) || [];
+      body?.interactionTypeGroup?.flatMap(
+        (interactionTypeGroup: IRxNavInteractionTypeGroup) => {
+          const { sourceName: source } = interactionTypeGroup;
+          return interactionTypeGroup.interactionType.flatMap(
+            (interactionType: IRxNavInteractionType) => {
+              return interactionType.interactionPair.flatMap(
+                (interactionPair: IRxNavInteractionPair) => {
+                  const { interactionConcept, description, severity } =
+                    interactionPair;
+                  const [, interactionConceptItem] = interactionConcept;
+                  const { minConceptItem, sourceConceptItem } =
+                    interactionConceptItem;
+                  const { rxcui } = minConceptItem;
+                  const { name } = sourceConceptItem;
+                  const interaction: IDrugInteraction = {
+                    source,
+                    name,
+                    rxcui,
+                    description,
+                    severity,
+                  };
+                  return new DrugInteraction(interaction);
+                }
+              );
+            }
+          );
+        }
+      ) || [];
     return response;
   }
 }

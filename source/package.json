@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "load-data": "lerna run --scope @universal-codes/data-loader start --stream",
+    "start-data-service": "lerna run --scope @universal-codes/data-service start --stream",
     "start-frontend": "lerna run --scope @uc-frontend/* --parallel start",
     "build-frontend": "lerna run --scope @uc-frontend/* build",
     "build-frontend-windows": "lerna run --scope @uc-frontend/* build-windows",
@@ -23,6 +24,7 @@
   "workspaces": {
     "packages": [
       "data-loader",
+      "data-service",
       "frontend/*"
     ]
   },
