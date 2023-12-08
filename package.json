@@ -19,7 +19,8 @@
     "generate": "graphql-codegen --config codegen.yml",
     "i18n-unused-display": "i18n-unused display-unused",
     "i18n-unused-remove": "i18n-unused remove-unused",
-    "i18n-missing": "i18n-unused display-missed"
+    "i18n-missing": "i18n-unused display-missed",
+    "update-dgraph-schema": "curl -X POST localhost:8080/admin/schema --data-binary @data-loader/data/v2/schema.graphql"
   },
   "workspaces": {
     "packages": [
