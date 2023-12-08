@@ -13,13 +13,13 @@ module.exports = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   moduleNameMapper: {
-    kbar: '<rootDir>/__mocks__/kbar.ts',
+    // kbar: '<rootDir>/__mocks__/kbar.ts',
     ...pathsToModuleNameMapper(compilerOptions.paths, {
-      prefix: '<rootDir>/',
+      prefix: '<rootDir>/../',
     }),
-    'frontend/common/src': ['<rootDir>/frontend/common/src'],
-    'frontend/system/src': ['<rootDir>/frontend/system/src'],
-    'frontend/config/src': ['<rootDir>/frontend/config/src'],
+    'frontend/common/src': ['<rootDir>/common/src'],
+    'frontend/system/src': ['<rootDir>/system/src'],
+    'frontend/config/src': ['<rootDir>/config/src'],
     '.+\\.(gif)$': 'jest-transform-stub',
   },
 };

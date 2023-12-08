@@ -15,7 +15,7 @@
     "compile-frontend": "lerna run --scope @uc-frontend/* --parallel tsc -- --incremental --noEmit",
     "prepare": "cd .. && husky install",
     "pre-commit-lint": "yarn compile && yarn lint-staged",
-    "test": "jest --config ./jest.config.js --maxWorkers=50%",
+    "test-frontend": "jest --config ./frontend/jest.config.js --maxWorkers=50%",
     "generate": "graphql-codegen --config codegen.yml",
     "i18n-unused-display": "i18n-unused display-unused",
     "i18n-unused-remove": "i18n-unused remove-unused",
