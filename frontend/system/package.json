@@ -1,0 +1,17 @@
+{
+  "name": "@uc-frontend/system",
+  "main": "./src/index.ts",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "private": true,
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  },
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "dependencies": {
+    "@uc-frontend/common": "^0.0.1",
+    "@uc-frontend/config": "^0.0.0"
+  }
+}
