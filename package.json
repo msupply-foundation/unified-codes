@@ -4,7 +4,7 @@
   "sideEffects": false,
   "private": true,
   "scripts": {
-    "load-data": "lerna run --scope @universal-codes/data-loader start --stream",
+    "load-data": "lerna run --scope @universal-codes/data-loader start --stream && yarn update-dgraph-schema",
     "start-data-service": "lerna run --scope @universal-codes/data-service start --stream",
     "build-data-loader": "lerna run --scope @universal-codes/data-loader build",
     "build-data-service": "lerna run --scope @universal-codes/data-service build",
@@ -23,7 +23,7 @@
     "i18n-unused-display": "i18n-unused display-unused",
     "i18n-unused-remove": "i18n-unused remove-unused",
     "i18n-missing": "i18n-unused display-missed",
-    "update-dgraph-schema": "curl -X POST localhost:8080/admin/schema --data-binary @data-loader/data/v2/schema.graphql"
+    "update-dgraph-schema": "res=$(curl -X POST localhost:8080/admin/schema --data-binary @data-loader/data/v2/schema.graphql); echo $res"
   },
   "workspaces": {
     "packages": [

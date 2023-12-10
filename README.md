@@ -16,8 +16,6 @@ The test framework is jest; functional areas are separated into packages and man
   - You can then use the [explorer](https://play.dgraph.io/?latest) (server URL is http://localhost:8080)
 - Initialise DGraph schema and load data into DGraph:
   - `yarn load-data`
-- Upload the GraphQL schema to DGraph:
-  - `yarn update-dgraph-schema`
 - Start the data-service:
   - `yarn start-data-service`
   - Access v1 api at http://localhost:4000/v1/graphql
