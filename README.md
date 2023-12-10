@@ -47,9 +47,7 @@ For the new one:
 
 ## Build and release
 
-There was the option of running the data service within Docker - this hasn't been updated with the code rearrange, going to wait to hear if it is being used first! We were building a Docker image in CI, but this has been broken for a long time, so have taken this out for now.
-
-We also will need to make some updates to our release scripts since the code rearrange, and for the new frontend, but we'll cross that bridge when we get there :)
+We will need to make some updates to our release scripts since the code rearrange, and for the new frontend, but we'll cross that bridge when we get there :)
 
 ### Git hooks
 
