@@ -14,10 +14,8 @@ The test framework is jest; functional areas are separated into packages and man
   - `yarn install`
 - Setup Dgraph (see instructions [here](unified-codes/tools/scripts/dgraph/README.md))
   - You can then use the [explorer](https://play.dgraph.io/?latest) (server URL is http://localhost:8080)
-- Load data into DGraph:
+- Initialise DGraph schema and load data into DGraph:
   - `yarn load-data`
-- Upload the GraphQL schema to DGraph:
-  - `yarn update-dgraph-schema`
 - Start the data-service:
   - `yarn start-data-service`
   - Access v1 api at http://localhost:4000/v1/graphql
@@ -27,8 +25,10 @@ The test framework is jest; functional areas are separated into packages and man
 
 We are currently re-implementing the frontend. For the existing frontend:
 
-1. Run web server: `npx nx serve web`
-2. Browse web at http://localhost:4200/
+1. From the `unified-codes/unified-codes` directory:
+2. Run web server: `npx nx serve web`
+   1. If using Node >v16, you'll need the to use the openssl legacy provider: `NODE_OPTIONS=--openssl-legacy-provider npx nx serve web`
+3. Browse web at http://localhost:4200/
 
 For the new one:
 
@@ -47,9 +47,7 @@ For the new one:
 
 ## Build and release
 
-There was the option of running the data service within Docker - this hasn't been updated with the code rearrange, going to wait to hear if it is being used first! We were building a Docker image in CI, but this has been broken for a long time, so have taken this out for now.
-
-We also will need to make some updates to our release scripts since the code rearrange, and for the new frontend, but we'll cross that bridge when we get there :)
+We will need to make some updates to our release scripts since the code rearrange, and for the new frontend, but we'll cross that bridge when we get there :)
 
 ### Git hooks
 
