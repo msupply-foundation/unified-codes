@@ -27,8 +27,10 @@ The test framework is jest; functional areas are separated into packages and man
 
 We are currently re-implementing the frontend. For the existing frontend:
 
-1. Run web server: `npx nx serve web`
-2. Browse web at http://localhost:4200/
+1. From the `unified-codes/unified-codes` directory:
+2. Run web server: `npx nx serve web`
+   1. If using Node >v16, you'll need the to use the openssl legacy provider: `NODE_OPTIONS=--openssl-legacy-provider npx nx serve web`
+3. Browse web at http://localhost:4200/
 
 For the new one:
 
