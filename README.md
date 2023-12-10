@@ -14,7 +14,7 @@ The test framework is jest; functional areas are separated into packages and man
   - `yarn install`
 - Setup Dgraph (see instructions [here](unified-codes/tools/scripts/dgraph/README.md))
   - You can then use the [explorer](https://play.dgraph.io/?latest) (server URL is http://localhost:8080)
-- Load data into DGraph:
+- Initialise DGraph schema and load data into DGraph:
   - `yarn load-data`
 - Upload the GraphQL schema to DGraph:
   - `yarn update-dgraph-schema`
