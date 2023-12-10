@@ -22,5 +22,6 @@ jobs:
       - name: Test frontend
         run: yarn test-frontend
 
+      # This only runs the unit tests - integration tests in CI would be more expensive
       - name: Test data-service
-        run: echo "Put backend test script here when there is one!"
+        run: yarn test-data-service

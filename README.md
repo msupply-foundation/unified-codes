@@ -36,9 +36,14 @@ For the new one:
 
 ## Testing
 
+- Unit tests across frontend and the data-service:
+  - `yarn test`
 - Test frontend:
   - `yarn test-frontend`
-- TODO: test backend
+- Test data-service (unit tests):
+  - `yarn test-data-service`
+- Integration tests:
+  - `yarn test-integration`
 
 ## Other scripts
 

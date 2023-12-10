@@ -1,10 +1,11 @@
-// Sync object
-/** @type {import('@jest/types').Config.InitialOptions} */
-
 const { pathsToModuleNameMapper } = require('ts-jest');
+
 const { compilerOptions } = require('./tsconfig');
+const baseConfig = require('../jest.config');
 
 module.exports = {
+  ...baseConfig,
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   transform: {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
