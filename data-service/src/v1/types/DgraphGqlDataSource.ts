@@ -22,11 +22,13 @@ export class DgraphGqlDataSource extends RESTDataSource {
 
   // map empty properties arrays to a null value as it is in the existing schema..
   private static mapEntity(entity: IEntity) {
+    if (!entity) return entity;
+
     const children = entity.children?.map(c =>
       DgraphGqlDataSource.mapEntity(c)
     );
 
-    const properties = entity.properties.length ? entity.properties : null;
+    const properties = entity.properties?.length ? entity.properties : null;
 
     return { ...entity, properties, children };
   }
@@ -47,7 +49,13 @@ export class DgraphGqlDataSource extends RESTDataSource {
         query,
       })
     );
-    const { data } = response;
+    const { data, errors } = response;
+
+    if (!data) {
+      console.error('Error querying DGraph: ', JSON.stringify(errors));
+      throw new Error('Could not query data');
+    }
+
     return data;
   }
 }

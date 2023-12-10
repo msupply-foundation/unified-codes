@@ -81,6 +81,7 @@ export class DgraphDataSource extends RESTDataSource {
     return `{
       query(func: eq(code, ${code?.toLowerCase()}), first:1) @recurse(loop:false) {
         code
+        uid
         type: dgraph.type
         description: name
         value
@@ -96,6 +97,7 @@ export class DgraphDataSource extends RESTDataSource {
     return `{
       query (func: eq(dgraph.type, "Product")) @cascade {
         code
+        uid
         type: dgraph.type
         description: name
         properties {
