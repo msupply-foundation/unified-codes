@@ -4,10 +4,9 @@ module.exports = {
     es2021: true,
   },
   extends: [
+    '../.eslintrc.js',
     'plugin:jest-dom/recommended',
     'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
   ],
   overrides: [
     {
@@ -20,28 +19,13 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 12,
-    sourceType: 'module',
   },
 
   settings: { react: { version: 'detect' } },
-  plugins: ['react', , '@typescript-eslint'],
+  plugins: ['react'],
   rules: {
-    camelcase: ['error', { allow: ['_ONLY_FOR_TESTING'] }],
-    'require-jsdoc': 0,
     'react/display-name': 'off',
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 'error',
     'react/prop-types': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    'spaced-comment': [
-      'error',
-      'always',
-      { markers: ['#', '/'], exceptions: ['-'] },
-    ],
   },
-  ignorePatterns: [
-    '**/operations.generated.ts',
-    '**/*.js'
-  ]
+  ignorePatterns: ['**/operations.generated.ts', '**/*.js'],
 };

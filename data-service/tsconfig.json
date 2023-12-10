@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2022",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "rootDir": ".",
+    "outDir": "./dist",
+    "types": ["node"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    // TODO: remove these and fix compilation errors!
+    "strict": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false
+  },
+  "include": ["**/*.ts"]
+}
