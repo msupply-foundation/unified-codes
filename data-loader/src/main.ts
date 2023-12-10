@@ -5,7 +5,7 @@ import { DataLoader, DataParser, SchemaParser } from './v2';
 const hostname = 'localhost';
 const port = '9080';
 
-const dirPath = '../../data';
+const dirPath = '../data';
 const schemaPath = 'v2/schema.gql';
 const dataPath = 'v2/products.csv';
 
