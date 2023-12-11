@@ -11,11 +11,13 @@ import {
   ToggleButton,
 } from '@common/ui';
 import { useBreadcrumbs, useQueryParamsState } from '@common/hooks';
-import { useEntities } from '../api';
+import { EntityRowFragment, useEntities } from '../api';
 import { ToggleButtonGroup } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 export const ListView = () => {
   const t = useTranslation('system');
+  const navigate = useNavigate();
   const { setSuffix } = useBreadcrumbs();
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export const ListView = () => {
 
   const { sortBy, page, offset, first } = queryParams;
 
-  const columns = useColumns(
+  const columns = useColumns<EntityRowFragment>(
     [
       { key: 'code', label: 'label.code', width: 200, sortable: false },
       { key: 'description', label: 'label.description', width: 1000 },
@@ -114,6 +116,7 @@ export const ListView = () => {
           noDataElement={<NothingHere body={t('error.no-data')} />}
           pagination={pagination}
           onChangePage={updatePaginationQuery}
+          onRowClick={inp => navigate(`/details/${inp.code}`)}
         />
       </TableProvider>
     </>
