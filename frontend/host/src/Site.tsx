@@ -13,7 +13,7 @@ import {
   useGetPageTitle,
   DetailPanel,
 } from '@uc-frontend/common';
-import { AppDrawer, AppBar, Footer, NotFound } from './components';
+import { AppBar, Footer, NotFound } from './components';
 import { CommandK } from './CommandK';
 import { AppRoute } from '@uc-frontend/config';
 import { Settings } from './Admin/Settings';
@@ -33,7 +33,8 @@ export const Site: FC = () => {
     // <RequireAuthentication>
     <CommandK>
       <SnackbarProvider maxSnack={3}>
-        <AppDrawer />
+        {/* TODO: only show AppDrawer when logged in as an Admin */}
+        {/* <AppDrawer /> */}
         <Box flex={1} display="flex" flexDirection="column" overflow="hidden">
           <AppBar />
           <Box display="flex" flex={1} overflow="auto">
