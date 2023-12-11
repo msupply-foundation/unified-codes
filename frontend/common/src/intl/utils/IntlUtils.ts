@@ -32,6 +32,12 @@ export const IntlUtils = {
     if (language === 'en' || language === 'fr' || language === 'ar') {
       return language;
     }
+    // Split languages like en-GB into en
+    const [languageOnly] = language.split('-');
+    if (languageOnly && IntlUtils.isSupportedLang(languageOnly)) {
+      return languageOnly;
+    }
+
     if (!EnvUtils.isProduction()) {
       throw new Error(`Language '${language}' not supported`);
     }
