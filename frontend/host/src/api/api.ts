@@ -8,9 +8,5 @@ export const getHostQueries = (sdk: Sdk) => ({
       // return result.apiVersion;
       return 'v1';
     },
-    entity: async (code: string) => {
-      const result = await sdk.entity({ code });
-      return result.entity2;
-    },
   },
 });

@@ -7,7 +7,6 @@ export const useHostApi = () => {
     base: () => ['host'] as const,
     version: () => [...keys.base(), 'version'] as const,
     settings: () => [...keys.base(), 'settings'] as const,
-    entity: (code: string) => [...keys.base(), 'entity', code] as const,
   };
 
   const { client } = useGql();
