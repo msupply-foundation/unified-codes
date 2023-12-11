@@ -55,7 +55,7 @@ export const Breadcrumbs: React.FC = () => {
         fontWeight: 500,
       }}
     >
-      {crumbs}
+      {crumbs.length ? crumbs : <span>{suffix}</span>}
     </MuiBreadcrumbs>
   );
 };

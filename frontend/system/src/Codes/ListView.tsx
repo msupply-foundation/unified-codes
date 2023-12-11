@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from '@common/intl';
 import {
   AppBarContentPortal,
@@ -10,12 +10,18 @@ import {
   SearchToolbar,
   ToggleButton,
 } from '@common/ui';
-import { useQueryParamsState } from '@common/hooks';
+import { useBreadcrumbs, useQueryParamsState } from '@common/hooks';
 import { useEntities } from '../api';
 import { ToggleButtonGroup } from '@mui/material';
 
 export const ListView = () => {
   const t = useTranslation('system');
+  const { setSuffix } = useBreadcrumbs();
+
+  useEffect(() => {
+    setSuffix('Browse');
+  }, []);
+
   const { filter, queryParams, updatePaginationQuery, updateSortQuery } =
     useQueryParamsState({
       initialSort: { key: 'description', dir: 'asc' },
