@@ -3,15 +3,19 @@ import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest';
 import { IEntity } from '../../lib/v1';
 
 import { getEntityQuery } from './queries/entityQuery';
+import { getEntitiesQuery } from './queries/entitiesQuery';
+import { GraphQLClient, Variables } from 'graphql-request';
 
 export class DgraphGqlDataSource extends RESTDataSource {
   private static headers: { [key: string]: string } = {
     'Content-Type': 'application/json',
   };
+  client: GraphQLClient;
 
   constructor() {
     super();
     this.baseURL = `${process.env.DGRAPH_SERVICE_URL}:${process.env.DGRAPH_SERVICE_PORT}`;
+    this.client = new GraphQLClient(`${this.baseURL}/graphql`);
   }
 
   willSendRequest(request: RequestOptions): void {
@@ -41,6 +45,16 @@ export class DgraphGqlDataSource extends RESTDataSource {
     return DgraphGqlDataSource.mapEntity(entity);
   }
 
+  async getEntities(vars: Variables): Promise<IEntity[]> {
+    const data = await this.client.request(getEntitiesQuery, vars);
+    const { queryEntity } = data ?? {};
+
+    const entities: IEntity[] = queryEntity.map((entity: IEntity) =>
+      DgraphGqlDataSource.mapEntity(entity)
+    );
+
+    return entities;
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async postQuery(query: string): Promise<any> {
     const response = await this.post(

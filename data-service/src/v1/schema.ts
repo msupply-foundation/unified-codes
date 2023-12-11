@@ -88,6 +88,10 @@ export class EntitySearchInput implements Omit<IEntitySearch, 'type'> {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field(type => String, { nullable: true })
+  search: string;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @Field(type => String, { nullable: true })
   match: FilterMatch;
 }
 

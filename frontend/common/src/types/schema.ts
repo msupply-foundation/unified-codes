@@ -42,6 +42,7 @@ export type EntitySearchInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   match?: InputMaybe<Scalars['String']['input']>;
   orderBy?: InputMaybe<EntitySortInput>;
+  search?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -101,6 +102,7 @@ export type PropertyType = {
 export type Query = {
   __typename: 'Query';
   entities: EntityCollectionType;
+  entitiesGQL: EntityCollectionType;
   entity?: Maybe<EntityType>;
   entity2?: Maybe<EntityType>;
   interactions: DrugInteractionsType;
@@ -108,6 +110,13 @@ export type Query = {
 
 
 export type QueryEntitiesArgs = {
+  filter: EntitySearchInput;
+  first: Scalars['Int']['input'];
+  offset: Scalars['Int']['input'];
+};
+
+
+export type QueryEntitiesGqlArgs = {
   filter: EntitySearchInput;
   first: Scalars['Int']['input'];
   offset: Scalars['Int']['input'];

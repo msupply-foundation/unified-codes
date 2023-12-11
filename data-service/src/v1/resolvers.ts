@@ -147,6 +147,38 @@ export class EntityResolver {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @Query(returns => EntityCollectionType)
+  async entitiesGQL(
+    @Args() args: GetEntitiesArgs,
+    @Ctx() ctx: IApolloServiceContext
+  ): Promise<IEntityCollection> {
+    const { filter, first, offset } = args;
+    const { token, authenticator, authoriser, dataSources } = ctx;
+
+    const dgraphGql: DgraphGqlDataSource =
+      dataSources.dgraphGql as DgraphGqlDataSource;
+
+    // TODO: add authorisation logic for any protected entities.
+    if (token) {
+      const user: User = await authenticator.authenticate(token);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const isAuthorised = await authoriser.authorise(user);
+    }
+
+    // TODO: handle all the other filter options in the API
+    const results: IEntityCollection = {
+      data: await dgraphGql.getEntities({
+        search: filter.search,
+        first: first,
+        offset: offset,
+      }),
+      totalLength: 0, // Actually need to get this from the query
+    };
+
+    return results;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Query(returns => DrugInteractionsType)
   async interactions(
     @Args() args: GetInteractionsArgs,
