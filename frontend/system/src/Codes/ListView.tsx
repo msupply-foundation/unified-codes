@@ -10,39 +10,50 @@ import {
   SearchToolbar,
 } from '@common/ui';
 import { useQueryParamsState } from '@common/hooks';
+import { useEntities } from '../api';
 
 export const ListView = () => {
-  const t = useTranslation('system');
+  const t = useTranslation();
   const { filter, queryParams, updatePaginationQuery, updateSortQuery } =
-    useQueryParamsState();
+    useQueryParamsState({
+      initialSort: { key: 'description', dir: 'asc' },
+    });
+
+  const { sortBy, page, offset, first } = queryParams;
 
   const columns = useColumns(
     [
-      { key: 'code', label: 'label.code' },
-      { key: 'description', label: 'label.description' },
-      { key: 'type', label: 'label.type' },
+      { key: 'code', label: 'label.code', width: 200, sortable: false },
+      { key: 'description', label: 'label.description', width: 1000 },
+      { key: 'type', label: 'label.type', sortable: false },
     ],
-    { sortBy: queryParams.sortBy, onChangeSortBy: updateSortQuery },
-    [queryParams.sortBy, updateSortQuery]
+    { sortBy: sortBy, onChangeSortBy: updateSortQuery },
+    [sortBy, updateSortQuery]
   );
 
-  // const { data, isError, isLoading } = useRecipients(queryParams);
-  // const recipients = data?.nodes ?? [];
+  const searchFilter = filter.filterBy?.['search'];
+  const search = typeof searchFilter === 'string' ? searchFilter : '';
 
-  const codes: {
-    code: string;
-    description: string;
-    type: string;
-    id: string;
-  }[] = [
-    { code: 'helo', description: 'helo', type: 'helo', id: 'helo' },
-    { code: 'helo', description: 'shelo', type: 'shelo', id: 'shelo' },
-  ];
+  const { data, isError, isLoading } = useEntities({
+    filter: {
+      categories: ['drug'],
+      description: search,
+      orderBy: {
+        field: sortBy.key,
+        descending: sortBy.isDesc,
+      },
+    },
+    first,
+    offset,
+  });
+
+  const entities = data?.data ?? [];
 
   const pagination = {
-    page: queryParams.page,
-    offset: queryParams.offset,
-    first: queryParams.first,
+    page,
+    offset,
+    first,
+    total: data?.totalLength,
   };
 
   return (
@@ -54,13 +65,11 @@ export const ListView = () => {
 
         <DataTable
           columns={columns}
-          data={codes}
-          isError={false}
-          isLoading={false}
-          // noDataElement={<NothingHere body={t('error.no-recipients')} />}
-          noDataElement={<NothingHere body={'nada'} />}
-          // pagination={{ ...pagination, total: data?.totalCount }}
-          pagination={{ ...pagination, total: 10 }}
+          data={entities}
+          isError={isError}
+          isLoading={isLoading}
+          noDataElement={<NothingHere body={t('error.no-data')} />}
+          pagination={pagination}
           onChangePage={updatePaginationQuery}
         />
       </TableProvider>

@@ -1,0 +1,15 @@
+fragment EntityRow on EntityType {
+  id: uid
+  type
+  description
+  code
+}
+
+query entities($filter: EntitySearchInput!, $first: Int!, $offset: Int!) {
+  entities(filter: $filter, first: $first, offset: $offset) {
+    totalLength
+    data {
+      ...EntityRow
+    }
+  }
+}
