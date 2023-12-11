@@ -8,6 +8,8 @@
   "error.name-invalid-characters": "Name must not contain any special characters or spaces, and must start with a letter",
   "error.username-too-short": "Username must be at least 3 characters long",
   "error.name-too-short": "Name must be at least 3 characters long",
+  "label.consumables": "Consumables",
+  "label.drugs": "Drugs",
   "label.error": "Error",
   "not-logged-in": "Not logged in",
   "password-reset.initiate": "Initiate Password Reset"

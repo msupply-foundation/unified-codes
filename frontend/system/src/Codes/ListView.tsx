@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from '@common/intl';
 import {
   AppBarContentPortal,
@@ -8,12 +8,14 @@ import {
   createTableStore,
   useColumns,
   SearchToolbar,
+  ToggleButton,
 } from '@common/ui';
 import { useQueryParamsState } from '@common/hooks';
 import { useEntities } from '../api';
+import { ToggleButtonGroup } from '@mui/material';
 
 export const ListView = () => {
-  const t = useTranslation();
+  const t = useTranslation('system');
   const { filter, queryParams, updatePaginationQuery, updateSortQuery } =
     useQueryParamsState({
       initialSort: { key: 'description', dir: 'asc' },
@@ -25,18 +27,20 @@ export const ListView = () => {
     [
       { key: 'code', label: 'label.code', width: 200, sortable: false },
       { key: 'description', label: 'label.description', width: 1000 },
-      { key: 'type', label: 'label.type', sortable: false },
+      { key: 'type', label: 'label.type', sortable: false, width: 200 },
     ],
     { sortBy: sortBy, onChangeSortBy: updateSortQuery },
     [sortBy, updateSortQuery]
   );
+
+  const [categories, setCategories] = useState<string[]>(['drug']);
 
   const searchFilter = filter.filterBy?.['search'];
   const search = typeof searchFilter === 'string' ? searchFilter : '';
 
   const { data, isError, isLoading } = useEntities({
     filter: {
-      categories: ['drug'],
+      categories,
       description: search,
       orderBy: {
         field: sortBy.key,
@@ -46,6 +50,14 @@ export const ListView = () => {
     first,
     offset,
   });
+
+  const updateCategories = (category: string) => {
+    if (categories.includes(category)) {
+      setCategories(categories.filter(c => c !== category));
+    } else {
+      setCategories([...categories, category]);
+    }
+  };
 
   const entities = data?.data ?? [];
 
@@ -59,8 +71,33 @@ export const ListView = () => {
   return (
     <>
       <TableProvider createStore={createTableStore}>
-        <AppBarContentPortal sx={{ paddingBottom: '16px', flex: 1 }}>
+        <AppBarContentPortal
+          sx={{
+            paddingBottom: '16px',
+            flex: 1,
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
           <SearchToolbar filter={filter} />
+          <ToggleButtonGroup>
+            <ToggleButton
+              label={t('label.drugs')}
+              value={'drug'}
+              selected={categories.includes('drug')}
+              onClick={() => {
+                updateCategories('drug');
+              }}
+            />
+            <ToggleButton
+              label={t('label.consumables')}
+              value={'consumable'}
+              selected={categories.includes('consumable')}
+              onClick={() => {
+                updateCategories('consumable');
+              }}
+            />
+          </ToggleButtonGroup>
         </AppBarContentPortal>
 
         <DataTable
