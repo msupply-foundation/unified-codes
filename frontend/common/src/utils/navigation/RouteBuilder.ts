@@ -20,6 +20,6 @@ export class RouteBuilder {
   }
 
   build(): string {
-    return `/${this.parts.join('/')}`;
+    return `/${this.parts.filter(part => part !== '').join('/')}`;
   }
 }
