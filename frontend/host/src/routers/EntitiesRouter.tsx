@@ -2,17 +2,18 @@ import React, { FC } from 'react';
 import { RouteBuilder, Navigate, useMatch } from '@uc-frontend/common';
 import { AppRoute } from '@uc-frontend/config';
 
-const CodesService = React.lazy(
-  () => import('@uc-frontend/system/src/Codes/Service')
+const EntitiesService = React.lazy(
+  () => import('@uc-frontend/system/src/Entities/Service')
 );
 
 const fullPath = RouteBuilder.create(AppRoute.Home).addWildCard().build();
 
-export const CodesRouter: FC = () => {
-  const isCodesPath = useMatch(fullPath);
+export const EntitiesRouter: FC = () => {
+  // TODO: not sure if we're going to end up wanting this on a /entities path or something?
+  const isEntitiesPath = useMatch(fullPath);
 
-  if (isCodesPath) {
-    return <CodesService />;
+  if (isEntitiesPath) {
+    return <EntitiesService />;
   }
 
   const notFoundRoute = RouteBuilder.create(AppRoute.PageNotFound).build();

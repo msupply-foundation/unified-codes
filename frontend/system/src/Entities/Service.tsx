@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from '@uc-frontend/common';
 import { ListView } from './ListView';
 
-const CodesService = () => {
+const EntitiesService = () => {
   return (
     <Routes>
       <Route path="/" element={<ListView />} />
@@ -10,4 +10,4 @@ const CodesService = () => {
   );
 };
 
-export default CodesService;
+export default EntitiesService;

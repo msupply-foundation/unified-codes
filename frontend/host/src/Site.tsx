@@ -18,7 +18,7 @@ import { CommandK } from './CommandK';
 import { AppRoute } from '@uc-frontend/config';
 import { Settings } from './Admin/Settings';
 import { QueryErrorHandler } from './QueryErrorHandler';
-import { CodesRouter } from './routers/CodesRouter';
+import { EntitiesRouter } from './routers/EntitiesRouter';
 
 export const Site: FC = () => {
   const location = useLocation();
@@ -41,7 +41,7 @@ export const Site: FC = () => {
             <Routes>
               <Route
                 path={RouteBuilder.create(AppRoute.Home).addWildCard().build()}
-                element={<CodesRouter />}
+                element={<EntitiesRouter />}
               />
               <Route
                 path={RouteBuilder.create(AppRoute.Admin).addWildCard().build()}
