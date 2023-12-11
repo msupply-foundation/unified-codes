@@ -40,12 +40,12 @@ export const Site: FC = () => {
           <Box display="flex" flex={1} overflow="auto">
             <Routes>
               <Route
-                path={RouteBuilder.create(AppRoute.Home).addWildCard().build()}
-                element={<EntitiesRouter />}
-              />
-              <Route
                 path={RouteBuilder.create(AppRoute.Admin).addWildCard().build()}
                 element={<Settings />}
+              />
+              <Route
+                path={RouteBuilder.create(AppRoute.Home).addWildCard().build()}
+                element={<EntitiesRouter />}
               />
               <Route path="*" element={<NotFound />} />
             </Routes>
