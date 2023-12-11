@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from '@common/intl';
 import {
   AppBarContentPortal,
@@ -10,19 +10,16 @@ import {
   SearchToolbar,
   ToggleButton,
 } from '@common/ui';
-import { useBreadcrumbs, useQueryParamsState } from '@common/hooks';
+import { useQueryParamsState } from '@common/hooks';
 import { EntityRowFragment, useEntities } from '../api';
 import { ToggleButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router';
+import { RouteBuilder } from '@common/utils';
+import { AppRoute } from 'frontend/config/src';
 
 export const ListView = () => {
   const t = useTranslation('system');
   const navigate = useNavigate();
-  const { setSuffix } = useBreadcrumbs();
-
-  useEffect(() => {
-    setSuffix('Browse');
-  }, []);
 
   const { filter, queryParams, updatePaginationQuery, updateSortQuery } =
     useQueryParamsState({
@@ -116,7 +113,11 @@ export const ListView = () => {
           noDataElement={<NothingHere body={t('error.no-data')} />}
           pagination={pagination}
           onChangePage={updatePaginationQuery}
-          onRowClick={inp => navigate(`/details/${inp.code}`)}
+          onRowClick={e =>
+            navigate(
+              RouteBuilder.create(AppRoute.Browse).addPart(e.code).build()
+            )
+          }
         />
       </TableProvider>
     </>

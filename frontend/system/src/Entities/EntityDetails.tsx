@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from '@common/intl';
-import {
-  AppBarContentPortal,
-  TableProvider,
-  createTableStore,
-} from '@common/ui';
+import { AppBarContentPortal } from '@common/ui';
 import { useBreadcrumbs } from '@common/hooks';
 import { useEntity } from '../api';
 import { Box, Typography } from '@mui/material';
@@ -16,25 +12,23 @@ export const EntityDetails = () => {
   const { code } = useParams();
   const { setSuffix } = useBreadcrumbs();
 
-  useEffect(() => {
-    setSuffix('Browse');
-  }, []);
-
   const { data: entity, isError, isLoading } = useEntity(code || '');
+
+  useEffect(() => {
+    if (entity?.description) setSuffix(entity.description);
+  }, [entity?.description]);
 
   return (
     <>
-      <TableProvider createStore={createTableStore}>
-        <AppBarContentPortal
-          sx={{
-            paddingBottom: '16px',
-            flex: 1,
-            display: 'flex',
-            justifyContent: 'space-between',
-          }}
-        ></AppBarContentPortal>
-        <Entity entity={entity} />
-      </TableProvider>
+      <AppBarContentPortal
+        sx={{
+          paddingBottom: '16px',
+          flex: 1,
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      ></AppBarContentPortal>
+      <Entity entity={entity} />
     </>
   );
 };

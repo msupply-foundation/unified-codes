@@ -44,7 +44,9 @@ export const Site: FC = () => {
                 element={<Settings />}
               />
               <Route
-                path={RouteBuilder.create(AppRoute.Home).addWildCard().build()}
+                path={RouteBuilder.create(AppRoute.Browse)
+                  .addWildCard()
+                  .build()}
                 element={<EntitiesRouter />}
               />
               <Route path="*" element={<NotFound />} />

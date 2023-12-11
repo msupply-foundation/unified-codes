@@ -7,7 +7,7 @@ const EntitiesService = () => {
   return (
     <Routes>
       <Route path="/" element={<ListView />} />
-      <Route path="/details/:code" element={<EntityDetails />} />
+      <Route path="/:code" element={<EntityDetails />} />
     </Routes>
   );
 };
