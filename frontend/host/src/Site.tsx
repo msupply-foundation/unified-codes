@@ -12,6 +12,7 @@ import {
   useHostContext,
   useGetPageTitle,
   DetailPanel,
+  Navigate,
 } from '@uc-frontend/common';
 import { AppBar, Footer, NotFound } from './components';
 import { CommandK } from './CommandK';
@@ -48,6 +49,15 @@ export const Site: FC = () => {
                   .addWildCard()
                   .build()}
                 element={<EntitiesRouter />}
+              />
+              <Route
+                path={RouteBuilder.create(AppRoute.Home).build()}
+                element={
+                  <Navigate
+                    to={RouteBuilder.create(AppRoute.Browse).build()}
+                    replace={true}
+                  />
+                }
               />
               <Route path="*" element={<NotFound />} />
             </Routes>
