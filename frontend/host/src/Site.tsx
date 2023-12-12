@@ -19,6 +19,7 @@ import { AppRoute } from '@uc-frontend/config';
 import { Settings } from './Settings/Settings';
 import { QueryErrorHandler } from './QueryErrorHandler';
 import { EntitiesRouter } from './routers/EntitiesRouter';
+import { AdminRouter } from './routers/AdminRouter';
 
 export const Site: FC = () => {
   const location = useLocation();
@@ -42,6 +43,10 @@ export const Site: FC = () => {
               <Route
                 path={RouteBuilder.create(AppRoute.Home).addWildCard().build()}
                 element={<EntitiesRouter />}
+              />
+              <Route
+                path={RouteBuilder.create(AppRoute.Admin).addWildCard().build()}
+                element={<AdminRouter />}
               />
               <Route
                 path={RouteBuilder.create(AppRoute.Settings)
