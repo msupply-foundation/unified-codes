@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from '@common/intl';
+import { LocaleKey, useTranslation } from '@common/intl';
 import {
   AppBarContentPortal,
   ChevronDownIcon,
@@ -9,7 +9,7 @@ import {
 } from '@common/ui';
 import { useBreadcrumbs, useNotification } from '@common/hooks';
 import { useEntity } from '../api';
-import { FormControlLabel, Typography } from '@mui/material';
+import { FormControlLabel, Link, Typography } from '@mui/material';
 import { TreeItem, TreeView } from '@mui/lab';
 import { useParams } from 'react-router-dom';
 import { EntityDetailsFragment } from '../api/operations.generated';
@@ -137,11 +137,33 @@ const EntityTreeItem = ({
             <TreeItem
               key={p.value}
               nodeId={entity.code + p.type}
-              label={`${p.type}: ${p.value}`}
+              label={
+                <Typography>
+                  {t(`property-${p.type}` as LocaleKey)}:{' '}
+                  {PROPERTY_URL[p.type] ? (
+                    <Link
+                      href={PROPERTY_URL[p.type]!(p.value)}
+                      target="_blank"
+                      sx={{ color: '#000' }}
+                    >
+                      {p.value}
+                    </Link>
+                  ) : (
+                    p.value
+                  )}
+                </Typography>
+              }
             />
           ))}
         </TreeItem>
       )}
     </TreeItem>
   );
+};
+
+export const PROPERTY_URL: { [key: string]: (code: string) => string } = {
+  ['code_rxnav']: code =>
+    `https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=${code}`,
+  ['code_nzulm']: code =>
+    `https://search.nzulm.org.nz/search/product?table=MP&id=${code}`,
 };
