@@ -13,11 +13,12 @@ import {
   useGetPageTitle,
   DetailPanel,
 } from '@uc-frontend/common';
-import { AppDrawer, AppBar, Footer, NotFound } from './components';
+import { AppBar, Footer, NotFound } from './components';
 import { CommandK } from './CommandK';
 import { AppRoute } from '@uc-frontend/config';
 import { Settings } from './Admin/Settings';
 import { QueryErrorHandler } from './QueryErrorHandler';
+import { EntitiesRouter } from './routers/EntitiesRouter';
 
 export const Site: FC = () => {
   const location = useLocation();
@@ -32,11 +33,16 @@ export const Site: FC = () => {
     // <RequireAuthentication>
     <CommandK>
       <SnackbarProvider maxSnack={3}>
-        <AppDrawer />
+        {/* TODO: only show AppDrawer when logged in as an Admin */}
+        {/* <AppDrawer /> */}
         <Box flex={1} display="flex" flexDirection="column" overflow="hidden">
           <AppBar />
-          <Box display="flex" flex={1} overflow="auto">
+          <Box display="flex" flex={1} overflow="auto" paddingX={'24px'}>
             <Routes>
+              <Route
+                path={RouteBuilder.create(AppRoute.Home).addWildCard().build()}
+                element={<EntitiesRouter />}
+              />
               <Route
                 path={RouteBuilder.create(AppRoute.Admin).addWildCard().build()}
                 element={<Settings />}
