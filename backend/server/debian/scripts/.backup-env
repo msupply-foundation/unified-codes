@@ -1,0 +1,11 @@
+# This is an example env file for backups. You'll need to set this with real variables for production
+
+# It is expected in /home/ubuntu
+
+# Note, even though we have AWS Access Keys, This works for other s3 compatible services like Backblaze B2
+
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+export RESTIC_PASSWORD=
+export RESTIC_REPOSITORY=s3:https://s3bucketpath
+export CRONITOR_URL='https://cronitor.link/p/YOURLINKHERE'

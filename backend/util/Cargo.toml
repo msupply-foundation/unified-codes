@@ -1,0 +1,15 @@
+[package]
+name = "util"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+path = "src/lib.rs"
+doctest = false
+
+[dependencies]
+sha2 = "0.10"
+uuid = { version = "0.8", features = ["v4"] }
+chrono = {version = "0.4"}
+lazy_static = "1.4"
+regex = "1"

@@ -1,0 +1,17 @@
+# To use custom server settings for a local or a production environment create a copy
+# of this example file and name it local.yaml
+server:
+  host: 127.0.0.1
+  app_url: 'http://localhost:3007'
+dgraph:
+  host: 'localhost'
+  port: 8080
+# logging:
+##   one of: All | Console | File
+#   mode: Console
+##   one of:  Error | Warn | Info (default) | Debug | Trace
+#   level: Info
+#   directory: log
+#   filename: notify.log
+#   max_file_count: 10
+#   max_file_size: 1

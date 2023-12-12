@@ -1,0 +1,13 @@
+/var/log/backups.log {
+	daily
+	missingok
+	rotate 7
+	compress
+}
+
+/var/log/webhook/*.log {
+	daily
+	missingok
+	rotate 7
+	compress
+}

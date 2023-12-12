@@ -1,0 +1,3 @@
+-- If a new DB with no users, create a new user 'admin' with password 'pass'
+INSERT INTO  user_account (id, username, display_name, hashed_password) SELECT '9cd8ce10-969b-45c4-871e-3a744c75ddf0', 'admin', 'SERVER_ADMIN', '$2a$12$4VJT/b47P/HtbNcOmC.k8.iyvyrC9v0XDv23xhM.HNyqoDAzeKK8a' WHERE (SELECT COUNT(*) FROM user_account) = 0;
+INSERT INTO  user_permission (id, user_id, permission) SELECT 'f72d0d87-5886-40d4-8382-3a744c75ddf0', id, 'SERVER_ADMIN' FROM user_account WHERE username = 'admin' AND id not in (SELECT user_id FROM user_permission);

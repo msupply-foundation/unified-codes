@@ -1,0 +1,23 @@
+[package]
+name = "datasource"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+doctest = false
+
+[dependencies]
+serde_json = {version="1.0.66"}
+serde = {version = "1.0.126", features = ["derive"]}
+tokio = {version = "1", features = ["full"]}
+reqwest = {version = "0.11", features = ["json", "blocking"]}
+graphql_client = {version = "0.13", features = ["reqwest-blocking"]}
+gql_client = "1.0.7"
+cynic = { version = "3", features = ["reqwest"] }
+
+[build-dependencies]
+cynic-codegen = { version = "3" }
+
+[features]
+default = ["datasource-tests"]
+datasource-tests = []

@@ -1,0 +1,3 @@
+# Create working directory
+mkdir -p /opt/notify/
+chown notify: /opt/notify

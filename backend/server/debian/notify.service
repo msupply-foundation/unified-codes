@@ -1,0 +1,14 @@
+[Unit]
+AssertPathExists=/opt/notify/notify_server
+
+[Service]
+WorkingDirectory=/opt/notify/
+ExecStart=/opt/notify/notify_server
+User=notify
+Restart=always
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+Alias=notify
+WantedBy=default.target

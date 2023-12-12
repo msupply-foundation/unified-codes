@@ -1,0 +1,63 @@
+[package]
+name = "server"
+description = "Notify"
+license = "AFFERO GPL-3.0"
+version = "0.1.0"
+edition = "2018"
+default-run = "notify_server"
+build = "src/set_icon.rs"
+
+[lib]
+path = "src/lib.rs"
+doctest = false
+
+[[bin]]
+path = "src/main.rs"
+name = "notify_server"
+
+[package.metadata.deb]
+name = "notify-server"
+copyright = "2023, mSupply Foundation"
+maintainer = "mSupply Foundation <support@msupply.org.nz>"
+depends = "$auto, systemd"
+extended-description = "Notify - A notification server from mSupply Foundation"
+section = "admin"
+priority = "optional"
+assets = [
+    ["target/release/notify_server", "/opt/notify/notify_server", "755"],
+    ["debian/notify.service", "/lib/systemd/system/notify.service", "644"],
+    ["../configuration/base.yaml", "/opt/notify/configuration/", "755"],
+    ["../configuration/example.yaml", "/opt/notify/configuration/", "755"],
+    ["../templates/**/*.html", "/opt/notify/templates/", "755"]
+]
+maintainer-scripts = "debian/scripts"
+
+[dependencies]
+graphql = { path = "../graphql" }
+graphql_core = { path = "../graphql/core" }
+graphql_types = { path = "../graphql/types" }
+datasource = {path = "../datasource"}
+repository = { path = "../repository" }
+service = { path = "../service" }
+util = { path = "../util" }
+
+actix-cors = "0.6.1"
+actix-web = { version= "4.0.1" } 
+actix-http ="3.3.1"
+actix-multipart = "0.4"
+actix-files = "0.6.0"
+config = "0.13"
+log = "0.4.14"
+serde = "1.0.137"
+tokio = { version = "1.29", features = ["macros" ] }
+rust-embed = "6.4.2"
+mime_guess = "2.0.4"
+futures-util = "0.3"
+simple-log = { version = "1.6" }
+sanitize-filename = "0.4"
+
+
+[dev-dependencies]
+
+[target.'cfg(windows)'.build-dependencies]
+winres = "0.1"

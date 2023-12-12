@@ -1,0 +1,7029 @@
+"""
+
+"""
+input DoseStrengthOrder {
+  """
+
+  """
+  asc: DoseStrengthOrderable
+  """
+
+  """
+  desc: DoseStrengthOrderable
+  """
+
+  """
+  then: DoseStrengthOrder
+}
+
+"""
+
+"""
+input UpdateFormQualifierInput {
+  """
+
+  """
+  filter: FormQualifierFilter!
+  """
+
+  """
+  set: FormQualifierPatch
+  """
+
+  """
+  remove: FormQualifierPatch
+}
+
+"""
+
+"""
+type Category implements Entity {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  children(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  parents(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  propertiesAggregate(
+    """
+
+    """
+    filter: PropertyFilter
+  ): PropertyAggregateResult
+  """
+
+  """
+  childrenAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  parentsAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+}
+
+"""
+
+"""
+type Addcode_nzulmPayload {
+  """
+
+  """
+  code_nzulm(
+    """
+
+    """
+    filter: code_nzulmFilter
+    """
+
+    """
+    order: code_nzulmOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_nzulm]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type DeleteFormPayload {
+  """
+
+  """
+  form(
+    """
+
+    """
+    filter: FormFilter
+    """
+
+    """
+    order: FormOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Form]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type FormAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  codeMin: String
+  """
+
+  """
+  codeMax: String
+  """
+
+  """
+  descriptionMin: String
+  """
+
+  """
+  descriptionMax: String
+}
+
+"""
+
+"""
+input who_emlOrder {
+  """
+
+  """
+  asc: who_emlOrderable
+  """
+
+  """
+  desc: who_emlOrderable
+  """
+
+  """
+  then: who_emlOrder
+}
+
+"""
+
+"""
+enum who_emlOrderable {
+  """
+
+  """
+  value
+}
+
+"""
+
+"""
+enum RouteHasFilter {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+  """
+
+  """
+  properties
+  """
+
+  """
+  children
+  """
+
+  """
+  parents
+}
+
+"""
+
+"""
+input FormFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  code: StringExactFilter_StringFullTextFilter
+  """
+
+  """
+  description: StringExactFilter_StringTermFilter_StringRegExpFilter
+  """
+
+  """
+  has: [FormHasFilter]
+  """
+
+  """
+  and: [FormFilter]
+  """
+
+  """
+  or: [FormFilter]
+  """
+
+  """
+  not: FormFilter
+}
+
+"""
+
+"""
+input Updatecode_rxnavInput {
+  """
+
+  """
+  filter: code_rxnavFilter!
+  """
+
+  """
+  set: code_rxnavPatch
+  """
+
+  """
+  remove: code_rxnavPatch
+}
+
+"""
+
+"""
+interface Property {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+type Addwho_emlPayload {
+  """
+
+  """
+  who_eml(
+    """
+
+    """
+    filter: who_emlFilter
+    """
+
+    """
+    order: who_emlOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [who_eml]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+enum CategoryHasFilter {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+  """
+
+  """
+  properties
+  """
+
+  """
+  children
+  """
+
+  """
+  parents
+}
+
+"""
+
+"""
+input AddRouteInput {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input EntityPatch {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input PropertyOrder {
+  """
+
+  """
+  asc: PropertyOrderable
+  """
+
+  """
+  desc: PropertyOrderable
+  """
+
+  """
+  then: PropertyOrder
+}
+
+"""
+
+"""
+input UpdateProductInput {
+  """
+
+  """
+  filter: ProductFilter!
+  """
+
+  """
+  set: ProductPatch
+  """
+
+  """
+  remove: ProductPatch
+}
+
+"""
+
+"""
+input code_nzulmFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  has: [code_nzulmHasFilter]
+  """
+
+  """
+  and: [code_nzulmFilter]
+  """
+
+  """
+  or: [code_nzulmFilter]
+  """
+
+  """
+  not: code_nzulmFilter
+}
+
+"""
+
+"""
+type Unit implements Entity {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  children(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  parents(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  propertiesAggregate(
+    """
+
+    """
+    filter: PropertyFilter
+  ): PropertyAggregateResult
+  """
+
+  """
+  childrenAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  parentsAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+}
+
+"""
+
+"""
+enum FormQualifierHasFilter {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+  """
+
+  """
+  properties
+  """
+
+  """
+  children
+  """
+
+  """
+  parents
+}
+
+"""
+
+"""
+input ContainsFilter {
+  """
+
+  """
+  point: PointRef
+  """
+
+  """
+  polygon: PolygonRef
+}
+
+"""
+
+"""
+input code_nzulmPatch {
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+type Product implements Entity {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  children(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  parents(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  combines(
+    """
+
+    """
+    filter: ProductFilter
+    """
+
+    """
+    order: ProductOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Product]
+  """
+
+  """
+  propertiesAggregate(
+    """
+
+    """
+    filter: PropertyFilter
+  ): PropertyAggregateResult
+  """
+
+  """
+  childrenAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  parentsAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  combinesAggregate(
+    """
+
+    """
+    filter: ProductFilter
+  ): ProductAggregateResult
+}
+
+"""
+The DateTime scalar type represents date and time as a string in RFC3339 format.
+For example: "1985-04-12T23:20:50.52Z" represents 20 mins 50.52 secs after the 23rd hour of Apr 12th 1985 in UTC.
+"""
+scalar DateTime
+
+"""
+
+"""
+input GenerateMutationParams {
+  """
+
+  """
+  add: Boolean
+  """
+
+  """
+  update: Boolean
+  """
+
+  """
+  delete: Boolean
+}
+
+"""
+
+"""
+input FormPatch {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input PackImmediateOrder {
+  """
+
+  """
+  asc: PackImmediateOrderable
+  """
+
+  """
+  desc: PackImmediateOrderable
+  """
+
+  """
+  then: PackImmediateOrder
+}
+
+"""
+
+"""
+input UpdateDoseStrengthInput {
+  """
+
+  """
+  filter: DoseStrengthFilter!
+  """
+
+  """
+  set: DoseStrengthPatch
+  """
+
+  """
+  remove: DoseStrengthPatch
+}
+
+"""
+
+"""
+input UpdateRouteInput {
+  """
+
+  """
+  filter: RouteFilter!
+  """
+
+  """
+  set: RoutePatch
+  """
+
+  """
+  remove: RoutePatch
+}
+
+"""
+
+"""
+input IntRange {
+  """
+
+  """
+  min: Int!
+  """
+
+  """
+  max: Int!
+}
+
+"""
+
+"""
+input FloatFilter {
+  """
+
+  """
+  eq: Float
+  """
+
+  """
+  in: [Float]
+  """
+
+  """
+  le: Float
+  """
+
+  """
+  lt: Float
+  """
+
+  """
+  ge: Float
+  """
+
+  """
+  gt: Float
+  """
+
+  """
+  between: FloatRange
+}
+
+"""
+
+"""
+type UpdateRoutePayload {
+  """
+
+  """
+  route(
+    """
+
+    """
+    filter: RouteFilter
+    """
+
+    """
+    order: RouteOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Route]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+enum PackSizeOrderable {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+}
+
+"""
+
+"""
+input PackSizeFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  code: StringExactFilter_StringFullTextFilter
+  """
+
+  """
+  description: StringExactFilter_StringTermFilter_StringRegExpFilter
+  """
+
+  """
+  has: [PackSizeHasFilter]
+  """
+
+  """
+  and: [PackSizeFilter]
+  """
+
+  """
+  or: [PackSizeFilter]
+  """
+
+  """
+  not: PackSizeFilter
+}
+
+"""
+
+"""
+input Updatecode_unspscInput {
+  """
+
+  """
+  filter: code_unspscFilter!
+  """
+
+  """
+  set: code_unspscPatch
+  """
+
+  """
+  remove: code_unspscPatch
+}
+
+"""
+
+"""
+type FormQualifier implements Entity {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  children(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  parents(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  propertiesAggregate(
+    """
+
+    """
+    filter: PropertyFilter
+  ): PropertyAggregateResult
+  """
+
+  """
+  childrenAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  parentsAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+}
+
+"""
+
+"""
+input CategoryPatch {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input FormRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input UnitRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+type DeleteRoutePayload {
+  """
+
+  """
+  route(
+    """
+
+    """
+    filter: RouteFilter
+    """
+
+    """
+    order: RouteOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Route]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input FormQualifierOrder {
+  """
+
+  """
+  asc: FormQualifierOrderable
+  """
+
+  """
+  desc: FormQualifierOrderable
+  """
+
+  """
+  then: FormQualifierOrder
+}
+
+"""
+
+"""
+input PackSizePatch {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+type Deletewho_emlPayload {
+  """
+
+  """
+  who_eml(
+    """
+
+    """
+    filter: who_emlFilter
+    """
+
+    """
+    order: who_emlOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [who_eml]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type DoseStrengthAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  codeMin: String
+  """
+
+  """
+  codeMax: String
+  """
+
+  """
+  descriptionMin: String
+  """
+
+  """
+  descriptionMax: String
+}
+
+"""
+
+"""
+type EntityAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  codeMin: String
+  """
+
+  """
+  codeMax: String
+  """
+
+  """
+  descriptionMin: String
+  """
+
+  """
+  descriptionMax: String
+}
+
+"""
+
+"""
+input AddCategoryInput {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input FormQualifierPatch {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input code_rxnavPatch {
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+type DeletePackImmediatePayload {
+  """
+
+  """
+  packImmediate(
+    """
+
+    """
+    filter: PackImmediateFilter
+    """
+
+    """
+    order: PackImmediateOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [PackImmediate]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type UpdateCategoryPayload {
+  """
+
+  """
+  category(
+    """
+
+    """
+    filter: CategoryFilter
+    """
+
+    """
+    order: CategoryOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Category]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+enum HTTPMethod {
+  """
+
+  """
+  GET
+  """
+
+  """
+  POST
+  """
+
+  """
+  PUT
+  """
+
+  """
+  PATCH
+  """
+
+  """
+  DELETE
+}
+
+"""
+
+"""
+type UnitAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  codeMin: String
+  """
+
+  """
+  codeMax: String
+  """
+
+  """
+  descriptionMin: String
+  """
+
+  """
+  descriptionMax: String
+}
+
+"""
+
+"""
+enum PackImmediateHasFilter {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+  """
+
+  """
+  properties
+  """
+
+  """
+  children
+  """
+
+  """
+  parents
+}
+
+"""
+
+"""
+input PackImmediateRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input UpdateFormInput {
+  """
+
+  """
+  filter: FormFilter!
+  """
+
+  """
+  set: FormPatch
+  """
+
+  """
+  remove: FormPatch
+}
+
+"""
+
+"""
+input Int64Range {
+  """
+
+  """
+  min: Int64!
+  """
+
+  """
+  max: Int64!
+}
+
+"""
+
+"""
+input WithinFilter {
+  """
+
+  """
+  polygon: PolygonRef!
+}
+
+"""
+
+"""
+type UpdatePackImmediatePayload {
+  """
+
+  """
+  packImmediate(
+    """
+
+    """
+    filter: PackImmediateFilter
+    """
+
+    """
+    order: PackImmediateOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [PackImmediate]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input AddPackImmediateInput {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input UnitPatch {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+The Int64 scalar type represents a signed 64‐bit numeric non‐fractional value.
+Int64 can represent values in range [-(2^63),(2^63 - 1)].
+"""
+scalar Int64
+
+"""
+
+"""
+input NearFilter {
+  """
+
+  """
+  distance: Float!
+  """
+
+  """
+  coordinate: PointRef!
+}
+
+"""
+
+"""
+enum FormHasFilter {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+  """
+
+  """
+  properties
+  """
+
+  """
+  children
+  """
+
+  """
+  parents
+}
+
+"""
+
+"""
+input IntersectsFilter {
+  """
+
+  """
+  polygon: PolygonRef
+  """
+
+  """
+  multiPolygon: MultiPolygonRef
+}
+
+"""
+
+"""
+type AddFormQualifierPayload {
+  """
+
+  """
+  formQualifier(
+    """
+
+    """
+    filter: FormQualifierFilter
+    """
+
+    """
+    order: FormQualifierOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [FormQualifier]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type PropertyAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  valueMin: String
+  """
+
+  """
+  valueMax: String
+}
+
+"""
+
+"""
+type Updatecode_unspscPayload {
+  """
+
+  """
+  code_unspsc(
+    """
+
+    """
+    filter: code_unspscFilter
+    """
+
+    """
+    order: code_unspscOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_unspsc]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type Query {
+  """
+
+  """
+  getEntity(
+    """
+
+    """
+    id: ID!
+  ): Entity
+  """
+
+  """
+  queryEntity(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  aggregateEntity(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  getCategory(
+    """
+
+    """
+    id: ID!
+  ): Category
+  """
+
+  """
+  queryCategory(
+    """
+
+    """
+    filter: CategoryFilter
+    """
+
+    """
+    order: CategoryOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Category]
+  """
+
+  """
+  aggregateCategory(
+    """
+
+    """
+    filter: CategoryFilter
+  ): CategoryAggregateResult
+  """
+
+  """
+  getRoute(
+    """
+
+    """
+    id: ID!
+  ): Route
+  """
+
+  """
+  queryRoute(
+    """
+
+    """
+    filter: RouteFilter
+    """
+
+    """
+    order: RouteOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Route]
+  """
+
+  """
+  aggregateRoute(
+    """
+
+    """
+    filter: RouteFilter
+  ): RouteAggregateResult
+  """
+
+  """
+  getForm(
+    """
+
+    """
+    id: ID!
+  ): Form
+  """
+
+  """
+  queryForm(
+    """
+
+    """
+    filter: FormFilter
+    """
+
+    """
+    order: FormOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Form]
+  """
+
+  """
+  aggregateForm(
+    """
+
+    """
+    filter: FormFilter
+  ): FormAggregateResult
+  """
+
+  """
+  getFormQualifier(
+    """
+
+    """
+    id: ID!
+  ): FormQualifier
+  """
+
+  """
+  queryFormQualifier(
+    """
+
+    """
+    filter: FormQualifierFilter
+    """
+
+    """
+    order: FormQualifierOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [FormQualifier]
+  """
+
+  """
+  aggregateFormQualifier(
+    """
+
+    """
+    filter: FormQualifierFilter
+  ): FormQualifierAggregateResult
+  """
+
+  """
+  getDoseStrength(
+    """
+
+    """
+    id: ID!
+  ): DoseStrength
+  """
+
+  """
+  queryDoseStrength(
+    """
+
+    """
+    filter: DoseStrengthFilter
+    """
+
+    """
+    order: DoseStrengthOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [DoseStrength]
+  """
+
+  """
+  aggregateDoseStrength(
+    """
+
+    """
+    filter: DoseStrengthFilter
+  ): DoseStrengthAggregateResult
+  """
+
+  """
+  getUnit(
+    """
+
+    """
+    id: ID!
+  ): Unit
+  """
+
+  """
+  queryUnit(
+    """
+
+    """
+    filter: UnitFilter
+    """
+
+    """
+    order: UnitOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Unit]
+  """
+
+  """
+  aggregateUnit(
+    """
+
+    """
+    filter: UnitFilter
+  ): UnitAggregateResult
+  """
+
+  """
+  getPackImmediate(
+    """
+
+    """
+    id: ID!
+  ): PackImmediate
+  """
+
+  """
+  queryPackImmediate(
+    """
+
+    """
+    filter: PackImmediateFilter
+    """
+
+    """
+    order: PackImmediateOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [PackImmediate]
+  """
+
+  """
+  aggregatePackImmediate(
+    """
+
+    """
+    filter: PackImmediateFilter
+  ): PackImmediateAggregateResult
+  """
+
+  """
+  getPackSize(
+    """
+
+    """
+    id: ID!
+  ): PackSize
+  """
+
+  """
+  queryPackSize(
+    """
+
+    """
+    filter: PackSizeFilter
+    """
+
+    """
+    order: PackSizeOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [PackSize]
+  """
+
+  """
+  aggregatePackSize(
+    """
+
+    """
+    filter: PackSizeFilter
+  ): PackSizeAggregateResult
+  """
+
+  """
+  getProduct(
+    """
+
+    """
+    id: ID!
+  ): Product
+  """
+
+  """
+  queryProduct(
+    """
+
+    """
+    filter: ProductFilter
+    """
+
+    """
+    order: ProductOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Product]
+  """
+
+  """
+  aggregateProduct(
+    """
+
+    """
+    filter: ProductFilter
+  ): ProductAggregateResult
+  """
+
+  """
+  getProperty(
+    """
+
+    """
+    id: ID!
+  ): Property
+  """
+
+  """
+  queryProperty(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  aggregateProperty(
+    """
+
+    """
+    filter: PropertyFilter
+  ): PropertyAggregateResult
+  """
+
+  """
+  getwho_eml(
+    """
+
+    """
+    id: ID!
+  ): who_eml
+  """
+
+  """
+  querywho_eml(
+    """
+
+    """
+    filter: who_emlFilter
+    """
+
+    """
+    order: who_emlOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [who_eml]
+  """
+
+  """
+  aggregatewho_eml(
+    """
+
+    """
+    filter: who_emlFilter
+  ): who_emlAggregateResult
+  """
+
+  """
+  getcode_nzulm(
+    """
+
+    """
+    id: ID!
+  ): code_nzulm
+  """
+
+  """
+  querycode_nzulm(
+    """
+
+    """
+    filter: code_nzulmFilter
+    """
+
+    """
+    order: code_nzulmOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_nzulm]
+  """
+
+  """
+  aggregatecode_nzulm(
+    """
+
+    """
+    filter: code_nzulmFilter
+  ): code_nzulmAggregateResult
+  """
+
+  """
+  getcode_rxnav(
+    """
+
+    """
+    id: ID!
+  ): code_rxnav
+  """
+
+  """
+  querycode_rxnav(
+    """
+
+    """
+    filter: code_rxnavFilter
+    """
+
+    """
+    order: code_rxnavOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_rxnav]
+  """
+
+  """
+  aggregatecode_rxnav(
+    """
+
+    """
+    filter: code_rxnavFilter
+  ): code_rxnavAggregateResult
+  """
+
+  """
+  getcode_unspsc(
+    """
+
+    """
+    id: ID!
+  ): code_unspsc
+  """
+
+  """
+  querycode_unspsc(
+    """
+
+    """
+    filter: code_unspscFilter
+    """
+
+    """
+    order: code_unspscOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_unspsc]
+  """
+
+  """
+  aggregatecode_unspsc(
+    """
+
+    """
+    filter: code_unspscFilter
+  ): code_unspscAggregateResult
+}
+
+"""
+
+"""
+input PolygonGeoFilter {
+  """
+
+  """
+  near: NearFilter
+  """
+
+  """
+  within: WithinFilter
+  """
+
+  """
+  contains: ContainsFilter
+  """
+
+  """
+  intersects: IntersectsFilter
+}
+
+"""
+
+"""
+input StringHashFilter {
+  """
+
+  """
+  eq: String
+  """
+
+  """
+  in: [String]
+}
+
+"""
+
+"""
+type DeletePackSizePayload {
+  """
+
+  """
+  packSize(
+    """
+
+    """
+    filter: PackSizeFilter
+    """
+
+    """
+    order: PackSizeOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [PackSize]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input PackSizeOrder {
+  """
+
+  """
+  asc: PackSizeOrderable
+  """
+
+  """
+  desc: PackSizeOrderable
+  """
+
+  """
+  then: PackSizeOrder
+}
+
+"""
+
+"""
+input PropertyRef {
+  """
+
+  """
+  id: ID!
+}
+
+"""
+
+"""
+input code_unspscPatch {
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+input PointListRef {
+  """
+
+  """
+  points: [PointRef!]!
+}
+
+"""
+
+"""
+enum ProductOrderable {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+}
+
+"""
+
+"""
+input who_emlFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  has: [who_emlHasFilter]
+  """
+
+  """
+  and: [who_emlFilter]
+  """
+
+  """
+  or: [who_emlFilter]
+  """
+
+  """
+  not: who_emlFilter
+}
+
+"""
+
+"""
+input AddUnitInput {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+type Form implements Entity {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  children(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  parents(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  propertiesAggregate(
+    """
+
+    """
+    filter: PropertyFilter
+  ): PropertyAggregateResult
+  """
+
+  """
+  childrenAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  parentsAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+}
+
+"""
+
+"""
+input CustomHTTP {
+  """
+
+  """
+  url: String!
+  """
+
+  """
+  method: HTTPMethod!
+  """
+
+  """
+  body: String
+  """
+
+  """
+  graphql: String
+  """
+
+  """
+  mode: Mode
+  """
+
+  """
+  forwardHeaders: [String!]
+  """
+
+  """
+  secretHeaders: [String!]
+  """
+
+  """
+  introspectionHeaders: [String!]
+  """
+
+  """
+  skipIntrospection: Boolean
+}
+
+"""
+
+"""
+enum code_unspscOrderable {
+  """
+
+  """
+  value
+}
+
+"""
+
+"""
+input CategoryFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  code: StringExactFilter_StringFullTextFilter
+  """
+
+  """
+  description: StringExactFilter_StringTermFilter_StringRegExpFilter
+  """
+
+  """
+  has: [CategoryHasFilter]
+  """
+
+  """
+  and: [CategoryFilter]
+  """
+
+  """
+  or: [CategoryFilter]
+  """
+
+  """
+  not: CategoryFilter
+}
+
+"""
+
+"""
+type DeleteEntityPayload {
+  """
+
+  """
+  entity(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input code_nzulmRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+type Updatewho_emlPayload {
+  """
+
+  """
+  who_eml(
+    """
+
+    """
+    filter: who_emlFilter
+    """
+
+    """
+    order: who_emlOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [who_eml]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input PointGeoFilter {
+  """
+
+  """
+  near: NearFilter
+  """
+
+  """
+  within: WithinFilter
+}
+
+"""
+
+"""
+enum DoseStrengthOrderable {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+}
+
+"""
+
+"""
+enum EntityHasFilter {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+  """
+
+  """
+  properties
+  """
+
+  """
+  children
+  """
+
+  """
+  parents
+}
+
+"""
+
+"""
+input StringExactFilter_StringFullTextFilter {
+  """
+
+  """
+  eq: String
+  """
+
+  """
+  in: [String]
+  """
+
+  """
+  le: String
+  """
+
+  """
+  lt: String
+  """
+
+  """
+  ge: String
+  """
+
+  """
+  gt: String
+  """
+
+  """
+  between: StringRange
+  """
+
+  """
+  alloftext: String
+  """
+
+  """
+  anyoftext: String
+}
+
+"""
+
+"""
+input Updatewho_emlInput {
+  """
+
+  """
+  filter: who_emlFilter!
+  """
+
+  """
+  set: who_emlPatch
+  """
+
+  """
+  remove: who_emlPatch
+}
+
+"""
+
+"""
+type UpdateFormQualifierPayload {
+  """
+
+  """
+  formQualifier(
+    """
+
+    """
+    filter: FormQualifierFilter
+    """
+
+    """
+    order: FormQualifierOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [FormQualifier]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input UpdatePackSizeInput {
+  """
+
+  """
+  filter: PackSizeFilter!
+  """
+
+  """
+  set: PackSizePatch
+  """
+
+  """
+  remove: PackSizePatch
+}
+
+"""
+
+"""
+enum CategoryOrderable {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+}
+
+"""
+
+"""
+input DoseStrengthPatch {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input ProductPatch {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+  """
+
+  """
+  combines: [ProductRef]
+}
+
+"""
+
+"""
+input PropertyFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  has: [PropertyHasFilter]
+  """
+
+  """
+  and: [PropertyFilter]
+  """
+
+  """
+  or: [PropertyFilter]
+  """
+
+  """
+  not: PropertyFilter
+}
+
+"""
+
+"""
+input code_unspscFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  has: [code_unspscHasFilter]
+  """
+
+  """
+  and: [code_unspscFilter]
+  """
+
+  """
+  or: [code_unspscFilter]
+  """
+
+  """
+  not: code_unspscFilter
+}
+
+"""
+
+"""
+type AddDoseStrengthPayload {
+  """
+
+  """
+  doseStrength(
+    """
+
+    """
+    filter: DoseStrengthFilter
+    """
+
+    """
+    order: DoseStrengthOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [DoseStrength]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+enum UnitOrderable {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+}
+
+"""
+
+"""
+input DoseStrengthRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input RoutePatch {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input UpdatePackImmediateInput {
+  """
+
+  """
+  filter: PackImmediateFilter!
+  """
+
+  """
+  set: PackImmediatePatch
+  """
+
+  """
+  remove: PackImmediatePatch
+}
+
+"""
+
+"""
+input IntFilter {
+  """
+
+  """
+  eq: Int
+  """
+
+  """
+  in: [Int]
+  """
+
+  """
+  le: Int
+  """
+
+  """
+  lt: Int
+  """
+
+  """
+  ge: Int
+  """
+
+  """
+  gt: Int
+  """
+
+  """
+  between: IntRange
+}
+
+"""
+
+"""
+type AddProductPayload {
+  """
+
+  """
+  product(
+    """
+
+    """
+    filter: ProductFilter
+    """
+
+    """
+    order: ProductOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Product]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type RouteAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  codeMin: String
+  """
+
+  """
+  codeMax: String
+  """
+
+  """
+  descriptionMin: String
+  """
+
+  """
+  descriptionMax: String
+}
+
+"""
+
+"""
+type UpdateFormPayload {
+  """
+
+  """
+  form(
+    """
+
+    """
+    filter: FormFilter
+    """
+
+    """
+    order: FormOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Form]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+enum code_nzulmHasFilter {
+  """
+
+  """
+  value
+}
+
+"""
+
+"""
+input AddDoseStrengthInput {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input UpdateEntityInput {
+  """
+
+  """
+  filter: EntityFilter!
+  """
+
+  """
+  set: EntityPatch
+  """
+
+  """
+  remove: EntityPatch
+}
+
+"""
+
+"""
+type PackSize implements Entity {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  children(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  parents(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  propertiesAggregate(
+    """
+
+    """
+    filter: PropertyFilter
+  ): PropertyAggregateResult
+  """
+
+  """
+  childrenAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  parentsAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+}
+
+"""
+
+"""
+input Addcode_rxnavInput {
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+input PropertyPatch {
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+type Addcode_unspscPayload {
+  """
+
+  """
+  code_unspsc(
+    """
+
+    """
+    filter: code_unspscFilter
+    """
+
+    """
+    order: code_unspscOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_unspsc]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input PolygonRef {
+  """
+
+  """
+  coordinates: [PointListRef!]!
+}
+
+"""
+
+"""
+type AddFormPayload {
+  """
+
+  """
+  form(
+    """
+
+    """
+    filter: FormFilter
+    """
+
+    """
+    order: FormOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Form]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type Deletecode_rxnavPayload {
+  """
+
+  """
+  code_rxnav(
+    """
+
+    """
+    filter: code_rxnavFilter
+    """
+
+    """
+    order: code_rxnavOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_rxnav]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input AddPackSizeInput {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input Addcode_nzulmInput {
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+type DeleteUnitPayload {
+  """
+
+  """
+  unit(
+    """
+
+    """
+    filter: UnitFilter
+    """
+
+    """
+    order: UnitOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Unit]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type UpdateDoseStrengthPayload {
+  """
+
+  """
+  doseStrength(
+    """
+
+    """
+    filter: DoseStrengthFilter
+    """
+
+    """
+    order: DoseStrengthOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [DoseStrength]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type DoseStrength implements Entity {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  children(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  parents(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  propertiesAggregate(
+    """
+
+    """
+    filter: PropertyFilter
+  ): PropertyAggregateResult
+  """
+
+  """
+  childrenAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  parentsAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+}
+
+"""
+
+"""
+type PackSizeAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  codeMin: String
+  """
+
+  """
+  codeMax: String
+  """
+
+  """
+  descriptionMin: String
+  """
+
+  """
+  descriptionMax: String
+}
+
+"""
+
+"""
+enum UnitHasFilter {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+  """
+
+  """
+  properties
+  """
+
+  """
+  children
+  """
+
+  """
+  parents
+}
+
+"""
+
+"""
+enum code_nzulmOrderable {
+  """
+
+  """
+  value
+}
+
+"""
+
+"""
+input RouteOrder {
+  """
+
+  """
+  asc: RouteOrderable
+  """
+
+  """
+  desc: RouteOrderable
+  """
+
+  """
+  then: RouteOrder
+}
+
+"""
+
+"""
+input code_unspscOrder {
+  """
+
+  """
+  asc: code_unspscOrderable
+  """
+
+  """
+  desc: code_unspscOrderable
+  """
+
+  """
+  then: code_unspscOrder
+}
+
+"""
+
+"""
+type Mutation {
+  """
+
+  """
+  updateEntity(
+    """
+
+    """
+    input: UpdateEntityInput!
+  ): UpdateEntityPayload
+  """
+
+  """
+  deleteEntity(
+    """
+
+    """
+    filter: EntityFilter!
+  ): DeleteEntityPayload
+  """
+
+  """
+  addCategory(
+    """
+
+    """
+    input: [AddCategoryInput!]!
+  ): AddCategoryPayload
+  """
+
+  """
+  updateCategory(
+    """
+
+    """
+    input: UpdateCategoryInput!
+  ): UpdateCategoryPayload
+  """
+
+  """
+  deleteCategory(
+    """
+
+    """
+    filter: CategoryFilter!
+  ): DeleteCategoryPayload
+  """
+
+  """
+  addRoute(
+    """
+
+    """
+    input: [AddRouteInput!]!
+  ): AddRoutePayload
+  """
+
+  """
+  updateRoute(
+    """
+
+    """
+    input: UpdateRouteInput!
+  ): UpdateRoutePayload
+  """
+
+  """
+  deleteRoute(
+    """
+
+    """
+    filter: RouteFilter!
+  ): DeleteRoutePayload
+  """
+
+  """
+  addForm(
+    """
+
+    """
+    input: [AddFormInput!]!
+  ): AddFormPayload
+  """
+
+  """
+  updateForm(
+    """
+
+    """
+    input: UpdateFormInput!
+  ): UpdateFormPayload
+  """
+
+  """
+  deleteForm(
+    """
+
+    """
+    filter: FormFilter!
+  ): DeleteFormPayload
+  """
+
+  """
+  addFormQualifier(
+    """
+
+    """
+    input: [AddFormQualifierInput!]!
+  ): AddFormQualifierPayload
+  """
+
+  """
+  updateFormQualifier(
+    """
+
+    """
+    input: UpdateFormQualifierInput!
+  ): UpdateFormQualifierPayload
+  """
+
+  """
+  deleteFormQualifier(
+    """
+
+    """
+    filter: FormQualifierFilter!
+  ): DeleteFormQualifierPayload
+  """
+
+  """
+  addDoseStrength(
+    """
+
+    """
+    input: [AddDoseStrengthInput!]!
+  ): AddDoseStrengthPayload
+  """
+
+  """
+  updateDoseStrength(
+    """
+
+    """
+    input: UpdateDoseStrengthInput!
+  ): UpdateDoseStrengthPayload
+  """
+
+  """
+  deleteDoseStrength(
+    """
+
+    """
+    filter: DoseStrengthFilter!
+  ): DeleteDoseStrengthPayload
+  """
+
+  """
+  addUnit(
+    """
+
+    """
+    input: [AddUnitInput!]!
+  ): AddUnitPayload
+  """
+
+  """
+  updateUnit(
+    """
+
+    """
+    input: UpdateUnitInput!
+  ): UpdateUnitPayload
+  """
+
+  """
+  deleteUnit(
+    """
+
+    """
+    filter: UnitFilter!
+  ): DeleteUnitPayload
+  """
+
+  """
+  addPackImmediate(
+    """
+
+    """
+    input: [AddPackImmediateInput!]!
+  ): AddPackImmediatePayload
+  """
+
+  """
+  updatePackImmediate(
+    """
+
+    """
+    input: UpdatePackImmediateInput!
+  ): UpdatePackImmediatePayload
+  """
+
+  """
+  deletePackImmediate(
+    """
+
+    """
+    filter: PackImmediateFilter!
+  ): DeletePackImmediatePayload
+  """
+
+  """
+  addPackSize(
+    """
+
+    """
+    input: [AddPackSizeInput!]!
+  ): AddPackSizePayload
+  """
+
+  """
+  updatePackSize(
+    """
+
+    """
+    input: UpdatePackSizeInput!
+  ): UpdatePackSizePayload
+  """
+
+  """
+  deletePackSize(
+    """
+
+    """
+    filter: PackSizeFilter!
+  ): DeletePackSizePayload
+  """
+
+  """
+  addProduct(
+    """
+
+    """
+    input: [AddProductInput!]!
+  ): AddProductPayload
+  """
+
+  """
+  updateProduct(
+    """
+
+    """
+    input: UpdateProductInput!
+  ): UpdateProductPayload
+  """
+
+  """
+  deleteProduct(
+    """
+
+    """
+    filter: ProductFilter!
+  ): DeleteProductPayload
+  """
+
+  """
+  updateProperty(
+    """
+
+    """
+    input: UpdatePropertyInput!
+  ): UpdatePropertyPayload
+  """
+
+  """
+  deleteProperty(
+    """
+
+    """
+    filter: PropertyFilter!
+  ): DeletePropertyPayload
+  """
+
+  """
+  addwho_eml(
+    """
+
+    """
+    input: [Addwho_emlInput!]!
+  ): Addwho_emlPayload
+  """
+
+  """
+  updatewho_eml(
+    """
+
+    """
+    input: Updatewho_emlInput!
+  ): Updatewho_emlPayload
+  """
+
+  """
+  deletewho_eml(
+    """
+
+    """
+    filter: who_emlFilter!
+  ): Deletewho_emlPayload
+  """
+
+  """
+  addcode_nzulm(
+    """
+
+    """
+    input: [Addcode_nzulmInput!]!
+  ): Addcode_nzulmPayload
+  """
+
+  """
+  updatecode_nzulm(
+    """
+
+    """
+    input: Updatecode_nzulmInput!
+  ): Updatecode_nzulmPayload
+  """
+
+  """
+  deletecode_nzulm(
+    """
+
+    """
+    filter: code_nzulmFilter!
+  ): Deletecode_nzulmPayload
+  """
+
+  """
+  addcode_rxnav(
+    """
+
+    """
+    input: [Addcode_rxnavInput!]!
+  ): Addcode_rxnavPayload
+  """
+
+  """
+  updatecode_rxnav(
+    """
+
+    """
+    input: Updatecode_rxnavInput!
+  ): Updatecode_rxnavPayload
+  """
+
+  """
+  deletecode_rxnav(
+    """
+
+    """
+    filter: code_rxnavFilter!
+  ): Deletecode_rxnavPayload
+  """
+
+  """
+  addcode_unspsc(
+    """
+
+    """
+    input: [Addcode_unspscInput!]!
+  ): Addcode_unspscPayload
+  """
+
+  """
+  updatecode_unspsc(
+    """
+
+    """
+    input: Updatecode_unspscInput!
+  ): Updatecode_unspscPayload
+  """
+
+  """
+  deletecode_unspsc(
+    """
+
+    """
+    filter: code_unspscFilter!
+  ): Deletecode_unspscPayload
+}
+
+"""
+
+"""
+interface Entity {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  children(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  parents(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  propertiesAggregate(
+    """
+
+    """
+    filter: PropertyFilter
+  ): PropertyAggregateResult
+  """
+
+  """
+  childrenAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  parentsAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+}
+
+"""
+
+"""
+type code_rxnav implements Property {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+input StringTermFilter {
+  """
+
+  """
+  allofterms: String
+  """
+
+  """
+  anyofterms: String
+}
+
+"""
+
+"""
+type UpdateEntityPayload {
+  """
+
+  """
+  entity(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+enum FormOrderable {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+}
+
+"""
+
+"""
+input UpdatePropertyInput {
+  """
+
+  """
+  filter: PropertyFilter!
+  """
+
+  """
+  set: PropertyPatch
+  """
+
+  """
+  remove: PropertyPatch
+}
+
+"""
+
+"""
+type Updatecode_rxnavPayload {
+  """
+
+  """
+  code_rxnav(
+    """
+
+    """
+    filter: code_rxnavFilter
+    """
+
+    """
+    order: code_rxnavOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_rxnav]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+enum ProductHasFilter {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+  """
+
+  """
+  properties
+  """
+
+  """
+  children
+  """
+
+  """
+  parents
+  """
+
+  """
+  combines
+}
+
+"""
+
+"""
+input AddFormQualifierInput {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+type AddPackImmediatePayload {
+  """
+
+  """
+  packImmediate(
+    """
+
+    """
+    filter: PackImmediateFilter
+    """
+
+    """
+    order: PackImmediateOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [PackImmediate]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type DeletePropertyPayload {
+  """
+
+  """
+  property(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input ProductRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+  """
+
+  """
+  combines: [ProductRef]
+}
+
+"""
+
+"""
+input who_emlPatch {
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+input AuthRule {
+  """
+
+  """
+  and: [AuthRule]
+  """
+
+  """
+  or: [AuthRule]
+  """
+
+  """
+  not: AuthRule
+  """
+
+  """
+  rule: String
+}
+
+"""
+
+"""
+type PointList {
+  """
+
+  """
+  points: [Point!]!
+}
+
+"""
+
+"""
+type AddUnitPayload {
+  """
+
+  """
+  unit(
+    """
+
+    """
+    filter: UnitFilter
+    """
+
+    """
+    order: UnitOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Unit]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type FormQualifierAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  codeMin: String
+  """
+
+  """
+  codeMax: String
+  """
+
+  """
+  descriptionMin: String
+  """
+
+  """
+  descriptionMax: String
+}
+
+"""
+
+"""
+enum EntityOrderable {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+}
+
+"""
+
+"""
+input ProductFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  code: StringExactFilter_StringFullTextFilter
+  """
+
+  """
+  description: StringExactFilter_StringTermFilter_StringRegExpFilter
+  """
+
+  """
+  has: [ProductHasFilter]
+  """
+
+  """
+  and: [ProductFilter]
+  """
+
+  """
+  or: [ProductFilter]
+  """
+
+  """
+  not: ProductFilter
+}
+
+"""
+
+"""
+input code_rxnavRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+input StringExactFilter {
+  """
+
+  """
+  eq: String
+  """
+
+  """
+  in: [String]
+  """
+
+  """
+  le: String
+  """
+
+  """
+  lt: String
+  """
+
+  """
+  ge: String
+  """
+
+  """
+  gt: String
+  """
+
+  """
+  between: StringRange
+}
+
+"""
+
+"""
+input AddProductInput {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+  """
+
+  """
+  combines: [ProductRef]
+}
+
+"""
+
+"""
+input PackSizeRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+type UpdatePropertyPayload {
+  """
+
+  """
+  property(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type UpdateUnitPayload {
+  """
+
+  """
+  unit(
+    """
+
+    """
+    filter: UnitFilter
+    """
+
+    """
+    order: UnitOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Unit]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+enum PackImmediateOrderable {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+}
+
+"""
+
+"""
+type AddRoutePayload {
+  """
+
+  """
+  route(
+    """
+
+    """
+    filter: RouteFilter
+    """
+
+    """
+    order: RouteOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Route]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input RouteRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input UnitFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  code: StringExactFilter_StringFullTextFilter
+  """
+
+  """
+  description: StringExactFilter_StringTermFilter_StringRegExpFilter
+  """
+
+  """
+  has: [UnitHasFilter]
+  """
+
+  """
+  and: [UnitFilter]
+  """
+
+  """
+  or: [UnitFilter]
+  """
+
+  """
+  not: UnitFilter
+}
+
+"""
+
+"""
+enum Mode {
+  """
+
+  """
+  BATCH
+  """
+
+  """
+  SINGLE
+}
+
+"""
+
+"""
+type code_rxnavAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  valueMin: String
+  """
+
+  """
+  valueMax: String
+}
+
+"""
+
+"""
+input UpdateCategoryInput {
+  """
+
+  """
+  filter: CategoryFilter!
+  """
+
+  """
+  set: CategoryPatch
+  """
+
+  """
+  remove: CategoryPatch
+}
+
+"""
+
+"""
+type Route implements Entity {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  children(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  parents(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  propertiesAggregate(
+    """
+
+    """
+    filter: PropertyFilter
+  ): PropertyAggregateResult
+  """
+
+  """
+  childrenAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  parentsAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+}
+
+"""
+
+"""
+type Point {
+  """
+
+  """
+  longitude: Float!
+  """
+
+  """
+  latitude: Float!
+}
+
+"""
+
+"""
+input code_rxnavFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  has: [code_rxnavHasFilter]
+  """
+
+  """
+  and: [code_rxnavFilter]
+  """
+
+  """
+  or: [code_rxnavFilter]
+  """
+
+  """
+  not: code_rxnavFilter
+}
+
+"""
+
+"""
+input DateTimeFilter {
+  """
+
+  """
+  eq: DateTime
+  """
+
+  """
+  in: [DateTime]
+  """
+
+  """
+  le: DateTime
+  """
+
+  """
+  lt: DateTime
+  """
+
+  """
+  ge: DateTime
+  """
+
+  """
+  gt: DateTime
+  """
+
+  """
+  between: DateTimeRange
+}
+
+"""
+
+"""
+type PackImmediateAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  codeMin: String
+  """
+
+  """
+  codeMax: String
+  """
+
+  """
+  descriptionMin: String
+  """
+
+  """
+  descriptionMax: String
+}
+
+"""
+
+"""
+enum DoseStrengthHasFilter {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+  """
+
+  """
+  properties
+  """
+
+  """
+  children
+  """
+
+  """
+  parents
+}
+
+"""
+
+"""
+enum RouteOrderable {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+}
+
+"""
+
+"""
+input PackImmediateFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  code: StringExactFilter_StringFullTextFilter
+  """
+
+  """
+  description: StringExactFilter_StringTermFilter_StringRegExpFilter
+  """
+
+  """
+  has: [PackImmediateHasFilter]
+  """
+
+  """
+  and: [PackImmediateFilter]
+  """
+
+  """
+  or: [PackImmediateFilter]
+  """
+
+  """
+  not: PackImmediateFilter
+}
+
+"""
+
+"""
+input PackImmediatePatch {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+type who_emlAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  valueMin: String
+  """
+
+  """
+  valueMax: String
+}
+
+"""
+
+"""
+input CategoryRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+type PackImmediate implements Entity {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties(
+    """
+
+    """
+    filter: PropertyFilter
+    """
+
+    """
+    order: PropertyOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Property]
+  """
+
+  """
+  children(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  parents(
+    """
+
+    """
+    filter: EntityFilter
+    """
+
+    """
+    order: EntityOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Entity]
+  """
+
+  """
+  propertiesAggregate(
+    """
+
+    """
+    filter: PropertyFilter
+  ): PropertyAggregateResult
+  """
+
+  """
+  childrenAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+  """
+
+  """
+  parentsAggregate(
+    """
+
+    """
+    filter: EntityFilter
+  ): EntityAggregateResult
+}
+
+"""
+
+"""
+enum code_rxnavOrderable {
+  """
+
+  """
+  value
+}
+
+"""
+
+"""
+enum who_emlHasFilter {
+  """
+
+  """
+  value
+}
+
+"""
+
+"""
+input MultiPolygonRef {
+  """
+
+  """
+  polygons: [PolygonRef!]!
+}
+
+"""
+
+"""
+type ProductAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  codeMin: String
+  """
+
+  """
+  codeMax: String
+  """
+
+  """
+  descriptionMin: String
+  """
+
+  """
+  descriptionMax: String
+}
+
+"""
+
+"""
+input code_unspscRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+type UpdateProductPayload {
+  """
+
+  """
+  product(
+    """
+
+    """
+    filter: ProductFilter
+    """
+
+    """
+    order: ProductOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Product]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+enum PropertyHasFilter {
+  """
+
+  """
+  value
+}
+
+"""
+
+"""
+input DoseStrengthFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  code: StringExactFilter_StringFullTextFilter
+  """
+
+  """
+  description: StringExactFilter_StringTermFilter_StringRegExpFilter
+  """
+
+  """
+  has: [DoseStrengthHasFilter]
+  """
+
+  """
+  and: [DoseStrengthFilter]
+  """
+
+  """
+  or: [DoseStrengthFilter]
+  """
+
+  """
+  not: DoseStrengthFilter
+}
+
+"""
+
+"""
+input EntityFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  code: StringExactFilter_StringFullTextFilter
+  """
+
+  """
+  description: StringExactFilter_StringTermFilter_StringRegExpFilter
+  """
+
+  """
+  has: [EntityHasFilter]
+  """
+
+  """
+  and: [EntityFilter]
+  """
+
+  """
+  or: [EntityFilter]
+  """
+
+  """
+  not: EntityFilter
+}
+
+"""
+
+"""
+input EntityRef {
+  """
+
+  """
+  id: ID!
+}
+
+"""
+
+"""
+input RouteFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  code: StringExactFilter_StringFullTextFilter
+  """
+
+  """
+  description: StringExactFilter_StringTermFilter_StringRegExpFilter
+  """
+
+  """
+  has: [RouteHasFilter]
+  """
+
+  """
+  and: [RouteFilter]
+  """
+
+  """
+  or: [RouteFilter]
+  """
+
+  """
+  not: RouteFilter
+}
+
+"""
+
+"""
+input UnitOrder {
+  """
+
+  """
+  asc: UnitOrderable
+  """
+
+  """
+  desc: UnitOrderable
+  """
+
+  """
+  then: UnitOrder
+}
+
+"""
+
+"""
+enum DgraphIndex {
+  """
+
+  """
+  int
+  """
+
+  """
+  int64
+  """
+
+  """
+  float
+  """
+
+  """
+  bool
+  """
+
+  """
+  hash
+  """
+
+  """
+  exact
+  """
+
+  """
+  term
+  """
+
+  """
+  fulltext
+  """
+
+  """
+  trigram
+  """
+
+  """
+  regexp
+  """
+
+  """
+  year
+  """
+
+  """
+  month
+  """
+
+  """
+  day
+  """
+
+  """
+  hour
+  """
+
+  """
+  geo
+}
+
+"""
+
+"""
+type AddPackSizePayload {
+  """
+
+  """
+  packSize(
+    """
+
+    """
+    filter: PackSizeFilter
+    """
+
+    """
+    order: PackSizeOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [PackSize]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type Deletecode_unspscPayload {
+  """
+
+  """
+  code_unspsc(
+    """
+
+    """
+    filter: code_unspscFilter
+    """
+
+    """
+    order: code_unspscOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_unspsc]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+enum PropertyOrderable {
+  """
+
+  """
+  value
+}
+
+"""
+
+"""
+input FormQualifierRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+type code_nzulm implements Property {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+input DateTimeRange {
+  """
+
+  """
+  min: DateTime!
+  """
+
+  """
+  max: DateTime!
+}
+
+"""
+
+"""
+input Int64Filter {
+  """
+
+  """
+  eq: Int64
+  """
+
+  """
+  in: [Int64]
+  """
+
+  """
+  le: Int64
+  """
+
+  """
+  lt: Int64
+  """
+
+  """
+  ge: Int64
+  """
+
+  """
+  gt: Int64
+  """
+
+  """
+  between: Int64Range
+}
+
+"""
+
+"""
+type DeleteProductPayload {
+  """
+
+  """
+  product(
+    """
+
+    """
+    filter: ProductFilter
+    """
+
+    """
+    order: ProductOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Product]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type Deletecode_nzulmPayload {
+  """
+
+  """
+  code_nzulm(
+    """
+
+    """
+    filter: code_nzulmFilter
+    """
+
+    """
+    order: code_nzulmOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_nzulm]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type Updatecode_nzulmPayload {
+  """
+
+  """
+  code_nzulm(
+    """
+
+    """
+    filter: code_nzulmFilter
+    """
+
+    """
+    order: code_nzulmOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_nzulm]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input PointRef {
+  """
+
+  """
+  longitude: Float!
+  """
+
+  """
+  latitude: Float!
+}
+
+"""
+
+"""
+type DeleteDoseStrengthPayload {
+  """
+
+  """
+  doseStrength(
+    """
+
+    """
+    filter: DoseStrengthFilter
+    """
+
+    """
+    order: DoseStrengthOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [DoseStrength]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input code_nzulmOrder {
+  """
+
+  """
+  asc: code_nzulmOrderable
+  """
+
+  """
+  desc: code_nzulmOrderable
+  """
+
+  """
+  then: code_nzulmOrder
+}
+
+"""
+
+"""
+enum FormQualifierOrderable {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+}
+
+"""
+
+"""
+input Addcode_unspscInput {
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+input FloatRange {
+  """
+
+  """
+  min: Float!
+  """
+
+  """
+  max: Float!
+}
+
+"""
+
+"""
+type AddCategoryPayload {
+  """
+
+  """
+  category(
+    """
+
+    """
+    filter: CategoryFilter
+    """
+
+    """
+    order: CategoryOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Category]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+input AddFormInput {
+  """
+
+  """
+  code: String
+  """
+
+  """
+  description: String
+  """
+
+  """
+  properties: [PropertyRef]
+  """
+
+  """
+  children: [EntityRef]
+}
+
+"""
+
+"""
+input ProductOrder {
+  """
+
+  """
+  asc: ProductOrderable
+  """
+
+  """
+  desc: ProductOrderable
+  """
+
+  """
+  then: ProductOrder
+}
+
+"""
+
+"""
+input UpdateUnitInput {
+  """
+
+  """
+  filter: UnitFilter!
+  """
+
+  """
+  set: UnitPatch
+  """
+
+  """
+  remove: UnitPatch
+}
+
+"""
+
+"""
+input StringFullTextFilter {
+  """
+
+  """
+  alloftext: String
+  """
+
+  """
+  anyoftext: String
+}
+
+"""
+
+"""
+input EntityOrder {
+  """
+
+  """
+  asc: EntityOrderable
+  """
+
+  """
+  desc: EntityOrderable
+  """
+
+  """
+  then: EntityOrder
+}
+
+"""
+
+"""
+input who_emlRef {
+  """
+
+  """
+  id: ID
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+type MultiPolygon {
+  """
+
+  """
+  polygons: [Polygon!]!
+}
+
+"""
+
+"""
+input StringRegExpFilter {
+  """
+
+  """
+  regexp: String
+}
+
+"""
+
+"""
+type CategoryAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  codeMin: String
+  """
+
+  """
+  codeMax: String
+  """
+
+  """
+  descriptionMin: String
+  """
+
+  """
+  descriptionMax: String
+}
+
+"""
+
+"""
+type code_nzulmAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  valueMin: String
+  """
+
+  """
+  valueMax: String
+}
+
+"""
+
+"""
+type DeleteCategoryPayload {
+  """
+
+  """
+  category(
+    """
+
+    """
+    filter: CategoryFilter
+    """
+
+    """
+    order: CategoryOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [Category]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type DeleteFormQualifierPayload {
+  """
+
+  """
+  formQualifier(
+    """
+
+    """
+    filter: FormQualifierFilter
+    """
+
+    """
+    order: FormQualifierOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [FormQualifier]
+  """
+
+  """
+  msg: String
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+type UpdatePackSizePayload {
+  """
+
+  """
+  packSize(
+    """
+
+    """
+    filter: PackSizeFilter
+    """
+
+    """
+    order: PackSizeOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [PackSize]
+  """
+
+  """
+  numUids: Int
+}
+
+"""
+
+"""
+enum PackSizeHasFilter {
+  """
+
+  """
+  code
+  """
+
+  """
+  description
+  """
+
+  """
+  properties
+  """
+
+  """
+  children
+  """
+
+  """
+  parents
+}
+
+"""
+
+"""
+input StringExactFilter_StringTermFilter_StringRegExpFilter {
+  """
+
+  """
+  eq: String
+  """
+
+  """
+  in: [String]
+  """
+
+  """
+  le: String
+  """
+
+  """
+  lt: String
+  """
+
+  """
+  ge: String
+  """
+
+  """
+  gt: String
+  """
+
+  """
+  between: StringRange
+  """
+
+  """
+  allofterms: String
+  """
+
+  """
+  anyofterms: String
+  """
+
+  """
+  regexp: String
+}
+
+"""
+
+"""
+input Updatecode_nzulmInput {
+  """
+
+  """
+  filter: code_nzulmFilter!
+  """
+
+  """
+  set: code_nzulmPatch
+  """
+
+  """
+  remove: code_nzulmPatch
+}
+
+"""
+
+"""
+type code_unspsc implements Property {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+type Polygon {
+  """
+
+  """
+  coordinates: [PointList!]!
+}
+
+"""
+
+"""
+enum code_rxnavHasFilter {
+  """
+
+  """
+  value
+}
+
+"""
+
+"""
+enum code_unspscHasFilter {
+  """
+
+  """
+  value
+}
+
+"""
+
+"""
+input CategoryOrder {
+  """
+
+  """
+  asc: CategoryOrderable
+  """
+
+  """
+  desc: CategoryOrderable
+  """
+
+  """
+  then: CategoryOrder
+}
+
+"""
+
+"""
+input code_rxnavOrder {
+  """
+
+  """
+  asc: code_rxnavOrderable
+  """
+
+  """
+  desc: code_rxnavOrderable
+  """
+
+  """
+  then: code_rxnavOrder
+}
+
+"""
+
+"""
+type who_eml implements Property {
+  """
+
+  """
+  id: ID!
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+input StringRange {
+  """
+
+  """
+  min: String!
+  """
+
+  """
+  max: String!
+}
+
+"""
+
+"""
+input GenerateQueryParams {
+  """
+
+  """
+  get: Boolean
+  """
+
+  """
+  query: Boolean
+  """
+
+  """
+  password: Boolean
+  """
+
+  """
+  aggregate: Boolean
+}
+
+"""
+
+"""
+type code_unspscAggregateResult {
+  """
+
+  """
+  count: Int
+  """
+
+  """
+  valueMin: String
+  """
+
+  """
+  valueMax: String
+}
+
+"""
+
+"""
+input Addwho_emlInput {
+  """
+
+  """
+  value: String
+}
+
+"""
+
+"""
+input FormOrder {
+  """
+
+  """
+  asc: FormOrderable
+  """
+
+  """
+  desc: FormOrderable
+  """
+
+  """
+  then: FormOrder
+}
+
+"""
+
+"""
+input FormQualifierFilter {
+  """
+
+  """
+  id: [ID!]
+  """
+
+  """
+  code: StringExactFilter_StringFullTextFilter
+  """
+
+  """
+  description: StringExactFilter_StringTermFilter_StringRegExpFilter
+  """
+
+  """
+  has: [FormQualifierHasFilter]
+  """
+
+  """
+  and: [FormQualifierFilter]
+  """
+
+  """
+  or: [FormQualifierFilter]
+  """
+
+  """
+  not: FormQualifierFilter
+}
+
+"""
+
+"""
+type Addcode_rxnavPayload {
+  """
+
+  """
+  code_rxnav(
+    """
+
+    """
+    filter: code_rxnavFilter
+    """
+
+    """
+    order: code_rxnavOrder
+    """
+
+    """
+    first: Int
+    """
+
+    """
+    offset: Int
+  ): [code_rxnav]
+  """
+
+  """
+  numUids: Int
+}
+

@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+
+<p style="font-size: 14px; line-height: 160%">
+  Dear {{inviteParams.invitee_name}}
+</p>
+<p style="font-size: 14px; line-height: 160%"> </p>
+<p style="line-height: 160%">
+  {{inviteParams.inviter_name}} has invited you to join <em>notify</em>
+</p>
+<p style="font-size: 14px; line-height: 160%"> </p>
+{% endblock content %} {% block message %}
+<p style="line-height: 160%">
+  If you have any questions or need any assistance please contact our support
+  team at support@msupply.foundation.
+</p>
+{% endblock message %}

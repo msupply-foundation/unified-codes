@@ -1,0 +1,23 @@
+nom v7.1.1
+├── config v0.13.3
+│   └── server v0.1.0 (/Users/jamesbrunskill/notify/backend/server)
+└── lettre v0.10.1
+    └── service v0.1.0 (/Users/jamesbrunskill/notify/backend/service)
+        ├── graphql v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql)
+        │   └── server v0.1.0 (/Users/jamesbrunskill/notify/backend/server)
+        ├── graphql_core v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql/core)
+        │   ├── graphql v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql) (*)
+        │   ├── graphql_general v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql/general)
+        │   │   └── graphql v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql) (*)
+        │   ├── graphql_types v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql/types)
+        │   │   ├── graphql v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql) (*)
+        │   │   ├── graphql_general v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql/general) (*)
+        │   │   ├── graphql_user_account v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql/user_account)
+        │   │   │   └── graphql v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql) (*)
+        │   │   └── server v0.1.0 (/Users/jamesbrunskill/notify/backend/server)
+        │   ├── graphql_user_account v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql/user_account) (*)
+        │   └── server v0.1.0 (/Users/jamesbrunskill/notify/backend/server)
+        ├── graphql_general v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql/general) (*)
+        ├── graphql_types v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql/types) (*)
+        ├── graphql_user_account v0.1.0 (/Users/jamesbrunskill/notify/backend/graphql/user_account) (*)
+        └── server v0.1.0 (/Users/jamesbrunskill/notify/backend/server)
