@@ -83,7 +83,8 @@ export class DgraphDataSource extends RESTDataSource {
         code
         uid
         type: dgraph.type
-        description: name
+        description
+        name
         value
         combines
         children
@@ -99,7 +100,8 @@ export class DgraphDataSource extends RESTDataSource {
         code
         uid
         type: dgraph.type
-        description: name
+        description
+        name
         properties {
           type: dgraph.type
           value
@@ -119,18 +121,18 @@ export class DgraphDataSource extends RESTDataSource {
     match: FilterMatch
   ) {
     if (!description) {
-      return '@filter(has(name))';
+      return '@filter(has(description))';
     }
 
     switch (match) {
       case 'exact':
-        return `@filter(regexp(name, /^${description}$/i))`;
+        return `@filter(regexp(description, /^${description}$/i))`;
 
       case 'contains':
-        return `@filter(regexp(name, /${description}/i))`;
+        return `@filter(regexp(description, /${description}/i))`;
 
       default:
-        return `@filter(regexp(name, /^${description}/i))`;
+        return `@filter(regexp(description, /^${description}/i))`;
     }
   }
 
@@ -158,7 +160,8 @@ export class DgraphDataSource extends RESTDataSource {
       return `{
         query(func: eq(dgraph.type, ["Unit", "DoseStrength"]), ${orderString}, offset: ${offset}, first: ${first}) ${filterString}  {
           code
-          description: name
+          description
+          name
           type: dgraph.type
           uid
           properties {
@@ -177,7 +180,8 @@ export class DgraphDataSource extends RESTDataSource {
       
       query(func: uid(all), ${orderString}, offset: ${offset}, first: ${first})  {
         code
-        description: name
+        description
+        name
         type: dgraph.type
         uid
         properties {
@@ -186,7 +190,8 @@ export class DgraphDataSource extends RESTDataSource {
         }
         parents: ~children {
           type: dgraph.type
-          description: name
+          description
+          name
         }
       }
     }`;

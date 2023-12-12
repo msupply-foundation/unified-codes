@@ -33,6 +33,10 @@ export class EntityType implements IEntity {
   description: string;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @Field(type => String, { nullable: true })
+  name: string;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @Field(type => [DrugInteractionType], { nullable: true })
   interactions: IDrugInteraction[];
 
