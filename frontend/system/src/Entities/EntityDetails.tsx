@@ -1,22 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from '@common/intl';
-import { AppBarContentPortal } from '@common/ui';
+import { AppBarContentPortal, ChevronDownIcon } from '@common/ui';
 import { useBreadcrumbs } from '@common/hooks';
 import { useEntity } from '../api';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { EntityDetailsFragment } from '../api/operations.generated';
+import { TreeItem, TreeView } from '@mui/lab';
+
+type IEntity = EntityDetailsFragment & { children?: IEntity[] | null };
 
 export const EntityDetails = () => {
   const t = useTranslation('system');
   const { code } = useParams();
   const { setSuffix } = useBreadcrumbs();
+  const [expanded, setExpanded] = useState<string[]>([]);
 
-  const { data: entity, isError, isLoading } = useEntity(code || '');
+  const { data: entity } = useEntity(code || '');
 
   useEffect(() => {
     if (entity?.description) setSuffix(entity.description);
   }, [entity?.description]);
+
+  useEffect(() => {
+    const codes: string[] = [];
+
+    const addCodeToCodes = (ent?: IEntity | null) => {
+      if (ent) {
+        codes.push(ent.code);
+        ent.children?.forEach(addCodeToCodes);
+      }
+    };
+    addCodeToCodes(entity);
+
+    setExpanded(codes);
+  }, [entity]);
 
   return (
     <>
@@ -28,37 +46,49 @@ export const EntityDetails = () => {
           justifyContent: 'space-between',
         }}
       ></AppBarContentPortal>
-      <Entity entity={entity} />
+      <TreeView
+        disableSelection
+        expanded={expanded}
+        defaultExpandIcon={<ChevronDownIcon sx={{ rotate: '-90deg' }} />}
+        defaultCollapseIcon={<ChevronDownIcon />}
+        onNodeToggle={(_, codes: string[]) => setExpanded(codes)}
+      >
+        <EntityTreeItem entity={entity} />
+      </TreeView>
     </>
   );
 };
 
-type IEntity = EntityDetailsFragment & { children?: IEntity[] | null };
-
-const Entity = ({ entity }: { entity?: IEntity | null }) => {
+const EntityTreeItem = ({ entity }: { entity?: IEntity | null }) => {
   if (!entity) return null;
   return (
-    <Box paddingLeft={'10px'}>
-      <Typography>
-        {entity.description}
-        {' - '}
-        <span style={{ color: '#e95c30', fontWeight: 'bold' }}>
-          {entity.code}
-        </span>
-      </Typography>
+    <TreeItem
+      sx={{ paddingY: '5px' }}
+      nodeId={entity.code}
+      label={
+        <Typography>
+          {entity.description}
+          {' - '}
+          <span style={{ color: '#e95c30', fontWeight: 'bold' }}>
+            {entity.code}
+          </span>
+        </Typography>
+      }
+    >
       {entity.children?.map(c => (
-        <Entity entity={c} key={c.code} />
+        <EntityTreeItem entity={c} key={c.code} />
       ))}
       {entity.properties && (
-        <>
-          <Typography fontWeight={700}>Properties</Typography>
+        <TreeItem nodeId={entity.code + '_properties'} label="Properties">
           {entity.properties.map(p => (
-            <Typography key={p.value}>
-              {p.type}: {p.value}
-            </Typography>
+            <TreeItem
+              key={p.value}
+              nodeId={entity.code + p.value}
+              label={`${p.type}: ${p.value}`}
+            />
           ))}
-        </>
+        </TreeItem>
       )}
-    </Box>
+    </TreeItem>
   );
 };
