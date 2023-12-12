@@ -12,7 +12,7 @@ import {
 } from '@common/ui';
 import { useQueryParamsState } from '@common/hooks';
 import { EntityRowFragment, useEntities } from '../api';
-import { Box, Paper, ToggleButtonGroup } from '@mui/material';
+import { ToggleButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
@@ -75,68 +75,50 @@ export const ListView = () => {
   };
 
   return (
-    <Paper
-      sx={{
-        borderRadius: '16px',
-        margin: '10px auto',
-        padding: '16px',
-        width: '100%',
-        maxWidth: '1200px',
-        backgroundColor: 'background.menu',
-        flex: 1,
-      }}
-    >
-      <TableProvider createStore={createTableStore}>
-        <AppBarContentPortal
-          sx={{
-            paddingBottom: '16px',
-            flex: 1,
-            display: 'flex',
-            justifyContent: 'space-between',
-            maxWidth: '1200px',
-            marginRight: 'max(0px, calc((100vw - 1232px) / 2))',
-          }}
-        >
-          <SearchToolbar filter={filter} />
-          <ToggleButtonGroup>
-            <ToggleButton
-              label={t('label.drugs')}
-              value={'drug'}
-              selected={categories.includes('drug')}
-              onClick={() => {
-                toggleCategory('drug');
-              }}
-            />
-            <ToggleButton
-              label={t('label.consumables')}
-              value={'consumable'}
-              selected={categories.includes('consumable')}
-              onClick={() => {
-                toggleCategory('consumable');
-              }}
-            />
-          </ToggleButtonGroup>
-        </AppBarContentPortal>
-
-        <Box
-          sx={{ backgroundColor: 'white', maxHeight: '100%', display: 'flex' }}
-        >
-          <DataTable
-            columns={columns}
-            data={entities}
-            isError={isError}
-            isLoading={isLoading}
-            noDataElement={<NothingHere body={t('error.no-data')} />}
-            pagination={pagination}
-            onChangePage={updatePaginationQuery}
-            onRowClick={e =>
-              navigate(
-                RouteBuilder.create(AppRoute.Browse).addPart(e.code).build()
-              )
-            }
+    <TableProvider createStore={createTableStore}>
+      <AppBarContentPortal
+        sx={{
+          paddingBottom: '16px',
+          flex: 1,
+          display: 'flex',
+          justifyContent: 'space-between',
+          maxWidth: '1200px',
+          marginRight: 'max(0px, calc((100vw - 1232px) / 2))',
+        }}
+      >
+        <SearchToolbar filter={filter} />
+        <ToggleButtonGroup>
+          <ToggleButton
+            label={t('label.drugs')}
+            value={'drug'}
+            selected={categories.includes('drug')}
+            onClick={() => {
+              toggleCategory('drug');
+            }}
           />
-        </Box>
-      </TableProvider>
-    </Paper>
+          <ToggleButton
+            label={t('label.consumables')}
+            value={'consumable'}
+            selected={categories.includes('consumable')}
+            onClick={() => {
+              toggleCategory('consumable');
+            }}
+          />
+        </ToggleButtonGroup>
+      </AppBarContentPortal>
+
+      <DataTable
+        columns={columns}
+        data={entities}
+        isError={isError}
+        isLoading={isLoading}
+        noDataElement={<NothingHere body={t('error.no-data')} />}
+        pagination={pagination}
+        onChangePage={updatePaginationQuery}
+        onRowClick={e =>
+          navigate(RouteBuilder.create(AppRoute.Browse).addPart(e.code).build())
+        }
+      />
+    </TableProvider>
   );
 };
