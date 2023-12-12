@@ -17,7 +17,12 @@ const EntitiesService = () => {
       }}
     >
       <Box
-        sx={{ backgroundColor: 'white', display: 'flex', maxHeight: '100%' }}
+        sx={{
+          backgroundColor: 'white',
+          display: 'flex',
+          borderRadius: '16px',
+          maxHeight: '100%',
+        }}
       >
         <Routes>
           <Route path="/" element={<ListView />} />
