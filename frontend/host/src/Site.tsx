@@ -16,7 +16,7 @@ import {
 import { AppBar, Footer, NotFound } from './components';
 import { CommandK } from './CommandK';
 import { AppRoute } from '@uc-frontend/config';
-import { Settings } from './Admin/Settings';
+import { Settings } from './Settings/Settings';
 import { QueryErrorHandler } from './QueryErrorHandler';
 import { EntitiesRouter } from './routers/EntitiesRouter';
 
@@ -44,7 +44,9 @@ export const Site: FC = () => {
                 element={<EntitiesRouter />}
               />
               <Route
-                path={RouteBuilder.create(AppRoute.Admin).addWildCard().build()}
+                path={RouteBuilder.create(AppRoute.Settings)
+                  .addWildCard()
+                  .build()}
                 element={<Settings />}
               />
               <Route path="*" element={<NotFound />} />
