@@ -12,7 +12,7 @@ import {
 } from '@common/ui';
 import { useBreadcrumbs, useQueryParamsState } from '@common/hooks';
 import { useEntities } from '../api';
-import { ToggleButtonGroup } from '@mui/material';
+import { Box, Paper, ToggleButtonGroup } from '@mui/material';
 
 export const ListView = () => {
   const t = useTranslation('system');
@@ -32,7 +32,7 @@ export const ListView = () => {
   const columns = useColumns(
     [
       { key: 'code', label: 'label.code', width: 200, sortable: false },
-      { key: 'description', label: 'label.description', width: 1000 },
+      { key: 'description', label: 'label.description' },
       { key: 'type', label: 'label.type', sortable: false, width: 200 },
     ],
     { sortBy: sortBy, onChangeSortBy: updateSortQuery },
@@ -76,7 +76,17 @@ export const ListView = () => {
   };
 
   return (
-    <>
+    <Paper
+      sx={{
+        borderRadius: '16px',
+        margin: '10px auto',
+        padding: '16px',
+        width: '100%',
+        maxWidth: '1200px',
+        backgroundColor: 'background.menu',
+        flex: 1,
+      }}
+    >
       <TableProvider createStore={createTableStore}>
         <AppBarContentPortal
           sx={{
@@ -84,6 +94,8 @@ export const ListView = () => {
             flex: 1,
             display: 'flex',
             justifyContent: 'space-between',
+            maxWidth: '1200px',
+            marginRight: 'max(0px, calc((100vw - 1232px) / 2))',
           }}
         >
           <SearchToolbar filter={filter} />
@@ -107,16 +119,18 @@ export const ListView = () => {
           </ToggleButtonGroup>
         </AppBarContentPortal>
 
-        <DataTable
-          columns={columns}
-          data={entities}
-          isError={isError}
-          isLoading={isLoading}
-          noDataElement={<NothingHere body={t('error.no-data')} />}
-          pagination={pagination}
-          onChangePage={updatePaginationQuery}
-        />
+        <Box sx={{ backgroundColor: 'white', height: '100%', display: 'flex' }}>
+          <DataTable
+            columns={columns}
+            data={entities}
+            isError={isError}
+            isLoading={isLoading}
+            noDataElement={<NothingHere body={t('error.no-data')} />}
+            pagination={pagination}
+            onChangePage={updatePaginationQuery}
+          />
+        </Box>
       </TableProvider>
-    </>
+    </Paper>
   );
 };
