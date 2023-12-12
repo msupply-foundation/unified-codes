@@ -21,6 +21,7 @@ const EntitiesService = () => {
           backgroundColor: 'white',
           display: 'flex',
           borderRadius: '16px',
+          padding: '16px',
           maxHeight: '100%',
         }}
       >
