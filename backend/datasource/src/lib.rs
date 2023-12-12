@@ -1,7 +1,6 @@
 use ::reqwest::blocking::Client;
 pub mod database_settings;
 pub use database_settings::*;
-pub mod cynic;
 pub mod gql;
 pub mod graphql;
 pub use gql::*;

@@ -1,0 +1,38 @@
+fragment Details on Entity {
+  id
+  code
+  __typename
+  type: __typename
+  description
+  properties {
+    __typename
+    type: __typename
+    value
+  }
+}
+query EntityQuery($code: String!) {
+  queryEntity(filter: { code: { eq: $code } }) {
+    ...Details
+    children {
+      ...Details
+      children {
+        ...Details
+        children {
+          ...Details
+          children {
+            ...Details
+            children {
+              ...Details
+              children {
+                ...Details
+                children {
+                  ...Details
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@ impl UniversalCodesQueries {
     pub async fn entity(&self, _ctx: &Context<'_>, code: String) -> Result<EntityResponse> {
         let result = entity_by_code(code).await?;
         match result {
-            Some(entity) => Ok(EntityResponse::Response(EntityType { entity })),
+            Some(entity) => Ok(EntityResponse::Response(EntityType::from_domain(entity))),
             None => Err("Not found".into()),
         }
     }

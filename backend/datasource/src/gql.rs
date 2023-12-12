@@ -11,6 +11,8 @@ pub struct Entity {
     pub id: String,
     pub code: String,
     pub description: String,
+    pub properties: Vec<Properties>,
+    pub children: Vec<Entity>,
 }
 
 #[derive(Serialize, Debug)]
@@ -23,6 +25,13 @@ pub struct Vars {
 #[derive(Serialize, Debug)]
 pub struct CodeVars {
     code: String,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct Properties {
+    #[serde(rename = "__typename")]
+    pub key: String,
+    pub value: String,
 }
 
 async fn entity_search(variables: Vars) -> Result<Option<EntityData>, GraphQLError> {
@@ -52,13 +61,42 @@ query EntitiesQuery($search: String = "", $first: Int = 10, $offset: Int = 0) {
 
 pub async fn entity_by_code(code: String) -> Result<Option<Entity>, GraphQLError> {
     let client = Client::new("http://localhost:8080/graphql");
-    let query = r#"
-query EntityQuery($code: String) {
-  queryEntity(filter: {code: {eq: $code}}) {
-     __typename
-    id
-    code
-    description
+    let query = r#"fragment Details on Entity {
+  id
+  code
+  __typename
+  type: __typename
+  description
+  properties {
+    __typename
+    type: __typename
+    value
+  }
+}
+query EntityQuery($code: String!) {
+  queryEntity(filter: { code: { eq: $code } }) {
+    ...Details
+    children {
+      ...Details
+      children {
+        ...Details
+        children {
+          ...Details
+          children {
+            ...Details
+            children {
+              ...Details
+              children {
+                ...Details
+                children {
+                  ...Details
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }"#;
     let variables = CodeVars { code: code };
@@ -96,5 +134,7 @@ mod tests {
     async fn test_gql_by_code() {
         let result = entity_by_code("10808942".to_string()).await;
         println!("{:#?}", result);
+        let e = result.unwrap().unwrap();
+        assert_eq!(e.code, "10808942".to_string());
     }
 }
