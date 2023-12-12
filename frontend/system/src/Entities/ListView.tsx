@@ -52,6 +52,7 @@ export const ListView = () => {
         field: sortBy.key,
         descending: sortBy.isDesc,
       },
+      match: 'contains',
     },
     first,
     offset,
