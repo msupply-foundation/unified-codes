@@ -11,7 +11,6 @@ import { TreeItem, TreeView } from '@mui/lab';
 type IEntity = EntityDetailsFragment & { children?: IEntity[] | null };
 
 export const EntityDetails = () => {
-  const t = useTranslation('system');
   const { code } = useParams();
   const { setSuffix } = useBreadcrumbs();
   const [expanded, setExpanded] = useState<string[]>([]);
@@ -60,7 +59,10 @@ export const EntityDetails = () => {
 };
 
 const EntityTreeItem = ({ entity }: { entity?: IEntity | null }) => {
+  const t = useTranslation('system');
+
   if (!entity) return null;
+
   return (
     <TreeItem
       sx={{ paddingY: '5px' }}
@@ -79,7 +81,10 @@ const EntityTreeItem = ({ entity }: { entity?: IEntity | null }) => {
         <EntityTreeItem entity={c} key={c.code} />
       ))}
       {entity.properties && (
-        <TreeItem nodeId={entity.code + '_properties'} label="Properties">
+        <TreeItem
+          nodeId={entity.code + '_properties'}
+          label={t('label.properties')}
+        >
           {entity.properties.map(p => (
             <TreeItem
               key={p.value}

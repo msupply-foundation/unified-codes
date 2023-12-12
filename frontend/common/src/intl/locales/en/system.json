@@ -11,6 +11,7 @@
   "label.consumables": "Consumables",
   "label.drugs": "Drugs",
   "label.error": "Error",
+  "label.properties": "Properties",
   "not-logged-in": "Not logged in",
   "password-reset.initiate": "Initiate Password Reset"
 }
