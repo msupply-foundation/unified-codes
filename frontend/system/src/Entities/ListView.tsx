@@ -12,7 +12,7 @@ import {
 } from '@common/ui';
 import { useQueryParamsState } from '@common/hooks';
 import { EntityRowFragment, useEntities } from '../api';
-import { ToggleButtonGroup } from '@mui/material';
+import { Box, Paper, ToggleButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
@@ -31,7 +31,7 @@ export const ListView = () => {
   const columns = useColumns<EntityRowFragment>(
     [
       { key: 'code', label: 'label.code', width: 200, sortable: false },
-      { key: 'description', label: 'label.description', width: 1000 },
+      { key: 'description', label: 'label.description' },
       { key: 'type', label: 'label.type', sortable: false, width: 200 },
     ],
     { sortBy: sortBy, onChangeSortBy: updateSortQuery },
@@ -51,12 +51,13 @@ export const ListView = () => {
         field: sortBy.key,
         descending: sortBy.isDesc,
       },
+      match: 'contains',
     },
     first,
     offset,
   });
 
-  const updateCategories = (category: string) => {
+  const toggleCategory = (category: string) => {
     if (categories.includes(category)) {
       setCategories(categories.filter(c => c !== category));
     } else {
@@ -74,7 +75,17 @@ export const ListView = () => {
   };
 
   return (
-    <>
+    <Paper
+      sx={{
+        borderRadius: '16px',
+        margin: '10px auto',
+        padding: '16px',
+        width: '100%',
+        maxWidth: '1200px',
+        backgroundColor: 'background.menu',
+        flex: 1,
+      }}
+    >
       <TableProvider createStore={createTableStore}>
         <AppBarContentPortal
           sx={{
@@ -82,6 +93,8 @@ export const ListView = () => {
             flex: 1,
             display: 'flex',
             justifyContent: 'space-between',
+            maxWidth: '1200px',
+            marginRight: 'max(0px, calc((100vw - 1232px) / 2))',
           }}
         >
           <SearchToolbar filter={filter} />
@@ -91,7 +104,7 @@ export const ListView = () => {
               value={'drug'}
               selected={categories.includes('drug')}
               onClick={() => {
-                updateCategories('drug');
+                toggleCategory('drug');
               }}
             />
             <ToggleButton
@@ -99,27 +112,31 @@ export const ListView = () => {
               value={'consumable'}
               selected={categories.includes('consumable')}
               onClick={() => {
-                updateCategories('consumable');
+                toggleCategory('consumable');
               }}
             />
           </ToggleButtonGroup>
         </AppBarContentPortal>
 
-        <DataTable
-          columns={columns}
-          data={entities}
-          isError={isError}
-          isLoading={isLoading}
-          noDataElement={<NothingHere body={t('error.no-data')} />}
-          pagination={pagination}
-          onChangePage={updatePaginationQuery}
-          onRowClick={e =>
-            navigate(
-              RouteBuilder.create(AppRoute.Browse).addPart(e.code).build()
-            )
-          }
-        />
+        <Box
+          sx={{ backgroundColor: 'white', maxHeight: '100%', display: 'flex' }}
+        >
+          <DataTable
+            columns={columns}
+            data={entities}
+            isError={isError}
+            isLoading={isLoading}
+            noDataElement={<NothingHere body={t('error.no-data')} />}
+            pagination={pagination}
+            onChangePage={updatePaginationQuery}
+            onRowClick={e =>
+              navigate(
+                RouteBuilder.create(AppRoute.Browse).addPart(e.code).build()
+              )
+            }
+          />
+        </Box>
       </TableProvider>
-    </>
+    </Paper>
   );
 };

@@ -48,19 +48,6 @@ export const SearchBar: FC<SearchBarProps> = ({
 
   const isClearable = !(isLoading || loading) && buffer.length > 0;
 
-  const clearInputButton = (
-    <IconButton
-      sx={{ color: 'gray.main' }}
-      onClick={() => {
-        setBuffer('');
-        debouncedOnChange('');
-        setLoading(true);
-      }}
-      icon={<CloseIcon fontSize="small" />}
-      label={t('label.clear-search')}
-    />
-  );
-
   return (
     <>
       <BasicTextInput
@@ -69,7 +56,22 @@ export const SearchBar: FC<SearchBarProps> = ({
             <SearchIcon sx={{ color: 'gray.main' }} fontSize="small" />
           ),
           endAdornment: isClearable ? (
-            <InputAdornment position="end">{clearInputButton}</InputAdornment>
+            <InputAdornment
+              position="end"
+              onMouseDown={() => {
+                setBuffer('');
+                debouncedOnChange('');
+                setLoading(true);
+              }}
+            >
+              <IconButton
+                sx={{ color: 'gray.main' }}
+                icon={<CloseIcon fontSize="small" />}
+                label={t('label.clear-search')}
+                // onClick handled by above `onMouseDown` to prevent race condition with focus shifting away from the input!
+                onClick={() => {}}
+              />
+            </InputAdornment>
           ) : (
             <Spin isLoading={isLoading || loading} />
           ),
