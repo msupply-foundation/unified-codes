@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from '@common/intl';
-import { AppBarContentPortal, ChevronDownIcon } from '@common/ui';
-import { useBreadcrumbs } from '@common/hooks';
+import {
+  AppBarContentPortal,
+  ChevronDownIcon,
+  CopyIcon,
+  FlatButton,
+} from '@common/ui';
+import { useBreadcrumbs, useNotification } from '@common/hooks';
 import { useEntity } from '../api';
 import { Typography } from '@mui/material';
+import { TreeItem, TreeView } from '@mui/lab';
 import { useParams } from 'react-router-dom';
 import { EntityDetailsFragment } from '../api/operations.generated';
-import { TreeItem, TreeView } from '@mui/lab';
 
 type IEntity = EntityDetailsFragment & { children?: IEntity[] | null };
 
@@ -60,8 +65,20 @@ export const EntityDetails = () => {
 
 const EntityTreeItem = ({ entity }: { entity?: IEntity | null }) => {
   const t = useTranslation('system');
+  const { success } = useNotification();
 
   if (!entity) return null;
+
+  const handleCopyToClipboard = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    // prevent tree nodes opening/collapsing
+    e.stopPropagation();
+
+    navigator.clipboard.writeText(entity.code);
+
+    success(t('message.code-copied-to-clipboard', { code: entity.code }))();
+  };
 
   return (
     <TreeItem
@@ -69,11 +86,13 @@ const EntityTreeItem = ({ entity }: { entity?: IEntity | null }) => {
       nodeId={entity.code}
       label={
         <Typography>
-          {entity.name}
-          {' - '}
-          <span style={{ color: '#e95c30', fontWeight: 'bold' }}>
-            {entity.code}
-          </span>
+          {entity.name} -
+          <FlatButton
+            endIcon={<CopyIcon />}
+            sx={{ padding: 0 }}
+            label={entity.code}
+            onClick={handleCopyToClipboard}
+          />
         </Typography>
       }
     >
@@ -88,7 +107,7 @@ const EntityTreeItem = ({ entity }: { entity?: IEntity | null }) => {
           {entity.properties.map(p => (
             <TreeItem
               key={p.value}
-              nodeId={entity.code + p.value}
+              nodeId={entity.code + p.type}
               label={`${p.type}: ${p.value}`}
             />
           ))}

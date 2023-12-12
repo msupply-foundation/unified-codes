@@ -12,6 +12,7 @@
   "label.drugs": "Drugs",
   "label.error": "Error",
   "label.properties": "Properties",
+  "message.code-copied-to-clipboard": "Code {{ code }} copied to clipboard",
   "not-logged-in": "Not logged in",
   "password-reset.initiate": "Initiate Password Reset"
 }
