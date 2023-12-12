@@ -5,7 +5,7 @@ import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
 export type EntityRowFragment = { __typename: 'EntityType', type: string, description?: string | null, code: string, id: string };
 
-export type EntityDetailsFragment = { __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null };
+export type EntityDetailsFragment = { __typename: 'EntityType', code: string, name?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null };
 
 export type EntitiesQueryVariables = Types.Exact<{
   filter: Types.EntitySearchInput;
@@ -21,7 +21,7 @@ export type EntityQueryVariables = Types.Exact<{
 }>;
 
 
-export type EntityQuery = { __typename: 'Query', entity?: { __typename: 'EntityType', code: string, description?: string | null, type: string, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, children?: Array<{ __typename: 'EntityType', code: string, description?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null } | null };
+export type EntityQuery = { __typename: 'Query', entity?: { __typename: 'EntityType', code: string, name?: string | null, type: string, children?: Array<{ __typename: 'EntityType', code: string, name?: string | null, type: string, children?: Array<{ __typename: 'EntityType', code: string, name?: string | null, type: string, children?: Array<{ __typename: 'EntityType', code: string, name?: string | null, type: string, children?: Array<{ __typename: 'EntityType', code: string, name?: string | null, type: string, children?: Array<{ __typename: 'EntityType', code: string, name?: string | null, type: string, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null }> | null, properties?: Array<{ __typename: 'PropertyType', type: string, value: string }> | null } | null };
 
 export const EntityRowFragmentDoc = gql`
     fragment EntityRow on EntityType {
@@ -34,7 +34,7 @@ export const EntityRowFragmentDoc = gql`
 export const EntityDetailsFragmentDoc = gql`
     fragment EntityDetails on EntityType {
   code
-  description
+  name
   type
   properties {
     type

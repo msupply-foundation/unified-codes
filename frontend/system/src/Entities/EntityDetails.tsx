@@ -19,8 +19,8 @@ export const EntityDetails = () => {
   const { data: entity } = useEntity(code || '');
 
   useEffect(() => {
-    if (entity?.description) setSuffix(entity.description);
-  }, [entity?.description]);
+    if (entity?.name) setSuffix(entity.name);
+  }, [entity?.name]);
 
   useEffect(() => {
     const codes: string[] = [];
@@ -67,7 +67,7 @@ const EntityTreeItem = ({ entity }: { entity?: IEntity | null }) => {
       nodeId={entity.code}
       label={
         <Typography>
-          {entity.description}
+          {entity.name}
           {' - '}
           <span style={{ color: '#e95c30', fontWeight: 'bold' }}>
             {entity.code}
