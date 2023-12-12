@@ -46,6 +46,7 @@
   "password-reset.initiate-success-external": "Success! An email has been sent to the user you provided",
   "preferred-name-reset.explanation": "Enter your preferred name",
   "saving": "Saving...",
+  "settings": "Settings",
   "set-up-account": "Set up your account",
   "username-reset.explanation": "Enter your new log in username"
 }
