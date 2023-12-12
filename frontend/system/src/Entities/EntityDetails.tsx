@@ -35,23 +35,30 @@ export const EntityDetails = () => {
 
 type IEntity = EntityDetailsFragment & { children?: IEntity[] | null };
 
-const Entity = ({ entity }: { entity?: IEntity | null }) => (
-  <Box paddingLeft={'10px'}>
-    <Typography>
-      {entity?.description} ({entity?.code})
-    </Typography>
-    {entity?.children?.map(c => (
-      <Entity entity={c} key={c.code} />
-    ))}
-    {entity?.properties && (
-      <>
-        <Typography fontWeight={700}>Properties</Typography>
-        {entity.properties.map(p => (
-          <Typography key={p.value}>
-            {p.type}: {p.value}
-          </Typography>
-        ))}
-      </>
-    )}
-  </Box>
-);
+const Entity = ({ entity }: { entity?: IEntity | null }) => {
+  if (!entity) return null;
+  return (
+    <Box paddingLeft={'10px'}>
+      <Typography>
+        {entity.description}
+        {' - '}
+        <span style={{ color: '#e95c30', fontWeight: 'bold' }}>
+          {entity.code}
+        </span>
+      </Typography>
+      {entity.children?.map(c => (
+        <Entity entity={c} key={c.code} />
+      ))}
+      {entity.properties && (
+        <>
+          <Typography fontWeight={700}>Properties</Typography>
+          {entity.properties.map(p => (
+            <Typography key={p.value}>
+              {p.type}: {p.value}
+            </Typography>
+          ))}
+        </>
+      )}
+    </Box>
+  );
+};
