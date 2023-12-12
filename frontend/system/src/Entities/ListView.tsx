@@ -119,7 +119,9 @@ export const ListView = () => {
           </ToggleButtonGroup>
         </AppBarContentPortal>
 
-        <Box sx={{ backgroundColor: 'white', height: '100%', display: 'flex' }}>
+        <Box
+          sx={{ backgroundColor: 'white', maxHeight: '100%', display: 'flex' }}
+        >
           <DataTable
             columns={columns}
             data={entities}
