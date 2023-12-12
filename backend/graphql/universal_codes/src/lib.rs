@@ -1,7 +1,10 @@
 mod types;
+use std::result;
+
 use self::types::*;
 
 use async_graphql::*;
+use datasource::entity_by_code;
 
 #[derive(Default, Clone)]
 pub struct UniversalCodesQueries;
@@ -10,13 +13,15 @@ pub struct UniversalCodesQueries;
 impl UniversalCodesQueries {
     /// Query "universal codes" entry by code
     pub async fn entity(&self, _ctx: &Context<'_>, code: String) -> Result<EntityResponse> {
-        let entity = EntityType {
-            id: code.clone(),
-            code: code,
-            description: "TBD".to_string(),
-        };
-
-        Ok(EntityResponse::Response(entity))
+        let result = entity_by_code(code).await?;
+        match result {
+            Some(entity) => Ok(EntityResponse::Response(EntityType {
+                id: entity.id,
+                code: entity.code,
+                description: entity.description,
+            })),
+            None => Err("Not found".into()),
+        }
     }
 }
 

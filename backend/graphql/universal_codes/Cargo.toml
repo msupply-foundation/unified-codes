@@ -9,11 +9,10 @@ doctest = false
 
 [dependencies]
 
-repository = { path = "../../repository" }
-service = { path = "../../service" }
 util = { path = "../../util" }
 graphql_core = { path = "../core" }
 graphql_types = { path = "../types" }
+datasource = { path = "../../datasource" }
 
 actix-web = { version = "4.0.1", default-features = false, features = ["macros"] }
 async-graphql = { version = "3.0.35", features = ["dataloader", "chrono"] }
