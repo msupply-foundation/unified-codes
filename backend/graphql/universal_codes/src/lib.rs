@@ -1,5 +1,4 @@
 mod types;
-use std::result;
 
 use self::types::*;
 
@@ -15,11 +14,7 @@ impl UniversalCodesQueries {
     pub async fn entity(&self, _ctx: &Context<'_>, code: String) -> Result<EntityResponse> {
         let result = entity_by_code(code).await?;
         match result {
-            Some(entity) => Ok(EntityResponse::Response(EntityType {
-                id: entity.id,
-                code: entity.code,
-                description: entity.description,
-            })),
+            Some(entity) => Ok(EntityResponse::Response(EntityType { entity })),
             None => Err("Not found".into()),
         }
     }

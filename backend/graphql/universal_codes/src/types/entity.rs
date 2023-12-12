@@ -1,22 +1,21 @@
 use async_graphql::*;
+use datasource::Entity;
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug)]
 pub struct EntityType {
-    pub id: String,
-    pub code: String,
-    pub description: String,
+    pub entity: Entity,
 }
 
 #[Object]
 impl EntityType {
-    pub async fn id(&self) -> &str {
-        &self.id
+    pub async fn uid(&self) -> &str {
+        &self.entity.id
     }
     pub async fn code(&self) -> &str {
-        &self.code
+        &self.entity.code
     }
     pub async fn description(&self) -> &str {
-        &self.description
+        &self.entity.description
     }
 }
 
