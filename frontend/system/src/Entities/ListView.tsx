@@ -57,7 +57,7 @@ export const ListView = () => {
     offset,
   });
 
-  const updateCategories = (category: string) => {
+  const toggleCategory = (category: string) => {
     if (categories.includes(category)) {
       setCategories(categories.filter(c => c !== category));
     } else {
@@ -92,7 +92,7 @@ export const ListView = () => {
               value={'drug'}
               selected={categories.includes('drug')}
               onClick={() => {
-                updateCategories('drug');
+                toggleCategory('drug');
               }}
             />
             <ToggleButton
@@ -100,7 +100,7 @@ export const ListView = () => {
               value={'consumable'}
               selected={categories.includes('consumable')}
               onClick={() => {
-                updateCategories('consumable');
+                toggleCategory('consumable');
               }}
             />
           </ToggleButtonGroup>
