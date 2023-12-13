@@ -22,17 +22,19 @@ export const EntityDetails = () => {
   }, [entity?.name]);
 
   useEffect(() => {
-    const allCodes: string[] = [];
+    const expandedIds: string[] = [];
 
-    const addCodeToList = (ent?: EntityData | null) => {
+    const addToExpandedIds = (ent?: EntityData | null) => {
       if (ent) {
-        allCodes.push(ent.code);
-        ent.children?.forEach(addCodeToList);
+        expandedIds.push(ent.code);
+        ent.children?.forEach(addToExpandedIds);
       }
     };
-    addCodeToList(entity);
+    addToExpandedIds(entity);
 
-    setExpanded(allCodes);
+    entity?.properties && expandedIds.push(`${entity.code}_properties`);
+
+    setExpanded(expandedIds);
   }, [entity]);
 
   return (
