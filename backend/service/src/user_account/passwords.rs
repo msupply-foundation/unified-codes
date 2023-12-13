@@ -14,7 +14,6 @@ use super::{
     email::{
         password_reset::queue_password_reset_email,
         user_invite::{queue_user_invite_email, UserInviteParams},
-        user_welcome::{queue_user_welcome_email, UserWelcomeParams},
     },
     update::UpdateUserAccount,
     ModifyUserAccountError,
@@ -293,27 +292,6 @@ pub fn accept_user_invite(
 
     repo.update_one(&user)
         .map_err(ModifyUserAccountError::DatabaseError)?;
-
-    let welcome_params = UserWelcomeParams {
-        username: user.username.clone(),
-    };
-
-    // queue the welcome email
-    match user.email.clone() {
-        Some(email) => {
-            queue_user_welcome_email(ctx, &email, &welcome_params).map_err(|err| {
-                ModifyUserAccountError::GenericError(format!(
-                    "Unable to send invite email for : {} - {:?}",
-                    user.id, err
-                ))
-            })?;
-        }
-        None => {
-            return Err(ModifyUserAccountError::GenericError(
-                "Unable to send welcome email, no email address".to_string(),
-            ))
-        }
-    };
 
     Ok(())
 }

@@ -19,22 +19,10 @@ pub struct LogConnector {
 
 #[derive(Enum, Copy, Clone, PartialEq, Eq)]
 pub enum LogNodeType {
-    NotificationConfigCreated,
-    NotificationConfigUpdated,
-    RecipientCreated,
-    RecipientUpdated,
-    RecipientListCreated,
-    RecipientListUpdated,
-    RecipientAddedToList,
-    RecipientRemovedFromList,
     UserLoggedIn,
     UserAccountCreated,
     UserAccountUpdated,
     UserAccountPasswordResetInitiated,
-    SqlRecipientListCreated,
-    SqlRecipientListUpdated,
-    NotificationQueryCreated,
-    NotificationQueryUpdated,
 }
 
 #[Object]
@@ -83,47 +71,23 @@ impl LogNode {
 impl LogNodeType {
     pub fn from_domain(from: &LogType) -> LogNodeType {
         match from {
-            LogType::NotificationConfigCreated => LogNodeType::NotificationConfigCreated,
-            LogType::NotificationConfigUpdated => LogNodeType::NotificationConfigUpdated,
-            LogType::RecipientCreated => LogNodeType::RecipientCreated,
-            LogType::RecipientUpdated => LogNodeType::RecipientUpdated,
-            LogType::RecipientListCreated => LogNodeType::RecipientListCreated,
-            LogType::RecipientListUpdated => LogNodeType::RecipientListUpdated,
-            LogType::SqlRecipientListCreated => LogNodeType::SqlRecipientListCreated,
-            LogType::SqlRecipientListUpdated => LogNodeType::SqlRecipientListUpdated,
-            LogType::RecipientAddedToList => LogNodeType::RecipientAddedToList,
-            LogType::RecipientRemovedFromList => LogNodeType::RecipientRemovedFromList,
             LogType::UserLoggedIn => LogNodeType::UserLoggedIn,
             LogType::UserAccountCreated => LogNodeType::UserAccountCreated,
             LogType::UserAccountUpdated => LogNodeType::UserAccountUpdated,
             LogType::UserAccountPasswordResetInitiated => {
                 LogNodeType::UserAccountPasswordResetInitiated
             }
-            LogType::NotificationQueryCreated => LogNodeType::NotificationQueryCreated,
-            LogType::NotificationQueryUpdated => LogNodeType::NotificationQueryUpdated,
         }
     }
 
     pub fn to_domain(self) -> LogType {
         match self {
-            LogNodeType::NotificationConfigCreated => LogType::NotificationConfigCreated,
-            LogNodeType::NotificationConfigUpdated => LogType::NotificationConfigUpdated,
-            LogNodeType::RecipientCreated => LogType::RecipientCreated,
-            LogNodeType::RecipientUpdated => LogType::RecipientUpdated,
-            LogNodeType::RecipientListCreated => LogType::RecipientListCreated,
-            LogNodeType::RecipientListUpdated => LogType::RecipientListUpdated,
-            LogNodeType::SqlRecipientListCreated => LogType::SqlRecipientListCreated,
-            LogNodeType::SqlRecipientListUpdated => LogType::SqlRecipientListUpdated,
-            LogNodeType::RecipientAddedToList => LogType::RecipientAddedToList,
-            LogNodeType::RecipientRemovedFromList => LogType::RecipientRemovedFromList,
             LogNodeType::UserLoggedIn => LogType::UserLoggedIn,
             LogNodeType::UserAccountCreated => LogType::UserAccountCreated,
             LogNodeType::UserAccountUpdated => LogType::UserAccountUpdated,
             LogNodeType::UserAccountPasswordResetInitiated => {
                 LogType::UserAccountPasswordResetInitiated
             }
-            LogNodeType::NotificationQueryCreated => LogType::NotificationQueryCreated,
-            LogNodeType::NotificationQueryUpdated => LogType::NotificationQueryUpdated,
         }
     }
 }

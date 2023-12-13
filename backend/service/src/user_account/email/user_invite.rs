@@ -21,12 +21,8 @@ pub fn create_user_invite_email(
     url: &str,
     params: &UserInviteParams,
 ) -> Result<EnqueueEmailData, EmailServiceError> {
-    // TODO - put in an invite name/application name?
-    let subject = format!(
-        "You have been invited to join the Notification Service for {}",
-        ""
-    );
-    let title_text = "You have been invited to the Notification Service";
+    let subject = "You have been invited to Universal Codes".to_string();
+    let title_text = "You have been invited to Universal Codes";
     let mut context = Context::new();
     context.insert("url", url);
     context.insert("inviteParams", &params);

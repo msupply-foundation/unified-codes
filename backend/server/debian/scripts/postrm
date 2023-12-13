@@ -8,6 +8,6 @@ fi
 
 if [ "$1" = "remove" ]; then
 	if [ -x "/usr/bin/deb-systemd-helper" ]; then
-		deb-systemd-helper mask notify.service >/dev/null
+		deb-systemd-helper mask universal_codes.service >/dev/null
 	fi
 fi

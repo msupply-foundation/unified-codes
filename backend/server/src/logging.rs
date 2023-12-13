@@ -28,7 +28,7 @@ pub fn logging_init(settings: Option<LoggingSettings>, level: Option<Level>) {
 }
 
 fn file_logger(settings: &LoggingSettings) -> LogConfigBuilder {
-    let default_log_file = "notify.log".to_string();
+    let default_log_file = "universal_codes.log".to_string();
     let default_log_dir = "log".to_string();
     let default_max_file_count = 10;
     let default_max_file_size = 1;

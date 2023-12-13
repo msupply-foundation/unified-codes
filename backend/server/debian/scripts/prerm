@@ -1,3 +1,3 @@
 #!/bin/sh
 
-deb-systemd-invoke stop notify
+deb-systemd-invoke stop universal_codes

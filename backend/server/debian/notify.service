@@ -1,14 +1,14 @@
 [Unit]
-AssertPathExists=/opt/notify/notify_server
+AssertPathExists=/opt/universal_codes/universal_codes_server
 
 [Service]
-WorkingDirectory=/opt/notify/
-ExecStart=/opt/notify/notify_server
-User=notify
+WorkingDirectory=/opt/universal_codes/
+ExecStart=/opt/universal_codes/universal_codes_server
+User=universal_codes
 Restart=always
 PrivateTmp=true
 NoNewPrivileges=true
 
 [Install]
-Alias=notify
+Alias=universal_codes
 WantedBy=default.target

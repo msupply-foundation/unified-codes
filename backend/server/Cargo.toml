@@ -1,11 +1,10 @@
 [package]
 name = "server"
-description = "Notify"
+description = "UniversalCodes"
 license = "AFFERO GPL-3.0"
 version = "0.1.0"
 edition = "2018"
-default-run = "notify_server"
-build = "src/set_icon.rs"
+default-run = "universal_codes"
 
 [lib]
 path = "src/lib.rs"
@@ -13,22 +12,22 @@ doctest = false
 
 [[bin]]
 path = "src/main.rs"
-name = "notify_server"
+name = "universal_codes"
 
 [package.metadata.deb]
-name = "notify-server"
+name = "universal-codes"
 copyright = "2023, mSupply Foundation"
 maintainer = "mSupply Foundation <support@msupply.org.nz>"
 depends = "$auto, systemd"
-extended-description = "Notify - A notification server from mSupply Foundation"
+extended-description = "Universal Codes Server"
 section = "admin"
 priority = "optional"
 assets = [
-    ["target/release/notify_server", "/opt/notify/notify_server", "755"],
-    ["debian/notify.service", "/lib/systemd/system/notify.service", "644"],
-    ["../configuration/base.yaml", "/opt/notify/configuration/", "755"],
-    ["../configuration/example.yaml", "/opt/notify/configuration/", "755"],
-    ["../templates/**/*.html", "/opt/notify/templates/", "755"]
+    ["target/release/universal_codes", "/opt/universal_codes/universal_codes", "755"],
+    ["debian/universal_codes.service", "/lib/systemd/system/universal_codes.service", "644"],
+    ["../configuration/base.yaml", "/opt/universal_codes/configuration/", "755"],
+    ["../configuration/example.yaml", "/opt/universal_codes/configuration/", "755"],
+    ["../templates/**/*.html", "/opt/universal_codes/templates/", "755"]
 ]
 maintainer-scripts = "debian/scripts"
 
@@ -58,6 +57,3 @@ sanitize-filename = "0.4"
 
 
 [dev-dependencies]
-
-[target.'cfg(windows)'.build-dependencies]
-winres = "0.1"

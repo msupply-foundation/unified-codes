@@ -19,7 +19,7 @@ pub enum Audience {
     TokenRefresh,
 }
 
-const ISSUER: &str = "mSupply-notify";
+const ISSUER: &str = "mSupply-universal-codes";
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct OmSupplyClaim {

@@ -7,7 +7,7 @@ date
 
 error_handler () {
   echo "ERROR Backing up"
-  # Notify CRONITOR OF THE ERROR
+  # universal_codes CRONITOR OF THE ERROR
   if [[ -z "${CRONITOR_URL}" ]]; then
 	  curl -s $MONITOR_URL?state=fail
   fi
@@ -23,11 +23,11 @@ echo "started backup"
 curl -s $CRONITOR_URL?state=run
 
 echo "sqlite snapshot"
-rm /opt/notify/backup.sqlite
-/usr/bin/sqlite3 /opt/notify/notify-database.sqlite "VACUUM INTO '/opt/notify/backup.sqlite'"
+rm /opt/universal_codes/backup.sqlite
+/usr/bin/sqlite3 /opt/universal_codes/universal_codes-database.sqlite "VACUUM INTO '/opt/universal_codes/backup.sqlite'"
 
 echo "backing up..."
-/usr/bin/restic -q backup /opt/notify
+/usr/bin/restic -q backup /opt/universal_codes
 if [ $? -ne 0 ]
 then
   echo "Unable to complete backup"

@@ -7,11 +7,8 @@ edition = "2018"
 doctest = false
 
 [dependencies]
-serde_json = {version="1.0.66"}
 serde = {version = "1.0.126", features = ["derive"]}
 tokio = {version = "1", features = ["full"]}
-reqwest = {version = "0.11", features = ["json", "blocking"]}
-graphql_client = {version = "0.13", features = ["reqwest-blocking"]}
 gql_client = "1.0.7"
 
 [features]

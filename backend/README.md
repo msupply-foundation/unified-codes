@@ -1,4 +1,4 @@
-# Notify Backend
+# Universal Codes Backend
 
 This is the backend for `Universal Codes`.
 It is written in Rust and communicates with the frontend via GraphQL.
@@ -28,7 +28,7 @@ cargo test --features=email-tests --package service --lib -- email::email_test -
 
 ## Email
 
-By default Notify will send emails via a local SMTP server on port 1025.
+By default Universal Codes will send emails via a local SMTP server on port 1025.
 To change this to your own server, update the `configuration/local.yaml` file with your own settings.
 
 ```

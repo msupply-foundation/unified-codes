@@ -10,7 +10,6 @@ pub mod log_service;
 pub mod login;
 pub mod service_provider;
 pub mod settings;
-pub mod static_files;
 pub mod test_utils;
 pub mod token;
 pub mod token_bucket;

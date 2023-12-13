@@ -12,6 +12,6 @@ dgraph:
 ##   one of:  Error | Warn | Info (default) | Debug | Trace
 #   level: Info
 #   directory: log
-#   filename: notify.log
+#   filename: universal_codes.log
 #   max_file_count: 10
 #   max_file_size: 1

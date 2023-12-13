@@ -1,7 +1,6 @@
 use crate::{
     configuration::get_or_create_token_secret, cors::cors_policy,
     scheduled_tasks::scheduled_task_runner, serve_frontend::config_server_frontend,
-    static_files::config_static_files,
 };
 
 use self::middleware::{compress as compress_middleware, logger as logger_middleware};
@@ -34,7 +33,6 @@ pub mod logging;
 pub mod middleware;
 mod scheduled_tasks;
 mod serve_frontend;
-pub mod static_files;
 
 fn auth_data(
     _server_settings: &ServerSettings,
@@ -142,7 +140,6 @@ async fn run_server(
                 settings_data.clone(),
                 restart_switch.clone(),
             ))
-            .configure(config_static_files)
             .wrap(limit_content_length())
             .configure(config_server_frontend)
     })
@@ -164,7 +161,7 @@ async fn run_server(
         _ = restart_switch_receiver.recv() => true,
         scheduled_error = &mut scheduled_task_handle => {
             error!("Scheduled task stopped unexpectedly: {:?}", scheduled_error);
-            false
+            true
         }
     };
 
