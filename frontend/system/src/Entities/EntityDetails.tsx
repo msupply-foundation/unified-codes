@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { LocaleKey, useTranslation } from '@common/intl';
-import {
-  AppBarContentPortal,
-  ChevronDownIcon,
-  CopyIcon,
-  FlatButton,
-  Switch,
-} from '@common/ui';
-import { useBreadcrumbs, useNotification } from '@common/hooks';
+import { useTranslation } from '@common/intl';
+import { AppBarContentPortal, ChevronDownIcon, Switch } from '@common/ui';
+import { useBreadcrumbs } from '@common/hooks';
 import { useEntity } from '../api';
-import { FormControlLabel, Link, Typography } from '@mui/material';
-import { TreeItem, TreeView } from '@mui/lab';
+import { FormControlLabel } from '@mui/material';
+import { TreeView } from '@mui/lab';
 import { useParams } from 'react-router-dom';
-import { EntityDetailsFragment } from '../api/operations.generated';
-
-type IEntity = EntityDetailsFragment & { children?: IEntity[] | null };
+import { EntityTreeItem, EntityData } from './EntityTreeItem';
 
 export const EntityDetails = () => {
   const t = useTranslation('system');
@@ -32,7 +24,7 @@ export const EntityDetails = () => {
   useEffect(() => {
     const allCodes: string[] = [];
 
-    const addCodeToList = (ent?: IEntity | null) => {
+    const addCodeToList = (ent?: EntityData | null) => {
       if (ent) {
         allCodes.push(ent.code);
         ent.children?.forEach(addCodeToList);
@@ -76,94 +68,4 @@ export const EntityDetails = () => {
       </TreeView>
     </>
   );
-};
-
-const EntityTreeItem = ({
-  entity,
-  showAllCodes,
-}: {
-  showAllCodes: boolean;
-  entity?: IEntity | null;
-}) => {
-  const t = useTranslation('system');
-  const { success } = useNotification();
-
-  if (!entity) return null;
-
-  const handleCopyToClipboard = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    // prevent tree nodes opening/collapsing
-    e.stopPropagation();
-
-    navigator.clipboard.writeText(entity.code);
-
-    success(t('message.code-copied-to-clipboard', { code: entity.code }))();
-  };
-
-  const isLeaf = !entity.children?.length;
-  const showCode = showAllCodes || isLeaf;
-
-  return (
-    <TreeItem
-      sx={{ paddingY: '5px' }}
-      nodeId={entity.code}
-      label={
-        <Typography sx={{ height: '26px' }}>
-          {entity.name}{' '}
-          {showCode && (
-            <>
-              -
-              <FlatButton
-                endIcon={<CopyIcon />}
-                sx={{ padding: 0 }}
-                label={entity.code}
-                onClick={handleCopyToClipboard}
-              />
-            </>
-          )}
-        </Typography>
-      }
-    >
-      {entity.children?.map(c => (
-        <EntityTreeItem entity={c} key={c.code} showAllCodes={showAllCodes} />
-      ))}
-      {entity.properties && (
-        <TreeItem
-          nodeId={entity.code + '_properties'}
-          label={t('label.properties')}
-        >
-          {entity.properties.map(p => (
-            <TreeItem
-              key={p.value}
-              nodeId={entity.code + p.type}
-              label={
-                <Typography>
-                  {t(`property-${p.type}` as LocaleKey)}:{' '}
-                  {PROPERTY_URL[p.type] ? (
-                    <Link
-                      href={PROPERTY_URL[p.type]!(p.value)}
-                      target="_blank"
-                      sx={{ color: '#000' }}
-                    >
-                      {p.value}
-                    </Link>
-                  ) : (
-                    p.value
-                  )}
-                </Typography>
-              }
-            />
-          ))}
-        </TreeItem>
-      )}
-    </TreeItem>
-  );
-};
-
-export const PROPERTY_URL: { [key: string]: (code: string) => string } = {
-  ['code_rxnav']: code =>
-    `https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=${code}`,
-  ['code_nzulm']: code =>
-    `https://search.nzulm.org.nz/search/product?table=MP&id=${code}`,
 };
