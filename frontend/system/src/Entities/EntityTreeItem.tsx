@@ -80,11 +80,7 @@ export const EntityTreeItem = ({
                 <Typography>
                   {t(`property-${p.type}` as LocaleKey)}:{' '}
                   {PROPERTY_URL[p.type] ? (
-                    <Link
-                      href={PROPERTY_URL[p.type]!(p.value)}
-                      target="_blank"
-                      sx={{ color: '#000' }}
-                    >
+                    <Link href={PROPERTY_URL[p.type]!(p.value)} target="_blank">
                       {p.value}
                     </Link>
                   ) : (
