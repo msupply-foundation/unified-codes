@@ -115,6 +115,7 @@ export const DrugEditForm = () => {
               {form.strengths.map(strength => (
                 <TreeFormBox key={strength.tmpId}>
                   <BasicTextInput
+                    autoFocus
                     value={strength.name}
                     onChange={e =>
                       onUpdate(
@@ -132,6 +133,7 @@ export const DrugEditForm = () => {
                   {strength.units.map(unit => (
                     <TreeFormBox key={unit.tmpId}>
                       <BasicTextInput
+                        autoFocus
                         value={unit.name}
                         onChange={e =>
                           onUpdate(
@@ -248,6 +250,7 @@ const CategoryDropdown = ({
   getOptionDisabled: (o: Option) => boolean;
 }) => (
   <Select
+    autoFocus
     value={value}
     onChange={e => onChange(e.target.value)}
     options={options}
@@ -276,7 +279,13 @@ const AddButton = ({
       startIcon={<PlusCircleIcon />}
       label={label}
       onClick={onClick}
-      sx={{ marginLeft: '20px' }}
+      disableFocusRipple
+      sx={{
+        marginLeft: '20px',
+        '&.Mui-focusVisible': {
+          backgroundColor: '#e95c3029',
+        },
+      }}
     />
   );
 };

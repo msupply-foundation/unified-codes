@@ -10,6 +10,7 @@ interface ButtonProps {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   sx?: SxProps<Theme>;
   disabled?: boolean;
+  disableFocusRipple?: boolean;
 }
 
 const StyledButton = styled(MuiButton, {
@@ -35,6 +36,7 @@ export const FlatButton: React.FC<ButtonProps> = ({
   startIcon,
   sx,
   disabled = false,
+  disableFocusRipple = false,
 }) => {
   const isRtl = IntlUtils.useRtl();
   return (
@@ -47,6 +49,7 @@ export const FlatButton: React.FC<ButtonProps> = ({
       color={color}
       isRtl={isRtl}
       sx={sx}
+      disableFocusRipple={disableFocusRipple}
     >
       {label}
     </StyledButton>
