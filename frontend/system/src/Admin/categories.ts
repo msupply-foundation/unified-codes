@@ -68,4 +68,17 @@ export const categories = {
     { label: 'Vapour', value: 'Vapour' },
     { label: 'Water', value: 'Water' },
   ],
+  immediatePackagings: [
+    { label: 'Ampoule', value: 'Ampoule' },
+    { label: 'Bag', value: 'Bag' },
+    { label: 'Blister', value: 'Blister' },
+    { label: 'Bottle', value: 'Bottle' },
+    { label: 'Box', value: 'Box' },
+    { label: 'Cartridge', value: 'Cartridge' },
+    { label: 'Nebule', value: 'Nebule' },
+    { label: 'Pre-filled syringe', value: 'Pre-filled syringe' },
+    { label: 'Sachet', value: 'Sachet' },
+    { label: 'Tube', value: 'Tube' },
+    { label: 'Vial', value: 'Vial' },
+  ],
 };

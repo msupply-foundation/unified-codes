@@ -13,9 +13,15 @@ import React, { useState } from 'react';
 import { categories } from './categories';
 import { useUuid } from '../hooks';
 
+type ImmediatePackaging = {
+  tmpId: string;
+  name: string;
+};
+
 type Unit = {
   tmpId: string;
   name: string;
+  immediatePackagings: ImmediatePackaging[];
 };
 
 type Strength = {
@@ -93,6 +99,21 @@ export const DrugEditForm = () => {
     setDraft({ ...draft });
   };
 
+  const onUpdateImmediatePackaging = (
+    immediatePackaging: ImmediatePackaging,
+    unit: Unit
+  ) => {
+    const imPackIndex = unit.immediatePackagings.findIndex(
+      i => i.tmpId === immediatePackaging.tmpId
+    );
+    if (imPackIndex >= 0) {
+      unit.immediatePackagings[imPackIndex] = immediatePackaging;
+    } else {
+      unit.immediatePackagings.push(immediatePackaging);
+    }
+    setDraft({ ...draft });
+  };
+
   return (
     <Box sx={{ marginY: '16px', width: '100%' }}>
       <BasicTextInput
@@ -166,13 +187,52 @@ export const DrugEditForm = () => {
                         }
                         fullWidth
                       />
+
+                      {!!unit.immediatePackagings.length && (
+                        <Typography fontSize="12px">
+                          {t('label.immediate-packaging')}
+                        </Typography>
+                      )}
+
+                      {unit.immediatePackagings.map(immPack => (
+                        <TreeFormBox key={immPack.tmpId}>
+                          <CategoryDropdown
+                            value={immPack.name}
+                            options={categories.immediatePackagings}
+                            onChange={name =>
+                              onUpdateImmediatePackaging(
+                                { ...immPack, name },
+                                unit
+                              )
+                            }
+                            getOptionDisabled={o =>
+                              !!unit.immediatePackagings.find(
+                                i => i.name === o.value
+                              )
+                            }
+                          />
+                        </TreeFormBox>
+                      ))}
+
+                      <AddButton
+                        label={t('label.add-immediate-packaging')}
+                        onClick={() =>
+                          onUpdateImmediatePackaging(
+                            { tmpId: uuid(), name: '' },
+                            unit
+                          )
+                        }
+                      />
                     </TreeFormBox>
                   ))}
 
                   <AddButton
                     label={t('label.add-unit')}
                     onClick={() =>
-                      onUpdateUnit({ tmpId: uuid(), name: '' }, strength)
+                      onUpdateUnit(
+                        { tmpId: uuid(), name: '', immediatePackagings: [] },
+                        strength
+                      )
                     }
                   />
                 </TreeFormBox>
