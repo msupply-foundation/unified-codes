@@ -8,6 +8,8 @@ import {
   Typography,
   Option,
   MenuItem,
+  SaveIcon,
+  ButtonWithIcon,
 } from '@common/ui';
 import React, { useState } from 'react';
 import { categories } from './categories';
@@ -51,7 +53,10 @@ export const DrugEditForm = () => {
   const t = useTranslation('system');
   const uuid = useUuid();
   const [draft, setDraft] = useState<DrugInput>({ name: '', routes: [] });
-  console.log(draft);
+
+  const onSubmit = () => {
+    console.log(draft);
+  };
 
   const onUpdateRoot = (patch: Partial<DrugInput>) => {
     setDraft({ ...draft, ...patch });
@@ -221,6 +226,15 @@ export const DrugEditForm = () => {
           onUpdate({ tmpId: uuid(), name: '', forms: [] }, draft.routes)
         }
       />
+
+      <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+        <ButtonWithIcon
+          Icon={<SaveIcon />}
+          label={t('button.save')}
+          onClick={onSubmit}
+          variant="contained"
+        />
+      </Box>
     </Box>
   );
 };
