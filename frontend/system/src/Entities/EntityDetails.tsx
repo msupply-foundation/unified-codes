@@ -63,6 +63,7 @@ export const EntityDetails = () => {
         defaultExpandIcon={<ChevronDownIcon sx={{ rotate: '-90deg' }} />}
         defaultCollapseIcon={<ChevronDownIcon />}
         onNodeToggle={(_, codes: string[]) => setExpanded(codes)}
+        sx={{ overflow: 'auto', width: '100%' }}
       >
         <EntityTreeItem showAllCodes={showAllCodes} entity={entity} />
       </TreeView>
