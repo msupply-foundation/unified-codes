@@ -37,6 +37,7 @@
   "messages.password-notbad": "Not bad",
   "messages.password-poor": "Poor",
   "messages.password-weak": "Weak",
+  "new-drug": "New Drug",
   "notifications": "Notifications",
   "password-reset": "Password Reset",
   "password-reset.completed-success": "Success! Your password has been reset, please return to the login page to continue",
