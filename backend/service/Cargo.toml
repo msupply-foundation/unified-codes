@@ -23,8 +23,6 @@ lettre = "0.11.1"
 rand = "0.8"
 tera = "1"
 nanohtml2text = "0.1"
-async-trait = "0.1.30"
-pulldown-cmark = { version = "0.9", default-features = false }
 flate2 = "1.0.26"
 simple-log = { version = "1.6" }
 
