@@ -29,9 +29,9 @@ type DrugInput = {
   routes: Route[];
 };
 
-const DrugEditForm = () => {
+export const DrugEditForm = () => {
   const t = useTranslation('system');
-  const getRandomUuid = useUuid();
+  const uuid = useUuid();
   const [draft, setDraft] = useState<DrugInput>({ name: '', routes: [] });
   console.log(draft);
 
@@ -41,13 +41,21 @@ const DrugEditForm = () => {
 
   const onUpdateRoute = (route: Route) => {
     const routeIndex = draft.routes.findIndex(r => r.tmpId === route.tmpId);
-    draft.routes[routeIndex] = route;
+    if (routeIndex >= 0) {
+      draft.routes[routeIndex] = route;
+    } else {
+      draft.routes.push(route);
+    }
     setDraft({ ...draft });
   };
 
   const onUpdateForm = (form: Form, route: Route) => {
     const formIndex = route.forms.findIndex(f => f.tmpId === form.tmpId);
-    route.forms[formIndex] = form;
+    if (formIndex >= 0) {
+      route.forms[formIndex] = form;
+    } else {
+      route.forms.push(form);
+    }
     onUpdateRoute(route);
   };
 
@@ -61,108 +69,108 @@ const DrugEditForm = () => {
         InputLabelProps={{ shrink: true }}
         fullWidth
       />
+
       {!!draft.routes.length && (
         <Typography fontSize="12px">{t('label.routes')}</Typography>
       )}
+
       {draft.routes.map(route => (
-        <Box
-          key={route.tmpId}
-          sx={{
-            marginLeft: '10px',
-            paddingLeft: '10px',
-            paddingTop: '10px',
-            borderLeft: '1px solid black',
-          }}
-        >
-          <Select
+        <TreeFormBox key={route.tmpId}>
+          <CategoryDropdown
             value={route.type}
-            onChange={e => onUpdateRoute({ ...route, type: e.target.value })}
             options={categories.routes}
-            renderOption={(option: Option) => (
-              <MenuItem
-                key={option.value}
-                value={option.value}
-                disabled={!!draft.routes.find(r => r.type === option.value)}
-              >
-                {option.label}
-              </MenuItem>
-            )}
-            sx={{ width: '100%' }}
+            onChange={type => onUpdateRoute({ ...route, type })}
+            getOptionDisabled={o =>
+              !!draft.routes.find(r => r.type === o.value)
+            }
           />
+
           {!!route.forms.length && (
             <Typography fontSize="12px">{t('label.forms')}</Typography>
           )}
+
           {route.forms.map(form => (
-            <Box
-              key={form.tmpId}
-              sx={{
-                marginLeft: '10px',
-                paddingLeft: '10px',
-                paddingTop: '10px',
-                borderLeft: '1px solid black',
-              }}
-            >
-              <Select
+            <TreeFormBox key={form.tmpId}>
+              <CategoryDropdown
                 value={form.type}
-                onChange={e =>
-                  onUpdateForm({ ...form, type: e.target.value }, route)
-                }
-                renderOption={(option: Option) => (
-                  <MenuItem
-                    key={option.value}
-                    value={option.value}
-                    disabled={!!route.forms.find(f => f.type === option.value)}
-                  >
-                    {option.label}
-                  </MenuItem>
-                )}
                 options={categories.forms}
-                sx={{ width: '100%' }}
-              />
-              {/* <FlatButton
-                startIcon={<PlusCircleIcon />}
-                label={t('label.add-form')}
-                onClick={() =>
-                  onUpdateRoute({
-                    ...form,
-                    forms: [
-                      ...form.forms,
-                      { type: '', tmpId: getRandomUuid() },
-                    ],
-                  })
+                onChange={type => onUpdateForm({ ...form, type }, route)}
+                getOptionDisabled={o =>
+                  !!route.forms.find(f => f.type === o.value)
                 }
-                sx={{ marginLeft: '20px' }}
-              /> */}
-            </Box>
+              />
+            </TreeFormBox>
           ))}
-          <FlatButton
-            startIcon={<PlusCircleIcon />}
+
+          <AddButton
             label={t('label.add-form')}
-            onClick={() =>
-              onUpdateRoute({
-                ...route,
-                forms: [...route.forms, { type: '', tmpId: getRandomUuid() }],
-              })
-            }
-            sx={{ marginLeft: '20px' }}
+            onClick={() => onUpdateForm({ tmpId: uuid(), type: '' }, route)}
           />
-        </Box>
+        </TreeFormBox>
       ))}
-      <FlatButton
-        startIcon={<PlusCircleIcon />}
+
+      <AddButton
         label={t('label.add-route')}
-        onClick={() =>
-          onUpdate({
-            routes: [
-              ...draft.routes,
-              { type: '', tmpId: getRandomUuid(), forms: [] },
-            ],
-          })
-        }
-        sx={{ marginLeft: '20px' }}
+        onClick={() => onUpdateRoute({ tmpId: uuid(), type: '', forms: [] })}
       />
     </Box>
   );
 };
 
-export default DrugEditForm;
+const TreeFormBox = ({ children }: { children?: React.ReactNode }) => (
+  <Box
+    sx={{
+      marginLeft: '10px',
+      paddingLeft: '10px',
+      paddingTop: '10px',
+      borderLeft: '1px solid black',
+    }}
+  >
+    {children}
+  </Box>
+);
+
+const CategoryDropdown = ({
+  value,
+  options,
+  onChange,
+  getOptionDisabled,
+}: {
+  value: string;
+  options: Option[];
+  onChange: (value: string) => void;
+  getOptionDisabled: (o: Option) => boolean;
+}) => (
+  <Select
+    value={value}
+    onChange={e => onChange(e.target.value)}
+    options={options}
+    renderOption={(option: Option) => (
+      <MenuItem
+        key={option.value}
+        value={option.value}
+        disabled={getOptionDisabled(option)}
+      >
+        {option.label}
+      </MenuItem>
+    )}
+    sx={{ width: '100%' }}
+  />
+);
+
+const AddButton = ({
+  label,
+  onClick,
+}: {
+  label: string;
+  onClick: () => void;
+}) => {
+  return (
+    <FlatButton
+      startIcon={<PlusCircleIcon />}
+      label={label}
+      onClick={onClick}
+      sx={{ marginLeft: '20px' }}
+    />
+  );
+};

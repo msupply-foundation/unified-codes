@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from '@uc-frontend/common';
-import DrugEditForm from './DrugEditForm';
+import { DrugEditForm } from './DrugEditForm';
 
 const AdminService = () => {
   return (
