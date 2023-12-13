@@ -6,13 +6,12 @@ const EntitiesService = React.lazy(
   () => import('@uc-frontend/system/src/Entities/Service')
 );
 
-const fullPath = RouteBuilder.create(AppRoute.Home).addWildCard().build();
+const fullPath = RouteBuilder.create(AppRoute.Browse).addWildCard().build();
 
 export const EntitiesRouter: FC = () => {
-  // TODO: not sure if we're going to end up wanting this on a /entities path or something?
-  const isEntitiesPath = useMatch(fullPath);
+  const isBrowsePath = useMatch(fullPath);
 
-  if (isEntitiesPath) {
+  if (isBrowsePath) {
     return <EntitiesService />;
   }
 

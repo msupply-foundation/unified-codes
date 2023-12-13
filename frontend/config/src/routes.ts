@@ -1,4 +1,6 @@
 export enum AppRoute {
+  Browse = 'browse',
+
   Home = '',
   Login = 'login',
   PasswordReset = 'password-reset',
