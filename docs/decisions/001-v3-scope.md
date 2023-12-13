@@ -1,9 +1,9 @@
 # KDD-001: Scope of the upgrade
 
-- _Date_: 28 November 2023
+- _Date_: Updated 13 Dec 2023
 - _Deciders_: Mark, James, Laché
 - _Status_: DECIDED
-- _Outcome_: Option 4 - Replace Frontend
+- _Outcome_: Option 5 - Replace Frontend and Backend
 
 ## Context
 
@@ -81,9 +81,29 @@ _Cons:_
 - We aren't using any of the cool graph database features, so why bother with the overhead of maintaining a different server?
 - The current UI is working, so there's overhead in replacing
 
+### 4. Replace UI layer and Backend
+
+Retain dgraph but replace the react layer and backend with a copy of the codebase used for other web projects. This gives a good platform for building the admin interface, using existing patterns and toolset.
+
+_Pros:_
+
+- The database layer is working and has a graphQL API; the current UI package is using a graphQL API
+- Consistent front end codebase, and
+- potentially, consistent UI and component reuse
+- A graph database allows us to do a lot of interesting things with the data
+- A good platform for developing the admin interface, in a familiar environment
+- Most of the backend is familiar to the team, and we can use the same patterns as other apps
+- Can re-use backend integrations such as email sending (for password reset), User logins for authentication, etc
+
+_Cons:_
+
+- We're left with an unfamiliar database engine to maintain
+- We aren't using any of the cool graph database features, so why bother with the overhead of maintaining a different server?
+- The current UI is working, so there's overhead in replacing
+
 ## Decision
 
-The decision has been made in favour of **Option 4: Replace UI layer**.
+The decision has been made in favour of **Option 5: Replace UI layer and Backend**.
 
 Given the backend exposes a GraphQL API, we should be able to drop our current frontend package in pretty easily.
 
@@ -95,6 +115,6 @@ If we have time/budget left at the end, we could then consider replacing DGraph.
 
 ## Consequences
 
-We will be left with a DGraph database (and a TypeScript backend, as opposed to Rust), which will require additional learning/relearning overhead as we maintain UC.
+We will be left with a DGraph database, which will require additional learning/relearning overhead as we maintain UC, but by using graphql, it should be more accessible than if we were using the DGraph API directly.
 
-We're also going to build out a lot in the backend as we implement this admin interface (all the mutations, as well as implementing auth) which will make it a lot more work to move away from the DGraph/TS backend in future.
+We're also going to build out a lot in the backend as we implement this admin interface (all the mutations) which will make it a lot more work to move away from DGraph in future.
