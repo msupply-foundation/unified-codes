@@ -4,7 +4,6 @@ use repository::{Pagination, PaginationOption, DEFAULT_PAGINATION_LIMIT};
 pub mod audit_log;
 pub mod auth;
 pub mod auth_data;
-pub mod dgraph;
 pub mod email;
 pub mod log_service;
 pub mod login;
@@ -13,6 +12,7 @@ pub mod settings;
 pub mod test_utils;
 pub mod token;
 pub mod token_bucket;
+pub mod universal_codes;
 pub mod user_account;
 
 #[derive(PartialEq, Debug)]

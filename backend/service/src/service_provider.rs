@@ -4,17 +4,17 @@ use repository::{RepositoryError, StorageConnection, StorageConnectionManager};
 
 use crate::{
     auth::{AuthService, AuthServiceTrait},
-    dgraph::{DgraphService, DgraphServiceTrait},
     email::{EmailService, EmailServiceTrait},
     log_service::{LogService, LogServiceTrait},
     settings::Settings,
+    universal_codes::{UniversalCodesService, UniversalCodesServiceTrait},
     user_account::{UserAccountService, UserAccountServiceTrait},
 };
 
 pub struct ServiceProvider {
     pub connection_manager: StorageConnectionManager,
     pub email_service: Box<dyn EmailServiceTrait>,
-    pub dgraph_service: Box<dyn DgraphServiceTrait>,
+    pub dgraph_service: Box<dyn UniversalCodesServiceTrait>,
     pub validation_service: Box<dyn AuthServiceTrait>,
     pub user_account_service: Box<dyn UserAccountServiceTrait>,
     pub settings: Settings,
@@ -66,7 +66,7 @@ impl ServiceProvider {
         ServiceProvider {
             connection_manager,
             email_service: Box::new(EmailService::new(settings.clone())),
-            dgraph_service: Box::new(DgraphService::new(settings.clone())),
+            dgraph_service: Box::new(UniversalCodesService::new(settings.clone())),
             validation_service: Box::new(AuthService::new()),
             user_account_service: Box::new(UserAccountService {}),
             settings,
