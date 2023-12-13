@@ -14,6 +14,8 @@ pub struct Entity {
     pub id: String,
     pub code: String,
     pub description: String,
+    #[serde(rename = "__typename")]
+    pub r#type: String,
     #[serde(default)]
     pub properties: Vec<Properties>,
     #[serde(default)]
@@ -39,7 +41,7 @@ pub struct Properties {
     pub value: String,
 }
 
-async fn entity_search(
+pub async fn entity_search(
     client: &DgraphClient,
     variables: Vars,
 ) -> Result<Option<EntityData>, GraphQLError> {

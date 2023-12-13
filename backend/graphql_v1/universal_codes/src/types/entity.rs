@@ -6,6 +6,7 @@ pub struct EntityType {
     pub id: String,
     pub code: String,
     pub description: String,
+    pub r#type: String,
     pub properties: Vec<PropertiesType>,
     pub children: Vec<EntityType>,
 }
@@ -16,6 +17,7 @@ impl EntityType {
             id: entity.id,
             code: entity.code,
             description: entity.description,
+            r#type: entity.r#type,
             properties: PropertiesType::from_domain(entity.properties),
             children: entity
                 .children
@@ -65,6 +67,9 @@ impl EntityType {
     pub async fn description(&self) -> &str {
         &self.description
     }
+    pub async fn r#type(&self) -> &str {
+        &self.r#type
+    }
 
     pub async fn properties(&self) -> &Vec<PropertiesType> {
         &self.properties
@@ -73,9 +78,4 @@ impl EntityType {
     pub async fn children(&self) -> &Vec<EntityType> {
         &self.children
     }
-}
-
-#[derive(Union)]
-pub enum EntityResponse {
-    Response(EntityType),
 }
