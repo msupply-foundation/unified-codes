@@ -1,0 +1,20 @@
+export const categories = {
+  routes: [
+    { label: 'Buccal', value: 'Buccal' },
+    { label: 'Dental', value: 'Dental' },
+    { label: 'Ear', value: 'Ear' },
+    { label: 'Eye', value: 'Eye' },
+    { label: 'Inhalation', value: 'Inhalation' },
+    { label: 'Intratracheal', value: 'Intratracheal' },
+    { label: 'Intrauterine', value: 'Intrauterine' },
+    { label: 'Nasal', value: 'Nasal' },
+    { label: 'Oral', value: 'Oral' },
+    { label: 'Parenteral', value: 'Parenteral' },
+    { label: 'Rectal', value: 'Rectal' },
+    { label: 'Subdermal', value: 'Subdermal' },
+    { label: 'Sublingual', value: 'Sublingual' },
+    { label: 'Topical', value: 'Topical' },
+    { label: 'Transdermal', value: 'Transdermal' },
+    { label: 'Vaginal', value: 'Vaginal' },
+  ],
+};
