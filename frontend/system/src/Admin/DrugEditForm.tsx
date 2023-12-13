@@ -13,9 +13,15 @@ import React, { useState } from 'react';
 import { categories } from './categories';
 import { useUuid } from '../hooks';
 
+type Unit = {
+  tmpId: string;
+  name: string;
+};
+
 type Strength = {
   tmpId: string;
   name: string;
+  units: Unit[];
 };
 
 type Form = {
@@ -77,6 +83,16 @@ export const DrugEditForm = () => {
     setDraft({ ...draft });
   };
 
+  const onUpdateUnit = (unit: Unit, strength: Strength) => {
+    const unitIndex = strength.units.findIndex(u => u.tmpId === unit.tmpId);
+    if (unitIndex >= 0) {
+      strength.units[unitIndex] = unit;
+    } else {
+      strength.units.push(unit);
+    }
+    setDraft({ ...draft });
+  };
+
   return (
     <Box sx={{ marginY: '16px', width: '100%' }}>
       <BasicTextInput
@@ -133,13 +149,39 @@ export const DrugEditForm = () => {
                     }
                     fullWidth
                   />
+
+                  {!!strength.units.length && (
+                    <Typography fontSize="12px">{t('label.units')}</Typography>
+                  )}
+
+                  {strength.units.map(unit => (
+                    <TreeFormBox key={unit.tmpId}>
+                      <BasicTextInput
+                        value={unit.name}
+                        onChange={e =>
+                          onUpdateUnit(
+                            { ...unit, name: e.target.value },
+                            strength
+                          )
+                        }
+                        fullWidth
+                      />
+                    </TreeFormBox>
+                  ))}
+
+                  <AddButton
+                    label={t('label.add-unit')}
+                    onClick={() =>
+                      onUpdateUnit({ tmpId: uuid(), name: '' }, strength)
+                    }
+                  />
                 </TreeFormBox>
               ))}
 
               <AddButton
                 label={t('label.add-strength')}
                 onClick={() =>
-                  onUpdateStrength({ tmpId: uuid(), name: '' }, form)
+                  onUpdateStrength({ tmpId: uuid(), name: '', units: [] }, form)
                 }
               />
             </TreeFormBox>
