@@ -10,8 +10,7 @@ doctest = false
 [dependencies]
 
 util = { path = "../../util" }
-graphql_core = { path = "../core" }
-graphql_types = { path = "../types" }
+graphql_v1_core = { path = "../core" }
 dgraph = { path = "../../dgraph" }
 
 actix-web = { version = "4.0.1", default-features = false, features = ["macros"] }

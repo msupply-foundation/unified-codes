@@ -1,5 +1,6 @@
 [package]
-name = "graphql"
+name = "graphql_v1"
+description = "Universal Codes GraphQL v1"
 version = "0.1.0"
 edition = "2018"
 
@@ -11,10 +12,8 @@ path = "./lib.rs"
 repository = { path = "../repository" }
 service = { path = "../service" }
 util = { path = "../util" }
-graphql_core = { path = "core" }
-graphql_types = { path = "types" }
-graphql_general = { path = "general" }
-graphql_user_account = { path = "user_account" }
+graphql_v1_core = { path = "core" }
+graphql_universal_codes = { path = "universal_codes" }
 
 
 actix-web = { version = "4.0.1", default-features = false, features = [

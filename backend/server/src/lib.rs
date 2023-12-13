@@ -7,6 +7,7 @@ use self::middleware::{compress as compress_middleware, logger as logger_middlew
 use graphql_core::loader::{get_loaders, LoaderRegistry};
 
 use graphql::config as graphql_config;
+use graphql_v1::config as graphql_v1_config;
 use log::{error, info};
 use middleware::{add_authentication_context, limit_content_length};
 use repository::{get_storage_connection_manager, run_db_migrations, StorageConnectionManager};
@@ -129,7 +130,11 @@ async fn run_server(
             .app_data(Data::new(http_server_config_settings.clone()))
             .app_data(service_provider_data.clone())
             .wrap(add_authentication_context(auth_data.clone()))
-            .wrap(logger_middleware().exclude("/graphql")) // Exclude graphql requests, as they are logged from async-graphql
+            .wrap(
+                logger_middleware()
+                    .exclude("/graphql")
+                    .exclude("/v1/graphql"),
+            ) // Exclude graphql requests, as they are logged from async-graphql
             .wrap(cors)
             .wrap(compress_middleware())
             .configure(graphql_config(
@@ -139,6 +144,11 @@ async fn run_server(
                 auth_data.clone(),
                 settings_data.clone(),
                 restart_switch.clone(),
+            ))
+            .configure(graphql_v1_config(
+                connection_manager_data_app.clone(),
+                service_provider_data.clone(),
+                settings_data.clone(),
             ))
             .wrap(limit_content_length())
             .configure(config_server_frontend)
