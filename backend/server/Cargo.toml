@@ -35,7 +35,7 @@ maintainer-scripts = "debian/scripts"
 graphql = { path = "../graphql" }
 graphql_core = { path = "../graphql/core" }
 graphql_types = { path = "../graphql/types" }
-datasource = {path = "../datasource"}
+dgraph = {path = "../dgraph"}
 repository = { path = "../repository" }
 service = { path = "../service" }
 util = { path = "../util" }

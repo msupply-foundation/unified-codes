@@ -1,13 +1,13 @@
 use std::fmt::{Display, Formatter, Result};
 
-use datasource::database_settings::DgraphSettings;
+use dgraph::database_settings::DgraphSettings;
 use repository::database_settings::SqliteSettings;
 #[derive(serde::Deserialize, Clone)]
 pub struct Settings {
     pub server: ServerSettings,
     pub database: SqliteSettings,
     pub mail: MailSettings,
-    pub datasource: DgraphSettings,
+    pub dgraph: DgraphSettings,
     pub logging: Option<LoggingSettings>,
 }
 

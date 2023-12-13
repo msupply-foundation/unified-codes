@@ -12,7 +12,7 @@ doctest = false
 util = { path = "../../util" }
 graphql_core = { path = "../core" }
 graphql_types = { path = "../types" }
-datasource = { path = "../../datasource" }
+dgraph = { path = "../../dgraph" }
 
 actix-web = { version = "4.0.1", default-features = false, features = ["macros"] }
 async-graphql = { version = "3.0.35", features = ["dataloader", "chrono"] }

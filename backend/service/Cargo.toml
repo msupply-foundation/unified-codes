@@ -8,7 +8,7 @@ path = "src/lib.rs"
 doctest = false
 
 [dependencies]
-datasource = { path = "../datasource" }
+dgraph = { path = "../dgraph" }
 repository = { path = "../repository" }
 util = { path = "../util" }
 anyhow = "1.0.44"

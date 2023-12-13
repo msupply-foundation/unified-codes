@@ -1,6 +1,7 @@
 use gql_client::{Client, GraphQLError};
 use serde::{Deserialize, Serialize};
 
+#[allow(non_snake_case)]
 #[derive(Deserialize, Debug)]
 pub struct EntityData {
     pub queryEntity: Vec<Entity>,
@@ -120,7 +121,7 @@ mod tests {
     use super::*;
 
     #[tokio::test]
-    async fn test_gql() {
+    async fn test_search() {
         let variables = Vars {
             search: "/Heparin.Sodium.*/".to_string(),
             first: 10,
@@ -131,7 +132,7 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn test_gql_by_code() {
+    async fn test_entity_by_code() {
         let result = entity_by_code("10808942".to_string()).await;
         println!("{:#?}", result);
         let e = result.unwrap().unwrap();

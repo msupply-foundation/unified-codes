@@ -3,7 +3,7 @@ mod types;
 use self::types::*;
 
 use async_graphql::*;
-use datasource::entity_by_code;
+use dgraph::entity_by_code;
 
 #[derive(Default, Clone)]
 pub struct UniversalCodesQueries;

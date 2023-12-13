@@ -13,7 +13,7 @@ mail:
   username: ''
   password: ''
   from: 'no-reply@msupply.foundation'
-datasource:
+dgraph:
   host: 'localhost'
   port: 8080
 logging:

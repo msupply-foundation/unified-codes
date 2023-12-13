@@ -1,5 +1,5 @@
 use async_graphql::*;
-use datasource::{Entity, Properties};
+use dgraph::{Entity, Properties};
 
 #[derive(Clone, Debug)]
 pub struct EntityType {

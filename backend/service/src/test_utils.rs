@@ -3,11 +3,11 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use datasource::DgraphSettings;
+use dgraph::DgraphSettings;
 use repository::{test_db::get_test_db_settings, StorageConnectionManager};
 
 use crate::{
-    datasource::DatasourceServiceTrait,
+    dgraph::DgraphServiceTrait,
     email::{send::EmailSendError, EmailServiceError, EmailServiceTrait},
     service_provider::{ServiceContext, ServiceProvider},
     settings::{MailSettings, ServerSettings, Settings},
@@ -49,7 +49,7 @@ pub fn get_test_settings(db_name: &str) -> Settings {
             password: "".to_string(),
             from: "no-reply@msupply.foundation".to_string(),
         },
-        datasource: DgraphSettings {
+        dgraph: DgraphSettings {
             port: 5432,
             host: "localhost".to_string(),
         },
@@ -79,8 +79,8 @@ impl EmailServiceTrait for MockEmailService {
     }
 }
 
-pub struct MockDatasourceService {}
-impl DatasourceServiceTrait for MockDatasourceService {}
+pub struct MockDgraphService {}
+impl DgraphServiceTrait for MockDgraphService {}
 
 // Create a service provider with a dummy email service
 pub fn service_provider_with_mock_email_service(
