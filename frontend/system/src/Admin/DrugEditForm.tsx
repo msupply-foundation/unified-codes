@@ -15,18 +15,18 @@ import { useUuid } from '../hooks';
 
 type Strength = {
   tmpId: string;
-  type: string;
+  name: string;
 };
 
 type Form = {
   tmpId: string;
-  type: string;
+  name: string;
   strengths: Strength[];
 };
 
 type Route = {
   tmpId: string;
-  type: string;
+  name: string;
   forms: Form[];
 };
 
@@ -95,11 +95,11 @@ export const DrugEditForm = () => {
       {draft.routes.map(route => (
         <TreeFormBox key={route.tmpId}>
           <CategoryDropdown
-            value={route.type}
+            value={route.name}
             options={categories.routes}
-            onChange={type => onUpdateRoute({ ...route, type })}
+            onChange={name => onUpdateRoute({ ...route, name })}
             getOptionDisabled={o =>
-              !!draft.routes.find(r => r.type === o.value)
+              !!draft.routes.find(r => r.name === o.value)
             }
           />
 
@@ -110,11 +110,11 @@ export const DrugEditForm = () => {
           {route.forms.map(form => (
             <TreeFormBox key={form.tmpId}>
               <CategoryDropdown
-                value={form.type}
+                value={form.name}
                 options={categories.forms}
-                onChange={type => onUpdateForm({ ...form, type }, route)}
+                onChange={name => onUpdateForm({ ...form, name }, route)}
                 getOptionDisabled={o =>
-                  !!route.forms.find(f => f.type === o.value)
+                  !!route.forms.find(f => f.name === o.value)
                 }
               />
               {!!form.strengths.length && (
@@ -124,10 +124,10 @@ export const DrugEditForm = () => {
               {form.strengths.map(strength => (
                 <TreeFormBox key={strength.tmpId}>
                   <BasicTextInput
-                    value={strength.type}
+                    value={strength.name}
                     onChange={e =>
                       onUpdateStrength(
-                        { ...strength, type: e.target.value },
+                        { ...strength, name: e.target.value },
                         form
                       )
                     }
@@ -139,7 +139,7 @@ export const DrugEditForm = () => {
               <AddButton
                 label={t('label.add-strength')}
                 onClick={() =>
-                  onUpdateStrength({ tmpId: uuid(), type: '' }, form)
+                  onUpdateStrength({ tmpId: uuid(), name: '' }, form)
                 }
               />
             </TreeFormBox>
@@ -148,7 +148,7 @@ export const DrugEditForm = () => {
           <AddButton
             label={t('label.add-form')}
             onClick={() =>
-              onUpdateForm({ tmpId: uuid(), type: '', strengths: [] }, route)
+              onUpdateForm({ tmpId: uuid(), name: '', strengths: [] }, route)
             }
           />
         </TreeFormBox>
@@ -156,7 +156,7 @@ export const DrugEditForm = () => {
 
       <AddButton
         label={t('label.add-route')}
-        onClick={() => onUpdateRoute({ tmpId: uuid(), type: '', forms: [] })}
+        onClick={() => onUpdateRoute({ tmpId: uuid(), name: '', forms: [] })}
       />
     </Box>
   );
