@@ -10,5 +10,4 @@ members = [
     "service",
     "graphql",
     "datasource",
-    "windows",
 ]
