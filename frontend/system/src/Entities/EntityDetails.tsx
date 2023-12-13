@@ -67,7 +67,7 @@ export const EntityDetails = () => {
         onNodeToggle={(_, codes: string[]) => setExpanded(codes)}
         sx={{ overflow: 'auto', width: '100%' }}
       >
-        <EntityTreeItem showAllCodes={showAllCodes} entity={entity} />
+        <EntityTreeItem showAllCodes={showAllCodes} entity={entity} isRoot />
       </TreeView>
     </>
   );

@@ -20,9 +20,11 @@ const PROPERTY_URL: { [key: string]: (code: string) => string } = {
 export const EntityTreeItem = ({
   entity,
   showAllCodes,
+  isRoot = false,
 }: {
-  showAllCodes: boolean;
   entity?: EntityData | null;
+  showAllCodes: boolean;
+  isRoot?: boolean;
 }) => {
   const t = useTranslation('system');
   const { success } = useNotification();
@@ -49,7 +51,10 @@ export const EntityTreeItem = ({
   return (
     <TreeItem
       {...customIcons}
-      sx={{ paddingY: '3px' }}
+      sx={{
+        paddingY: '3px',
+        borderLeft: !isRoot ? '1px solid black' : undefined,
+      }}
       nodeId={entity.code}
       label={
         <Typography sx={{ height: '26px' }}>
@@ -75,6 +80,7 @@ export const EntityTreeItem = ({
         <TreeItem
           nodeId={entity.code + '_properties'}
           label={t('label.properties')}
+          sx={{ borderLeft: isRoot ? '1px solid black' : undefined }}
         >
           {entity.properties.map(p => (
             <TreeItem
