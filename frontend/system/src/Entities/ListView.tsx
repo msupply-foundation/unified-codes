@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from '@common/intl';
 import {
   AppBarContentPortal,
@@ -10,17 +10,16 @@ import {
   SearchToolbar,
   ToggleButton,
 } from '@common/ui';
-import { useBreadcrumbs, useQueryParamsState } from '@common/hooks';
-import { useEntities } from '../api';
+import { useQueryParamsState } from '@common/hooks';
+import { EntityRowFragment, useEntities } from '../api';
 import { ToggleButtonGroup } from '@mui/material';
+import { useNavigate } from 'react-router';
+import { RouteBuilder } from '@common/utils';
+import { AppRoute } from 'frontend/config/src';
 
 export const ListView = () => {
   const t = useTranslation('system');
-  const { setSuffix } = useBreadcrumbs();
-
-  useEffect(() => {
-    setSuffix('Browse');
-  }, []);
+  const navigate = useNavigate();
 
   const { filter, queryParams, updatePaginationQuery, updateSortQuery } =
     useQueryParamsState({
@@ -29,10 +28,10 @@ export const ListView = () => {
 
   const { sortBy, page, offset, first } = queryParams;
 
-  const columns = useColumns(
+  const columns = useColumns<EntityRowFragment>(
     [
       { key: 'code', label: 'label.code', width: 200, sortable: false },
-      { key: 'description', label: 'label.description', width: 1000 },
+      { key: 'description', label: 'label.description' },
       { key: 'type', label: 'label.type', sortable: false, width: 200 },
     ],
     { sortBy: sortBy, onChangeSortBy: updateSortQuery },
@@ -52,12 +51,13 @@ export const ListView = () => {
         field: sortBy.key,
         descending: sortBy.isDesc,
       },
+      match: 'contains',
     },
     first,
     offset,
   });
 
-  const updateCategories = (category: string) => {
+  const toggleCategory = (category: string) => {
     if (categories.includes(category)) {
       setCategories(categories.filter(c => c !== category));
     } else {
@@ -75,47 +75,50 @@ export const ListView = () => {
   };
 
   return (
-    <>
-      <TableProvider createStore={createTableStore}>
-        <AppBarContentPortal
-          sx={{
-            paddingBottom: '16px',
-            flex: 1,
-            display: 'flex',
-            justifyContent: 'space-between',
-          }}
-        >
-          <SearchToolbar filter={filter} />
-          <ToggleButtonGroup>
-            <ToggleButton
-              label={t('label.drugs')}
-              value={'drug'}
-              selected={categories.includes('drug')}
-              onClick={() => {
-                updateCategories('drug');
-              }}
-            />
-            <ToggleButton
-              label={t('label.consumables')}
-              value={'consumable'}
-              selected={categories.includes('consumable')}
-              onClick={() => {
-                updateCategories('consumable');
-              }}
-            />
-          </ToggleButtonGroup>
-        </AppBarContentPortal>
+    <TableProvider createStore={createTableStore}>
+      <AppBarContentPortal
+        sx={{
+          paddingBottom: '16px',
+          flex: 1,
+          display: 'flex',
+          justifyContent: 'space-between',
+          maxWidth: '1200px',
+          marginRight: 'max(0px, calc((100vw - 1232px) / 2))',
+        }}
+      >
+        <SearchToolbar filter={filter} />
+        <ToggleButtonGroup>
+          <ToggleButton
+            label={t('label.drugs')}
+            value={'drug'}
+            selected={categories.includes('drug')}
+            onClick={() => {
+              toggleCategory('drug');
+            }}
+          />
+          <ToggleButton
+            label={t('label.consumables')}
+            value={'consumable'}
+            selected={categories.includes('consumable')}
+            onClick={() => {
+              toggleCategory('consumable');
+            }}
+          />
+        </ToggleButtonGroup>
+      </AppBarContentPortal>
 
-        <DataTable
-          columns={columns}
-          data={entities}
-          isError={isError}
-          isLoading={isLoading}
-          noDataElement={<NothingHere body={t('error.no-data')} />}
-          pagination={pagination}
-          onChangePage={updatePaginationQuery}
-        />
-      </TableProvider>
-    </>
+      <DataTable
+        columns={columns}
+        data={entities}
+        isError={isError}
+        isLoading={isLoading}
+        noDataElement={<NothingHere body={t('error.no-data')} />}
+        pagination={pagination}
+        onChangePage={updatePaginationQuery}
+        onRowClick={e =>
+          navigate(RouteBuilder.create(AppRoute.Browse).addPart(e.code).build())
+        }
+      />
+    </TableProvider>
   );
 };

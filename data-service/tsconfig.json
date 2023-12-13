@@ -7,7 +7,7 @@
     "sourceMap": true,
     "rootDir": ".",
     "outDir": "./dist",
-    "types": ["node"],
+    "types": ["node", "jest"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     // TODO: remove these and fix compilation errors!

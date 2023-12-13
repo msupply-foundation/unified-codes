@@ -5,11 +5,42 @@ fragment EntityRow on EntityType {
   code
 }
 
+fragment EntityDetails on EntityType {
+  code
+  name
+  type
+  properties {
+    type
+    value
+  }
+}
+
 query entities($filter: EntitySearchInput!, $first: Int!, $offset: Int!) {
   entities(filter: $filter, first: $first, offset: $offset) {
     totalLength
     data {
       ...EntityRow
+    }
+  }
+}
+
+query entity($code: String!) {
+  entity(code: $code) {
+    ...EntityDetails
+    children {
+      ...EntityDetails
+      children {
+        ...EntityDetails
+        children {
+          ...EntityDetails
+          children {
+            ...EntityDetails
+            children {
+              ...EntityDetails
+            }
+          }
+        }
+      }
     }
   }
 }

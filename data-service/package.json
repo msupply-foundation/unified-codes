@@ -5,8 +5,10 @@
   "main": "./src/main.ts",
   "private": true,
   "scripts": {
+    "build": "tsc",
     "start": "nodemon src/main.ts",
-    "build": "tsc"
+    "test": "jest --selectProjects unit",
+    "test:integration": "jest --selectProjects integration"
   },
   "dependencies": {
     "@fastify/cors": "^7.0.0",

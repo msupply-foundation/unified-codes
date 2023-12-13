@@ -27,6 +27,7 @@ const UC_ENTITY: { [name: string]: IEntityNode } = {
   ROOT: {
     code: UCCode.Root,
     name: UCName.Root,
+    description: UCName.Root,
     type: EEntityType.Root,
     children: [],
     properties: [],
@@ -34,6 +35,7 @@ const UC_ENTITY: { [name: string]: IEntityNode } = {
   DRUG: {
     code: UCCode.Drug,
     name: UCName.Drug,
+    description: UCName.Drug,
     type: EEntityType.Category,
     children: [],
     properties: [],
@@ -41,6 +43,7 @@ const UC_ENTITY: { [name: string]: IEntityNode } = {
   CONSUMABLE: {
     code: UCCode.Consumable,
     name: UCName.Consumable,
+    description: UCName.Consumable,
     type: EEntityType.Category,
     children: [],
     properties: [],
@@ -334,17 +337,18 @@ export class DataParser {
       });
 
       // Traverse graph and update names.
-      const updateName = (node, name = '') => {
-        node.name = `${name} ${node.name}`;
-        node.name = node.name.trim();
+      const addDescription = (node, description = '') => {
+        node.description = `${description} ${node.name}`.trim();
         console.log(
-          `INFO: Renamed node with code ${node.code} to ${node.name}`
+          `INFO: Added descriptions for node with code ${node.code} of ${node.description}`
         );
-        node.children?.forEach(child => updateName(child, node.name));
+        node.children?.forEach(child =>
+          addDescription(child, node.description)
+        );
       };
 
       this.graph[UCCode.Root].children?.forEach(category => {
-        category.children?.forEach(product => updateName(product));
+        category.children?.forEach(product => addDescription(product));
       });
 
       // Output warnings for any duplicate entity codes.

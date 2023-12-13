@@ -12,6 +12,7 @@ import {
   useHostContext,
   useGetPageTitle,
   DetailPanel,
+  Navigate,
 } from '@uc-frontend/common';
 import { AppBar, Footer, NotFound } from './components';
 import { CommandK } from './CommandK';
@@ -37,15 +38,26 @@ export const Site: FC = () => {
         {/* <AppDrawer /> */}
         <Box flex={1} display="flex" flexDirection="column" overflow="hidden">
           <AppBar />
-          <Box display="flex" flex={1} overflow="auto">
+          <Box display="flex" flex={1} overflow="auto" paddingX={'24px'}>
             <Routes>
-              <Route
-                path={RouteBuilder.create(AppRoute.Home).addWildCard().build()}
-                element={<EntitiesRouter />}
-              />
               <Route
                 path={RouteBuilder.create(AppRoute.Admin).addWildCard().build()}
                 element={<Settings />}
+              />
+              <Route
+                path={RouteBuilder.create(AppRoute.Browse)
+                  .addWildCard()
+                  .build()}
+                element={<EntitiesRouter />}
+              />
+              <Route
+                path={RouteBuilder.create(AppRoute.Home).build()}
+                element={
+                  <Navigate
+                    to={RouteBuilder.create(AppRoute.Browse).build()}
+                    replace={true}
+                  />
+                }
               />
               <Route path="*" element={<NotFound />} />
             </Routes>

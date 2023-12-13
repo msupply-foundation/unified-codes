@@ -11,6 +11,13 @@
   "label.consumables": "Consumables",
   "label.drugs": "Drugs",
   "label.error": "Error",
+  "label.properties": "Properties",
+  "label.show-all-codes": "Show all codes",
+  "message.code-copied-to-clipboard": "Code {{ code }} copied to clipboard",
   "not-logged-in": "Not logged in",
-  "password-reset.initiate": "Initiate Password Reset"
+  "password-reset.initiate": "Initiate Password Reset",
+  "property-code_rxnav": "RxNav RXCUI",
+  "property-code_nzulm": "NZULM ID",
+  "property-who_eml": "WHO EML Categories",
+  "property-code_unspsc": "UNSPSC Code"
 }
