@@ -13,9 +13,15 @@ import React, { useState } from 'react';
 import { categories } from './categories';
 import { useUuid } from '../hooks';
 
+type Strength = {
+  tmpId: string;
+  type: string;
+};
+
 type Form = {
   tmpId: string;
   type: string;
+  strengths: Strength[];
 };
 
 type Route = {
@@ -56,7 +62,19 @@ export const DrugEditForm = () => {
     } else {
       route.forms.push(form);
     }
-    onUpdateRoute(route);
+    setDraft({ ...draft });
+  };
+
+  const onUpdateStrength = (strength: Strength, form: Form) => {
+    const strengthIndex = form.strengths.findIndex(
+      s => s.tmpId === strength.tmpId
+    );
+    if (strengthIndex >= 0) {
+      form.strengths[strengthIndex] = strength;
+    } else {
+      form.strengths.push(strength);
+    }
+    setDraft({ ...draft });
   };
 
   return (
@@ -99,12 +117,39 @@ export const DrugEditForm = () => {
                   !!route.forms.find(f => f.type === o.value)
                 }
               />
+              {!!form.strengths.length && (
+                <Typography fontSize="12px">{t('label.strengths')}</Typography>
+              )}
+
+              {form.strengths.map(strength => (
+                <TreeFormBox key={strength.tmpId}>
+                  <BasicTextInput
+                    value={strength.type}
+                    onChange={e =>
+                      onUpdateStrength(
+                        { ...strength, type: e.target.value },
+                        form
+                      )
+                    }
+                    fullWidth
+                  />
+                </TreeFormBox>
+              ))}
+
+              <AddButton
+                label={t('label.add-strength')}
+                onClick={() =>
+                  onUpdateStrength({ tmpId: uuid(), type: '' }, form)
+                }
+              />
             </TreeFormBox>
           ))}
 
           <AddButton
             label={t('label.add-form')}
-            onClick={() => onUpdateForm({ tmpId: uuid(), type: '' }, route)}
+            onClick={() =>
+              onUpdateForm({ tmpId: uuid(), type: '', strengths: [] }, route)
+            }
           />
         </TreeFormBox>
       ))}
