@@ -43,9 +43,13 @@ export const EntityTreeItem = ({
   const isLeaf = !entity.children?.length;
   const showCode = showAllCodes || isLeaf;
 
+  // use default chevron icons, unless we're looking at a leaf node
+  const customIcons = isLeaf ? { expandIcon: <></>, collapseIcon: <></> } : {};
+
   return (
     <TreeItem
-      sx={{ paddingY: '5px' }}
+      {...customIcons}
+      sx={{ paddingY: '3px' }}
       nodeId={entity.code}
       label={
         <Typography sx={{ height: '26px' }}>
