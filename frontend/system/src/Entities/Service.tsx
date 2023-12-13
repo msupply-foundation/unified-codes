@@ -23,6 +23,7 @@ const EntitiesService = () => {
           borderRadius: '16px',
           padding: '16px',
           maxHeight: '100%',
+          overflow: 'auto',
         }}
       >
         <Routes>
