@@ -37,7 +37,7 @@ export const AppBar: React.FC = () => {
     >
       <IconButton
         label={t('button.return-to-home')}
-        onClick={() => navigate(AppRoute.Home)}
+        onClick={() => navigate(AppRoute.Browse)}
         icon={<AppDrawerIcon />}
         sx={{
           '&:hover': { backgroundColor: 'inherit' },

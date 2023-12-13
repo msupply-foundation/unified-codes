@@ -58,6 +58,7 @@ export type EntityType = {
   code: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
   interactions?: Maybe<Array<DrugInteractionType>>;
+  name?: Maybe<Scalars['String']['output']>;
   parents?: Maybe<Array<EntityType>>;
   product?: Maybe<EntityType>;
   properties?: Maybe<Array<PropertyType>>;

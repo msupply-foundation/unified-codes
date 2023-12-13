@@ -3,6 +3,7 @@ fragment Details on Entity {
   id
   code
   type: __typename
+  name
   description
   properties {
     type: __typename
