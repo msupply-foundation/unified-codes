@@ -53,63 +53,17 @@ export const DrugEditForm = () => {
   const [draft, setDraft] = useState<DrugInput>({ name: '', routes: [] });
   console.log(draft);
 
-  const onUpdate = (patch: Partial<DrugInput>) => {
+  const onUpdateRoot = (patch: Partial<DrugInput>) => {
     setDraft({ ...draft, ...patch });
   };
 
-  const onUpdateRoute = (route: Route) => {
-    const routeIndex = draft.routes.findIndex(r => r.tmpId === route.tmpId);
-    if (routeIndex >= 0) {
-      draft.routes[routeIndex] = route;
+  // Bit hacky but it works...
+  const onUpdate = <T extends { tmpId: string }>(updated: T, list: T[]) => {
+    const indexToUpdate = list.findIndex(item => item.tmpId === updated.tmpId);
+    if (indexToUpdate >= 0) {
+      list[indexToUpdate] = updated;
     } else {
-      draft.routes.push(route);
-    }
-    setDraft({ ...draft });
-  };
-
-  const onUpdateForm = (form: Form, route: Route) => {
-    const formIndex = route.forms.findIndex(f => f.tmpId === form.tmpId);
-    if (formIndex >= 0) {
-      route.forms[formIndex] = form;
-    } else {
-      route.forms.push(form);
-    }
-    setDraft({ ...draft });
-  };
-
-  const onUpdateStrength = (strength: Strength, form: Form) => {
-    const strengthIndex = form.strengths.findIndex(
-      s => s.tmpId === strength.tmpId
-    );
-    if (strengthIndex >= 0) {
-      form.strengths[strengthIndex] = strength;
-    } else {
-      form.strengths.push(strength);
-    }
-    setDraft({ ...draft });
-  };
-
-  const onUpdateUnit = (unit: Unit, strength: Strength) => {
-    const unitIndex = strength.units.findIndex(u => u.tmpId === unit.tmpId);
-    if (unitIndex >= 0) {
-      strength.units[unitIndex] = unit;
-    } else {
-      strength.units.push(unit);
-    }
-    setDraft({ ...draft });
-  };
-
-  const onUpdateImmediatePackaging = (
-    immediatePackaging: ImmediatePackaging,
-    unit: Unit
-  ) => {
-    const imPackIndex = unit.immediatePackagings.findIndex(
-      i => i.tmpId === immediatePackaging.tmpId
-    );
-    if (imPackIndex >= 0) {
-      unit.immediatePackagings[imPackIndex] = immediatePackaging;
-    } else {
-      unit.immediatePackagings.push(immediatePackaging);
+      list.push(updated);
     }
     setDraft({ ...draft });
   };
@@ -119,7 +73,7 @@ export const DrugEditForm = () => {
       <BasicTextInput
         autoFocus
         value={draft.name}
-        onChange={e => onUpdate({ name: e.target.value })}
+        onChange={e => onUpdateRoot({ name: e.target.value })}
         label={t('label.drug-name')}
         InputLabelProps={{ shrink: true }}
         fullWidth
@@ -134,7 +88,7 @@ export const DrugEditForm = () => {
           <CategoryDropdown
             value={route.name}
             options={categories.routes}
-            onChange={name => onUpdateRoute({ ...route, name })}
+            onChange={name => onUpdate({ ...route, name }, draft.routes)}
             getOptionDisabled={o =>
               !!draft.routes.find(r => r.name === o.value)
             }
@@ -149,7 +103,7 @@ export const DrugEditForm = () => {
               <CategoryDropdown
                 value={form.name}
                 options={categories.forms}
-                onChange={name => onUpdateForm({ ...form, name }, route)}
+                onChange={name => onUpdate({ ...form, name }, route.forms)}
                 getOptionDisabled={o =>
                   !!route.forms.find(f => f.name === o.value)
                 }
@@ -163,9 +117,9 @@ export const DrugEditForm = () => {
                   <BasicTextInput
                     value={strength.name}
                     onChange={e =>
-                      onUpdateStrength(
+                      onUpdate(
                         { ...strength, name: e.target.value },
-                        form
+                        form.strengths
                       )
                     }
                     fullWidth
@@ -180,9 +134,9 @@ export const DrugEditForm = () => {
                       <BasicTextInput
                         value={unit.name}
                         onChange={e =>
-                          onUpdateUnit(
+                          onUpdate(
                             { ...unit, name: e.target.value },
-                            strength
+                            strength.units
                           )
                         }
                         fullWidth
@@ -200,9 +154,9 @@ export const DrugEditForm = () => {
                             value={immPack.name}
                             options={categories.immediatePackagings}
                             onChange={name =>
-                              onUpdateImmediatePackaging(
+                              onUpdate(
                                 { ...immPack, name },
-                                unit
+                                unit.immediatePackagings
                               )
                             }
                             getOptionDisabled={o =>
@@ -217,9 +171,9 @@ export const DrugEditForm = () => {
                       <AddButton
                         label={t('label.add-immediate-packaging')}
                         onClick={() =>
-                          onUpdateImmediatePackaging(
+                          onUpdate(
                             { tmpId: uuid(), name: '' },
-                            unit
+                            unit.immediatePackagings
                           )
                         }
                       />
@@ -229,9 +183,9 @@ export const DrugEditForm = () => {
                   <AddButton
                     label={t('label.add-unit')}
                     onClick={() =>
-                      onUpdateUnit(
+                      onUpdate(
                         { tmpId: uuid(), name: '', immediatePackagings: [] },
-                        strength
+                        strength.units
                       )
                     }
                   />
@@ -241,7 +195,10 @@ export const DrugEditForm = () => {
               <AddButton
                 label={t('label.add-strength')}
                 onClick={() =>
-                  onUpdateStrength({ tmpId: uuid(), name: '', units: [] }, form)
+                  onUpdate(
+                    { tmpId: uuid(), name: '', units: [] },
+                    form.strengths
+                  )
                 }
               />
             </TreeFormBox>
@@ -250,7 +207,7 @@ export const DrugEditForm = () => {
           <AddButton
             label={t('label.add-form')}
             onClick={() =>
-              onUpdateForm({ tmpId: uuid(), name: '', strengths: [] }, route)
+              onUpdate({ tmpId: uuid(), name: '', strengths: [] }, route.forms)
             }
           />
         </TreeFormBox>
@@ -258,7 +215,9 @@ export const DrugEditForm = () => {
 
       <AddButton
         label={t('label.add-route')}
-        onClick={() => onUpdateRoute({ tmpId: uuid(), name: '', forms: [] })}
+        onClick={() =>
+          onUpdate({ tmpId: uuid(), name: '', forms: [] }, draft.routes)
+        }
       />
     </Box>
   );
