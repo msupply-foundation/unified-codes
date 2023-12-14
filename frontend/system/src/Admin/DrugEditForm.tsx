@@ -413,7 +413,11 @@ const AddPropertiesButton = ({
     <IconButton
       icon={hasProperties ? <AngleCircleRightIcon /> : <PlusCircleIcon />}
       label={t('label.add-properties')}
-      onClick={onClick}
+      onClick={e => {
+        // move focus away from the button, otherwise keyboard interactions in the modal do strange things
+        e.currentTarget.blur();
+        onClick();
+      }}
       color="primary"
     />
   );
