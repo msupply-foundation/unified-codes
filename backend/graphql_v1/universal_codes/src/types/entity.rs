@@ -242,7 +242,7 @@ mod test {
             "strength"
         );
 
-        // 4. Test Unit = unit_of_use
+        // 5. Test Unit = unit_of_use
 
         let entity = Entity {
             id: "0x4".to_string(),

@@ -9,7 +9,7 @@ use rust_embed::RustEmbed;
 
 #[derive(RustEmbed)]
 // Relative to server/Cargo.toml
-#[folder = "../../frontend/packages/host/dist/"]
+#[folder = "../../frontend/host/dist/"]
 struct Asset;
 
 const INDEX: &str = "index.html";

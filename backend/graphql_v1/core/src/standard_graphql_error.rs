@@ -14,12 +14,6 @@ pub enum StandardGraphqlError {
 
     #[error("Bad user input")]
     BadUserInput(String),
-
-    #[error("Unauthenticated")]
-    Unauthenticated(String),
-
-    #[error("Forbidden")]
-    Forbidden(String),
 }
 
 impl ErrorExtensions for StandardGraphqlError {
@@ -28,8 +22,6 @@ impl ErrorExtensions for StandardGraphqlError {
         async_graphql::Error::new(format!("{}", self)).extend_with(|_, e| match self {
             StandardGraphqlError::InternalError(details) => e.set("details", details.clone()),
             StandardGraphqlError::BadUserInput(details) => e.set("details", details.clone()),
-            StandardGraphqlError::Unauthenticated(details) => e.set("details", details.clone()),
-            StandardGraphqlError::Forbidden(details) => e.set("details", details.clone()),
         })
     }
 }

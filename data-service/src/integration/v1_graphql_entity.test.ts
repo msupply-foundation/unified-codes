@@ -326,3 +326,5 @@ query FullEntity {
       expect(res).toEqual(expected);
     });
 });
+
+export {};
