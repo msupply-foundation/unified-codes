@@ -15,52 +15,74 @@ import {
 import React, { useState } from 'react';
 import { categories } from './categories';
 import { useUuid } from '../hooks';
-import { PropertiesModal } from './PropertiesModal';
+import { PropertiesModal, Property } from './PropertiesModal';
 import { useEditModal } from '@common/hooks';
 
 type ImmediatePackaging = {
   tmpId: string;
   name: string;
+  properties?: Property[];
 };
 
 type Unit = {
   tmpId: string;
   name: string;
   immediatePackagings: ImmediatePackaging[];
+  properties?: Property[];
 };
 
 type Strength = {
   tmpId: string;
   name: string;
   units: Unit[];
+  properties?: Property[];
 };
 
 type Form = {
   tmpId: string;
   name: string;
   strengths: Strength[];
+  properties?: Property[];
 };
 
 type Route = {
   tmpId: string;
   name: string;
   forms: Form[];
+  properties?: Property[];
 };
 
 type DrugInput = {
   name: string;
   routes: Route[];
+  properties?: Property[];
 };
 
 export const DrugEditForm = () => {
   const t = useTranslation('system');
   const uuid = useUuid();
   const [draft, setDraft] = useState<DrugInput>({ name: '', routes: [] });
+  const [propertiesModalTitle, setPropertiesModalTitle] = useState('');
+  const [entityForProperties, setEntityForProperties] = useState<{
+    name: string;
+    properties?: Property[];
+  }>(draft);
 
   const { isOpen, onClose, onOpen } = useEditModal<{
     type: string;
     value: string;
   }>();
+
+  const onOpenPropertiesModal = (
+    title: string,
+    entity: { name: string; properties?: Property[] }
+  ) => {
+    // TODO... can we determine the title from the entity...
+    setPropertiesModalTitle(title);
+    setEntityForProperties(entity);
+
+    onOpen();
+  };
 
   const onSubmit = () => {
     console.log(draft);
@@ -83,7 +105,17 @@ export const DrugEditForm = () => {
 
   return (
     <Box sx={{ marginY: '16px', width: '100%' }}>
-      <PropertiesModal isOpen={isOpen} onClose={onClose} />
+      {isOpen && (
+        <PropertiesModal
+          isOpen={isOpen}
+          onClose={onClose}
+          title={propertiesModalTitle}
+          onSave={(newProperties: Property[]) => {
+            entityForProperties.properties = newProperties;
+            setDraft({ ...draft });
+          }}
+        />
+      )}
 
       <Box sx={{ display: 'flex', alignItems: 'end' }}>
         <BasicTextInput
@@ -94,7 +126,9 @@ export const DrugEditForm = () => {
           InputLabelProps={{ shrink: true }}
           fullWidth
         />
-        <AddPropertiesButton onClick={onOpen} />
+        <AddPropertiesButton
+          onClick={() => onOpenPropertiesModal(draft.name, draft)}
+        />
       </Box>
 
       {!!draft.routes.length && (
@@ -103,14 +137,22 @@ export const DrugEditForm = () => {
 
       {draft.routes.map(route => (
         <TreeFormBox key={route.tmpId}>
-          <CategoryDropdown
-            value={route.name}
-            options={categories.routes}
-            onChange={name => onUpdate({ ...route, name }, draft.routes)}
-            getOptionDisabled={o =>
-              !!draft.routes.find(r => r.name === o.value)
-            }
-          />
+          <Box sx={{ display: 'flex', alignItems: 'end' }}>
+            <CategoryDropdown
+              value={route.name}
+              options={categories.routes}
+              onChange={name => onUpdate({ ...route, name }, draft.routes)}
+              getOptionDisabled={o =>
+                !!draft.routes.find(r => r.name === o.value)
+              }
+            />
+            <AddPropertiesButton
+              onClick={() =>
+                // TODO: build title dynamically...
+                onOpenPropertiesModal(`${draft.name} - ${route.name}`, route)
+              }
+            />
+          </Box>
 
           {!!route.forms.length && (
             <Typography fontSize="12px">{t('label.forms')}</Typography>
@@ -118,14 +160,25 @@ export const DrugEditForm = () => {
 
           {route.forms.map(form => (
             <TreeFormBox key={form.tmpId}>
-              <CategoryDropdown
-                value={form.name}
-                options={categories.forms}
-                onChange={name => onUpdate({ ...form, name }, route.forms)}
-                getOptionDisabled={o =>
-                  !!route.forms.find(f => f.name === o.value)
-                }
-              />
+              <Box sx={{ display: 'flex', alignItems: 'end' }}>
+                <CategoryDropdown
+                  value={form.name}
+                  options={categories.forms}
+                  onChange={name => onUpdate({ ...form, name }, route.forms)}
+                  getOptionDisabled={o =>
+                    !!route.forms.find(f => f.name === o.value)
+                  }
+                />
+                <AddPropertiesButton
+                  onClick={() =>
+                    // TODO: build title dynamically...
+                    onOpenPropertiesModal(
+                      `${draft.name} - ${route.name} - ${form.name}`,
+                      form
+                    )
+                  }
+                />
+              </Box>
               {!!form.strengths.length && (
                 <Typography fontSize="12px">{t('label.strengths')}</Typography>
               )}

@@ -16,21 +16,29 @@ import {
   PlusCircleIcon,
   MenuItem,
   Option,
+  Typography,
 } from '@uc-frontend/common';
 import { useUuid } from '../hooks';
 
-interface PropertiesModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-interface Property {
+export interface Property {
   id: string;
   type: string;
   value: string;
 }
 
-export const PropertiesModal = ({ isOpen, onClose }: PropertiesModalProps) => {
+interface PropertiesModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (newProperties: Property[]) => void;
+  title: string;
+}
+
+export const PropertiesModal = ({
+  isOpen,
+  title,
+  onClose,
+  onSave,
+}: PropertiesModalProps) => {
   const t = useTranslation('system');
   const uuid = useUuid();
 
@@ -112,7 +120,7 @@ export const PropertiesModal = ({ isOpen, onClose }: PropertiesModalProps) => {
         okButton={
           <LoadingButton
             onClick={() => {
-              // onUpdate
+              onSave(properties);
               onClose();
             }}
             isLoading={false}
@@ -125,8 +133,8 @@ export const PropertiesModal = ({ isOpen, onClose }: PropertiesModalProps) => {
         cancelButton={<DialogButton variant="cancel" onClick={onClose} />}
         title={t('label.add-properties')}
       >
-        {/* show title for drug name//level */}
         <Box>
+          <Typography sx={{ fontStyle: 'italic' }}>{title}</Typography>
           <DataTable columns={columns} data={properties} />
           <FlatButton
             startIcon={<PlusCircleIcon />}
