@@ -10,10 +10,13 @@ import {
   MenuItem,
   SaveIcon,
   ButtonWithIcon,
+  IconButton,
 } from '@common/ui';
 import React, { useState } from 'react';
 import { categories } from './categories';
 import { useUuid } from '../hooks';
+import { PropertiesModal } from './PropertiesModal';
+import { useEditModal } from '@common/hooks';
 
 type ImmediatePackaging = {
   tmpId: string;
@@ -54,6 +57,11 @@ export const DrugEditForm = () => {
   const uuid = useUuid();
   const [draft, setDraft] = useState<DrugInput>({ name: '', routes: [] });
 
+  const { isOpen, onClose, onOpen } = useEditModal<{
+    type: string;
+    value: string;
+  }>();
+
   const onSubmit = () => {
     console.log(draft);
   };
@@ -75,14 +83,19 @@ export const DrugEditForm = () => {
 
   return (
     <Box sx={{ marginY: '16px', width: '100%' }}>
-      <BasicTextInput
-        autoFocus
-        value={draft.name}
-        onChange={e => onUpdateRoot({ name: e.target.value })}
-        label={t('label.drug-name')}
-        InputLabelProps={{ shrink: true }}
-        fullWidth
-      />
+      <PropertiesModal isOpen={isOpen} onClose={onClose} />
+
+      <Box sx={{ display: 'flex', alignItems: 'end' }}>
+        <BasicTextInput
+          autoFocus
+          value={draft.name}
+          onChange={e => onUpdateRoot({ name: e.target.value })}
+          label={t('label.drug-name')}
+          InputLabelProps={{ shrink: true }}
+          fullWidth
+        />
+        <AddPropertiesButton onClick={onOpen} />
+      </Box>
 
       {!!draft.routes.length && (
         <Typography fontSize="12px">{t('label.routes')}</Typography>
@@ -300,6 +313,18 @@ const AddButton = ({
           backgroundColor: '#e95c3029',
         },
       }}
+    />
+  );
+};
+
+const AddPropertiesButton = ({ onClick }: { onClick: () => void }) => {
+  const t = useTranslation('system');
+  return (
+    <IconButton
+      icon={<PlusCircleIcon />}
+      label={t('label.add-properties')}
+      onClick={onClick}
+      color="primary"
     />
   );
 };

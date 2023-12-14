@@ -1,3 +1,4 @@
+// TODO: store this as editable config
 export const categories = {
   routes: [
     { label: 'Buccal', value: 'Buccal' },
