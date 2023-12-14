@@ -14,7 +14,7 @@ use crate::{
 pub struct ServiceProvider {
     pub connection_manager: StorageConnectionManager,
     pub email_service: Box<dyn EmailServiceTrait>,
-    pub dgraph_service: Box<UniversalCodesService>,
+    pub universal_codes_service: Box<UniversalCodesService>,
     pub validation_service: Box<dyn AuthServiceTrait>,
     pub user_account_service: Box<dyn UserAccountServiceTrait>,
     pub settings: Settings,
@@ -66,7 +66,7 @@ impl ServiceProvider {
         ServiceProvider {
             connection_manager,
             email_service: Box::new(EmailService::new(settings.clone())),
-            dgraph_service: Box::new(UniversalCodesService::new(settings.clone())),
+            universal_codes_service: Box::new(UniversalCodesService::new(settings.clone())),
             validation_service: Box::new(AuthService::new()),
             user_account_service: Box::new(UserAccountService {}),
             settings,

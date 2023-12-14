@@ -14,7 +14,7 @@ impl UniversalCodesQueries {
     pub async fn entity(&self, ctx: &Context<'_>, code: String) -> Result<Option<EntityType>> {
         let result = ctx
             .service_provider()
-            .dgraph_service
+            .universal_codes_service
             .entity_by_code(code)
             .await?;
         match result {
