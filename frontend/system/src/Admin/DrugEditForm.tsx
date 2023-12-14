@@ -56,16 +56,23 @@ export const DrugEditForm = () => {
     entityToUpdate: draft,
   });
 
-  const { isOpen, onClose, onOpen } = useEditModal<Property[]>();
+  const {
+    isOpen,
+    onClose,
+    onOpen,
+    entity: propertiesModalData,
+  } = useEditModal<Property[]>();
 
   const onOpenPropertiesModal = (...entities: [Entity, ...Entity[]]) => {
     const title = entities.map(e => e.name).join(' - ');
+    const entityToUpdate = entities[entities.length - 1]!;
+
     setPropertiesModalState({
       title,
-      entityToUpdate: entities[entities.length]!,
+      entityToUpdate,
     });
 
-    onOpen();
+    onOpen(entityToUpdate.properties);
   };
 
   const onSubmit = () => {
@@ -91,6 +98,7 @@ export const DrugEditForm = () => {
     <Box sx={{ marginY: '16px', width: '100%' }}>
       {isOpen && (
         <PropertiesModal
+          data={propertiesModalData}
           isOpen={isOpen}
           onClose={onClose}
           title={propertiesModalState.title}

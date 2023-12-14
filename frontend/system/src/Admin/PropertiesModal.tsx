@@ -31,6 +31,7 @@ interface PropertiesModalProps {
   onClose: () => void;
   onSave: (newProperties: Property[]) => void;
   title: string;
+  data: Property[] | null;
 }
 
 export const PropertiesModal = ({
@@ -38,6 +39,7 @@ export const PropertiesModal = ({
   title,
   onClose,
   onSave,
+  data,
 }: PropertiesModalProps) => {
   const t = useTranslation('system');
   const uuid = useUuid();
@@ -51,9 +53,9 @@ export const PropertiesModal = ({
     };
   };
 
-  const [properties, setProperties] = useState<Property[]>([
-    makeNewPropertyRow(),
-  ]);
+  const [properties, setProperties] = useState<Property[]>(
+    data ?? [makeNewPropertyRow()]
+  );
 
   const onChange = (property: Property) => {
     const propertyIndex = properties.findIndex(p => p.id === property.id);
