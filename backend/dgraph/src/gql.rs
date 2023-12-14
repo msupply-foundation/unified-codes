@@ -20,6 +20,8 @@ pub struct Entity {
     pub properties: Vec<Properties>,
     #[serde(default)]
     pub children: Vec<Entity>,
+    #[serde(default)]
+    pub parents: Vec<Entity>,
 }
 
 #[derive(Serialize, Debug)]
@@ -88,6 +90,9 @@ pub async fn entity_by_code(
 query EntityQuery($code: String!) {
   queryEntity(filter: { code: { eq: $code } }) {
     ...Details
+    parents {
+      ...Details
+    }
     children {
       ...Details
       children {
