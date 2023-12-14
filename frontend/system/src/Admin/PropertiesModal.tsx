@@ -14,6 +14,8 @@ import {
   Select,
   FlatButton,
   PlusCircleIcon,
+  MenuItem,
+  Option,
 } from '@uc-frontend/common';
 import { useUuid } from '../hooks';
 
@@ -61,7 +63,7 @@ export const PropertiesModal = ({ isOpen, onClose }: PropertiesModalProps) => {
       width: '50%',
       label: 'label.type',
       sortable: false,
-      Cell: ({ rowData }) => (
+      Cell: ({ rowData, rows }) => (
         <Select
           fullWidth
           required
@@ -74,6 +76,15 @@ export const PropertiesModal = ({ isOpen, onClose }: PropertiesModalProps) => {
             { label: t('property-who_eml'), value: 'who_eml' },
             { label: t('property-code_unspsc'), value: 'code_unspsc' },
           ]}
+          renderOption={(option: Option) => (
+            <MenuItem
+              key={option.value}
+              value={option.value}
+              disabled={!!rows.find(p => p.type === option.value)}
+            >
+              {option.label}
+            </MenuItem>
+          )}
           InputLabelProps={{ shrink: true }}
         />
       ),
