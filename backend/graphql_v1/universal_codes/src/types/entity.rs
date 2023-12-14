@@ -1,5 +1,8 @@
 use async_graphql::*;
-use dgraph::{Entity, Properties};
+use dgraph::Entity;
+
+use super::DrugInteractionType;
+use super::PropertiesType;
 
 #[derive(Clone, Debug)]
 pub struct EntityType {
@@ -28,34 +31,6 @@ impl EntityType {
     }
 }
 
-#[derive(Clone, Debug)]
-pub struct PropertiesType {
-    pub key: String,
-    pub value: String,
-}
-
-#[Object]
-impl PropertiesType {
-    pub async fn r#type(&self) -> &str {
-        &self.key
-    }
-    pub async fn value(&self) -> &str {
-        &self.value
-    }
-}
-
-impl PropertiesType {
-    fn from_domain(properties: Vec<Properties>) -> Vec<PropertiesType> {
-        properties
-            .into_iter()
-            .map(|p| PropertiesType {
-                key: p.key,
-                value: p.value,
-            })
-            .collect()
-    }
-}
-
 #[Object]
 impl EntityType {
     pub async fn uid(&self) -> &str {
@@ -77,5 +52,20 @@ impl EntityType {
 
     pub async fn children(&self) -> &Vec<EntityType> {
         &self.children
+    }
+
+    pub async fn product(&self) -> Option<EntityType> {
+        // TODO: Probably a loader? Implement Product Lookup
+        None
+    }
+
+    pub async fn parents(&self) -> Vec<EntityType> {
+        // TODO: Probably a loader? Implement Parent Lookup
+        vec![]
+    }
+
+    pub async fn interactions(&self) -> Option<Vec<DrugInteractionType>> {
+        // TODO: Probably a loader? Implement Drug Interaction Lookup
+        None
     }
 }

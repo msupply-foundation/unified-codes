@@ -1,4 +1,4 @@
-use gql_client::{Client, GraphQLError};
+use gql_client::GraphQLError;
 use serde::{Deserialize, Serialize};
 
 use crate::DgraphClient;

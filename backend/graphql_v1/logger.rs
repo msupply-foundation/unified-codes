@@ -1,8 +1,6 @@
 use std::fmt::Write;
 use std::sync::Arc;
 
-use util::filters::replace_passwords;
-
 use async_graphql::extensions::{
     Extension, ExtensionContext, ExtensionFactory, NextExecute, NextParseQuery,
 };
@@ -72,9 +70,6 @@ impl Extension for RequestLoggerExtension {
             .any(|(_, operation)| operation.node.selection_set.node.items.iter().any(|selection| matches!(&selection.node, Selection::Field(field) if field.node.name.node == "__schema")));
         if !is_schema {
             let graphql_query_string = ctx.stringify_execute_doc(&document, variables);
-
-            // UPDATED: filter out passwords
-            let graphql_query_string = replace_passwords(graphql_query_string);
 
             log::info!(
                 target: "async-graphql",

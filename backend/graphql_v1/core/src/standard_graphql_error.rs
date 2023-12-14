@@ -33,9 +33,3 @@ impl ErrorExtensions for StandardGraphqlError {
         })
     }
 }
-
-impl From<RepositoryError> for StandardGraphqlError {
-    fn from(err: RepositoryError) -> Self {
-        StandardGraphqlError::InternalError(format!("{:?}", err))
-    }
-}

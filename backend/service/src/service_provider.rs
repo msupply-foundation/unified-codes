@@ -7,14 +7,14 @@ use crate::{
     email::{EmailService, EmailServiceTrait},
     log_service::{LogService, LogServiceTrait},
     settings::Settings,
-    universal_codes::{UniversalCodesService, UniversalCodesServiceTrait},
+    universal_codes::UniversalCodesService,
     user_account::{UserAccountService, UserAccountServiceTrait},
 };
 
 pub struct ServiceProvider {
     pub connection_manager: StorageConnectionManager,
     pub email_service: Box<dyn EmailServiceTrait>,
-    pub dgraph_service: Box<dyn UniversalCodesServiceTrait>,
+    pub dgraph_service: Box<UniversalCodesService>,
     pub validation_service: Box<dyn AuthServiceTrait>,
     pub user_account_service: Box<dyn UserAccountServiceTrait>,
     pub settings: Settings,

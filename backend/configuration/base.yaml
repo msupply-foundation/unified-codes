@@ -14,7 +14,7 @@ mail:
   password: ''
   from: 'no-reply@msupply.foundation'
 dgraph:
-  host: 'localhost'
+  host: 'http://localhost'
   port: 8080
 logging:
   mode: 'All'
