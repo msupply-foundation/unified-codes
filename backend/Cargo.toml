@@ -1,0 +1,14 @@
+[profile.release]
+strip = true
+
+[workspace]
+
+members = [
+    "server",
+    "util",
+    "repository",
+    "service",
+    "graphql",
+    "graphql_v1",
+    "dgraph",
+]

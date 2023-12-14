@@ -1,0 +1,15 @@
+[package]
+name = "graphql_v1_core"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+path = "src/lib.rs"
+doctest = false
+
+[dependencies]
+
+service = { path = "../../service" }
+
+actix-web = { version = "4.0.1", default-features = false, features = ["macros", "cookies"] }
+async-graphql = { version = "3.0.35", features = ["dataloader", "chrono"] }

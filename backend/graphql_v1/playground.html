@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>GraphiQL Playground Universal Codes v1</title>
+    <style>
+      body {
+        height: 100%;
+        margin: 0;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      #graphiql {
+        height: 100vh;
+      }
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/graphiql@3.0.6/graphiql.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@graphiql/plugin-explorer/dist/style.css"
+    />
+  </head>
+
+  <body>
+    <div id="graphiql">Loading...</div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+
+    <script
+      src="https://unpkg.com/graphiql@3.0.6/graphiql.min.js"
+      integrity="sha384-Sntd+AoO/Fp2wXBOr+uLca2KhF+tmz4821GENMGBejijmj12LZ8YQ01Lr7lNQC5z"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/@graphiql/plugin-explorer/dist/index.umd.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // Always connect to the current app's local graphql endpoint
+      // Pass the token from local storage as the Authorization header if it exists
+      var fetcher = GraphiQL.createFetcher({
+        url: '/v1/graphql',
+      });
+
+      var defaultQuery = `
+fragment Details on EntityType {
+  uid
+  code
+  __typename
+  type: __typename
+  description
+  properties {
+    __typename
+    type: __typename
+    value
+  }
+}
+query EntityQuery {
+  entity(code: "10808942") {
+    ... on EntityType {
+      ...Details
+    children {
+      ...Details
+      children {
+        ...Details
+        children {
+          ...Details
+          children {
+            ...Details
+            children {
+              ...Details
+              children {
+                ...Details
+                children {
+                  ...Details
+                }
+              }
+            }
+          }
+        }
+    }
+  }
+    }
+  }
+}
+`;
+      var explorerPlugin = GraphiQLPluginExplorer.explorerPlugin();
+
+      function GraphiQLWithPlugins() {
+        return React.createElement(GraphiQL, {
+          fetcher: fetcher,
+          defaultEditorToolsVisibility: true,
+          plugins: [explorerPlugin],
+          defaultQuery: defaultQuery,
+        });
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('graphiql'));
+      root.render(React.createElement(GraphiQLWithPlugins));
+    </script>
+  </body>
+</html>
