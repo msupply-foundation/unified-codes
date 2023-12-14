@@ -75,6 +75,7 @@ export const PropertiesModal = ({
       sortable: false,
       Cell: ({ rowData, rows }) => (
         <Select
+          autoFocus
           fullWidth
           required
           value={rowData.type}
