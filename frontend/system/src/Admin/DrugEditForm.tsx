@@ -18,68 +18,46 @@ import { useUuid } from '../hooks';
 import { PropertiesModal, Property } from './PropertiesModal';
 import { useEditModal } from '@common/hooks';
 
-type ImmediatePackaging = {
-  tmpId: string;
+interface Entity {
+  id: string;
   name: string;
   properties?: Property[];
-};
-
-type Unit = {
-  tmpId: string;
-  name: string;
+}
+interface ImmediatePackaging extends Entity {}
+interface Unit extends Entity {
   immediatePackagings: ImmediatePackaging[];
-  properties?: Property[];
-};
-
-type Strength = {
-  tmpId: string;
-  name: string;
+}
+interface Strength extends Entity {
   units: Unit[];
-  properties?: Property[];
-};
-
-type Form = {
-  tmpId: string;
-  name: string;
+}
+interface Form extends Entity {
   strengths: Strength[];
-  properties?: Property[];
-};
-
-type Route = {
-  tmpId: string;
-  name: string;
+}
+interface Route extends Entity {
   forms: Form[];
-  properties?: Property[];
-};
-
-type DrugInput = {
-  name: string;
+}
+interface DrugInput extends Entity {
   routes: Route[];
-  properties?: Property[];
-};
+}
 
 export const DrugEditForm = () => {
   const t = useTranslation('system');
-  const uuid = useUuid();
-  const [draft, setDraft] = useState<DrugInput>({ name: '', routes: [] });
+  const makeThrowawayId = useUuid();
+  const [draft, setDraft] = useState<DrugInput>({
+    id: makeThrowawayId(),
+    name: '',
+    routes: [],
+  });
   const [propertiesModalTitle, setPropertiesModalTitle] = useState('');
-  const [entityForProperties, setEntityForProperties] = useState<{
-    name: string;
-    properties?: Property[];
-  }>(draft);
+  const [entityForProperties, setEntityForProperties] = useState<Entity>(draft);
 
-  const { isOpen, onClose, onOpen } = useEditModal<{
-    type: string;
-    value: string;
-  }>();
+  const { isOpen, onClose, onOpen } = useEditModal<Property[]>();
 
-  const onOpenPropertiesModal = (
-    title: string,
-    entity: { name: string; properties?: Property[] }
-  ) => {
-    // TODO... can we determine the title from the entity...
+  const onOpenPropertiesModal = (...entities: [Entity, ...Entity[]]) => {
+    const title = entities.map(e => e.name).join(' - ');
     setPropertiesModalTitle(title);
-    setEntityForProperties(entity);
+
+    setEntityForProperties(entities[entities.length - 1]!);
 
     onOpen();
   };
@@ -93,8 +71,8 @@ export const DrugEditForm = () => {
   };
 
   // Bit hacky but it works...
-  const onUpdate = <T extends { tmpId: string }>(updated: T, list: T[]) => {
-    const indexToUpdate = list.findIndex(item => item.tmpId === updated.tmpId);
+  const onUpdate = <T extends Entity>(updated: T, list: T[]) => {
+    const indexToUpdate = list.findIndex(item => item.id === updated.id);
     if (indexToUpdate >= 0) {
       list[indexToUpdate] = updated;
     } else {
@@ -126,9 +104,7 @@ export const DrugEditForm = () => {
           InputLabelProps={{ shrink: true }}
           fullWidth
         />
-        <AddPropertiesButton
-          onClick={() => onOpenPropertiesModal(draft.name, draft)}
-        />
+        <AddPropertiesButton onClick={() => onOpenPropertiesModal(draft)} />
       </Box>
 
       {!!draft.routes.length && (
@@ -136,7 +112,7 @@ export const DrugEditForm = () => {
       )}
 
       {draft.routes.map(route => (
-        <TreeFormBox key={route.tmpId}>
+        <TreeFormBox key={route.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <CategoryDropdown
               value={route.name}
@@ -147,10 +123,7 @@ export const DrugEditForm = () => {
               }
             />
             <AddPropertiesButton
-              onClick={() =>
-                // TODO: build title dynamically...
-                onOpenPropertiesModal(`${draft.name} - ${route.name}`, route)
-              }
+              onClick={() => onOpenPropertiesModal(draft, route)}
             />
           </Box>
 
@@ -159,7 +132,7 @@ export const DrugEditForm = () => {
           )}
 
           {route.forms.map(form => (
-            <TreeFormBox key={form.tmpId}>
+            <TreeFormBox key={form.id}>
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                 <CategoryDropdown
                   value={form.name}
@@ -170,13 +143,7 @@ export const DrugEditForm = () => {
                   }
                 />
                 <AddPropertiesButton
-                  onClick={() =>
-                    // TODO: build title dynamically...
-                    onOpenPropertiesModal(
-                      `${draft.name} - ${route.name} - ${form.name}`,
-                      form
-                    )
-                  }
+                  onClick={() => onOpenPropertiesModal(draft, route, form)}
                 />
               </Box>
               {!!form.strengths.length && (
@@ -184,36 +151,56 @@ export const DrugEditForm = () => {
               )}
 
               {form.strengths.map(strength => (
-                <TreeFormBox key={strength.tmpId}>
-                  <BasicTextInput
-                    autoFocus
-                    value={strength.name}
-                    onChange={e =>
-                      onUpdate(
-                        { ...strength, name: e.target.value },
-                        form.strengths
-                      )
-                    }
-                    fullWidth
-                  />
+                <TreeFormBox key={strength.id}>
+                  <Box sx={{ display: 'flex', alignItems: 'end' }}>
+                    <BasicTextInput
+                      autoFocus
+                      value={strength.name}
+                      onChange={e =>
+                        onUpdate(
+                          { ...strength, name: e.target.value },
+                          form.strengths
+                        )
+                      }
+                      fullWidth
+                    />
+                    <AddPropertiesButton
+                      onClick={() =>
+                        onOpenPropertiesModal(draft, route, form, strength)
+                      }
+                    />
+                  </Box>
 
                   {!!strength.units.length && (
                     <Typography fontSize="12px">{t('label.units')}</Typography>
                   )}
 
                   {strength.units.map(unit => (
-                    <TreeFormBox key={unit.tmpId}>
-                      <BasicTextInput
-                        autoFocus
-                        value={unit.name}
-                        onChange={e =>
-                          onUpdate(
-                            { ...unit, name: e.target.value },
-                            strength.units
-                          )
-                        }
-                        fullWidth
-                      />
+                    <TreeFormBox key={unit.id}>
+                      <Box sx={{ display: 'flex', alignItems: 'end' }}>
+                        <BasicTextInput
+                          autoFocus
+                          value={unit.name}
+                          onChange={e =>
+                            onUpdate(
+                              { ...unit, name: e.target.value },
+                              strength.units
+                            )
+                          }
+                          fullWidth
+                        />
+                        <AddPropertiesButton
+                          onClick={() =>
+                            onOpenPropertiesModal(
+                              draft,
+                              route,
+                              form,
+                              strength,
+                              unit
+                            )
+                          }
+                        />
+                      </Box>
 
                       {!!unit.immediatePackagings.length && (
                         <Typography fontSize="12px">
@@ -222,22 +209,36 @@ export const DrugEditForm = () => {
                       )}
 
                       {unit.immediatePackagings.map(immPack => (
-                        <TreeFormBox key={immPack.tmpId}>
-                          <CategoryDropdown
-                            value={immPack.name}
-                            options={categories.immediatePackagings}
-                            onChange={name =>
-                              onUpdate(
-                                { ...immPack, name },
-                                unit.immediatePackagings
-                              )
-                            }
-                            getOptionDisabled={o =>
-                              !!unit.immediatePackagings.find(
-                                i => i.name === o.value
-                              )
-                            }
-                          />
+                        <TreeFormBox key={immPack.id}>
+                          <Box sx={{ display: 'flex', alignItems: 'end' }}>
+                            <CategoryDropdown
+                              value={immPack.name}
+                              options={categories.immediatePackagings}
+                              onChange={name =>
+                                onUpdate(
+                                  { ...immPack, name },
+                                  unit.immediatePackagings
+                                )
+                              }
+                              getOptionDisabled={o =>
+                                !!unit.immediatePackagings.find(
+                                  i => i.name === o.value
+                                )
+                              }
+                            />
+                            <AddPropertiesButton
+                              onClick={() =>
+                                onOpenPropertiesModal(
+                                  draft,
+                                  route,
+                                  form,
+                                  strength,
+                                  unit,
+                                  immPack
+                                )
+                              }
+                            />
+                          </Box>
                         </TreeFormBox>
                       ))}
 
@@ -245,7 +246,7 @@ export const DrugEditForm = () => {
                         label={t('label.add-immediate-packaging')}
                         onClick={() =>
                           onUpdate(
-                            { tmpId: uuid(), name: '' },
+                            { id: makeThrowawayId(), name: '' },
                             unit.immediatePackagings
                           )
                         }
@@ -257,7 +258,11 @@ export const DrugEditForm = () => {
                     label={t('label.add-unit')}
                     onClick={() =>
                       onUpdate(
-                        { tmpId: uuid(), name: '', immediatePackagings: [] },
+                        {
+                          id: makeThrowawayId(),
+                          name: '',
+                          immediatePackagings: [],
+                        },
                         strength.units
                       )
                     }
@@ -269,7 +274,7 @@ export const DrugEditForm = () => {
                 label={t('label.add-strength')}
                 onClick={() =>
                   onUpdate(
-                    { tmpId: uuid(), name: '', units: [] },
+                    { id: makeThrowawayId(), name: '', units: [] },
                     form.strengths
                   )
                 }
@@ -280,7 +285,10 @@ export const DrugEditForm = () => {
           <AddButton
             label={t('label.add-form')}
             onClick={() =>
-              onUpdate({ tmpId: uuid(), name: '', strengths: [] }, route.forms)
+              onUpdate(
+                { id: makeThrowawayId(), name: '', strengths: [] },
+                route.forms
+              )
             }
           />
         </TreeFormBox>
@@ -289,7 +297,7 @@ export const DrugEditForm = () => {
       <AddButton
         label={t('label.add-route')}
         onClick={() =>
-          onUpdate({ tmpId: uuid(), name: '', forms: [] }, draft.routes)
+          onUpdate({ id: makeThrowawayId(), name: '', forms: [] }, draft.routes)
         }
       />
 
