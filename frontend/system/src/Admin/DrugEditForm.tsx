@@ -48,16 +48,22 @@ export const DrugEditForm = () => {
     name: '',
     routes: [],
   });
-  const [propertiesModalTitle, setPropertiesModalTitle] = useState('');
-  const [entityForProperties, setEntityForProperties] = useState<Entity>(draft);
+  const [propertiesModalState, setPropertiesModalState] = useState<{
+    title: string;
+    entityToUpdate: Entity;
+  }>({
+    title: draft.name,
+    entityToUpdate: draft,
+  });
 
   const { isOpen, onClose, onOpen } = useEditModal<Property[]>();
 
   const onOpenPropertiesModal = (...entities: [Entity, ...Entity[]]) => {
     const title = entities.map(e => e.name).join(' - ');
-    setPropertiesModalTitle(title);
-
-    setEntityForProperties(entities[entities.length - 1]!);
+    setPropertiesModalState({
+      title,
+      entityToUpdate: entities[entities.length]!,
+    });
 
     onOpen();
   };
@@ -87,9 +93,9 @@ export const DrugEditForm = () => {
         <PropertiesModal
           isOpen={isOpen}
           onClose={onClose}
-          title={propertiesModalTitle}
+          title={propertiesModalState.title}
           onSave={(newProperties: Property[]) => {
-            entityForProperties.properties = newProperties;
+            propertiesModalState.entityToUpdate.properties = newProperties;
             setDraft({ ...draft });
           }}
         />
