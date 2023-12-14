@@ -1,4 +1,5 @@
 export { AlertIcon } from './Alert';
+export { AngleCircleRightIcon } from './AngleCircleRight';
 export { ArrowLeftIcon } from './ArrowLeft';
 export { ArrowRightIcon } from './ArrowRight';
 export { BarChartIcon } from './BarChart';

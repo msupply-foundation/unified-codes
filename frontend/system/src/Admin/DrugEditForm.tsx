@@ -11,6 +11,7 @@ import {
   SaveIcon,
   ButtonWithIcon,
   IconButton,
+  AngleCircleRightIcon,
 } from '@common/ui';
 import React, { useState } from 'react';
 import { categories } from './categories';
@@ -118,7 +119,10 @@ export const DrugEditForm = () => {
           InputLabelProps={{ shrink: true }}
           fullWidth
         />
-        <AddPropertiesButton onClick={() => onOpenPropertiesModal(draft)} />
+        <AddPropertiesButton
+          hasProperties={!!draft.properties?.length}
+          onClick={() => onOpenPropertiesModal(draft)}
+        />
       </Box>
 
       {!!draft.routes.length && (
@@ -137,6 +141,7 @@ export const DrugEditForm = () => {
               }
             />
             <AddPropertiesButton
+              hasProperties={!!route.properties?.length}
               onClick={() => onOpenPropertiesModal(draft, route)}
             />
           </Box>
@@ -157,6 +162,7 @@ export const DrugEditForm = () => {
                   }
                 />
                 <AddPropertiesButton
+                  hasProperties={!!form.properties?.length}
                   onClick={() => onOpenPropertiesModal(draft, route, form)}
                 />
               </Box>
@@ -179,6 +185,7 @@ export const DrugEditForm = () => {
                       fullWidth
                     />
                     <AddPropertiesButton
+                      hasProperties={!!strength.properties?.length}
                       onClick={() =>
                         onOpenPropertiesModal(draft, route, form, strength)
                       }
@@ -204,6 +211,7 @@ export const DrugEditForm = () => {
                           fullWidth
                         />
                         <AddPropertiesButton
+                          hasProperties={!!unit.properties?.length}
                           onClick={() =>
                             onOpenPropertiesModal(
                               draft,
@@ -241,6 +249,7 @@ export const DrugEditForm = () => {
                               }
                             />
                             <AddPropertiesButton
+                              hasProperties={!!immPack.properties?.length}
                               onClick={() =>
                                 onOpenPropertiesModal(
                                   draft,
@@ -392,11 +401,17 @@ const AddButton = ({
   );
 };
 
-const AddPropertiesButton = ({ onClick }: { onClick: () => void }) => {
+const AddPropertiesButton = ({
+  onClick,
+  hasProperties,
+}: {
+  onClick: () => void;
+  hasProperties: boolean;
+}) => {
   const t = useTranslation('system');
   return (
     <IconButton
-      icon={<PlusCircleIcon />}
+      icon={hasProperties ? <AngleCircleRightIcon /> : <PlusCircleIcon />}
       label={t('label.add-properties')}
       onClick={onClick}
       color="primary"
