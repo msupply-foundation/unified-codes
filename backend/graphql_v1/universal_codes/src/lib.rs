@@ -22,7 +22,23 @@ impl UniversalCodesQueries {
             None => Ok(None),
         }
     }
-}
 
-#[derive(Default, Clone)]
-pub struct UserAccountMutations;
+    // Query "universal codes" entries by search input
+    pub async fn entities(
+        &self,
+        ctx: &Context<'_>,
+        filter: EntitySearchInput,
+        first: Option<i32>,
+        offset: Option<i32>,
+    ) -> Result<EntityCollectionType> {
+        // let result = ctx
+        //     .service_provider()
+        //     .dgraph_service
+        //     .entities(input.into())
+        //     .await?;
+        Ok(EntityCollectionType {
+            data: vec![],
+            total_length: 0,
+        })
+    }
+}

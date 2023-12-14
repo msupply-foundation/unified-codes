@@ -77,6 +77,18 @@ impl EntityType {
 }
 
 /*
+type EntityCollectionType {
+  data: [EntityType!]!
+  totalLength: Int!
+}
+*/
+#[derive(Debug, SimpleObject)]
+pub struct EntityCollectionType {
+    pub data: Vec<EntityType>,
+    pub total_length: i32,
+}
+
+/*
  Graphql V2 (Dgraph) Types:
  Root = 'Root',
  Category = 'Category',
