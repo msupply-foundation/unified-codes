@@ -12,6 +12,8 @@ import {
   createTableStore,
   TableProvider,
   Select,
+  FlatButton,
+  PlusCircleIcon,
 } from '@uc-frontend/common';
 import { useUuid } from '../hooks';
 
@@ -28,14 +30,19 @@ interface Property {
 
 export const PropertiesModal = ({ isOpen, onClose }: PropertiesModalProps) => {
   const t = useTranslation('system');
-  const makeTmpId = useUuid();
+  const uuid = useUuid();
 
-  const [properties, setProperties] = useState<Property[]>([
-    {
-      id: makeTmpId(),
+  const makeNewPropertyRow = () => {
+    return {
+      // just a throwaway id... a dgraph uid will be assigned when the property is stored
+      id: uuid(),
       type: '',
       value: '',
-    },
+    };
+  };
+
+  const [properties, setProperties] = useState<Property[]>([
+    makeNewPropertyRow(),
   ]);
 
   const onChange = (property: Property) => {
@@ -110,6 +117,18 @@ export const PropertiesModal = ({ isOpen, onClose }: PropertiesModalProps) => {
         {/* show title for drug name//level */}
         <Box>
           <DataTable columns={columns} data={properties} />
+          <FlatButton
+            startIcon={<PlusCircleIcon />}
+            label={t('label.add-property')}
+            onClick={() => onChange(makeNewPropertyRow())}
+            disableFocusRipple
+            sx={{
+              marginLeft: '20px',
+              '&.Mui-focusVisible': {
+                backgroundColor: '#e95c3029',
+              },
+            }}
+          />
         </Box>
       </Modal>
     </TableProvider>
