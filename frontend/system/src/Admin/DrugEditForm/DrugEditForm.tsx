@@ -94,11 +94,27 @@ export const DrugEditForm = () => {
           InputLabelProps={{ shrink: true }}
           fullWidth
         />
-        <EditPropertiesButton
-          parents={[]}
-          entity={draft}
-          onOpen={onOpenPropertiesModal}
-        />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+          }}
+        >
+          <Typography
+            fontSize="12px"
+            fontWeight="700"
+            width="50px"
+            textAlign="center"
+          >
+            {t('label.add-properties')}
+          </Typography>
+          <EditPropertiesButton
+            parents={[]}
+            entity={draft}
+            onOpen={onOpenPropertiesModal}
+          />
+        </Box>
       </Box>
 
       {!!draft.routes.length && (

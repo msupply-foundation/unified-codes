@@ -20,6 +20,7 @@ export const EditPropertiesButton = ({
 
   return (
     <IconButton
+      width="50px"
       icon={hasProperties ? <AngleCircleRightIcon /> : <PlusCircleIcon />}
       label={t('label.add-properties')}
       onClick={e => {
