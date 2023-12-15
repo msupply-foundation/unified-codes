@@ -1,0 +1,1 @@
+*/5 * * * * cd /home/ubuntu/;/home/ubuntu/backup.sh >> /var/log/backups.log 2>&1

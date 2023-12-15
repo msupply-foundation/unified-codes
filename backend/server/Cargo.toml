@@ -1,0 +1,57 @@
+[package]
+name = "server"
+description = "UniversalCodes"
+license = "AFFERO GPL-3.0"
+version = "0.1.0"
+edition = "2018"
+default-run = "universal_codes"
+
+[lib]
+path = "src/lib.rs"
+doctest = false
+
+[[bin]]
+path = "src/main.rs"
+name = "universal_codes"
+
+[package.metadata.deb]
+name = "universal-codes"
+copyright = "2023, mSupply Foundation"
+maintainer = "mSupply Foundation <support@msupply.org.nz>"
+depends = "$auto, systemd"
+extended-description = "Universal Codes Server"
+section = "admin"
+priority = "optional"
+assets = [
+    ["target/release/universal_codes", "/opt/universal_codes/universal_codes", "755"],
+    ["debian/universal_codes.service", "/lib/systemd/system/universal_codes.service", "644"],
+    ["../configuration/base.yaml", "/opt/universal_codes/configuration/", "755"],
+    ["../configuration/example.yaml", "/opt/universal_codes/configuration/", "755"],
+    ["../templates/**/*.html", "/opt/universal_codes/templates/", "755"]
+]
+maintainer-scripts = "debian/scripts"
+
+[dependencies]
+graphql = { path = "../graphql" }
+graphql_v1 = { path = "../graphql_v1" }
+graphql_core = { path = "../graphql/core" }
+graphql_types = { path = "../graphql/types" }
+dgraph = {path = "../dgraph"}
+repository = { path = "../repository" }
+service = { path = "../service" }
+util = { path = "../util" }
+
+actix-cors = "0.6.1"
+actix-web = { version= "4.0.1" } 
+actix-http ="3.3.1"
+config = "0.13"
+log = "0.4.14"
+serde = "1.0.137"
+tokio = { version = "1.29", features = ["macros" ] }
+rust-embed = "6.4.2"
+mime_guess = "2.0.4"
+futures-util = "0.3"
+simple-log = { version = "1.6" }
+
+
+[dev-dependencies]

@@ -1,0 +1,28 @@
+[package]
+name = "graphql_v1"
+description = "Universal Codes GraphQL v1"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+path = "./lib.rs"
+
+[dependencies]
+repository = { path = "../repository" }
+service = { path = "../service" }
+graphql_v1_core = { path = "core" }
+graphql_universal_codes = { path = "universal_codes" }
+
+actix-web = { version = "4.0.1", default-features = false, features = [
+  "macros",
+] }
+async-graphql = { version = "3.0.35", features = [
+  "dataloader",
+  "chrono",
+  "log",
+] }
+async-graphql-actix-web = "3.0.35"
+async-trait = "0.1.30"
+log = "0.4.14"
+
+
