@@ -2,53 +2,33 @@ import { useTranslation } from '@common/intl';
 import {
   BasicTextInput,
   Box,
-  FlatButton,
-  PlusCircleIcon,
-  Select,
   Typography,
-  Option,
-  MenuItem,
   SaveIcon,
   ButtonWithIcon,
-  IconButton,
-  AngleCircleRightIcon,
 } from '@common/ui';
 import React, { useState } from 'react';
 import { categories } from './categories';
-import { useUuid } from '../hooks';
-import { PropertiesModal, Property } from './PropertiesModal';
+import { useUuid } from '../../hooks';
+import { PropertiesModal } from './PropertiesModal';
 import { useEditModal } from '@common/hooks';
-
-interface Entity {
-  id: string;
-  name: string;
-  properties?: Property[];
-}
-interface ImmediatePackaging extends Entity {}
-interface Unit extends Entity {
-  immediatePackagings: ImmediatePackaging[];
-}
-interface Strength extends Entity {
-  units: Unit[];
-}
-interface Form extends Entity {
-  strengths: Strength[];
-}
-interface Route extends Entity {
-  forms: Form[];
-}
-interface DrugInput extends Entity {
-  routes: Route[];
-}
+import { DrugInput, Entity, Property } from './types';
+import { TreeFormBox } from './TreeFormBox';
+import { CategoryDropdown } from './CategoryDropdown';
+import { AddFieldButton } from './AddFieldButton';
+import { EditPropertiesButton } from './EditPropertiesButton';
 
 export const DrugEditForm = () => {
   const t = useTranslation('system');
+
+  // throwaway ids as a dgraph uid will be assigned when the entity is stored
   const makeThrowawayId = useUuid();
+
   const [draft, setDraft] = useState<DrugInput>({
     id: makeThrowawayId(),
     name: '',
     routes: [],
   });
+
   const [propertiesModalState, setPropertiesModalState] = useState<{
     title: string;
     entityToUpdate: Entity;
@@ -64,10 +44,7 @@ export const DrugEditForm = () => {
     entity: propertiesModalData,
   } = useEditModal<Property[]>();
 
-  const onOpenPropertiesModal = (...entities: [Entity, ...Entity[]]) => {
-    const title = entities.map(e => e.name).join(' - ');
-    const entityToUpdate = entities[entities.length - 1]!;
-
+  const onOpenPropertiesModal = (title: string, entityToUpdate: Entity) => {
     setPropertiesModalState({
       title,
       entityToUpdate,
@@ -76,15 +53,9 @@ export const DrugEditForm = () => {
     onOpen(entityToUpdate.properties);
   };
 
-  const onSubmit = () => {
-    console.log(draft);
-  };
-
-  const onUpdateRoot = (patch: Partial<DrugInput>) => {
-    setDraft({ ...draft, ...patch });
-  };
-
-  // Bit hacky but it works...
+  // It's a bit icky to reassign the property rather than maintaining immutability
+  // but as long as we spread `draft` in the `setDraft`, the state is being updated
+  // correctly, and this save us a lot of rebuilding of objects
   const onUpdate = <T extends Entity>(updated: T, list: T[]) => {
     const indexToUpdate = list.findIndex(item => item.id === updated.id);
     if (indexToUpdate >= 0) {
@@ -93,6 +64,10 @@ export const DrugEditForm = () => {
       list.push(updated);
     }
     setDraft({ ...draft });
+  };
+
+  const onSubmit = () => {
+    console.log(draft);
   };
 
   return (
@@ -114,14 +89,15 @@ export const DrugEditForm = () => {
         <BasicTextInput
           autoFocus
           value={draft.name}
-          onChange={e => onUpdateRoot({ name: e.target.value })}
+          onChange={e => setDraft({ ...draft, name: e.target.value })}
           label={t('label.drug-name')}
           InputLabelProps={{ shrink: true }}
           fullWidth
         />
-        <AddPropertiesButton
-          hasProperties={!!draft.properties?.length}
-          onClick={() => onOpenPropertiesModal(draft)}
+        <EditPropertiesButton
+          parents={[]}
+          entity={draft}
+          onOpen={onOpenPropertiesModal}
         />
       </Box>
 
@@ -140,9 +116,10 @@ export const DrugEditForm = () => {
                 !!draft.routes.find(r => r.name === o.value)
               }
             />
-            <AddPropertiesButton
-              hasProperties={!!route.properties?.length}
-              onClick={() => onOpenPropertiesModal(draft, route)}
+            <EditPropertiesButton
+              parents={[draft]}
+              entity={route}
+              onOpen={onOpenPropertiesModal}
             />
           </Box>
 
@@ -161,9 +138,10 @@ export const DrugEditForm = () => {
                     !!route.forms.find(f => f.name === o.value)
                   }
                 />
-                <AddPropertiesButton
-                  hasProperties={!!form.properties?.length}
-                  onClick={() => onOpenPropertiesModal(draft, route, form)}
+                <EditPropertiesButton
+                  parents={[draft, route]}
+                  entity={form}
+                  onOpen={onOpenPropertiesModal}
                 />
               </Box>
               {!!form.strengths.length && (
@@ -184,11 +162,10 @@ export const DrugEditForm = () => {
                       }
                       fullWidth
                     />
-                    <AddPropertiesButton
-                      hasProperties={!!strength.properties?.length}
-                      onClick={() =>
-                        onOpenPropertiesModal(draft, route, form, strength)
-                      }
+                    <EditPropertiesButton
+                      parents={[draft, route, form]}
+                      entity={strength}
+                      onOpen={onOpenPropertiesModal}
                     />
                   </Box>
 
@@ -210,17 +187,10 @@ export const DrugEditForm = () => {
                           }
                           fullWidth
                         />
-                        <AddPropertiesButton
-                          hasProperties={!!unit.properties?.length}
-                          onClick={() =>
-                            onOpenPropertiesModal(
-                              draft,
-                              route,
-                              form,
-                              strength,
-                              unit
-                            )
-                          }
+                        <EditPropertiesButton
+                          parents={[draft, route, form, strength]}
+                          entity={unit}
+                          onOpen={onOpenPropertiesModal}
                         />
                       </Box>
 
@@ -248,24 +218,16 @@ export const DrugEditForm = () => {
                                 )
                               }
                             />
-                            <AddPropertiesButton
-                              hasProperties={!!immPack.properties?.length}
-                              onClick={() =>
-                                onOpenPropertiesModal(
-                                  draft,
-                                  route,
-                                  form,
-                                  strength,
-                                  unit,
-                                  immPack
-                                )
-                              }
+                            <EditPropertiesButton
+                              parents={[draft, route, form, strength, unit]}
+                              entity={immPack}
+                              onOpen={onOpenPropertiesModal}
                             />
                           </Box>
                         </TreeFormBox>
                       ))}
 
-                      <AddButton
+                      <AddFieldButton
                         label={t('label.add-immediate-packaging')}
                         onClick={() =>
                           onUpdate(
@@ -277,7 +239,7 @@ export const DrugEditForm = () => {
                     </TreeFormBox>
                   ))}
 
-                  <AddButton
+                  <AddFieldButton
                     label={t('label.add-unit')}
                     onClick={() =>
                       onUpdate(
@@ -293,7 +255,7 @@ export const DrugEditForm = () => {
                 </TreeFormBox>
               ))}
 
-              <AddButton
+              <AddFieldButton
                 label={t('label.add-strength')}
                 onClick={() =>
                   onUpdate(
@@ -305,7 +267,7 @@ export const DrugEditForm = () => {
             </TreeFormBox>
           ))}
 
-          <AddButton
+          <AddFieldButton
             label={t('label.add-form')}
             onClick={() =>
               onUpdate(
@@ -317,7 +279,7 @@ export const DrugEditForm = () => {
         </TreeFormBox>
       ))}
 
-      <AddButton
+      <AddFieldButton
         label={t('label.add-route')}
         onClick={() =>
           onUpdate({ id: makeThrowawayId(), name: '', forms: [] }, draft.routes)
@@ -333,92 +295,5 @@ export const DrugEditForm = () => {
         />
       </Box>
     </Box>
-  );
-};
-
-const TreeFormBox = ({ children }: { children?: React.ReactNode }) => (
-  <Box
-    sx={{
-      marginLeft: '10px',
-      paddingLeft: '10px',
-      paddingTop: '10px',
-      borderLeft: '1px solid black',
-    }}
-  >
-    {children}
-  </Box>
-);
-
-const CategoryDropdown = ({
-  value,
-  options,
-  onChange,
-  getOptionDisabled,
-}: {
-  value: string;
-  options: Option[];
-  onChange: (value: string) => void;
-  getOptionDisabled: (o: Option) => boolean;
-}) => (
-  <Select
-    autoFocus
-    value={value}
-    onChange={e => onChange(e.target.value)}
-    options={options}
-    renderOption={(option: Option) => (
-      <MenuItem
-        key={option.value}
-        value={option.value}
-        disabled={getOptionDisabled(option)}
-      >
-        {option.label}
-      </MenuItem>
-    )}
-    sx={{ width: '100%' }}
-  />
-);
-
-const AddButton = ({
-  label,
-  onClick,
-}: {
-  label: string;
-  onClick: () => void;
-}) => {
-  return (
-    <FlatButton
-      startIcon={<PlusCircleIcon />}
-      label={label}
-      onClick={onClick}
-      disableFocusRipple
-      sx={{
-        marginLeft: '20px',
-        '&.Mui-focusVisible': {
-          backgroundColor: '#e95c3029',
-        },
-      }}
-    />
-  );
-};
-
-const AddPropertiesButton = ({
-  onClick,
-  hasProperties,
-}: {
-  onClick: () => void;
-  hasProperties: boolean;
-}) => {
-  const t = useTranslation('system');
-  return (
-    <IconButton
-      icon={hasProperties ? <AngleCircleRightIcon /> : <PlusCircleIcon />}
-      label={t('label.add-properties')}
-      onClick={e => {
-        // move focus away from the button, otherwise keyboard interactions in the modal do strange things
-        e.currentTarget.blur();
-        onClick();
-      }}
-      color="primary"
-    />
   );
 };

@@ -18,13 +18,8 @@ import {
   Option,
   Typography,
 } from '@uc-frontend/common';
-import { useUuid } from '../hooks';
-
-export interface Property {
-  id: string;
-  type: string;
-  value: string;
-}
+import { useUuid } from '../../hooks';
+import { Property } from './types';
 
 interface PropertiesModalProps {
   isOpen: boolean;
