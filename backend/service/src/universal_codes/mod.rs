@@ -1,9 +1,10 @@
 use std::fmt::{Display, Formatter};
 
-use dgraph::{DgraphClient, DgraphFilter, DgraphFilterType, Entity, SearchVars};
+use dgraph::{DgraphClient, Entity, SearchVars};
 
 use crate::settings::Settings;
 
+use self::entity_filter::{dgraph_categories_from_v1_filter, dgraph_filter_from_v1_filter};
 pub use self::{entity_collection::EntityCollection, entity_filter::EntitySearchFilter};
 
 pub mod entity_collection;
@@ -66,19 +67,10 @@ impl UniversalCodesService {
         offset: Option<u32>,
     ) -> Result<EntityCollection, UniversalCodesServiceError> {
         let dgraph_vars = SearchVars {
-            filter: DgraphFilter {
-                code: filter.code.map(|code| DgraphFilterType {
-                    eq: Some(code),
-                    ..Default::default()
-                }),
-                description: filter.description.map(|description| DgraphFilterType {
-                    regexp: Some(format!("/.*{}.*/", description).to_string()),
-                    ..Default::default()
-                }),
-            },
+            filter: dgraph_filter_from_v1_filter(filter.clone()),
             first: first,
             offset: offset,
-            categories: filter.categories, // TODO map categories to upper/lower case
+            categories: dgraph_categories_from_v1_filter(filter),
         };
 
         let result = dgraph::entities(&self.client, dgraph_vars)

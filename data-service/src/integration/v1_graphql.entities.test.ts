@@ -7,8 +7,8 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const crossFetch = require('cross-fetch');
 
-const url = 'http://localhost:4000/v1/graphql';
-// const url = 'http://localhost:4007/v1/graphql';
+// const url = 'http://localhost:4000/v1/graphql';
+const url = 'http://localhost:4007/v1/graphql';
 // const url = 'https://codes.msupply.foundation:2048/v1/graphql';
 
 test('Web UI Search - ace', () => {
