@@ -12,6 +12,7 @@ input EntitySearchInput {
 */
 
 use async_graphql::InputObject;
+use service::universal_codes::EntitySearchFilter;
 
 #[derive(InputObject)]
 pub struct EntitySearchInput {
@@ -35,4 +36,18 @@ input EntitySortInput {
 pub struct EntitySortInput {
     pub descending: Option<bool>,
     pub field: String,
+}
+
+impl From<EntitySearchInput> for EntitySearchFilter {
+    fn from(f: EntitySearchInput) -> Self {
+        EntitySearchFilter {
+            code: f.code,
+            description: f.description,
+            order_by: None, // TODO: Implement sort
+            categories: f.categories,
+            r#type: f.r#type,
+            search: f.search,
+            r#match: f.r#match,
+        }
+    }
 }

@@ -71,7 +71,7 @@ impl EntityType {
     }
 
     pub async fn interactions(&self) -> Option<Vec<DrugInteractionType>> {
-        // TODO: Probably a loader? Implement Drug Interaction Lookup
+        // TODO: Probably a loader? Implement Drug Interaction Lookup - We need to find a reliable source for this data though...
         None
     }
 }
@@ -85,7 +85,7 @@ type EntityCollectionType {
 #[derive(Debug, SimpleObject)]
 pub struct EntityCollectionType {
     pub data: Vec<EntityType>,
-    pub total_length: i32,
+    pub total_length: u32,
 }
 
 /*

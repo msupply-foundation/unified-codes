@@ -11,13 +11,16 @@ pub use client::*;
 
 // Types to represent the dgraph graphql data
 #[allow(non_snake_case)]
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct EntityData {
-    pub queryEntity: Vec<Entity>,
+    pub data: Vec<Entity>,
+    #[serde(default)]
+    pub aggregates: Option<Vec<ChildrenAggregateRecord>>,
 }
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Entity {
+    #[serde(default)]
     pub id: String,
     pub code: String,
     pub description: String,
@@ -36,4 +39,14 @@ pub struct Properties {
     #[serde(rename = "__typename")]
     pub key: String,
     pub value: String,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct ChildrenAggregateRecord {
+    pub categories: ChildrenAggregate,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct ChildrenAggregate {
+    pub count: u32,
 }

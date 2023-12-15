@@ -25,7 +25,7 @@ pub async fn entity_by_code(
   }
 }
 query EntityQuery($code: String!) {
-  queryEntity(filter: { code: { eq: $code } }) {
+  data: queryEntity(filter: { code: { eq: $code } }) {
     ...Details
     parents {
       ...Details
@@ -55,13 +55,13 @@ query EntityQuery($code: String!) {
 }"#;
     let variables = Vars { code: code };
 
-    let data = client
+    let result = client
         .gql
         .query_with_vars::<EntityData, Vars>(query, variables)
         .await?;
 
-    match data {
-        Some(data) => match data.queryEntity.first() {
+    match result {
+        Some(result) => match result.data.first() {
             Some(entity) => Ok(Some(entity.clone())),
             None => Ok(None),
         },
@@ -78,7 +78,6 @@ mod tests {
     async fn test_entity_by_code() {
         let client = DgraphClient::new("http://localhost:8080/graphql");
         let result = entity_by_code(&client, "10808942".to_string()).await;
-        println!("{:#?}", result);
         let e = result.unwrap().unwrap();
         assert_eq!(e.code, "10808942".to_string());
     }
