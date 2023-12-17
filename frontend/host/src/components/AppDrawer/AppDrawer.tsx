@@ -17,6 +17,7 @@ import {
   RouteBuilder,
   EditIcon,
   ListIcon,
+  UsersIcon,
 } from '@uc-frontend/common';
 import { AppRoute } from '@uc-frontend/config';
 import { AppDrawerIcon } from './AppDrawerIcon';
@@ -185,6 +186,13 @@ export const AppDrawer: React.FC = () => {
                 .build()}
               icon={<EditIcon fontSize="small" color="primary" />}
               text={t('new-drug')}
+            />
+            <AppNavLink
+              to={RouteBuilder.create(AppRoute.Admin)
+                .addPart(AppRoute.UserAccounts)
+                .build()}
+              icon={<UsersIcon fontSize="small" color="primary" />}
+              text={t('users')}
             />
           </List>
         </UpperListContainer>
