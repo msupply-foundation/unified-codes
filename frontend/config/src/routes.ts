@@ -7,6 +7,7 @@ export enum AppRoute {
   ForgotPassword = 'forgot-password',
 
   Admin = 'admin',
+  NewDrug = 'new-drug',
 
   Settings = 'settings',
   Logout = 'logout',
