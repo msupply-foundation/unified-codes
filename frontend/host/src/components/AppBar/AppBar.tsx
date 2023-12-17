@@ -11,6 +11,7 @@ import {
   IconButton,
   useNavigate,
   useTranslation,
+  useAuthContext,
 } from '@uc-frontend/common';
 import { SectionIcon } from './SectionIcon';
 import { AppDrawerIcon } from '../AppDrawer/AppDrawerIcon';
@@ -28,6 +29,7 @@ const StyledContainer = styled(Box)(({ theme }) => ({
 export const AppBar: React.FC = () => {
   const { ref } = useAppBarRect();
   const navigate = useNavigate();
+  const { user } = useAuthContext();
   const t = useTranslation('system');
 
   return (
@@ -35,15 +37,17 @@ export const AppBar: React.FC = () => {
       ref={ref}
       sx={{ boxShadow: theme => theme.shadows[2], display: 'flex' }}
     >
-      <IconButton
-        label={t('button.return-to-home')}
-        onClick={() => navigate(AppRoute.Browse)}
-        icon={<AppDrawerIcon />}
-        sx={{
-          '&:hover': { backgroundColor: 'inherit' },
-          margin: '0 40px 0 20px',
-        }}
-      />
+      {!user && (
+        <IconButton
+          label={t('button.return-to-home')}
+          onClick={() => navigate(AppRoute.Browse)}
+          icon={<AppDrawerIcon />}
+          sx={{
+            '&:hover': { backgroundColor: 'inherit' },
+            margin: '0 40px 0 20px',
+          }}
+        />
+      )}
       <Box flex={1}>
         <Toolbar disableGutters>
           <Box style={{ marginInlineEnd: 5 }}>
