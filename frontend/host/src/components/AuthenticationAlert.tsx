@@ -33,6 +33,10 @@ export const AuthenticationAlert = () => {
       location.pathname
     ) ||
     matchPath(
+      RouteBuilder.create(AppRoute.Browse).addWildCard().build(),
+      location.pathname
+    ) ||
+    matchPath(
       RouteBuilder.create(AppRoute.PasswordReset).addWildCard().build(),
       location.pathname
     ) ||
