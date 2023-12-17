@@ -13,30 +13,31 @@ import {
   useGetPageTitle,
   DetailPanel,
   Navigate,
+  useAuthContext,
 } from '@uc-frontend/common';
-import { AppBar, Footer, NotFound } from './components';
+import { AppBar, AppDrawer, Footer, NotFound } from './components';
 import { CommandK } from './CommandK';
 import { AppRoute } from '@uc-frontend/config';
 import { Settings } from './Settings/Settings';
 import { QueryErrorHandler } from './QueryErrorHandler';
 import { EntitiesRouter } from './routers/EntitiesRouter';
 import { AdminRouter } from './routers/AdminRouter';
+import { RequireAuthentication } from './components/Navigation/RequireAuthentication';
 
 export const Site: FC = () => {
   const location = useLocation();
   const getPageTitle = useGetPageTitle();
   const { setPageTitle } = useHostContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     setPageTitle(getPageTitle(location.pathname));
   }, [location]);
 
   return (
-    // <RequireAuthentication>
     <CommandK>
       <SnackbarProvider maxSnack={3}>
-        {/* TODO: only show AppDrawer when logged in as an Admin */}
-        {/* <AppDrawer /> */}
+        {user ? <AppDrawer /> : null}
         <Box flex={1} display="flex" flexDirection="column" overflow="hidden">
           <AppBar />
           <Box display="flex" flex={1} overflow="auto" paddingX={'24px'}>
@@ -49,7 +50,11 @@ export const Site: FC = () => {
               />
               <Route
                 path={RouteBuilder.create(AppRoute.Admin).addWildCard().build()}
-                element={<AdminRouter />}
+                element={
+                  <RequireAuthentication>
+                    <AdminRouter />
+                  </RequireAuthentication>
+                }
               />
               <Route
                 path={RouteBuilder.create(AppRoute.Settings)
@@ -76,6 +81,5 @@ export const Site: FC = () => {
         <QueryErrorHandler />
       </SnackbarProvider>
     </CommandK>
-    // </RequireAuthentication>
   );
 };

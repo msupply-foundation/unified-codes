@@ -18,6 +18,7 @@ import {
   ConfirmationModalProvider,
   AlertModalProvider,
   EnvUtils,
+  AuthProvider,
 } from '@uc-frontend/common';
 import { AppRoute, Environment } from '@uc-frontend/config';
 import { Login, PasswordReset, ForgotPassword, Viewport } from './components';
@@ -55,42 +56,44 @@ const Host = () => (
         <ErrorBoundary Fallback={GenericErrorFallback}>
           <QueryClientProvider client={queryClient}>
             <GqlProvider url={Environment.GRAPHQL_URL}>
-              {/* <AuthProvider
+              <AuthProvider
                 cookieLifetimeMinutes={Environment.COOKIE_LIFETIME_MINUTES}
-              > */}
-              <AppThemeProvider>
-                <ConfirmationModalProvider>
-                  <AlertModalProvider>
-                    <BrowserRouter>
-                      <AuthenticationAlert />
-                      <Viewport>
-                        <Box display="flex" minHeight="100%">
-                          <Routes>
-                            <Route
-                              path={RouteBuilder.create(AppRoute.Login).build()}
-                              element={<Login />}
-                            />
-                            <Route
-                              path={RouteBuilder.create(
-                                AppRoute.PasswordReset
-                              ).build()}
-                              element={<PasswordReset />}
-                            />
-                            <Route
-                              path={RouteBuilder.create(
-                                AppRoute.ForgotPassword
-                              ).build()}
-                              element={<ForgotPassword />}
-                            />
-                            <Route path="*" element={<Site />} />
-                          </Routes>
-                        </Box>
-                      </Viewport>
-                    </BrowserRouter>
-                  </AlertModalProvider>
-                </ConfirmationModalProvider>
-              </AppThemeProvider>
-              {/* </AuthProvider> */}
+              >
+                <AppThemeProvider>
+                  <ConfirmationModalProvider>
+                    <AlertModalProvider>
+                      <BrowserRouter>
+                        <AuthenticationAlert />
+                        <Viewport>
+                          <Box display="flex" minHeight="100%">
+                            <Routes>
+                              <Route
+                                path={RouteBuilder.create(
+                                  AppRoute.Login
+                                ).build()}
+                                element={<Login />}
+                              />
+                              <Route
+                                path={RouteBuilder.create(
+                                  AppRoute.PasswordReset
+                                ).build()}
+                                element={<PasswordReset />}
+                              />
+                              <Route
+                                path={RouteBuilder.create(
+                                  AppRoute.ForgotPassword
+                                ).build()}
+                                element={<ForgotPassword />}
+                              />
+                              <Route path="*" element={<Site />} />
+                            </Routes>
+                          </Box>
+                        </Viewport>
+                      </BrowserRouter>
+                    </AlertModalProvider>
+                  </ConfirmationModalProvider>
+                </AppThemeProvider>
+              </AuthProvider>
             </GqlProvider>
           </QueryClientProvider>
         </ErrorBoundary>
