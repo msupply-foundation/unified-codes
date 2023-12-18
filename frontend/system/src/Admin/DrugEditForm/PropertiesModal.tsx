@@ -125,7 +125,7 @@ export const PropertiesModal = ({
             startIcon={<ArrowRightIcon />}
             sx={{ marginLeft: 1 }}
           >
-            {t('label.add-properties')}
+            {t('button.ok')}
           </LoadingButton>
         }
         cancelButton={<DialogButton variant="cancel" onClick={onClose} />}
