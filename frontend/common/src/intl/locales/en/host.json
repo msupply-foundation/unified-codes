@@ -41,6 +41,7 @@
   "new-drug": "New Drug",
   "notifications": "Notifications",
   "password-reset": "Password Reset",
+  "forgot-password": "Forgot Password",
   "password-reset.completed-success": "Success! Your password has been reset, please return to the login page to continue",
   "password-reset.explanation": "Enter your new password",
   "password-reset.initiate": "Enter your email address below and we'll send you a link to reset your password.",
