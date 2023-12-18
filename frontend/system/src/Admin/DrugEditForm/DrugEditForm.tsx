@@ -50,7 +50,7 @@ export const DrugEditForm = () => {
       entityToUpdate,
     });
 
-    onOpen(entityToUpdate.properties);
+    onOpen(entityToUpdate.properties?.map(p => ({ ...p })));
   };
 
   // It's a bit icky to reassign the property rather than maintaining immutability
