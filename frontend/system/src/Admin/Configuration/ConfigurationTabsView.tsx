@@ -1,9 +1,15 @@
-import { DetailTabs, TabDefinition } from '@common/components';
+import {
+  AppBarButtonsPortal,
+  DetailTabs,
+  LoadingButton,
+  TabDefinition,
+} from '@common/components';
 import { useTranslation } from '@common/intl';
 import {
   Box,
   createTableStore,
   DataTable,
+  EditIcon,
   Paper,
   TableProvider,
   useColumns,
@@ -32,30 +38,37 @@ export const ConfigurationTabsView = () => {
     // and see if we have other references to the property codes throughout the codebase first!
   ];
   return (
-    <Paper
-      sx={{
-        backgroundColor: 'background.menu',
-        borderRadius: '16px',
-        flex: 1,
-        margin: '10px auto',
-        maxWidth: '1200px',
-        padding: '16px',
-        width: '100%',
-      }}
-    >
-      <Box
+    <>
+      <AppBarButtonsPortal>
+        <LoadingButton isLoading={false} startIcon={<EditIcon />}>
+          {t('label.edit')}
+        </LoadingButton>
+      </AppBarButtonsPortal>
+      <Paper
         sx={{
-          backgroundColor: 'white',
-          display: 'flex',
+          backgroundColor: 'background.menu',
           borderRadius: '16px',
-          padding: '0 16px',
-          maxHeight: '100%',
-          overflow: 'auto',
+          flex: 1,
+          margin: '10px auto',
+          maxWidth: '1200px',
+          padding: '16px',
+          width: '100%',
         }}
       >
-        <DetailTabs tabs={tabs} />
-      </Box>
-    </Paper>
+        <Box
+          sx={{
+            backgroundColor: 'white',
+            display: 'flex',
+            borderRadius: '16px',
+            padding: '0 16px',
+            maxHeight: '100%',
+            overflow: 'auto',
+          }}
+        >
+          <DetailTabs tabs={tabs} />
+        </Box>
+      </Paper>
+    </>
   );
 };
 
