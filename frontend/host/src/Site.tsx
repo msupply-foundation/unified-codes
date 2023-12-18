@@ -17,9 +17,10 @@ import {
 import { AppBar, Footer, NotFound } from './components';
 import { CommandK } from './CommandK';
 import { AppRoute } from '@uc-frontend/config';
-import { Settings } from './Admin/Settings';
+import { Settings } from './Settings/Settings';
 import { QueryErrorHandler } from './QueryErrorHandler';
 import { EntitiesRouter } from './routers/EntitiesRouter';
+import { AdminRouter } from './routers/AdminRouter';
 
 export const Site: FC = () => {
   const location = useLocation();
@@ -41,14 +42,20 @@ export const Site: FC = () => {
           <Box display="flex" flex={1} overflow="auto" paddingX={'24px'}>
             <Routes>
               <Route
-                path={RouteBuilder.create(AppRoute.Admin).addWildCard().build()}
-                element={<Settings />}
-              />
-              <Route
                 path={RouteBuilder.create(AppRoute.Browse)
                   .addWildCard()
                   .build()}
                 element={<EntitiesRouter />}
+              />
+              <Route
+                path={RouteBuilder.create(AppRoute.Admin).addWildCard().build()}
+                element={<AdminRouter />}
+              />
+              <Route
+                path={RouteBuilder.create(AppRoute.Settings)
+                  .addWildCard()
+                  .build()}
+                element={<Settings />}
               />
               <Route
                 path={RouteBuilder.create(AppRoute.Home).build()}

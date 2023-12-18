@@ -17,7 +17,7 @@ type Section = {
 
 const getIcon = (section?: AppRoute) => {
   switch (section) {
-    case AppRoute.Admin:
+    case AppRoute.Settings:
       return <SettingsIcon color="primary" fontSize="small" />;
     default:
       return undefined;

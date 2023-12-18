@@ -7,6 +7,8 @@ export enum AppRoute {
   ForgotPassword = 'forgot-password',
 
   Admin = 'admin',
+
+  Settings = 'settings',
   Logout = 'logout',
 
   PageNotFound = 'page-not-found',

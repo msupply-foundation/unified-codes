@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@uc-frontend/common": "^0.0.1",
-    "@uc-frontend/config": "^0.0.0"
+    "@uc-frontend/config": "^0.0.0",
+    "uuid": "^9.0.1"
   }
 }
