@@ -21,7 +21,13 @@ import {
   AuthProvider,
 } from '@uc-frontend/common';
 import { AppRoute, Environment } from '@uc-frontend/config';
-import { Login, PasswordReset, ForgotPassword, Viewport } from './components';
+import {
+  Login,
+  PasswordReset,
+  ForgotPassword,
+  Viewport,
+  VerifyAccount,
+} from './components';
 import { Site } from './Site';
 import { AuthenticationAlert } from './components/AuthenticationAlert';
 
@@ -78,6 +84,12 @@ const Host = () => (
                                   AppRoute.PasswordReset
                                 ).build()}
                                 element={<PasswordReset />}
+                              />
+                              <Route
+                                path={RouteBuilder.create(
+                                  AppRoute.VerifyAccount
+                                ).build()}
+                                element={<VerifyAccount />}
                               />
                               <Route
                                 path={RouteBuilder.create(

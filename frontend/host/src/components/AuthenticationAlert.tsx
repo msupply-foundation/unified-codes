@@ -26,7 +26,7 @@ export const AuthenticationAlert = () => {
     return () => toggleOff();
   }, [error]);
 
-  // no need to alert if you are on the login screen!
+  // no need to alert if you are on these screens!
   if (
     matchPath(
       RouteBuilder.create(AppRoute.Login).addWildCard().build(),
@@ -42,6 +42,10 @@ export const AuthenticationAlert = () => {
     ) ||
     matchPath(
       RouteBuilder.create(AppRoute.ForgotPassword).addWildCard().build(),
+      location.pathname
+    ) ||
+    matchPath(
+      RouteBuilder.create(AppRoute.VerifyAccount).addWildCard().build(),
       location.pathname
     )
   ) {
