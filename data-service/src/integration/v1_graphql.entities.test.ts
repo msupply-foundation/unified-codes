@@ -77,6 +77,59 @@ test('Web UI Search - ace', () => {
     });
 });
 
+test('Web UI Search - ace - descending', () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const expected = {
+    data: {
+      entities: {
+        data: [
+          {
+            code: 'cf00cc3f',
+            description: 'Acetylsalicylic Acid',
+            name: 'Acetylsalicylic Acid',
+          },
+          {
+            code: 'c8ba31a5',
+            description: 'Acetylcysteine',
+            name: 'Acetylcysteine',
+          },
+          {
+            code: '7c8c2b5b',
+            description: 'Acetic Acid',
+            name: 'Acetic Acid',
+          },
+          {
+            code: '33d71824',
+            description: 'Acetazolamide',
+            name: 'Acetazolamide',
+          },
+        ],
+      },
+    },
+  };
+
+  return crossFetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: `{
+            entities(filter: { code: "" categories: ["drug"] description: "ace" type: "drug" orderBy: { field: "description" descending: true } } offset: 0 first: 25) {
+                data {
+                    code
+                    description
+                    type
+                },
+                totalLength,
+            }
+        }`,
+    }),
+  })
+    .then(res => res.json())
+    .then(res => {
+      expect(res).toEqual(expected);
+    });
+});
+
 test('mSupply Search - ace', () => {
   const searchTerm = 'ace';
   const expectedCodes = [

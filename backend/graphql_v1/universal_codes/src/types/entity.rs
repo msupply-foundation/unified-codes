@@ -8,6 +8,7 @@ use super::PropertiesType;
 pub struct EntityType {
     pub id: String,
     pub code: String,
+    pub name: String,
     pub description: String,
     pub r#type: String,
     pub properties: Vec<PropertiesType>,
@@ -20,6 +21,7 @@ impl EntityType {
         EntityType {
             id: entity.id,
             code: entity.code,
+            name: entity.name,
             description: entity.description,
             r#type: entity.r#type,
             properties: PropertiesType::from_domain(entity.properties),
@@ -45,6 +47,11 @@ impl EntityType {
     pub async fn code(&self) -> &str {
         &self.code
     }
+
+    pub async fn name(&self) -> &str {
+        &self.name
+    }
+
     pub async fn description(&self) -> &str {
         &self.description
     }
@@ -133,7 +140,7 @@ fn get_type_for_entity(entity: &EntityType) -> &str {
                 return &entity.r#type;
             }
             None => {
-                return "Category"; // Must be querying a category node, since there's no parent?
+                return "Unknown"; // There's no parent???
             }
         },
         "Route" => return "form_category",
@@ -157,6 +164,7 @@ mod test {
         let entity = Entity {
             id: "0x1".to_string(),
             code: "c7750265".to_string(),
+            name: "Abacavir".to_string(),
             description: "Abacavir".to_string(),
             r#type: "Product".to_string(),
             properties: vec![],
@@ -164,6 +172,7 @@ mod test {
             parents: vec![Entity {
                 id: "0x2".to_string(),
                 code: "933f3f00".to_string(),
+                name: "Drug".to_string(),
                 description: "Drug".to_string(),
                 r#type: "Category".to_string(),
                 properties: vec![],
@@ -180,6 +189,7 @@ mod test {
         let entity = Entity {
             id: "0x1".to_string(),
             code: "af482fa09".to_string(),
+            name: "Biohazard Spill Kit".to_string(),
             description: "Biohazard Spill Kit".to_string(),
             r#type: "Product".to_string(),
             properties: vec![],
@@ -187,6 +197,7 @@ mod test {
             parents: vec![Entity {
                 id: "0x2".to_string(),
                 code: "77fcbb00".to_string(),
+                name: "Consumable".to_string(),
                 description: "Consumable".to_string(),
                 r#type: "Category".to_string(),
                 properties: vec![],
@@ -203,6 +214,7 @@ mod test {
         let entity = Entity {
             id: "0x2".to_string(),
             code: "b49ec300".to_string(),
+            name: "Oral".to_string(),
             description: "Abacavir Oral".to_string(),
             r#type: "Route".to_string(),
             properties: vec![],
@@ -210,6 +222,7 @@ mod test {
             parents: vec![Entity {
                 id: "0x1".to_string(),
                 code: "c7750265".to_string(),
+                name: "Abacavir".to_string(),
                 description: "Abacavir".to_string(),
                 r#type: "Product".to_string(),
                 properties: vec![],
@@ -226,6 +239,7 @@ mod test {
         let entity = Entity {
             id: "0x3".to_string(),
             code: "db3d2000".to_string(),
+            name: "20mg per mL".to_string(),
             description: "Abacavir Oral Solution 20mg per mL".to_string(),
             r#type: "DoseStrength".to_string(),
             properties: vec![],
@@ -233,6 +247,7 @@ mod test {
             parents: vec![Entity {
                 id: "0x2".to_string(),
                 code: "b49ec300".to_string(),
+                name: "Oral".to_string(),
                 description: "Abacavir Oral".to_string(),
                 r#type: "Route".to_string(),
                 properties: vec![],
@@ -240,6 +255,7 @@ mod test {
                 parents: vec![Entity {
                     id: "0x1".to_string(),
                     code: "c7750265".to_string(),
+                    name: "Abacavir".to_string(),
                     description: "Abacavir".to_string(),
                     r#type: "Product".to_string(),
                     properties: vec![],
@@ -259,6 +275,7 @@ mod test {
         let entity = Entity {
             id: "0x4".to_string(),
             code: "358b04bf".to_string(),
+            name: "240mL".to_string(),
             description: "Abacavir Oral Solution 20mg per mL 240mL".to_string(),
             r#type: "Unit".to_string(),
             properties: vec![],
@@ -266,6 +283,7 @@ mod test {
             parents: vec![Entity {
                 id: "0x3".to_string(),
                 code: "db3d2000".to_string(),
+                name: "20mg per mL".to_string(),
                 description: "Abacavir Oral Solution 20mg per mL".to_string(),
                 r#type: "DoseStrength".to_string(),
                 properties: vec![],
@@ -273,6 +291,7 @@ mod test {
                 parents: vec![Entity {
                     id: "0x2".to_string(),
                     code: "b49ec300".to_string(),
+                    name: "Oral".to_string(),
                     description: "Abacavir Oral".to_string(),
                     r#type: "Route".to_string(),
                     properties: vec![],
@@ -280,6 +299,7 @@ mod test {
                     parents: vec![Entity {
                         id: "0x1".to_string(),
                         code: "c7750265".to_string(),
+                        name: "Abacavir".to_string(),
                         description: "Abacavir".to_string(),
                         r#type: "Product".to_string(),
                         properties: vec![],

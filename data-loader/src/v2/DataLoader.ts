@@ -106,6 +106,8 @@ export class DataLoader {
       const nQuads = `
         uid(Entity) <name> "${entity.name}" .
         uid(Entity) <description> "${entity.description}" .
+        uid(Entity) <category> "${entity.category}" .
+        uid(Entity) <type> "${entity.type}" .
         uid(Entity) <code> "${entity.code}" .
         uid(Entity) <dgraph.type> "${entity.type}" .
         uid(Entity) <dgraph.type> "Entity" .

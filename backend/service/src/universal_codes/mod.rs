@@ -4,7 +4,7 @@ use dgraph::{DgraphClient, Entity, SearchVars};
 
 use crate::settings::Settings;
 
-use self::entity_filter::{dgraph_categories_from_v1_filter, dgraph_filter_from_v1_filter};
+use self::entity_filter::{dgraph_filter_from_v1_filter, dgraph_order_by_from_v1_filter};
 pub use self::{entity_collection::EntityCollection, entity_filter::EntitySearchFilter};
 
 pub mod entity_collection;
@@ -70,7 +70,7 @@ impl UniversalCodesService {
             filter: dgraph_filter_from_v1_filter(filter.clone()),
             first: first,
             offset: offset,
-            categories: dgraph_categories_from_v1_filter(filter),
+            order: dgraph_order_by_from_v1_filter(filter),
         };
 
         let result = dgraph::entities(&self.client, dgraph_vars)
@@ -80,12 +80,7 @@ impl UniversalCodesService {
         match result {
             Some(data) => Ok(EntityCollection {
                 data: data.data,
-                total_length: data
-                    .aggregates
-                    .unwrap_or_default()
-                    .iter()
-                    .map(|c| c.categories.count)
-                    .sum(),
+                total_length: data.aggregates.unwrap_or_default().count,
             }),
             None => Ok(EntityCollection {
                 data: vec![],

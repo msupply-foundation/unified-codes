@@ -15,7 +15,7 @@ pub use client::*;
 pub struct EntityData {
     pub data: Vec<Entity>,
     #[serde(default)]
-    pub aggregates: Option<Vec<ChildrenAggregateRecord>>,
+    pub aggregates: Option<AggregateResult>,
 }
 
 #[derive(Deserialize, Debug, Clone)]
@@ -23,8 +23,8 @@ pub struct Entity {
     #[serde(default)]
     pub id: String,
     pub code: String,
+    pub name: String,
     pub description: String,
-    #[serde(rename = "__typename")]
     pub r#type: String,
     #[serde(default)]
     pub properties: Vec<Properties>,
@@ -41,12 +41,7 @@ pub struct Properties {
     pub value: String,
 }
 
-#[derive(Deserialize, Debug, Clone)]
-pub struct ChildrenAggregateRecord {
-    pub categories: ChildrenAggregate,
-}
-
-#[derive(Deserialize, Debug, Clone)]
-pub struct ChildrenAggregate {
+#[derive(Deserialize, Debug, Clone, Default)]
+pub struct AggregateResult {
     pub count: u32,
 }

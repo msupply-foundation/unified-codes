@@ -347,8 +347,17 @@ export class DataParser {
         );
       };
 
+      const addCategory = (category, node) => {
+        node.category = `${category.name}`.trim();
+        console.log(
+          `INFO: Added Category for node with code ${node.code} of ${node.description}`
+        );
+        node.children?.forEach(child => addCategory(category, child));
+      };
+
       this.graph[UCCode.Root].children?.forEach(category => {
         category.children?.forEach(product => addDescription(product));
+        category.children?.forEach(product => addCategory(category, product));
       });
 
       // Output warnings for any duplicate entity codes.

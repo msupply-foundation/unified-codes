@@ -15,9 +15,10 @@ pub async fn entity_by_code(
     let query = r#"fragment Details on Entity {
   id
   code
-  __typename
-  type: __typename
+  name
   description
+  type
+  __typename
   properties {
     __typename
     type: __typename
