@@ -104,6 +104,7 @@ test('Web UI Search - ace - descending', () => {
             name: 'Acetazolamide',
           },
         ],
+        totalLength: 4,
       },
     },
   };
@@ -113,11 +114,11 @@ test('Web UI Search - ace - descending', () => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       query: `{
-            entities(filter: { code: "" categories: ["drug"] description: "ace" type: "drug" orderBy: { field: "description" descending: true } } offset: 0 first: 25) {
+            entities(filter: { code: "" categories: ["drug"] description: "ace" type: "drug" orderBy: { field: "description", descending: true } } offset: 0 first: 25) {
                 data {
                     code
                     description
-                    type
+                    name
                 },
                 totalLength,
             }
