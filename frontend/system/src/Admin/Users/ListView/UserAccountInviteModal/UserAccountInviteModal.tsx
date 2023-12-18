@@ -21,7 +21,7 @@ import { useUserAccount } from '../../api';
 import { userAccountInviteParsers } from '../../api/api';
 
 const PERMISSION_NODES_MAPPING = {
-  None: 'None',
+  // None: 'None,
   ServerAdmin: PermissionNode.ServerAdmin,
 };
 
@@ -83,9 +83,11 @@ const permissionOptions = (t: TypedTFunction<LocaleKey>) => {
       value: Object.values(PERMISSION_NODES_MAPPING)[index] as string,
     })
   );
-  return enumOptions.filter(
-    value => value.value !== PermissionNode.ServerAdmin
-  );
+  return enumOptions;
+  // TODO: for now our only role is ServerAdmin... do we want another role that's not quite server admin to invite people to?
+  // return enumOptions.filter(
+  //   value => value.value !== PermissionNode.ServerAdmin
+  // );
 };
 
 const permissionValueToArray = (permission: PermissionNode): PermissionNode[] =>
