@@ -1,5 +1,6 @@
 // TODO: store this as editable config
 export const categories = {
+  properties: ['code_rxnav', 'code_nzulm', 'who_eml', 'code_unspsc'],
   routes: [
     { label: 'Buccal', value: 'Buccal' },
     { label: 'Dental', value: 'Dental' },
