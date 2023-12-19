@@ -4,11 +4,13 @@
 
 interface Entity {
   id: ID!
-  code: String @dgraph(pred: "code") @search(by: [exact, fulltext])
-  name: String @dgraph(pred: "name")
+  code: String @dgraph(pred: "code") @search(by: [exact, trigram])
+  name: String @dgraph(pred: "name") @search(by: [exact, term, trigram])
   description: String
     @dgraph(pred: "description")
     @search(by: [exact, term, trigram])
+  category: String @dgraph(pred: "category") @search(by: [exact])
+  type: String @dgraph(pred: "type") @search(by: [exact])
   properties: [Property] @dgraph(pred: "properties")
   children: [Entity] @dgraph(pred: "children")
   parents: [Entity] @dgraph(pred: "~children")
