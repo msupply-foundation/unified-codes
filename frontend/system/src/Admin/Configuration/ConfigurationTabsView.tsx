@@ -11,13 +11,16 @@ export const ConfigurationTabsView = () => {
   const tabs: TabDefinition[] = [
     {
       Component: (
-        <CategoryConfigTab data={categories.routes} name={t('label.routes')} />
+        <CategoryConfigTab
+          data={categories.routes}
+          category={t('label.route')}
+        />
       ),
       value: t('label.routes'),
     },
     {
       Component: (
-        <CategoryConfigTab data={categories.forms} name={t('label.forms')} />
+        <CategoryConfigTab data={categories.forms} category={t('label.form')} />
       ),
       value: t('label.forms'),
     },
@@ -25,7 +28,7 @@ export const ConfigurationTabsView = () => {
       Component: (
         <CategoryConfigTab
           data={categories.immediatePackagings}
-          name={t('label.immediate-packaging')}
+          category={t('label.immediate-packaging')}
         />
       ),
       value: t('label.immediate-packaging'),

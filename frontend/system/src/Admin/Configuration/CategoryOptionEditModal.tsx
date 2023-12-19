@@ -4,7 +4,7 @@ import {
   InlineSpinner,
   LoadingButton,
 } from '@common/components';
-import { useDialog } from '@common/hooks';
+import { ModalMode, useDialog } from '@common/hooks';
 import { CheckIcon } from '@common/icons';
 import { useTranslation } from '@common/intl';
 import { Grid } from '@common/ui';
@@ -17,15 +17,20 @@ type CategoryOption = {
   label: string;
   value: string;
 };
+
 type ConfigurationEditModalProps = {
   isOpen: boolean;
-  onClose: () => void;
+  mode: ModalMode | null;
   config: CategoryOption | null;
+  category: string;
+  onClose: () => void;
 };
 
 export const CategoryOptionEditModal = ({
   isOpen,
   config,
+  mode,
+  category,
   onClose,
 }: ConfigurationEditModalProps) => {
   const t = useTranslation('system');
@@ -63,7 +68,11 @@ export const CategoryOptionEditModal = ({
         </LoadingButton>
       }
       cancelButton={<DialogButton variant="cancel" onClick={onClose} />}
-      title={t('label.edit-option')}
+      title={
+        mode === ModalMode.Create
+          ? t('label.add-option', { option: category })
+          : t('label.edit-option', { option: category })
+      }
     >
       {isLoading ? (
         <InlineSpinner />

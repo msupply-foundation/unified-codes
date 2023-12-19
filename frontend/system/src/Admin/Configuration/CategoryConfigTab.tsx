@@ -1,14 +1,17 @@
 import React from 'react';
 import {
+  AppBarButtonsPortal,
   AppBarContentPortal,
   DropdownMenu,
   DropdownMenuItem,
+  LoadingButton,
 } from '@common/components';
 import { useTranslation } from '@common/intl';
 import {
   createTableStore,
   DataTable,
   DeleteIcon,
+  PlusCircleIcon,
   TableProvider,
   useColumns,
   useTableStore,
@@ -25,12 +28,16 @@ type CategoryOption = {
 
 type CategoryConfigTabProps = {
   data: CategoryOption[];
-  name: string;
+  category: string;
 };
 
-const CategoryConfigTabComponent = ({ data }: CategoryConfigTabProps) => {
+const CategoryConfigTabComponent = ({
+  data,
+  category,
+}: CategoryConfigTabProps) => {
   const t = useTranslation('system');
-  const { onOpen, onClose, isOpen, entity } = useEditModal<CategoryOption>();
+  const { onOpen, onClose, isOpen, entity, mode } =
+    useEditModal<CategoryOption>();
 
   const { selectedRows } = useTableStore(state => ({
     selectedRows: Object.keys(state.rowState)
@@ -54,8 +61,19 @@ const CategoryConfigTabComponent = ({ data }: CategoryConfigTabProps) => {
           isOpen={isOpen}
           onClose={onClose}
           config={entity}
+          mode={mode}
+          category={category}
         />
       )}
+      <AppBarButtonsPortal>
+        <LoadingButton
+          onClick={() => onOpen()}
+          isLoading={false}
+          startIcon={<PlusCircleIcon />}
+        >
+          {t('label.add-option', { option: category })}
+        </LoadingButton>
+      </AppBarButtonsPortal>
       <AppBarContentPortal>
         <DropdownMenu label={t('label.select')}>
           <DropdownMenuItem
