@@ -5,6 +5,7 @@ import {
   DropdownMenu,
   DropdownMenuItem,
   LoadingButton,
+  useConfirmationModal,
 } from '@common/components';
 import { useTranslation } from '@common/intl';
 import {
@@ -54,6 +55,19 @@ const CategoryConfigTabComponent = ({
     'selection',
   ]);
 
+  const deleteAction = (rows: (CategoryOption | undefined)[]) => {
+    // TODO: implement delete
+    console.log('Rows to delete: ', rows);
+  };
+
+  const showDeleteConfirmation = useConfirmationModal({
+    onConfirm: () => deleteAction(selectedRows),
+    message: t('messages.confirm-delete-generic', {
+      count: selectedRows.length,
+    }),
+    title: t('heading.are-you-sure'),
+  });
+
   return (
     <>
       {isOpen && (
@@ -79,9 +93,7 @@ const CategoryConfigTabComponent = ({
           <DropdownMenuItem
             disabled={!selectedRows.length}
             IconComponent={DeleteIcon}
-            onClick={() => {
-              // todo: delete - probably with confirmation modal?
-            }}
+            onClick={() => showDeleteConfirmation()}
           >
             {t('button.delete-lines')}
           </DropdownMenuItem>
