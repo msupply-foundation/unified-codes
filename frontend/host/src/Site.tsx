@@ -59,7 +59,7 @@ export const Site: FC = () => {
                   display: 'flex',
                   borderRadius: '16px',
                   paddingX: '16px',
-                  maxHeight: '100%',
+                  height: '100%',
                 }}
               >
                 <Routes>
