@@ -31,7 +31,7 @@ export const Settings: React.FC = () => {
         title={t('button.language')}
         icon={<TranslateIcon />}
       />
-      <Grid style={{ position: 'absolute', right: 0, bottom: 30 }}>
+      <Grid style={{ position: 'absolute', right: 30, bottom: 40 }}>
         <Grid container padding={1} flexDirection="column">
           <Grid item display="flex" flex={1} gap={1}>
             <Grid item justifyContent="flex-end" flex={1} display="flex">
