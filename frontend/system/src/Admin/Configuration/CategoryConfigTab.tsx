@@ -40,12 +40,12 @@ const CategoryConfigTabComponent = ({
   const { onOpen, onClose, isOpen, entity, mode } =
     useEditModal<CategoryOption>();
 
-  const { selectedRows } = useTableStore(state => ({
-    selectedRows: Object.keys(state.rowState)
+  const selectedRows = useTableStore(state =>
+    Object.keys(state.rowState)
       .filter(id => state.rowState[id]?.isSelected)
       .map(selectedId => data?.find(({ id }) => selectedId === id))
-      .filter(Boolean),
-  }));
+      .filter(Boolean)
+  );
 
   const columns = useColumns<CategoryOption>([
     {
