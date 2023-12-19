@@ -13,13 +13,13 @@ import {
   AppNavLink,
   useIsMediumScreen,
   useAuthContext,
-  useLocation,
-  EnvUtils,
-  ExternalNavLink,
-  BookIcon,
   LogoutIcon,
+  RouteBuilder,
+  EditIcon,
+  ListIcon,
+  UsersIcon,
 } from '@uc-frontend/common';
-import { AppRoute, ExternalURL } from '@uc-frontend/config';
+import { AppRoute } from '@uc-frontend/config';
 import { AppDrawerIcon } from './AppDrawerIcon';
 
 const ToolbarIconContainer = styled(Box)({
@@ -127,7 +127,6 @@ export const AppDrawer: React.FC = () => {
   const isMediumScreen = useIsMediumScreen();
   const drawer = useDrawer();
   const { logout } = useAuthContext();
-  const location = useLocation();
 
   React.useEffect(() => {
     if (drawer.hasUserSet) return;
@@ -148,10 +147,6 @@ export const AppDrawer: React.FC = () => {
     drawer.open();
     drawer.setHoverOpen(true);
   };
-
-  const docsUrl = `${ExternalURL.PublicDocs}${
-    EnvUtils.mapRoute(location.pathname).docs
-  }`;
 
   return (
     <StyledDrawer
@@ -180,29 +175,45 @@ export const AppDrawer: React.FC = () => {
       >
         <UpperListContainer>
           <List>
-            {/* <AppNavLink
-              to={AppRoute.UserAccounts}
+            <AppNavLink
+              to={AppRoute.Browse}
+              icon={<ListIcon fontSize="small" color="primary" />}
+              text={t('browse')}
+            />
+            <AppNavLink
+              to={RouteBuilder.create(AppRoute.Admin)
+                .addPart(AppRoute.NewDrug)
+                .build()}
+              icon={<EditIcon fontSize="small" color="primary" />}
+              text={t('new-drug')}
+            />
+            <AppNavLink
+              to={RouteBuilder.create(AppRoute.Admin)
+                .addPart(AppRoute.UserAccounts)
+                .build()}
               icon={<UsersIcon fontSize="small" color="primary" />}
               text={t('users')}
-            /> */}
+            />
           </List>
         </UpperListContainer>
         <LowerListContainer>
           <List>
             {drawer.isOpen && <StyledDivider color="drawerDivider" />}
-            <ExternalNavLink
-              to={docsUrl}
+            {/* <ExternalNavLink
+              to={`${ExternalURL.PublicDocs}${
+                EnvUtils.mapRoute(location.pathname).docs
+              }`}
               icon={<BookIcon fontSize="small" color="primary" />}
               text={t('docs')}
               trustedSite={true}
-            />
+            /> */}
             <AppNavLink
-              to={AppRoute.Admin}
+              to={AppRoute.Settings}
               icon={<SettingsIcon fontSize="small" color="primary" />}
-              text={t('admin')}
+              text={t('settings')}
             />
             <AppNavLink
-              to={AppRoute.Login}
+              to={AppRoute.Browse}
               icon={<LogoutIcon fontSize="small" color="primary" />}
               text={t('logout')}
               onClick={logout}

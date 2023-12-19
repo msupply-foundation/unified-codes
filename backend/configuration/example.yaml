@@ -2,7 +2,7 @@
 # of this example file and name it local.yaml
 server:
   host: 127.0.0.1
-  app_url: 'http://localhost:4007'
+  app_url: 'http://localhost:4201'
 dgraph:
   host: 'http://localhost'
   port: 8080

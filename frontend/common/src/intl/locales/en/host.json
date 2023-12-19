@@ -38,6 +38,7 @@
   "messages.password-notbad": "Not bad",
   "messages.password-poor": "Poor",
   "messages.password-weak": "Weak",
+  "messages.verify-user-more-details": "We need a few more details to finish setting up your account.",
   "new-drug": "New Drug",
   "notifications": "Notifications",
   "password-reset": "Password Reset",
@@ -50,5 +51,6 @@
   "saving": "Saving...",
   "settings": "Settings",
   "set-up-account": "Set up your account",
+  "users": "Users",
   "username-reset.explanation": "Enter your new log in username"
 }

@@ -28,7 +28,9 @@ export const ForgotPassword = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setPageTitle(`${t('password-reset')} | ${t('app')} `);
+    setPageTitle(
+      `${t('password-reset', { ns: 'host' })} | ${t('app', { ns: 'host' })} `
+    );
   }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {

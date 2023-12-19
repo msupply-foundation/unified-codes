@@ -1,0 +1,65 @@
+fragment UserAccountRow on UserAccountNode {
+  __typename
+  id
+  username
+  email
+  displayName
+  permissions
+}
+
+query UserAccounts(
+  $filter: UserAccountFilterInput
+  $page: PaginationInput
+  $sort: [UserAccountSortInput!]
+) {
+  userAccounts(filter: $filter, page: $page, sort: $sort) {
+    __typename
+    ... on UserAccountConnector {
+      __typename
+      totalCount
+      nodes {
+        ...UserAccountRow
+      }
+    }
+  }
+}
+
+mutation createUserAccount($input: CreateUserAccountInput!) {
+  createUserAccount(input: $input) {
+    ... on UserAccountNode {
+      ...UserAccountRow
+    }
+  }
+}
+
+mutation inviteUser($input: InviteUserInput!) {
+  initiateUserInvite(input: $input) {
+    ... on InviteUserResponseMessage {
+      message
+    }
+  }
+}
+
+mutation updateUserAccount($input: UpdateUserAccountInput!) {
+  updateUserAccount(input: $input) {
+    ... on UserAccountNode {
+      ...UserAccountRow
+    }
+  }
+}
+
+mutation deleteUserAccount($input: String!) {
+  deleteUserAccount(userAccountId: $input) {
+    ... on DeleteResponse {
+      id
+    }
+  }
+}
+
+mutation acceptUserInvite($input: AcceptUserInviteInput!, $token: String!) {
+  acceptUserInvite(input: $input, token: $token) {
+    ... on InviteUserResponseMessage {
+      message
+    }
+  }
+}

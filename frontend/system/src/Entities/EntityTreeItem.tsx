@@ -4,7 +4,7 @@ import { CopyIcon, FlatButton } from '@common/ui';
 import { useNotification } from '@common/hooks';
 import { Link, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
-import { EntityDetailsFragment } from '../api/operations.generated';
+import { EntityDetailsFragment } from './api/operations.generated';
 
 export type EntityData = EntityDetailsFragment & {
   children?: EntityData[] | null;

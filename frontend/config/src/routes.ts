@@ -5,8 +5,11 @@ export enum AppRoute {
   Login = 'login',
   PasswordReset = 'password-reset',
   ForgotPassword = 'forgot-password',
+  VerifyAccount = 'verify-account',
 
   Admin = 'admin',
+  UserAccounts = 'users',
+  NewDrug = 'new-drug',
 
   Settings = 'settings',
   Logout = 'logout',
