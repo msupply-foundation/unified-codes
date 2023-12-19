@@ -33,7 +33,6 @@ const createUserAccountRowFragment = (
   username: '',
   displayName: '',
   permissions: [],
-  auditLogs: [],
   ...seed,
 });
 
