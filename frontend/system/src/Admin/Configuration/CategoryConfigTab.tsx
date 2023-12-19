@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   AppBarContentPortal,
-  BasicTextInput,
   DropdownMenu,
   DropdownMenuItem,
-  Typography,
 } from '@common/components';
 import { useTranslation } from '@common/intl';
 import {
@@ -15,21 +13,24 @@ import {
   useColumns,
   useTableStore,
 } from '@common/ui';
+import { useEditModal } from '@common/hooks';
+import { CategoryOptionEditModal } from './CategoryOptionEditModal';
 
-type CategoryConfig = {
+// TODO: this type should come from gql codegen types
+type CategoryOption = {
   id: string;
   label: string;
   value: string;
 };
 
 type CategoryConfigTabProps = {
-  data: CategoryConfig[];
+  data: CategoryOption[];
   name: string;
 };
 
 const CategoryConfigTabComponent = ({ data }: CategoryConfigTabProps) => {
   const t = useTranslation('system');
-  const [rowToEdit, setRowToEdit] = useState<CategoryConfig | null>(null);
+  const { onOpen, onClose, isOpen, entity } = useEditModal<CategoryOption>();
 
   const { selectedRows } = useTableStore(state => ({
     selectedRows: Object.keys(state.rowState)
@@ -38,38 +39,23 @@ const CategoryConfigTabComponent = ({ data }: CategoryConfigTabProps) => {
       .filter(Boolean),
   }));
 
-  const columns = useColumns<CategoryConfig>(
-    [
-      {
-        key: 'value',
-        label: 'label.value',
-        Cell: ({ rowData }) =>
-          rowData.id === rowToEdit?.id ? (
-            <BasicTextInput
-              fullWidth
-              autoFocus
-              value={rowToEdit.value}
-              onChange={e =>
-                // todo not this way lol
-                setRowToEdit({
-                  ...rowToEdit,
-                  label: e.target.value,
-                  value: e.target.value,
-                })
-              }
-            />
-          ) : (
-            <Typography>{rowData.value}</Typography>
-          ),
-      },
-      'selection',
-    ],
-    undefined,
-    [rowToEdit]
-  );
+  const columns = useColumns<CategoryOption>([
+    {
+      key: 'value',
+      label: 'label.value',
+    },
+    'selection',
+  ]);
 
   return (
     <>
+      {isOpen && (
+        <CategoryOptionEditModal
+          isOpen={isOpen}
+          onClose={onClose}
+          config={entity}
+        />
+      )}
       <AppBarContentPortal>
         <DropdownMenu label={t('label.select')}>
           <DropdownMenuItem
@@ -84,11 +70,7 @@ const CategoryConfigTabComponent = ({ data }: CategoryConfigTabProps) => {
         </DropdownMenu>
       </AppBarContentPortal>
 
-      <DataTable
-        columns={columns}
-        data={data}
-        onRowClick={row => setRowToEdit(row)}
-      />
+      <DataTable columns={columns} data={data} onRowClick={onOpen} />
     </>
   );
 };
