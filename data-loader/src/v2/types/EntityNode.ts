@@ -30,6 +30,7 @@ export interface IEntityNode {
   code: string;
   name?: string;
   description?: string;
+  category?: string;
   type?: EEntityType;
   combines?: IEntityNode[];
   properties?: IPropertyNode[];
