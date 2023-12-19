@@ -31,8 +31,6 @@ export const ConfigurationTabsView = () => {
       value: t('label.immediate-packaging'),
     },
     {
-      // would need to also manage what the external links to the different databases are
-      // and see if we have other references to the property codes throughout the codebase first!
       Component: <PropertiesConfigTab data={config.properties} />,
       value: t('label.properties'),
     },
