@@ -1,15 +1,3 @@
-/*
-type DrugInteractionType {
-  description: String!
-  name: String!
-  rxcui: String!
-  severity: String!
-  source: String!
-}
-*/
-
-//TODO: Implement this properly, right now this is just stub
-
 use async_graphql::*;
 
 #[derive(Clone, Debug)]
