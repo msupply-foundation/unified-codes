@@ -60,6 +60,7 @@ export const Site: FC = () => {
                   borderRadius: '16px',
                   paddingX: '16px',
                   height: '100%',
+                  overflow: 'auto',
                 }}
               >
                 <Routes>
