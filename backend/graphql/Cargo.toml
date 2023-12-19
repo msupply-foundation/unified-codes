@@ -15,6 +15,7 @@ graphql_core = { path = "core" }
 graphql_types = { path = "types" }
 graphql_general = { path = "general" }
 graphql_user_account = { path = "user_account" }
+graphql_universal_codes = { path = "../graphql_v1/universal_codes" }
 
 
 actix-web = { version = "4.0.1", default-features = false, features = [
