@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'http://127.0.0.1:4000/v1/graphql'
+schema: 'http://127.0.0.1:4000/graphql'
 generates:
   ./frontend/common/src/types/schema.ts:
     plugins:
