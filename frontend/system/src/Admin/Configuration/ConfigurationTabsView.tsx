@@ -53,8 +53,7 @@ export const ConfigurationTabsView = () => {
             display: 'flex',
             borderRadius: '16px',
             padding: '0 16px',
-            maxHeight: '100%',
-            overflowY: 'scroll',
+            height: '100%',
           }}
         >
           <DetailTabs tabs={tabs} />
