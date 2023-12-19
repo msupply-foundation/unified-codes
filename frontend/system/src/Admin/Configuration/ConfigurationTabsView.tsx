@@ -3,6 +3,7 @@ import { useTranslation } from '@common/intl';
 import React from 'react';
 import { categories } from '../DrugEditForm/categories';
 import { CategoryConfigTab } from './CategoryConfigTab';
+import { PropertiesConfigTab } from './PropertiesConfigTab';
 
 export const ConfigurationTabsView = () => {
   const t = useTranslation('system');
@@ -32,9 +33,12 @@ export const ConfigurationTabsView = () => {
       ),
       value: t('label.immediate-packaging'),
     },
-    // TODO: would be nice to manage properties options here too
-    // would need to also manage what the external links to the different databases are
-    // and see if we have other references to the property codes throughout the codebase first!
+    {
+      // would need to also manage what the external links to the different databases are
+      // and see if we have other references to the property codes throughout the codebase first!
+      Component: <PropertiesConfigTab data={categories.properties2} />,
+      value: t('label.properties'),
+    },
   ];
   return <DetailTabs tabs={tabs} />;
 };
