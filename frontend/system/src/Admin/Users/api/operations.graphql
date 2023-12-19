@@ -5,15 +5,6 @@ fragment UserAccountRow on UserAccountNode {
   email
   displayName
   permissions
-  auditLogs {
-    datetime
-    id
-    recordId
-    recordType
-    user {
-      username
-    }
-  }
 }
 
 query UserAccounts(

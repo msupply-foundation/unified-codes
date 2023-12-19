@@ -7,8 +7,8 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const crossFetch = require('cross-fetch');
 
-const url = 'http://localhost:4000/v1/graphql';
-// const url = 'http://localhost:4007/v1/graphql';
+// const url = 'http://localhost:4000/v1/graphql';
+const url = 'http://localhost:4007/v1/graphql';
 // const url = 'https://codes.msupply.foundation:2048/v1/graphql';
 
 test('Web UI Search - ace', () => {
@@ -74,6 +74,60 @@ test('Web UI Search - ace', () => {
       expect(res.data.entities.data.map(entity => entity.code)).toContain(
         'cf00cc3f'
       );
+    });
+});
+
+test('Web UI Search - ace - descending', () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const expected = {
+    data: {
+      entities: {
+        data: [
+          {
+            code: 'cf00cc3f',
+            description: 'Acetylsalicylic Acid',
+            name: 'Acetylsalicylic Acid',
+          },
+          {
+            code: 'c8ba31a5',
+            description: 'Acetylcysteine',
+            name: 'Acetylcysteine',
+          },
+          {
+            code: '7c8c2b5b',
+            description: 'Acetic Acid',
+            name: 'Acetic Acid',
+          },
+          {
+            code: '33d71824',
+            description: 'Acetazolamide',
+            name: 'Acetazolamide',
+          },
+        ],
+        totalLength: 4,
+      },
+    },
+  };
+
+  return crossFetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: `{
+            entities(filter: { code: "" categories: ["drug"] description: "ace" type: "drug" orderBy: { field: "description", descending: true } } offset: 0 first: 25) {
+                data {
+                    code
+                    description
+                    name
+                },
+                totalLength,
+            }
+        }`,
+    }),
+  })
+    .then(res => res.json())
+    .then(res => {
+      expect(res).toEqual(expected);
     });
 });
 

@@ -3,7 +3,7 @@ import * as Types from '@uc-frontend/common';
 import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
-export type UserAccountRowFragment = { __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode>, auditLogs: Array<{ __typename: 'LogNode', datetime: string, id: string, recordId?: string | null, recordType: Types.LogNodeType, user?: { __typename: 'UserAccountNode', username: string } | null }> };
+export type UserAccountRowFragment = { __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode> };
 
 export type UserAccountsQueryVariables = Types.Exact<{
   filter?: Types.InputMaybe<Types.UserAccountFilterInput>;
@@ -12,14 +12,14 @@ export type UserAccountsQueryVariables = Types.Exact<{
 }>;
 
 
-export type UserAccountsQuery = { __typename: 'FullQuery', userAccounts: { __typename: 'UserAccountConnector', totalCount: number, nodes: Array<{ __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode>, auditLogs: Array<{ __typename: 'LogNode', datetime: string, id: string, recordId?: string | null, recordType: Types.LogNodeType, user?: { __typename: 'UserAccountNode', username: string } | null }> }> } };
+export type UserAccountsQuery = { __typename: 'FullQuery', userAccounts: { __typename: 'UserAccountConnector', totalCount: number, nodes: Array<{ __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode> }> } };
 
 export type CreateUserAccountMutationVariables = Types.Exact<{
   input: Types.CreateUserAccountInput;
 }>;
 
 
-export type CreateUserAccountMutation = { __typename: 'FullMutation', createUserAccount: { __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode>, auditLogs: Array<{ __typename: 'LogNode', datetime: string, id: string, recordId?: string | null, recordType: Types.LogNodeType, user?: { __typename: 'UserAccountNode', username: string } | null }> } };
+export type CreateUserAccountMutation = { __typename: 'FullMutation', createUserAccount: { __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode> } };
 
 export type InviteUserMutationVariables = Types.Exact<{
   input: Types.InviteUserInput;
@@ -33,7 +33,7 @@ export type UpdateUserAccountMutationVariables = Types.Exact<{
 }>;
 
 
-export type UpdateUserAccountMutation = { __typename: 'FullMutation', updateUserAccount: { __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode>, auditLogs: Array<{ __typename: 'LogNode', datetime: string, id: string, recordId?: string | null, recordType: Types.LogNodeType, user?: { __typename: 'UserAccountNode', username: string } | null }> } };
+export type UpdateUserAccountMutation = { __typename: 'FullMutation', updateUserAccount: { __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode> } };
 
 export type DeleteUserAccountMutationVariables = Types.Exact<{
   input: Types.Scalars['String']['input'];
@@ -58,15 +58,6 @@ export const UserAccountRowFragmentDoc = gql`
   email
   displayName
   permissions
-  auditLogs {
-    datetime
-    id
-    recordId
-    recordType
-    user {
-      username
-    }
-  }
 }
     `;
 export const UserAccountsDocument = gql`

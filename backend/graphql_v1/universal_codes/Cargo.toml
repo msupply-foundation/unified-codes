@@ -11,5 +11,6 @@ doctest = false
 
 graphql_v1_core = { path = "../core" }
 dgraph = { path = "../../dgraph" }
+service = { path = "../../service" }
 
 async-graphql = { version = "3.0.35", features = ["dataloader", "chrono"] }
