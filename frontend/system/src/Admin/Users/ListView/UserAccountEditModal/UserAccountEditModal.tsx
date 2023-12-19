@@ -110,29 +110,6 @@ export const UserAccountEditModal: FC<UserAccountEditModalProps> = ({
       draft.permissions.length === 0) ??
     true;
 
-  // TODO: do we want the logs tab here too?
-  // const tabs = [
-  //   {
-  //     Component: (
-  //       <UserAccountEditForm
-  //         userAccount={draft}
-  //         password={password ?? ''}
-  //         setPassword={setPassword}
-  //         onUpdate={onUpdate}
-  //       />
-  //     ),
-  //     value: t('label.details'),
-  //   },
-  //   {
-  //     Component: (
-  //       <Box sx={{ width: '500px', height: '450px' }}>
-  //         <LogList records={draft.auditLogs ?? []} />
-  //       </Box>
-  //     ),
-  //     value: t('label.log'),
-  //   },
-  // ];
-
   return (
     <Modal
       okButton={
@@ -170,7 +147,6 @@ export const UserAccountEditModal: FC<UserAccountEditModalProps> = ({
             setPassword={setPassword}
             onUpdate={onUpdate}
           />
-          {/* <ModalTabs tabs={tabs} /> */}
           {errorMessage ? (
             <Grid item>
               <Alert
