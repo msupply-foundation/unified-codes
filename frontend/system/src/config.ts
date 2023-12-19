@@ -1,5 +1,5 @@
 // TODO: store this as editable config - ids are temp until we get some from the db
-export const categories = {
+export const config = {
   properties: [
     {
       id: '5ef14d93-e9c7-4245-aa74-0a0068754613',

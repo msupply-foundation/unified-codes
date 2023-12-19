@@ -15,7 +15,7 @@ import {
 } from '@uc-frontend/common';
 import { useUuid } from '../../hooks';
 import { Property } from './types';
-import { categories } from '../../categories';
+import { config } from '../../config';
 
 interface PropertiesModalProps {
   isOpen: boolean;
@@ -36,7 +36,7 @@ export const PropertiesModal = ({
   const uuid = useUuid();
 
   const [properties, setProperties] = useState<Property[]>(
-    categories.properties.map(config => {
+    config.properties.map(config => {
       const existing = data?.find(property => property.type === config.type);
       return {
         // just a throwaway id... a dgraph uid will be assigned when the property is stored

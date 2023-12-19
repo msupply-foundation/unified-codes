@@ -5,7 +5,7 @@ import { useNotification } from '@common/hooks';
 import { Link, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { EntityDetailsFragment } from './api/operations.generated';
-import { categories } from '../categories';
+import { config } from '../config';
 
 export type EntityData = EntityDetailsFragment & {
   children?: EntityData[] | null;
@@ -77,7 +77,7 @@ export const EntityTreeItem = ({
           sx={{ borderLeft: isRoot ? '1px solid black' : undefined }}
         >
           {entity.properties.map(p => {
-            const propertyConfig = categories.properties.find(
+            const propertyConfig = config.properties.find(
               conf => conf.type === p.type
             );
             const url = propertyConfig?.url.replace(/{{code}}/g, p.value);
