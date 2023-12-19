@@ -7,7 +7,7 @@ import {
   ButtonWithIcon,
 } from '@common/ui';
 import React, { useState } from 'react';
-import { categories } from './categories';
+import { categories } from '../../categories';
 import { useUuid } from '../../hooks';
 import { PropertiesModal } from './PropertiesModal';
 import { useEditModal } from '@common/hooks';

@@ -15,7 +15,7 @@ import { PropertyOptionEditModal } from './PropertyEditModal';
 type Property = {
   id: string;
   type: string;
-  value: string;
+  label: string;
   url: string;
 };
 
@@ -29,7 +29,7 @@ export const PropertiesConfigTab = ({ data }: PropertiesConfigTabProps) => {
 
   const columns = useColumns<Property>([
     { key: 'type', label: 'label.type' },
-    { key: 'value', label: 'label.title' },
+    { key: 'label', label: 'label.title' },
     { key: 'url', label: 'label.website' },
   ]);
 

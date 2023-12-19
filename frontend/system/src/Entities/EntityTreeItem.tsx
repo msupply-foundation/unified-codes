@@ -1,20 +1,14 @@
 import React from 'react';
-import { LocaleKey, useTranslation } from '@common/intl';
+import { useTranslation } from '@common/intl';
 import { CopyIcon, FlatButton } from '@common/ui';
 import { useNotification } from '@common/hooks';
 import { Link, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { EntityDetailsFragment } from './api/operations.generated';
+import { categories } from '../categories';
 
 export type EntityData = EntityDetailsFragment & {
   children?: EntityData[] | null;
-};
-
-const PROPERTY_URL: { [key: string]: (code: string) => string } = {
-  ['code_rxnav']: code =>
-    `https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=${code}`,
-  ['code_nzulm']: code =>
-    `https://search.nzulm.org.nz/search/product?table=MP&id=${code}`,
 };
 
 export const EntityTreeItem = ({
@@ -82,24 +76,30 @@ export const EntityTreeItem = ({
           label={t('label.properties')}
           sx={{ borderLeft: isRoot ? '1px solid black' : undefined }}
         >
-          {entity.properties.map(p => (
-            <TreeItem
-              key={p.value}
-              nodeId={entity.code + p.type}
-              label={
-                <Typography>
-                  {t(`property-${p.type}` as LocaleKey)}:{' '}
-                  {PROPERTY_URL[p.type] ? (
-                    <Link href={PROPERTY_URL[p.type]!(p.value)} target="_blank">
-                      {p.value}
-                    </Link>
-                  ) : (
-                    p.value
-                  )}
-                </Typography>
-              }
-            />
-          ))}
+          {entity.properties.map(p => {
+            const propertyConfig = categories.properties.find(
+              conf => conf.type === p.type
+            );
+            const url = propertyConfig?.url.replace(/{{code}}/g, p.value);
+            return (
+              <TreeItem
+                key={p.value}
+                nodeId={entity.code + p.type}
+                label={
+                  <Typography>
+                    {propertyConfig?.label}:{' '}
+                    {url ? (
+                      <Link href={url} target="_blank">
+                        {p.value}
+                      </Link>
+                    ) : (
+                      p.value
+                    )}
+                  </Typography>
+                }
+              />
+            );
+          })}
         </TreeItem>
       )}
     </TreeItem>

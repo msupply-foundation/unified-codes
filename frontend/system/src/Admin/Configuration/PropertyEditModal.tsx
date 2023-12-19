@@ -15,7 +15,7 @@ import { useUuid } from '../../hooks';
 type Property = {
   id: string;
   type: string;
-  value: string;
+  label: string;
   url: string;
 };
 
@@ -39,19 +39,17 @@ export const PropertyOptionEditModal = ({
     property ?? {
       id: uuid(),
       type: '',
-      value: '',
+      label: '',
       url: '',
     }
   );
-
-  console.log(uuid());
 
   const { Modal } = useDialog({ isOpen, onClose });
 
   // TODO: set from queries
   const isLoading = false;
 
-  const isInvalid = !draft.type || !draft.value;
+  const isInvalid = !draft.type || !draft.label;
   const modalWidth = Math.min(window.innerWidth - 200, 800);
 
   return (
@@ -103,8 +101,8 @@ export const PropertyOptionEditModal = ({
             required
             InputLabelProps={{ shrink: true }}
             label={t('label.title')}
-            value={draft.value}
-            onChange={e => setDraft({ ...draft, value: e.target.value })}
+            value={draft.label}
+            onChange={e => setDraft({ ...draft, label: e.target.value })}
           />
           <BasicTextInput
             InputLabelProps={{ shrink: true }}

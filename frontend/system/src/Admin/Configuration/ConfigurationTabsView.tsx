@@ -1,7 +1,7 @@
 import { DetailTabs, TabDefinition } from '@common/components';
 import { useTranslation } from '@common/intl';
 import React from 'react';
-import { categories } from '../DrugEditForm/categories';
+import { categories } from '../../categories';
 import { CategoryConfigTab } from './CategoryConfigTab';
 import { PropertiesConfigTab } from './PropertiesConfigTab';
 
@@ -36,7 +36,7 @@ export const ConfigurationTabsView = () => {
     {
       // would need to also manage what the external links to the different databases are
       // and see if we have other references to the property codes throughout the codebase first!
-      Component: <PropertiesConfigTab data={categories.properties2} />,
+      Component: <PropertiesConfigTab data={categories.properties} />,
       value: t('label.properties'),
     },
   ];
