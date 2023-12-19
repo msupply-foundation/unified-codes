@@ -90,27 +90,28 @@ export const PropertyOptionEditModal = ({
           <BasicTextInput
             autoFocus
             required
-            // should we be able to change the type? thinking no?
-            disabled={mode !== ModalMode.Create}
             InputLabelProps={{ shrink: true }}
             label={t('label.type')}
             value={draft.type}
             onChange={e => setDraft({ ...draft, type: e.target.value })}
+            disabled={mode !== ModalMode.Create}
+            helperText={
+              mode === ModalMode.Create && t('helper-text.you-cant-change-this')
+            }
           />
           <BasicTextInput
             required
             InputLabelProps={{ shrink: true }}
-            label={t('label.value')}
+            label={t('label.title')}
             value={draft.value}
             onChange={e => setDraft({ ...draft, value: e.target.value })}
           />
           <BasicTextInput
             InputLabelProps={{ shrink: true }}
-            label={t('label.url-template')}
+            label={t('label.website')}
             value={draft.url}
             onChange={e => setDraft({ ...draft, url: e.target.value })}
-            // is this enough info for the user?
-            helperText={'e.g. https://link.com?search={{code}}'}
+            helperText={t('helper-text.website-placeholder')}
           />
           {/* {errorMessage ? (
             <Grid item>
