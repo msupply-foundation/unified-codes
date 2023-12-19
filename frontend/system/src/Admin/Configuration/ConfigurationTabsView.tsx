@@ -1,36 +1,33 @@
-import {
-  AppBarButtonsPortal,
-  DetailTabs,
-  LoadingButton,
-  TabDefinition,
-} from '@common/components';
+import { DetailTabs, TabDefinition } from '@common/components';
 import { useTranslation } from '@common/intl';
-import {
-  Box,
-  createTableStore,
-  DataTable,
-  EditIcon,
-  Paper,
-  TableProvider,
-  useColumns,
-} from '@common/ui';
+import { Box, Paper } from '@common/ui';
 import React from 'react';
 import { categories } from '../DrugEditForm/categories';
+import { CategoryConfigTab } from './CategoryConfigTab';
 
 export const ConfigurationTabsView = () => {
   const t = useTranslation('system');
 
   const tabs: TabDefinition[] = [
     {
-      Component: <ConfigurationList data={categories.routes} />,
+      Component: (
+        <CategoryConfigTab data={categories.routes} name={t('label.routes')} />
+      ),
       value: t('label.routes'),
     },
     {
-      Component: <ConfigurationList data={categories.forms} />,
+      Component: (
+        <CategoryConfigTab data={categories.forms} name={t('label.forms')} />
+      ),
       value: t('label.forms'),
     },
     {
-      Component: <ConfigurationList data={categories.immediatePackagings} />,
+      Component: (
+        <CategoryConfigTab
+          data={categories.immediatePackagings}
+          name={t('label.immediate-packaging')}
+        />
+      ),
       value: t('label.immediate-packaging'),
     },
     // TODO: would be nice to manage properties options here too
@@ -39,11 +36,6 @@ export const ConfigurationTabsView = () => {
   ];
   return (
     <>
-      <AppBarButtonsPortal>
-        <LoadingButton isLoading={false} startIcon={<EditIcon />}>
-          {t('label.edit')}
-        </LoadingButton>
-      </AppBarButtonsPortal>
       <Paper
         sx={{
           backgroundColor: 'background.menu',
@@ -62,31 +54,12 @@ export const ConfigurationTabsView = () => {
             borderRadius: '16px',
             padding: '0 16px',
             maxHeight: '100%',
-            overflow: 'auto',
+            overflowY: 'scroll',
           }}
         >
           <DetailTabs tabs={tabs} />
         </Box>
       </Paper>
     </>
-  );
-};
-
-const ConfigurationList = ({
-  data,
-}: {
-  data: { id: string; label: string; value: string }[];
-}) => {
-  const columns = useColumns([
-    {
-      key: 'value',
-      label: 'label.value',
-    },
-  ]);
-
-  return (
-    <TableProvider createStore={createTableStore}>
-      <DataTable columns={columns} data={data} />
-    </TableProvider>
   );
 };
