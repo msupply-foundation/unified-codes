@@ -31,7 +31,6 @@ describe('buildDrugInputFromEntity', () => {
                       name: '15mL',
                       type: 'unit_of_use',
                       properties: [],
-                      children: [],
                     },
                   ],
                 },

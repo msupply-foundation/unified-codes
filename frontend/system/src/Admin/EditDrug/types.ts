@@ -1,7 +1,7 @@
 import { EntityDetailsFragment } from '../../Entities/api/operations.generated';
 
 export interface EntityDetails extends EntityDetailsFragment {
-  children: EntityDetails[];
+  children?: EntityDetails[];
 }
 export interface Property {
   id: string;
