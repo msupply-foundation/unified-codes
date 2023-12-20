@@ -51,12 +51,11 @@ pub struct AggregateResult {
 #[derive(Serialize, Debug, Clone, Default)]
 pub struct EntityInput {
     pub code: String,
+    pub r#type: String, // Type is required right now to switch with upsert mutation to run
     #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub category: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<String>,
 }

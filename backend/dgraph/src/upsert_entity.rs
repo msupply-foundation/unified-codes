@@ -1,7 +1,7 @@
 use gql_client::GraphQLError;
 use serde::{Deserialize, Serialize};
 
-use crate::{DgraphClient, Entity, EntityInput};
+use crate::{DgraphClient, EntityInput};
 
 #[derive(Serialize, Debug)]
 struct UpsertVars {
@@ -9,39 +9,45 @@ struct UpsertVars {
     upsert: bool,
 }
 
+#[allow(non_snake_case)]
 #[derive(Deserialize, Debug, Clone)]
-pub struct ProductEntity {
-    pub product: Vec<Entity>,
+pub struct UpsertResponseData {
+    pub data: UpsertResponse,
 }
 
 #[allow(non_snake_case)]
 #[derive(Deserialize, Debug, Clone)]
-pub struct ProductData {
-    pub data: ProductEntity,
-    #[serde(default)]
+pub struct UpsertResponse {
     pub numUids: u32,
 }
 
 /*
-{code: "abcd", category: "Drug", name: "Alphabetium", description: "Alphabetium", type: "Product"}
- */
+
+    There are the following types in dgraph:
+        DoseStrength
+        PackImmediate
+        Route
+        FormQualifier
+        Product
+        Unit
+        Category
+        Form
+        PackSize
+    Each has an associated add<Type> graphql mutation.
+*/
+
 pub async fn upsert_entity(
     client: &DgraphClient,
     entity: EntityInput,
-) -> Result<Option<Entity>, GraphQLError> {
+) -> Result<UpsertResponse, GraphQLError> {
+    // Replace the {{type}} placeholder with the entity type to get the correct mutation
     let query = r#"
-mutation UpdateProduct($input: [AddProductInput!]!, $upsert: Boolean = false) {
-  data: addProduct(input: $input, upsert: $upsert) {
+mutation UpdateProduct($input: [Add{{type}}Input!]!, $upsert: Boolean = false) {
+  data: add{{type}}(input: $input, upsert: $upsert) {
     numUids
-    product {
-     id
-    code
-    name
-    description
-    type
-    }
   }
-}"#;
+}"#
+    .replace("{{type}}", "Product");
     let variables = UpsertVars {
         input: entity,
         upsert: true,
@@ -49,15 +55,14 @@ mutation UpdateProduct($input: [AddProductInput!]!, $upsert: Boolean = false) {
 
     let result = client
         .gql
-        .query_with_vars::<ProductData, UpsertVars>(query, variables)
+        .query_with_vars::<UpsertResponseData, UpsertVars>(&query, variables)
         .await?;
 
     match result {
-        Some(result) => match result.data.product.first() {
-            Some(entity) => Ok(Some(entity.clone())),
-            None => Ok(None),
-        },
-        None => Ok(None),
+        Some(result) => Ok(UpsertResponse {
+            numUids: result.data.numUids,
+        }),
+        None => Ok(UpsertResponse { numUids: 0 }),
     }
 }
 
@@ -89,8 +94,15 @@ mod tests {
 
         let result = upsert_entity(&client, entity_input).await;
         if result.is_err() {
-            println!("{:#?}", result.clone().unwrap_err().json());
+            println!(
+                "upsert_entity err: {:#?} {:#?}",
+                result,
+                result.clone().unwrap_err().json()
+            );
         }
+        assert!(result.is_ok());
+        // Get the updated entity
+        let result = entity_by_code(&client, code_to_update.clone()).await;
         let e = result.unwrap().unwrap();
         assert_eq!(e.code, code_to_update.clone());
         assert_eq!(e.name, "new_name".to_string());
@@ -102,6 +114,9 @@ mod tests {
             ..Default::default()
         };
         let result = upsert_entity(&client, entity_input).await;
+        assert!(result.is_ok());
+        // Get the updated entity
+        let result = entity_by_code(&client, code_to_update.clone()).await;
         let e = result.unwrap().unwrap();
         assert_eq!(e.code, code_to_update.clone());
         assert_eq!(e.name, "Tent".to_string());
