@@ -16,12 +16,8 @@ type Entity {
   parents: [Entity] @dgraph(pred: "~children")
 }
 
-interface Property {
+type Property {
   id: ID!
+  type: String @dgraph(pred: "type") @search(by: [exact])
   value: String @dgraph(pred: "value")
 }
-
-type who_eml implements Property
-type code_nzulm implements Property
-type code_rxnav implements Property
-type code_unspsc implements Property

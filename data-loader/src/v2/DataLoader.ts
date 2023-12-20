@@ -153,8 +153,7 @@ export class DataLoader {
 
           const nQuads = `
             _:property <value> "${property.value}" .
-            _:property <dgraph.type> "${property.type}" .
-
+            _:property <type> "${property.type}" .
             uid(Entity) <properties> _:property .
           `;
 
