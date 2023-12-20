@@ -3,7 +3,7 @@ declare const APP_BUILD_VERSION: string;
 declare const BUGSNAG_API_KEY: string;
 
 // For production, API is on the same domain/ip and port as web app, available through sub-route
-// i.e. web app is on https://my.healthsupplyhub.com/, then graphql will be available https://my.openmsupply.com/graphql
+// i.e. web app is on https://my.openmsupply.com/, then graphql will be available https://my.openmsupply.com/graphql
 
 // For development, API server and front end are launched seperately on different ports and possible different IPs
 // by default we assume development API server is launched on the same domain/ip and on port 8007 (Default). We can overwrite this
@@ -12,7 +12,8 @@ declare const BUGSNAG_API_KEY: string;
 const isProductionBuild = process.env['NODE_ENV'] === 'production';
 const { port, hostname, protocol } = window.location;
 
-const defaultDevelopmentApiHost = `${protocol}//${hostname}:4000/v1`;
+const defaultDevelopmentApiHost = `${protocol}//${hostname}:4007`;
+// TODO: I assume the production api host also won't be on /v1 anymore
 const productionApiHost = `${protocol}//${hostname}:${port}/v1`;
 
 const developmentApiHost =

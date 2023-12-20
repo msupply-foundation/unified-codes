@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from '@common/intl';
 import { AppBarContentPortal, ChevronDownIcon, Switch } from '@common/ui';
 import { useBreadcrumbs } from '@common/hooks';
-import { useEntity } from '../api';
+import { useEntity } from './api';
 import { FormControlLabel } from '@mui/material';
 import { TreeView } from '@mui/lab';
 import { useParams } from 'react-router-dom';

@@ -12,11 +12,10 @@ import {
   createTableStore,
   TableProvider,
   Typography,
-  LocaleKey,
 } from '@uc-frontend/common';
 import { useUuid } from '../../hooks';
 import { Property } from './types';
-import { categories } from './categories';
+import { config } from '../../config';
 
 interface PropertiesModalProps {
   isOpen: boolean;
@@ -37,13 +36,14 @@ export const PropertiesModal = ({
   const uuid = useUuid();
 
   const [properties, setProperties] = useState<Property[]>(
-    categories.properties.map(type => {
-      const existing = data?.find(property => property.type === type);
+    config.properties.map(config => {
+      const existing = data?.find(property => property.type === config.type);
       return {
         // just a throwaway id... a dgraph uid will be assigned when the property is stored
         id: existing ? existing.id : uuid(),
         value: existing ? existing.value : '',
-        type,
+        label: config.label,
+        type: config.type,
       };
     })
   );
@@ -60,13 +60,10 @@ export const PropertiesModal = ({
 
   const columns = useColumns<Property>([
     {
-      key: 'type',
+      key: 'label',
       width: '50%',
       label: 'label.type',
       sortable: false,
-      Cell: ({ rowData }) => (
-        <Typography>{t(`property-${rowData.type}` as LocaleKey)}</Typography>
-      ),
     },
     {
       key: 'value',

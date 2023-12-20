@@ -1,8 +1,8 @@
 server:
   port: 4007
   debug_cors_permissive: true # enable this to allow any origin for development purposes
-  cors_origins: [http://localhost:4007] # Used to set the allowed origins in Cross Origin Request Security
-  app_url: 'http://localhost:4007'
+  cors_origins: [http://localhost:4201] # Used to set the allowed origins in Cross Origin Request Security
+  app_url: 'http://localhost:4201'
 database:
   database_name: 'universalcodes.sqlite'
 mail:

@@ -11,7 +11,7 @@ import {
   ToggleButton,
 } from '@common/ui';
 import { useQueryParamsState } from '@common/hooks';
-import { EntityRowFragment, useEntities } from '../api';
+import { EntityRowFragment, useEntities } from './api';
 import { ToggleButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { RouteBuilder } from '@common/utils';
@@ -46,6 +46,7 @@ export const ListView = () => {
   const { data, isError, isLoading } = useEntities({
     filter: {
       categories,
+      type: 'drug',
       description: search,
       orderBy: {
         field: sortBy.key,
