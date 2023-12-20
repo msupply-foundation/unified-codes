@@ -218,49 +218,6 @@ export const DrugEditForm = ({
                           onOpen={onOpenPropertiesModal}
                         />
                       </Box>
-
-                      {!!unit.immediatePackagings.length && (
-                        <Typography fontSize="12px">
-                          {t('label.immediate-packaging')}
-                        </Typography>
-                      )}
-
-                      {unit.immediatePackagings.map(immPack => (
-                        <TreeFormBox key={immPack.id}>
-                          <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                            <CategoryDropdown
-                              value={immPack.name}
-                              options={config.immediatePackagings}
-                              onChange={name =>
-                                onUpdate(
-                                  { ...immPack, name },
-                                  unit.immediatePackagings
-                                )
-                              }
-                              getOptionDisabled={o =>
-                                !!unit.immediatePackagings.find(
-                                  i => i.name === o.value
-                                )
-                              }
-                            />
-                            <EditPropertiesButton
-                              parents={[draft, route, form, strength, unit]}
-                              entity={immPack}
-                              onOpen={onOpenPropertiesModal}
-                            />
-                          </Box>
-                        </TreeFormBox>
-                      ))}
-
-                      <AddFieldButton
-                        label={t('label.add-immediate-packaging')}
-                        onClick={() =>
-                          onUpdate(
-                            { id: makeThrowawayId(), name: '' },
-                            unit.immediatePackagings
-                          )
-                        }
-                      />
                     </TreeFormBox>
                   ))}
 
@@ -271,7 +228,6 @@ export const DrugEditForm = ({
                         {
                           id: makeThrowawayId(),
                           name: '',
-                          immediatePackagings: [],
                         },
                         strength.units
                       )

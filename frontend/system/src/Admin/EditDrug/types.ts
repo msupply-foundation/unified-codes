@@ -15,11 +15,7 @@ export interface Entity {
   properties?: Property[];
 }
 
-export interface ImmediatePackaging extends Entity {}
-
-export interface Unit extends Entity {
-  immediatePackagings: ImmediatePackaging[];
-}
+export interface Unit extends Entity {}
 
 export interface Strength extends Entity {
   units: Unit[];
