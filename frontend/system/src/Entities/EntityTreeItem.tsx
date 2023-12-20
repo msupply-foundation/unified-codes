@@ -57,7 +57,7 @@ export const EntityTreeItem = ({
       }}
       nodeId={entity.code}
       label={
-        <Typography sx={{ height: '26px' }}>
+        <Typography>
           {entity.name}{' '}
           {showCode && (
             <>
