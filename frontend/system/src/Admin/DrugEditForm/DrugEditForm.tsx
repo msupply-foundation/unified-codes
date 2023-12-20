@@ -7,7 +7,7 @@ import {
   ButtonWithIcon,
 } from '@common/ui';
 import React, { useState } from 'react';
-import { categories } from './categories';
+import { config } from '../../config';
 import { useUuid } from '../../hooks';
 import { PropertiesModal } from './PropertiesModal';
 import { useEditModal } from '@common/hooks';
@@ -126,7 +126,7 @@ export const DrugEditForm = () => {
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <CategoryDropdown
               value={route.name}
-              options={categories.routes}
+              options={config.routes}
               onChange={name => onUpdate({ ...route, name }, draft.routes)}
               getOptionDisabled={o =>
                 !!draft.routes.find(r => r.name === o.value)
@@ -148,7 +148,7 @@ export const DrugEditForm = () => {
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                 <CategoryDropdown
                   value={form.name}
-                  options={categories.forms}
+                  options={config.forms}
                   onChange={name => onUpdate({ ...form, name }, route.forms)}
                   getOptionDisabled={o =>
                     !!route.forms.find(f => f.name === o.value)
@@ -221,7 +221,7 @@ export const DrugEditForm = () => {
                           <Box sx={{ display: 'flex', alignItems: 'end' }}>
                             <CategoryDropdown
                               value={immPack.name}
-                              options={categories.immediatePackagings}
+                              options={config.immediatePackagings}
                               onChange={name =>
                                 onUpdate(
                                   { ...immPack, name },

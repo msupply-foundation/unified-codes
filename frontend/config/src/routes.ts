@@ -10,6 +10,7 @@ export enum AppRoute {
   Admin = 'admin',
   UserAccounts = 'users',
   NewDrug = 'new-drug',
+  Configuration = 'configuration',
 
   Settings = 'settings',
   Logout = 'logout',

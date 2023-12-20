@@ -182,6 +182,13 @@ export const AppDrawer: React.FC = () => {
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)
+                .addPart(AppRoute.UserAccounts)
+                .build()}
+              icon={<UsersIcon fontSize="small" color="primary" />}
+              text={t('users')}
+            />
+            <AppNavLink
+              to={RouteBuilder.create(AppRoute.Admin)
                 .addPart(AppRoute.NewDrug)
                 .build()}
               icon={<EditIcon fontSize="small" color="primary" />}
@@ -189,10 +196,10 @@ export const AppDrawer: React.FC = () => {
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)
-                .addPart(AppRoute.UserAccounts)
+                .addPart(AppRoute.Configuration)
                 .build()}
-              icon={<UsersIcon fontSize="small" color="primary" />}
-              text={t('users')}
+              icon={<SettingsIcon fontSize="small" color="primary" />}
+              text={t('configuration')}
             />
           </List>
         </UpperListContainer>
