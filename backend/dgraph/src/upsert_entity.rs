@@ -42,12 +42,12 @@ pub async fn upsert_entity(
 ) -> Result<UpsertResponse, GraphQLError> {
     // Replace the {{type}} placeholder with the entity type to get the correct mutation
     let query = r#"
-mutation UpdateProduct($input: [Add{{type}}Input!]!, $upsert: Boolean = false) {
+mutation UpdateEntity($input: [Add{{type}}Input!]!, $upsert: Boolean = false) {
   data: add{{type}}(input: $input, upsert: $upsert) {
     numUids
   }
 }"#
-    .replace("{{type}}", "Product");
+    .replace("{{type}}", &entity.r#type);
     let variables = UpsertVars {
         input: entity,
         upsert: true,
@@ -84,10 +84,12 @@ mod tests {
         let original_entity = result.unwrap().unwrap();
         assert_eq!(original_entity.code, code_to_update.clone());
         assert_eq!(original_entity.name, "Tent".to_string());
+        assert_eq!(original_entity.r#type, "Product".to_string());
 
         // Update name
         let entity_input = EntityInput {
             code: code_to_update.clone(),
+            r#type: original_entity.r#type.clone(),
             name: Some("new_name".to_string()),
             ..Default::default()
         };
@@ -110,6 +112,7 @@ mod tests {
         // Reset name
         let entity_input = EntityInput {
             code: code_to_update.clone(),
+            r#type: original_entity.r#type,
             name: Some("Tent".to_string()), //Some(original_entity.name),
             ..Default::default()
         };
