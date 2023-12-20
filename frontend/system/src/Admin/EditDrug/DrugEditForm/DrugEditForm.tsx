@@ -7,8 +7,8 @@ import {
   ButtonWithIcon,
 } from '@common/ui';
 import React, { useState } from 'react';
-import { config } from '../../config';
-import { useUuid } from '../../hooks';
+import { config } from '../../../config';
+import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
 import { useEditModal } from '@common/hooks';
 import { DrugInput, Entity, Property } from './types';
