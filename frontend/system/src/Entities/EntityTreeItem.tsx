@@ -76,7 +76,7 @@ export const EntityTreeItem = ({
       {entity.children?.map(c => (
         <EntityTreeItem entity={c} key={c.code} showAllCodes={showAllCodes} />
       ))}
-      {entity.properties && (
+      {!!entity.properties.length && (
         <TreeItem
           nodeId={entity.code + '_properties'}
           label={t('label.properties')}
