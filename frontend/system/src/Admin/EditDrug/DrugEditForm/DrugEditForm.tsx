@@ -11,23 +11,32 @@ import { config } from '../../../config';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
 import { useEditModal } from '@common/hooks';
-import { DrugInput, Entity, Property } from './types';
+import { DrugInput, Entity, EntityDetails, Property } from '../types';
 import { TreeFormBox } from './TreeFormBox';
 import { CategoryDropdown } from './CategoryDropdown';
 import { AddFieldButton } from './AddFieldButton';
 import { EditPropertiesButton } from './EditPropertiesButton';
+import { buildDrugInputFromEntity } from '../helpers';
 
-export const DrugEditForm = () => {
+export const DrugEditForm = ({
+  initialEntity,
+}: {
+  initialEntity?: EntityDetails;
+}) => {
   const t = useTranslation('system');
 
   // throwaway ids as a dgraph uid will be assigned when the entity is stored
   const makeThrowawayId = useUuid();
 
-  const [draft, setDraft] = useState<DrugInput>({
-    id: makeThrowawayId(),
-    name: '',
-    routes: [],
-  });
+  const [draft, setDraft] = useState<DrugInput>(
+    initialEntity
+      ? buildDrugInputFromEntity(initialEntity)
+      : {
+          id: makeThrowawayId(),
+          name: '',
+          routes: [],
+        }
+  );
 
   const [propertiesModalState, setPropertiesModalState] = useState<{
     title: string;

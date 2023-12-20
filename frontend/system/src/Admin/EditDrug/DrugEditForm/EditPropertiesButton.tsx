@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from '@common/intl';
 import { AngleCircleRightIcon, IconButton, PlusCircleIcon } from '@common/ui';
-import { Entity } from './types';
+import { Entity } from '../types';
 
 export const EditPropertiesButton = ({
   parents,

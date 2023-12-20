@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'frontend/common/src';
 import { useBreadcrumbs } from '@common/hooks';
 import { useEntity } from '../../Entities/api';
+import { DrugEditForm } from './DrugEditForm';
 
 export const EditDrugView = () => {
   const { code } = useParams();
@@ -12,5 +13,5 @@ export const EditDrugView = () => {
   useEffect(() => {
     if (entity?.name) setSuffix(entity.name);
   }, [entity?.name]);
-  return <>{entity?.name} edit form</>;
+  return entity ? <DrugEditForm initialEntity={entity} /> : null;
 };

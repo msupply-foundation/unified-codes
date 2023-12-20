@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@uc-frontend/common';
 import { useUuid } from '../../../hooks';
-import { Property } from './types';
+import { Property } from '../types';
 import { config } from '../../../config';
 
 interface PropertiesModalProps {
