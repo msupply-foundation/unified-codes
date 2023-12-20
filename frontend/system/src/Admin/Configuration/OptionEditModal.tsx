@@ -12,27 +12,27 @@ import React, { useState } from 'react';
 import { useUuid } from '../../hooks';
 
 // TODO: this type should come from gql codegen types
-type CategoryOption = {
+type ListOption = {
   id: string;
   label: string;
   value: string;
 };
 
-type ConfigurationEditModalProps = {
+type OptionEditModalProps = {
   isOpen: boolean;
   mode: ModalMode | null;
-  config: CategoryOption | null;
+  config: ListOption | null;
   category: string;
   onClose: () => void;
 };
 
-export const CategoryOptionEditModal = ({
+export const OptionEditModal = ({
   isOpen,
   config,
   mode,
   category,
   onClose,
-}: ConfigurationEditModalProps) => {
+}: OptionEditModalProps) => {
   const t = useTranslation('system');
   const uuid = useUuid();
 

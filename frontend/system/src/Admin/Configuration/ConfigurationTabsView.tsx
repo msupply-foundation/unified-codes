@@ -2,7 +2,7 @@ import { DetailTabs, TabDefinition } from '@common/components';
 import { useTranslation } from '@common/intl';
 import React from 'react';
 import { config } from '../../config';
-import { CategoryConfigTab } from './CategoryConfigTab';
+import { OptionListConfigTab } from './OptionListConfigTab';
 import { PropertiesConfigTab } from './PropertiesConfigTab';
 
 export const ConfigurationTabsView = () => {
@@ -11,19 +11,19 @@ export const ConfigurationTabsView = () => {
   const tabs: TabDefinition[] = [
     {
       Component: (
-        <CategoryConfigTab data={config.routes} category={t('label.route')} />
+        <OptionListConfigTab data={config.routes} category={t('label.route')} />
       ),
       value: t('label.routes'),
     },
     {
       Component: (
-        <CategoryConfigTab data={config.forms} category={t('label.form')} />
+        <OptionListConfigTab data={config.forms} category={t('label.form')} />
       ),
       value: t('label.forms'),
     },
     {
       Component: (
-        <CategoryConfigTab
+        <OptionListConfigTab
           data={config.immediatePackagings}
           category={t('label.immediate-packaging')}
         />

@@ -18,27 +18,26 @@ import {
   useTableStore,
 } from '@common/ui';
 import { useEditModal } from '@common/hooks';
-import { CategoryOptionEditModal } from './CategoryOptionEditModal';
+import { OptionEditModal } from './OptionEditModal';
 
 // TODO: this type should come from gql codegen types
-type CategoryOption = {
+type ListOption = {
   id: string;
   label: string;
   value: string;
 };
 
-type CategoryConfigTabProps = {
-  data: CategoryOption[];
+type OptionListConfigTabProps = {
+  data: ListOption[];
   category: string;
 };
 
-const CategoryConfigTabComponent = ({
+const OptionListConfigTabComponent = ({
   data,
   category,
-}: CategoryConfigTabProps) => {
+}: OptionListConfigTabProps) => {
   const t = useTranslation('system');
-  const { onOpen, onClose, isOpen, entity, mode } =
-    useEditModal<CategoryOption>();
+  const { onOpen, onClose, isOpen, entity, mode } = useEditModal<ListOption>();
 
   const selectedRows = useTableStore(state =>
     Object.keys(state.rowState)
@@ -47,7 +46,7 @@ const CategoryConfigTabComponent = ({
       .filter(Boolean)
   );
 
-  const columns = useColumns<CategoryOption>([
+  const columns = useColumns<ListOption>([
     {
       key: 'value',
       label: 'label.value',
@@ -55,7 +54,7 @@ const CategoryConfigTabComponent = ({
     'selection',
   ]);
 
-  const deleteAction = (rows: (CategoryOption | undefined)[]) => {
+  const deleteAction = (rows: (ListOption | undefined)[]) => {
     // TODO: implement delete
     console.log('Rows to delete: ', rows);
   };
@@ -71,7 +70,7 @@ const CategoryConfigTabComponent = ({
   return (
     <>
       {isOpen && (
-        <CategoryOptionEditModal
+        <OptionEditModal
           isOpen={isOpen}
           onClose={onClose}
           config={entity}
@@ -105,10 +104,10 @@ const CategoryConfigTabComponent = ({
   );
 };
 
-export const CategoryConfigTab = (props: CategoryConfigTabProps) => {
+export const OptionListConfigTab = (props: OptionListConfigTabProps) => {
   return (
     <TableProvider createStore={createTableStore}>
-      <CategoryConfigTabComponent {...props} />
+      <OptionListConfigTabComponent {...props} />
     </TableProvider>
   );
 };
