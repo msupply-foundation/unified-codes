@@ -46,6 +46,7 @@ export const ListView = () => {
   const { data, isError, isLoading } = useEntities({
     filter: {
       categories,
+      type: 'drug',
       description: search,
       orderBy: {
         field: sortBy.key,
