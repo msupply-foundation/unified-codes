@@ -1,4 +1,76 @@
-import { buildDrugInputFromEntity } from './helpers';
+import { buildDrugInputFromEntity, getAllEntityCodes } from './helpers';
+
+describe('getAllEntityCodes', () => {
+  it('returns empty array when entity is not defined', () => {
+    expect(getAllEntityCodes(undefined)).toBe([]);
+  });
+  it('returns codes of entity and all its children', () => {
+    const entityDetails = {
+      code: '7c8c2b5b',
+      name: 'Acetic Acid',
+      type: 'drug',
+      properties: [],
+      children: [
+        {
+          code: '6e5f7a00',
+          name: 'Topical',
+          type: 'form_category',
+          properties: [],
+          children: [
+            {
+              code: '66e85500',
+              name: 'Solution',
+              type: 'form',
+              properties: [],
+              children: [
+                {
+                  code: '36e874bf',
+                  name: '2%',
+                  type: 'strength',
+                  properties: [],
+                  children: [
+                    {
+                      code: 'e4edcb00',
+                      name: '15mL',
+                      type: 'unit_of_use',
+                      properties: [],
+                    },
+                  ],
+                },
+                {
+                  code: '36e874bg',
+                  name: '3%',
+                  type: 'strength',
+                  properties: [],
+                  children: [
+                    {
+                      code: 'e4edcb01',
+                      name: '15mL',
+                      type: 'unit_of_use',
+                      properties: [],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    const result = getAllEntityCodes(entityDetails);
+
+    expect(result).toEqual([
+      '7c8c2b5b',
+      '6e5f7a00',
+      '66e85500',
+      '36e874bf',
+      'e4edcb00',
+      '36e874bg',
+      'e4edcb01',
+    ]);
+  });
+});
 
 describe('buildDrugInputFromEntity', () => {
   it('builds input from entity details', () => {

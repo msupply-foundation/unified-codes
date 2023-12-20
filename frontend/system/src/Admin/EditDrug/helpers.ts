@@ -1,5 +1,22 @@
 import { DrugInput, EntityDetails } from './types';
 
+export const getAllEntityCodes = (
+  entity: EntityDetails | undefined
+): string[] => {
+  if (!entity) return [];
+
+  const codes = [entity.code];
+
+  const addChildCodes = (e: EntityDetails) =>
+    e.children?.forEach(c => {
+      codes.push(c.code);
+      addChildCodes(c);
+    });
+
+  addChildCodes(entity);
+
+  return codes;
+};
 export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
   return {
     ...getDetails(entity),

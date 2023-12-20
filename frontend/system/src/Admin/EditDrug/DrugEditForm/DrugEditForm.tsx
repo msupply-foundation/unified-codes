@@ -16,7 +16,7 @@ import { TreeFormBox } from './TreeFormBox';
 import { CategoryDropdown } from './CategoryDropdown';
 import { AddFieldButton } from './AddFieldButton';
 import { EditPropertiesButton } from './EditPropertiesButton';
-import { buildDrugInputFromEntity } from '../helpers';
+import { buildDrugInputFromEntity, getAllEntityCodes } from '../helpers';
 
 export const DrugEditForm = ({
   initialEntity,
@@ -24,6 +24,7 @@ export const DrugEditForm = ({
   initialEntity?: EntityDetails;
 }) => {
   const t = useTranslation('system');
+  const [initialIds] = useState(getAllEntityCodes(initialEntity));
 
   // throwaway ids as a dgraph uid will be assigned when the entity is stored
   const makeThrowawayId = useUuid();
@@ -97,6 +98,7 @@ export const DrugEditForm = ({
       <Box sx={{ display: 'flex', alignItems: 'end' }}>
         <BasicTextInput
           autoFocus
+          disabled={initialIds.includes(draft.id)}
           value={draft.name}
           onChange={e => setDraft({ ...draft, name: e.target.value })}
           label={t('label.drug-name')}
@@ -134,6 +136,7 @@ export const DrugEditForm = ({
         <TreeFormBox key={route.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <CategoryDropdown
+              disabled={initialIds.includes(route.id)}
               value={route.name}
               options={config.routes}
               onChange={name => onUpdate({ ...route, name }, draft.routes)}
@@ -156,6 +159,7 @@ export const DrugEditForm = ({
             <TreeFormBox key={form.id}>
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                 <CategoryDropdown
+                  disabled={initialIds.includes(form.id)}
                   value={form.name}
                   options={config.forms}
                   onChange={name => onUpdate({ ...form, name }, route.forms)}
@@ -178,6 +182,7 @@ export const DrugEditForm = ({
                   <Box sx={{ display: 'flex', alignItems: 'end' }}>
                     <BasicTextInput
                       autoFocus
+                      disabled={initialIds.includes(strength.id)}
                       value={strength.name}
                       onChange={e =>
                         onUpdate(
@@ -203,6 +208,7 @@ export const DrugEditForm = ({
                       <Box sx={{ display: 'flex', alignItems: 'end' }}>
                         <BasicTextInput
                           autoFocus
+                          disabled={initialIds.includes(unit.id)}
                           value={unit.name}
                           onChange={e =>
                             onUpdate(
