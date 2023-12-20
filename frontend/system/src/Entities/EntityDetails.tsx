@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from '@common/intl';
-import { AppBarContentPortal, ChevronDownIcon, Switch } from '@common/ui';
+import {
+  AppBarContentPortal,
+  ButtonWithIcon,
+  ChevronDownIcon,
+  EditIcon,
+  Switch,
+} from '@common/ui';
 import { useBreadcrumbs } from '@common/hooks';
 import { useEntity } from './api';
 import { FormControlLabel } from '@mui/material';
 import { TreeView } from '@mui/lab';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { EntityTreeItem, EntityData } from './EntityTreeItem';
 
 export const EntityDetails = () => {
@@ -65,10 +71,19 @@ export const EntityDetails = () => {
         defaultExpandIcon={<ChevronDownIcon sx={{ rotate: '-90deg' }} />}
         defaultCollapseIcon={<ChevronDownIcon />}
         onNodeToggle={(_, codes: string[]) => setExpanded(codes)}
-        sx={{ overflow: 'auto', width: '100%' }}
+        sx={{ overflow: 'auto', width: '100%', marginY: '16px' }}
       >
         <EntityTreeItem showAllCodes={showAllCodes} entity={entity} isRoot />
       </TreeView>
+      <Link to={'/admin/edit/xx'}>
+        <ButtonWithIcon
+          sx={{ marginTop: '16px' }}
+          variant="contained"
+          onClick={() => {}}
+          Icon={<EditIcon />}
+          label={t('label.update')}
+        />
+      </Link>
     </>
   );
 };
