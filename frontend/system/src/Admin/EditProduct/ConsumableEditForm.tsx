@@ -7,18 +7,16 @@ import {
   ButtonWithIcon,
 } from '@common/ui';
 import React, { useState } from 'react';
-import { config } from '../../config';
 import { useUuid } from '../../hooks';
 import { PropertiesModal } from './components/PropertiesModal';
 import { useEditModal } from '@common/hooks';
-import { DrugInput, Entity, EntityDetails, Property } from './types';
+import { ConsumableInput, Entity, EntityDetails, Property } from './types';
 import { TreeFormBox } from './components/TreeFormBox';
-import { CategoryDropdown } from './components/CategoryDropdown';
 import { AddFieldButton } from './components/AddFieldButton';
 import { EditPropertiesButton } from './components/EditPropertiesButton';
-import { buildDrugInputFromEntity, getAllEntityCodes } from './helpers';
+import { getAllEntityCodes } from './helpers';
 
-export const DrugEditForm = ({
+export const ConsumableEditForm = ({
   initialEntity,
 }: {
   initialEntity?: EntityDetails;
@@ -29,14 +27,17 @@ export const DrugEditForm = ({
   // throwaway ids as a dgraph uid will be assigned when the entity is stored
   const makeThrowawayId = useUuid();
 
-  const [draft, setDraft] = useState<DrugInput>(
-    initialEntity
-      ? buildDrugInputFromEntity(initialEntity)
-      : {
-          id: makeThrowawayId(),
-          name: '',
-          routes: [],
-        }
+  const [draft, setDraft] = useState<ConsumableInput>(
+    // TODO: support generating consumable input from existing entity - probably after
+    // the data has been mapped into this structure though?
+    // initialEntity
+    //   ? buildConsumableInputFromEntity(initialEntity)
+    //   :
+    {
+      id: makeThrowawayId(),
+      name: '',
+      basicCategories: [],
+    }
   );
 
   const [propertiesModalState, setPropertiesModalState] = useState<{
@@ -101,7 +102,7 @@ export const DrugEditForm = ({
           disabled={initialIds.includes(draft.id)}
           value={draft.name}
           onChange={e => setDraft({ ...draft, name: e.target.value })}
-          label={t('label.consumable-name')}
+          label={t('label.device-name')}
           InputLabelProps={{ shrink: true }}
           fullWidth
         />
@@ -128,114 +129,163 @@ export const DrugEditForm = ({
         </Box>
       </Box>
 
-      {!!draft.routes.length && (
-        <Typography fontSize="12px">{t('label.routes')}</Typography>
+      {!!draft.basicCategories.length && (
+        <Typography fontSize="12px">{t('label.basic-categories')}</Typography>
       )}
 
-      {draft.routes.map(route => (
-        <TreeFormBox key={route.id}>
+      {draft.basicCategories.map(bCat => (
+        <TreeFormBox key={bCat.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
-            <CategoryDropdown
-              disabled={initialIds.includes(route.id)}
-              value={route.name}
-              options={config.routes}
-              onChange={name => onUpdate({ ...route, name }, draft.routes)}
-              getOptionDisabled={o =>
-                !!draft.routes.find(r => r.name === o.value)
+            <BasicTextInput
+              fullWidth
+              autoFocus
+              disabled={initialIds.includes(bCat.id)}
+              value={bCat.name}
+              onChange={e =>
+                onUpdate(
+                  { ...bCat, name: e.target.value },
+                  draft.basicCategories
+                )
               }
             />
             <EditPropertiesButton
               parents={[draft]}
-              entity={route}
+              entity={bCat}
               onOpen={onOpenPropertiesModal}
             />
           </Box>
 
-          {!!route.forms.length && (
-            <Typography fontSize="12px">{t('label.forms')}</Typography>
+          {!!bCat.intermediateCategories.length && (
+            <Typography fontSize="12px">
+              {t('label.intermediate-categories')}
+            </Typography>
           )}
 
-          {route.forms.map(form => (
-            <TreeFormBox key={form.id}>
+          {bCat.intermediateCategories.map(iCat => (
+            <TreeFormBox key={iCat.id}>
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                <CategoryDropdown
-                  disabled={initialIds.includes(form.id)}
-                  value={form.name}
-                  options={config.forms}
-                  onChange={name => onUpdate({ ...form, name }, route.forms)}
-                  getOptionDisabled={o =>
-                    !!route.forms.find(f => f.name === o.value)
+                <BasicTextInput
+                  fullWidth
+                  autoFocus
+                  disabled={initialIds.includes(iCat.id)}
+                  value={iCat.name}
+                  onChange={e =>
+                    onUpdate(
+                      { ...iCat, name: e.target.value },
+                      bCat.intermediateCategories
+                    )
                   }
                 />
                 <EditPropertiesButton
-                  parents={[draft, route]}
-                  entity={form}
+                  parents={[draft, bCat]}
+                  entity={iCat}
                   onOpen={onOpenPropertiesModal}
                 />
               </Box>
-              {!!form.strengths.length && (
-                <Typography fontSize="12px">{t('label.strengths')}</Typography>
+              {!!iCat.specificCategories.length && (
+                <Typography fontSize="12px">
+                  {t('label.specific-categories')}
+                </Typography>
               )}
 
-              {form.strengths.map(strength => (
-                <TreeFormBox key={strength.id}>
+              {iCat.specificCategories.map(sCat => (
+                <TreeFormBox key={sCat.id}>
                   <Box sx={{ display: 'flex', alignItems: 'end' }}>
                     <BasicTextInput
+                      fullWidth
                       autoFocus
-                      disabled={initialIds.includes(strength.id)}
-                      value={strength.name}
+                      disabled={initialIds.includes(sCat.id)}
+                      value={sCat.name}
                       onChange={e =>
                         onUpdate(
-                          { ...strength, name: e.target.value },
-                          form.strengths
+                          { ...sCat, name: e.target.value },
+                          iCat.specificCategories
                         )
                       }
-                      fullWidth
                     />
                     <EditPropertiesButton
-                      parents={[draft, route, form]}
-                      entity={strength}
+                      parents={[draft, bCat, iCat]}
+                      entity={sCat}
                       onOpen={onOpenPropertiesModal}
                     />
                   </Box>
 
-                  {!!strength.units.length && (
-                    <Typography fontSize="12px">{t('label.units')}</Typography>
+                  {!!sCat.deviceDetails.length && (
+                    <Typography fontSize="12px">
+                      {t('label.device-details')}
+                    </Typography>
                   )}
 
-                  {strength.units.map(unit => (
-                    <TreeFormBox key={unit.id}>
+                  {sCat.deviceDetails.map(details => (
+                    <TreeFormBox key={details.id}>
                       <Box sx={{ display: 'flex', alignItems: 'end' }}>
                         <BasicTextInput
                           autoFocus
-                          disabled={initialIds.includes(unit.id)}
-                          value={unit.name}
+                          fullWidth
+                          disabled={initialIds.includes(details.id)}
+                          value={details.name}
                           onChange={e =>
                             onUpdate(
-                              { ...unit, name: e.target.value },
-                              strength.units
+                              { ...details, name: e.target.value },
+                              sCat.deviceDetails
                             )
                           }
-                          fullWidth
                         />
                         <EditPropertiesButton
-                          parents={[draft, route, form, strength]}
-                          entity={unit}
+                          parents={[draft, bCat, iCat, sCat]}
+                          entity={details}
                           onOpen={onOpenPropertiesModal}
                         />
                       </Box>
+
+                      {!!details.units.length && (
+                        <Typography fontSize="12px">
+                          {t('label.units')}
+                        </Typography>
+                      )}
+
+                      {details.units.map(unit => (
+                        <TreeFormBox key={unit.id}>
+                          <Box sx={{ display: 'flex', alignItems: 'end' }}>
+                            <BasicTextInput
+                              autoFocus
+                              fullWidth
+                              disabled={initialIds.includes(unit.id)}
+                              value={unit.name}
+                              onChange={e =>
+                                onUpdate(
+                                  { ...unit, name: e.target.value },
+                                  details.units
+                                )
+                              }
+                            />
+                            <EditPropertiesButton
+                              parents={[draft, bCat, iCat, sCat, details]}
+                              entity={unit}
+                              onOpen={onOpenPropertiesModal}
+                            />
+                          </Box>
+                        </TreeFormBox>
+                      ))}
+
+                      <AddFieldButton
+                        label={t('label.add-unit')}
+                        onClick={() =>
+                          onUpdate(
+                            { id: makeThrowawayId(), name: '' },
+                            details.units
+                          )
+                        }
+                      />
                     </TreeFormBox>
                   ))}
 
                   <AddFieldButton
-                    label={t('label.add-unit')}
+                    label={t('label.add-device-details')}
                     onClick={() =>
                       onUpdate(
-                        {
-                          id: makeThrowawayId(),
-                          name: '',
-                        },
-                        strength.units
+                        { id: makeThrowawayId(), name: '', units: [] },
+                        sCat.deviceDetails
                       )
                     }
                   />
@@ -243,11 +293,11 @@ export const DrugEditForm = ({
               ))}
 
               <AddFieldButton
-                label={t('label.add-strength')}
+                label={t('label.add-specific-category')}
                 onClick={() =>
                   onUpdate(
-                    { id: makeThrowawayId(), name: '', units: [] },
-                    form.strengths
+                    { id: makeThrowawayId(), name: '', deviceDetails: [] },
+                    iCat.specificCategories
                   )
                 }
               />
@@ -255,11 +305,11 @@ export const DrugEditForm = ({
           ))}
 
           <AddFieldButton
-            label={t('label.add-form')}
+            label={t('label.add-intermediate-category')}
             onClick={() =>
               onUpdate(
-                { id: makeThrowawayId(), name: '', strengths: [] },
-                route.forms
+                { id: makeThrowawayId(), name: '', specificCategories: [] },
+                bCat.intermediateCategories
               )
             }
           />
@@ -267,9 +317,12 @@ export const DrugEditForm = ({
       ))}
 
       <AddFieldButton
-        label={t('label.add-route')}
+        label={t('label.add-basic-category')}
         onClick={() =>
-          onUpdate({ id: makeThrowawayId(), name: '', forms: [] }, draft.routes)
+          onUpdate(
+            { id: makeThrowawayId(), name: '', intermediateCategories: [] },
+            draft.basicCategories
+          )
         }
       />
 

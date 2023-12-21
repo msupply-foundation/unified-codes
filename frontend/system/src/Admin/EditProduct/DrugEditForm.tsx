@@ -200,7 +200,9 @@ export const DrugEditForm = ({
                   </Box>
 
                   {!!strength.units.length && (
-                    <Typography fontSize="12px">{t('label.units')}</Typography>
+                    <Typography fontSize="12px">
+                      {t('label.units-of-presentation')}
+                    </Typography>
                   )}
 
                   {strength.units.map(unit => (

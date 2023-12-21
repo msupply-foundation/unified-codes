@@ -4,11 +4,16 @@ import { DrugEditForm, EditDrugView } from './EditProduct';
 import { AppRoute } from 'frontend/config/src';
 import { UserAccountListView } from './Users/ListView';
 import { ConfigurationTabsView } from './Configuration';
+import { ConsumableEditForm } from './EditProduct/ConsumableEditForm';
 
 const AdminService = () => {
   return (
     <Routes>
       <Route path={`/${AppRoute.NewDrug}`} element={<DrugEditForm />} />
+      <Route
+        path={`/${AppRoute.NewConsumable}`}
+        element={<ConsumableEditForm />}
+      />
       <Route path={`/${AppRoute.Edit}/:code`} element={<EditDrugView />} />
       <Route
         path={`/${AppRoute.UserAccounts}`}
