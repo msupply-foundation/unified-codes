@@ -21,33 +21,17 @@ pub struct UpsertResponse {
     pub numUids: u32,
 }
 
-/*
-
-    There are the following types in dgraph:
-        DoseStrength
-        PackImmediate
-        Route
-        FormQualifier
-        Product
-        Unit
-        Category
-        Form
-        PackSize
-    Each has an associated add<Type> graphql mutation.
-*/
-
 pub async fn upsert_entity(
     client: &DgraphClient,
     entity: EntityInput,
 ) -> Result<UpsertResponse, GraphQLError> {
     // Replace the {{type}} placeholder with the entity type to get the correct mutation
     let query = r#"
-mutation UpdateEntity($input: [Add{{type}}Input!]!, $upsert: Boolean = false) {
-  data: add{{type}}(input: $input, upsert: $upsert) {
+mutation UpdateEntity($input: [AddEntityInput!]!, $upsert: Boolean = false) {
+  data: addEntity(input: $input, upsert: $upsert) {
     numUids
   }
-}"#
-    .replace("{{type}}", &entity.r#type);
+}"#;
     let variables = UpsertVars {
         input: entity,
         upsert: true,
@@ -89,7 +73,6 @@ mod tests {
         // Update name
         let entity_input = EntityInput {
             code: code_to_update.clone(),
-            r#type: original_entity.r#type.clone(),
             name: Some("new_name".to_string()),
             ..Default::default()
         };
@@ -112,7 +95,6 @@ mod tests {
         // Reset name
         let entity_input = EntityInput {
             code: code_to_update.clone(),
-            r#type: original_entity.r#type,
             name: Some("Tent".to_string()), //Some(original_entity.name),
             ..Default::default()
         };
@@ -141,7 +123,6 @@ mod tests {
         // Update name
         let entity_input = EntityInput {
             code: code_to_update.clone(),
-            r#type: original_entity.r#type.clone(),
             name: Some("new_name".to_string()),
             ..Default::default()
         };
@@ -164,7 +145,6 @@ mod tests {
         // Reset name
         let entity_input = EntityInput {
             code: code_to_update.clone(),
-            r#type: original_entity.r#type,
             name: Some(original_entity.name.clone()),
             ..Default::default()
         };
