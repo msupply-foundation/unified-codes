@@ -15,9 +15,10 @@ import {
   useAuthContext,
   LogoutIcon,
   RouteBuilder,
-  EditIcon,
   ListIcon,
   UsersIcon,
+  MedicineIcon,
+  StockIcon,
 } from '@uc-frontend/common';
 import { AppRoute } from '@uc-frontend/config';
 import { AppDrawerIcon } from './AppDrawerIcon';
@@ -191,8 +192,15 @@ export const AppDrawer: React.FC = () => {
               to={RouteBuilder.create(AppRoute.Admin)
                 .addPart(AppRoute.NewDrug)
                 .build()}
-              icon={<EditIcon fontSize="small" color="primary" />}
+              icon={<MedicineIcon fontSize="small" color="primary" />}
               text={t('new-drug')}
+            />
+            <AppNavLink
+              to={RouteBuilder.create(AppRoute.Admin)
+                .addPart(AppRoute.NewConsumable)
+                .build()}
+              icon={<StockIcon fontSize="small" color="primary" />}
+              text={t('new-consumable')}
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)
