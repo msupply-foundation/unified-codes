@@ -368,4 +368,25 @@ export const config = {
       id: 'ee9c516d-ecaa-4949-9f6c-55aea0f82474',
     },
   ],
+  basicCategories: [
+    {
+      label: 'Haemodialysis Equipment and Products',
+      value: 'Haemodialysis Equipment and Products',
+      id: 'f85357e0-e9b6-4333-a1a9-ce443ef9ab1f',
+    },
+  ],
+  intermediateCategories: [
+    {
+      label: 'Ancillary Devices and Products',
+      value: 'Ancillary Devices and Products',
+      id: 'ae05ff52-be4c-4f89-856a-3514af3f703d',
+    },
+  ],
+  specificCategories: [
+    {
+      label: 'Ancillary Products',
+      value: 'Ancillary Products',
+      id: '248fb42e-2e11-4dcb-898f-5fafeb2cec8f',
+    },
+  ],
 };

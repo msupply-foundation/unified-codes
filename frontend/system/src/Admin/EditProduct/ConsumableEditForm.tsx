@@ -15,6 +15,8 @@ import { TreeFormBox } from './components/TreeFormBox';
 import { AddFieldButton } from './components/AddFieldButton';
 import { EditPropertiesButton } from './components/EditPropertiesButton';
 import { getAllEntityCodes } from './helpers';
+import { config } from '../../config';
+import { CategoryDropdown } from './components/CategoryDropdown';
 
 export const ConsumableEditForm = ({
   initialEntity,
@@ -136,16 +138,15 @@ export const ConsumableEditForm = ({
       {draft.basicCategories.map(bCat => (
         <TreeFormBox key={bCat.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
-            <BasicTextInput
-              fullWidth
-              autoFocus
+            <CategoryDropdown
               disabled={initialIds.includes(bCat.id)}
               value={bCat.name}
-              onChange={e =>
-                onUpdate(
-                  { ...bCat, name: e.target.value },
-                  draft.basicCategories
-                )
+              options={config.basicCategories}
+              onChange={name =>
+                onUpdate({ ...bCat, name }, draft.basicCategories)
+              }
+              getOptionDisabled={o =>
+                !!draft.basicCategories.find(b => b.name === o.value)
               }
             />
             <EditPropertiesButton
@@ -164,16 +165,15 @@ export const ConsumableEditForm = ({
           {bCat.intermediateCategories.map(iCat => (
             <TreeFormBox key={iCat.id}>
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                <BasicTextInput
-                  fullWidth
-                  autoFocus
+                <CategoryDropdown
                   disabled={initialIds.includes(iCat.id)}
                   value={iCat.name}
-                  onChange={e =>
-                    onUpdate(
-                      { ...iCat, name: e.target.value },
-                      bCat.intermediateCategories
-                    )
+                  options={config.intermediateCategories}
+                  onChange={name =>
+                    onUpdate({ ...iCat, name }, bCat.intermediateCategories)
+                  }
+                  getOptionDisabled={o =>
+                    !!bCat.intermediateCategories.find(i => i.name === o.value)
                   }
                 />
                 <EditPropertiesButton
@@ -191,16 +191,15 @@ export const ConsumableEditForm = ({
               {iCat.specificCategories.map(sCat => (
                 <TreeFormBox key={sCat.id}>
                   <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                    <BasicTextInput
-                      fullWidth
-                      autoFocus
+                    <CategoryDropdown
                       disabled={initialIds.includes(sCat.id)}
                       value={sCat.name}
-                      onChange={e =>
-                        onUpdate(
-                          { ...sCat, name: e.target.value },
-                          iCat.specificCategories
-                        )
+                      options={config.specificCategories}
+                      onChange={name =>
+                        onUpdate({ ...sCat, name }, iCat.specificCategories)
+                      }
+                      getOptionDisabled={o =>
+                        !!iCat.specificCategories.find(s => s.name === o.value)
                       }
                     />
                     <EditPropertiesButton
