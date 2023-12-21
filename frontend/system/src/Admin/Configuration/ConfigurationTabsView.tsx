@@ -31,6 +31,33 @@ export const ConfigurationTabsView = () => {
       value: t('label.immediate-packaging'),
     },
     {
+      Component: (
+        <OptionListConfigTab
+          data={config.basicCategories}
+          category={t('label.basic-category')}
+        />
+      ),
+      value: t('label.basic-categories'),
+    },
+    {
+      Component: (
+        <OptionListConfigTab
+          data={config.intermediateCategories}
+          category={t('label.intermediate-category')}
+        />
+      ),
+      value: t('label.intermediate-categories'),
+    },
+    {
+      Component: (
+        <OptionListConfigTab
+          data={config.specificCategories}
+          category={t('label.specific-category')}
+        />
+      ),
+      value: t('label.specific-categories'),
+    },
+    {
       Component: <PropertiesConfigTab data={config.properties} />,
       value: t('label.properties'),
     },
