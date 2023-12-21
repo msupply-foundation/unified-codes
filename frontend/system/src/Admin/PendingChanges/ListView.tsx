@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from '@common/intl';
 import {
   DataTable,
@@ -7,7 +7,7 @@ import {
   createTableStore,
   useColumns,
 } from '@common/ui';
-import { useQueryParamsState } from '@common/hooks';
+import { useBreadcrumbs, useQueryParamsState } from '@common/hooks';
 import { useNavigate } from 'react-router';
 import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
@@ -60,6 +60,15 @@ const data = {
 export const PendingChangesListView = () => {
   const t = useTranslation('system');
   const navigate = useNavigate();
+  const { setSuffix } = useBreadcrumbs();
+
+  useEffect(() => {
+    if (data?.totalLength) {
+      setSuffix(
+        `${t('pending-changes', { ns: 'host' })} (${data.totalLength})`
+      );
+    }
+  }, [data?.totalLength]);
 
   const { queryParams, updatePaginationQuery, updateSortQuery } =
     useQueryParamsState({
