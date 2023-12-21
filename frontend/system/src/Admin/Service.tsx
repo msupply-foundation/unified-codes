@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from '@uc-frontend/common';
-import { DrugEditForm, EditDrugView } from './EditDrug';
+import { DrugEditForm, EditDrugView } from './EditProduct';
 import { AppRoute } from 'frontend/config/src';
 import { UserAccountListView } from './Users/ListView';
 import { ConfigurationTabsView } from './Configuration';
