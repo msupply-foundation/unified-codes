@@ -7,16 +7,16 @@ import {
   ButtonWithIcon,
 } from '@common/ui';
 import React, { useState } from 'react';
-import { config } from '../../../config';
-import { useUuid } from '../../../hooks';
-import { PropertiesModal } from './PropertiesModal';
+import { config } from '../../config';
+import { useUuid } from '../../hooks';
+import { PropertiesModal } from './components/PropertiesModal';
 import { useEditModal } from '@common/hooks';
-import { DrugInput, Entity, EntityDetails, Property } from '../types';
-import { TreeFormBox } from './TreeFormBox';
-import { CategoryDropdown } from './CategoryDropdown';
-import { AddFieldButton } from './AddFieldButton';
-import { EditPropertiesButton } from './EditPropertiesButton';
-import { buildDrugInputFromEntity, getAllEntityCodes } from '../helpers';
+import { DrugInput, Entity, EntityDetails, Property } from './types';
+import { TreeFormBox } from './components/TreeFormBox';
+import { CategoryDropdown } from './components/CategoryDropdown';
+import { AddFieldButton } from './components/AddFieldButton';
+import { EditPropertiesButton } from './components/EditPropertiesButton';
+import { buildDrugInputFromEntity, getAllEntityCodes } from './helpers';
 
 export const DrugEditForm = ({
   initialEntity,
