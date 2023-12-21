@@ -25,7 +25,6 @@ pub async fn upsert_entity(
     client: &DgraphClient,
     entity: EntityInput,
 ) -> Result<UpsertResponse, GraphQLError> {
-    // Replace the {{type}} placeholder with the entity type to get the correct mutation
     let query = r#"
 mutation UpdateEntity($input: [AddEntityInput!]!, $upsert: Boolean = false) {
   data: addEntity(input: $input, upsert: $upsert) {
@@ -34,7 +33,7 @@ mutation UpdateEntity($input: [AddEntityInput!]!, $upsert: Boolean = false) {
 }"#;
     let variables = UpsertVars {
         input: entity,
-        upsert: true,
+        upsert: true, // TODO: Maybe this should be passed in
     };
 
     let result = client
