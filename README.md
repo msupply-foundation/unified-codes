@@ -4,7 +4,7 @@ Welcome! This is Universal Codes!
 
 This is a responsive web application over a GraphQL API.
 
-It is built using Typescript, with a React Frontend and an Apollo Server with a DGraph database. The frontend code is heavily 'borrowed' from the [Notify frontend](https://github.com/openmsupply/notify/tree/main/frontend)
+It is built using Typescript and Rust, with a React Frontend and a DGraph database. The code is heavily 'borrowed' [Notify](https://github.com/openmsupply/notify/)
 
 The test framework is jest; functional areas are separated into packages and managed with [lerna](https://lerna.js.org/)
 
@@ -16,32 +16,30 @@ The test framework is jest; functional areas are separated into packages and man
   - You can then use the [explorer](https://play.dgraph.io/?latest) (server URL is http://localhost:8080)
 - Initialise DGraph schema and load data into DGraph:
   - `yarn load-data`
-- Start the data-service:
-  - `yarn start-data-service`
-  - Access v1 api at http://localhost:4000/v1/graphql
-  - Access v2 api at http://localhost:4000/v2/graphql
+- Start the backend:
+  - `yarn start-backend`
+  - Access v1 api at http://localhost:4007/v1/graphql
+  - Access v2 api at http://localhost:4007/graphql
 
 ### Frontend
 
-We are currently re-implementing the frontend. For the existing frontend:
+1. Start the frontend: `yarn start-frontend`
+
+For the old frontend:
 
 1. From the `unified-codes/unified-codes` directory:
 2. Run web server: `npx nx serve web`
    1. If using Node >v16, you'll need the to use the openssl legacy provider: `NODE_OPTIONS=--openssl-legacy-provider npx nx serve web`
 3. Browse web at http://localhost:4200/
 
-For the new one:
-
-1. Start the frontend: `yarn start-frontend`
-
 ## Testing
 
-- Unit tests across frontend and the data-service:
+- Unit tests across frontend and the backend:
   - `yarn test`
 - Test frontend:
   - `yarn test-frontend`
 - Test data-service (unit tests):
-  - `yarn test-data-service`
+  - `yarn test-backend`
 - Integration tests:
   - `yarn test-integration`
 
