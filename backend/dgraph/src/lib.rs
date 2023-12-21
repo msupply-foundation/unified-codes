@@ -10,6 +10,7 @@ pub mod upsert_entity;
 pub use upsert_entity::*;
 pub mod client;
 pub use client::*;
+pub use gql_client::GraphQLError;
 
 // Types to represent the dgraph graphql data
 #[allow(non_snake_case)]
@@ -38,7 +39,7 @@ pub struct Entity {
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Properties {
-    #[serde(rename = "__typename")]
+    #[serde(rename = "type")]
     pub key: String,
     pub value: String,
 }

@@ -21,7 +21,7 @@ pub async fn entity_by_code(
   __typename
   properties {
     __typename
-    type: __typename
+    type
     value
   }
 }

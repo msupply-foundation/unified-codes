@@ -2,7 +2,7 @@
 # IT MAPS TO AND THEREFORE CHANGES THE DGRAPH SCHEMA WHEN YOU UPDATE IT
 # WE SHOULD MIGRATE TO ONLY MAINTAINING THIS SCHEMA, AND NOT THE DGRAPH SCHEMA IN ./schema.gql
 
-interface Entity {
+type Entity {
   id: ID!
   code: String! @dgraph(pred: "code") @id @search(by: [exact, trigram])
   name: String @dgraph(pred: "name") @search(by: [exact, term, trigram])
@@ -16,25 +16,8 @@ interface Entity {
   parents: [Entity] @dgraph(pred: "~children")
 }
 
-type Category implements Entity
-type Route implements Entity
-type Form implements Entity # DoseForm
-type FormQualifier implements Entity # DoseFormQualifier
-type DoseStrength implements Entity
-type Unit implements Entity #DoseUnit
-type PackImmediate implements Entity
-type PackSize implements Entity
-
-type Product implements Entity {
-  combines: [Product] @dgraph(pred: "combines")
-}
-
-interface Property {
+type Property {
   id: ID!
+  type: String @dgraph(pred: "type") @search(by: [exact])
   value: String @dgraph(pred: "value")
 }
-
-type who_eml implements Property
-type code_nzulm implements Property
-type code_rxnav implements Property
-type code_unspsc implements Property

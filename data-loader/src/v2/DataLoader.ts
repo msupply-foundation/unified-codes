@@ -99,7 +99,7 @@ export class DataLoader {
     for await (const entity of entities) {
       const query = `
         query {
-          Entity as var(func: eq(dgraph.type, ${entity.type})) @filter(eq(code, ${entity.code}))
+          Entity as var(func: eq(dgraph.type, "Entity")) @filter(eq(code, ${entity.code}))
         }
       `;
 
@@ -109,7 +109,6 @@ export class DataLoader {
         uid(Entity) <category> "${entity.category}" .
         uid(Entity) <type> "${entity.type}" .
         uid(Entity) <code> "${entity.code}" .
-        uid(Entity) <dgraph.type> "${entity.type}" .
         uid(Entity) <dgraph.type> "Entity" .
       `;
 
@@ -149,13 +148,12 @@ export class DataLoader {
       if (entity.properties) {
         for await (const property of entity.properties) {
           const query = `query {
-            Entity as var(func: eq(dgraph.type, ${entity.type})) @filter(eq(code, ${entity.code}))
+            Entity as var(func: eq(dgraph.type, "Entity")) @filter(eq(code, ${entity.code}))
           }`;
 
           const nQuads = `
             _:property <value> "${property.value}" .
-            _:property <dgraph.type> "${property.type}" .
-
+            _:property <type> "${property.type}" .
             uid(Entity) <properties> _:property .
           `;
 
