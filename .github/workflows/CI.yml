@@ -10,14 +10,14 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build data-service
-        run: yarn build-data-service
-
-      - name: Build data-loader
-        run: yarn build-data-service
+      - name: Compile backend
+        run: yarn compile-backend
 
       - name: Build frontend
         run: yarn build-frontend
+
+      - name: Test backend
+        run: yarn test-backend
 
       - name: Test frontend
         run: yarn test-frontend

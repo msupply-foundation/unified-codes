@@ -16,6 +16,7 @@
     "build-frontend-stats": "lerna run --scope @uc-frontend/* build-stats",
     "serve-frontend": "lerna run --scope @uc-frontend/* --parallel serve",
     "clean-frontend": "lerna run --scope @uc-frontend/* --parallel clean",
+    "compile-backend": "cd backend && cargo check",
     "compile-frontend": "lerna run --scope @uc-frontend/* --parallel tsc -- --incremental --noEmit",
     "prepare": "husky install",
     "pre-commit-lint": "yarn compile && yarn lint-staged",
