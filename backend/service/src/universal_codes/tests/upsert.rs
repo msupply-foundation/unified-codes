@@ -1,5 +1,5 @@
 #[cfg(test)]
-mod user_account_create_test {
+mod universal_codes_upsert_test {
     use repository::{mock::MockDataInserts, test_db::setup_all};
     use std::sync::Arc;
     use util::uuid::uuid;
