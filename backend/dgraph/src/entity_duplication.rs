@@ -34,12 +34,12 @@ query DuplicationCheck($code: String!, $name: String!) {
         code: existing_code,
         name: description,
     };
-    let data = client
+    let result = client
         .gql
         .query_with_vars::<EntityData, DuplicationCheckVars>(query, variables)
         .await?;
 
-    Ok(data)
+    Ok(result)
 }
 
 #[cfg(test)]

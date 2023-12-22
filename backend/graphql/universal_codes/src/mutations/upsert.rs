@@ -46,7 +46,7 @@ fn map_error(error: ModifyUniversalCodeError) -> Result<UpsertEntityResponse> {
         ModifyUniversalCodeError::InternalError(message) => InternalError(message),
         ModifyUniversalCodeError::UniversalCodeDoesNotExist => BadUserInput(formatted_error),
         ModifyUniversalCodeError::UniversalCodeAlreadyExists => BadUserInput(formatted_error),
-        ModifyUniversalCodeError::DescriptionAlreadyExists => BadUserInput(formatted_error),
+        ModifyUniversalCodeError::DescriptionAlreadyExists(msg) => BadUserInput(msg),
         ModifyUniversalCodeError::NotAuthorised => Forbidden(formatted_error),
         ModifyUniversalCodeError::DatabaseError(_) => InternalError(formatted_error),
         ModifyUniversalCodeError::DgraphError(gql_error) => {

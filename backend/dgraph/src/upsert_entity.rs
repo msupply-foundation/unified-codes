@@ -52,6 +52,8 @@ mutation UpdateEntity($input: [AddEntityInput!]!, $upsert: Boolean = false) {
 #[cfg(test)]
 mod tests {
 
+    use util::uuid::uuid;
+
     use crate::entity_by_code;
 
     use super::*;
@@ -154,5 +156,39 @@ mod tests {
         let e = result.unwrap().unwrap();
         assert_eq!(e.code, code_to_update.clone());
         assert_eq!(e.name, original_entity.name);
+    }
+
+    #[tokio::test]
+    async fn test_create_new_node() {
+        let client = DgraphClient::new("http://localhost:8080/graphql");
+
+        let code_to_insert = uuid();
+
+        // Create new node
+        let entity_input = EntityInput {
+            code: code_to_insert.clone(),
+            name: Some("new_name".to_string()),
+            r#type: Some("test_type".to_string()),
+            category: Some("test_category".to_string()),
+            description: Some(code_to_insert.clone()), // Needs a unique description
+        };
+
+        let result = upsert_entity(&client, entity_input).await;
+        if result.is_err() {
+            println!(
+                "upsert_entity err: {:#?} {:#?}",
+                result,
+                result.clone().unwrap_err().json()
+            );
+        }
+        assert!(result.is_ok());
+        let result = result.unwrap();
+        assert_eq!(result.numUids, 1);
+
+        // Get the updated entity
+        let result = entity_by_code(&client, code_to_insert.clone()).await;
+        let e = result.unwrap().unwrap();
+        assert_eq!(e.code, code_to_insert.clone());
+        assert_eq!(e.name, "new_name".to_string());
     }
 }

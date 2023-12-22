@@ -3,16 +3,14 @@ use crate::{
     service_provider::{self, ServiceContext},
 };
 use chrono::Utc;
-use dgraph::{
-    check_description_duplication, entity_by_code, Entity, EntityInput, GraphQLError,
-};
+use dgraph::{check_description_duplication, entity_by_code, Entity, EntityInput, GraphQLError};
 use repository::{LogType, RepositoryError, StorageConnection};
 
 #[derive(Debug)]
 pub enum ModifyUniversalCodeError {
     UniversalCodeDoesNotExist,
     UniversalCodeAlreadyExists,
-    DescriptionAlreadyExists,
+    DescriptionAlreadyExists(String),
     NotAuthorised,
     InternalError(String),
     DatabaseError(RepositoryError),
@@ -31,7 +29,7 @@ impl From<GraphQLError> for ModifyUniversalCodeError {
     }
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct UpsertUniversalCode {
     pub code: String,
     pub name: Option<String>,
@@ -53,13 +51,7 @@ pub async fn upsert_entity(
 
     let result = dgraph::upsert_entity(client, entity_input).await?;
 
-    if result.numUids == 0 {
-        return Err(ModifyUniversalCodeError::InternalError(
-            "Failed to update entity".to_string(),
-        ));
-    }
     // Query to get the updated record
-
     let updated_entity = entity_by_code(client, updated_entity.code.clone())
         .await
         .map_err(|e| {
@@ -104,6 +96,7 @@ pub async fn upsert_entity(
 pub fn generate(
     updated_entity: UpsertUniversalCode,
 ) -> Result<EntityInput, ModifyUniversalCodeError> {
+    println!("generate: {:?}", updated_entity);
     Ok(EntityInput {
         code: updated_entity.code.clone(),
         name: updated_entity.name.clone(),
@@ -122,8 +115,16 @@ pub async fn validate(
     if let Some(description) = new_entity.description.clone() {
         let duplicated =
             check_description_duplication(client, description, new_entity.code.clone()).await?;
-        if duplicated.is_some() {
-            return Err(ModifyUniversalCodeError::DescriptionAlreadyExists);
+        match duplicated {
+            Some(duplicated) => {
+                if duplicated.data.len() > 1 {
+                    return Err(ModifyUniversalCodeError::DescriptionAlreadyExists(format!(
+                        "Description is already in use on code {}",
+                        duplicated.data[0].code.clone()
+                    )));
+                }
+            }
+            None => {}
         }
     }
 
