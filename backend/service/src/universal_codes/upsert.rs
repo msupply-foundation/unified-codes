@@ -4,7 +4,7 @@ use crate::{
 };
 use chrono::Utc;
 use dgraph::{
-    check_description_duplication, , entity_by_code, Entity, EntityInput, GraphQLError,
+    check_description_duplication, entity_by_code, Entity, EntityInput, GraphQLError,
 };
 use repository::{LogType, RepositoryError, StorageConnection};
 
