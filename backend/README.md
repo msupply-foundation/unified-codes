@@ -26,6 +26,12 @@ cargo test
 cargo test --features=email-tests --package service --lib -- email::email_test --nocapture
 ```
 
+- To run DGraph tests:
+
+```
+cargo test --features=dgraph-tests --package dgraph
+```
+
 ## Email
 
 By default Universal Codes will send emails via a local SMTP server on port 1025.

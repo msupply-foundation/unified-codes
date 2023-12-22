@@ -71,6 +71,7 @@ query EntityQuery($code: String!) {
 }
 
 #[cfg(test)]
+#[cfg(feature = "dgraph-tests")]
 mod tests {
 
     use super::*;
