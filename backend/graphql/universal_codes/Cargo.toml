@@ -1,5 +1,5 @@
 [package]
-name = "graphql_universal_codes_v1"
+name = "graphql_universal_codes"
 version = "0.1.0"
 edition = "2018"
 
@@ -9,8 +9,9 @@ doctest = false
 
 [dependencies]
 
-graphql_v1_core = { path = "../core" }
+graphql_core = { path = "../core" }
 dgraph = { path = "../../dgraph" }
 service = { path = "../../service" }
+graphql_universal_codes_v1 = { path = "../../graphql_v1/universal_codes" }
 
 async-graphql = { version = "3.0.35", features = ["dataloader", "chrono"] }
