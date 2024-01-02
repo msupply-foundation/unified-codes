@@ -12,6 +12,8 @@ pub mod entities;
 pub use entities::*;
 pub mod upsert_entity;
 pub use upsert_entity::*;
+pub mod link_codes;
+pub use link_codes::*;
 
 pub use gql_client::GraphQLError;
 
