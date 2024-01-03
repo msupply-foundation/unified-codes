@@ -102,18 +102,15 @@ export const DrugEditForm = ({
         if (e) {
           success(
             t('message.entity-updated', {
-              num_records: e.upsertEntity,
+              code: e.upsertEntity.code,
             })
           )();
-
-          if (e.upsertEntity > 0) {
-            invalidateQueries();
-            navigate(
-              RouteBuilder.create(AppRoute.Browse)
-                .addPart(initialEntity?.code ?? '') // TODO: Return the updated entity code from the mutation so we can navigate to the updated entity
-                .build()
-            );
-          }
+          invalidateQueries();
+          navigate(
+            RouteBuilder.create(AppRoute.Browse)
+              .addPart(e.upsertEntity.code)
+              .build()
+          );
         } else {
           error(t('message.entity-error'))();
         }

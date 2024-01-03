@@ -1,5 +1,6 @@
 use gql_client::Client;
 
+#[derive(Clone)]
 pub struct DgraphClient {
     pub gql: Client,
 }

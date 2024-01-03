@@ -101,7 +101,7 @@ impl UniversalCodesService {
         &self,
         // ctx: &ServiceContext,
         entity: upsert::UpsertUniversalCode,
-    ) -> Result<u32, ModifyUniversalCodeError> {
-        upsert::upsert_entity(&self.client, entity).await
+    ) -> Result<Entity, ModifyUniversalCodeError> {
+        upsert::upsert_entity(self.client.clone(), entity).await
     }
 }

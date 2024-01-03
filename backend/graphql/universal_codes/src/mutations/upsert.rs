@@ -13,7 +13,10 @@ use service::{
 use crate::types::{UpsertEntityInput, UpsertEntityResponse};
 use graphql_universal_codes_v1::EntityType;
 
-pub async fn upsert_entity(ctx: &Context<'_>, input: UpsertEntityInput) -> Result<u32> {
+pub async fn upsert_entity(
+    ctx: &Context<'_>,
+    input: UpsertEntityInput,
+) -> Result<UpsertEntityResponse> {
     let user = validate_auth(
         ctx,
         &ResourceAccessRequest {
@@ -28,12 +31,14 @@ pub async fn upsert_entity(ctx: &Context<'_>, input: UpsertEntityInput) -> Resul
         .upsert_entity(input.into())
         .await
     {
-        Ok(num_uids) => Ok(num_uids),
+        Ok(entity) => Ok(UpsertEntityResponse::Response(EntityType::from_domain(
+            entity,
+        ))),
         Err(error) => map_error(error),
     }
 }
 
-fn map_error(error: ModifyUniversalCodeError) -> Result<u32> {
+fn map_error(error: ModifyUniversalCodeError) -> Result<UpsertEntityResponse> {
     use StandardGraphqlError::*;
     let formatted_error = format!("{:#?}", error);
 

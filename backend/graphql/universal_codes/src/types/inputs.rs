@@ -5,6 +5,7 @@ use service::universal_codes::{properties::PropertyReference, upsert::UpsertUniv
 #[derive(InputObject, Clone)]
 pub struct UpsertEntityInput {
     pub code: Option<String>,
+    pub parent_code: Option<String>,
     pub name: Option<String>,
     pub description: Option<String>,
     pub r#type: Option<String>,
@@ -23,6 +24,7 @@ impl From<UpsertEntityInput> for UpsertUniversalCode {
     fn from(
         UpsertEntityInput {
             code,
+            parent_code,
             name,
             description,
             r#type,
@@ -33,6 +35,7 @@ impl From<UpsertEntityInput> for UpsertUniversalCode {
     ) -> Self {
         UpsertUniversalCode {
             code,
+            parent_code,
             name,
             description,
             r#type,

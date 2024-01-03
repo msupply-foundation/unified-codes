@@ -59,68 +59,61 @@ export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
 export const buildEntityFromDrugInput = (
   drug: DrugInput
 ): UpsertEntityInput => {
-  // We'll update everything using a DEEP mutation.
-  // Only new properties and/or entities will be added.
-  // If we want to do updates, we'll need to change things a bit.
   return {
-    code: '933f3f00', // Drug parent code TODO: Constant?
-    children: [
-      {
-        code: drug.code,
-        name: drug.name,
-        description: drug.name,
-        type: 'Product',
+    parentCode: '933f3f00', // Drug parent code
+    code: drug.code,
+    name: drug.name,
+    description: drug.name,
+    type: 'Product',
+    category: 'Drug',
+    properties: drug.properties?.map(p => ({
+      key: p.type,
+      value: p.value,
+    })),
+    children: drug.routes?.map(route => ({
+      code: route.code,
+      name: route.name,
+      description: `${drug.name} ${route.name}`,
+      type: 'form_category',
+      category: 'Drug',
+      properties: route.properties?.map(p => ({
+        key: p.type,
+        value: p.value,
+      })),
+      children: route.forms?.map(form => ({
+        code: form.code,
+        name: form.name,
+        description: `${drug.name} ${route.name} ${form.name}`,
+        type: 'form',
         category: 'Drug',
-        properties: drug.properties?.map(p => ({
+        properties: form.properties?.map(p => ({
           key: p.type,
           value: p.value,
         })),
-        children: drug.routes?.map(route => ({
-          code: route.code,
-          name: route.name,
-          description: `${drug.name} ${route.name}`,
-          type: 'form_category',
+        children: form.strengths?.map(strength => ({
+          code: strength.code,
+          name: strength.name,
+          description: `${drug.name} ${route.name} ${form.name} ${strength.name}`,
+          type: 'strength',
           category: 'Drug',
-          properties: route.properties?.map(p => ({
+          properties: strength.properties?.map(p => ({
             key: p.type,
             value: p.value,
           })),
-          children: route.forms?.map(form => ({
-            code: form.code,
-            name: form.name,
-            description: `${drug.name} ${route.name} ${form.name}`,
-            type: 'form',
+          children: strength.units?.map(unit => ({
+            code: unit.code,
+            name: unit.name,
+            description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name}`,
+            type: 'unit_of_use',
             category: 'Drug',
-            properties: form.properties?.map(p => ({
+            properties: unit.properties?.map(p => ({
               key: p.type,
               value: p.value,
             })),
-            children: form.strengths?.map(strength => ({
-              code: strength.code,
-              name: strength.name,
-              description: `${drug.name} ${route.name} ${form.name} ${strength.name}`,
-              type: 'strength',
-              category: 'Drug',
-              properties: strength.properties?.map(p => ({
-                key: p.type,
-                value: p.value,
-              })),
-              children: strength.units?.map(unit => ({
-                code: unit.code,
-                name: unit.name,
-                description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name}`,
-                type: 'unit_of_use',
-                category: 'Drug',
-                properties: unit.properties?.map(p => ({
-                  key: p.type,
-                  value: p.value,
-                })),
-              })),
-            })),
           })),
         })),
-      },
-    ],
+      })),
+    })),
   };
 };
 

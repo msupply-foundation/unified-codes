@@ -47,6 +47,6 @@
   "property-code_nzulm": "NZULM ID",
   "property-who_eml": "WHO EML Categories",
   "property-code_unspsc": "UNSPSC Code",
-  "message.entity-updated": "Successfully updated {{ num_records }} records",
+  "message.entity-updated": "Successfully added/updated {{ code }}",
   "message.entity-error": "Error creating or updating this entity"
 }

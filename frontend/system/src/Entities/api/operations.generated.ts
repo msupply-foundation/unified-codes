@@ -28,7 +28,7 @@ export type AddEntityTreeMutationVariables = Types.Exact<{
 }>;
 
 
-export type AddEntityTreeMutation = { __typename?: 'FullMutation', upsertEntity: number };
+export type AddEntityTreeMutation = { __typename?: 'FullMutation', upsertEntity: { __typename: 'EntityType', code: string } };
 
 export const EntityRowFragmentDoc = gql`
     fragment EntityRow on EntityType {
@@ -83,7 +83,12 @@ export const EntityDocument = gql`
     ${EntityDetailsFragmentDoc}`;
 export const AddEntityTreeDocument = gql`
     mutation addEntityTree($input: UpsertEntityInput!) {
-  upsertEntity(input: $input)
+  upsertEntity(input: $input) {
+    ... on EntityType {
+      __typename
+      code
+    }
+  }
 }
     `;
 

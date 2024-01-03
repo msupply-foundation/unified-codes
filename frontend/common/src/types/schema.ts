@@ -140,7 +140,7 @@ export type FullMutation = {
   /** Resets the password for a user based on the password reset token */
   resetPasswordUsingToken: PasswordResetResponse;
   updateUserAccount: UpdateUserAccountResponse;
-  upsertEntity: Scalars['Int']['output'];
+  upsertEntity: UpsertEntityResponse;
   /** Validates Password Reset Token */
   validatePasswordResetToken: PasswordResetResponse;
 };
@@ -436,9 +436,12 @@ export type UpsertEntityInput = {
   code?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
+  parentCode?: InputMaybe<Scalars['String']['input']>;
   properties?: InputMaybe<Array<PropertyInput>>;
   type?: InputMaybe<Scalars['String']['input']>;
 };
+
+export type UpsertEntityResponse = EntityType;
 
 export type UserAccountConnector = {
   __typename: 'UserAccountConnector';

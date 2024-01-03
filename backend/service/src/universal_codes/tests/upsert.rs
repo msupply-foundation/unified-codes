@@ -26,6 +26,7 @@ mod universal_codes_upsert_test {
         let new_code_id = uuid();
         let input = UpsertUniversalCode {
             code: Some(new_code_id.clone()),
+            parent_code: None,
             name: Some(new_code_id.clone()),
             description: Some(new_code_id.clone()),
             r#type: Some("test_type".to_string()),
@@ -37,12 +38,13 @@ mod universal_codes_upsert_test {
         let result = service.upsert_entity(input).await.unwrap();
 
         // TODO: Check it saved correctly
-        // assert_eq!(result.code, new_code_id);
-        // assert_eq!(result.name, new_code_id);
+        assert_eq!(result.code, new_code_id);
+        assert_eq!(result.name, new_code_id);
 
         // Update the entity
         let input = UpsertUniversalCode {
             code: Some(new_code_id.clone()),
+            parent_code: None,
             name: Some("I'm a test, please delete me!".to_string()),
             description: Some(new_code_id.clone()),
             r#type: Some("test_type".to_string()),
@@ -54,9 +56,8 @@ mod universal_codes_upsert_test {
         let result = service.upsert_entity(input).await.unwrap();
 
         // TODO: Check it saved correctly
-
-        // assert_eq!(result.code, new_code_id);
-        // assert_eq!(result.name, "I'm a test, please delete me!");
+        assert_eq!(result.code, new_code_id);
+        assert_eq!(result.name, "I'm a test, please delete me!");
 
         // TODO: Delete new code from dgraph
     }

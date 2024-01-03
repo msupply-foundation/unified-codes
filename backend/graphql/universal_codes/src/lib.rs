@@ -10,7 +10,11 @@ pub struct UniversalCodesMutations;
 
 #[Object]
 impl UniversalCodesMutations {
-    async fn upsert_entity(&self, ctx: &Context<'_>, input: UpsertEntityInput) -> Result<u32> {
+    async fn upsert_entity(
+        &self,
+        ctx: &Context<'_>,
+        input: UpsertEntityInput,
+    ) -> Result<UpsertEntityResponse> {
         upsert_entity(ctx, input).await
     }
 }
