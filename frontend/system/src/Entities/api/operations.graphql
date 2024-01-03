@@ -44,3 +44,7 @@ query entity($code: String!) {
     }
   }
 }
+
+mutation addEntityTree($input: UpsertEntityInput!) {
+  upsertEntity(input: $input)
+}

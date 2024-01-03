@@ -11,6 +11,7 @@ export interface Property {
 
 export interface Entity {
   id: string;
+  code?: string;
   name: string;
   properties?: Property[];
 }

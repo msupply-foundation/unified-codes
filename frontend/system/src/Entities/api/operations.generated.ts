@@ -23,6 +23,13 @@ export type EntityQueryVariables = Types.Exact<{
 
 export type EntityQuery = { __typename?: 'FullQuery', entity?: { __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, properties: Array<{ __typename?: 'PropertiesType', type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', type: string, value: string }> } | null };
 
+export type AddEntityTreeMutationVariables = Types.Exact<{
+  input: Types.UpsertEntityInput;
+}>;
+
+
+export type AddEntityTreeMutation = { __typename?: 'FullMutation', upsertEntity: number };
+
 export const EntityRowFragmentDoc = gql`
     fragment EntityRow on EntityType {
   id: uid
@@ -74,6 +81,11 @@ export const EntityDocument = gql`
   }
 }
     ${EntityDetailsFragmentDoc}`;
+export const AddEntityTreeDocument = gql`
+    mutation addEntityTree($input: UpsertEntityInput!) {
+  upsertEntity(input: $input)
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -87,6 +99,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     entity(variables: EntityQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<EntityQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<EntityQuery>(EntityDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'entity', 'query');
+    },
+    addEntityTree(variables: AddEntityTreeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AddEntityTreeMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<AddEntityTreeMutation>(AddEntityTreeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'addEntityTree', 'mutation');
     }
   };
 }

@@ -10,13 +10,21 @@ import React, { useState } from 'react';
 import { config } from '../../../config';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
-import { useEditModal } from '@common/hooks';
+import { useEditModal, useNotification } from '@common/hooks';
 import { DrugInput, Entity, EntityDetails, Property } from '../types';
 import { TreeFormBox } from './TreeFormBox';
 import { CategoryDropdown } from './CategoryDropdown';
 import { AddFieldButton } from './AddFieldButton';
 import { EditPropertiesButton } from './EditPropertiesButton';
-import { buildDrugInputFromEntity, getAllEntityCodes } from '../helpers';
+import {
+  buildDrugInputFromEntity,
+  buildEntityFromDrugInput,
+  getAllEntityCodes,
+} from '../helpers';
+import { useAddEntityTree } from 'frontend/system/src/Entities/api';
+import { RouteBuilder, useNavigate } from 'frontend/common/src';
+import { AppRoute } from 'frontend/config/src';
+import { AddEntityTreeMutation } from 'frontend/system/src/Entities/api/operations.generated';
 
 export const DrugEditForm = ({
   initialEntity,
@@ -24,6 +32,11 @@ export const DrugEditForm = ({
   initialEntity?: EntityDetails;
 }) => {
   const t = useTranslation('system');
+  const navigate = useNavigate();
+
+  const [addEntity, invalidateQueries] = useAddEntityTree();
+  const { success, error } = useNotification();
+
   const [initialIds] = useState(getAllEntityCodes(initialEntity));
 
   // throwaway ids as a dgraph uid will be assigned when the entity is stored
@@ -77,7 +90,34 @@ export const DrugEditForm = ({
   };
 
   const onSubmit = () => {
-    console.log(draft);
+    // Convert the draft to a UpsertEntityInput type
+    const entity = buildEntityFromDrugInput(draft);
+
+    // Upsert the entity
+    addEntity({ input: entity })
+      .catch(e => {
+        console.error(e);
+      })
+      .then(e => {
+        if (e) {
+          success(
+            t('message.entity-updated', {
+              num_records: e.upsertEntity,
+            })
+          )();
+
+          if (e.upsertEntity > 0) {
+            invalidateQueries();
+            navigate(
+              RouteBuilder.create(AppRoute.Browse)
+                .addPart(initialEntity?.code ?? '') // TODO: Return the updated entity code from the mutation so we can navigate to the updated entity
+                .build()
+            );
+          }
+        } else {
+          error(t('message.entity-error'))();
+        }
+      });
   };
 
   return (
