@@ -1,4 +1,4 @@
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize};
 
 pub mod client;
 pub use client::*;
@@ -26,13 +26,26 @@ pub struct EntityData {
     pub aggregates: Option<AggregateResult>,
 }
 
+fn null_as_empty_string<'de, D>(d: D) -> Result<String, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    Deserialize::deserialize(d).map(|x: Option<_>| x.unwrap_or_else(|| "".to_string()))
+}
+
 #[derive(Deserialize, Debug, Clone)]
 pub struct Entity {
     #[serde(default)]
     pub id: String,
     pub code: String,
+    #[serde(default)]
+    #[serde(deserialize_with = "null_as_empty_string")]
     pub name: String,
+    #[serde(default)]
+    #[serde(deserialize_with = "null_as_empty_string")]
     pub description: String,
+    #[serde(default)]
+    #[serde(deserialize_with = "null_as_empty_string")]
     pub r#type: String,
     #[serde(default)]
     pub properties: Vec<Properties>,
@@ -45,13 +58,24 @@ pub struct Entity {
 #[derive(Deserialize, Debug, Clone)]
 pub struct Properties {
     #[serde(rename = "type")]
+    #[serde(deserialize_with = "null_as_empty_string")]
     pub key: String,
+    #[serde(deserialize_with = "null_as_empty_string")]
     pub value: String,
 }
 
 #[derive(Deserialize, Debug, Clone, Default)]
 pub struct AggregateResult {
     pub count: u32,
+}
+
+#[derive(Serialize, Debug, Clone, Default)]
+pub struct PropertyInput {
+    #[serde(rename = "type")]
+    #[serde(default)]
+    pub key: String,
+    #[serde(default)]
+    pub value: String,
 }
 
 #[derive(Serialize, Debug, Clone, Default)]
@@ -65,4 +89,8 @@ pub struct EntityInput {
     pub description: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub category: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub properties: Option<Vec<PropertyInput>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub children: Option<Vec<EntityInput>>,
 }

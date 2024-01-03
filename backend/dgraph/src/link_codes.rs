@@ -71,6 +71,8 @@ mod tests {
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
             description: Some(parent_code.clone()), // Needs a unique description
+            properties: None,
+            children: None,
         };
 
         let result = upsert_entity(&client, entity_input).await;
@@ -93,6 +95,8 @@ mod tests {
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
             description: Some(child_code.clone()), // Needs a unique description
+            properties: None,
+            children: None,
         };
 
         let result = upsert_entity(&client, entity_input).await;
@@ -117,7 +121,6 @@ mod tests {
         assert!(result.is_ok());
 
         // Get the parent and check that it has the child
-
         let result = entity_by_code(&client, parent_code.clone()).await;
         let e = result.unwrap().unwrap();
         assert_eq!(e.code, parent_code.clone());

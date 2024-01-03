@@ -1,10 +1,15 @@
 use crate::{
     audit_log::audit_log_entry,
     service_provider::{self, ServiceContext},
+    universal_codes::code_generator::generate_code,
 };
 use chrono::Utc;
-use dgraph::{check_description_duplication, entity_by_code, Entity, EntityInput, GraphQLError};
+use dgraph::{
+    check_description_duplication, entity_by_code, Entity, EntityInput, GraphQLError, PropertyInput,
+};
 use repository::{LogType, RepositoryError, StorageConnection};
+
+use super::properties::PropertyReference;
 
 #[derive(Debug)]
 pub enum ModifyUniversalCodeError {
@@ -31,44 +36,46 @@ impl From<GraphQLError> for ModifyUniversalCodeError {
 
 #[derive(Clone, Debug)]
 pub struct UpsertUniversalCode {
-    pub code: String,
+    pub code: Option<String>,
     pub name: Option<String>,
     pub description: Option<String>,
     pub r#type: Option<String>,
     pub category: Option<String>,
+    pub properties: Option<Vec<PropertyReference>>,
+    pub children: Option<Vec<UpsertUniversalCode>>,
 }
 
 pub async fn upsert_entity(
     // ctx: &ServiceContext,
     client: &dgraph::DgraphClient,
     updated_entity: UpsertUniversalCode,
-) -> Result<Entity, ModifyUniversalCodeError> {
+) -> Result<u32, ModifyUniversalCodeError> {
     // Validate
     let _original_entity = validate(client, &updated_entity).await?;
 
     // Generate
     let entity_input = generate(updated_entity.clone())?;
 
-    let result = dgraph::upsert_entity(client, entity_input).await?;
+    let result = dgraph::upsert_entity(client, entity_input.clone()).await?;
 
     // Query to get the updated record
-    let updated_entity = entity_by_code(client, updated_entity.code.clone())
-        .await
-        .map_err(|e| {
-            ModifyUniversalCodeError::InternalError(format!(
-                "Failed to get updated entity by code: {}",
-                e.message()
-            ))
-        })?;
+    // let updated_entity = entity_by_code(client, entity_input.code)
+    //     .await
+    //     .map_err(|e| {
+    //         ModifyUniversalCodeError::InternalError(format!(
+    //             "Failed to get updated entity by code: {}",
+    //             e.message()
+    //         ))
+    //     })?;
 
-    let updated_entity = match updated_entity {
-        Some(updated_entity) => updated_entity,
-        None => {
-            return Err(ModifyUniversalCodeError::InternalError(
-                "Unable to find updated entity".to_string(),
-            ))
-        }
-    };
+    // let updated_entity = match updated_entity {
+    //     Some(updated_entity) => updated_entity,
+    //     None => {
+    //         return Err(ModifyUniversalCodeError::InternalError(
+    //             "Unable to find updated entity".to_string(),
+    //         ))
+    //     }
+    // };
 
     // Audit logging
     // match original_entity {
@@ -90,19 +97,43 @@ pub async fn upsert_entity(
     //     }
     // }
 
-    Ok(updated_entity)
+    Ok(result.numUids)
 }
 
 pub fn generate(
     updated_entity: UpsertUniversalCode,
 ) -> Result<EntityInput, ModifyUniversalCodeError> {
     println!("generate: {:?}", updated_entity);
+
+    let children = match updated_entity.children {
+        Some(children) => Some(
+            children
+                .into_iter()
+                .map(|child| generate(child))
+                .collect::<Result<Vec<EntityInput>, ModifyUniversalCodeError>>()?, // If there is an error, return it
+        ),
+        None => None,
+    };
+
     Ok(EntityInput {
-        code: updated_entity.code.clone(),
+        code: updated_entity
+            .code
+            .clone()
+            .unwrap_or_else(|| generate_code()),
         name: updated_entity.name.clone(),
         description: updated_entity.description.clone(),
         r#type: updated_entity.r#type.clone(),
         category: updated_entity.category.clone(),
+        properties: updated_entity.properties.map(|properties| {
+            properties
+                .into_iter()
+                .map(|p| PropertyInput {
+                    key: p.key,
+                    value: p.value,
+                })
+                .collect()
+        }),
+        children: children,
     })
 }
 
@@ -113,8 +144,12 @@ pub async fn validate(
 ) -> Result<Option<Entity>, ModifyUniversalCodeError> {
     // Check if entity exists with the same description
     if let Some(description) = new_entity.description.clone() {
-        let duplicated =
-            check_description_duplication(client, description, new_entity.code.clone()).await?;
+        let duplicated = check_description_duplication(
+            client,
+            description,
+            new_entity.code.clone().unwrap_or_default(), // If there is no code, it is a new entity and we want to see if the description is duplicated on any other entity
+        )
+        .await?;
         match duplicated {
             Some(duplicated) => {
                 if duplicated.data.len() > 1 {
@@ -128,7 +163,11 @@ pub async fn validate(
         }
     }
 
-    let original_entity = entity_by_code(client, new_entity.code.clone()).await?;
+    // If we have no code, it is a new entity and the code will have been generated
+    let original_entity = match new_entity.code.clone() {
+        Some(code) => entity_by_code(client, code).await?,
+        None => None,
+    };
 
     if original_entity.is_none() {
         // Check all the field are filled in fields are not really optional on a new entity

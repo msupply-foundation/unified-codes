@@ -12,8 +12,10 @@ use self::{
 
 mod tests;
 
+pub mod code_generator;
 pub mod entity_collection;
 pub mod entity_filter;
+pub mod properties;
 pub mod upsert;
 
 pub struct UniversalCodesService {
@@ -99,7 +101,7 @@ impl UniversalCodesService {
         &self,
         // ctx: &ServiceContext,
         entity: upsert::UpsertUniversalCode,
-    ) -> Result<Entity, ModifyUniversalCodeError> {
+    ) -> Result<u32, ModifyUniversalCodeError> {
         upsert::upsert_entity(&self.client, entity).await
     }
 }

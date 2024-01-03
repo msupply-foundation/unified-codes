@@ -33,7 +33,7 @@ mutation UpdateEntity($input: [AddEntityInput!]!, $upsert: Boolean = false) {
 }"#;
     let variables = UpsertVars {
         input: entity,
-        upsert: true, // TODO: Maybe this should be passed in
+        upsert: true, // TODO: Maybe this should be passed in?
     };
 
     let result = client
@@ -54,7 +54,7 @@ mod tests {
 
     use util::uuid::uuid;
 
-    use crate::entity_by_code;
+    use crate::{entity_by_code, PropertyInput};
 
     use super::*;
 
@@ -164,13 +164,24 @@ mod tests {
 
         let code_to_insert = uuid();
 
-        // Create new node
+        // Create new node with properties
         let entity_input = EntityInput {
             code: code_to_insert.clone(),
             name: Some("new_name".to_string()),
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
             description: Some(code_to_insert.clone()), // Needs a unique description
+            properties: Some(vec![
+                PropertyInput {
+                    key: "test_key1".to_string(),
+                    value: "test_value1".to_string(),
+                },
+                PropertyInput {
+                    key: "test_key2".to_string(),
+                    value: "test_value2".to_string(),
+                },
+            ]),
+            ..Default::default()
         };
 
         let result = upsert_entity(&client, entity_input).await;
@@ -183,12 +194,70 @@ mod tests {
         }
         assert!(result.is_ok());
         let result = result.unwrap();
-        assert_eq!(result.numUids, 1);
+        assert_eq!(result.numUids, 3);
 
         // Get the updated entity
         let result = entity_by_code(&client, code_to_insert.clone()).await;
         let e = result.unwrap().unwrap();
         assert_eq!(e.code, code_to_insert.clone());
         assert_eq!(e.name, "new_name".to_string());
+        assert_eq!(e.properties.len(), 2);
+    }
+
+    #[tokio::test]
+    async fn test_create_new_node_with_child() {
+        let client = DgraphClient::new("http://localhost:8080/graphql");
+
+        let code_to_insert = uuid();
+        let child_code = uuid();
+
+        // Create new node with properties
+        let entity_input = EntityInput {
+            code: code_to_insert.clone(),
+            name: Some("new_name".to_string()),
+            r#type: Some("test_type".to_string()),
+            category: Some("test_category".to_string()),
+            description: Some(code_to_insert.clone()), // Needs a unique description
+            properties: None,
+            children: Some(vec![EntityInput {
+                code: child_code.clone(),
+                name: Some("child_name".to_string()),
+                r#type: Some("test_type".to_string()),
+                category: Some("test_category".to_string()),
+                description: Some(child_code.clone()), // Needs a unique description
+                properties: Some(vec![
+                    PropertyInput {
+                        key: "test_key1".to_string(),
+                        value: "test_value1".to_string(),
+                    },
+                    PropertyInput {
+                        key: "test_key2".to_string(),
+                        value: "test_value2".to_string(),
+                    },
+                ]),
+                ..Default::default()
+            }]),
+            ..Default::default()
+        };
+
+        let result = upsert_entity(&client, entity_input).await;
+        if result.is_err() {
+            println!(
+                "upsert_entity err: {:#?} {:#?}",
+                result,
+                result.clone().unwrap_err().json()
+            );
+        }
+        assert!(result.is_ok());
+        let result = result.unwrap();
+        assert_eq!(result.numUids, 4);
+
+        // Get the updated entity
+        let result = entity_by_code(&client, code_to_insert.clone()).await;
+        let e = result.unwrap().unwrap();
+        assert_eq!(e.code, code_to_insert.clone());
+        assert_eq!(e.children.len(), 1);
+        assert_eq!(e.children[0].code, child_code.clone());
+        assert_eq!(e.children[0].properties.len(), 2);
     }
 }
