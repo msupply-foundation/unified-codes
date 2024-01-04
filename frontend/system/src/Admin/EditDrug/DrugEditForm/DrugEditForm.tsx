@@ -143,8 +143,23 @@ export const DrugEditForm = ({
           }}
         />
       )}
-
-      <Box sx={{ display: 'flex', alignItems: 'end' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'end',
+          flexDirection: 'row-reverse',
+        }}
+      >
+        <Typography
+          fontSize="12px"
+          fontWeight="700"
+          width="50px"
+          textAlign="center"
+        >
+          {t('label.add-properties')}
+        </Typography>
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'start' }}>
         <NameEditField
           disabled={initialIds.includes(draft.id)}
           value={draft.name}
@@ -161,14 +176,6 @@ export const DrugEditForm = ({
             flexDirection: 'column',
           }}
         >
-          <Typography
-            fontSize="12px"
-            fontWeight="700"
-            width="50px"
-            textAlign="center"
-          >
-            {t('label.add-properties')}
-          </Typography>
           <EditPropertiesButton
             parents={[]}
             entity={draft}
