@@ -41,6 +41,7 @@ export const PropertiesModal = ({
       return {
         // just a throwaway id... a dgraph uid will be assigned when the property is stored
         id: existing ? existing.id : uuid(),
+        code: existing ? existing.code : '',
         value: existing ? existing.value : '',
         label: config.label,
         type: config.type,

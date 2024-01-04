@@ -5,6 +5,9 @@ import {
   Typography,
   SaveIcon,
   ButtonWithIcon,
+  InputAdornment,
+  DeleteIcon,
+  IconButton,
 } from '@common/ui';
 import React, { useState } from 'react';
 import { config } from '../../../config';
@@ -25,6 +28,7 @@ import { useAddEntityTree } from 'frontend/system/src/Entities/api';
 import { RouteBuilder, useNavigate } from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
 import { AddEntityTreeMutation } from 'frontend/system/src/Entities/api/operations.generated';
+import { NameEditField } from './NameEditField';
 
 export const DrugEditForm = ({
   initialEntity,
@@ -89,6 +93,14 @@ export const DrugEditForm = ({
     setDraft({ ...draft });
   };
 
+  const onDelete = <T extends Entity>(toDelete: T, list: T[]) => {
+    const indexToDelete = list.findIndex(item => item.id === toDelete.id);
+    if (indexToDelete >= 0) {
+      list.splice(indexToDelete, 1);
+    }
+    setDraft({ ...draft });
+  };
+
   const onSubmit = () => {
     // Convert the draft to a UpsertEntityInput type
     const entity = buildEntityFromDrugInput(draft);
@@ -133,14 +145,14 @@ export const DrugEditForm = ({
       )}
 
       <Box sx={{ display: 'flex', alignItems: 'end' }}>
-        <BasicTextInput
-          autoFocus
+        <NameEditField
           disabled={initialIds.includes(draft.id)}
           value={draft.name}
+          showDeleteButton={false}
           onChange={e => setDraft({ ...draft, name: e.target.value })}
-          label={t('label.drug-name')}
-          InputLabelProps={{ shrink: true }}
-          fullWidth
+          onDelete={e => {
+            setDraft({ ...draft, name: '' });
+          }}
         />
         <Box
           sx={{
@@ -180,6 +192,9 @@ export const DrugEditForm = ({
               getOptionDisabled={o =>
                 !!draft.routes.find(r => r.name === o.value)
               }
+              onDelete={e => {
+                onDelete(route, draft.routes);
+              }}
             />
             <EditPropertiesButton
               parents={[draft]}
@@ -203,6 +218,9 @@ export const DrugEditForm = ({
                   getOptionDisabled={o =>
                     !!route.forms.find(f => f.name === o.value)
                   }
+                  onDelete={e => {
+                    onDelete(form, route.forms);
+                  }}
                 />
                 <EditPropertiesButton
                   parents={[draft, route]}
@@ -217,8 +235,7 @@ export const DrugEditForm = ({
               {form.strengths.map(strength => (
                 <TreeFormBox key={strength.id}>
                   <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                    <BasicTextInput
-                      autoFocus
+                    <NameEditField
                       disabled={initialIds.includes(strength.id)}
                       value={strength.name}
                       onChange={e =>
@@ -227,7 +244,9 @@ export const DrugEditForm = ({
                           form.strengths
                         )
                       }
-                      fullWidth
+                      onDelete={e => {
+                        onDelete(strength, form.strengths);
+                      }}
                     />
                     <EditPropertiesButton
                       parents={[draft, route, form]}
@@ -243,8 +262,7 @@ export const DrugEditForm = ({
                   {strength.units.map(unit => (
                     <TreeFormBox key={unit.id}>
                       <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                        <BasicTextInput
-                          autoFocus
+                        <NameEditField
                           disabled={initialIds.includes(unit.id)}
                           value={unit.name}
                           onChange={e =>
@@ -253,7 +271,9 @@ export const DrugEditForm = ({
                               strength.units
                             )
                           }
-                          fullWidth
+                          onDelete={e => {
+                            onDelete(unit, strength.units);
+                          }}
                         />
                         <EditPropertiesButton
                           parents={[draft, route, form, strength]}
