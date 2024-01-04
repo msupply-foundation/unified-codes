@@ -1,3 +1,5 @@
+use std::fmt::format;
+
 use crate::{
     audit_log::audit_log_entry,
     service_provider::{self, ServiceContext},
@@ -208,9 +210,11 @@ pub async fn validate(
         None => None,
     };
 
+    // We're creating a new entity
     if original_entity.is_none() {
-        // Check all the field are filled in fields are not really optional on a new entity
-        if new_entity.name.is_none() {
+        // Check all the field are filled in,  fields are not really optional on a new entity
+
+        if new_entity.name.is_none() || new_entity.name.clone().unwrap_or_default().is_empty() {
             return Err(ModifyUniversalCodeError::InternalError(
                 "Name is required".to_string(),
             ));
@@ -220,17 +224,18 @@ pub async fn validate(
                 "Description is required".to_string(),
             ));
         }
-        if new_entity.r#type.is_none() {
+        if new_entity.r#type.is_none() || new_entity.r#type.clone().unwrap_or_default().is_empty() {
             return Err(ModifyUniversalCodeError::InternalError(
                 "Type is required".to_string(),
             ));
         }
-        if new_entity.category.is_none() {
+        if new_entity.category.is_none()
+            || new_entity.category.clone().unwrap_or_default().is_empty()
+        {
             return Err(ModifyUniversalCodeError::InternalError(
                 "Category is required".to_string(),
             ));
         }
-        // TODO: check the type and category are valid
     }
 
     Ok(original_entity)
