@@ -7,7 +7,7 @@ use actix_web::web::{self, Data};
 use actix_web::HttpResponse;
 use async_graphql::{EmptyMutation, EmptySubscription, MergedObject, SchemaBuilder};
 use async_graphql_actix_web::{GraphQLRequest, GraphQLResponse};
-use graphql_universal_codes::UniversalCodesQueries;
+use graphql_universal_codes_v1::UniversalCodesQueries;
 
 use logger::{RequestLogger, ResponseLogger};
 use repository::StorageConnectionManager;

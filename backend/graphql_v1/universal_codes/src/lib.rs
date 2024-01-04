@@ -1,6 +1,6 @@
 mod types;
 
-use self::types::*;
+pub use self::types::*;
 
 use async_graphql::*;
 use graphql_v1_core::ContextExt;

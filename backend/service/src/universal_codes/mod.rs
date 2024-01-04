@@ -2,13 +2,19 @@ use std::fmt::{Display, Formatter};
 
 use dgraph::{DgraphClient, Entity, SearchVars};
 
-use crate::settings::Settings;
+use crate::{service_provider::ServiceContext, settings::Settings};
 
-use self::entity_filter::{dgraph_filter_from_v1_filter, dgraph_order_by_from_v1_filter};
 pub use self::{entity_collection::EntityCollection, entity_filter::EntitySearchFilter};
+use self::{
+    entity_filter::{dgraph_filter_from_v1_filter, dgraph_order_by_from_v1_filter},
+    upsert::ModifyUniversalCodeError,
+};
+
+mod tests;
 
 pub mod entity_collection;
 pub mod entity_filter;
+pub mod upsert;
 
 pub struct UniversalCodesService {
     client: DgraphClient,
@@ -87,5 +93,13 @@ impl UniversalCodesService {
                 total_length: 0,
             }),
         }
+    }
+
+    pub async fn upsert_entity(
+        &self,
+        // ctx: &ServiceContext,
+        entity: upsert::UpsertUniversalCode,
+    ) -> Result<Entity, ModifyUniversalCodeError> {
+        upsert::upsert_entity(&self.client, entity).await
     }
 }
