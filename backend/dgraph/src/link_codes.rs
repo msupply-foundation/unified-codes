@@ -1,7 +1,7 @@
 use gql_client::GraphQLError;
 use serde::{Deserialize, Serialize};
 
-use crate::{DgraphClient, EntityInput};
+use crate::DgraphClient;
 
 #[derive(Serialize, Debug)]
 struct LinkCodesVars {
@@ -54,7 +54,7 @@ mod tests {
 
     use util::uuid::uuid;
 
-    use crate::{entity_by_code, upsert_entity};
+    use crate::{entity_by_code, upsert_entity, EntityInput};
 
     use super::*;
 
@@ -75,7 +75,7 @@ mod tests {
             children: None,
         };
 
-        let result = upsert_entity(&client, entity_input).await;
+        let result = upsert_entity(&client, entity_input, true).await;
         if result.is_err() {
             println!(
                 "upsert_entity err: {:#?} {:#?}",
@@ -99,7 +99,7 @@ mod tests {
             children: None,
         };
 
-        let result = upsert_entity(&client, entity_input).await;
+        let result = upsert_entity(&client, entity_input, true).await;
         if result.is_err() {
             println!(
                 "upsert_entity err: {:#?} {:#?}",

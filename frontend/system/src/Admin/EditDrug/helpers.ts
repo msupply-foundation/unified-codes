@@ -67,6 +67,7 @@ export const buildEntityFromDrugInput = (
     type: 'Product',
     category: 'Drug',
     properties: drug.properties?.map(p => ({
+      code: p.id,
       key: p.type,
       value: p.value,
     })),
@@ -77,6 +78,7 @@ export const buildEntityFromDrugInput = (
       type: 'form_category',
       category: 'Drug',
       properties: route.properties?.map(p => ({
+        code: p.id,
         key: p.type,
         value: p.value,
       })),
@@ -87,6 +89,7 @@ export const buildEntityFromDrugInput = (
         type: 'form',
         category: 'Drug',
         properties: form.properties?.map(p => ({
+          code: p.id,
           key: p.type,
           value: p.value,
         })),
@@ -97,6 +100,7 @@ export const buildEntityFromDrugInput = (
           type: 'strength',
           category: 'Drug',
           properties: strength.properties?.map(p => ({
+            code: p.id,
             key: p.type,
             value: p.value,
           })),
@@ -107,6 +111,7 @@ export const buildEntityFromDrugInput = (
             type: 'unit_of_use',
             category: 'Drug',
             properties: unit.properties?.map(p => ({
+              code: p.id,
               key: p.type,
               value: p.value,
             })),
@@ -123,6 +128,6 @@ const getDetails = (entity: EntityDetails) => ({
   name: entity.name,
   properties: entity.properties.map(p => ({
     ...p,
-    id: `${entity.code}_${p.type}`,
+    id: p.code,
   })),
 });

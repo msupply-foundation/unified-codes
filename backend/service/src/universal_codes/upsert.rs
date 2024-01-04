@@ -94,7 +94,7 @@ pub async fn upsert_entity(
     // Generate
     let entity_input = generate(updated_entity.clone())?;
 
-    let _result = dgraph::upsert_entity(&client, entity_input.clone()).await?;
+    let _result = dgraph::upsert_entity(&client, entity_input.clone(), true).await?;
 
     // Link any children to the new entity
     for child_code in child_codes {
@@ -166,6 +166,7 @@ pub fn generate(
             properties
                 .into_iter()
                 .map(|p| PropertyInput {
+                    code: p.code,
                     key: p.key,
                     value: p.value,
                 })

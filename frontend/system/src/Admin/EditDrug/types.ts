@@ -5,6 +5,7 @@ export interface EntityDetails extends EntityDetailsFragment {
 }
 export interface Property {
   id: string;
+  code: string;
   type: string;
   value: string;
 }

@@ -381,11 +381,13 @@ export enum PermissionNode {
 
 export type PropertiesType = {
   __typename: 'PropertiesType';
+  code: Scalars['String']['output'];
   type: Scalars['String']['output'];
   value: Scalars['String']['output'];
 };
 
 export type PropertyInput = {
+  code: Scalars['String']['input'];
   key: Scalars['String']['input'];
   value: Scalars['String']['input'];
 };

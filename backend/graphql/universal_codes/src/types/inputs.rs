@@ -16,6 +16,7 @@ pub struct UpsertEntityInput {
 
 #[derive(InputObject, Clone)]
 pub struct PropertyInput {
+    pub code: String,
     pub key: String,
     pub value: String,
 }
@@ -43,7 +44,11 @@ impl From<UpsertEntityInput> for UpsertUniversalCode {
             properties: properties.map(|properties| {
                 properties
                     .into_iter()
-                    .map(|PropertyInput { key, value }| PropertyReference { key, value })
+                    .map(|PropertyInput { code, key, value }| PropertyReference {
+                        code,
+                        key,
+                        value,
+                    })
                     .collect()
             }),
             children: children.map(|children| {

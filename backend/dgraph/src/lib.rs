@@ -48,7 +48,7 @@ pub struct Entity {
     #[serde(deserialize_with = "null_as_empty_string")]
     pub r#type: String,
     #[serde(default)]
-    pub properties: Vec<Properties>,
+    pub properties: Vec<Property>,
     #[serde(default)]
     pub children: Vec<Entity>,
     #[serde(default)]
@@ -56,7 +56,8 @@ pub struct Entity {
 }
 
 #[derive(Deserialize, Debug, Clone)]
-pub struct Properties {
+pub struct Property {
+    pub code: String,
     #[serde(rename = "type")]
     #[serde(deserialize_with = "null_as_empty_string")]
     pub key: String,
@@ -71,6 +72,7 @@ pub struct AggregateResult {
 
 #[derive(Serialize, Debug, Clone, Default)]
 pub struct PropertyInput {
+    pub code: String,
     #[serde(rename = "type")]
     #[serde(default)]
     pub key: String,
