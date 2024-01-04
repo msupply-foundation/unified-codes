@@ -2,7 +2,7 @@ import { buildDrugInputFromEntity, getAllEntityCodes } from './helpers';
 
 describe('getAllEntityCodes', () => {
   it('returns empty array when entity is not defined', () => {
-    expect(getAllEntityCodes(undefined)).toBe([]);
+    expect(getAllEntityCodes(undefined)).toMatchObject([]);
   });
   it('returns codes of entity and all its children', () => {
     const entityDetails = {
