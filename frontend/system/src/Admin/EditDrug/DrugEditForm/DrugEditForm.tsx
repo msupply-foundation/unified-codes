@@ -23,6 +23,7 @@ import {
   buildDrugInputFromEntity,
   buildEntityFromDrugInput,
   getAllEntityCodes,
+  isValidDrugInput,
 } from '../helpers';
 import { useAddEntityTree } from 'frontend/system/src/Entities/api';
 import { RouteBuilder, useNavigate } from 'frontend/common/src';
@@ -339,6 +340,7 @@ export const DrugEditForm = ({
 
       <Box sx={{ display: 'flex', justifyContent: 'end' }}>
         <ButtonWithIcon
+          disabled={!isValidDrugInput(draft)}
           Icon={<SaveIcon />}
           label={t('button.save')}
           onClick={onSubmit}
