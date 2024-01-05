@@ -54,10 +54,26 @@ pub async fn upsert_entity(
     // Create a code if it doesn't already exist...
     let updated_entity = match updated_entity.code.is_some() {
         true => updated_entity,
-        false => UpsertUniversalCode {
-            code: Some(generate_code()),
-            ..updated_entity
-        }, // TODO: Check code is unique
+        false => loop {
+            // Create a unique code
+            let mut counter = 0;
+            let code = generate_code();
+            let result = entity_by_code(&client, code.clone()).await?;
+            if result.is_none() {
+                // We have a unique code
+                break UpsertUniversalCode {
+                    code: Some(code),
+                    ..updated_entity
+                };
+            }
+            counter += 1;
+
+            if counter > 10 {
+                return Err(ModifyUniversalCodeError::InternalError(
+                    "Failed to generate a unique code".to_string(),
+                ));
+            }
+        },
     };
 
     let mut child_handles = vec![];
