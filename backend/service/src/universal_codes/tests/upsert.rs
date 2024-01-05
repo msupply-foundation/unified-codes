@@ -20,7 +20,7 @@ mod universal_codes_upsert_test {
             connection_manager,
             get_test_settings(""),
         ));
-        let context = ServiceContext::as_server_admin(service_provider).unwrap();
+        let context = ServiceContext::as_server_admin(service_provider.clone()).unwrap();
         let service = &context.service_provider.universal_codes_service;
 
         let new_code_id = uuid();
@@ -35,7 +35,10 @@ mod universal_codes_upsert_test {
             children: None,
         };
 
-        let result = service.upsert_entity(input).await.unwrap();
+        let result = service
+            .upsert_entity(service_provider.clone(), context.user_id.clone(), input)
+            .await
+            .unwrap();
 
         // TODO: Check it saved correctly
         assert_eq!(result.code, new_code_id);
@@ -53,7 +56,10 @@ mod universal_codes_upsert_test {
             children: None,
         };
 
-        let result = service.upsert_entity(input).await.unwrap();
+        let result = service
+            .upsert_entity(service_provider, context.user_id, input)
+            .await
+            .unwrap();
 
         // TODO: Check it saved correctly
         assert_eq!(result.code, new_code_id);
@@ -74,7 +80,7 @@ mod universal_codes_upsert_test {
             connection_manager,
             get_test_settings(""),
         ));
-        let context = ServiceContext::as_server_admin(service_provider).unwrap();
+        let context = ServiceContext::as_server_admin(service_provider.clone()).unwrap();
         let service = &context.service_provider.universal_codes_service;
 
         let new_code_id = uuid();
@@ -110,7 +116,10 @@ mod universal_codes_upsert_test {
             ]),
         };
 
-        let result = service.upsert_entity(input).await.unwrap();
+        let result = service
+            .upsert_entity(service_provider, context.user_id, input)
+            .await
+            .unwrap();
         assert_eq!(result.children.len(), 2);
     }
 }

@@ -1,8 +1,11 @@
-use std::fmt::{Display, Formatter};
+use std::{
+    fmt::{Display, Formatter},
+    sync::Arc,
+};
 
 use dgraph::{DgraphClient, Entity, SearchVars};
 
-use crate::{service_provider::ServiceContext, settings::Settings};
+use crate::{service_provider::ServiceProvider, settings::Settings};
 
 pub use self::{entity_collection::EntityCollection, entity_filter::EntitySearchFilter};
 use self::{
@@ -99,9 +102,10 @@ impl UniversalCodesService {
 
     pub async fn upsert_entity(
         &self,
-        // ctx: &ServiceContext,
+        sp: Arc<ServiceProvider>,
+        user_id: String,
         entity: upsert::UpsertUniversalCode,
     ) -> Result<Entity, ModifyUniversalCodeError> {
-        upsert::upsert_entity(self.client.clone(), entity).await
+        upsert::upsert_entity(sp, user_id, self.client.clone(), entity).await
     }
 }
