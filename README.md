@@ -19,7 +19,7 @@ The test framework is jest; functional areas are separated into packages and man
 - Start the backend:
   - `yarn start-backend`
   - Access v1 api at http://localhost:4007/v1/graphql
-  - Access v2 api at http://localhost:4007/graphql
+  - Access internal api at http://localhost:4007/graphql
 
 ### Frontend
 
