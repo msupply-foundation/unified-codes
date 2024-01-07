@@ -11,7 +11,7 @@ path = "./lib.rs"
 repository = { path = "../repository" }
 service = { path = "../service" }
 graphql_v1_core = { path = "core" }
-graphql_universal_codes = { path = "universal_codes" }
+graphql_universal_codes_v1 = { path = "universal_codes" }
 
 actix-web = { version = "4.0.1", default-features = false, features = [
   "macros",

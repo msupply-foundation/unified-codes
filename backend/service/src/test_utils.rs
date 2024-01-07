@@ -50,7 +50,7 @@ pub fn get_test_settings(db_name: &str) -> Settings {
         },
         dgraph: DgraphSettings {
             port: 8080,
-            host: "localhost".to_string(),
+            host: "http://localhost".to_string(),
         },
         logging: None,
     }

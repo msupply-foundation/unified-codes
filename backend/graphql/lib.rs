@@ -10,7 +10,8 @@ use async_graphql_actix_web::{GraphQLRequest, GraphQLResponse};
 use graphql_core::loader::LoaderRegistry;
 use graphql_core::{refresh_token_from_cookie, RefreshTokenData, SelfRequest};
 use graphql_general::GeneralQueries;
-use graphql_universal_codes::UniversalCodesQueries;
+use graphql_universal_codes::UniversalCodesMutations;
+use graphql_universal_codes_v1::UniversalCodesQueries;
 use graphql_user_account::{UserAccountMutations, UserAccountQueries};
 
 use logger::{RequestLogger, ResponseLogger};
@@ -28,7 +29,7 @@ pub struct FullQuery(
 );
 
 #[derive(MergedObject, Default, Clone)]
-pub struct FullMutation(pub UserAccountMutations);
+pub struct FullMutation(pub UserAccountMutations, pub UniversalCodesMutations);
 
 pub type Schema = async_graphql::Schema<FullQuery, FullMutation, async_graphql::EmptySubscription>;
 type Builder = SchemaBuilder<FullQuery, FullMutation, EmptySubscription>;
@@ -38,7 +39,7 @@ pub fn full_query() -> FullQuery {
 }
 
 pub fn full_mutation() -> FullMutation {
-    FullMutation(UserAccountMutations)
+    FullMutation(UserAccountMutations, UniversalCodesMutations)
 }
 
 pub fn schema_builder() -> Builder {
