@@ -141,6 +141,7 @@
   "label.total-value": "Total Value",
   "label.type": "Type",
   "label.unit": "Unit",
+  "label.update": "Update",
   "label.updated": "Updated",
   "label.upload": "Upload",
   "label.username": "Username",
@@ -197,5 +198,6 @@
   "label.body-template": "Body template",
   "label.parameters": "Parameters",
   "label.reference-name": "Reference Name",
-  "label.notification-type": "Notification Type"
+  "label.notification-type": "Notification Type",
+  "error.required": "{{field}} is required"
 }

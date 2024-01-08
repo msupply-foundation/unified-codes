@@ -51,7 +51,7 @@ export const EntityTreeItem = ({
       }}
       nodeId={entity.code}
       label={
-        <Typography sx={{ height: '26px' }}>
+        <Typography>
           {entity.name}{' '}
           {showCode && (
             <>
@@ -70,7 +70,7 @@ export const EntityTreeItem = ({
       {entity.children?.map(c => (
         <EntityTreeItem entity={c} key={c.code} showAllCodes={showAllCodes} />
       ))}
-      {entity.properties && (
+      {!!entity.properties.length && (
         <TreeItem
           nodeId={entity.code + '_properties'}
           label={t('label.properties')}

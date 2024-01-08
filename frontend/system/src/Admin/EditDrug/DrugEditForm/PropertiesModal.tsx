@@ -13,9 +13,9 @@ import {
   TableProvider,
   Typography,
 } from '@uc-frontend/common';
-import { useUuid } from '../../hooks';
-import { Property } from './types';
-import { config } from '../../config';
+import { useUuid } from '../../../hooks';
+import { Property } from '../types';
+import { config } from '../../../config';
 
 interface PropertiesModalProps {
   isOpen: boolean;
