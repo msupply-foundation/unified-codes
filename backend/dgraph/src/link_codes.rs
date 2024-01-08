@@ -50,6 +50,7 @@ mutation LinkCodes($parent: String!, $child: String!) {
 }
 
 #[cfg(test)]
+#[cfg(feature = "dgraph-tests")]
 mod tests {
 
     use util::uuid::uuid;
