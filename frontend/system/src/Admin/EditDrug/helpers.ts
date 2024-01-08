@@ -1,5 +1,6 @@
 import { UpsertEntityInput } from '@common/types';
 import { DrugInput, EntityDetails } from './types';
+import { EntityCategory, EntityType } from '../../constants';
 
 export const getAllEntityCodes = (
   entity: EntityDetails | undefined
@@ -64,8 +65,8 @@ export const buildEntityFromDrugInput = (
     code: drug.code,
     name: drug.name,
     description: drug.name,
-    type: 'Product',
-    category: 'Drug',
+    type: EntityType.Product,
+    category: EntityCategory.Drug,
     properties: drug.properties?.map(p => ({
       code: p.id,
       key: p.type,
@@ -75,8 +76,8 @@ export const buildEntityFromDrugInput = (
       code: route.code,
       name: route.name,
       description: `${drug.name} ${route.name}`,
-      type: 'form_category',
-      category: 'Drug',
+      type: EntityType.Route,
+      category: EntityCategory.Drug,
       properties: route.properties?.map(p => ({
         code: p.id,
         key: p.type,
@@ -86,8 +87,8 @@ export const buildEntityFromDrugInput = (
         code: form.code,
         name: form.name,
         description: `${drug.name} ${route.name} ${form.name}`,
-        type: 'form',
-        category: 'Drug',
+        type: EntityType.Form,
+        category: EntityCategory.Drug,
         properties: form.properties?.map(p => ({
           code: p.id,
           key: p.type,
@@ -97,8 +98,8 @@ export const buildEntityFromDrugInput = (
           code: strength.code,
           name: strength.name,
           description: `${drug.name} ${route.name} ${form.name} ${strength.name}`,
-          type: 'strength',
-          category: 'Drug',
+          type: EntityType.Strength,
+          category: EntityCategory.Drug,
           properties: strength.properties?.map(p => ({
             code: p.id,
             key: p.type,
@@ -108,8 +109,8 @@ export const buildEntityFromDrugInput = (
             code: unit.code,
             name: unit.name,
             description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name}`,
-            type: 'unit_of_use',
-            category: 'Drug',
+            type: EntityType.Unit,
+            category: EntityCategory.Drug,
             properties: unit.properties?.map(p => ({
               code: p.id,
               key: p.type,
