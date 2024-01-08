@@ -15,6 +15,7 @@ import {
   Navigate,
   Paper,
   useAuthContext,
+  PropsWithChildrenOnly,
 } from '@uc-frontend/common';
 import { AppBar, AppDrawer, Footer, NotFound } from './components';
 import { CommandK } from './CommandK';
@@ -42,63 +43,44 @@ export const Site: FC = () => {
         <Box flex={1} display="flex" flexDirection="column" overflow="hidden">
           <AppBar />
           <Box display="flex" flex={1} overflow="auto" paddingX={'24px'}>
-            <Paper
-              sx={{
-                backgroundColor: 'background.menu',
-                borderRadius: '16px',
-                flex: 1,
-                margin: '10px auto',
-                maxWidth: '1200px',
-                padding: '16px',
-                width: '100%',
-              }}
-            >
-              <Box
-                sx={{
-                  backgroundColor: 'white',
-                  display: 'flex',
-                  borderRadius: '16px',
-                  paddingX: '16px',
-                  height: '100%',
-                  overflow: 'auto',
-                }}
-              >
-                <Routes>
-                  <Route
-                    path={RouteBuilder.create(AppRoute.Browse)
-                      .addWildCard()
-                      .build()}
-                    element={<EntitiesRouter />}
+            <Routes>
+              <Route
+                path={RouteBuilder.create(AppRoute.Browse)
+                  .addWildCard()
+                  .build()}
+                element={
+                  <PageContainer>
+                    <EntitiesRouter />
+                  </PageContainer>
+                }
+              />
+              <Route
+                path={RouteBuilder.create(AppRoute.Admin).addWildCard().build()}
+                element={
+                  <PageContainer>
+                    <RequireAuthentication>
+                      <AdminRouter />
+                    </RequireAuthentication>
+                  </PageContainer>
+                }
+              />
+              <Route
+                path={RouteBuilder.create(AppRoute.Settings)
+                  .addWildCard()
+                  .build()}
+                element={<Settings />}
+              />
+              <Route
+                path={RouteBuilder.create(AppRoute.Home).build()}
+                element={
+                  <Navigate
+                    to={RouteBuilder.create(AppRoute.Browse).build()}
+                    replace={true}
                   />
-                  <Route
-                    path={RouteBuilder.create(AppRoute.Admin)
-                      .addWildCard()
-                      .build()}
-                    element={
-                      <RequireAuthentication>
-                        <AdminRouter />
-                      </RequireAuthentication>
-                    }
-                  />
-                  <Route
-                    path={RouteBuilder.create(AppRoute.Settings)
-                      .addWildCard()
-                      .build()}
-                    element={<Settings />}
-                  />
-                  <Route
-                    path={RouteBuilder.create(AppRoute.Home).build()}
-                    element={
-                      <Navigate
-                        to={RouteBuilder.create(AppRoute.Browse).build()}
-                        replace={true}
-                      />
-                    }
-                  />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Box>
-            </Paper>
+                }
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
           </Box>
           <AppFooter />
           <AppFooterPortal SessionDetails={<Footer />} />
@@ -107,5 +89,34 @@ export const Site: FC = () => {
         <QueryErrorHandler />
       </SnackbarProvider>
     </CommandK>
+  );
+};
+
+const PageContainer = ({ children }: PropsWithChildrenOnly) => {
+  return (
+    <Paper
+      sx={{
+        backgroundColor: 'background.menu',
+        borderRadius: '16px',
+        flex: 1,
+        margin: '10px auto',
+        maxWidth: '1200px',
+        padding: '16px',
+        width: '100%',
+      }}
+    >
+      <Box
+        sx={{
+          backgroundColor: 'white',
+          display: 'flex',
+          borderRadius: '16px',
+          paddingX: '16px',
+          height: '100%',
+          overflow: 'auto',
+        }}
+      >
+        {children}
+      </Box>
+    </Paper>
   );
 };

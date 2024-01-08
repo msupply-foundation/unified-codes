@@ -1,7 +1,7 @@
 import React from 'react';
-import { Routes, Route } from '@uc-frontend/common';
-import { DrugEditForm, EditDrugView } from './EditDrug';
+import { Routes, Route, Navigate } from '@uc-frontend/common';
 import { AppRoute } from 'frontend/config/src';
+import { DrugEditForm, EditDrugView } from './EditDrug';
 import { UserAccountListView } from './Users/ListView';
 import { ConfigurationTabsView } from './Configuration';
 
@@ -17,6 +17,10 @@ const AdminService = () => {
       <Route
         path={`/${AppRoute.Configuration}`}
         element={<ConfigurationTabsView />}
+      />
+      <Route
+        path="*"
+        element={<Navigate to={`/${AppRoute.Browse}`} replace={true} />}
       />
     </Routes>
   );
