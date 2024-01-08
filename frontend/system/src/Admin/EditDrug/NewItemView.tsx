@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from '@common/intl';
 import { TabDefinition, DetailTabs } from '@common/ui';
 import { DrugEditForm } from './DrugEditForm';
+import { VaccineEditForm } from './DrugEditForm/VaccineEditForm';
 
 export const NewItemView = () => {
   const t = useTranslation('system');
@@ -16,7 +17,7 @@ export const NewItemView = () => {
       value: t('label.new-consumable'),
     },
     {
-      Component: <DrugEditForm />,
+      Component: <VaccineEditForm />,
       value: t('label.new-vaccine'),
     },
   ];

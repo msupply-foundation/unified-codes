@@ -10,4 +10,6 @@ export const enum EntityType {
   Form = 'form',
   Strength = 'strength',
   Unit = 'unit_of_use',
+  Component = 'component',
+  Brand = 'brand',
 }

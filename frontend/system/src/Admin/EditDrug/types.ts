@@ -34,3 +34,15 @@ export interface Route extends Entity {
 export interface DrugInput extends Entity {
   routes: Route[];
 }
+
+export interface Brand extends Entity {
+  routes: Route[];
+}
+
+export interface Component extends Entity {
+  brands: Brand[];
+}
+
+export interface VaccineInput extends Entity {
+  components: Component[];
+}
