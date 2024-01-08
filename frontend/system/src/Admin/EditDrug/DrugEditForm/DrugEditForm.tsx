@@ -113,6 +113,7 @@ export const DrugEditForm = ({
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
+            paddingLeft: '10px',
           }}
         >
           <Typography
