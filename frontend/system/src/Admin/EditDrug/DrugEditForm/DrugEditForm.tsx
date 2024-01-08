@@ -57,9 +57,11 @@ export const DrugEditForm = ({
   );
 
   const [propertiesModalState, setPropertiesModalState] = useState<{
+    disabled: boolean;
     title: string;
     entityToUpdate: Entity;
   }>({
+    disabled: true,
     title: draft.name,
     entityToUpdate: draft,
   });
@@ -71,8 +73,13 @@ export const DrugEditForm = ({
     entity: propertiesModalData,
   } = useEditModal<Property[]>();
 
-  const onOpenPropertiesModal = (title: string, entityToUpdate: Entity) => {
+  const onOpenPropertiesModal = (
+    disabled: boolean,
+    title: string,
+    entityToUpdate: Entity
+  ) => {
     setPropertiesModalState({
+      disabled,
       title,
       entityToUpdate,
     });
