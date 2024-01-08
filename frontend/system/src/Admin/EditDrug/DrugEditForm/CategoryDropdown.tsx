@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  DeleteIcon,
-  IconButton,
-  InputAdornment,
-  MenuItem,
-  Option,
-  Select,
-} from '@common/ui';
+import { DeleteIcon, IconButton, MenuItem, Option, Select } from '@common/ui';
 import { useTranslation } from '@common/intl';
 
 export const CategoryDropdown = ({

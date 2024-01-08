@@ -1,14 +1,5 @@
 import { useTranslation } from '@common/intl';
-import {
-  BasicTextInput,
-  Box,
-  Typography,
-  SaveIcon,
-  ButtonWithIcon,
-  InputAdornment,
-  DeleteIcon,
-  IconButton,
-} from '@common/ui';
+import { Box, Typography, SaveIcon, ButtonWithIcon } from '@common/ui';
 import React, { useState } from 'react';
 import { config } from '../../../config';
 import { useUuid } from '../../../hooks';
@@ -113,7 +104,7 @@ export const DrugEditForm = ({
           value={draft.name}
           showDeleteButton={false}
           onChange={e => setDraft({ ...draft, name: e.target.value })}
-          onDelete={e => {
+          onDelete={() => {
             setDraft({ ...draft, name: '' });
           }}
         />
@@ -155,7 +146,7 @@ export const DrugEditForm = ({
               getOptionDisabled={o =>
                 !!draft.routes.find(r => r.name === o.value)
               }
-              onDelete={e => {
+              onDelete={() => {
                 onDelete(route, draft.routes);
               }}
             />
@@ -181,7 +172,7 @@ export const DrugEditForm = ({
                   getOptionDisabled={o =>
                     !!route.forms.find(f => f.name === o.value)
                   }
-                  onDelete={e => {
+                  onDelete={() => {
                     onDelete(form, route.forms);
                   }}
                 />
@@ -207,7 +198,7 @@ export const DrugEditForm = ({
                           form.strengths
                         )
                       }
-                      onDelete={e => {
+                      onDelete={() => {
                         onDelete(strength, form.strengths);
                       }}
                     />
@@ -234,7 +225,7 @@ export const DrugEditForm = ({
                               strength.units
                             )
                           }
-                          onDelete={e => {
+                          onDelete={() => {
                             onDelete(unit, strength.units);
                           }}
                         />

@@ -1,14 +1,11 @@
 import React from 'react';
 import { useTranslation } from '@common/intl';
 import {
-  AngleCircleRightIcon,
   BasicTextInput,
   DeleteIcon,
   IconButton,
   InputAdornment,
-  PlusCircleIcon,
 } from '@common/ui';
-import { Entity } from '../types';
 
 export const NameEditField = ({
   value,
