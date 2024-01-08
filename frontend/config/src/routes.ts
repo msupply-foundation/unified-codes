@@ -12,6 +12,7 @@ export enum AppRoute {
   NewDrug = 'new-drug',
   Configuration = 'configuration',
   Edit = 'edit',
+  PendingChanges = 'pending-changes',
 
   Settings = 'settings',
   Logout = 'logout',
