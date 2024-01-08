@@ -1,13 +1,15 @@
+use std::sync::Arc;
+
 use crate::{
     audit_log::audit_log_entry,
-    service_provider::{self, ServiceContext},
+    service_provider::{ServiceContext, ServiceProvider},
     universal_codes::code_generator::generate_code,
 };
 use chrono::Utc;
 use dgraph::{
     check_description_duplication, entity_by_code, Entity, EntityInput, GraphQLError, PropertyInput,
 };
-use repository::{LogType, RepositoryError, StorageConnection};
+use repository::{LogType, RepositoryError};
 
 use super::properties::PropertyReference;
 
@@ -47,7 +49,8 @@ pub struct UpsertUniversalCode {
 }
 
 pub async fn upsert_entity(
-    // ctx: &ServiceContext,
+    sp: Arc<ServiceProvider>,
+    user_id: String,
     client: dgraph::DgraphClient,
     updated_entity: UpsertUniversalCode,
 ) -> Result<Entity, ModifyUniversalCodeError> {
@@ -82,7 +85,12 @@ pub async fn upsert_entity(
         for child in children {
             // Using spawn_local partly to avoid errors with async recursion
             // https://docs.rs/async-recursion/latest/async_recursion/ would be another approach, but this also gets us some parallelism
-            let result = tokio::task::spawn_local(upsert_entity(client.clone(), child));
+            let result = tokio::task::spawn_local(upsert_entity(
+                sp.clone(),
+                user_id.clone(),
+                client.clone(),
+                child,
+            ));
             child_handles.push(result);
         }
     }
@@ -105,7 +113,7 @@ pub async fn upsert_entity(
     }
 
     // Validate
-    let _original_entity = validate(&client, &updated_entity).await?;
+    let original_entity = validate(&client, &updated_entity).await?;
 
     // Generate
     let entity_input = generate(updated_entity.clone())?;
@@ -142,24 +150,26 @@ pub async fn upsert_entity(
     };
 
     // Audit logging
-    // match original_entity {
-    //     Some(original_entity) => {
-    //         audit_log_entry(
-    //             &ctx,
-    //             LogType::UniversalCodeUpdated,
-    //             Some(original_entity.code),
-    //             Utc::now().naive_utc(),
-    //         )?;
-    //     }
-    //     None => {
-    //         audit_log_entry(
-    //             &ctx,
-    //             LogType::UniversalCodeCreated,
-    //             Some(updated_entity.code.clone()),
-    //             Utc::now().naive_utc(),
-    //         )?;
-    //     }
-    // }
+
+    let service_context = ServiceContext::with_user(sp.clone(), user_id)?;
+    match original_entity {
+        Some(original_entity) => {
+            audit_log_entry(
+                &service_context,
+                LogType::UniversalCodeUpdated,
+                Some(original_entity.code),
+                Utc::now().naive_utc(),
+            )?;
+        }
+        None => {
+            audit_log_entry(
+                &service_context,
+                LogType::UniversalCodeCreated,
+                Some(updated_entity.code.clone()),
+                Utc::now().naive_utc(),
+            )?;
+        }
+    }
 
     Ok(updated_entity)
 }
@@ -224,9 +234,11 @@ pub async fn validate(
         None => None,
     };
 
+    // We're creating a new entity
     if original_entity.is_none() {
-        // Check all the field are filled in fields are not really optional on a new entity
-        if new_entity.name.is_none() {
+        // Check all the field are filled in,  fields are not really optional on a new entity
+
+        if new_entity.name.is_none() || new_entity.name.clone().unwrap_or_default().is_empty() {
             return Err(ModifyUniversalCodeError::InternalError(
                 "Name is required".to_string(),
             ));
@@ -236,17 +248,18 @@ pub async fn validate(
                 "Description is required".to_string(),
             ));
         }
-        if new_entity.r#type.is_none() {
+        if new_entity.r#type.is_none() || new_entity.r#type.clone().unwrap_or_default().is_empty() {
             return Err(ModifyUniversalCodeError::InternalError(
                 "Type is required".to_string(),
             ));
         }
-        if new_entity.category.is_none() {
+        if new_entity.category.is_none()
+            || new_entity.category.clone().unwrap_or_default().is_empty()
+        {
             return Err(ModifyUniversalCodeError::InternalError(
                 "Category is required".to_string(),
             ));
         }
-        // TODO: check the type and category are valid
     }
 
     Ok(original_entity)

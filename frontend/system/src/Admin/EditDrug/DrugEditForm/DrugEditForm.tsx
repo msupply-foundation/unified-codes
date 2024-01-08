@@ -14,6 +14,7 @@ import {
   buildDrugInputFromEntity,
   buildEntityFromDrugInput,
   getAllEntityCodes,
+  isValidDrugInput,
 } from '../helpers';
 import { useAddEntityTree } from 'frontend/system/src/Entities/api';
 import { RouteBuilder, useNavigate } from 'frontend/common/src';
@@ -141,8 +142,23 @@ export const DrugEditForm = ({
           }}
         />
       )}
-
-      <Box sx={{ display: 'flex', alignItems: 'end' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'end',
+          flexDirection: 'row-reverse',
+        }}
+      >
+        <Typography
+          fontSize="12px"
+          fontWeight="700"
+          width="50px"
+          textAlign="center"
+        >
+          {t('label.add-properties')}
+        </Typography>
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'start' }}>
         <NameEditField
           disabled={initialIds.includes(draft.id)}
           value={draft.name}
@@ -161,14 +177,6 @@ export const DrugEditForm = ({
             paddingLeft: '10px',
           }}
         >
-          <Typography
-            fontSize="12px"
-            fontWeight="700"
-            width="50px"
-            textAlign="center"
-          >
-            {t('label.add-properties')}
-          </Typography>
           <EditPropertiesButton
             parents={[]}
             entity={draft}
@@ -334,6 +342,7 @@ export const DrugEditForm = ({
 
       <Box sx={{ display: 'flex', justifyContent: 'end' }}>
         <ButtonWithIcon
+          disabled={!isValidDrugInput(draft)}
           Icon={<SaveIcon />}
           label={t('button.save')}
           onClick={onSubmit}

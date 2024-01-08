@@ -132,3 +132,22 @@ const getDetails = (entity: EntityDetails) => ({
     id: p.code,
   })),
 });
+
+export const isValidDrugInput = (input: DrugInput) => {
+  if (!input.name) return false;
+
+  for (const route of input.routes || []) {
+    if (!route.name) return false;
+    for (const form of route.forms || []) {
+      if (!form.name) return false;
+      for (const strength of form.strengths || []) {
+        if (!strength.name) return false;
+        for (const unit of strength.units || []) {
+          if (!unit.name) return false;
+        }
+      }
+    }
+  }
+
+  return true;
+};
