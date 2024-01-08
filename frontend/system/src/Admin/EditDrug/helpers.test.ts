@@ -1,4 +1,8 @@
-import { buildDrugInputFromEntity, getAllEntityCodes } from './helpers';
+import {
+  buildDrugInputFromEntity,
+  getAllEntityCodes,
+  isValidDrugInput,
+} from './helpers';
 
 describe('getAllEntityCodes', () => {
   it('returns empty array when entity is not defined', () => {
@@ -296,5 +300,87 @@ describe('buildDrugInputFromEntity', () => {
         },
       ],
     });
+  });
+});
+
+describe('isValidDrugInput', () => {
+  it('returns true when drug input is valid', () => {
+    const drugInput = {
+      id: '7c8c2b5b',
+      name: 'Acetic Acid',
+      properties: [],
+      routes: [
+        {
+          id: '6e5f7a00',
+          name: 'Topical',
+          properties: [],
+          forms: [
+            {
+              id: '66e85500',
+              name: 'Solution',
+              properties: [],
+              strengths: [
+                {
+                  id: '36e874bf',
+                  name: '2%',
+                  properties: [],
+                  units: [
+                    {
+                      id: 'e4edcb00',
+                      name: '15mL',
+                      properties: [],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    const result = isValidDrugInput(drugInput);
+
+    expect(result).toBe(true);
+  });
+
+  it('returns false when a field is missing a name', () => {
+    const drugInput = {
+      id: '7c8c2b5b',
+      name: 'Acetic Acid',
+      properties: [],
+      routes: [
+        {
+          id: '6e5f7a00',
+          name: 'Topical',
+          properties: [],
+          forms: [
+            {
+              id: '66e85500',
+              name: 'Solution',
+              properties: [],
+              strengths: [
+                {
+                  id: '36e874bf',
+                  name: '',
+                  properties: [],
+                  units: [
+                    {
+                      id: 'e4edcb00',
+                      name: '15mL',
+                      properties: [],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    const result = isValidDrugInput(drugInput);
+
+    expect(result).toBe(false);
   });
 });
