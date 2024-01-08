@@ -16,7 +16,7 @@ declare global {
 }
 
 const {
-  API_HOST = 'http://localhost:4000/v1',
+  API_HOST = 'http://localhost:4000',
   BUILD_VERSION = '0.0.0',
   BUGSNAG_API_KEY = '',
 } = config ?? {};

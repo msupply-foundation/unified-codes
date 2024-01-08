@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from '@uc-frontend/common';
+import { Routes, Route, Navigate } from '@uc-frontend/common';
 import { DrugEditForm } from './DrugEditForm';
 import { AppRoute } from 'frontend/config/src';
 import { UserAccountListView } from './Users/ListView';
@@ -21,6 +21,10 @@ const AdminService = () => {
       <Route
         path={`/${AppRoute.PendingChanges}`}
         element={<PendingChangesListView />}
+      />
+      <Route
+        path="*"
+        element={<Navigate to={`/${AppRoute.Browse}`} replace={true} />}
       />
     </Routes>
   );

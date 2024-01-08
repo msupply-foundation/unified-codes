@@ -1,13 +1,18 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
+pub mod client;
+pub use client::*;
 pub mod database_settings;
 pub use database_settings::*;
 pub mod entity;
 pub use entity::*;
+pub mod entity_duplication;
+pub use entity_duplication::*;
 pub mod entities;
 pub use entities::*;
-pub mod client;
-pub use client::*;
+pub mod upsert_entity;
+pub use upsert_entity::*;
+
 pub use gql_client::GraphQLError;
 
 // Types to represent the dgraph graphql data
@@ -45,4 +50,17 @@ pub struct Properties {
 #[derive(Deserialize, Debug, Clone, Default)]
 pub struct AggregateResult {
     pub count: u32,
+}
+
+#[derive(Serialize, Debug, Clone, Default)]
+pub struct EntityInput {
+    pub code: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub r#type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub category: Option<String>,
 }
