@@ -13,6 +13,8 @@
   "dependencies": {
     "@uc-frontend/common": "^0.0.1",
     "@uc-frontend/config": "^0.0.0",
+    "fuse.js": "^7.0.0",
+    "match-sorter": "^6.3.1",
     "uuid": "^9.0.1"
   }
 }

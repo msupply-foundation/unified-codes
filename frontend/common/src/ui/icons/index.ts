@@ -63,6 +63,7 @@ export { SidebarIcon } from './Sidebar';
 export { SearchIcon } from './Search';
 export { PersonSearchIcon } from './PersonSearch';
 export { ZapIcon } from './Zap';
+export { NavigateLinkIcon } from './NavigateLink';
 export { RunIcon } from './Run';
 
 type Color =

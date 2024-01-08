@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from '@common/intl';
 import {
   AppBarContentPortal,
@@ -9,6 +9,10 @@ import {
   useColumns,
   SearchToolbar,
   ToggleButton,
+  Box,
+  Typography,
+  Stack,
+  NavigateLinkIcon,
 } from '@common/ui';
 import { useQueryParamsState } from '@common/hooks';
 import { EntityRowFragment, useEntities } from './api';
@@ -16,6 +20,10 @@ import { ToggleButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
+import { matchSorter } from 'match-sorter';
+import Fuse from 'fuse.js';
 
 export const ListView = () => {
   const t = useTranslation('system');
@@ -58,6 +66,34 @@ export const ListView = () => {
     offset,
   });
 
+  const {
+    data: allProducts,
+    isError: allProductsIsError,
+    isLoading: allProductsIsLoading,
+  } = useEntities({
+    filter: {
+      categories: ['drug', 'consumable'],
+      orderBy: {
+        field: sortBy.key,
+        descending: sortBy.isDesc,
+      },
+    },
+    first: 10000,
+    offset,
+  });
+
+  const fuse = new Fuse(allProducts?.data ?? [], {
+    keys: ['description', 'code'],
+  });
+
+  useEffect(() => {
+    if (allProductsIsLoading || allProductsIsError) {
+      return;
+    }
+    const products = allProducts?.data ?? [];
+    fuse.setCollection(products);
+  }, [allProducts]);
+
   const toggleCategory = (category: string) => {
     if (categories.includes(category)) {
       setCategories(categories.filter(c => c !== category));
@@ -75,6 +111,11 @@ export const ListView = () => {
     total: data?.totalLength,
   };
 
+  const filterString = (filter.filterBy?.['search'] as string) || '';
+  let suggestions = matchSorter(allProducts?.data ?? [], filterString, {
+    keys: ['description', 'code'],
+  });
+
   return (
     <TableProvider createStore={createTableStore}>
       <AppBarContentPortal
@@ -87,7 +128,54 @@ export const ListView = () => {
           marginRight: 'max(0px, calc((100vw - 1232px) / 2))',
         }}
       >
-        <SearchToolbar filter={filter} />
+        <Stack>
+          <SearchToolbar filter={filter} />
+
+          <MenuList dense>
+            {filterString &&
+              suggestions.slice(0, 3).map((item, index) => (
+                <MenuItem
+                  key={item.code}
+                  onClick={e =>
+                    navigate(
+                      RouteBuilder.create(AppRoute.Browse)
+                        .addPart(item.code)
+                        .build()
+                    )
+                  }
+                >
+                  {item.description} ({item.code}) <NavigateLinkIcon />
+                </MenuItem>
+              ))}
+          </MenuList>
+        </Stack>
+        <Stack>
+          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+            FUSE
+          </Typography>
+          <MenuList dense>
+            {filterString &&
+              fuse
+                .search(filterString)
+                .slice(0, 3)
+                .map((result, index) => (
+                  <MenuItem
+                    key={result.item.code}
+                    onClick={e =>
+                      navigate(
+                        RouteBuilder.create(AppRoute.Browse)
+                          .addPart(result.item.code)
+                          .build()
+                      )
+                    }
+                  >
+                    {result.item.description} ({result.item.code}){' '}
+                    <NavigateLinkIcon />
+                  </MenuItem>
+                ))}
+          </MenuList>
+        </Stack>
+
         <ToggleButtonGroup>
           <ToggleButton
             label={t('label.drugs')}
