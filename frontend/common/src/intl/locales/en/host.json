@@ -41,7 +41,7 @@
   "messages.password-poor": "Poor",
   "messages.password-weak": "Weak",
   "messages.verify-user-more-details": "We need a few more details to finish setting up your account.",
-  "new-drug": "New Drug",
+  "new-item": "New Item",
   "notifications": "Notifications",
   "password-reset": "Password Reset",
   "password-reset.completed-success": "Success! Your password has been reset, please return to the login page to continue",

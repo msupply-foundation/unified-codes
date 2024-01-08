@@ -9,7 +9,7 @@ import { PendingChangesListView } from './PendingChanges';
 const AdminService = () => {
   return (
     <Routes>
-      <Route path={`/${AppRoute.NewDrug}`} element={<DrugEditForm />} />
+      <Route path={`/${AppRoute.NewItem}`} element={<DrugEditForm />} />
       <Route path={`/${AppRoute.Edit}/:code`} element={<EditDrugView />} />
       <Route
         path={`/${AppRoute.UserAccounts}`}
