@@ -52,6 +52,7 @@
   "label.strength": "Strength",
   "label.strengths": "Strengths",
   "label.vaccine-name": "Vaccine Name",
+  "label.vaccines": "Vaccines",
   "message.code-copied-to-clipboard": "Code {{ code }} copied to clipboard",
   "not-logged-in": "Not logged in",
   "password-reset.initiate": "Initiate Password Reset",
