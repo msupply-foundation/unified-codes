@@ -31,3 +31,4 @@ actix-rt = "2.6.0"
 
 [features]
 email-tests = []
+dgraph-tests = []
