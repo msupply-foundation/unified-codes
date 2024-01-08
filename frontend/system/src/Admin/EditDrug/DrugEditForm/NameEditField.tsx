@@ -1,11 +1,6 @@
 import React from 'react';
 import { useTranslation } from '@common/intl';
-import {
-  BasicTextInput,
-  DeleteIcon,
-  IconButton,
-  InputAdornment,
-} from '@common/ui';
+import { BasicTextInput, DeleteIcon, IconButton } from '@common/ui';
 
 export const NameEditField = ({
   value,
@@ -33,11 +28,6 @@ export const NameEditField = ({
         fullWidth
         error={!value}
         helperText={!value && t('error.required', { field: label })}
-        InputProps={{
-          endAdornment: !disabled && showDeleteButton && (
-            <InputAdornment position="end"></InputAdornment>
-          ),
-        }}
       />
       {!disabled && showDeleteButton && (
         <IconButton
