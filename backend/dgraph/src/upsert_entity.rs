@@ -83,6 +83,7 @@ mutation UpdateEntity($input: [AddEntityInput!]!, $upsert: Boolean = false) {
 }
 
 #[cfg(test)]
+#[cfg(feature = "dgraph-tests")]
 mod tests {
 
     use util::uuid::uuid;

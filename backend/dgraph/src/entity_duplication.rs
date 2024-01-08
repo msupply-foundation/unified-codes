@@ -43,6 +43,7 @@ query DuplicationCheck($code: String!, $name: String!) {
 }
 
 #[cfg(test)]
+#[cfg(feature = "dgraph-tests")]
 mod tests {
 
     use super::*;

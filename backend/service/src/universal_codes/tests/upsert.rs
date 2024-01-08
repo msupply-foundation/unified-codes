@@ -1,4 +1,5 @@
 #[cfg(test)]
+#[cfg(feature = "dgraph-tests")]
 mod universal_codes_upsert_test {
     use repository::{mock::MockDataInserts, test_db::setup_all};
     use std::sync::Arc;

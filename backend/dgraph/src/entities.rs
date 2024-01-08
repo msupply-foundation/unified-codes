@@ -78,6 +78,7 @@ query EntitiesQuery($filter: EntityFilter, $first: Int, $offset: Int, $order: En
 }
 
 #[cfg(test)]
+#[cfg(feature = "dgraph-tests")]
 mod tests {
 
     use std::vec;
