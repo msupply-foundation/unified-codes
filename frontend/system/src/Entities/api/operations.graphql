@@ -1,5 +1,5 @@
 fragment EntityRow on EntityType {
-  id: uid
+  id: code
   type
   description
   code
@@ -10,6 +10,7 @@ fragment EntityDetails on EntityType {
   name
   type
   properties {
+    code
     type
     value
   }
@@ -41,6 +42,15 @@ query entity($code: String!) {
           }
         }
       }
+    }
+  }
+}
+
+mutation addEntityTree($input: UpsertEntityInput!) {
+  upsertEntity(input: $input) {
+    ... on EntityType {
+      __typename
+      code
     }
   }
 }

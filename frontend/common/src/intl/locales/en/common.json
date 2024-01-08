@@ -57,6 +57,8 @@
   "label.any": "Any",
   "label.api-version": "API version:",
   "label.app-version": "App version:",
+  "label.category": "Category",
+  "label.change-type": "Change Type",
   "label.clear-filter": "Clear filter",
   "label.clear-search": "Clear search",
   "label.click-to-sort": "Click to sort by this column",
@@ -69,6 +71,7 @@
   "label.created": "Created",
   "label.date": "Date",
   "label.date-created": "Date Created",
+  "label.date-requested": "Date Requested",
   "label.description": "Description",
   "label.delete": "Delete",
   "label.details": "Details",
@@ -122,6 +125,8 @@
   "label.daily": "Daily",
   "label.weekly": "Weekly",
   "label.monthly": "Monthly",
+  "label.request-for": "Request For",
+  "label.requested-by": "Requested By",
   "label.select": "Select",
   "label.select-all": "Select all",
   "label.selected": "Selected",
@@ -136,6 +141,7 @@
   "label.total-value": "Total Value",
   "label.type": "Type",
   "label.unit": "Unit",
+  "label.update": "Update",
   "label.updated": "Updated",
   "label.upload": "Upload",
   "label.username": "Username",
@@ -192,5 +198,6 @@
   "label.body-template": "Body template",
   "label.parameters": "Parameters",
   "label.reference-name": "Reference Name",
-  "label.notification-type": "Notification Type"
+  "label.notification-type": "Notification Type",
+  "error.required": "{{field}} is required"
 }

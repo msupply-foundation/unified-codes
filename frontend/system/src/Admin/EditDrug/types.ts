@@ -1,20 +1,23 @@
+import { EntityDetailsFragment } from '../../Entities/api/operations.generated';
+
+export interface EntityDetails extends EntityDetailsFragment {
+  children?: EntityDetails[];
+}
 export interface Property {
   id: string;
+  code: string;
   type: string;
   value: string;
 }
 
 export interface Entity {
   id: string;
+  code?: string;
   name: string;
   properties?: Property[];
 }
 
-export interface ImmediatePackaging extends Entity {}
-
-export interface Unit extends Entity {
-  immediatePackagings: ImmediatePackaging[];
-}
+export interface Unit extends Entity {}
 
 export interface Strength extends Entity {
   units: Unit[];

@@ -1,38 +1,58 @@
 import { useTranslation } from '@common/intl';
-import {
-  BasicTextInput,
-  Box,
-  Typography,
-  SaveIcon,
-  ButtonWithIcon,
-} from '@common/ui';
+import { Box, Typography, SaveIcon, ButtonWithIcon } from '@common/ui';
 import React, { useState } from 'react';
-import { config } from '../../config';
-import { useUuid } from '../../hooks';
+import { config } from '../../../config';
+import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
-import { useEditModal } from '@common/hooks';
-import { DrugInput, Entity, Property } from './types';
+import { useEditModal, useNotification } from '@common/hooks';
+import { DrugInput, Entity, EntityDetails, Property } from '../types';
 import { TreeFormBox } from './TreeFormBox';
 import { CategoryDropdown } from './CategoryDropdown';
 import { AddFieldButton } from './AddFieldButton';
 import { EditPropertiesButton } from './EditPropertiesButton';
+import {
+  buildDrugInputFromEntity,
+  buildEntityFromDrugInput,
+  getAllEntityCodes,
+} from '../helpers';
+import { useAddEntityTree } from 'frontend/system/src/Entities/api';
+import { RouteBuilder, useNavigate } from 'frontend/common/src';
+import { AppRoute } from 'frontend/config/src';
+import { AddEntityTreeMutation } from 'frontend/system/src/Entities/api/operations.generated';
+import { NameEditField } from './NameEditField';
 
-export const DrugEditForm = () => {
+export const DrugEditForm = ({
+  initialEntity,
+}: {
+  initialEntity?: EntityDetails;
+}) => {
   const t = useTranslation('system');
+  const navigate = useNavigate();
+
+  const [addEntity, invalidateQueries] = useAddEntityTree();
+  const { success, error } = useNotification();
+
+  const [initialIds] = useState(getAllEntityCodes(initialEntity));
 
   // throwaway ids as a dgraph uid will be assigned when the entity is stored
   const makeThrowawayId = useUuid();
 
-  const [draft, setDraft] = useState<DrugInput>({
-    id: makeThrowawayId(),
-    name: '',
-    routes: [],
-  });
+  const [draft, setDraft] = useState<DrugInput>(
+    initialEntity
+      ? buildDrugInputFromEntity(initialEntity)
+      : {
+          id: makeThrowawayId(),
+          name: '',
+          routes: [],
+        }
+  );
 
   const [propertiesModalState, setPropertiesModalState] = useState<{
+    disabled: boolean;
     title: string;
     entityToUpdate: Entity;
   }>({
+    disabled: true,
     title: draft.name,
     entityToUpdate: draft,
   });
@@ -44,8 +64,13 @@ export const DrugEditForm = () => {
     entity: propertiesModalData,
   } = useEditModal<Property[]>();
 
-  const onOpenPropertiesModal = (title: string, entityToUpdate: Entity) => {
+  const onOpenPropertiesModal = (
+    disabled: boolean,
+    title: string,
+    entityToUpdate: Entity
+  ) => {
     setPropertiesModalState({
+      disabled,
       title,
       entityToUpdate,
     });
@@ -66,8 +91,40 @@ export const DrugEditForm = () => {
     setDraft({ ...draft });
   };
 
+  const onDelete = <T extends Entity>(toDelete: T, list: T[]) => {
+    const indexToDelete = list.findIndex(item => item.id === toDelete.id);
+    if (indexToDelete >= 0) {
+      list.splice(indexToDelete, 1);
+    }
+    setDraft({ ...draft });
+  };
+
   const onSubmit = () => {
-    console.log(draft);
+    // Convert the draft to a UpsertEntityInput type
+    const entity = buildEntityFromDrugInput(draft);
+
+    // Upsert the entity
+    addEntity({ input: entity })
+      .catch(e => {
+        console.error(e);
+      })
+      .then(e => {
+        if (e) {
+          success(
+            t('message.entity-updated', {
+              code: e.upsertEntity.code,
+            })
+          )();
+          invalidateQueries();
+          navigate(
+            RouteBuilder.create(AppRoute.Browse)
+              .addPart(e.upsertEntity.code)
+              .build()
+          );
+        } else {
+          error(t('message.entity-error'))();
+        }
+      });
   };
 
   return (
@@ -86,19 +143,22 @@ export const DrugEditForm = () => {
       )}
 
       <Box sx={{ display: 'flex', alignItems: 'end' }}>
-        <BasicTextInput
-          autoFocus
+        <NameEditField
+          disabled={initialIds.includes(draft.id)}
           value={draft.name}
-          onChange={e => setDraft({ ...draft, name: e.target.value })}
           label={t('label.drug-name')}
-          InputLabelProps={{ shrink: true }}
-          fullWidth
+          showDeleteButton={false}
+          onChange={e => setDraft({ ...draft, name: e.target.value })}
+          onDelete={() => {
+            setDraft({ ...draft, name: '' });
+          }}
         />
         <Box
           sx={{
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
+            paddingLeft: '10px',
           }}
         >
           <Typography
@@ -125,12 +185,16 @@ export const DrugEditForm = () => {
         <TreeFormBox key={route.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <CategoryDropdown
+              disabled={initialIds.includes(route.id)}
               value={route.name}
               options={config.routes}
               onChange={name => onUpdate({ ...route, name }, draft.routes)}
               getOptionDisabled={o =>
                 !!draft.routes.find(r => r.name === o.value)
               }
+              onDelete={() => {
+                onDelete(route, draft.routes);
+              }}
             />
             <EditPropertiesButton
               parents={[draft]}
@@ -147,12 +211,16 @@ export const DrugEditForm = () => {
             <TreeFormBox key={form.id}>
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                 <CategoryDropdown
+                  disabled={initialIds.includes(form.id)}
                   value={form.name}
                   options={config.forms}
                   onChange={name => onUpdate({ ...form, name }, route.forms)}
                   getOptionDisabled={o =>
                     !!route.forms.find(f => f.name === o.value)
                   }
+                  onDelete={() => {
+                    onDelete(form, route.forms);
+                  }}
                 />
                 <EditPropertiesButton
                   parents={[draft, route]}
@@ -167,16 +235,19 @@ export const DrugEditForm = () => {
               {form.strengths.map(strength => (
                 <TreeFormBox key={strength.id}>
                   <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                    <BasicTextInput
-                      autoFocus
+                    <NameEditField
+                      disabled={initialIds.includes(strength.id)}
                       value={strength.name}
+                      label={t('label.strength')}
                       onChange={e =>
                         onUpdate(
                           { ...strength, name: e.target.value },
                           form.strengths
                         )
                       }
-                      fullWidth
+                      onDelete={() => {
+                        onDelete(strength, form.strengths);
+                      }}
                     />
                     <EditPropertiesButton
                       parents={[draft, route, form]}
@@ -192,16 +263,19 @@ export const DrugEditForm = () => {
                   {strength.units.map(unit => (
                     <TreeFormBox key={unit.id}>
                       <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                        <BasicTextInput
-                          autoFocus
+                        <NameEditField
+                          disabled={initialIds.includes(unit.id)}
                           value={unit.name}
+                          label={t('label.unit')}
                           onChange={e =>
                             onUpdate(
                               { ...unit, name: e.target.value },
                               strength.units
                             )
                           }
-                          fullWidth
+                          onDelete={() => {
+                            onDelete(unit, strength.units);
+                          }}
                         />
                         <EditPropertiesButton
                           parents={[draft, route, form, strength]}
@@ -209,49 +283,6 @@ export const DrugEditForm = () => {
                           onOpen={onOpenPropertiesModal}
                         />
                       </Box>
-
-                      {!!unit.immediatePackagings.length && (
-                        <Typography fontSize="12px">
-                          {t('label.immediate-packaging')}
-                        </Typography>
-                      )}
-
-                      {unit.immediatePackagings.map(immPack => (
-                        <TreeFormBox key={immPack.id}>
-                          <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                            <CategoryDropdown
-                              value={immPack.name}
-                              options={config.immediatePackagings}
-                              onChange={name =>
-                                onUpdate(
-                                  { ...immPack, name },
-                                  unit.immediatePackagings
-                                )
-                              }
-                              getOptionDisabled={o =>
-                                !!unit.immediatePackagings.find(
-                                  i => i.name === o.value
-                                )
-                              }
-                            />
-                            <EditPropertiesButton
-                              parents={[draft, route, form, strength, unit]}
-                              entity={immPack}
-                              onOpen={onOpenPropertiesModal}
-                            />
-                          </Box>
-                        </TreeFormBox>
-                      ))}
-
-                      <AddFieldButton
-                        label={t('label.add-immediate-packaging')}
-                        onClick={() =>
-                          onUpdate(
-                            { id: makeThrowawayId(), name: '' },
-                            unit.immediatePackagings
-                          )
-                        }
-                      />
                     </TreeFormBox>
                   ))}
 
@@ -262,7 +293,6 @@ export const DrugEditForm = () => {
                         {
                           id: makeThrowawayId(),
                           name: '',
-                          immediatePackagings: [],
                         },
                         strength.units
                       )

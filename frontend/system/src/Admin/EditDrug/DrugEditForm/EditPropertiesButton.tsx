@@ -1,14 +1,18 @@
 import React from 'react';
 import { useTranslation } from '@common/intl';
 import { AngleCircleRightIcon, IconButton, PlusCircleIcon } from '@common/ui';
-import { Entity } from './types';
+import { Entity } from '../types';
 
 export const EditPropertiesButton = ({
   parents,
   entity,
   onOpen,
 }: {
-  onOpen: (modalTitle: string, entityToUpdate: Entity) => void;
+  onOpen: (
+    disabled: boolean,
+    modalTitle: string,
+    entityToUpdate: Entity
+  ) => void;
   parents: Entity[];
   entity: Entity;
 }) => {
@@ -17,6 +21,7 @@ export const EditPropertiesButton = ({
   const hasProperties = !!entity.properties?.length;
 
   const modalTitle = [...parents, entity].map(e => e.name).join(' - ');
+  const disabled = !!entity.code; // If the entity has a code already, we can't update properties
 
   return (
     <IconButton
@@ -27,7 +32,7 @@ export const EditPropertiesButton = ({
         // move focus away from the button, otherwise keyboard interactions in the modal do strange things
         e.currentTarget.blur();
 
-        onOpen(modalTitle, entity);
+        onOpen(disabled, modalTitle, entity);
       }}
       color="primary"
     />

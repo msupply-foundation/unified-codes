@@ -11,6 +11,8 @@ export enum AppRoute {
   UserAccounts = 'users',
   NewDrug = 'new-drug',
   Configuration = 'configuration',
+  Edit = 'edit',
+  PendingChanges = 'pending-changes',
 
   Settings = 'settings',
   Logout = 'logout',

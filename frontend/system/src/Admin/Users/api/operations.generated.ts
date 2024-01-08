@@ -12,35 +12,35 @@ export type UserAccountsQueryVariables = Types.Exact<{
 }>;
 
 
-export type UserAccountsQuery = { __typename: 'FullQuery', userAccounts: { __typename: 'UserAccountConnector', totalCount: number, nodes: Array<{ __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode> }> } };
+export type UserAccountsQuery = { __typename?: 'FullQuery', userAccounts: { __typename: 'UserAccountConnector', totalCount: number, nodes: Array<{ __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode> }> } };
 
 export type CreateUserAccountMutationVariables = Types.Exact<{
   input: Types.CreateUserAccountInput;
 }>;
 
 
-export type CreateUserAccountMutation = { __typename: 'FullMutation', createUserAccount: { __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode> } };
+export type CreateUserAccountMutation = { __typename?: 'FullMutation', createUserAccount: { __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode> } };
 
 export type InviteUserMutationVariables = Types.Exact<{
   input: Types.InviteUserInput;
 }>;
 
 
-export type InviteUserMutation = { __typename: 'FullMutation', initiateUserInvite: { __typename: 'InviteUserResponseMessage', message: string } };
+export type InviteUserMutation = { __typename?: 'FullMutation', initiateUserInvite: { __typename?: 'InviteUserResponseMessage', message: string } };
 
 export type UpdateUserAccountMutationVariables = Types.Exact<{
   input: Types.UpdateUserAccountInput;
 }>;
 
 
-export type UpdateUserAccountMutation = { __typename: 'FullMutation', updateUserAccount: { __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode> } };
+export type UpdateUserAccountMutation = { __typename?: 'FullMutation', updateUserAccount: { __typename: 'UserAccountNode', id: string, username: string, email?: string | null, displayName: string, permissions: Array<Types.PermissionNode> } };
 
 export type DeleteUserAccountMutationVariables = Types.Exact<{
   input: Types.Scalars['String']['input'];
 }>;
 
 
-export type DeleteUserAccountMutation = { __typename: 'FullMutation', deleteUserAccount: { __typename: 'DeleteResponse', id: string } };
+export type DeleteUserAccountMutation = { __typename?: 'FullMutation', deleteUserAccount: { __typename?: 'DeleteResponse', id: string } };
 
 export type AcceptUserInviteMutationVariables = Types.Exact<{
   input: Types.AcceptUserInviteInput;
@@ -48,7 +48,7 @@ export type AcceptUserInviteMutationVariables = Types.Exact<{
 }>;
 
 
-export type AcceptUserInviteMutation = { __typename: 'FullMutation', acceptUserInvite: { __typename: 'InviteUserResponseMessage', message: string } };
+export type AcceptUserInviteMutation = { __typename?: 'FullMutation', acceptUserInvite: { __typename?: 'InviteUserResponseMessage', message: string } };
 
 export const UserAccountRowFragmentDoc = gql`
     fragment UserAccountRow on UserAccountNode {
