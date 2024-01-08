@@ -9,12 +9,14 @@ import {
 
 export const NameEditField = ({
   value,
+  label,
   disabled,
   showDeleteButton = true,
   onChange,
   onDelete,
 }: {
   value: string;
+  label: string;
   disabled: boolean;
   showDeleteButton?: boolean;
   onChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
@@ -30,7 +32,7 @@ export const NameEditField = ({
         onChange={onChange}
         fullWidth
         error={!value}
-        helperText={!value && t('error.required', { field: 'name' })}
+        helperText={!value && t('error.required', { field: label })}
         InputProps={{
           endAdornment: !disabled && showDeleteButton && (
             <InputAdornment position="end"></InputAdornment>

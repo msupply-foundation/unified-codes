@@ -102,6 +102,7 @@ export const DrugEditForm = ({
         <NameEditField
           disabled={initialIds.includes(draft.id)}
           value={draft.name}
+          label={t('label.drug-name')}
           showDeleteButton={false}
           onChange={e => setDraft({ ...draft, name: e.target.value })}
           onDelete={() => {
@@ -193,6 +194,7 @@ export const DrugEditForm = ({
                     <NameEditField
                       disabled={initialIds.includes(strength.id)}
                       value={strength.name}
+                      label={t('label.strength')}
                       onChange={e =>
                         onUpdate(
                           { ...strength, name: e.target.value },
@@ -220,6 +222,7 @@ export const DrugEditForm = ({
                         <NameEditField
                           disabled={initialIds.includes(unit.id)}
                           value={unit.name}
+                          label={t('label.unit')}
                           onChange={e =>
                             onUpdate(
                               { ...unit, name: e.target.value },
