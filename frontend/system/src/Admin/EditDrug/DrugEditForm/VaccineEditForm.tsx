@@ -427,7 +427,9 @@ export const VaccineEditForm = ({
         }
       />
 
-      <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'end', paddingBottom: '16px' }}
+      >
         <ButtonWithIcon
           disabled={!isValidVaccineInput(draft)}
           Icon={<SaveIcon />}
