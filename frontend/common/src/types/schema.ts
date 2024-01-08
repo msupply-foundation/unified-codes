@@ -140,6 +140,7 @@ export type FullMutation = {
   /** Resets the password for a user based on the password reset token */
   resetPasswordUsingToken: PasswordResetResponse;
   updateUserAccount: UpdateUserAccountResponse;
+  upsertEntity: UpsertEntityResponse;
   /** Validates Password Reset Token */
   validatePasswordResetToken: PasswordResetResponse;
 };
@@ -179,6 +180,11 @@ export type FullMutationResetPasswordUsingTokenArgs = {
 
 export type FullMutationUpdateUserAccountArgs = {
   input: UpdateUserAccountInput;
+};
+
+
+export type FullMutationUpsertEntityArgs = {
+  input: UpsertEntityInput;
 };
 
 
@@ -294,6 +300,8 @@ export type LogNode = {
 };
 
 export enum LogNodeType {
+  UniversalCodeCreated = 'UNIVERSAL_CODE_CREATED',
+  UniversalCodeUpdated = 'UNIVERSAL_CODE_UPDATED',
   UserAccountCreated = 'USER_ACCOUNT_CREATED',
   UserAccountPasswordResetInitiated = 'USER_ACCOUNT_PASSWORD_RESET_INITIATED',
   UserAccountUpdated = 'USER_ACCOUNT_UPDATED',
@@ -373,8 +381,15 @@ export enum PermissionNode {
 
 export type PropertiesType = {
   __typename: 'PropertiesType';
+  code: Scalars['String']['output'];
   type: Scalars['String']['output'];
   value: Scalars['String']['output'];
+};
+
+export type PropertyInput = {
+  code: Scalars['String']['input'];
+  key: Scalars['String']['input'];
+  value: Scalars['String']['input'];
 };
 
 export type RefreshToken = {
@@ -416,6 +431,19 @@ export type UpdateUserAccountInput = {
 };
 
 export type UpdateUserAccountResponse = UserAccountNode;
+
+export type UpsertEntityInput = {
+  category?: InputMaybe<Scalars['String']['input']>;
+  children?: InputMaybe<Array<UpsertEntityInput>>;
+  code?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  parentCode?: InputMaybe<Scalars['String']['input']>;
+  properties?: InputMaybe<Array<PropertyInput>>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpsertEntityResponse = EntityType;
 
 export type UserAccountConnector = {
   __typename: 'UserAccountConnector';

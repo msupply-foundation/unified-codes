@@ -117,26 +117,31 @@ describe('buildDrugInputFromEntity', () => {
 
     expect(result).toEqual({
       id: '7c8c2b5b',
+      code: '7c8c2b5b',
       name: 'Acetic Acid',
       properties: [],
       routes: [
         {
           id: '6e5f7a00',
+          code: '6e5f7a00',
           name: 'Topical',
           properties: [],
           forms: [
             {
               id: '66e85500',
+              code: '66e85500',
               name: 'Solution',
               properties: [],
               strengths: [
                 {
                   id: '36e874bf',
+                  code: '36e874bf',
                   name: '2%',
                   properties: [],
                   units: [
                     {
                       id: 'e4edcb00',
+                      code: 'e4edcb00',
                       name: '15mL',
                       properties: [],
                       immediatePackagings: [],
@@ -153,19 +158,38 @@ describe('buildDrugInputFromEntity', () => {
 
   it('includes properties', () => {
     const entityDetails = {
+      id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
       properties: [
-        { type: 'who_eml', value: '28' },
-        { type: 'code_unspsc', value: '51471602' },
+        {
+          id: '7c8c2b5b_who_eml',
+          code: '7c8c2b5b_who_eml',
+          type: 'who_eml',
+          value: '28',
+        },
+        {
+          id: '7c8c2b5b_code_unspsc',
+          code: '7c8c2b5b_code_unspsc',
+          type: 'code_unspsc',
+          value: '51471602',
+        },
       ],
       children: [
         {
+          id: '6e5f7a00',
           code: '6e5f7a00',
           name: 'Topical',
           type: 'form_category',
-          properties: [{ type: 'code_rxnav', value: '168' }],
+          properties: [
+            {
+              id: '6e5f7a00_code_rxnav',
+              code: '6e5f7a00_code_rxnav',
+              type: 'code_rxnav',
+              value: '168',
+            },
+          ],
           children: [],
         },
       ],
@@ -175,17 +199,34 @@ describe('buildDrugInputFromEntity', () => {
 
     expect(result).toEqual({
       id: '7c8c2b5b',
+      code: '7c8c2b5b',
       name: 'Acetic Acid',
       properties: [
-        { id: '7c8c2b5b_who_eml', type: 'who_eml', value: '28' },
-        { id: '7c8c2b5b_code_unspsc', type: 'code_unspsc', value: '51471602' },
+        {
+          id: '7c8c2b5b_who_eml',
+          code: '7c8c2b5b_who_eml',
+          type: 'who_eml',
+          value: '28',
+        },
+        {
+          id: '7c8c2b5b_code_unspsc',
+          code: '7c8c2b5b_code_unspsc',
+          type: 'code_unspsc',
+          value: '51471602',
+        },
       ],
       routes: [
         {
           id: '6e5f7a00',
+          code: '6e5f7a00',
           name: 'Topical',
           properties: [
-            { id: '6e5f7a00_code_rxnav', type: 'code_rxnav', value: '168' },
+            {
+              id: '6e5f7a00_code_rxnav',
+              code: '6e5f7a00_code_rxnav',
+              type: 'code_rxnav',
+              value: '168',
+            },
           ],
           forms: [],
         },
@@ -234,16 +275,19 @@ describe('buildDrugInputFromEntity', () => {
 
     expect(result).toEqual({
       id: '7c8c2b5b',
+      code: '7c8c2b5b',
       name: 'Acetic Acid',
       properties: [],
       routes: [
         {
           id: '6e5f7a00',
+          code: '6e5f7a00',
           name: 'Topical',
           properties: [],
           forms: [
             {
               id: '66e85500',
+              code: '66e85500',
               name: 'Solution',
               properties: [],
               strengths: [],

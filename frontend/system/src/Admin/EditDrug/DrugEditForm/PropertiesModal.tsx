@@ -19,6 +19,7 @@ import { config } from '../../../config';
 
 interface PropertiesModalProps {
   isOpen: boolean;
+  disabled?: boolean;
   onClose: () => void;
   onSave: (newProperties: Property[]) => void;
   title: string;
@@ -28,6 +29,7 @@ interface PropertiesModalProps {
 export const PropertiesModal = ({
   isOpen,
   title,
+  disabled,
   onClose,
   onSave,
   data,
@@ -41,6 +43,7 @@ export const PropertiesModal = ({
       return {
         // just a throwaway id... a dgraph uid will be assigned when the property is stored
         id: existing ? existing.id : uuid(),
+        code: existing ? existing.code : '',
         value: existing ? existing.value : '',
         label: config.label,
         type: config.type,
@@ -71,6 +74,7 @@ export const PropertiesModal = ({
       sortable: false,
       Cell: ({ rowData }) => (
         <BasicTextInput
+          disabled={disabled}
           fullWidth
           value={rowData.value}
           required

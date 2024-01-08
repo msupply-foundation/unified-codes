@@ -11,4 +11,4 @@ serde = {version = "1.0.126", features = ["derive"]}
 tokio = {version = "1", features = ["full"]}
 gql_client = "1.0.7"
 util = {path = "../util"}
-
+log = "0.4.14"

@@ -1,4 +1,6 @@
+import { UpsertEntityInput } from '@common/types';
 import { DrugInput, EntityDetails } from './types';
+import { EntityCategory, EntityType } from '../../constants';
 
 export const getAllEntityCodes = (
   entity: EntityDetails | undefined
@@ -55,11 +57,78 @@ export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
   };
 };
 
+export const buildEntityFromDrugInput = (
+  drug: DrugInput
+): UpsertEntityInput => {
+  return {
+    parentCode: '933f3f00', // Drug parent code
+    code: drug.code,
+    name: drug.name,
+    description: drug.name,
+    type: EntityType.Product,
+    category: EntityCategory.Drug,
+    properties: drug.properties?.map(p => ({
+      code: p.id,
+      key: p.type,
+      value: p.value,
+    })),
+    children: drug.routes?.map(route => ({
+      code: route.code,
+      name: route.name,
+      description: `${drug.name} ${route.name}`,
+      type: EntityType.Route,
+      category: EntityCategory.Drug,
+      properties: route.properties?.map(p => ({
+        code: p.id,
+        key: p.type,
+        value: p.value,
+      })),
+      children: route.forms?.map(form => ({
+        code: form.code,
+        name: form.name,
+        description: `${drug.name} ${route.name} ${form.name}`,
+        type: EntityType.Form,
+        category: EntityCategory.Drug,
+        properties: form.properties?.map(p => ({
+          code: p.id,
+          key: p.type,
+          value: p.value,
+        })),
+        children: form.strengths?.map(strength => ({
+          code: strength.code,
+          name: strength.name,
+          description: `${drug.name} ${route.name} ${form.name} ${strength.name}`,
+          type: EntityType.Strength,
+          category: EntityCategory.Drug,
+          properties: strength.properties?.map(p => ({
+            code: p.id,
+            key: p.type,
+            value: p.value,
+          })),
+          children: strength.units?.map(unit => ({
+            code: unit.code,
+            name: unit.name,
+            description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name}`,
+            type: EntityType.Unit,
+            category: EntityCategory.Drug,
+            properties: unit.properties?.map(p => ({
+              code: p.id,
+              key: p.type,
+              value: p.value,
+            })),
+          })),
+        })),
+      })),
+    })),
+  };
+};
+
 const getDetails = (entity: EntityDetails) => ({
   id: entity.code,
+  code: entity.code,
   name: entity.name,
   properties: entity.properties.map(p => ({
     ...p,
-    id: `${entity.code}_${p.type}`,
+    id: p.code,
   })),
 });
