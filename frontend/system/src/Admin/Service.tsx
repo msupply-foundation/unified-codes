@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from '@uc-frontend/common';
 import { AppRoute } from 'frontend/config/src';
-import { DrugEditForm, EditDrugView } from './EditDrug';
+import { EditDrugView, NewItemView } from './EditDrug';
 import { UserAccountListView } from './Users/ListView';
 import { ConfigurationTabsView } from './Configuration';
 import { PendingChangesListView } from './PendingChanges';
@@ -9,7 +9,7 @@ import { PendingChangesListView } from './PendingChanges';
 const AdminService = () => {
   return (
     <Routes>
-      <Route path={`/${AppRoute.NewItem}`} element={<DrugEditForm />} />
+      <Route path={`/${AppRoute.NewItem}`} element={<NewItemView />} />
       <Route path={`/${AppRoute.Edit}/:code`} element={<EditDrugView />} />
       <Route
         path={`/${AppRoute.UserAccounts}`}
