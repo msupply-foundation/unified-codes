@@ -61,7 +61,10 @@ export const ListView = () => {
 
   const toggleCategory = (category: string) => {
     if (categories.includes(category)) {
-      setCategories(categories.filter(c => c !== category));
+      // only remove category filter if other categories are also selected
+      if (categories.length > 1) {
+        setCategories(categories.filter(c => c !== category));
+      }
     } else {
       setCategories([...categories, category]);
     }
