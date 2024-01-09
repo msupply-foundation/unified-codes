@@ -2,7 +2,7 @@ import React from 'react';
 import { LocaleKey, useTranslation } from '@common/intl';
 import { CopyIcon, FlatButton } from '@common/ui';
 import { useNotification } from '@common/hooks';
-import { Link, Typography } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { EntityDetailsFragment } from './api/operations.generated';
 import { config } from '../config';
@@ -51,7 +51,7 @@ export const EntityTreeItem = ({
       }}
       nodeId={entity.code}
       label={
-        <Typography>
+        <Box>
           {/* show node type above name */}
           {!isRoot && (
             <Typography
@@ -75,7 +75,7 @@ export const EntityTreeItem = ({
               />
             </>
           )}
-        </Typography>
+        </Box>
       }
     >
       {entity.children?.map(c => (
