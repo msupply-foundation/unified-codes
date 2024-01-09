@@ -83,6 +83,7 @@ export const EntityDetails = () => {
 
       {hasPermission(PermissionNode.ServerAdmin) && (
         <Link
+          style={{ height: 'fit-content' }}
           to={RouteBuilder.create(AppRoute.Admin)
             .addPart(AppRoute.Edit)
             .addPart(entity?.code ?? '')
