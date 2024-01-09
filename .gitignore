@@ -1,5 +1,3 @@
-nx-workspace/apps/web/.local.env
-
 .vscode/*
 # Logs
 logs

@@ -25,20 +25,13 @@ The test framework is jest; functional areas are separated into packages and man
 
 1. Start the frontend: `yarn start-frontend`
 
-For the old frontend:
-
-1. From the `unified-codes/unified-codes` directory:
-2. Run web server: `npx nx serve web`
-   1. If using Node >v16, you'll need the to use the openssl legacy provider: `NODE_OPTIONS=--openssl-legacy-provider npx nx serve web`
-3. Browse web at http://localhost:4200/
-
 ## Testing
 
 - Unit tests across frontend and the backend:
   - `yarn test`
 - Test frontend:
   - `yarn test-frontend`
-- Test data-service (unit tests):
+- Test backend (unit tests):
   - `yarn test-backend`
 - Integration tests:
   - `yarn test-integration`
