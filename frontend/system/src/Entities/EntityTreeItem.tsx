@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from '@common/intl';
+import { LocaleKey, useTranslation } from '@common/intl';
 import { CopyIcon, FlatButton } from '@common/ui';
 import { useNotification } from '@common/hooks';
 import { Link, Typography } from '@mui/material';
@@ -52,6 +52,17 @@ export const EntityTreeItem = ({
       nodeId={entity.code}
       label={
         <Typography>
+          {/* show node type above name */}
+          {!isRoot && (
+            <Typography
+              sx={{
+                color: '#898989',
+                fontSize: '10px',
+              }}
+            >
+              {t(`entity-type.${entity.type}` as LocaleKey)}
+            </Typography>
+          )}
           {entity.name}{' '}
           {showCode && (
             <>
