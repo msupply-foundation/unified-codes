@@ -261,6 +261,18 @@ export const buildEntityFromVaccineInput = (
                   key: p.type,
                   value: p.value,
                 })),
+                children: unit.immediatePackagings?.map(immPack => ({
+                  code: immPack.code,
+                  name: immPack.name,
+                  description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name} ${strength.name} ${unit.name} ${immPack.name}`,
+                  type: EntityType.ImmediatePackaging,
+                  category: EntityCategory.Vaccine,
+                  properties: immPack.properties?.map(p => ({
+                    code: p.id,
+                    key: p.type,
+                    value: p.value,
+                  })),
+                })),
               })),
             })),
           })),
