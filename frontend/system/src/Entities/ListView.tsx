@@ -16,7 +16,6 @@ import { ToggleButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
-import { EntityCategory } from '../constants';
 
 export const ListView = () => {
   const t = useTranslation('system');
@@ -109,13 +108,12 @@ export const ListView = () => {
               toggleCategory('consumable');
             }}
           />
-          {/* TODO: entity category or string?? */}
           <ToggleButton
             label={t('label.vaccines')}
-            value={EntityCategory.Vaccine}
-            selected={categories.includes(EntityCategory.Vaccine)}
+            value={'vaccine'}
+            selected={categories.includes('vaccine')}
             onClick={() => {
-              toggleCategory(EntityCategory.Vaccine);
+              toggleCategory('vaccine');
             }}
           />
         </ToggleButtonGroup>

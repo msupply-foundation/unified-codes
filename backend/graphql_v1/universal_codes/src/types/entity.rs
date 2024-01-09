@@ -134,6 +134,9 @@ fn get_type_for_entity(entity: &EntityType) -> &str {
                 if parent.description == "Consumable" {
                     return "consumable";
                 }
+                if parent.description == "Vaccine" {
+                    return "vaccine";
+                }
                 if parent.description == "Other" {
                     return "other";
                 }
@@ -313,5 +316,30 @@ mod test {
             get_type_for_entity(&EntityType::from_domain(entity)),
             "unit_of_use"
         );
+
+        // 6. Test a Vaccine
+        let entity = Entity {
+            id: "0x1".to_string(),
+            code: "af482fa09".to_string(),
+            name: "COVID-19 Vaccine".to_string(),
+            description: "COVID-19 Vaccine".to_string(),
+            r#type: "Product".to_string(),
+            properties: vec![],
+            children: vec![],
+            parents: vec![Entity {
+                id: "0x2".to_string(),
+                code: "5048e0ad".to_string(),
+                name: "Vaccine".to_string(),
+                description: "Vaccine".to_string(),
+                r#type: "Category".to_string(),
+                properties: vec![],
+                children: vec![],
+                parents: vec![],
+            }],
+        };
+        let entity_type = EntityType::from_domain(entity);
+
+        let t = get_type_for_entity(&entity_type);
+        assert_eq!(t, "vaccine");
     }
 }
