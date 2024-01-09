@@ -19,7 +19,6 @@ import {
 import { useAddEntityTree } from 'frontend/system/src/Entities/api';
 import { RouteBuilder, useNavigate } from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
-import { AddEntityTreeMutation } from 'frontend/system/src/Entities/api/operations.generated';
 import { NameEditField } from './NameEditField';
 
 export const DrugEditForm = ({
@@ -301,6 +300,7 @@ export const DrugEditForm = ({
                         {
                           id: makeThrowawayId(),
                           name: '',
+                          immediatePackagings: [],
                         },
                         strength.units
                       )
@@ -340,7 +340,9 @@ export const DrugEditForm = ({
         }
       />
 
-      <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'end', paddingBottom: '16px' }}
+      >
         <ButtonWithIcon
           disabled={!isValidDrugInput(draft)}
           Icon={<SaveIcon />}

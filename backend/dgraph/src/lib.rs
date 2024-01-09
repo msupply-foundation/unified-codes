@@ -33,7 +33,7 @@ where
     Deserialize::deserialize(d).map(|x: Option<_>| x.unwrap_or_else(|| "".to_string()))
 }
 
-#[derive(Deserialize, Debug, Clone)]
+#[derive(Deserialize, Debug, Clone, Default)]
 pub struct Entity {
     #[serde(default)]
     pub id: String,
@@ -47,6 +47,9 @@ pub struct Entity {
     #[serde(default)]
     #[serde(deserialize_with = "null_as_empty_string")]
     pub r#type: String,
+    #[serde(default)]
+    #[serde(deserialize_with = "null_as_empty_string")]
+    pub category: String,
     #[serde(default)]
     pub properties: Vec<Property>,
     #[serde(default)]

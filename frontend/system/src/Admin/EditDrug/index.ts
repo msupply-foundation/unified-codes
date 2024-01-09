@@ -1,2 +1,2 @@
-export * from './DrugEditForm';
 export * from './EditDrugView';
+export * from './NewItemView';
