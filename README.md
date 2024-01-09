@@ -38,7 +38,7 @@ For the old frontend:
   - `yarn test`
 - Test frontend:
   - `yarn test-frontend`
-- Test data-service (unit tests):
+- Test backend (unit tests):
   - `yarn test-backend`
 - Integration tests:
   - `yarn test-integration`
