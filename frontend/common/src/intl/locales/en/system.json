@@ -8,6 +8,7 @@
   "entity-type.form_category": "Route",
   "entity-type.form_qualifier": "Form Qualifier",
   "entity-type.PackImmediate": "Immediate Packaging",
+  "entity-type.PackSize": "Pack Size",
   "entity-type.strength": "Strength",
   "entity-type.unit_of_use": "Unit",
   "error.email-invalid": "Invalid email",
