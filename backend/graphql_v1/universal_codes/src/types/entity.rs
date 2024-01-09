@@ -11,6 +11,7 @@ pub struct EntityType {
     pub name: String,
     pub description: String,
     pub r#type: String,
+    pub category: String,
     pub properties: Vec<PropertiesType>,
     pub children: Vec<EntityType>,
     pub parents: Vec<EntityType>,
@@ -24,6 +25,7 @@ impl EntityType {
             name: entity.name,
             description: entity.description,
             r#type: entity.r#type,
+            category: entity.category,
             properties: PropertiesType::from_domain(entity.properties),
             children: entity
                 .children
@@ -140,10 +142,10 @@ fn get_type_for_entity(entity: &EntityType) -> &str {
                 if parent.description == "Other" {
                     return "other";
                 }
-                return &entity.r#type;
+                return &entity.category; // Maybe a new category, or we're at a lower level in the tree somehow?
             }
             None => {
-                return "Unknown"; // There's no parent???
+                return &entity.category; // Product with no parent, we use the category as the type
             }
         },
         "Route" => return "form_category",
@@ -181,7 +183,9 @@ mod test {
                 properties: vec![],
                 children: vec![],
                 parents: vec![],
+                ..Default::default()
             }],
+            ..Default::default()
         };
         let entity_type = EntityType::from_domain(entity);
 
@@ -206,7 +210,9 @@ mod test {
                 properties: vec![],
                 children: vec![],
                 parents: vec![],
+                ..Default::default()
             }],
+            ..Default::default()
         };
         let entity_type = EntityType::from_domain(entity);
 
@@ -231,7 +237,9 @@ mod test {
                 properties: vec![],
                 children: vec![],
                 parents: vec![],
+                ..Default::default()
             }],
+            ..Default::default()
         };
         let entity_type = EntityType::from_domain(entity);
 
@@ -264,8 +272,11 @@ mod test {
                     properties: vec![],
                     children: vec![],
                     parents: vec![],
+                    ..Default::default()
                 }],
+                ..Default::default()
             }],
+            ..Default::default()
         };
 
         assert_eq!(
@@ -308,9 +319,13 @@ mod test {
                         properties: vec![],
                         children: vec![],
                         parents: vec![],
+                        ..Default::default()
                     }],
+                    ..Default::default()
                 }],
+                ..Default::default()
             }],
+            ..Default::default()
         };
         assert_eq!(
             get_type_for_entity(&EntityType::from_domain(entity)),
@@ -335,7 +350,9 @@ mod test {
                 properties: vec![],
                 children: vec![],
                 parents: vec![],
+                ..Default::default()
             }],
+            ..Default::default()
         };
         let entity_type = EntityType::from_domain(entity);
 
