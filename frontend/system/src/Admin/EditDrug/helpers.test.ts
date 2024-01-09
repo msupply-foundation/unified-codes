@@ -5,6 +5,7 @@ import {
   isValidDrugInput,
   isValidVaccineInput,
 } from './helpers';
+import { DrugInput, VaccineInput } from './types';
 
 describe('getAllEntityCodes', () => {
   it('returns empty array when entity is not defined', () => {
@@ -355,6 +356,14 @@ describe('buildVaccineInputFromEntity', () => {
                               name: '0.5mL',
                               type: 'unit_of_use',
                               properties: [],
+                              children: [
+                                {
+                                  code: 'x4edcb00',
+                                  name: 'Ampoule',
+                                  type: 'PackImmediate',
+                                  properties: [],
+                                },
+                              ],
                             },
                           ],
                         },
@@ -419,6 +428,14 @@ describe('buildVaccineInputFromEntity', () => {
                               code: 'e4edcb00',
                               name: '0.5mL',
                               properties: [],
+                              immediatePackagings: [
+                                {
+                                  id: 'x4edcb00',
+                                  code: 'x4edcb00',
+                                  name: 'Ampoule',
+                                  properties: [],
+                                },
+                              ],
                             },
                           ],
                         },
@@ -513,7 +530,7 @@ describe('buildVaccineInputFromEntity', () => {
 
 describe('isValidDrugInput', () => {
   it('returns true when drug input is valid', () => {
-    const drugInput = {
+    const drugInput: DrugInput = {
       id: '7c8c2b5b',
       name: 'Acetic Acid',
       properties: [],
@@ -537,6 +554,7 @@ describe('isValidDrugInput', () => {
                       id: 'e4edcb00',
                       name: '15mL',
                       properties: [],
+                      immediatePackagings: [],
                     },
                   ],
                 },
@@ -553,7 +571,7 @@ describe('isValidDrugInput', () => {
   });
 
   it('returns false when a field is missing a name', () => {
-    const drugInput = {
+    const drugInput: DrugInput = {
       id: '7c8c2b5b',
       name: 'Acetic Acid',
       properties: [],
@@ -577,6 +595,7 @@ describe('isValidDrugInput', () => {
                       id: 'e4edcb00',
                       name: '15mL',
                       properties: [],
+                      immediatePackagings: [],
                     },
                   ],
                 },
@@ -595,7 +614,7 @@ describe('isValidDrugInput', () => {
 
 describe('isValidVaccineInput', () => {
   it('returns true when vaccine input is valid', () => {
-    const vaccineInput = {
+    const vaccineInput: VaccineInput = {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
@@ -629,6 +648,7 @@ describe('isValidVaccineInput', () => {
                               id: 'e4edcb00',
                               name: '0.5mL',
                               properties: [],
+                              immediatePackagings: [],
                             },
                           ],
                         },

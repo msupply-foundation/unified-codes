@@ -146,20 +146,32 @@ export const buildVaccineInputFromEntity = (
                       ...getDetails(route),
                       forms:
                         route.children
-                          ?.filter(route => route.type === 'form')
+                          ?.filter(form => form.type === 'form')
                           .map(form => ({
                             ...getDetails(form),
                             strengths:
                               form.children
-                                ?.filter(route => route.type === 'strength')
+                                ?.filter(
+                                  strength => strength.type === 'strength'
+                                )
                                 .map(strength => ({
                                   ...getDetails(strength),
                                   units:
                                     strength.children
                                       ?.filter(
-                                        route => route.type === 'unit_of_use'
+                                        unit => unit.type === 'unit_of_use'
                                       )
-                                      .map(unit => getDetails(unit)) || [],
+                                      .map(unit => ({
+                                        ...getDetails(unit),
+                                        immediatePackagings:
+                                          unit.children
+                                            ?.filter(
+                                              immPack =>
+                                                immPack.type === 'PackImmediate'
+                                            )
+                                            .map(unit => getDetails(unit)) ||
+                                          [],
+                                      })) || [],
                                 })) || [],
                           })) || [],
                     })) || [],

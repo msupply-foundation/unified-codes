@@ -300,6 +300,7 @@ export const DrugEditForm = ({
                         {
                           id: makeThrowawayId(),
                           name: '',
+                          immediatePackagings: [],
                         },
                         strength.units
                       )

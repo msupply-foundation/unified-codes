@@ -351,6 +351,68 @@ export const VaccineEditForm = ({
                                   onOpen={onOpenPropertiesModal}
                                 />
                               </Box>
+
+                              {!!unit.immediatePackagings.length && (
+                                <Typography fontSize="12px">
+                                  {t('label.immediate-packaging')}
+                                </Typography>
+                              )}
+
+                              {unit.immediatePackagings.map(immPack => (
+                                <TreeFormBox key={immPack.id}>
+                                  <Box
+                                    sx={{ display: 'flex', alignItems: 'end' }}
+                                  >
+                                    <CategoryDropdown
+                                      disabled={initialIds.includes(immPack.id)}
+                                      value={immPack.name}
+                                      options={config.immediatePackagings}
+                                      onChange={name =>
+                                        onUpdate(
+                                          { ...immPack, name },
+                                          unit.immediatePackagings
+                                        )
+                                      }
+                                      getOptionDisabled={o =>
+                                        !!unit.immediatePackagings.find(
+                                          i => i.name === o.value
+                                        )
+                                      }
+                                      onDelete={() =>
+                                        onDelete(
+                                          immPack,
+                                          unit.immediatePackagings
+                                        )
+                                      }
+                                    />
+                                    <EditPropertiesButton
+                                      parents={[
+                                        draft,
+                                        component,
+                                        brand,
+                                        route,
+                                        form,
+                                        strength,
+                                        unit,
+                                      ]}
+                                      entity={immPack}
+                                      onOpen={onOpenPropertiesModal}
+                                    />
+                                  </Box>
+                                </TreeFormBox>
+                              ))}
+                              <AddFieldButton
+                                label={t('label.add-immediate-packaging')}
+                                onClick={() =>
+                                  onUpdate(
+                                    {
+                                      id: makeThrowawayId(),
+                                      name: '',
+                                    },
+                                    unit.immediatePackagings
+                                  )
+                                }
+                              />
                             </TreeFormBox>
                           ))}
 
@@ -361,6 +423,7 @@ export const VaccineEditForm = ({
                                 {
                                   id: makeThrowawayId(),
                                   name: '',
+                                  immediatePackagings: [],
                                 },
                                 strength.units
                               )
