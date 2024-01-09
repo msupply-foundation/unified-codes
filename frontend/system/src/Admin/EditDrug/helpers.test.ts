@@ -433,6 +433,82 @@ describe('buildVaccineInputFromEntity', () => {
       ],
     });
   });
+
+  // TODO: decide on/update this:
+  // for now we'll just ignore nodes that show up at strange levels, until we decide whether/where we
+  // support breaking the hierarchy structure
+  it('only includes children in the result if they are for the correct level of the hierarchy', () => {
+    const entityDetails = {
+      code: '7c8c2b5b',
+      name: 'Some Vaccine',
+      type: 'Vaccine',
+      properties: [],
+      children: [
+        {
+          code: '7e5f7a00',
+          name: 'Component 1/Component 2',
+          type: 'component',
+          properties: [],
+          children: [
+            {
+              code: '86e85500',
+              name: 'Brand 1',
+              type: 'brand',
+              properties: [],
+              children: [
+                {
+                  code: '6e5f7a00',
+                  name: 'Intramuscular',
+                  type: 'form_category', // include: valid child
+                  properties: [],
+                },
+                {
+                  code: 'e4edcb00',
+                  name: '0.5mL',
+                  type: 'unit_of_use', // exclude: invalid (should be deeper in the tree)
+                  properties: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    const result = buildVaccineInputFromEntity(entityDetails);
+
+    expect(result).toEqual({
+      id: '7c8c2b5b',
+      code: '7c8c2b5b',
+      name: 'Some Vaccine',
+      properties: [],
+      components: [
+        {
+          id: '7e5f7a00',
+          code: '7e5f7a00',
+          name: 'Component 1/Component 2',
+          properties: [],
+          brands: [
+            {
+              id: '86e85500',
+              code: '86e85500',
+              name: 'Brand 1',
+              properties: [],
+              routes: [
+                {
+                  id: '6e5f7a00',
+                  code: '6e5f7a00',
+                  name: 'Intramuscular',
+                  properties: [],
+                  forms: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+  });
 });
 
 describe('isValidDrugInput', () => {
