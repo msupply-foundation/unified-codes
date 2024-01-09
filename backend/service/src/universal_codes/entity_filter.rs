@@ -63,6 +63,7 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
                     "other" => "Product".to_string(), // These first four are represented by the same type in dGraph, we map back on queries
                     "Drug" => "Product".to_string(),
                     "Consumable" => "Product".to_string(),
+                    "Vaccine" => "Product".to_string(),
                     "Other" => "Product".to_string(), // Uppercase versions of the above
                     "form_category" => "Route".to_string(),
                     "form" => "Form".to_string(),
