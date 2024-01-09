@@ -38,6 +38,12 @@ query entity($code: String!) {
             ...EntityDetails
             children {
               ...EntityDetails
+              children {
+                ...EntityDetails
+                children {
+                  ...EntityDetails
+                }
+              }
             }
           }
         }
