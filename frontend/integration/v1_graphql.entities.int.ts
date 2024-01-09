@@ -4,10 +4,8 @@
  * @group integration
  */
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const crossFetch = require('cross-fetch');
+import crossFetch from 'cross-fetch';
 
-// const url = 'http://localhost:4000/v1/graphql';
 const url = 'http://localhost:4007/v1/graphql';
 // const url = 'https://codes.msupply.foundation:2048/v1/graphql';
 
@@ -43,6 +41,12 @@ test('Web UI Search - ace', () => {
     },
   };
 
+  type TestResultEntity = {
+    code: string;
+    description: string;
+    type: string;
+  };
+
   return crossFetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -62,18 +66,18 @@ test('Web UI Search - ace', () => {
     .then(res => res.json())
     .then(res => {
       expect(res.data.entities.data.length).toBeGreaterThan(3);
-      expect(res.data.entities.data.map(entity => entity.code)).toContain(
-        '33d71824'
-      );
-      expect(res.data.entities.data.map(entity => entity.code)).toContain(
-        '7c8c2b5b'
-      );
-      expect(res.data.entities.data.map(entity => entity.code)).toContain(
-        'c8ba31a5'
-      );
-      expect(res.data.entities.data.map(entity => entity.code)).toContain(
-        'cf00cc3f'
-      );
+      expect(
+        res.data.entities.data.map((entity: TestResultEntity) => entity.code)
+      ).toContain('33d71824');
+      expect(
+        res.data.entities.data.map((entity: TestResultEntity) => entity.code)
+      ).toContain('7c8c2b5b');
+      expect(
+        res.data.entities.data.map((entity: TestResultEntity) => entity.code)
+      ).toContain('c8ba31a5');
+      expect(
+        res.data.entities.data.map((entity: TestResultEntity) => entity.code)
+      ).toContain('cf00cc3f');
     });
 });
 
@@ -167,9 +171,9 @@ test('mSupply Search - ace', () => {
     .then(res => res.json())
     .then(res => {
       for (const expectedCode of expectedCodes) {
-        expect(res.data.entities.data.map(entity => entity.code)).toContain(
-          expectedCode
-        );
+        expect(
+          res.data.entities.data.map((entity: { code: string }) => entity.code)
+        ).toContain(expectedCode);
       }
     });
 });

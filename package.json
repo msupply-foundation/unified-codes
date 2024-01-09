@@ -25,7 +25,7 @@
     "test-backend-ci": "cd backend && cargo test",
     "test-frontend": "jest --config ./frontend/jest.config.js --maxWorkers=50%",
     "test-data-service": "lerna run --scope @universal-codes/data-service test --stream",
-    "test-integration": "lerna run --scope @universal-codes/* test:integration --stream",
+    "test-integration": "jest --config ./frontend/integration/jest.config.js --maxWorkers=50%",
     "generate": "graphql-codegen --config codegen.yml",
     "i18n-unused-display": "i18n-unused display-unused",
     "i18n-unused-remove": "i18n-unused remove-unused",
