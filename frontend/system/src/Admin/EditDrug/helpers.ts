@@ -172,7 +172,7 @@ export const buildEntityFromVaccineInput = (
   vaccine: VaccineInput
 ): UpsertEntityInput => {
   return {
-    parentCode: 'vaccine', // TODO! Vaccine parent code!
+    parentCode: '5048e0ad', // Vaccine parent code
     code: vaccine.code,
     name: vaccine.name,
     description: vaccine.name,
