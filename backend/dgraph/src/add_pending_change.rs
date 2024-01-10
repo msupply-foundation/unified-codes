@@ -80,7 +80,7 @@ mutation AddPendingChange($input: [AddPendingChangeInput!]!) {
 }
 
 #[cfg(test)]
-// #[cfg(feature = "dgraph-tests")]
+#[cfg(feature = "dgraph-tests")]
 mod tests {
 
     use util::uuid::uuid;
