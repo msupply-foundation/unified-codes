@@ -19,25 +19,29 @@ import {
 } from '@common/ui';
 import { useEditModal } from '@common/hooks';
 import { OptionEditModal } from './OptionEditModal';
-
-// TODO: this type should come from gql codegen types
-type ListOption = {
-  id: string;
-  label: string;
-  value: string;
-};
+import {
+  ConfigurationItemNode,
+  ConfigurationItemTypeInput,
+} from '@common/types';
+import { useConfigurationItems } from './api';
+import { ConfigurationItemFragment } from './api/operations.generated';
 
 type OptionListConfigTabProps = {
-  data: ListOption[];
+  type: ConfigurationItemTypeInput;
   category: string;
 };
 
 const OptionListConfigTabComponent = ({
-  data,
+  type,
   category,
 }: OptionListConfigTabProps) => {
   const t = useTranslation('system');
-  const { onOpen, onClose, isOpen, entity, mode } = useEditModal<ListOption>();
+  const { onOpen, onClose, isOpen, entity, mode } =
+    useEditModal<ConfigurationItemFragment>();
+
+  const { data, isError, isLoading } = useConfigurationItems({
+    type: type,
+  });
 
   const selectedRows = useTableStore(state =>
     Object.keys(state.rowState)
@@ -46,15 +50,15 @@ const OptionListConfigTabComponent = ({
       .filter(Boolean)
   );
 
-  const columns = useColumns<ListOption>([
+  const columns = useColumns<ConfigurationItemFragment>([
     {
-      key: 'value',
+      key: 'name',
       label: 'label.value',
     },
     'selection',
   ]);
 
-  const deleteAction = (rows: (ListOption | undefined)[]) => {
+  const deleteAction = (rows: (ConfigurationItemFragment | undefined)[]) => {
     // TODO: implement delete
     console.log('Rows to delete: ', rows);
   };
@@ -76,6 +80,7 @@ const OptionListConfigTabComponent = ({
           config={entity}
           mode={mode}
           category={category}
+          type={type}
         />
       )}
       <AppBarButtonsPortal>

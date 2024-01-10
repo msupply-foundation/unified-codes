@@ -43,7 +43,8 @@ export class DgraphClient {
       await txn.doRequest(request);
       txn.discard();
       return true;
-    } catch {
+    } catch (e) {
+      console.log(e);
       txn.discard();
       return false;
     }
@@ -95,6 +96,10 @@ export class DataLoader {
 
     console.log(`INFO: Extracted entity nodes`);
 
+    const routes = new Set();
+    const forms = new Set();
+    const immediatePackagings = new Set();
+
     // Load individual entities.
     for await (const entity of entities) {
       const query = `
@@ -117,6 +122,10 @@ export class DataLoader {
       } else {
         console.log(`WARNING: Failed to load entity with code ${entity.code}`);
       }
+      if (entity.type === 'Route') routes.add(entity.name);
+      if (entity.type === 'Form') forms.add(entity.name);
+      if (entity.type === 'FormQualifier') forms.add(entity.name);
+      if (entity.type === 'PackImmediate') immediatePackagings.add(entity.name);
     }
 
     // Link parent entities to children.
@@ -169,6 +178,61 @@ export class DataLoader {
             );
           }
         }
+      }
+    }
+
+    // Create routes.
+    for await (const route of routes) {
+      const nQuads = `
+        _:route <name> "${route}" .
+        _:route <code> "${route}" .
+        _:route <type> "Route" .
+        _:route <dgraph.type> "ConfigurationItem" .
+      `;
+
+      if (await this.dgraph.mutate(nQuads)) {
+        console.log(`INFO: Loaded route with name ${route}`);
+      } else {
+        console.log(`WARNING: Failed to load route with name ${route}`);
+      }
+    }
+
+    // Create forms.
+    for await (const form of forms) {
+      const nQuads = `
+        _:route <name> "${form}" .
+        _:route <code> "${form}" .
+        _:route <type> "Form" .
+        _:route <dgraph.type> "ConfigurationItem" .
+      `;
+
+      if (await this.dgraph.mutate(nQuads)) {
+        console.log(`INFO: Loaded form with name ${form}`);
+      } else {
+        console.log(`WARNING: Failed to load form with name ${form}`);
+      }
+
+      // TODO: Form Qualifiers...
+      // Idea is to look to see if the form and qualifier combination exists in a entity description...
+    }
+
+    // Create immediate packagings.
+    for await (const immediatePackaging of immediatePackagings) {
+      const nQuads = `
+        _:route <name> "${immediatePackaging}" .
+        _:route <code> "${immediatePackaging}" .
+        _:route <type> "ImmediatePackaging" .
+        _:route <dgraph.type> "ConfigurationItem" .
+      `;
+
+      if (await this.dgraph.mutate(nQuads)) {
+        console.log(
+          `INFO: Loaded immediate packaging with name ${immediatePackaging}`
+        );
+      } else {
+        console.log(
+          `WARNING: Failed to load immediate packaging with name ${immediatePackaging}`
+        );
       }
     }
 

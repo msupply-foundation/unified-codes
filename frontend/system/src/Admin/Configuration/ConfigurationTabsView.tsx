@@ -4,6 +4,8 @@ import React from 'react';
 import { config } from '../../config';
 import { OptionListConfigTab } from './OptionListConfigTab';
 import { PropertiesConfigTab } from './PropertiesConfigTab';
+import { useConfigurationItems } from './api';
+import { ConfigurationItemTypeInput } from '@common/types';
 
 export const ConfigurationTabsView = () => {
   const t = useTranslation('system');
@@ -11,20 +13,26 @@ export const ConfigurationTabsView = () => {
   const tabs: TabDefinition[] = [
     {
       Component: (
-        <OptionListConfigTab data={config.routes} category={t('label.route')} />
+        <OptionListConfigTab
+          type={ConfigurationItemTypeInput.Route}
+          category={t('label.route')}
+        />
       ),
       value: t('label.routes'),
     },
     {
       Component: (
-        <OptionListConfigTab data={config.forms} category={t('label.form')} />
+        <OptionListConfigTab
+          type={ConfigurationItemTypeInput.Form}
+          category={t('label.form')}
+        />
       ),
       value: t('label.forms'),
     },
     {
       Component: (
         <OptionListConfigTab
-          data={config.immediatePackagings}
+          type={ConfigurationItemTypeInput.ImmediatePackaging}
           category={t('label.immediate-packaging')}
         />
       ),

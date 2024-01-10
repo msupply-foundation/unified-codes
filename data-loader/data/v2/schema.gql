@@ -82,6 +82,12 @@ type PackOuter {
   properties
 }
 
+type ConfigurationItem {
+  code
+  name
+  type
+}
+
 code: string @index(exact, trigram).
 name: string @index(exact, fulltext, trigram) .
 description: string @index(exact, fulltext, trigram) .

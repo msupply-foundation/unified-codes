@@ -8,21 +8,20 @@ import { ModalMode, useDialog } from '@common/hooks';
 import { CheckIcon } from '@common/icons';
 import { useTranslation } from '@common/intl';
 import { Grid } from '@common/ui';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import React, { useState } from 'react';
 import { useUuid } from '../../hooks';
-
-// TODO: this type should come from gql codegen types
-type ListOption = {
-  id: string;
-  label: string;
-  value: string;
-};
+import { ConfigurationItemFragment } from './api/operations.generated';
+import { useAddConfigItem } from './api';
+import { ConfigurationItemTypeInput } from '@common/types';
 
 type OptionEditModalProps = {
   isOpen: boolean;
   mode: ModalMode | null;
-  config: ListOption | null;
+  config: ConfigurationItemFragment | null;
   category: string;
+  type: ConfigurationItemTypeInput;
   onClose: () => void;
 };
 
@@ -31,34 +30,44 @@ export const OptionEditModal = ({
   config,
   mode,
   category,
+  type,
   onClose,
 }: OptionEditModalProps) => {
   const t = useTranslation('system');
-  const uuid = useUuid();
 
-  const [value, setValue] = useState(config?.value ?? '');
+  const [value, setValue] = useState(config?.name ?? '');
+  const [addEntity, invalidateQueries] = useAddConfigItem();
+
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const { Modal } = useDialog({ isOpen, onClose });
-
-  // TODO: set from queries
-  const isLoading = false;
 
   return (
     <Modal
       okButton={
         <LoadingButton
           onClick={() => {
-            // TODO: save and handle errors
-            console.log('value to be saved:', {
-              id: config?.id ?? uuid(),
-              label: value,
-              value,
-            });
-            // if (!err || !err.message) {
-            //   err = { message: t('messages.unknown-error') };
-            // }
-            // setErrorMessage(err.message);
-            onClose();
+            setIsLoading(true);
+            addEntity({
+              input: {
+                name: value,
+                type: type,
+              },
+            })
+              .catch(err => {
+                setIsLoading(false);
+                if (!err || !err.message) {
+                  err = { message: t('messages.unknown-error') };
+                }
+                setErrorMessage(err.message);
+              })
+              .then(() => {
+                invalidateQueries();
+                setIsLoading(false);
+                onClose();
+              });
+            setIsLoading(false);
           }}
           isLoading={isLoading}
           startIcon={<CheckIcon />}
@@ -85,7 +94,7 @@ export const OptionEditModal = ({
             value={value}
             onChange={e => setValue(e.target.value)}
           />
-          {/* {errorMessage ? (
+          {errorMessage ? (
             <Grid item>
               <Alert
                 severity="error"
@@ -97,7 +106,7 @@ export const OptionEditModal = ({
                 {errorMessage}
               </Alert>
             </Grid>
-          ) : null} */}
+          ) : null}
         </Grid>
       )}
     </Modal>

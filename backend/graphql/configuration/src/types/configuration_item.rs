@@ -3,7 +3,7 @@ use dgraph::configuration_items::ConfigurationItem;
 use service::configuration::{ConfigurationItemCollection, ConfigurationType};
 
 #[derive(Enum, Copy, Clone, PartialEq, Eq)]
-#[graphql(rename_items = "camelCase")]
+#[graphql(rename_items = "snake_case")]
 pub enum ConfigurationItemTypeInput {
     Route,
     Form,
@@ -39,6 +39,10 @@ impl ConfigurationItemNode {
 
 #[Object]
 impl ConfigurationItemNode {
+    pub async fn id(&self) -> &str {
+        &self.code
+    }
+
     pub async fn code(&self) -> &str {
         &self.code
     }
