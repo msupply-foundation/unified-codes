@@ -3,13 +3,16 @@ use std::{
     sync::Arc,
 };
 
-use dgraph::{DgraphClient, Entity, SearchVars};
+use dgraph::{
+    DgraphClient, Entity, PendingChangesDgraphFilter, PendingChangesQueryVars, SearchVars,
+};
 
 use crate::{service_provider::ServiceProvider, settings::Settings};
 
 pub use self::{entity_collection::EntityCollection, entity_filter::EntitySearchFilter};
 use self::{
     entity_filter::{dgraph_filter_from_v1_filter, dgraph_order_by_from_v1_filter},
+    pending_change_collection::PendingChangeCollection,
     upsert::ModifyUniversalCodeError,
 };
 
@@ -18,6 +21,7 @@ mod tests;
 pub mod code_generator;
 pub mod entity_collection;
 pub mod entity_filter;
+pub mod pending_change_collection;
 pub mod properties;
 pub mod upsert;
 
@@ -94,6 +98,37 @@ impl UniversalCodesService {
                 total_length: data.aggregates.unwrap_or_default().count,
             }),
             None => Ok(EntityCollection {
+                data: vec![],
+                total_length: 0,
+            }),
+        }
+    }
+
+    pub async fn pending_changes(
+        &self,
+        // filter: PendingChangesFilter, // TODO: need this once filtering by state?
+        first: Option<u32>,
+        offset: Option<u32>,
+    ) -> Result<PendingChangeCollection, UniversalCodesServiceError> {
+        let dgraph_vars = PendingChangesQueryVars {
+            filter: PendingChangesDgraphFilter {
+                ..Default::default()
+            },
+            first,
+            offset,
+            order: None, // TODO
+        };
+
+        let result = dgraph::pending_changes(&self.client, dgraph_vars)
+            .await
+            .map_err(|e| UniversalCodesServiceError::InternalError(e.message().to_string()))?; // TODO: Improve error handling?
+
+        match result {
+            Some(data) => Ok(PendingChangeCollection {
+                data: data.data,
+                total_length: data.aggregates.unwrap_or_default().count,
+            }),
+            None => Ok(PendingChangeCollection {
                 data: vec![],
                 total_length: 0,
             }),
