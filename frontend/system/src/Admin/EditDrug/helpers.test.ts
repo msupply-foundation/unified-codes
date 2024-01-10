@@ -18,25 +18,25 @@ describe('getAllEntityCodes', () => {
         {
           code: '6e5f7a00',
           name: 'Topical',
-          type: 'form_category',
+          type: 'Route',
           properties: [],
           children: [
             {
               code: '66e85500',
               name: 'Solution',
-              type: 'form',
+              type: 'Form',
               properties: [],
               children: [
                 {
                   code: '36e874bf',
                   name: '2%',
-                  type: 'strength',
+                  type: 'DoseStrength',
                   properties: [],
                   children: [
                     {
                       code: 'e4edcb00',
                       name: '15mL',
-                      type: 'unit_of_use',
+                      type: 'Unit',
                       properties: [],
                     },
                   ],
@@ -44,13 +44,13 @@ describe('getAllEntityCodes', () => {
                 {
                   code: '36e874bg',
                   name: '3%',
-                  type: 'strength',
+                  type: 'DoseStrength',
                   properties: [],
                   children: [
                     {
                       code: 'e4edcb01',
                       name: '15mL',
-                      type: 'unit_of_use',
+                      type: 'Unit',
                       properties: [],
                     },
                   ],
@@ -87,25 +87,25 @@ describe('buildDrugInputFromEntity', () => {
         {
           code: '6e5f7a00',
           name: 'Topical',
-          type: 'form_category',
+          type: 'Route',
           properties: [],
           children: [
             {
               code: '66e85500',
               name: 'Solution',
-              type: 'form',
+              type: 'Form',
               properties: [],
               children: [
                 {
                   code: '36e874bf',
                   name: '2%',
-                  type: 'strength',
+                  type: 'DoseStrength',
                   properties: [],
                   children: [
                     {
                       code: 'e4edcb00',
                       name: '15mL',
-                      type: 'unit_of_use',
+                      type: 'Unit',
                       properties: [],
                     },
                   ],
@@ -185,7 +185,7 @@ describe('buildDrugInputFromEntity', () => {
           id: '6e5f7a00',
           code: '6e5f7a00',
           name: 'Topical',
-          type: 'form_category',
+          type: 'Route',
           properties: [
             {
               id: '6e5f7a00_code_rxnav',
@@ -253,20 +253,20 @@ describe('buildDrugInputFromEntity', () => {
         {
           code: '6e5f7a00',
           name: 'Topical',
-          type: 'form_category',
+          type: 'Route',
           properties: [],
           children: [
             {
               code: '66e85500',
               name: 'Solution',
-              type: 'form', // include: direct child of form_category (route)
+              type: 'Form', // include: direct child of route
               properties: [],
               children: [],
             },
             {
               code: 'e4edcb00',
               name: '15mL',
-              type: 'unit_of_use', // exclude: not a direct child of route
+              type: 'Unit', // exclude: not a direct child of route
               properties: [],
               children: [],
             },

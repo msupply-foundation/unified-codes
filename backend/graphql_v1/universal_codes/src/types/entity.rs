@@ -143,11 +143,6 @@ fn get_type_for_entity(entity: &EntityType) -> &str {
                 return "Unknown"; // There's no parent???
             }
         },
-        "Route" => return "form_category",
-        "Form" => return "form",
-        "FormQualifier" => return "form_qualifier",
-        "DoseStrength" => return "strength",
-        "Unit" => return "unit_of_use",
         _ => return &entity.r#type,
     }
 }
@@ -210,7 +205,7 @@ mod test {
         let t = get_type_for_entity(&entity_type);
         assert_eq!(t, "consumable");
 
-        // 3. Test a Route = Form Category
+        // 3. Test a Route
         let entity = Entity {
             id: "0x2".to_string(),
             code: "b49ec300".to_string(),
@@ -233,85 +228,6 @@ mod test {
         let entity_type = EntityType::from_domain(entity);
 
         let t = get_type_for_entity(&entity_type);
-        assert_eq!(t, "form_category");
-
-        // 4. Test DoseStrength = strength
-        let entity = Entity {
-            id: "0x3".to_string(),
-            code: "db3d2000".to_string(),
-            name: "20mg per mL".to_string(),
-            description: "Abacavir Oral Solution 20mg per mL".to_string(),
-            r#type: "DoseStrength".to_string(),
-            properties: vec![],
-            children: vec![],
-            parents: vec![Entity {
-                id: "0x2".to_string(),
-                code: "b49ec300".to_string(),
-                name: "Oral".to_string(),
-                description: "Abacavir Oral".to_string(),
-                r#type: "Route".to_string(),
-                properties: vec![],
-                children: vec![],
-                parents: vec![Entity {
-                    id: "0x1".to_string(),
-                    code: "c7750265".to_string(),
-                    name: "Abacavir".to_string(),
-                    description: "Abacavir".to_string(),
-                    r#type: "Product".to_string(),
-                    properties: vec![],
-                    children: vec![],
-                    parents: vec![],
-                }],
-            }],
-        };
-
-        assert_eq!(
-            get_type_for_entity(&EntityType::from_domain(entity)),
-            "strength"
-        );
-
-        // 5. Test Unit = unit_of_use
-
-        let entity = Entity {
-            id: "0x4".to_string(),
-            code: "358b04bf".to_string(),
-            name: "240mL".to_string(),
-            description: "Abacavir Oral Solution 20mg per mL 240mL".to_string(),
-            r#type: "Unit".to_string(),
-            properties: vec![],
-            children: vec![],
-            parents: vec![Entity {
-                id: "0x3".to_string(),
-                code: "db3d2000".to_string(),
-                name: "20mg per mL".to_string(),
-                description: "Abacavir Oral Solution 20mg per mL".to_string(),
-                r#type: "DoseStrength".to_string(),
-                properties: vec![],
-                children: vec![],
-                parents: vec![Entity {
-                    id: "0x2".to_string(),
-                    code: "b49ec300".to_string(),
-                    name: "Oral".to_string(),
-                    description: "Abacavir Oral".to_string(),
-                    r#type: "Route".to_string(),
-                    properties: vec![],
-                    children: vec![],
-                    parents: vec![Entity {
-                        id: "0x1".to_string(),
-                        code: "c7750265".to_string(),
-                        name: "Abacavir".to_string(),
-                        description: "Abacavir".to_string(),
-                        r#type: "Product".to_string(),
-                        properties: vec![],
-                        children: vec![],
-                        parents: vec![],
-                    }],
-                }],
-            }],
-        };
-        assert_eq!(
-            get_type_for_entity(&EntityType::from_domain(entity)),
-            "unit_of_use"
-        );
+        assert_eq!(t, "Route");
     }
 }

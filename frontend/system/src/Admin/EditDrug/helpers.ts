@@ -24,28 +24,29 @@ export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
     ...getDetails(entity),
     routes:
       entity.children
-        ?.filter(route => route.type === 'form_category') // form_category === route
+        ?.filter(route => route.type === EntityType.Route)
         .map(route => ({
           ...getDetails(route),
           forms:
             route.children
-              ?.filter(route => route.type === 'form')
+              ?.filter(route => route.type === EntityType.Form)
               .map(form => ({
                 ...getDetails(form),
                 strengths:
                   form.children
-                    ?.filter(route => route.type === 'strength')
+                    ?.filter(route => route.type === EntityType.Strength)
                     .map(strength => ({
                       ...getDetails(strength),
                       units:
                         strength.children
-                          ?.filter(route => route.type === 'unit_of_use')
+                          ?.filter(route => route.type === EntityType.Unit)
                           .map(unit => ({
                             ...getDetails(unit),
                             immediatePackagings:
                               unit.children
                                 ?.filter(
-                                  route => route.type === 'PackImmediate'
+                                  route =>
+                                    route.type === EntityType.PackImmediate
                                 )
                                 .map(immPack => ({
                                   ...getDetails(immPack),
