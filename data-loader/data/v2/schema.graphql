@@ -23,11 +23,16 @@ type Property {
   value: String @dgraph(pred: "value") @search(by: [exact])
 }
 
+enum ChangeType {
+  New
+  Change
+}
+
 type PendingChange {
   id: ID!
   name: String! @dgraph(pred: "name") @search(by: [exact, fulltext, trigram])
   category: String!
-  change_type: String!
+  change_type: ChangeType!
   date_requested: DateTime!
   requested_by_user_id: String!
   requested_for: String!

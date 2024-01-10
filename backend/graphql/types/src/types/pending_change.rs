@@ -1,7 +1,8 @@
-use async_graphql::{Context, Object, SimpleObject, Union};
+use async_graphql::{Context, Enum, Object, SimpleObject, Union};
 use chrono::{DateTime, Utc};
-use dgraph::PendingChange;
+use dgraph::{ChangeType, PendingChange};
 use graphql_core::simple_generic_errors::NodeError;
+use serde::Serialize;
 use service::universal_codes::pending_change_collection::PendingChangeCollection;
 
 #[derive(Union)]
@@ -31,9 +32,8 @@ impl PendingChangeNode {
     pub async fn category(&self) -> &str {
         &self.row().category
     }
-    // TODO: ENUM!
-    pub async fn change_type(&self) -> &str {
-        &self.row().name
+    pub async fn change_type(&self) -> ChangeTypeNode {
+        ChangeTypeNode::from_domain(self.row().change_type.clone())
     }
     pub async fn date_requested(&self) -> &DateTime<Utc> {
         &self.row().date_requested
@@ -90,25 +90,25 @@ impl PendingChangeConnector {
     }
 }
 
-// #[derive(Enum, Copy, Clone, PartialEq, Eq, Debug, Serialize)]
-// #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-// pub enum ChangeTypeNode {
-//     New,
-//     Change,
-// }
+#[derive(Enum, Copy, Clone, PartialEq, Eq, Debug, Serialize)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum ChangeTypeNode {
+    New,
+    Change,
+}
 
-// impl ChangeTypeNode {
-//     pub fn to_domain(self) -> ChangeType {
-//         match self {
-//             ChangeTypeNode::Change => ChangeType::Change,
-//             ChangeTypeNode::New => ChangeType::New,
-//         }
-//     }
+impl ChangeTypeNode {
+    pub fn to_domain(self) -> ChangeType {
+        match self {
+            ChangeTypeNode::Change => ChangeType::Change,
+            ChangeTypeNode::New => ChangeType::New,
+        }
+    }
 
-//     pub fn from_domain(change_type: ChangeType) -> ChangeTypeNode {
-//         match change_type {
-//             ChangeType::Change => ChangeTypeNode::Change,
-//             ChangeType::New => ChangeTypeNode::New,
-//         }
-//     }
-// }
+    pub fn from_domain(change_type: ChangeType) -> ChangeTypeNode {
+        match change_type {
+            ChangeType::Change => ChangeTypeNode::Change,
+            ChangeType::New => ChangeTypeNode::New,
+        }
+    }
+}

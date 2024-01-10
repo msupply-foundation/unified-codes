@@ -81,6 +81,18 @@ pub struct Property {
     pub value: String,
 }
 
+#[derive(Debug, Deserialize, Clone, PartialEq, Eq, Hash)]
+pub enum ChangeType {
+    Change,
+    New,
+}
+
+impl Default for ChangeType {
+    fn default() -> Self {
+        ChangeType::New
+    }
+}
+
 #[derive(Deserialize, Debug, Clone, Default, PartialEq)]
 pub struct PendingChange {
     #[serde(default)]
@@ -90,7 +102,7 @@ pub struct PendingChange {
     #[serde(default)]
     pub category: String,
     #[serde(default)]
-    pub change_type: String,
+    pub change_type: ChangeType,
     #[serde(default)]
     pub date_requested: DateTime<Utc>, // I think this doesn't want to be UTC?
     #[serde(default)]
