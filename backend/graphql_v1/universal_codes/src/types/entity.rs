@@ -11,6 +11,7 @@ pub struct EntityType {
     pub name: String,
     pub description: String,
     pub r#type: String,
+    pub category: String,
     pub properties: Vec<PropertiesType>,
     pub children: Vec<EntityType>,
     pub parents: Vec<EntityType>,
@@ -24,6 +25,7 @@ impl EntityType {
             name: entity.name,
             description: entity.description,
             r#type: entity.r#type,
+            category: entity.category,
             properties: PropertiesType::from_domain(entity.properties),
             children: entity
                 .children
@@ -134,13 +136,16 @@ fn get_type_for_entity(entity: &EntityType) -> &str {
                 if parent.description == "Consumable" {
                     return "consumable";
                 }
+                if parent.description == "Vaccine" {
+                    return "vaccine";
+                }
                 if parent.description == "Other" {
                     return "other";
                 }
-                return &entity.r#type;
+                return &entity.category; // Maybe a new category, or we're at a lower level in the tree somehow?
             }
             None => {
-                return "Unknown"; // There's no parent???
+                return &entity.category; // Product with no parent, we use the category as the type
             }
         },
         _ => return &entity.r#type,
@@ -173,7 +178,9 @@ mod test {
                 properties: vec![],
                 children: vec![],
                 parents: vec![],
+                ..Default::default()
             }],
+            ..Default::default()
         };
         let entity_type = EntityType::from_domain(entity);
 
@@ -198,14 +205,43 @@ mod test {
                 properties: vec![],
                 children: vec![],
                 parents: vec![],
+                ..Default::default()
             }],
+            ..Default::default()
         };
         let entity_type = EntityType::from_domain(entity);
 
         let t = get_type_for_entity(&entity_type);
         assert_eq!(t, "consumable");
 
-        // 3. Test a Route
+        // 3. Test a Vaccine
+        let entity = Entity {
+            id: "0x1".to_string(),
+            code: "af482fa09".to_string(),
+            name: "COVID-19 Vaccine".to_string(),
+            description: "COVID-19 Vaccine".to_string(),
+            r#type: "Product".to_string(),
+            properties: vec![],
+            children: vec![],
+            parents: vec![Entity {
+                id: "0x2".to_string(),
+                code: "5048e0ad".to_string(),
+                name: "Vaccine".to_string(),
+                description: "Vaccine".to_string(),
+                r#type: "Category".to_string(),
+                properties: vec![],
+                children: vec![],
+                parents: vec![],
+                ..Default::default()
+            }],
+            ..Default::default()
+        };
+        let entity_type = EntityType::from_domain(entity);
+
+        let t = get_type_for_entity(&entity_type);
+        assert_eq!(t, "vaccine");
+
+        // 4. Test a Route
         let entity = Entity {
             id: "0x2".to_string(),
             code: "b49ec300".to_string(),
@@ -223,7 +259,9 @@ mod test {
                 properties: vec![],
                 children: vec![],
                 parents: vec![],
+                ..Default::default()
             }],
+            ..Default::default()
         };
         let entity_type = EntityType::from_domain(entity);
 

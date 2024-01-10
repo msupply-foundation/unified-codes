@@ -190,10 +190,10 @@ export const AppDrawer: React.FC = () => {
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)
-                .addPart(AppRoute.NewDrug)
+                .addPart(AppRoute.NewItem)
                 .build()}
               icon={<EditIcon fontSize="small" color="primary" />}
-              text={t('new-drug')}
+              text={t('new-item')}
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)

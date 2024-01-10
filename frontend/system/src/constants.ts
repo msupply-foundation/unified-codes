@@ -19,4 +19,7 @@ export const enum EntityTypeOld {
   Form = 'form',
   Strength = 'strength',
   Unit = 'unit_of_use',
+  ImmediatePackaging = 'PackImmediate',
+  Component = 'component',
+  Brand = 'brand',
 }
