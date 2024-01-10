@@ -10,16 +10,7 @@ export const enum EntityType {
   Form = 'Form',
   Strength = 'DoseStrength',
   Unit = 'Unit',
-  PackImmediate = 'PackImmediate',
-}
-
-export const enum EntityTypeOld {
-  Product = 'Product',
-  Route = 'form_category',
-  Form = 'form',
-  Strength = 'strength',
-  Unit = 'unit_of_use',
   ImmediatePackaging = 'PackImmediate',
-  Component = 'component',
-  Brand = 'brand',
+  Component = 'Component',
+  Brand = 'Brand',
 }

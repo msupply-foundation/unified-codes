@@ -317,25 +317,25 @@ describe('buildVaccineInputFromEntity', () => {
         {
           code: '7e5f7a00',
           name: 'Component 1/Component 2',
-          type: 'component',
+          type: 'Component',
           properties: [],
           children: [
             {
               code: '86e85500',
               name: 'Brand 1',
-              type: 'brand',
+              type: 'Brand',
               properties: [],
               children: [
                 {
                   code: '6e5f7a00',
                   name: 'Intramuscular',
-                  type: 'form_category',
+                  type: 'Route',
                   properties: [],
                   children: [
                     {
                       code: '66e85500',
                       name: 'Injection: suspension',
-                      type: 'form',
+                      type: 'Form',
                       properties: [
                         {
                           id: '6e5f7a00_code_rxnav',
@@ -348,13 +348,13 @@ describe('buildVaccineInputFromEntity', () => {
                         {
                           code: '36e874bf',
                           name: '2 IU/1 IU',
-                          type: 'strength',
+                          type: 'DoseStrength',
                           properties: [],
                           children: [
                             {
                               code: 'e4edcb00',
                               name: '0.5mL',
-                              type: 'unit_of_use',
+                              type: 'Unit',
                               properties: [],
                               children: [
                                 {
@@ -464,25 +464,25 @@ describe('buildVaccineInputFromEntity', () => {
         {
           code: '7e5f7a00',
           name: 'Component 1/Component 2',
-          type: 'component',
+          type: 'Component',
           properties: [],
           children: [
             {
               code: '86e85500',
               name: 'Brand 1',
-              type: 'brand',
+              type: 'Brand',
               properties: [],
               children: [
                 {
                   code: '6e5f7a00',
                   name: 'Intramuscular',
-                  type: 'form_category', // include: valid child
+                  type: 'Route', // include: valid child
                   properties: [],
                 },
                 {
                   code: 'e4edcb00',
                   name: '0.5mL',
-                  type: 'unit_of_use', // exclude: invalid (should be deeper in the tree)
+                  type: 'Unit', // exclude: invalid (should be deeper in the tree)
                   properties: [],
                 },
               ],

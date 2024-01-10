@@ -47,7 +47,7 @@ export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
                               unit.children
                                 ?.filter(
                                   route =>
-                                    route.type === EntityType.PackImmediate
+                                    route.type === EntityType.ImmediatePackaging
                                 )
                                 .map(immPack => ({
                                   ...getDetails(immPack),
@@ -132,35 +132,36 @@ export const buildVaccineInputFromEntity = (
     ...getDetails(entity),
     components:
       entity.children
-        ?.filter(component => component.type === 'component')
+        ?.filter(component => component.type === EntityType.Component)
         .map(component => ({
           ...getDetails(component),
           brands:
             component.children
-              ?.filter(brand => brand.type === 'brand')
+              ?.filter(brand => brand.type === EntityType.Brand)
               .map(brand => ({
                 ...getDetails(brand),
                 routes:
                   brand.children
-                    ?.filter(route => route.type === 'form_category') // form_category === route
+                    ?.filter(route => route.type === EntityType.Route)
                     .map(route => ({
                       ...getDetails(route),
                       forms:
                         route.children
-                          ?.filter(form => form.type === 'form')
+                          ?.filter(form => form.type === EntityType.Form)
                           .map(form => ({
                             ...getDetails(form),
                             strengths:
                               form.children
                                 ?.filter(
-                                  strength => strength.type === 'strength'
+                                  strength =>
+                                    strength.type === EntityType.Strength
                                 )
                                 .map(strength => ({
                                   ...getDetails(strength),
                                   units:
                                     strength.children
                                       ?.filter(
-                                        unit => unit.type === 'unit_of_use'
+                                        unit => unit.type === EntityType.Unit
                                       )
                                       .map(unit => ({
                                         ...getDetails(unit),
@@ -168,7 +169,8 @@ export const buildVaccineInputFromEntity = (
                                           unit.children
                                             ?.filter(
                                               immPack =>
-                                                immPack.type === 'PackImmediate'
+                                                immPack.type ===
+                                                EntityType.ImmediatePackaging
                                             )
                                             .map(unit => getDetails(unit)) ||
                                           [],
