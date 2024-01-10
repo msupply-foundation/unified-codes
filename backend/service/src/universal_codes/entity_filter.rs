@@ -65,6 +65,7 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
                     "Consumable" => "Product".to_string(),
                     "Vaccine" => "Product".to_string(),
                     "Other" => "Product".to_string(), // Uppercase versions of the above
+                    // the v1 API supports these lowercase variations of the type filter
                     "form_category" => "Route".to_string(),
                     "form" => "Form".to_string(),
                     "form_qualifier" => "FormQualifier".to_string(),

@@ -21,25 +21,25 @@ describe('getAllEntityCodes', () => {
         {
           code: '6e5f7a00',
           name: 'Topical',
-          type: 'form_category',
+          type: 'Route',
           properties: [],
           children: [
             {
               code: '66e85500',
               name: 'Solution',
-              type: 'form',
+              type: 'Form',
               properties: [],
               children: [
                 {
                   code: '36e874bf',
                   name: '2%',
-                  type: 'strength',
+                  type: 'DoseStrength',
                   properties: [],
                   children: [
                     {
                       code: 'e4edcb00',
                       name: '15mL',
-                      type: 'unit_of_use',
+                      type: 'Unit',
                       properties: [],
                     },
                   ],
@@ -47,13 +47,13 @@ describe('getAllEntityCodes', () => {
                 {
                   code: '36e874bg',
                   name: '3%',
-                  type: 'strength',
+                  type: 'DoseStrength',
                   properties: [],
                   children: [
                     {
                       code: 'e4edcb01',
                       name: '15mL',
-                      type: 'unit_of_use',
+                      type: 'Unit',
                       properties: [],
                     },
                   ],
@@ -90,25 +90,25 @@ describe('buildDrugInputFromEntity', () => {
         {
           code: '6e5f7a00',
           name: 'Topical',
-          type: 'form_category',
+          type: 'Route',
           properties: [],
           children: [
             {
               code: '66e85500',
               name: 'Solution',
-              type: 'form',
+              type: 'Form',
               properties: [],
               children: [
                 {
                   code: '36e874bf',
                   name: '2%',
-                  type: 'strength',
+                  type: 'DoseStrength',
                   properties: [],
                   children: [
                     {
                       code: 'e4edcb00',
                       name: '15mL',
-                      type: 'unit_of_use',
+                      type: 'Unit',
                       properties: [],
                     },
                   ],
@@ -188,7 +188,7 @@ describe('buildDrugInputFromEntity', () => {
           id: '6e5f7a00',
           code: '6e5f7a00',
           name: 'Topical',
-          type: 'form_category',
+          type: 'Route',
           properties: [
             {
               id: '6e5f7a00_code_rxnav',
@@ -256,20 +256,20 @@ describe('buildDrugInputFromEntity', () => {
         {
           code: '6e5f7a00',
           name: 'Topical',
-          type: 'form_category',
+          type: 'Route',
           properties: [],
           children: [
             {
               code: '66e85500',
               name: 'Solution',
-              type: 'form', // include: direct child of form_category (route)
+              type: 'Form', // include: direct child of route
               properties: [],
               children: [],
             },
             {
               code: 'e4edcb00',
               name: '15mL',
-              type: 'unit_of_use', // exclude: not a direct child of route
+              type: 'Unit', // exclude: not a direct child of route
               properties: [],
               children: [],
             },
@@ -317,25 +317,25 @@ describe('buildVaccineInputFromEntity', () => {
         {
           code: '7e5f7a00',
           name: 'Component 1/Component 2',
-          type: 'component',
+          type: 'Component',
           properties: [],
           children: [
             {
               code: '86e85500',
               name: 'Brand 1',
-              type: 'brand',
+              type: 'Brand',
               properties: [],
               children: [
                 {
                   code: '6e5f7a00',
                   name: 'Intramuscular',
-                  type: 'form_category',
+                  type: 'Route',
                   properties: [],
                   children: [
                     {
                       code: '66e85500',
                       name: 'Injection: suspension',
-                      type: 'form',
+                      type: 'Form',
                       properties: [
                         {
                           id: '6e5f7a00_code_rxnav',
@@ -348,13 +348,13 @@ describe('buildVaccineInputFromEntity', () => {
                         {
                           code: '36e874bf',
                           name: '2 IU/1 IU',
-                          type: 'strength',
+                          type: 'DoseStrength',
                           properties: [],
                           children: [
                             {
                               code: 'e4edcb00',
                               name: '0.5mL',
-                              type: 'unit_of_use',
+                              type: 'Unit',
                               properties: [],
                               children: [
                                 {
@@ -464,25 +464,25 @@ describe('buildVaccineInputFromEntity', () => {
         {
           code: '7e5f7a00',
           name: 'Component 1/Component 2',
-          type: 'component',
+          type: 'Component',
           properties: [],
           children: [
             {
               code: '86e85500',
               name: 'Brand 1',
-              type: 'brand',
+              type: 'Brand',
               properties: [],
               children: [
                 {
                   code: '6e5f7a00',
                   name: 'Intramuscular',
-                  type: 'form_category', // include: valid child
+                  type: 'Route', // include: valid child
                   properties: [],
                 },
                 {
                   code: 'e4edcb00',
                   name: '0.5mL',
-                  type: 'unit_of_use', // exclude: invalid (should be deeper in the tree)
+                  type: 'Unit', // exclude: invalid (should be deeper in the tree)
                   properties: [],
                 },
               ],
