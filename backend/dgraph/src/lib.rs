@@ -1,5 +1,9 @@
 use serde::{Deserialize, Deserializer, Serialize};
 
+use chrono::{DateTime, NaiveDateTime, Utc};
+
+pub mod add_pending_change;
+pub use add_pending_change::*;
 pub mod client;
 pub use client::*;
 pub mod database_settings;
@@ -10,6 +14,8 @@ pub mod entity_duplication;
 pub use entity_duplication::*;
 pub mod entities;
 pub use entities::*;
+pub mod pending_changes;
+pub use pending_changes::*;
 pub mod upsert_entity;
 pub use upsert_entity::*;
 pub mod link_codes;
@@ -22,6 +28,13 @@ pub use gql_client::GraphQLError;
 #[derive(Deserialize, Debug, Clone)]
 pub struct EntityData {
     pub data: Vec<Entity>,
+    #[serde(default)]
+    pub aggregates: Option<AggregateResult>,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct PendingChangeData {
+    pub data: Vec<PendingChange>,
     #[serde(default)]
     pub aggregates: Option<AggregateResult>,
 }
@@ -69,6 +82,26 @@ pub struct Property {
 }
 
 #[derive(Deserialize, Debug, Clone, Default)]
+pub struct PendingChange {
+    #[serde(default)]
+    pub id: String,
+    #[serde(default)]
+    pub name: String,
+    #[serde(default)]
+    pub category: String,
+    #[serde(default)]
+    pub change_type: String,
+    #[serde(default)]
+    pub date_requested: DateTime<Utc>, // I think this doesn't want to be UTC?
+    #[serde(default)]
+    pub requested_by_user_id: String,
+    #[serde(default)]
+    pub requested_for: String,
+    #[serde(default)]
+    pub body: String, // will be an array of nodes to add
+}
+
+#[derive(Deserialize, Debug, Clone, Default)]
 pub struct AggregateResult {
     pub count: u32,
 }
@@ -98,4 +131,15 @@ pub struct EntityInput {
     pub properties: Option<Vec<PropertyInput>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub children: Option<Vec<EntityInput>>,
+}
+
+#[derive(Serialize, Debug, Clone, Default)]
+pub struct PendingChangeInput {
+    pub name: String,
+    pub category: String,
+    pub change_type: String,
+    pub date_requested: NaiveDateTime,
+    pub requested_by_user_id: String,
+    pub requested_for: String,
+    pub body: String,
 }
