@@ -1,5 +1,7 @@
 use serde::{Deserialize, Deserializer, Serialize};
 
+pub mod configuration;
+pub use configuration::*;
 pub mod client;
 pub use client::*;
 pub mod database_settings;

@@ -25,6 +25,7 @@ pub enum LogType {
     UserAccountPasswordResetInitiated,
     UniversalCodeCreated,
     UniversalCodeUpdated,
+    ConfigurationItemCreated,
 }
 
 #[derive(Clone, Queryable, Insertable, AsChangeset, Debug, PartialEq)]

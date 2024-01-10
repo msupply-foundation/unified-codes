@@ -22,3 +22,19 @@ type Property {
   type: String @dgraph(pred: "type") @search(by: [exact])
   value: String @dgraph(pred: "value") @search(by: [exact])
 }
+
+type ConfigurationItem {
+  id: ID!
+  code: String! @id @dgraph(pred: "code") @search(by: [exact, trigram])
+  name: String @dgraph(pred: "name") @search(by: [exact, fulltext, trigram])
+  type: String @dgraph(pred: "type") @search(by: [exact])
+  children: [ConfigurationItem] @dgraph(pred: "subItems")
+  parents: [ConfigurationItem] @dgraph(pred: "~subItems")
+}
+
+type PropertyConfigurationItem {
+  id: ID!
+  type: String @dgraph(pred: "propertyType") @search(by: [exact])
+  title: String @dgraph(pred: "title")
+  website: String @dgraph(pred: "website")
+}

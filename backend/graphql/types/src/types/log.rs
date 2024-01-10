@@ -25,6 +25,7 @@ pub enum LogNodeType {
     UserAccountPasswordResetInitiated,
     UniversalCodeCreated,
     UniversalCodeUpdated,
+    ConfigurationItemCreated,
 }
 
 #[Object]
@@ -81,6 +82,7 @@ impl LogNodeType {
             }
             LogType::UniversalCodeCreated => LogNodeType::UniversalCodeCreated,
             LogType::UniversalCodeUpdated => LogNodeType::UniversalCodeUpdated,
+            LogType::ConfigurationItemCreated => LogNodeType::ConfigurationItemCreated,
         }
     }
 
@@ -94,6 +96,7 @@ impl LogNodeType {
             }
             LogNodeType::UniversalCodeCreated => LogType::UniversalCodeCreated,
             LogNodeType::UniversalCodeUpdated => LogType::UniversalCodeUpdated,
+            LogNodeType::ConfigurationItemCreated => LogType::ConfigurationItemCreated,
         }
     }
 }
