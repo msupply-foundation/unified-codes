@@ -6,10 +6,10 @@ use async_graphql::*;
 use graphql_v1_core::ContextExt;
 
 #[derive(Default, Clone)]
-pub struct UniversalCodesQueries;
+pub struct UniversalCodesV1Queries;
 
 #[Object]
-impl UniversalCodesQueries {
+impl UniversalCodesV1Queries {
     /// Query "universal codes" entry by code
     pub async fn entity(&self, ctx: &Context<'_>, code: String) -> Result<Option<EntityType>> {
         let result = ctx

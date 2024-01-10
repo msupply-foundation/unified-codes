@@ -10,6 +10,7 @@ doctest = false
 [dependencies]
 
 graphql_core = { path = "../core" }
+graphql_types = { path = "../types" }
 dgraph = { path = "../../dgraph" }
 service = { path = "../../service" }
 graphql_universal_codes_v1 = { path = "../../graphql_v1/universal_codes" }

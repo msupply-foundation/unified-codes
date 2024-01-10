@@ -81,7 +81,7 @@ pub struct Property {
     pub value: String,
 }
 
-#[derive(Deserialize, Debug, Clone, Default)]
+#[derive(Deserialize, Debug, Clone, Default, PartialEq)]
 pub struct PendingChange {
     #[serde(default)]
     pub id: String,
