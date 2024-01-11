@@ -61,6 +61,14 @@ pub struct UniversalCodesMutations;
 
 #[Object]
 impl UniversalCodesMutations {
+    async fn request_change(
+        &self,
+        ctx: &Context<'_>,
+        input: RequestChangeInput,
+    ) -> Result<RequestChangeResponse> {
+        request_change(ctx, input).await
+    }
+
     async fn upsert_entity(
         &self,
         ctx: &Context<'_>,

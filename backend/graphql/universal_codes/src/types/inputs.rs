@@ -1,6 +1,10 @@
 use async_graphql::*;
+use graphql_types::types::{ChangeTypeNode, PendingChangeNode};
 use graphql_universal_codes_v1::EntityType;
-use service::universal_codes::{properties::PropertyReference, upsert::UpsertUniversalCode};
+use service::universal_codes::{
+    add_pending_change::AddPendingChange, properties::PropertyReference,
+    upsert::UpsertUniversalCode,
+};
 
 #[derive(InputObject, Clone)]
 pub struct UpsertEntityInput {
@@ -64,4 +68,41 @@ impl From<UpsertEntityInput> for UpsertUniversalCode {
 #[derive(Union)]
 pub enum UpsertEntityResponse {
     Response(EntityType),
+}
+
+#[derive(InputObject, Clone)]
+pub struct RequestChangeInput {
+    pub request_id: String,
+    pub name: String,
+    pub category: String,
+    pub body: String,
+    pub change_type: ChangeTypeNode,
+    pub requested_for: String,
+}
+
+impl From<RequestChangeInput> for AddPendingChange {
+    fn from(
+        RequestChangeInput {
+            request_id,
+            name,
+            category,
+            requested_for,
+            body,
+            change_type,
+        }: RequestChangeInput,
+    ) -> Self {
+        AddPendingChange {
+            request_id,
+            name,
+            category,
+            body,
+            requested_for,
+            change_type: ChangeTypeNode::to_domain(change_type),
+        }
+    }
+}
+
+#[derive(Union)]
+pub enum RequestChangeResponse {
+    Response(PendingChangeNode),
 }

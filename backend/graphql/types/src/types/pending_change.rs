@@ -23,8 +23,8 @@ pub struct PendingChangeNode {
 
 #[Object]
 impl PendingChangeNode {
-    pub async fn id(&self) -> &str {
-        &self.row().id
+    pub async fn request_id(&self) -> &str {
+        &self.row().request_id
     }
     pub async fn name(&self) -> &str {
         &self.row().name
