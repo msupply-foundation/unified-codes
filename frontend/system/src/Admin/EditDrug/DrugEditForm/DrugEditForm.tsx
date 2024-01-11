@@ -16,10 +16,10 @@ import {
   getAllEntityCodes,
   isValidDrugInput,
 } from '../helpers';
-import { useAddEntityTree } from 'frontend/system/src/Entities/api';
 import { RouteBuilder, useNavigate } from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
 import { NameEditField } from './NameEditField';
+import { useAddEntityTree } from '../../api';
 
 export const DrugEditForm = ({
   initialEntity,

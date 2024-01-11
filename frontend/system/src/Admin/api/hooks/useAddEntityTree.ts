@@ -1,6 +1,6 @@
 import { useQueryClient, useGql } from '@uc-frontend/common';
 import { getSdk } from '../operations.generated';
-import { ENTITIES_KEY, ENTITY_KEY } from '.';
+import { ENTITIES_KEY, ENTITY_KEY } from '../../../queryKeys';
 
 export const useAddEntityTree = () => {
   const { client } = useGql();

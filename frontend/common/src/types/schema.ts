@@ -44,6 +44,11 @@ export type AuthTokenErrorInterface = {
 
 export type AuthTokenResponse = AuthToken | AuthTokenError;
 
+export enum ChangeTypeNode {
+  Change = 'CHANGE',
+  New = 'NEW'
+}
+
 export type CreateUserAccountInput = {
   displayName?: InputMaybe<Scalars['String']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
@@ -137,6 +142,7 @@ export type FullMutation = {
   initiatePasswordReset: PasswordResetResponse;
   /** Invites a new user to the system */
   initiateUserInvite: InviteUserResponse;
+  requestChange: RequestChangeResponse;
   /** Resets the password for a user based on the password reset token */
   resetPasswordUsingToken: PasswordResetResponse;
   updateUserAccount: UpdateUserAccountResponse;
@@ -169,6 +175,11 @@ export type FullMutationInitiatePasswordResetArgs = {
 
 export type FullMutationInitiateUserInviteArgs = {
   input: InviteUserInput;
+};
+
+
+export type FullMutationRequestChangeArgs = {
+  input: RequestChangeInput;
 };
 
 
@@ -206,6 +217,7 @@ export type FullQuery = {
   logout: LogoutResponse;
   logs: LogResponse;
   me: UserResponse;
+  pendingChanges: PendingChangesResponse;
   /**
    * Retrieves a new auth bearer and refresh token
    * The refresh token is returned as a cookie
@@ -238,6 +250,11 @@ export type FullQueryLogsArgs = {
   filter?: InputMaybe<LogFilterInput>;
   page?: InputMaybe<PaginationInput>;
   sort?: InputMaybe<Array<LogSortInput>>;
+};
+
+
+export type FullQueryPendingChangesArgs = {
+  page?: InputMaybe<PaginationInput>;
 };
 
 
@@ -300,6 +317,7 @@ export type LogNode = {
 };
 
 export enum LogNodeType {
+  UniversalCodeChangeRequested = 'UNIVERSAL_CODE_CHANGE_REQUESTED',
   UniversalCodeCreated = 'UNIVERSAL_CODE_CREATED',
   UniversalCodeUpdated = 'UNIVERSAL_CODE_UPDATED',
   UserAccountCreated = 'USER_ACCOUNT_CREATED',
@@ -374,6 +392,26 @@ export type PasswordResetResponseMessage = {
   message: Scalars['String']['output'];
 };
 
+export type PendingChangeConnector = {
+  __typename: 'PendingChangeConnector';
+  nodes: Array<PendingChangeNode>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type PendingChangeNode = {
+  __typename: 'PendingChangeNode';
+  body: Scalars['String']['output'];
+  category: Scalars['String']['output'];
+  changeType: ChangeTypeNode;
+  dateRequested: Scalars['DateTime']['output'];
+  name: Scalars['String']['output'];
+  requestId: Scalars['String']['output'];
+  requestedBy: Scalars['String']['output'];
+  requestedFor: Scalars['String']['output'];
+};
+
+export type PendingChangesResponse = PendingChangeConnector;
+
 export enum PermissionNode {
   Reader = 'READER',
   ServerAdmin = 'SERVER_ADMIN'
@@ -408,6 +446,17 @@ export type RefreshTokenErrorInterface = {
 };
 
 export type RefreshTokenResponse = RefreshToken | RefreshTokenError;
+
+export type RequestChangeInput = {
+  body: Scalars['String']['input'];
+  category: Scalars['String']['input'];
+  changeType: ChangeTypeNode;
+  name: Scalars['String']['input'];
+  requestId: Scalars['String']['input'];
+  requestedFor: Scalars['String']['input'];
+};
+
+export type RequestChangeResponse = PendingChangeNode;
 
 export type SimpleStringFilterInput = {
   /** Search term must be an exact match (case sensitive) */

@@ -1,6 +1,6 @@
 import { EntitySearchInput, useGql, useQuery } from '@uc-frontend/common';
+import { ENTITIES_KEY } from '../../../queryKeys';
 import { getSdk } from './../operations.generated';
-import { ENTITIES_KEY } from '.';
 
 export const useEntities = ({
   filter,
