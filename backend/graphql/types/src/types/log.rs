@@ -26,6 +26,7 @@ pub enum LogNodeType {
     UniversalCodeCreated,
     UniversalCodeUpdated,
     ConfigurationItemCreated,
+    ConfigurationItemDeleted,
 }
 
 #[Object]
@@ -83,6 +84,7 @@ impl LogNodeType {
             LogType::UniversalCodeCreated => LogNodeType::UniversalCodeCreated,
             LogType::UniversalCodeUpdated => LogNodeType::UniversalCodeUpdated,
             LogType::ConfigurationItemCreated => LogNodeType::ConfigurationItemCreated,
+            LogType::ConfigurationItemDeleted => LogNodeType::ConfigurationItemDeleted,
         }
     }
 
@@ -97,6 +99,7 @@ impl LogNodeType {
             LogNodeType::UniversalCodeCreated => LogType::UniversalCodeCreated,
             LogNodeType::UniversalCodeUpdated => LogType::UniversalCodeUpdated,
             LogNodeType::ConfigurationItemCreated => LogType::ConfigurationItemCreated,
+            LogNodeType::ConfigurationItemDeleted => LogType::ConfigurationItemDeleted,
         }
     }
 }

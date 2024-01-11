@@ -50,5 +50,15 @@ mod test {
             }
         }
         assert!(found);
+
+        // Delete the newly created code
+        let _result = service
+            .delete_configuration_item(
+                service_provider.clone(),
+                context.user_id.clone(),
+                new_code_id.clone(),
+            )
+            .await
+            .unwrap();
     }
 }

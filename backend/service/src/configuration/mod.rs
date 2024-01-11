@@ -13,6 +13,7 @@ use crate::{service_provider::ServiceProvider, settings::Settings};
 
 use self::upsert::ModifyConfigurationError;
 
+pub mod delete;
 mod tests;
 pub mod upsert;
 
@@ -106,5 +107,14 @@ impl ConfigurationService {
         item: upsert::AddConfigurationItem,
     ) -> Result<u32, ModifyConfigurationError> {
         upsert::add_configuration_item(sp, user_id, self.client.clone(), item).await
+    }
+
+    pub async fn delete_configuration_item(
+        &self,
+        sp: Arc<ServiceProvider>,
+        user_id: String,
+        code: String,
+    ) -> Result<u32, ModifyConfigurationError> {
+        delete::delete_configuration_item(sp, user_id, self.client.clone(), code).await
     }
 }
