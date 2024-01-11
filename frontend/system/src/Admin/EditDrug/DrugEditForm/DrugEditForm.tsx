@@ -16,10 +16,11 @@ import {
   getAllEntityCodes,
   isValidDrugInput,
 } from '../helpers';
-import { RouteBuilder, useNavigate } from 'frontend/common/src';
+import { ChangeTypeNode, RouteBuilder, useNavigate } from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
 import { NameEditField } from './NameEditField';
-import { useAddEntityTree } from '../../api';
+import { useRequestChange } from '../../api';
+import { EntityCategory } from 'frontend/system/src/constants';
 
 export const DrugEditForm = ({
   initialEntity,
@@ -29,19 +30,18 @@ export const DrugEditForm = ({
   const t = useTranslation('system');
   const navigate = useNavigate();
 
-  const [addEntity, invalidateQueries] = useAddEntityTree();
+  const [requestChange, invalidateQueries] = useRequestChange();
   const { success, error } = useNotification();
 
   const [initialIds] = useState(getAllEntityCodes(initialEntity));
 
-  // throwaway ids as a dgraph uid will be assigned when the entity is stored
-  const makeThrowawayId = useUuid();
+  const uuid = useUuid();
 
   const [draft, setDraft] = useState<DrugInput>(
     initialEntity
       ? buildDrugInputFromEntity(initialEntity)
       : {
-          id: makeThrowawayId(),
+          id: uuid(),
           name: '',
           routes: [],
         }
@@ -100,30 +100,46 @@ export const DrugEditForm = ({
   };
 
   const onSubmit = () => {
-    // Convert the draft to a UpsertEntityInput type
+    // Convert the draft to a UpsertEntityInput type (stored within the change request until approved)
     const entity = buildEntityFromDrugInput(draft);
 
-    // Upsert the entity
-    addEntity({ input: entity })
-      .catch(e => {
-        console.error(e);
-      })
-      .then(e => {
-        if (e) {
+    requestChange({
+      input: {
+        requestId: uuid(),
+        category: EntityCategory.Drug,
+        changeType: initialEntity ? ChangeTypeNode.Change : ChangeTypeNode.New,
+        name: draft.name,
+        requestedFor: 'Country - coming soon', // TODO: capture this
+        body: JSON.stringify(entity),
+      },
+    })
+      .then(() => {
+        invalidateQueries();
+        if (!initialEntity) {
+          // new entity - clear the form and show success snack
           success(
             t('message.entity-updated', {
-              code: e.upsertEntity.code,
+              name: entity.name,
             })
           )();
-          invalidateQueries();
+          setDraft({
+            id: uuid(),
+            name: '',
+            routes: [],
+          });
+        } else {
+          // existing entity - back to details page
           navigate(
             RouteBuilder.create(AppRoute.Browse)
-              .addPart(e.upsertEntity.code)
+              .addPart(initialEntity.code)
               .build()
           );
-        } else {
-          error(t('message.entity-error'))();
+          // TODO: could we have a success snack from a useEffect in the details page?
         }
+      })
+      .catch(e => {
+        console.error(e);
+        error(t('message.entity-error'))();
       });
   };
 
@@ -298,7 +314,7 @@ export const DrugEditForm = ({
                     onClick={() =>
                       onUpdate(
                         {
-                          id: makeThrowawayId(),
+                          id: uuid(),
                           name: '',
                           immediatePackagings: [],
                         },
@@ -312,10 +328,7 @@ export const DrugEditForm = ({
               <AddFieldButton
                 label={t('label.add-strength')}
                 onClick={() =>
-                  onUpdate(
-                    { id: makeThrowawayId(), name: '', units: [] },
-                    form.strengths
-                  )
+                  onUpdate({ id: uuid(), name: '', units: [] }, form.strengths)
                 }
               />
             </TreeFormBox>
@@ -324,10 +337,7 @@ export const DrugEditForm = ({
           <AddFieldButton
             label={t('label.add-form')}
             onClick={() =>
-              onUpdate(
-                { id: makeThrowawayId(), name: '', strengths: [] },
-                route.forms
-              )
+              onUpdate({ id: uuid(), name: '', strengths: [] }, route.forms)
             }
           />
         </TreeFormBox>
@@ -336,7 +346,7 @@ export const DrugEditForm = ({
       <AddFieldButton
         label={t('label.add-route')}
         onClick={() =>
-          onUpdate({ id: makeThrowawayId(), name: '', forms: [] }, draft.routes)
+          onUpdate({ id: uuid(), name: '', forms: [] }, draft.routes)
         }
       />
 

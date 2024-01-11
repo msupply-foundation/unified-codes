@@ -16,10 +16,11 @@ import {
   getAllEntityCodes,
   isValidVaccineInput,
 } from '../helpers';
-import { RouteBuilder, useNavigate } from 'frontend/common/src';
+import { ChangeTypeNode, RouteBuilder, useNavigate } from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
 import { NameEditField } from './NameEditField';
-import { useAddEntityTree } from '../../api';
+import { useRequestChange } from '../../api';
+import { EntityCategory } from 'frontend/system/src/constants';
 
 export const VaccineEditForm = ({
   initialEntity,
@@ -29,19 +30,18 @@ export const VaccineEditForm = ({
   const t = useTranslation('system');
   const navigate = useNavigate();
 
-  const [addEntity, invalidateQueries] = useAddEntityTree();
+  const [requestChange, invalidateQueries] = useRequestChange();
   const { success, error } = useNotification();
 
   const [initialIds] = useState(getAllEntityCodes(initialEntity));
 
-  // throwaway ids as a dgraph uid will be assigned when the entity is stored
-  const makeThrowawayId = useUuid();
+  const uuid = useUuid();
 
   const [draft, setDraft] = useState<VaccineInput>(
     initialEntity
       ? buildVaccineInputFromEntity(initialEntity)
       : {
-          id: makeThrowawayId(),
+          id: uuid(),
           name: '',
           components: [],
         }
@@ -100,30 +100,46 @@ export const VaccineEditForm = ({
   };
 
   const onSubmit = () => {
-    // Convert the draft to a UpsertEntityInput type
+    // Convert the draft to a UpsertEntityInput type (stored within the change request until approved)
     const entity = buildEntityFromVaccineInput(draft);
 
-    // Upsert the entity
-    addEntity({ input: entity })
-      .catch(e => {
-        console.error(e);
-      })
-      .then(e => {
-        if (e) {
+    requestChange({
+      input: {
+        requestId: uuid(),
+        category: EntityCategory.Vaccine,
+        changeType: initialEntity ? ChangeTypeNode.Change : ChangeTypeNode.New,
+        name: draft.name,
+        requestedFor: 'Country - coming soon', // TODO: capture this
+        body: JSON.stringify(entity),
+      },
+    })
+      .then(() => {
+        invalidateQueries();
+        if (!initialEntity) {
+          // new entity - clear the form and show success snack
           success(
             t('message.entity-updated', {
-              code: e.upsertEntity.code,
+              name: entity.name,
             })
           )();
-          invalidateQueries();
+          setDraft({
+            id: uuid(),
+            name: '',
+            components: [],
+          });
+        } else {
+          // existing entity - back to details page
           navigate(
             RouteBuilder.create(AppRoute.Browse)
-              .addPart(e.upsertEntity.code)
+              .addPart(initialEntity.code)
               .build()
           );
-        } else {
-          error(t('message.entity-error'))();
+          // TODO: could we have a success snack from a useEffect in the details page?
         }
+      })
+      .catch(e => {
+        console.error(e);
+        error(t('message.entity-error'))();
       });
   };
 
@@ -406,7 +422,7 @@ export const VaccineEditForm = ({
                                 onClick={() =>
                                   onUpdate(
                                     {
-                                      id: makeThrowawayId(),
+                                      id: uuid(),
                                       name: '',
                                     },
                                     unit.immediatePackagings
@@ -421,7 +437,7 @@ export const VaccineEditForm = ({
                             onClick={() =>
                               onUpdate(
                                 {
-                                  id: makeThrowawayId(),
+                                  id: uuid(),
                                   name: '',
                                   immediatePackagings: [],
                                 },
@@ -436,7 +452,7 @@ export const VaccineEditForm = ({
                         label={t('label.add-strength')}
                         onClick={() =>
                           onUpdate(
-                            { id: makeThrowawayId(), name: '', units: [] },
+                            { id: uuid(), name: '', units: [] },
                             form.strengths
                           )
                         }
@@ -448,7 +464,7 @@ export const VaccineEditForm = ({
                     label={t('label.add-form')}
                     onClick={() =>
                       onUpdate(
-                        { id: makeThrowawayId(), name: '', strengths: [] },
+                        { id: uuid(), name: '', strengths: [] },
                         route.forms
                       )
                     }
@@ -459,10 +475,7 @@ export const VaccineEditForm = ({
               <AddFieldButton
                 label={t('label.add-route')}
                 onClick={() =>
-                  onUpdate(
-                    { id: makeThrowawayId(), name: '', forms: [] },
-                    brand.routes
-                  )
+                  onUpdate({ id: uuid(), name: '', forms: [] }, brand.routes)
                 }
               />
             </TreeFormBox>
@@ -471,10 +484,7 @@ export const VaccineEditForm = ({
           <AddFieldButton
             label={t('label.add-brand')}
             onClick={() =>
-              onUpdate(
-                { id: makeThrowawayId(), name: '', routes: [] },
-                component.brands
-              )
+              onUpdate({ id: uuid(), name: '', routes: [] }, component.brands)
             }
           />
         </TreeFormBox>
@@ -483,10 +493,7 @@ export const VaccineEditForm = ({
       <AddFieldButton
         label={t('label.add-component')}
         onClick={() =>
-          onUpdate(
-            { id: makeThrowawayId(), name: '', brands: [] },
-            draft.components
-          )
+          onUpdate({ id: uuid(), name: '', brands: [] }, draft.components)
         }
       />
 
