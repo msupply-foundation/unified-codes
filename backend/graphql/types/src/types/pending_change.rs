@@ -1,7 +1,7 @@
-use async_graphql::{Context, Enum, Object, SimpleObject, Union};
+use async_graphql::{dataloader::DataLoader, Context, Enum, Object, SimpleObject, Union};
 use chrono::{DateTime, Utc};
 use dgraph::{ChangeType, PendingChange};
-use graphql_core::simple_generic_errors::NodeError;
+use graphql_core::{loader::UserLoader, simple_generic_errors::NodeError, ContextExt};
 use serde::Serialize;
 use service::universal_codes::pending_change_collection::PendingChangeCollection;
 
@@ -45,19 +45,16 @@ impl PendingChangeNode {
         &self.row().body
     }
 
-    // TODO!
-    pub async fn requested_by(&self, _ctx: &Context<'_>) -> Result<&str, async_graphql::Error> {
-        Ok("Some name here!")
-        // let loader = ctx.get_loader::<DataLoader<UserPermissionLoader>>();
-        // let result = loader
-        //     .load_one(self.row().id.to_string())
-        //     .await?
-        //     .unwrap_or_default();
+    pub async fn requested_by(&self, ctx: &Context<'_>) -> Result<String, async_graphql::Error> {
+        let loader = ctx.get_loader::<DataLoader<UserLoader>>();
 
-        // Ok(result
-        //     .into_iter()
-        //     .map(PermissionNode::from_domain)
-        //     .collect())
+        match loader
+            .load_one(self.row().requested_by_user_id.clone())
+            .await?
+        {
+            Some(user) => Ok(user.display_name.clone()),
+            None => Ok("Unknown".to_string()), // Should this be err?
+        }
     }
 }
 
