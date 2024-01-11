@@ -30,6 +30,10 @@ enum ChangeType {
 
 type PendingChange {
   id: ID!
+  request_id: String!
+    @id
+    @dgraph(pred: "request_id")
+    @search(by: [exact, trigram])
   name: String! @dgraph(pred: "name") @search(by: [exact, fulltext, trigram])
   category: String!
   change_type: ChangeType!

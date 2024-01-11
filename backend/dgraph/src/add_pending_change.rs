@@ -85,9 +85,7 @@ mod tests {
 
     use util::uuid::uuid;
 
-    use crate::{
-        pending_changes, DgraphFilterType, PendingChangesDgraphFilter, PendingChangesQueryVars,
-    };
+    use crate::pending_change;
 
     use super::*;
 
@@ -95,11 +93,12 @@ mod tests {
     async fn test_add_pending_change() {
         let client = DgraphClient::new("http://localhost:8080/graphql");
 
-        let new_name = uuid();
+        let request_id = uuid();
 
         let pending_change_input = PendingChangeInput {
+            request_id: request_id.clone(),
             body: "[some string array of new nodes]".to_string(),
-            name: new_name.clone(),
+            name: "new name".to_string(),
             category: "test_category".to_string(),
             change_type: "New".to_string(),
             ..Default::default()
@@ -118,24 +117,9 @@ mod tests {
         assert_eq!(result.numUids, 1);
 
         // Query for the new change
-        let result = pending_changes(
-            &client,
-            PendingChangesQueryVars {
-                filter: PendingChangesDgraphFilter {
-                    name: Some(DgraphFilterType {
-                        eq: Some(new_name.clone()),
-                        ..Default::default()
-                    }),
-                },
-                first: None,
-                offset: None,
-                order: None,
-            },
-        )
-        .await;
+        let result = pending_change(&client, request_id).await;
         let res = result.unwrap().unwrap();
 
-        assert_eq!(res.data.len(), 1);
-        assert_eq!(res.data[0].name, new_name.clone());
+        assert_eq!(res.name, "new name".to_string());
     }
 }

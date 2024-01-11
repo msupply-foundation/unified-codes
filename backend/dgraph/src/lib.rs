@@ -14,6 +14,8 @@ pub mod entity_duplication;
 pub use entity_duplication::*;
 pub mod entities;
 pub use entities::*;
+pub mod pending_change;
+pub use pending_change::*;
 pub mod pending_changes;
 pub use pending_changes::*;
 pub mod upsert_entity;
@@ -98,6 +100,8 @@ pub struct PendingChange {
     #[serde(default)]
     pub id: String,
     #[serde(default)]
+    pub request_id: String,
+    #[serde(default)]
     pub name: String,
     #[serde(default)]
     pub category: String,
@@ -147,6 +151,7 @@ pub struct EntityInput {
 
 #[derive(Serialize, Debug, Clone, Default)]
 pub struct PendingChangeInput {
+    pub request_id: String,
     pub name: String,
     pub category: String,
     pub change_type: String,

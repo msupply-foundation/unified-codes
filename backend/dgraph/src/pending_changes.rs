@@ -47,6 +47,3 @@ query PendingChangesQuery($filter: PendingChangeFilter, $first: Int, $offset: In
 
     Ok(result)
 }
-
-// no tests here, as no pending changes are loaded in by default
-// the test for add_pending_change uses this pending_changes method though, so it is tested somewhat there
