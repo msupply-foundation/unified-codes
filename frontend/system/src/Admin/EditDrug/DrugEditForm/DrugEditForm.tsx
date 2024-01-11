@@ -137,6 +137,7 @@ export const DrugEditForm = ({
           navigate(
             RouteBuilder.create(AppRoute.Browse)
               .addPart(initialEntity.code)
+              .addPart('?changeRequested=true')
               .build()
           );
         }
