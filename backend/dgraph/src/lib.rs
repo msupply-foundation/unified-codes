@@ -108,13 +108,13 @@ pub struct PendingChange {
     #[serde(default)]
     pub change_type: ChangeType,
     #[serde(default)]
-    pub date_requested: DateTime<Utc>, // I think this doesn't want to be UTC?
+    pub date_requested: DateTime<Utc>,
     #[serde(default)]
     pub requested_by_user_id: String,
     #[serde(default)]
     pub requested_for: String,
     #[serde(default)]
-    pub body: String, // will be an array of nodes to add
+    pub body: String,
 }
 
 #[derive(Deserialize, Debug, Clone, Default)]
