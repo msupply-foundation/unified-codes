@@ -10,6 +10,8 @@ import {
 import { useBreadcrumbs, useQueryParamsState } from '@common/hooks';
 import { useNavigate } from 'react-router';
 import { PendingChangeSummaryFragment, usePendingChanges } from '../api';
+import { RouteBuilder } from '@common/utils';
+import { AppRoute } from 'frontend/config/src';
 
 export const PendingChangesListView = () => {
   const t = useTranslation('system');
@@ -69,14 +71,13 @@ export const PendingChangesListView = () => {
         noDataElement={<NothingHere body={t('error.no-data')} />}
         pagination={pagination}
         onChangePage={updatePaginationQuery}
-        onRowClick={
-          change => console.log('clicked!')
-          // navigate(
-          //   RouteBuilder.create(AppRoute.Admin)
-          //     .addPart(AppRoute.PendingChanges)
-          //     .addPart(change.id)
-          //     .build()
-          // )
+        onRowClick={change =>
+          navigate(
+            RouteBuilder.create(AppRoute.Admin)
+              .addPart(AppRoute.PendingChanges)
+              .addPart(change.id)
+              .build()
+          )
         }
       />
     </TableProvider>

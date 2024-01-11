@@ -4,7 +4,7 @@ import { AppRoute } from 'frontend/config/src';
 import { EditDrugView, NewItemView } from './EditDrug';
 import { UserAccountListView } from './Users/ListView';
 import { ConfigurationTabsView } from './Configuration';
-import { PendingChangesListView } from './PendingChanges';
+import { PendingChangeDetails, PendingChangesListView } from './PendingChanges';
 
 const AdminService = () => {
   return (
@@ -22,6 +22,10 @@ const AdminService = () => {
       <Route
         path={`/${AppRoute.PendingChanges}`}
         element={<PendingChangesListView />}
+      />
+      <Route
+        path={`/${AppRoute.PendingChanges}/:id`}
+        element={<PendingChangeDetails />}
       />
       <Route
         path="*"
