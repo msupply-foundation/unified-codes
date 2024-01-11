@@ -26,7 +26,7 @@ pub async fn pending_changes(
 query PendingChangesQuery($filter: PendingChangeFilter, $first: Int, $offset: Int, $order: PendingChangeOrder) {
   data: queryPendingChange(filter: $filter, first: $first, offset: $offset, order: $order ) {
     __typename
-    id
+    request_id
     name
     category
     change_type
