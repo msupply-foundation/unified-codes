@@ -98,6 +98,7 @@ export class DataLoader {
 
     const routes = new Set();
     const forms = new Set();
+    const formQualifiers = new Set();
     const immediatePackagings = new Set();
 
     // Load individual entities.
@@ -122,10 +123,18 @@ export class DataLoader {
       } else {
         console.log(`WARNING: Failed to load entity with code ${entity.code}`);
       }
-      if (entity.type === 'Route') routes.add(entity.name);
-      if (entity.type === 'Form') forms.add(entity.name);
-      if (entity.type === 'FormQualifier') forms.add(entity.name);
-      if (entity.type === 'PackImmediate') immediatePackagings.add(entity.name);
+      if (entity.type === 'Route') routes.add(entity.name.trim());
+      if (entity.type === 'Form') forms.add(entity.name.trim());
+      if (
+        entity.type === 'FormQualifier' &&
+        entity.name &&
+        entity.name.trim() &&
+        entity.name.trim().length < 20
+      ) {
+        formQualifiers.add(entity.name.trim());
+      }
+      if (entity.type === 'PackImmediate')
+        immediatePackagings.add(entity.name.trim());
     }
 
     // Link parent entities to children.
@@ -183,6 +192,7 @@ export class DataLoader {
 
     // Create routes.
     for await (const route of routes) {
+      if (!route) continue;
       const nQuads = `
         _:route <name> "${route}" .
         _:route <code> "${route}" .
@@ -199,6 +209,7 @@ export class DataLoader {
 
     // Create forms.
     for await (const form of forms) {
+      if (!form) continue;
       const nQuads = `
         _:route <name> "${form}" .
         _:route <code> "${form}" .
@@ -212,12 +223,41 @@ export class DataLoader {
         console.log(`WARNING: Failed to load form with name ${form}`);
       }
 
-      // TODO: Form Qualifiers...
-      // Idea is to look to see if the form and qualifier combination exists in a entity description...
+      // Look to see if the form and qualifier combination exists in a entity description...
+      // If so we need to create a form with the qualifier attached
+
+      for await (const formQualifier of formQualifiers) {
+        if (!formQualifier) continue;
+        for await (const entity of entities) {
+          if (
+            entity.description &&
+            entity.description.includes(`${form} ${formQualifier}`)
+          ) {
+            const nQuads = `
+              _:route <name> "${form} (${formQualifier})" .
+              _:route <code> "${form} (${formQualifier})" .
+              _:route <type> "Form" .
+              _:route <dgraph.type> "ConfigurationItem" .
+            `;
+
+            if (await this.dgraph.mutate(nQuads)) {
+              console.log(
+                `INFO: Loaded form qualifier with name ${formQualifier}`
+              );
+            } else {
+              console.log(
+                `WARNING: Failed to load form qualifier with name ${formQualifier}`
+              );
+            }
+            break;
+          }
+        }
+      }
     }
 
     // Create immediate packagings.
     for await (const immediatePackaging of immediatePackagings) {
+      if (!immediatePackaging) continue;
       const nQuads = `
         _:route <name> "${immediatePackaging}" .
         _:route <code> "${immediatePackaging}" .
