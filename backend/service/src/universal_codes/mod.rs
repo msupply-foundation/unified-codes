@@ -129,6 +129,20 @@ impl UniversalCodesService {
         }
     }
 
+    pub async fn pending_change(
+        &self,
+        request_id: String,
+    ) -> Result<Option<PendingChange>, UniversalCodesServiceError> {
+        let result = dgraph::pending_change(&self.client, request_id)
+            .await
+            .map_err(|e| UniversalCodesServiceError::InternalError(e.message().to_string()))?; // TODO: Improve error handling?
+
+        match result {
+            Some(pending_change) => Ok(Some(pending_change)),
+            None => Ok(None),
+        }
+    }
+
     pub async fn pending_changes(
         &self,
         // filter: PendingChangesFilter, // TODO: need this once filtering by state?
