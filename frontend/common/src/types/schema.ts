@@ -255,6 +255,7 @@ export type FullQueryLogsArgs = {
 
 export type FullQueryPendingChangesArgs = {
   page?: InputMaybe<PaginationInput>;
+  sort?: InputMaybe<Array<PendingChangeSortInput>>;
 };
 
 
@@ -408,6 +409,22 @@ export type PendingChangeNode = {
   requestId: Scalars['String']['output'];
   requestedBy: Scalars['String']['output'];
   requestedFor: Scalars['String']['output'];
+};
+
+export enum PendingChangeSortFieldInput {
+  Category = 'category',
+  DateRequested = 'dateRequested',
+  Name = 'name'
+}
+
+export type PendingChangeSortInput = {
+  /**
+   * Sort query result is sorted descending or ascending (if not provided the default is
+   * ascending)
+   */
+  desc?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Sort query result by `key` */
+  key: PendingChangeSortFieldInput;
 };
 
 export type PendingChangesResponse = PendingChangeConnector;

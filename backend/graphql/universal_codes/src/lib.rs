@@ -21,8 +21,8 @@ impl UniversalCodesQueries {
         ctx: &Context<'_>,
         #[graphql(desc = "Pagination option (first and offset)")] page: Option<PaginationInput>,
         // #[graphql(desc = "Filter option")] filter: Option<PendingChangeFilterInput>,
-        // #[graphql(desc = "Sort options (only first sort input is evaluated for this endpoint)")]
-        // sort: Option<Vec<PendingChangeSortInput>>,
+        #[graphql(desc = "Sort options (only first sort input is evaluated for this endpoint)")]
+        sort: Option<Vec<PendingChangeSortInput>>,
     ) -> Result<PendingChangesResponse> {
         let user = validate_auth(
             ctx,
@@ -47,7 +47,12 @@ impl UniversalCodesQueries {
         let pending_changes = service_context
             .service_provider
             .universal_codes_service
-            .pending_changes(pagination.first, pagination.offset)
+            .pending_changes(
+                pagination.first,
+                pagination.offset,
+                sort.and_then(|mut sort_list| sort_list.pop())
+                    .map(|sort| sort.to_domain()),
+            )
             .await?;
 
         Ok(PendingChangesResponse::Response(

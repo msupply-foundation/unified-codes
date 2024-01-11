@@ -17,8 +17,8 @@ fragment PendingChangeSummary on PendingChangeNode {
   dateRequested
 }
 
-query pendingChanges {
-  pendingChanges {
+query pendingChanges($page: PaginationInput, $sort: [PendingChangeSortInput!]) {
+  pendingChanges(page: $page, sort: $sort) {
     ... on PendingChangeConnector {
       totalCount
       nodes {

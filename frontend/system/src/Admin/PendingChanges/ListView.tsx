@@ -18,7 +18,7 @@ export const PendingChangesListView = () => {
 
   const { queryParams, updatePaginationQuery, updateSortQuery } =
     useQueryParamsState({
-      initialSort: { key: 'requestDate', dir: 'asc' },
+      initialSort: { key: 'dateRequested', dir: 'asc' },
     });
 
   const { sortBy, page, offset, first } = queryParams;
@@ -34,15 +34,15 @@ export const PendingChangesListView = () => {
           <>{new Date(rowData.dateRequested).toLocaleDateString()}</>
         ),
       },
-      { key: 'changeType', label: 'label.change-type' },
-      { key: 'requestedBy', label: 'label.requested-by' },
-      { key: 'requestedFor', label: 'label.request-for' },
+      { key: 'changeType', label: 'label.change-type', sortable: false },
+      { key: 'requestedBy', label: 'label.requested-by', sortable: false },
+      { key: 'requestedFor', label: 'label.request-for', sortable: false },
     ],
     { sortBy: sortBy, onChangeSortBy: updateSortQuery },
     [sortBy, updateSortQuery]
   );
 
-  const { data, isError, isLoading } = usePendingChanges();
+  const { data, isError, isLoading } = usePendingChanges(queryParams);
 
   useEffect(() => {
     if (data?.totalCount) {

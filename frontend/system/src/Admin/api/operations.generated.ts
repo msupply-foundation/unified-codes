@@ -12,7 +12,10 @@ export type AddEntityTreeMutation = { __typename?: 'FullMutation', upsertEntity:
 
 export type PendingChangeSummaryFragment = { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, id: string };
 
-export type PendingChangesQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type PendingChangesQueryVariables = Types.Exact<{
+  page?: Types.InputMaybe<Types.PaginationInput>;
+  sort?: Types.InputMaybe<Array<Types.PendingChangeSortInput> | Types.PendingChangeSortInput>;
+}>;
 
 
 export type PendingChangesQuery = { __typename?: 'FullQuery', pendingChanges: { __typename?: 'PendingChangeConnector', totalCount: number, nodes: Array<{ __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, id: string }> } };
@@ -39,8 +42,8 @@ export const AddEntityTreeDocument = gql`
 }
     `;
 export const PendingChangesDocument = gql`
-    query pendingChanges {
-  pendingChanges {
+    query pendingChanges($page: PaginationInput, $sort: [PendingChangeSortInput!]) {
+  pendingChanges(page: $page, sort: $sort) {
     ... on PendingChangeConnector {
       totalCount
       nodes {

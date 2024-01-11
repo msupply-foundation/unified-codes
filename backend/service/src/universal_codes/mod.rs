@@ -4,8 +4,8 @@ use std::{
 };
 
 use dgraph::{
-    DgraphClient, Entity, GraphQLError, PendingChange, PendingChangesDgraphFilter,
-    PendingChangesQueryVars, SearchVars,
+    DgraphClient, DgraphOrderByType, Entity, GraphQLError, PendingChange,
+    PendingChangesDgraphFilter, PendingChangesQueryVars, SearchVars,
 };
 use repository::RepositoryError;
 
@@ -134,6 +134,7 @@ impl UniversalCodesService {
         // filter: PendingChangesFilter, // TODO: need this once filtering by state?
         first: Option<u32>,
         offset: Option<u32>,
+        order: Option<DgraphOrderByType>,
     ) -> Result<PendingChangeCollection, UniversalCodesServiceError> {
         let dgraph_vars = PendingChangesQueryVars {
             filter: PendingChangesDgraphFilter {
@@ -141,7 +142,7 @@ impl UniversalCodesService {
             },
             first,
             offset,
-            order: None, // TODO
+            order,
         };
 
         let result = dgraph::pending_changes(&self.client, dgraph_vars)
