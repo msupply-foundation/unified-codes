@@ -6,3 +6,24 @@ mutation addEntityTree($input: UpsertEntityInput!) {
     }
   }
 }
+
+fragment PendingChangeSummary on PendingChangeNode {
+  id: requestId
+  name
+  category
+  changeType
+  requestedBy
+  requestedFor
+  dateRequested
+}
+
+query pendingChanges {
+  pendingChanges {
+    ... on PendingChangeConnector {
+      totalCount
+      nodes {
+        ...PendingChangeSummary
+      }
+    }
+  }
+}

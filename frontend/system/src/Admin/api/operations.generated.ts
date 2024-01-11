@@ -10,7 +10,24 @@ export type AddEntityTreeMutationVariables = Types.Exact<{
 
 export type AddEntityTreeMutation = { __typename?: 'FullMutation', upsertEntity: { __typename: 'EntityType', code: string } };
 
+export type PendingChangeSummaryFragment = { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, id: string };
 
+export type PendingChangesQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type PendingChangesQuery = { __typename?: 'FullQuery', pendingChanges: { __typename?: 'PendingChangeConnector', totalCount: number, nodes: Array<{ __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, id: string }> } };
+
+export const PendingChangeSummaryFragmentDoc = gql`
+    fragment PendingChangeSummary on PendingChangeNode {
+  id: requestId
+  name
+  category
+  changeType
+  requestedBy
+  requestedFor
+  dateRequested
+}
+    `;
 export const AddEntityTreeDocument = gql`
     mutation addEntityTree($input: UpsertEntityInput!) {
   upsertEntity(input: $input) {
@@ -21,6 +38,18 @@ export const AddEntityTreeDocument = gql`
   }
 }
     `;
+export const PendingChangesDocument = gql`
+    query pendingChanges {
+  pendingChanges {
+    ... on PendingChangeConnector {
+      totalCount
+      nodes {
+        ...PendingChangeSummary
+      }
+    }
+  }
+}
+    ${PendingChangeSummaryFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -31,6 +60,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     addEntityTree(variables: AddEntityTreeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AddEntityTreeMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<AddEntityTreeMutation>(AddEntityTreeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'addEntityTree', 'mutation');
+    },
+    pendingChanges(variables?: PendingChangesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PendingChangesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PendingChangesQuery>(PendingChangesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pendingChanges', 'query');
     }
   };
 }
