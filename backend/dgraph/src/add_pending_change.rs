@@ -85,7 +85,7 @@ mod tests {
 
     use util::uuid::uuid;
 
-    use crate::pending_change;
+    use crate::{pending_change, ChangeType};
 
     use super::*;
 
@@ -100,7 +100,7 @@ mod tests {
             body: "[some string array of new nodes]".to_string(),
             name: "new name".to_string(),
             category: "test_category".to_string(),
-            change_type: "New".to_string(),
+            change_type: ChangeType::New,
             ..Default::default()
         };
 
@@ -121,5 +121,7 @@ mod tests {
         let res = result.unwrap().unwrap();
 
         assert_eq!(res.name, "new name".to_string());
+
+        // TODO: Delete new pending change from dgraph
     }
 }

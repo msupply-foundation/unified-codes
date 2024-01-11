@@ -23,6 +23,7 @@ pub enum LogType {
     UserAccountCreated,
     UserAccountUpdated,
     UserAccountPasswordResetInitiated,
+    UniversalCodeChangeRequested,
     UniversalCodeCreated,
     UniversalCodeUpdated,
 }

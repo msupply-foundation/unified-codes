@@ -83,7 +83,7 @@ pub struct Property {
     pub value: String,
 }
 
-#[derive(Debug, Deserialize, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Hash)]
 pub enum ChangeType {
     Change,
     New,
@@ -154,7 +154,7 @@ pub struct PendingChangeInput {
     pub request_id: String,
     pub name: String,
     pub category: String,
-    pub change_type: String,
+    pub change_type: ChangeType,
     pub date_requested: NaiveDateTime,
     pub requested_by_user_id: String,
     pub requested_for: String,

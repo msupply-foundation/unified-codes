@@ -7,7 +7,7 @@ use graphql_core::{
 
 use service::{
     auth::{Resource, ResourceAccessRequest},
-    universal_codes::upsert::ModifyUniversalCodeError,
+    universal_codes::ModifyUniversalCodeError,
 };
 
 use crate::types::{UpsertEntityInput, UpsertEntityResponse};

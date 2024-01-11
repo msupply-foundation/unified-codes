@@ -4,8 +4,10 @@ use std::{
 };
 
 use dgraph::{
-    DgraphClient, Entity, PendingChangesDgraphFilter, PendingChangesQueryVars, SearchVars,
+    DgraphClient, Entity, GraphQLError, PendingChange, PendingChangesDgraphFilter,
+    PendingChangesQueryVars, SearchVars,
 };
+use repository::RepositoryError;
 
 use crate::{service_provider::ServiceProvider, settings::Settings};
 
@@ -13,17 +15,40 @@ pub use self::{entity_collection::EntityCollection, entity_filter::EntitySearchF
 use self::{
     entity_filter::{dgraph_filter_from_v1_filter, dgraph_order_by_from_v1_filter},
     pending_change_collection::PendingChangeCollection,
-    upsert::ModifyUniversalCodeError,
 };
 
 mod tests;
 
+pub mod add_pending_change;
 pub mod code_generator;
 pub mod entity_collection;
 pub mod entity_filter;
 pub mod pending_change_collection;
 pub mod properties;
 pub mod upsert;
+
+#[derive(Debug)]
+pub enum ModifyUniversalCodeError {
+    UniversalCodeDoesNotExist,
+    UniversalCodeAlreadyExists,
+    DescriptionAlreadyExists(String),
+    NotAuthorised,
+    InternalError(String),
+    DatabaseError(RepositoryError),
+    DgraphError(GraphQLError),
+}
+
+impl From<RepositoryError> for ModifyUniversalCodeError {
+    fn from(error: RepositoryError) -> Self {
+        ModifyUniversalCodeError::DatabaseError(error)
+    }
+}
+
+impl From<GraphQLError> for ModifyUniversalCodeError {
+    fn from(error: GraphQLError) -> Self {
+        ModifyUniversalCodeError::DgraphError(error)
+    }
+}
 
 pub struct UniversalCodesService {
     client: DgraphClient,
@@ -133,6 +158,16 @@ impl UniversalCodesService {
                 total_length: 0,
             }),
         }
+    }
+
+    pub async fn add_pending_change(
+        &self,
+        sp: Arc<ServiceProvider>,
+        user_id: String,
+        pending_change: add_pending_change::AddPendingChange,
+    ) -> Result<PendingChange, ModifyUniversalCodeError> {
+        add_pending_change::add_pending_change(sp, user_id, self.client.clone(), pending_change)
+            .await
     }
 
     pub async fn upsert_entity(
