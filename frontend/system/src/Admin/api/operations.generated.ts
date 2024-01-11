@@ -20,6 +20,13 @@ export type PendingChangesQueryVariables = Types.Exact<{
 
 export type PendingChangesQuery = { __typename?: 'FullQuery', pendingChanges: { __typename?: 'PendingChangeConnector', totalCount: number, nodes: Array<{ __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, id: string }> } };
 
+export type RequestChangeMutationVariables = Types.Exact<{
+  input: Types.RequestChangeInput;
+}>;
+
+
+export type RequestChangeMutation = { __typename?: 'FullMutation', requestChange: { __typename?: 'PendingChangeNode', requestId: string } };
+
 export const PendingChangeSummaryFragmentDoc = gql`
     fragment PendingChangeSummary on PendingChangeNode {
   id: requestId
@@ -53,6 +60,15 @@ export const PendingChangesDocument = gql`
   }
 }
     ${PendingChangeSummaryFragmentDoc}`;
+export const RequestChangeDocument = gql`
+    mutation requestChange($input: RequestChangeInput!) {
+  requestChange(input: $input) {
+    ... on PendingChangeNode {
+      requestId
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -66,6 +82,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pendingChanges(variables?: PendingChangesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PendingChangesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PendingChangesQuery>(PendingChangesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pendingChanges', 'query');
+    },
+    requestChange(variables: RequestChangeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RequestChangeMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RequestChangeMutation>(RequestChangeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'requestChange', 'mutation');
     }
   };
 }

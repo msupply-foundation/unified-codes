@@ -27,3 +27,11 @@ query pendingChanges($page: PaginationInput, $sort: [PendingChangeSortInput!]) {
     }
   }
 }
+
+mutation requestChange($input: RequestChangeInput!) {
+  requestChange(input: $input) {
+    ... on PendingChangeNode {
+      requestId
+    }
+  }
+}
