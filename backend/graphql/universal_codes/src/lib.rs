@@ -16,6 +16,34 @@ pub struct UniversalCodesQueries;
 
 #[Object]
 impl UniversalCodesQueries {
+    pub async fn pending_change(
+        &self,
+        ctx: &Context<'_>,
+        request_id: String,
+    ) -> Result<Option<PendingChangeResponse>> {
+        let user = validate_auth(
+            ctx,
+            &ResourceAccessRequest {
+                resource: Resource::QueryPendingChanges,
+            },
+        )?;
+
+        let service_context = ctx.service_context(Some(&user))?;
+
+        let result = service_context
+            .service_provider
+            .universal_codes_service
+            .pending_change(request_id)
+            .await?;
+
+        match result {
+            Some(pending_change) => Ok(Some(PendingChangeResponse::Response(
+                PendingChangeNode::from_domain(pending_change),
+            ))),
+            None => Ok(None),
+        }
+    }
+
     pub async fn pending_changes(
         &self,
         ctx: &Context<'_>,
