@@ -111,6 +111,11 @@ export const DrugEditForm = ({
         name: draft.name,
         requestedFor: 'Country - coming soon', // TODO: capture this
         body: JSON.stringify(entity),
+        // NOTE: storing the full entity, which will be upserted on approval. If two change requests are
+        // made, there will be a conflict, and the second would overwrite the first. However it doesn't seem
+        // super likely for multiple change requests to be made against an entity at any given time... could
+        // store only the changed/new nodes and build a diff against the exisitng entity, but that would be
+        // more work for now
       },
     })
       .then(() => {
