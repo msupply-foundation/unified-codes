@@ -20,7 +20,7 @@ impl UniversalCodesQueries {
         &self,
         ctx: &Context<'_>,
         request_id: String,
-    ) -> Result<Option<PendingChangeResponse>> {
+    ) -> Result<Option<PendingChangeNode>> {
         let user = validate_auth(
             ctx,
             &ResourceAccessRequest {
@@ -37,9 +37,7 @@ impl UniversalCodesQueries {
             .await?;
 
         match result {
-            Some(pending_change) => Ok(Some(PendingChangeResponse::Response(
-                PendingChangeNode::from_domain(pending_change),
-            ))),
+            Some(pending_change) => Ok(Some(PendingChangeNode::from_domain(pending_change))),
             None => Ok(None),
         }
     }

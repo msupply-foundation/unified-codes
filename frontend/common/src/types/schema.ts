@@ -217,6 +217,7 @@ export type FullQuery = {
   logout: LogoutResponse;
   logs: LogResponse;
   me: UserResponse;
+  pendingChange?: Maybe<PendingChangeNode>;
   pendingChanges: PendingChangesResponse;
   /**
    * Retrieves a new auth bearer and refresh token
@@ -250,6 +251,11 @@ export type FullQueryLogsArgs = {
   filter?: InputMaybe<LogFilterInput>;
   page?: InputMaybe<PaginationInput>;
   sort?: InputMaybe<Array<LogSortInput>>;
+};
+
+
+export type FullQueryPendingChangeArgs = {
+  requestId: Scalars['String']['input'];
 };
 
 
