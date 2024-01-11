@@ -118,7 +118,7 @@ export const DrugEditForm = ({
         if (!initialEntity) {
           // new entity - clear the form and show success snack
           success(
-            t('message.entity-updated', {
+            t('message.entity-created', {
               name: entity.name,
             })
           )();
@@ -134,7 +134,6 @@ export const DrugEditForm = ({
               .addPart(initialEntity.code)
               .build()
           );
-          // TODO: could we have a success snack from a useEffect in the details page?
         }
       })
       .catch(e => {

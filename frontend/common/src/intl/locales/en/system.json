@@ -69,6 +69,7 @@
   "property-code_nzulm": "NZULM ID",
   "property-who_eml": "WHO EML Categories",
   "property-code_unspsc": "UNSPSC Code",
-  "message.entity-updated": "Request submitted to create/update {{ name }}",
+  "message.entity-created": "Request submitted to create {{ name }}",
+  "message.entity-updated": "Request submitted to update {{ name }}",
   "message.entity-error": "Error creating or updating this entity"
 }
