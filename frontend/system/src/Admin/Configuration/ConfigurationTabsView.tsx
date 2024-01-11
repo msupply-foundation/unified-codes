@@ -4,7 +4,6 @@ import React from 'react';
 import { config } from '../../config';
 import { OptionListConfigTab } from './OptionListConfigTab';
 import { PropertiesConfigTab } from './PropertiesConfigTab';
-import { useConfigurationItems } from './api';
 import { ConfigurationItemTypeInput } from '@common/types';
 
 export const ConfigurationTabsView = () => {

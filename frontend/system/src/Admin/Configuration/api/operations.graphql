@@ -18,3 +18,7 @@ query ConfigurationItems($type: ConfigurationItemTypeInput!) {
 mutation AddConfigItem($input: AddConfigurationItemInput!) {
   addConfigurationItem(input: $input)
 }
+
+mutation DeleteConfigItem($code: String!) {
+  deleteConfigurationItem(code: $code)
+}

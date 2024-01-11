@@ -65,7 +65,7 @@ export type ConfigurationItemNode = {
 
 export enum ConfigurationItemTypeInput {
   Form = 'form',
-  ImmediatePackaging = 'immediatePackaging',
+  ImmediatePackaging = 'immediate_packaging',
   Route = 'route'
 }
 
@@ -157,6 +157,7 @@ export type FullMutation = {
   acceptUserInvite: InviteUserResponse;
   addConfigurationItem: Scalars['Int']['output'];
   createUserAccount: CreateUserAccountResponse;
+  deleteConfigurationItem: Scalars['Int']['output'];
   deleteUserAccount: DeleteUserAccountResponse;
   /**
    * Initiates the password reset flow for a user based on email address
@@ -187,6 +188,11 @@ export type FullMutationAddConfigurationItemArgs = {
 
 export type FullMutationCreateUserAccountArgs = {
   input: CreateUserAccountInput;
+};
+
+
+export type FullMutationDeleteConfigurationItemArgs = {
+  code: Scalars['String']['input'];
 };
 
 
@@ -341,6 +347,7 @@ export type LogNode = {
 
 export enum LogNodeType {
   ConfigurationItemCreated = 'CONFIGURATION_ITEM_CREATED',
+  ConfigurationItemDeleted = 'CONFIGURATION_ITEM_DELETED',
   UniversalCodeCreated = 'UNIVERSAL_CODE_CREATED',
   UniversalCodeUpdated = 'UNIVERSAL_CODE_UPDATED',
   UserAccountCreated = 'USER_ACCOUNT_CREATED',

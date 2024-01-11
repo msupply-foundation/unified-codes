@@ -19,6 +19,13 @@ export type AddConfigItemMutationVariables = Types.Exact<{
 
 export type AddConfigItemMutation = { __typename?: 'FullMutation', addConfigurationItem: number };
 
+export type DeleteConfigItemMutationVariables = Types.Exact<{
+  code: Types.Scalars['String']['input'];
+}>;
+
+
+export type DeleteConfigItemMutation = { __typename?: 'FullMutation', deleteConfigurationItem: number };
+
 export const ConfigurationItemFragmentDoc = gql`
     fragment ConfigurationItem on ConfigurationItemNode {
   id
@@ -43,6 +50,11 @@ export const AddConfigItemDocument = gql`
   addConfigurationItem(input: $input)
 }
     `;
+export const DeleteConfigItemDocument = gql`
+    mutation DeleteConfigItem($code: String!) {
+  deleteConfigurationItem(code: $code)
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -56,6 +68,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     AddConfigItem(variables: AddConfigItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AddConfigItemMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<AddConfigItemMutation>(AddConfigItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AddConfigItem', 'mutation');
+    },
+    DeleteConfigItem(variables: DeleteConfigItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteConfigItemMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DeleteConfigItemMutation>(DeleteConfigItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteConfigItem', 'mutation');
     }
   };
 }

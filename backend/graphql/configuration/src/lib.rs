@@ -53,4 +53,8 @@ impl ConfigurationMutations {
     ) -> Result<u32> {
         add_configuration_item(ctx, input).await
     }
+
+    async fn delete_configuration_item(&self, ctx: &Context<'_>, code: String) -> Result<u32> {
+        delete_configuration_item(ctx, code).await
+    }
 }
