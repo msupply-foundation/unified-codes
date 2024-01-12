@@ -13,8 +13,7 @@ const isProductionBuild = process.env['NODE_ENV'] === 'production';
 const { port, hostname, protocol } = window.location;
 
 const defaultDevelopmentApiHost = `${protocol}//${hostname}:4007`;
-// TODO: I assume the production api host also won't be on /v1 anymore
-const productionApiHost = `${protocol}//${hostname}:${port}/v1`;
+const productionApiHost = `${protocol}//${hostname}:${port}`;
 
 const developmentApiHost =
   (typeof API_HOST !== 'undefined' && API_HOST) || defaultDevelopmentApiHost;
