@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { config } from '../../config';
 import { PropertyInput, UpsertEntityInput } from '@common/types';
-import { IconButton, LoadingButton } from '@common/components';
+import { BasicTextInput, IconButton, LoadingButton } from '@common/components';
 import { CheckIcon, CloseIcon, EditIcon } from '@common/icons';
 
 export const PendingChangeTreeItem = ({
@@ -21,6 +21,7 @@ export const PendingChangeTreeItem = ({
   const t = useTranslation('system');
 
   const [viewed, setViewed] = useState(false);
+  const [editing, setEditing] = useState(false);
 
   if (!node) return null;
 
@@ -69,21 +70,48 @@ export const PendingChangeTreeItem = ({
                 {t(`entity-type.${node.type}` as LocaleKey)}
               </Typography>
             )}
-            <Typography
-              sx={
-                isNew
-                  ? {
-                      color: green,
-                      fontWeight: 'bold',
+            {editing ? (
+              <>
+                <BasicTextInput
+                  autoFocus
+                  value={node.name}
+                  onChange={e => {
+                    if (list) {
+                      const indexToUpdate = list.findIndex(
+                        item => item.description === node.description
+                      );
+                      if (indexToUpdate >= 0) {
+                        list[indexToUpdate] = { ...node, name: e.target.value };
+                      }
+                      refreshEntity();
                     }
-                  : { color: grey }
-              }
-            >
-              {node.name}
-            </Typography>
+                  }}
+                />
+                <ReviewButton
+                  icon={<CheckIcon />}
+                  onClick={() => setEditing(false)}
+                >
+                  {t('button.done')}
+                </ReviewButton>
+              </>
+            ) : (
+              <Typography
+                sx={
+                  isNew
+                    ? {
+                        color: green,
+                        fontWeight: 'bold',
+                      }
+                    : { color: grey }
+                }
+              >
+                {node.name}
+              </Typography>
+            )}
           </Box>
           {!isRoot &&
             isNew &&
+            !editing &&
             (!viewed ? (
               <Box>
                 <ReviewButton icon={<CloseIcon />} onClick={onDelete}>
@@ -92,7 +120,7 @@ export const PendingChangeTreeItem = ({
 
                 <ReviewButton
                   icon={<EditIcon />}
-                  onClick={() => console.log('TODO')}
+                  onClick={() => setEditing(true)}
                 >
                   {t('label.edit')}
                 </ReviewButton>
@@ -108,12 +136,7 @@ export const PendingChangeTreeItem = ({
               <IconButton
                 icon={<EditIcon />}
                 label={t('label.edit')}
-                onClick={e => {
-                  // prevent tree nodes opening/collapsing
-                  e.stopPropagation();
-
-                  setViewed(false);
-                }}
+                onClick={() => setViewed(false)}
               />
             ))}
         </Box>
@@ -219,12 +242,7 @@ const PropertyTreeItem = ({
               <IconButton
                 icon={<EditIcon />}
                 label={t('label.edit')}
-                onClick={e => {
-                  // prevent tree nodes opening/collapsing
-                  e.stopPropagation();
-
-                  setPropertyIsViewed(false);
-                }}
+                onClick={() => setPropertyIsViewed(false)}
               />
             ))}
         </Box>
@@ -241,12 +259,7 @@ const ReviewButton = ({
   return (
     <LoadingButton
       startIcon={icon}
-      onClick={e => {
-        // prevent tree nodes opening/collapsing
-        e.stopPropagation();
-
-        onClick();
-      }}
+      onClick={() => onClick()}
       isLoading={false}
       variant="outlined"
       sx={{ border: '2px solid #e95c30', marginX: '3px' }}
