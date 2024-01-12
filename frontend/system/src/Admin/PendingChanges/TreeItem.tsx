@@ -1,6 +1,5 @@
 import React from 'react';
 import { LocaleKey, useTranslation } from '@common/intl';
-import { useNotification } from '@common/hooks';
 import { Box, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { config } from '../../config';
@@ -14,7 +13,6 @@ export const PendingChangeTreeItem = ({
   isRoot?: boolean;
 }) => {
   const t = useTranslation('system');
-  const { success } = useNotification();
 
   if (!node) return null;
 
@@ -23,6 +21,9 @@ export const PendingChangeTreeItem = ({
   // use default chevron icons, unless we're looking at a leaf node
   const customIcons = isLeaf ? { expandIcon: <></>, collapseIcon: <></> } : {};
 
+  const nodeId = node.code || node.description || '?';
+  const isNew = !node.code;
+
   return (
     <TreeItem
       {...customIcons}
@@ -30,21 +31,32 @@ export const PendingChangeTreeItem = ({
         paddingY: '3px',
         borderLeft: !isRoot ? '1px solid black' : undefined,
       }}
-      nodeId={node.code ?? node.description ?? ''}
+      nodeId={nodeId}
       label={
         <Box>
           {/* show node type above name */}
           {!isRoot && (
             <Typography
               sx={{
-                color: '#898989',
+                color: isNew ? '#008b08' : '898989',
                 fontSize: '10px',
               }}
             >
               {t(`entity-type.${node.type}` as LocaleKey)}
             </Typography>
           )}
-          {node.name}{' '}
+          <Typography
+            sx={
+              isNew
+                ? {
+                    color: '#008b08',
+                    fontWeight: 'bold',
+                  }
+                : { color: '#898989' }
+            }
+          >
+            {node.name}
+          </Typography>
         </Box>
       }
     >
@@ -53,20 +65,38 @@ export const PendingChangeTreeItem = ({
       ))}
       {!!node.properties?.length && (
         <TreeItem
-          nodeId={node.code + '_properties'}
-          label={t('label.properties')}
-          sx={{ borderLeft: isRoot ? '1px solid black' : undefined }}
+          nodeId={nodeId + '_properties'}
+          label={
+            <Typography sx={{ color: '898989' }}>
+              {t('label.properties')}
+            </Typography>
+          }
+          sx={{
+            borderLeft: isRoot ? '1px solid black' : undefined,
+          }}
         >
           {node.properties.map(p => {
+            const isNewProperty = !p.code.endsWith(p.key);
+
             const propertyConfig = config.properties.find(
               conf => conf.type === p.key
             );
+
             return (
               <TreeItem
                 key={p.value}
                 nodeId={node.code + p.key}
                 label={
-                  <Typography>
+                  <Typography
+                    sx={
+                      isNewProperty
+                        ? {
+                            color: '#008b08',
+                            fontWeight: 'bold',
+                          }
+                        : { color: '#898989' }
+                    }
+                  >
                     {propertyConfig?.label}: {p.value}
                   </Typography>
                 }
