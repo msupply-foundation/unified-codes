@@ -28,6 +28,25 @@ query pendingChanges($page: PaginationInput, $sort: [PendingChangeSortInput!]) {
   }
 }
 
+fragment PendingChangeDetails on PendingChangeNode {
+  id: requestId
+  name
+  category
+  changeType
+  requestedBy
+  requestedFor
+  dateRequested
+  body
+}
+
+query pendingChange($id: String!) {
+  pendingChange(requestId: $id) {
+    ... on PendingChangeNode {
+      ...PendingChangeDetails
+    }
+  }
+}
+
 mutation requestChange($input: RequestChangeInput!) {
   requestChange(input: $input) {
     ... on PendingChangeNode {

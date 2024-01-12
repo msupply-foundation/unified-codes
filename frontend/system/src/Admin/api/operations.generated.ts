@@ -20,6 +20,15 @@ export type PendingChangesQueryVariables = Types.Exact<{
 
 export type PendingChangesQuery = { __typename?: 'FullQuery', pendingChanges: { __typename?: 'PendingChangeConnector', totalCount: number, nodes: Array<{ __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, id: string }> } };
 
+export type PendingChangeDetailsFragment = { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, body: string, id: string };
+
+export type PendingChangeQueryVariables = Types.Exact<{
+  id: Types.Scalars['String']['input'];
+}>;
+
+
+export type PendingChangeQuery = { __typename?: 'FullQuery', pendingChange?: { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, body: string, id: string } | null };
+
 export type RequestChangeMutationVariables = Types.Exact<{
   input: Types.RequestChangeInput;
 }>;
@@ -36,6 +45,18 @@ export const PendingChangeSummaryFragmentDoc = gql`
   requestedBy
   requestedFor
   dateRequested
+}
+    `;
+export const PendingChangeDetailsFragmentDoc = gql`
+    fragment PendingChangeDetails on PendingChangeNode {
+  id: requestId
+  name
+  category
+  changeType
+  requestedBy
+  requestedFor
+  dateRequested
+  body
 }
     `;
 export const AddEntityTreeDocument = gql`
@@ -60,6 +81,15 @@ export const PendingChangesDocument = gql`
   }
 }
     ${PendingChangeSummaryFragmentDoc}`;
+export const PendingChangeDocument = gql`
+    query pendingChange($id: String!) {
+  pendingChange(requestId: $id) {
+    ... on PendingChangeNode {
+      ...PendingChangeDetails
+    }
+  }
+}
+    ${PendingChangeDetailsFragmentDoc}`;
 export const RequestChangeDocument = gql`
     mutation requestChange($input: RequestChangeInput!) {
   requestChange(input: $input) {
@@ -82,6 +112,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pendingChanges(variables?: PendingChangesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PendingChangesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PendingChangesQuery>(PendingChangesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pendingChanges', 'query');
+    },
+    pendingChange(variables: PendingChangeQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PendingChangeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PendingChangeQuery>(PendingChangeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pendingChange', 'query');
     },
     requestChange(variables: RequestChangeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RequestChangeMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<RequestChangeMutation>(RequestChangeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'requestChange', 'mutation');
