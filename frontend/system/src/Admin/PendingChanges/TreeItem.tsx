@@ -4,6 +4,9 @@ import { Box, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { config } from '../../config';
 import { UpsertEntityInput } from '@common/types';
+import { IconButton, LoadingButton } from '@common/components';
+import { CheckIcon, CloseIcon, EditIcon } from '@common/icons';
+import { flexbox } from '@mui/system';
 
 export const PendingChangeTreeItem = ({
   node,
@@ -24,6 +27,9 @@ export const PendingChangeTreeItem = ({
   const nodeId = node.code || node.description || '?';
   const isNew = !node.code;
 
+  const grey = '#898989';
+  const green = '#008b08';
+
   return (
     <TreeItem
       {...customIcons}
@@ -33,30 +39,59 @@ export const PendingChangeTreeItem = ({
       }}
       nodeId={nodeId}
       label={
-        <Box>
-          {/* show node type above name */}
-          {!isRoot && (
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box>
+            {/* show node type above name */}
+            {!isRoot && (
+              <Typography
+                sx={{
+                  color: isNew ? green : grey,
+                  fontSize: '10px',
+                }}
+              >
+                {t(`entity-type.${node.type}` as LocaleKey)}
+              </Typography>
+            )}
             <Typography
-              sx={{
-                color: isNew ? '#008b08' : '898989',
-                fontSize: '10px',
-              }}
+              sx={
+                isNew
+                  ? {
+                      color: green,
+                      fontWeight: 'bold',
+                    }
+                  : { color: grey }
+              }
             >
-              {t(`entity-type.${node.type}` as LocaleKey)}
+              {node.name}
             </Typography>
+          </Box>
+          {isNew && (
+            <Box>
+              <LoadingButton
+                startIcon={<CloseIcon />}
+                onClick={() => console.log('TODO')}
+                isLoading={false}
+                variant="outlined"
+              >
+                {t('label.reject')}
+              </LoadingButton>
+              <LoadingButton
+                startIcon={<EditIcon />}
+                onClick={() => console.log('TODO')}
+                isLoading={false}
+                variant="outlined"
+              >
+                {t('label.edit')}
+              </LoadingButton>
+              <LoadingButton
+                startIcon={<CheckIcon />}
+                onClick={() => console.log('TODO')}
+                isLoading={false}
+              >
+                {t('label.approve')}
+              </LoadingButton>
+            </Box>
           )}
-          <Typography
-            sx={
-              isNew
-                ? {
-                    color: '#008b08',
-                    fontWeight: 'bold',
-                  }
-                : { color: '#898989' }
-            }
-          >
-            {node.name}
-          </Typography>
         </Box>
       }
     >
@@ -67,7 +102,7 @@ export const PendingChangeTreeItem = ({
         <TreeItem
           nodeId={nodeId + '_properties'}
           label={
-            <Typography sx={{ color: '898989' }}>
+            <Typography sx={{ color: grey }}>
               {t('label.properties')}
             </Typography>
           }
@@ -87,18 +122,53 @@ export const PendingChangeTreeItem = ({
                 key={p.value}
                 nodeId={node.code + p.key}
                 label={
-                  <Typography
-                    sx={
-                      isNewProperty
-                        ? {
-                            color: '#008b08',
-                            fontWeight: 'bold',
-                          }
-                        : { color: '#898989' }
-                    }
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'baseline',
+                    }}
                   >
-                    {propertyConfig?.label}: {p.value}
-                  </Typography>
+                    <Typography
+                      sx={
+                        isNewProperty
+                          ? {
+                              color: '#008b08',
+                              fontWeight: 'bold',
+                            }
+                          : { color: '#898989' }
+                      }
+                    >
+                      {propertyConfig?.label}: {p.value}
+                    </Typography>
+                    {isNewProperty && (
+                      <Box>
+                        <LoadingButton
+                          startIcon={<CloseIcon />}
+                          onClick={() => console.log('TODO')}
+                          isLoading={false}
+                          variant="outlined"
+                        >
+                          {t('label.reject')}
+                        </LoadingButton>
+                        <LoadingButton
+                          startIcon={<EditIcon />}
+                          onClick={() => console.log('TODO')}
+                          isLoading={false}
+                          variant="outlined"
+                        >
+                          {t('label.edit')}
+                        </LoadingButton>
+                        <LoadingButton
+                          startIcon={<CheckIcon />}
+                          onClick={() => console.log('TODO')}
+                          isLoading={false}
+                        >
+                          {t('label.approve')}
+                        </LoadingButton>
+                      </Box>
+                    )}
+                  </Box>
                 }
               />
             );

@@ -1,6 +1,8 @@
 import { useBreadcrumbs } from '@common/hooks';
-import { ChevronDownIcon } from '@common/icons';
+import { CheckIcon, ChevronDownIcon, CloseIcon } from '@common/icons';
+import { useTranslation } from '@common/intl';
 import { UpsertEntityInput } from '@common/types';
+import { Box, LoadingButton } from '@common/ui';
 import { TreeView } from '@mui/lab';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
@@ -10,6 +12,7 @@ import { PendingChangeTreeItem } from './TreeItem';
 export const PendingChangeDetails = () => {
   const { id } = useParams();
   const { setSuffix } = useBreadcrumbs();
+  const t = useTranslation('system');
 
   const [expanded, setExpanded] = useState<string[]>([]);
 
@@ -38,9 +41,9 @@ export const PendingChangeDetails = () => {
     }
   }, [pendingChange?.body]);
 
-  // TODO: no data
+  // TODO: what do display if no data
   return (
-    <>
+    <Box sx={{ width: '100%' }}>
       <TreeView
         disableSelection
         expanded={expanded}
@@ -54,6 +57,24 @@ export const PendingChangeDetails = () => {
           isRoot
         />
       </TreeView>
-    </>
+      <Box sx={{ float: 'right' }}>
+        <LoadingButton
+          startIcon={<CloseIcon />}
+          onClick={() => console.log('TODO')}
+          isLoading={false}
+          variant="outlined"
+        >
+          {t('label.reject')}
+        </LoadingButton>
+        <LoadingButton
+          startIcon={<CheckIcon />}
+          onClick={() => console.log('TODO')}
+          isLoading={false}
+        >
+          {/* {t('label.approve')} */}
+          Approve & Next
+        </LoadingButton>
+      </Box>
+    </Box>
   );
 };
