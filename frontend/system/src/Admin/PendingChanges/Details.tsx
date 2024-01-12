@@ -1,5 +1,6 @@
 import { useBreadcrumbs } from '@common/hooks';
 import { ChevronDownIcon } from '@common/icons';
+import { UpsertEntityInput } from '@common/types';
 import { TreeView } from '@mui/lab';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
@@ -19,22 +20,23 @@ export const PendingChangeDetails = () => {
   }, [pendingChange?.name]);
 
   useEffect(() => {
-    const expandedIds: string[] = [];
+    if (pendingChange) {
+      const expandedIds: string[] = [];
 
-    // const addToExpandedIds = (ent?: EntityData | null) => {
-    // // Contains change?
-    //   if (ent) {
-    //     expandedIds.push(ent.code);
-    //     ent.children?.forEach(addToExpandedIds);
-    //   }
-    // };
-    // addToExpandedIds(entity);
+      const addToExpandedIds = (ent?: UpsertEntityInput | null) => {
+        if (ent) {
+          const nodeId = ent.code || ent.description || '?';
+          expandedIds.push(nodeId);
+          ent.children?.forEach(addToExpandedIds);
 
-    // // NOT ANYMORE??
-    // // entity?.properties && expandedIds.push(`${entity.code}_properties`);
+          ent?.properties && expandedIds.push(`${nodeId}_properties`);
+        }
+      };
+      addToExpandedIds(JSON.parse(pendingChange.body));
 
-    setExpanded(expandedIds);
-  }, [pendingChange]);
+      setExpanded(expandedIds);
+    }
+  }, [pendingChange?.body]);
 
   // TODO: no data
   return (
