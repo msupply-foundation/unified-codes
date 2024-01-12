@@ -15,12 +15,17 @@ export const PendingChangeDetails = () => {
   const t = useTranslation('system');
 
   const [expanded, setExpanded] = useState<string[]>([]);
+  const [entity, setEntity] = useState<UpsertEntityInput | null>(null);
 
   const { data: pendingChange } = usePendingChange(id ?? '');
 
   useEffect(() => {
     if (pendingChange?.name) setSuffix(pendingChange.name);
   }, [pendingChange?.name]);
+
+  useEffect(() => {
+    if (!entity && pendingChange) setEntity(JSON.parse(pendingChange.body));
+  }, [pendingChange]);
 
   useEffect(() => {
     if (pendingChange) {
@@ -35,11 +40,11 @@ export const PendingChangeDetails = () => {
           ent?.properties && expandedIds.push(`${nodeId}_properties`);
         }
       };
-      addToExpandedIds(JSON.parse(pendingChange.body));
+      addToExpandedIds(entity);
 
       setExpanded(expandedIds);
     }
-  }, [pendingChange?.body]);
+  }, [entity]);
 
   // TODO: what do display if no data
   return (
@@ -53,7 +58,8 @@ export const PendingChangeDetails = () => {
         sx={{ overflow: 'auto', width: '100%', marginY: '16px' }}
       >
         <PendingChangeTreeItem
-          node={pendingChange ? JSON.parse(pendingChange.body) : null}
+          refreshEntity={() => setEntity({ ...entity })}
+          node={entity}
           isRoot
         />
       </TreeView>
@@ -63,6 +69,7 @@ export const PendingChangeDetails = () => {
           onClick={() => console.log('TODO')}
           isLoading={false}
           variant="outlined"
+          sx={{ border: '2px solid #e95c30', marginX: '3px' }}
         >
           {t('label.reject')}
         </LoadingButton>
@@ -70,9 +77,9 @@ export const PendingChangeDetails = () => {
           startIcon={<CheckIcon />}
           onClick={() => console.log('TODO')}
           isLoading={false}
+          sx={{ border: '2px solid #e95c30', marginX: '3px' }}
         >
-          {/* {t('label.approve')} */}
-          Approve & Next
+          {t('label.approve-next')}
         </LoadingButton>
       </Box>
     </Box>

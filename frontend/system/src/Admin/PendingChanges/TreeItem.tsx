@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { PropsWithChildren, ReactNode, useState } from 'react';
 import { LocaleKey, useTranslation } from '@common/intl';
 import { Box, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { config } from '../../config';
-import { UpsertEntityInput } from '@common/types';
+import { PropertyInput, UpsertEntityInput } from '@common/types';
 import { IconButton, LoadingButton } from '@common/components';
 import { CheckIcon, CloseIcon, EditIcon } from '@common/icons';
-import { flexbox } from '@mui/system';
 
 export const PendingChangeTreeItem = ({
   node,
+  refreshEntity,
   isRoot = false,
+  list,
 }: {
   node?: UpsertEntityInput | null;
+  refreshEntity: () => void;
   isRoot?: boolean;
+  list?: UpsertEntityInput[] | null;
 }) => {
   const t = useTranslation('system');
 
+  const [viewed, setViewed] = useState(false);
+
   if (!node) return null;
+
+  const onDelete = () => {
+    if (list) {
+      const indexToDelete = list.findIndex(
+        item => item.description === node.description
+      );
+      if (indexToDelete >= 0) {
+        list.splice(indexToDelete, 1);
+      }
+      refreshEntity();
+    }
+  };
 
   const isLeaf = !node.children?.length && !node.properties?.length;
 
@@ -65,38 +82,50 @@ export const PendingChangeTreeItem = ({
               {node.name}
             </Typography>
           </Box>
-          {isNew && (
-            <Box>
-              <LoadingButton
-                startIcon={<CloseIcon />}
-                onClick={() => console.log('TODO')}
-                isLoading={false}
-                variant="outlined"
-              >
-                {t('label.reject')}
-              </LoadingButton>
-              <LoadingButton
-                startIcon={<EditIcon />}
-                onClick={() => console.log('TODO')}
-                isLoading={false}
-                variant="outlined"
-              >
-                {t('label.edit')}
-              </LoadingButton>
-              <LoadingButton
-                startIcon={<CheckIcon />}
-                onClick={() => console.log('TODO')}
-                isLoading={false}
-              >
-                {t('label.approve')}
-              </LoadingButton>
-            </Box>
-          )}
+          {!isRoot &&
+            isNew &&
+            (!viewed ? (
+              <Box>
+                <ReviewButton icon={<CloseIcon />} onClick={onDelete}>
+                  {t('label.reject')}
+                </ReviewButton>
+
+                <ReviewButton
+                  icon={<EditIcon />}
+                  onClick={() => console.log('TODO')}
+                >
+                  {t('label.edit')}
+                </ReviewButton>
+
+                <ReviewButton
+                  icon={<CheckIcon />}
+                  onClick={() => setViewed(true)}
+                >
+                  {t('label.viewed')}
+                </ReviewButton>
+              </Box>
+            ) : (
+              <IconButton
+                icon={<EditIcon />}
+                label={t('label.edit')}
+                onClick={e => {
+                  // prevent tree nodes opening/collapsing
+                  e.stopPropagation();
+
+                  setViewed(false);
+                }}
+              />
+            ))}
         </Box>
       }
     >
       {node.children?.map(c => (
-        <PendingChangeTreeItem node={c} key={c.code || c.description} />
+        <PendingChangeTreeItem
+          node={c}
+          key={c.code || c.description}
+          refreshEntity={refreshEntity}
+          list={node.children}
+        />
       ))}
       {!!node.properties?.length && (
         <TreeItem
@@ -110,71 +139,119 @@ export const PendingChangeTreeItem = ({
             borderLeft: isRoot ? '1px solid black' : undefined,
           }}
         >
-          {node.properties.map(p => {
-            const isNewProperty = !p.code.endsWith(p.key);
-
-            const propertyConfig = config.properties.find(
-              conf => conf.type === p.key
-            );
-
-            return (
-              <TreeItem
-                key={p.value}
-                nodeId={node.code + p.key}
-                label={
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'baseline',
-                    }}
-                  >
-                    <Typography
-                      sx={
-                        isNewProperty
-                          ? {
-                              color: '#008b08',
-                              fontWeight: 'bold',
-                            }
-                          : { color: '#898989' }
-                      }
-                    >
-                      {propertyConfig?.label}: {p.value}
-                    </Typography>
-                    {isNewProperty && (
-                      <Box>
-                        <LoadingButton
-                          startIcon={<CloseIcon />}
-                          onClick={() => console.log('TODO')}
-                          isLoading={false}
-                          variant="outlined"
-                        >
-                          {t('label.reject')}
-                        </LoadingButton>
-                        <LoadingButton
-                          startIcon={<EditIcon />}
-                          onClick={() => console.log('TODO')}
-                          isLoading={false}
-                          variant="outlined"
-                        >
-                          {t('label.edit')}
-                        </LoadingButton>
-                        <LoadingButton
-                          startIcon={<CheckIcon />}
-                          onClick={() => console.log('TODO')}
-                          isLoading={false}
-                        >
-                          {t('label.approve')}
-                        </LoadingButton>
-                      </Box>
-                    )}
-                  </Box>
-                }
-              />
-            );
-          })}
+          {node.properties.map(p => (
+            <PropertyTreeItem
+              key={p.value}
+              nodeId={node.code + p.key}
+              property={p}
+            />
+          ))}
         </TreeItem>
       )}
     </TreeItem>
+  );
+};
+
+const PropertyTreeItem = ({
+  property,
+  nodeId,
+}: {
+  property: PropertyInput;
+  nodeId: string;
+}) => {
+  const t = useTranslation('system');
+
+  const [propertyIsViewed, setPropertyIsViewed] = useState(false);
+
+  const isNewProperty = !property.code.endsWith(property.key);
+
+  const propertyConfig = config.properties.find(
+    conf => conf.type === property.key
+  );
+
+  return (
+    <TreeItem
+      key={property.value}
+      nodeId={nodeId}
+      label={
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+          }}
+        >
+          <Typography
+            sx={
+              isNewProperty
+                ? {
+                    color: '#008b08',
+                    fontWeight: 'bold',
+                  }
+                : { color: '#898989' }
+            }
+          >
+            {propertyConfig?.label}: {property.value}
+          </Typography>
+          {isNewProperty &&
+            (!propertyIsViewed ? (
+              <Box>
+                <ReviewButton
+                  icon={<CloseIcon />}
+                  onClick={() => console.log('TODO')}
+                >
+                  {t('label.reject')}
+                </ReviewButton>
+                <ReviewButton
+                  icon={<EditIcon />}
+                  onClick={() => console.log('TODO')}
+                >
+                  {t('label.edit')}
+                </ReviewButton>
+                <ReviewButton
+                  icon={<CheckIcon />}
+                  onClick={() => setPropertyIsViewed(true)}
+                >
+                  {t('label.viewed')}
+                </ReviewButton>
+              </Box>
+            ) : (
+              <IconButton
+                icon={<EditIcon />}
+                label={t('label.edit')}
+                onClick={e => {
+                  // prevent tree nodes opening/collapsing
+                  e.stopPropagation();
+
+                  setPropertyIsViewed(false);
+                }}
+              />
+            ))}
+        </Box>
+      }
+    />
+  );
+};
+
+const ReviewButton = ({
+  children,
+  icon,
+  onClick,
+}: PropsWithChildren & { onClick: () => void; icon: ReactNode }) => {
+  return (
+    <LoadingButton
+      startIcon={icon}
+      onClick={e => {
+        // prevent tree nodes opening/collapsing
+        e.stopPropagation();
+
+        onClick();
+      }}
+      isLoading={false}
+      variant="outlined"
+      sx={{ border: '2px solid #e95c30', marginX: '3px' }}
+    >
+      {children}
+    </LoadingButton>
   );
 };
