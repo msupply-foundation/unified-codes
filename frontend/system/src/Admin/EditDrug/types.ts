@@ -17,7 +17,11 @@ export interface Entity {
   properties?: Property[];
 }
 
-export interface Unit extends Entity {}
+export interface ImmediatePackaging extends Entity {}
+
+export interface Unit extends Entity {
+  immediatePackagings: ImmediatePackaging[];
+}
 
 export interface Strength extends Entity {
   units: Unit[];
@@ -33,4 +37,16 @@ export interface Route extends Entity {
 
 export interface DrugInput extends Entity {
   routes: Route[];
+}
+
+export interface Brand extends Entity {
+  routes: Route[];
+}
+
+export interface Component extends Entity {
+  brands: Brand[];
+}
+
+export interface VaccineInput extends Entity {
+  components: Component[];
 }

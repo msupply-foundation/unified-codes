@@ -37,6 +37,7 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
                 .map(|category| match category.as_str() {
                     "drug" => "Drug".to_string(),
                     "consumable" => "Consumable".to_string(),
+                    "vaccine" => "Vaccine".to_string(),
                     "other" => "Other".to_string(),
                     _ => category.to_string(),
                 })
@@ -58,10 +59,13 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
                 let t = match r#type.as_str() {
                     "drug" => "Product".to_string(),
                     "consumable" => "Product".to_string(),
-                    "other" => "Product".to_string(), // These first three are represented by the same type in dGraph, we map back on queries
+                    "vaccine" => "Product".to_string(),
+                    "other" => "Product".to_string(), // These first four are represented by the same type in dGraph, we map back on queries
                     "Drug" => "Product".to_string(),
                     "Consumable" => "Product".to_string(),
+                    "Vaccine" => "Product".to_string(),
                     "Other" => "Product".to_string(), // Uppercase versions of the above
+                    // the v1 API supports these lowercase variations of the type filter
                     "form_category" => "Route".to_string(),
                     "form" => "Form".to_string(),
                     "form_qualifier" => "FormQualifier".to_string(),

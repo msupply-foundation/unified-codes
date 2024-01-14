@@ -1,9 +1,9 @@
 [Unit]
-AssertPathExists=/opt/universal_codes/universal_codes_server
+AssertPathExists=/opt/universal_codes/universal_codes
 
 [Service]
 WorkingDirectory=/opt/universal_codes/
-ExecStart=/opt/universal_codes/universal_codes_server
+ExecStart=/opt/universal_codes/universal_codes
 User=universal_codes
 Restart=always
 PrivateTmp=true

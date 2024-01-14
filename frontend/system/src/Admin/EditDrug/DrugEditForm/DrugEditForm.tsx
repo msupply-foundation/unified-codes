@@ -318,6 +318,7 @@ export const DrugEditForm = ({
                         {
                           id: makeThrowawayId(),
                           name: '',
+                          immediatePackagings: [],
                         },
                         strength.units
                       )
@@ -358,7 +359,9 @@ export const DrugEditForm = ({
         }
       />
 
-      <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'end', paddingBottom: '16px' }}
+      >
         <ButtonWithIcon
           disabled={!isValidDrugInput(draft)}
           Icon={<SaveIcon />}
