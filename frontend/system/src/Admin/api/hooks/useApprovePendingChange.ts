@@ -1,8 +1,13 @@
 import { useQueryClient, useGql } from '@uc-frontend/common';
 import { getSdk } from '../operations.generated';
-import { ENTITIES_KEY, ENTITY_KEY } from '../../../queryKeys';
+import {
+  ENTITIES_KEY,
+  ENTITY_KEY,
+  PENDING_CHANGES_KEY,
+  PENDING_CHANGE_KEY,
+} from '../../../queryKeys';
 
-export const useAddEntityTree = () => {
+export const useApprovePendingChange = () => {
   const { client } = useGql();
   const sdk = getSdk(client);
   const queryClient = useQueryClient();
@@ -10,7 +15,9 @@ export const useAddEntityTree = () => {
   const invalidateQueries = () => {
     queryClient.invalidateQueries([ENTITY_KEY]);
     queryClient.invalidateQueries([ENTITIES_KEY]);
+    queryClient.invalidateQueries([PENDING_CHANGES_KEY]);
+    queryClient.invalidateQueries([PENDING_CHANGE_KEY]);
   };
 
-  return [sdk.addEntityTree, invalidateQueries] as const;
+  return [sdk.approvePendingChange, invalidateQueries] as const;
 };

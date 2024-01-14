@@ -1,11 +1,14 @@
-import { useBreadcrumbs } from '@common/hooks';
+import { useBreadcrumbs, useNotification } from '@common/hooks';
 import { CheckIcon, ChevronDownIcon, CloseIcon } from '@common/icons';
 import { useTranslation } from '@common/intl';
 import { UpsertEntityInput } from '@common/types';
 import { Box, LoadingButton } from '@common/ui';
+import { RouteBuilder } from '@common/utils';
 import { TreeView } from '@mui/lab';
+import { AppRoute } from 'frontend/config/src';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { useApprovePendingChange } from '../api';
 import { usePendingChange } from '../api/hooks/usePendingChange';
 import { PendingChangeTreeItem } from './TreeItem';
 
@@ -13,8 +16,12 @@ export const PendingChangeDetails = () => {
   const { id } = useParams();
   const { setSuffix } = useBreadcrumbs();
   const t = useTranslation('system');
+  const navigate = useNavigate();
+  const { error } = useNotification();
+  const [approvePendingChange, invalidateQueries] = useApprovePendingChange();
 
   const [expanded, setExpanded] = useState<string[]>([]);
+  const [approvalLoading, setApprovalLoading] = useState(false);
   const [entity, setEntity] = useState<UpsertEntityInput | null>(null);
 
   const { data: pendingChange } = usePendingChange(id ?? '');
@@ -46,6 +53,30 @@ export const PendingChangeDetails = () => {
     }
   }, [entity]);
 
+  const approveAndNext = async () => {
+    try {
+      if (!entity) throw new Error('Entity input is null');
+      setApprovalLoading(true);
+
+      await approvePendingChange({ id, input: entity });
+
+      invalidateQueries();
+
+      setApprovalLoading(false);
+
+      // todo - navigate to next - back to main for now:
+      navigate(
+        RouteBuilder.create(AppRoute.Admin)
+          .addPart(AppRoute.PendingChanges)
+          .build()
+      );
+    } catch (e) {
+      setApprovalLoading(false);
+      console.error(e);
+      error('message.entity-error')();
+    }
+  };
+
   // TODO: what do display if no data
   return (
     <Box sx={{ width: '100%' }}>
@@ -74,8 +105,8 @@ export const PendingChangeDetails = () => {
         </LoadingButton>
         <LoadingButton
           startIcon={<CheckIcon />}
-          onClick={() => console.log('TODO')}
-          isLoading={false}
+          onClick={approveAndNext}
+          isLoading={approvalLoading}
           sx={{ border: '2px solid #e95c30', marginX: '3px' }}
         >
           {t('label.approve-next')}

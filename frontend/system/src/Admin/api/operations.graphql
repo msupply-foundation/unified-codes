@@ -1,5 +1,5 @@
-mutation addEntityTree($input: UpsertEntityInput!) {
-  upsertEntity(input: $input) {
+mutation approvePendingChange($id: String, $input: UpsertEntityInput!) {
+  approvePendingChange(requestId: $id, input: $input) {
     ... on EntityType {
       __typename
       code

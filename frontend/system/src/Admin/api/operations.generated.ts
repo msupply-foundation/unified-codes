@@ -3,12 +3,13 @@ import * as Types from '@uc-frontend/common';
 import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
-export type AddEntityTreeMutationVariables = Types.Exact<{
+export type ApprovePendingChangeMutationVariables = Types.Exact<{
+  id?: Types.InputMaybe<Types.Scalars['String']['input']>;
   input: Types.UpsertEntityInput;
 }>;
 
 
-export type AddEntityTreeMutation = { __typename?: 'FullMutation', upsertEntity: { __typename: 'EntityType', code: string } };
+export type ApprovePendingChangeMutation = { __typename?: 'FullMutation', approvePendingChange: { __typename: 'EntityType', code: string } };
 
 export type PendingChangeSummaryFragment = { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, id: string };
 
@@ -59,9 +60,9 @@ export const PendingChangeDetailsFragmentDoc = gql`
   body
 }
     `;
-export const AddEntityTreeDocument = gql`
-    mutation addEntityTree($input: UpsertEntityInput!) {
-  upsertEntity(input: $input) {
+export const ApprovePendingChangeDocument = gql`
+    mutation approvePendingChange($id: String, $input: UpsertEntityInput!) {
+  approvePendingChange(requestId: $id, input: $input) {
     ... on EntityType {
       __typename
       code
@@ -107,8 +108,8 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    addEntityTree(variables: AddEntityTreeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AddEntityTreeMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AddEntityTreeMutation>(AddEntityTreeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'addEntityTree', 'mutation');
+    approvePendingChange(variables: ApprovePendingChangeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ApprovePendingChangeMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ApprovePendingChangeMutation>(ApprovePendingChangeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'approvePendingChange', 'mutation');
     },
     pendingChanges(variables?: PendingChangesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PendingChangesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PendingChangesQuery>(PendingChangesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pendingChanges', 'query');

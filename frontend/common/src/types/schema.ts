@@ -133,6 +133,7 @@ export type FullMutation = {
   __typename: 'FullMutation';
   /** Updates user account based on a token and their information (Response to initiate_user_invite) */
   acceptUserInvite: InviteUserResponse;
+  approvePendingChange: UpsertEntityResponse;
   createUserAccount: CreateUserAccountResponse;
   deleteUserAccount: DeleteUserAccountResponse;
   /**
@@ -146,7 +147,6 @@ export type FullMutation = {
   /** Resets the password for a user based on the password reset token */
   resetPasswordUsingToken: PasswordResetResponse;
   updateUserAccount: UpdateUserAccountResponse;
-  upsertEntity: UpsertEntityResponse;
   /** Validates Password Reset Token */
   validatePasswordResetToken: PasswordResetResponse;
 };
@@ -155,6 +155,12 @@ export type FullMutation = {
 export type FullMutationAcceptUserInviteArgs = {
   input: AcceptUserInviteInput;
   token: Scalars['String']['input'];
+};
+
+
+export type FullMutationApprovePendingChangeArgs = {
+  input: UpsertEntityInput;
+  requestId: Scalars['String']['input'];
 };
 
 
@@ -191,11 +197,6 @@ export type FullMutationResetPasswordUsingTokenArgs = {
 
 export type FullMutationUpdateUserAccountArgs = {
   input: UpdateUserAccountInput;
-};
-
-
-export type FullMutationUpsertEntityArgs = {
-  input: UpsertEntityInput;
 };
 
 
@@ -324,6 +325,7 @@ export type LogNode = {
 };
 
 export enum LogNodeType {
+  UniversalCodeChangeApproved = 'UNIVERSAL_CODE_CHANGE_APPROVED',
   UniversalCodeChangeRequested = 'UNIVERSAL_CODE_CHANGE_REQUESTED',
   UniversalCodeCreated = 'UNIVERSAL_CODE_CREATED',
   UniversalCodeUpdated = 'UNIVERSAL_CODE_UPDATED',
