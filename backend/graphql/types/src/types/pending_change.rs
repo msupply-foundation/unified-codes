@@ -53,7 +53,7 @@ impl PendingChangeNode {
             .await?
         {
             Some(user) => Ok(user.display_name.clone()),
-            None => Ok("Unknown".to_string()), // Should this be err?
+            None => Ok("Unknown".to_string()),
         }
     }
 }
