@@ -13,8 +13,9 @@ use service::{
 use crate::types::{UpsertEntityInput, UpsertEntityResponse};
 use graphql_universal_codes_v1::EntityType;
 
-pub async fn upsert_entity(
+pub async fn approve_pending_change(
     ctx: &Context<'_>,
+    request_id: String,
     input: UpsertEntityInput,
 ) -> Result<UpsertEntityResponse> {
     let user = validate_auth(
@@ -28,9 +29,10 @@ pub async fn upsert_entity(
     match service_context
         .service_provider
         .universal_codes_service
-        .upsert_entity(
+        .approve_pending_change(
             ctx.service_provider(),
             service_context.user_id.clone(),
+            request_id.clone(),
             input.into(),
         )
         .await
@@ -50,6 +52,7 @@ fn map_error(error: ModifyUniversalCodeError) -> Result<UpsertEntityResponse> {
         ModifyUniversalCodeError::InternalError(message) => InternalError(message),
         ModifyUniversalCodeError::UniversalCodeDoesNotExist => BadUserInput(formatted_error),
         ModifyUniversalCodeError::UniversalCodeAlreadyExists => BadUserInput(formatted_error),
+        ModifyUniversalCodeError::PendingChangeDoesNotExist => BadUserInput(formatted_error),
         ModifyUniversalCodeError::DescriptionAlreadyExists(msg) => BadUserInput(msg),
         ModifyUniversalCodeError::NotAuthorised => Forbidden(formatted_error),
         ModifyUniversalCodeError::DatabaseError(_) => InternalError(formatted_error),

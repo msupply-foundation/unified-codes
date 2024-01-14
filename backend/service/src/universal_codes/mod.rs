@@ -20,17 +20,20 @@ use self::{
 mod tests;
 
 pub mod add_pending_change;
+pub mod approve_pending_change;
 pub mod code_generator;
 pub mod entity_collection;
 pub mod entity_filter;
 pub mod pending_change_collection;
 pub mod properties;
 pub mod upsert;
+pub mod validate;
 
 #[derive(Debug)]
 pub enum ModifyUniversalCodeError {
     UniversalCodeDoesNotExist,
     UniversalCodeAlreadyExists,
+    PendingChangeDoesNotExist,
     DescriptionAlreadyExists(String),
     NotAuthorised,
     InternalError(String),
@@ -183,6 +186,23 @@ impl UniversalCodesService {
     ) -> Result<PendingChange, ModifyUniversalCodeError> {
         add_pending_change::add_pending_change(sp, user_id, self.client.clone(), pending_change)
             .await
+    }
+
+    pub async fn approve_pending_change(
+        &self,
+        sp: Arc<ServiceProvider>,
+        user_id: String,
+        request_id: String,
+        entity: upsert::UpsertUniversalCode,
+    ) -> Result<Entity, ModifyUniversalCodeError> {
+        approve_pending_change::approve_pending_change(
+            sp,
+            user_id,
+            self.client.clone(),
+            request_id,
+            entity,
+        )
+        .await
     }
 
     pub async fn upsert_entity(

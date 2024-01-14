@@ -100,11 +100,12 @@ impl UniversalCodesMutations {
         request_change(ctx, input).await
     }
 
-    async fn upsert_entity(
+    async fn approve_pending_change(
         &self,
         ctx: &Context<'_>,
+        request_id: String,
         input: UpsertEntityInput,
     ) -> Result<UpsertEntityResponse> {
-        upsert_entity(ctx, input).await
+        approve_pending_change(ctx, request_id, input).await
     }
 }
