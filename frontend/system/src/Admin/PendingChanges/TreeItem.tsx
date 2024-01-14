@@ -1,41 +1,20 @@
-import React, { PropsWithChildren, ReactNode, useState } from 'react';
+import React from 'react';
 import { LocaleKey, useTranslation } from '@common/intl';
 import { Box, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { config } from '../../config';
 import { PropertyInput, UpsertEntityInput } from '@common/types';
-import { BasicTextInput, IconButton, LoadingButton } from '@common/components';
-import { CheckIcon, CloseIcon, EditIcon } from '@common/icons';
 
 export const PendingChangeTreeItem = ({
   node,
-  refreshEntity,
   isRoot = false,
-  list,
 }: {
   node?: UpsertEntityInput | null;
-  refreshEntity: () => void;
   isRoot?: boolean;
-  list?: UpsertEntityInput[] | null;
 }) => {
   const t = useTranslation('system');
 
-  const [viewed, setViewed] = useState(false);
-  const [editing, setEditing] = useState(false);
-
   if (!node) return null;
-
-  const onDelete = () => {
-    if (list) {
-      const indexToDelete = list.findIndex(
-        item => item.description === node.description
-      );
-      if (indexToDelete >= 0) {
-        list.splice(indexToDelete, 1);
-      }
-      refreshEntity();
-    }
-  };
 
   const isLeaf = !node.children?.length && !node.properties?.length;
 
@@ -70,85 +49,25 @@ export const PendingChangeTreeItem = ({
                 {t(`entity-type.${node.type}` as LocaleKey)}
               </Typography>
             )}
-            {editing ? (
-              <>
-                <BasicTextInput
-                  autoFocus
-                  value={node.name}
-                  onChange={e => {
-                    if (list) {
-                      const indexToUpdate = list.findIndex(
-                        item => item.description === node.description
-                      );
-                      if (indexToUpdate >= 0) {
-                        list[indexToUpdate] = { ...node, name: e.target.value };
-                      }
-                      refreshEntity();
+
+            <Typography
+              sx={
+                isNew
+                  ? {
+                      color: green,
+                      fontWeight: 'bold',
                     }
-                  }}
-                />
-                <ReviewButton
-                  icon={<CheckIcon />}
-                  onClick={() => setEditing(false)}
-                >
-                  {t('button.done')}
-                </ReviewButton>
-              </>
-            ) : (
-              <Typography
-                sx={
-                  isNew
-                    ? {
-                        color: green,
-                        fontWeight: 'bold',
-                      }
-                    : { color: grey }
-                }
-              >
-                {node.name}
-              </Typography>
-            )}
+                  : { color: grey }
+              }
+            >
+              {node.name}
+            </Typography>
           </Box>
-          {!isRoot &&
-            isNew &&
-            !editing &&
-            (!viewed ? (
-              <Box>
-                <ReviewButton icon={<CloseIcon />} onClick={onDelete}>
-                  {t('label.reject')}
-                </ReviewButton>
-
-                <ReviewButton
-                  icon={<EditIcon />}
-                  onClick={() => setEditing(true)}
-                >
-                  {t('label.edit')}
-                </ReviewButton>
-
-                <ReviewButton
-                  icon={<CheckIcon />}
-                  onClick={() => setViewed(true)}
-                >
-                  {t('label.viewed')}
-                </ReviewButton>
-              </Box>
-            ) : (
-              <IconButton
-                icon={<EditIcon />}
-                label={t('label.edit')}
-                onClick={() => setViewed(false)}
-              />
-            ))}
         </Box>
       }
     >
       {node.children?.map(c => (
-        <PendingChangeTreeItem
-          node={c}
-          key={c.code || c.description}
-          refreshEntity={refreshEntity}
-          list={node.children}
-        />
+        <PendingChangeTreeItem node={c} key={c.code || c.description} />
       ))}
       {!!node.properties?.length && (
         <TreeItem
@@ -182,10 +101,6 @@ const PropertyTreeItem = ({
   property: PropertyInput;
   nodeId: string;
 }) => {
-  const t = useTranslation('system');
-
-  const [propertyIsViewed, setPropertyIsViewed] = useState(false);
-
   const isNewProperty = !property.code.endsWith(property.key);
 
   const propertyConfig = config.properties.find(
@@ -197,74 +112,19 @@ const PropertyTreeItem = ({
       key={property.value}
       nodeId={nodeId}
       label={
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'baseline',
-          }}
+        <Typography
+          sx={
+            isNewProperty
+              ? {
+                  color: '#008b08',
+                  fontWeight: 'bold',
+                }
+              : { color: '#898989' }
+          }
         >
-          <Typography
-            sx={
-              isNewProperty
-                ? {
-                    color: '#008b08',
-                    fontWeight: 'bold',
-                  }
-                : { color: '#898989' }
-            }
-          >
-            {propertyConfig?.label}: {property.value}
-          </Typography>
-          {isNewProperty &&
-            (!propertyIsViewed ? (
-              <Box>
-                <ReviewButton
-                  icon={<CloseIcon />}
-                  onClick={() => console.log('TODO')}
-                >
-                  {t('label.reject')}
-                </ReviewButton>
-                <ReviewButton
-                  icon={<EditIcon />}
-                  onClick={() => console.log('TODO')}
-                >
-                  {t('label.edit')}
-                </ReviewButton>
-                <ReviewButton
-                  icon={<CheckIcon />}
-                  onClick={() => setPropertyIsViewed(true)}
-                >
-                  {t('label.viewed')}
-                </ReviewButton>
-              </Box>
-            ) : (
-              <IconButton
-                icon={<EditIcon />}
-                label={t('label.edit')}
-                onClick={() => setPropertyIsViewed(false)}
-              />
-            ))}
-        </Box>
+          {propertyConfig?.label}: {property.value}
+        </Typography>
       }
     />
-  );
-};
-
-const ReviewButton = ({
-  children,
-  icon,
-  onClick,
-}: PropsWithChildren & { onClick: () => void; icon: ReactNode }) => {
-  return (
-    <LoadingButton
-      startIcon={icon}
-      onClick={() => onClick()}
-      isLoading={false}
-      variant="outlined"
-      sx={{ border: '2px solid #e95c30', marginX: '3px' }}
-    >
-      {children}
-    </LoadingButton>
   );
 };

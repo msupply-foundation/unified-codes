@@ -87,11 +87,7 @@ export const PendingChangeDetails = () => {
         defaultCollapseIcon={<ChevronDownIcon />}
         sx={{ overflow: 'auto', width: '100%', marginY: '16px' }}
       >
-        <PendingChangeTreeItem
-          refreshEntity={() => setEntity({ ...entity })}
-          node={entity}
-          isRoot
-        />
+        <PendingChangeTreeItem node={entity} isRoot />
       </TreeView>
       <Box sx={{ float: 'right' }}>
         <LoadingButton
