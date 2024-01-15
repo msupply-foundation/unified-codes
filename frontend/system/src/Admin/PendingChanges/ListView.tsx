@@ -18,8 +18,6 @@ export const PendingChangesListView = () => {
   const navigate = useNavigate();
   const { setSuffix } = useBreadcrumbs();
 
-  // TODO: success snack after redirect from rejection...
-
   const { queryParams, updatePaginationQuery, updateSortQuery } =
     useQueryParamsState({
       initialSort: { key: 'dateRequested', dir: 'asc' },

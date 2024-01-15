@@ -20,7 +20,7 @@ export const PendingChangeDetails = () => {
   const { setSuffix } = useBreadcrumbs();
   const t = useTranslation('system');
   const navigate = useNavigate();
-  const { error } = useNotification();
+  const { error, success } = useNotification();
 
   const [rejectPendingChange, invalidateQueriesAfterRejection] =
     useRejectPendingChange();
@@ -103,12 +103,15 @@ export const PendingChangeDetails = () => {
 
       setApprovalLoading(false);
 
+      success(
+        t('message.status-updated', { status: 'approved', name: entity.name })
+      )();
+
       navigate(
         RouteBuilder.create(AppRoute.Admin)
           .addPart(AppRoute.PendingChanges)
           .addPart(next?.id || '')
           .build()
-        // TODO: add success snack!
       );
     } catch (e) {
       setApprovalLoading(false);
@@ -119,6 +122,8 @@ export const PendingChangeDetails = () => {
 
   const reject = async () => {
     try {
+      if (!pendingChange) throw new Error('Pending change is null');
+
       setRejectionLoading(true);
 
       await rejectPendingChange({ id });
@@ -127,12 +132,18 @@ export const PendingChangeDetails = () => {
 
       setRejectionLoading(false);
 
+      success(
+        t('message.status-updated', {
+          status: 'rejected',
+          name: pendingChange.name,
+        })
+      )();
+
       navigate(
         RouteBuilder.create(AppRoute.Admin)
           .addPart(AppRoute.PendingChanges)
           .addPart(next?.id || '')
           .build()
-        // tODO; success snack
       );
     } catch (e) {
       setRejectionLoading(false);
