@@ -56,6 +56,16 @@ mod universal_codes_update_pending_change_body_test {
             .unwrap();
 
         assert_eq!(result.body, "new test body".to_string());
+
+        // TODO: A better way to remove new pending change from dgraph
+        // marking as rejected so as not to show up in PendingChange queries
+        let _result = service
+            .reject_pending_change(
+                service_provider.clone(),
+                context.user_id.clone(),
+                request_id.clone(),
+            )
+            .await;
     }
 
     #[actix_rt::test]
@@ -166,5 +176,15 @@ mod universal_codes_update_pending_change_body_test {
             .await;
 
         assert!(result.is_err());
+
+        // TODO: A better way to remove new pending change from dgraph
+        // marking as rejected so as not to show up in PendingChange queries
+        let _result = service
+            .reject_pending_change(
+                service_provider.clone(),
+                context.user_id.clone(),
+                request_id.clone(),
+            )
+            .await;
     }
 }

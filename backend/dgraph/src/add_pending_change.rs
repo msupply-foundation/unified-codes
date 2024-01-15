@@ -85,7 +85,9 @@ mod tests {
 
     use util::uuid::uuid;
 
-    use crate::{pending_change, ChangeType};
+    use crate::{
+        pending_change, update_pending_change, ChangeStatus, ChangeType, PendingChangePatch,
+    };
 
     use super::*;
 
@@ -117,11 +119,21 @@ mod tests {
         assert_eq!(result.numUids, 1);
 
         // Query for the new change
-        let result = pending_change(&client, request_id).await;
+        let result = pending_change(&client, request_id.clone()).await;
         let res = result.unwrap().unwrap();
 
         assert_eq!(res.name, "new name".to_string());
 
-        // TODO: Delete new pending change from dgraph
+        // TODO: A better way to remove new pending change from dgraph
+        // marking as rejected so as not to show up in PendingChange queries
+        let _result = update_pending_change(
+            &client,
+            request_id.clone(),
+            PendingChangePatch {
+                status: Some(ChangeStatus::Rejected),
+                ..Default::default()
+            },
+        )
+        .await;
     }
 }

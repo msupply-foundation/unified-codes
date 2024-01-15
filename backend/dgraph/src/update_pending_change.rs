@@ -149,7 +149,5 @@ mod tests {
         let res = result.clone().unwrap().unwrap();
 
         assert_eq!(res.status, ChangeStatus::Approved);
-
-        // TODO: Delete from dgraph
     }
 }
