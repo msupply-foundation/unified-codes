@@ -34,6 +34,7 @@ query PendingChangesQuery($filter: PendingChangeFilter, $first: Int, $offset: In
     requested_by_user_id
     requested_for
     body
+    status
   }
 
   aggregates: aggregatePendingChange(filter: $filter) {

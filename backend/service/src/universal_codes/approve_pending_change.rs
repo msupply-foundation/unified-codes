@@ -5,7 +5,7 @@ use crate::{
     service_provider::{ServiceContext, ServiceProvider},
 };
 use chrono::Utc;
-use dgraph::{Entity, PendingChange};
+use dgraph::{update_pending_change, ChangeStatus, Entity, PendingChange, PendingChangePatch};
 use repository::LogType;
 
 use super::{
@@ -23,9 +23,18 @@ pub async fn approve_pending_change(
 ) -> Result<Entity, ModifyUniversalCodeError> {
     let _pending_change = validate(&client, &request_id).await?;
 
-    let updated_entity = upsert_entity(sp.clone(), user_id.clone(), client, updated_entity).await;
+    let updated_entity =
+        upsert_entity(sp.clone(), user_id.clone(), client.clone(), updated_entity).await;
 
-    // TODO: modify pending_change - flag as complete or remove...
+    let _res = update_pending_change(
+        &client,
+        request_id.clone(),
+        PendingChangePatch {
+            status: Some(ChangeStatus::Approved),
+            ..Default::default()
+        },
+    )
+    .await;
 
     let service_context = ServiceContext::with_user(sp.clone(), user_id)?;
 
@@ -47,6 +56,8 @@ pub async fn validate(
         Some(pending_change) => pending_change,
         None => return Err(ModifyUniversalCodeError::PendingChangeDoesNotExist),
     };
+
+    // TODO: check pending change is pending
 
     Ok(pending_change)
 }

@@ -66,7 +66,6 @@ export const PendingChangeDetails = () => {
 
     setEditChangeLoading(true);
 
-    console.log(JSON.stringify(entity), JSON.stringify(updatedEntity));
     const { id, category, changeType, name, requestedFor } = pendingChange;
 
     await requestChange({
