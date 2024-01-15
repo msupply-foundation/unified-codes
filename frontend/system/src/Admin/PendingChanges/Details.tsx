@@ -8,7 +8,8 @@ import { TreeView } from '@mui/lab';
 import { AppRoute } from 'frontend/config/src';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { useApprovePendingChange, useRequestChange } from '../api';
+import { useApprovePendingChange } from '../api';
+import { useEditPendingChange } from '../api/hooks/useEditPendingChange';
 import { useNextPendingChange } from '../api/hooks/useNextPendingChange';
 import { usePendingChange } from '../api/hooks/usePendingChange';
 import { useRejectPendingChange } from '../api/hooks/useRejectPendingChange';
@@ -26,8 +27,7 @@ export const PendingChangeDetails = () => {
     useRejectPendingChange();
   const [approvePendingChange, invalidateQueriesAfterApproval] =
     useApprovePendingChange();
-  const [requestChange, invalidateQueriesAfterChangeRequest] =
-    useRequestChange();
+  const [editChange, invalidateQueriesAfterEdit] = useEditPendingChange();
 
   const [rejectionLoading, setRejectionLoading] = useState(false);
   const [approvalLoading, setApprovalLoading] = useState(false);
@@ -73,21 +73,12 @@ export const PendingChangeDetails = () => {
 
     setEditChangeLoading(true);
 
-    const { id, category, changeType, name, requestedFor } = pendingChange;
-
-    await requestChange({
-      input: {
-        requestId: id,
-        body: JSON.stringify(updatedEntity),
-        // TODO: should these be optional for updates...?
-        category,
-        changeType,
-        requestedFor,
-        name,
-      },
+    await editChange({
+      id: pendingChange.id,
+      body: JSON.stringify(updatedEntity),
     });
 
-    invalidateQueriesAfterChangeRequest();
+    invalidateQueriesAfterEdit();
     setEditChangeLoading(false);
     setEditMode(false);
   };

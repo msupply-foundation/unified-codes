@@ -100,6 +100,15 @@ impl UniversalCodesMutations {
         request_change(ctx, input).await
     }
 
+    async fn update_pending_change(
+        &self,
+        ctx: &Context<'_>,
+        request_id: String,
+        body: String,
+    ) -> Result<RequestChangeResponse> {
+        update_pending_change(ctx, request_id, body).await
+    }
+
     async fn approve_pending_change(
         &self,
         ctx: &Context<'_>,

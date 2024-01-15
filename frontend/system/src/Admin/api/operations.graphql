@@ -60,3 +60,11 @@ mutation requestChange($input: RequestChangeInput!) {
     }
   }
 }
+
+mutation updatePendingChange($id: String!, $body: String!) {
+  updatePendingChange(requestId: $id, body: $body) {
+    ... on PendingChangeNode {
+      requestId
+    }
+  }
+}

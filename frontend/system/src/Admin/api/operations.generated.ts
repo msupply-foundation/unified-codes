@@ -44,6 +44,14 @@ export type RequestChangeMutationVariables = Types.Exact<{
 
 export type RequestChangeMutation = { __typename?: 'FullMutation', requestChange: { __typename?: 'PendingChangeNode', requestId: string } };
 
+export type UpdatePendingChangeMutationVariables = Types.Exact<{
+  id: Types.Scalars['String']['input'];
+  body: Types.Scalars['String']['input'];
+}>;
+
+
+export type UpdatePendingChangeMutation = { __typename?: 'FullMutation', updatePendingChange: { __typename?: 'PendingChangeNode', requestId: string } };
+
 export const PendingChangeSummaryFragmentDoc = gql`
     fragment PendingChangeSummary on PendingChangeNode {
   id: requestId
@@ -114,6 +122,15 @@ export const RequestChangeDocument = gql`
   }
 }
     `;
+export const UpdatePendingChangeDocument = gql`
+    mutation updatePendingChange($id: String!, $body: String!) {
+  updatePendingChange(requestId: $id, body: $body) {
+    ... on PendingChangeNode {
+      requestId
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -136,6 +153,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     requestChange(variables: RequestChangeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RequestChangeMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<RequestChangeMutation>(RequestChangeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'requestChange', 'mutation');
+    },
+    updatePendingChange(variables: UpdatePendingChangeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdatePendingChangeMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UpdatePendingChangeMutation>(UpdatePendingChangeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'updatePendingChange', 'mutation');
     }
   };
 }

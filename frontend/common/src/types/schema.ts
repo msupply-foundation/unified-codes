@@ -153,6 +153,7 @@ export type FullMutation = {
   requestChange: RequestChangeResponse;
   /** Resets the password for a user based on the password reset token */
   resetPasswordUsingToken: PasswordResetResponse;
+  updatePendingChange: RequestChangeResponse;
   updateUserAccount: UpdateUserAccountResponse;
   /** Validates Password Reset Token */
   validatePasswordResetToken: PasswordResetResponse;
@@ -204,6 +205,12 @@ export type FullMutationRequestChangeArgs = {
 export type FullMutationResetPasswordUsingTokenArgs = {
   password: Scalars['String']['input'];
   token: Scalars['String']['input'];
+};
+
+
+export type FullMutationUpdatePendingChangeArgs = {
+  body: Scalars['String']['input'];
+  requestId: Scalars['String']['input'];
 };
 
 
