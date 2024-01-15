@@ -147,7 +147,7 @@ const OptionListConfigTabComponent = ({
         </DropdownMenu>
       </AppBarContentPortal>
 
-      <DataTable columns={columns} data={data} onRowClick={onOpen} />
+      <DataTable columns={columns} data={data} />
     </>
   );
 };
