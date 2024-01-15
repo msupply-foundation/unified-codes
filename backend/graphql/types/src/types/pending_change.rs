@@ -1,6 +1,6 @@
 use async_graphql::{dataloader::DataLoader, Context, Enum, Object, SimpleObject, Union};
 use chrono::{DateTime, Utc};
-use dgraph::{ChangeType, PendingChange};
+use dgraph::{ChangeStatus, ChangeType, PendingChange};
 use graphql_core::{loader::UserLoader, simple_generic_errors::NodeError, ContextExt};
 use serde::Serialize;
 use service::universal_codes::pending_change_collection::PendingChangeCollection;
@@ -40,6 +40,9 @@ impl PendingChangeNode {
     }
     pub async fn requested_for(&self) -> &str {
         &self.row().requested_for
+    }
+    pub async fn status(&self) -> ChangeStatusNode {
+        ChangeStatusNode::from_domain(self.row().status.clone())
     }
     pub async fn body(&self) -> &str {
         &self.row().body
@@ -106,6 +109,32 @@ impl ChangeTypeNode {
         match change_type {
             ChangeType::Change => ChangeTypeNode::Change,
             ChangeType::New => ChangeTypeNode::New,
+        }
+    }
+}
+
+#[derive(Enum, Copy, Clone, PartialEq, Eq, Debug, Serialize)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum ChangeStatusNode {
+    Pending,
+    Approved,
+    Rejected,
+}
+
+impl ChangeStatusNode {
+    pub fn to_domain(self) -> ChangeStatus {
+        match self {
+            ChangeStatusNode::Pending => ChangeStatus::Pending,
+            ChangeStatusNode::Approved => ChangeStatus::Approved,
+            ChangeStatusNode::Rejected => ChangeStatus::Rejected,
+        }
+    }
+
+    pub fn from_domain(status: ChangeStatus) -> ChangeStatusNode {
+        match status {
+            ChangeStatus::Pending => ChangeStatusNode::Pending,
+            ChangeStatus::Approved => ChangeStatusNode::Approved,
+            ChangeStatus::Rejected => ChangeStatusNode::Rejected,
         }
     }
 }

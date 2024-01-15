@@ -1,5 +1,5 @@
 use async_graphql::*;
-use dgraph::DgraphOrderByType;
+use dgraph::{ChangeStatus, DgraphOrderByType};
 use graphql_types::types::{ChangeTypeNode, PendingChangeNode};
 use graphql_universal_codes_v1::EntityType;
 use service::universal_codes::{
@@ -138,6 +138,7 @@ impl From<RequestChangeInput> for UpsertPendingChange {
             body,
             requested_for,
             change_type: ChangeTypeNode::to_domain(change_type),
+            status: ChangeStatus::Pending,
         }
     }
 }

@@ -5,7 +5,7 @@ use crate::{
     service_provider::{ServiceContext, ServiceProvider},
 };
 use chrono::Utc;
-use dgraph::{pending_change, ChangeType, PendingChange, PendingChangeInput};
+use dgraph::{pending_change, ChangeStatus, ChangeType, PendingChange, PendingChangeInput};
 use repository::LogType;
 
 use super::ModifyUniversalCodeError;
@@ -17,6 +17,7 @@ pub struct UpsertPendingChange {
     pub category: String,
     pub body: String,
     pub change_type: ChangeType,
+    pub status: ChangeStatus,
     pub requested_for: String,
 }
 
@@ -79,6 +80,8 @@ pub fn generate(
         change_type: change_request.change_type.clone(),
         requested_for: change_request.requested_for.clone(),
 
+        status: ChangeStatus::Pending,
+
         // TODO: should only set these fields if the change is new!
         date_requested: Utc::now().naive_utc(),
         requested_by_user_id: user_id.clone(),
@@ -89,6 +92,8 @@ pub async fn validate(
     pending_change: &UpsertPendingChange,
 ) -> Result<UpsertPendingChange, ModifyUniversalCodeError> {
     // We could do a duplication check here... but would need to deserialise body to check each node
+
+    // TODO if exists, check is pending!!
 
     // TODO: allow empty if an update...
     if pending_change.name.clone().is_empty() {
