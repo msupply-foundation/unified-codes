@@ -57,7 +57,7 @@ pub async fn add_pending_change(
     audit_log_entry(
         &service_context,
         LogType::UniversalCodeChangeRequested,
-        Some(requested_change.request_id.clone()), // what should this be? Could be the code of the entity if its a change, but not if we're requesting to make a new one... request_id won't connect back to entity later - do we care?
+        Some(requested_change.request_id.clone()),
         Utc::now().naive_utc(),
     )?;
 
@@ -88,9 +88,6 @@ pub async fn validate(
     client: &dgraph::DgraphClient,
     pending_change: &AddPendingChange,
 ) -> Result<AddPendingChange, ModifyUniversalCodeError> {
-    // We could do a duplication check here... but would need to deserialise body to check each node
-
-    // TODO: allow empty if an update...
     if pending_change.name.clone().is_empty() {
         return Err(ModifyUniversalCodeError::InternalError(
             "Name is required".to_string(),
@@ -101,7 +98,6 @@ pub async fn validate(
             "Category is required".to_string(),
         ));
     }
-    // How much do we want to trust the contents of `body`?
     if pending_change.body.clone().is_empty() {
         return Err(ModifyUniversalCodeError::InternalError(
             "Body is required".to_string(),
