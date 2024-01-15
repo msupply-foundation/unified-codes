@@ -1,23 +1,11 @@
 use gql_client::GraphQLError;
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 
-use crate::DgraphClient;
+use crate::{DeleteResponse, DeleteResponseData, DgraphClient};
 
 #[derive(Serialize, Debug, Clone)]
 struct DeleteVars {
     code: String,
-}
-
-#[allow(non_snake_case)]
-#[derive(Deserialize, Debug, Clone)]
-pub struct UpsertResponseData {
-    pub data: UpsertResponse,
-}
-
-#[allow(non_snake_case)]
-#[derive(Deserialize, Debug, Clone)]
-pub struct UpsertResponse {
-    pub numUids: u32,
 }
 
 // Dgraph sometimes returns an error like this:
@@ -29,7 +17,7 @@ const RETRIES: u32 = 3;
 pub async fn delete_configuration_item(
     client: &DgraphClient,
     code: String,
-) -> Result<UpsertResponse, GraphQLError> {
+) -> Result<DeleteResponse, GraphQLError> {
     let query = r#"
 mutation DeleteConfigurationInput($code: String) {
   data: deleteConfigurationItem(filter: {code: {eq: $code}}) {
@@ -42,7 +30,7 @@ mutation DeleteConfigurationInput($code: String) {
     while attempts < RETRIES {
         let result = client
             .gql
-            .query_with_vars::<UpsertResponseData, DeleteVars>(&query, variables.clone())
+            .query_with_vars::<DeleteResponseData, DeleteVars>(&query, variables.clone())
             .await;
 
         let result = match result {
@@ -64,11 +52,11 @@ mutation DeleteConfigurationInput($code: String) {
 
         match result {
             Some(result) => {
-                return Ok(UpsertResponse {
+                return Ok(DeleteResponse {
                     numUids: result.data.numUids,
                 })
             }
-            None => return Ok(UpsertResponse { numUids: 0 }),
+            None => return Ok(DeleteResponse { numUids: 0 }),
         };
     }
     Err(GraphQLError::with_text(format!(

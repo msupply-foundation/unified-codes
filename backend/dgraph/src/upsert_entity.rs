@@ -1,24 +1,12 @@
 use gql_client::GraphQLError;
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 
-use crate::{DgraphClient, EntityInput};
+use crate::{DgraphClient, EntityInput, UpsertResponse, UpsertResponseData};
 
 #[derive(Serialize, Debug, Clone)]
 struct UpsertVars {
     input: EntityInput,
     upsert: bool,
-}
-
-#[allow(non_snake_case)]
-#[derive(Deserialize, Debug, Clone)]
-pub struct UpsertResponseData {
-    pub data: UpsertResponse,
-}
-
-#[allow(non_snake_case)]
-#[derive(Deserialize, Debug, Clone)]
-pub struct UpsertResponse {
-    pub numUids: u32,
 }
 
 // Dgraph sometimes returns an error like this:
