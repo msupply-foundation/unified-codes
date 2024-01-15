@@ -4,8 +4,8 @@ use std::{
 };
 
 use dgraph::{
-    DgraphClient, DgraphOrderByType, Entity, GraphQLError, PendingChange,
-    PendingChangesDgraphFilter, PendingChangesQueryVars, SearchVars,
+    ChangeStatus, ChangeStatusDgraphFilterType, DgraphClient, DgraphOrderByType, Entity,
+    GraphQLError, PendingChange, PendingChangesDgraphFilter, PendingChangesQueryVars, SearchVars,
 };
 use repository::RepositoryError;
 
@@ -148,13 +148,17 @@ impl UniversalCodesService {
 
     pub async fn pending_changes(
         &self,
-        // filter: PendingChangesFilter, // TODO: need this once filtering by state?
+        // filter: PendingChangesFilter, // TODO: probably should expose this to allow filtering by state?
         first: Option<u32>,
         offset: Option<u32>,
         order: Option<DgraphOrderByType>,
     ) -> Result<PendingChangeCollection, UniversalCodesServiceError> {
         let dgraph_vars = PendingChangesQueryVars {
             filter: PendingChangesDgraphFilter {
+                status: Some(ChangeStatusDgraphFilterType {
+                    eq: Some(ChangeStatus::Pending),
+                    ..Default::default()
+                }),
                 ..Default::default()
             },
             first,

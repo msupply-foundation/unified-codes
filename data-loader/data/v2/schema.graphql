@@ -46,6 +46,6 @@ type PendingChange {
   date_requested: DateTime!
   requested_by_user_id: String!
   requested_for: String!
-  status: ChangeStatus!
+  status: ChangeStatus! @search(by: [exact])
   body: String!
 }
