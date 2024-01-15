@@ -2,4 +2,4 @@
 mod upsert;
 
 #[cfg(test)]
-mod add_pending_change;
+mod upsert_pending_change;

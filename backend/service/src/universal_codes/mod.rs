@@ -19,7 +19,6 @@ use self::{
 
 mod tests;
 
-pub mod add_pending_change;
 pub mod approve_pending_change;
 pub mod code_generator;
 pub mod entity_collection;
@@ -27,6 +26,7 @@ pub mod entity_filter;
 pub mod pending_change_collection;
 pub mod properties;
 pub mod upsert;
+pub mod upsert_pending_change;
 pub mod validate;
 
 #[derive(Debug)]
@@ -178,14 +178,19 @@ impl UniversalCodesService {
         }
     }
 
-    pub async fn add_pending_change(
+    pub async fn upsert_pending_change(
         &self,
         sp: Arc<ServiceProvider>,
         user_id: String,
-        pending_change: add_pending_change::AddPendingChange,
+        pending_change: upsert_pending_change::UpsertPendingChange,
     ) -> Result<PendingChange, ModifyUniversalCodeError> {
-        add_pending_change::add_pending_change(sp, user_id, self.client.clone(), pending_change)
-            .await
+        upsert_pending_change::upsert_pending_change(
+            sp,
+            user_id,
+            self.client.clone(),
+            pending_change,
+        )
+        .await
     }
 
     pub async fn approve_pending_change(

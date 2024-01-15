@@ -11,7 +11,7 @@ use repository::LogType;
 use super::ModifyUniversalCodeError;
 
 #[derive(Clone, Debug)]
-pub struct AddPendingChange {
+pub struct UpsertPendingChange {
     pub request_id: String,
     pub name: String,
     pub category: String,
@@ -20,11 +20,11 @@ pub struct AddPendingChange {
     pub requested_for: String,
 }
 
-pub async fn add_pending_change(
+pub async fn upsert_pending_change(
     sp: Arc<ServiceProvider>,
     user_id: String,
     client: dgraph::DgraphClient,
-    pending_change_request: AddPendingChange,
+    pending_change_request: UpsertPendingChange,
 ) -> Result<PendingChange, ModifyUniversalCodeError> {
     // Validate
     let pending_change_request = validate(&pending_change_request).await?;
@@ -32,7 +32,8 @@ pub async fn add_pending_change(
     // Generate
     let pending_change_input = generate(pending_change_request.clone(), user_id.clone())?;
 
-    let _result = dgraph::add_pending_change(&client, pending_change_input.clone()).await?;
+    let _result =
+        dgraph::upsert_pending_change(&client, pending_change_input.clone(), true).await?;
 
     let requested_change = pending_change(&client, pending_change_input.request_id)
         .await
@@ -65,7 +66,7 @@ pub async fn add_pending_change(
 }
 
 pub fn generate(
-    change_request: AddPendingChange,
+    change_request: UpsertPendingChange,
     user_id: String,
 ) -> Result<PendingChangeInput, ModifyUniversalCodeError> {
     println!("generate: {:?}", change_request);
@@ -84,8 +85,8 @@ pub fn generate(
 }
 
 pub async fn validate(
-    pending_change: &AddPendingChange,
-) -> Result<AddPendingChange, ModifyUniversalCodeError> {
+    pending_change: &UpsertPendingChange,
+) -> Result<UpsertPendingChange, ModifyUniversalCodeError> {
     // We could do a duplication check here... but would need to deserialise body to check each node
 
     if pending_change.name.clone().is_empty() {
