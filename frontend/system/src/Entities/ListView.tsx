@@ -22,7 +22,6 @@ import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
-import { matchSorter } from 'match-sorter';
 import Fuse from 'fuse.js';
 
 export const ListView = () => {
@@ -113,11 +112,7 @@ export const ListView = () => {
     first,
     total: data?.totalLength,
   };
-
   const filterString = (filter.filterBy?.['search'] as string) || '';
-  let suggestions = matchSorter(allProducts?.data ?? [], filterString, {
-    keys: ['description', 'code'],
-  });
 
   return (
     <TableProvider createStore={createTableStore}>
@@ -133,29 +128,6 @@ export const ListView = () => {
       >
         <Stack>
           <SearchToolbar filter={filter} />
-
-          <MenuList dense>
-            {filterString &&
-              suggestions.slice(0, 3).map((item, index) => (
-                <MenuItem
-                  key={item.code}
-                  onClick={e =>
-                    navigate(
-                      RouteBuilder.create(AppRoute.Browse)
-                        .addPart(item.code)
-                        .build()
-                    )
-                  }
-                >
-                  {item.description} ({item.code}) <NavigateLinkIcon />
-                </MenuItem>
-              ))}
-          </MenuList>
-        </Stack>
-        <Stack>
-          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-            FUSE
-          </Typography>
           <MenuList dense>
             {filterString &&
               fuse
