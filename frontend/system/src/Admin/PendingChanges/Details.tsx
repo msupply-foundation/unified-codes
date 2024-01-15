@@ -9,6 +9,7 @@ import { AppRoute } from 'frontend/config/src';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { useApprovePendingChange, useRequestChange } from '../api';
+import { useNextPendingChange } from '../api/hooks/useNextPendingChange';
 import { usePendingChange } from '../api/hooks/usePendingChange';
 import { useRejectPendingChange } from '../api/hooks/useRejectPendingChange';
 import { EditPendingChange } from './EditPendingChange';
@@ -20,6 +21,7 @@ export const PendingChangeDetails = () => {
   const t = useTranslation('system');
   const navigate = useNavigate();
   const { error } = useNotification();
+
   const [rejectPendingChange, invalidateQueriesAfterRejection] =
     useRejectPendingChange();
   const [approvePendingChange, invalidateQueriesAfterApproval] =
@@ -37,6 +39,7 @@ export const PendingChangeDetails = () => {
   const [entity, setEntity] = useState<UpsertEntityInput | null>(null);
 
   const { data: pendingChange } = usePendingChange(id ?? '');
+  const next = useNextPendingChange(id ?? '');
 
   useEffect(() => {
     if (pendingChange?.name) setSuffix(pendingChange.name);
@@ -100,11 +103,12 @@ export const PendingChangeDetails = () => {
 
       setApprovalLoading(false);
 
-      // todo - navigate to next - back to main for now:
       navigate(
         RouteBuilder.create(AppRoute.Admin)
           .addPart(AppRoute.PendingChanges)
+          .addPart(next?.id || '')
           .build()
+        // TODO: add success snack!
       );
     } catch (e) {
       setApprovalLoading(false);
@@ -123,16 +127,17 @@ export const PendingChangeDetails = () => {
 
       setRejectionLoading(false);
 
-      // or should this go next too...
       navigate(
         RouteBuilder.create(AppRoute.Admin)
           .addPart(AppRoute.PendingChanges)
+          .addPart(next?.id || '')
           .build()
+        // tODO; success snack
       );
     } catch (e) {
       setRejectionLoading(false);
       console.error(e);
-      error(t('message.entity-error'))();
+      error(t('message.entity-error'))(); // todo diff message
     }
   };
 
@@ -174,7 +179,7 @@ export const PendingChangeDetails = () => {
           onClick={reject}
           isLoading={rejectionLoading}
           variant="outlined"
-          sx={{ border: '2px solid #e95c30', marginX: '3px' }}
+          sx={{ marginX: '3px' }}
         >
           {t('label.reject')}
         </LoadingButton>
