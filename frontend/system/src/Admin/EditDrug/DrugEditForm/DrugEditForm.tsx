@@ -95,6 +95,13 @@ export const DrugEditForm = ({
       });
   };
 
+  const saveButtonDisabled =
+    !isValidDrugInput(draft) ||
+    // if editing existing entity, disable save if no change has been made
+    (initialEntity &&
+      JSON.stringify(draft) ===
+        JSON.stringify(buildDrugInputFromEntity(initialEntity)));
+
   return (
     <Box sx={{ width: '100%' }}>
       <DrugFormTree draft={draft} setDraft={setDraft} initialIds={initialIds} />
@@ -102,7 +109,7 @@ export const DrugEditForm = ({
         sx={{ display: 'flex', justifyContent: 'end', paddingBottom: '16px' }}
       >
         <ButtonWithIcon
-          disabled={!isValidDrugInput(draft)}
+          disabled={saveButtonDisabled}
           Icon={<SaveIcon />}
           label={t('button.save')}
           onClick={onSubmit}
