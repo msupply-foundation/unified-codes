@@ -30,7 +30,6 @@ import {
 import { AppRoute } from 'frontend/config/src';
 import { NameEditField } from './NameEditField';
 import { useConfigurationItems } from '../../Configuration/api';
-import { set } from 'lodash';
 
 export const VaccineEditForm = ({
   initialEntity,
