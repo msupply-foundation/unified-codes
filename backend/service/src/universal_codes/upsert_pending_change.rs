@@ -79,6 +79,7 @@ pub fn generate(
         change_type: change_request.change_type.clone(),
         requested_for: change_request.requested_for.clone(),
 
+        // TODO: should only set these fields if the change is new!
         date_requested: Utc::now().naive_utc(),
         requested_by_user_id: user_id.clone(),
     })
@@ -89,6 +90,7 @@ pub async fn validate(
 ) -> Result<UpsertPendingChange, ModifyUniversalCodeError> {
     // We could do a duplication check here... but would need to deserialise body to check each node
 
+    // TODO: allow empty if an update...
     if pending_change.name.clone().is_empty() {
         return Err(ModifyUniversalCodeError::InternalError(
             "Name is required".to_string(),

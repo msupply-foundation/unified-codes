@@ -287,7 +287,7 @@ export const buildEntityFromVaccineInput = (
 
 const getDetails = (entity: EntityDetails) => ({
   id: entity.code,
-  code: entity.code,
+  code: entity.code !== '' ? entity.code : undefined,
   name: entity.name,
   properties: entity.properties.map(p => ({
     ...p,

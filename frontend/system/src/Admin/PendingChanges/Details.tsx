@@ -8,7 +8,7 @@ import { TreeView } from '@mui/lab';
 import { AppRoute } from 'frontend/config/src';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { useApprovePendingChange } from '../api';
+import { useApprovePendingChange, useRequestChange } from '../api';
 import { usePendingChange } from '../api/hooks/usePendingChange';
 import { EditPendingChange } from './EditPendingChange';
 import { PendingChangeTreeItem } from './TreeItem';
@@ -19,7 +19,10 @@ export const PendingChangeDetails = () => {
   const t = useTranslation('system');
   const navigate = useNavigate();
   const { error } = useNotification();
-  const [approvePendingChange, invalidateQueries] = useApprovePendingChange();
+  const [approvePendingChange, invalidateQueriesAfterApproval] =
+    useApprovePendingChange();
+  const [requestChange, invalidateQueriesAfterChangeRequest] =
+    useRequestChange();
 
   const [approvalLoading, setApprovalLoading] = useState(false);
   const [editChangeLoading, setEditChangeLoading] = useState(false);
@@ -36,7 +39,7 @@ export const PendingChangeDetails = () => {
   }, [pendingChange?.name]);
 
   useEffect(() => {
-    if (!entity && pendingChange) setEntity(JSON.parse(pendingChange.body));
+    if (pendingChange) setEntity(JSON.parse(pendingChange.body));
   }, [pendingChange]);
 
   useEffect(() => {
@@ -59,11 +62,26 @@ export const PendingChangeDetails = () => {
   }, [entity]);
 
   const savePendingChange = async (updatedEntity: UpsertEntityInput) => {
+    if (!pendingChange) return;
+
     setEditChangeLoading(true);
 
-    console.log(updatedEntity);
-    // TODO: call requestChange
+    console.log(JSON.stringify(entity), JSON.stringify(updatedEntity));
+    const { id, category, changeType, name, requestedFor } = pendingChange;
 
+    await requestChange({
+      input: {
+        requestId: id,
+        body: JSON.stringify(updatedEntity),
+        // TODO: should these be optional for updates...?
+        category,
+        changeType,
+        requestedFor,
+        name,
+      },
+    });
+
+    invalidateQueriesAfterChangeRequest();
     setEditChangeLoading(false);
     setEditMode(false);
   };
@@ -75,7 +93,7 @@ export const PendingChangeDetails = () => {
 
       await approvePendingChange({ id, input: entity });
 
-      invalidateQueries();
+      invalidateQueriesAfterApproval();
 
       setApprovalLoading(false);
 
@@ -88,7 +106,7 @@ export const PendingChangeDetails = () => {
     } catch (e) {
       setApprovalLoading(false);
       console.error(e);
-      error('message.entity-error')();
+      error(t('message.entity-error'))();
     }
   };
 
@@ -100,6 +118,7 @@ export const PendingChangeDetails = () => {
       entity={entity}
       loading={editChangeLoading}
       onSave={savePendingChange}
+      onCancel={() => setEditMode(false)}
     />
   ) : (
     <Box sx={{ width: '100%' }}>

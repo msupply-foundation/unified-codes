@@ -1,7 +1,7 @@
-import { CheckIcon } from '@common/icons';
+import { CheckIcon, CloseIcon } from '@common/icons';
 import { useTranslation } from '@common/intl';
 import { UpsertEntityInput } from '@common/types';
-import { Box, LoadingButton } from '@common/ui';
+import { Box, ButtonWithIcon, LoadingButton } from '@common/ui';
 import React, { useMemo, useState } from 'react';
 import { EntityCategory } from '../../constants';
 import { DrugFormTree } from '../EditDrug/DrugEditForm/DrugFormTree';
@@ -20,10 +20,12 @@ export const EditPendingChange = ({
   entity,
   loading,
   onSave,
+  onCancel,
 }: {
   entity: UpsertEntityInput;
   loading: boolean;
-  onSave: (updated: UpsertEntityInput) => Promise<void>;
+  onSave: (updated: UpsertEntityInput) => void;
+  onCancel: () => void;
 }) => {
   const asEntityDetails = useMemo(
     () => buildEntityDetailsFromPendingChangeBody(entity ?? {}),
@@ -38,16 +40,18 @@ export const EditPendingChange = ({
   return entity?.category === EntityCategory.Drug ? (
     <EditDrug
       entity={asEntityDetails}
-      onSave={onSave}
       initialIds={initialIds}
       loading={loading}
+      onSave={onSave}
+      onCancel={onCancel}
     />
   ) : entity?.category === EntityCategory.Vaccine ? (
     <EditVaccine
       entity={asEntityDetails}
-      onSave={onSave}
       initialIds={initialIds}
       loading={loading}
+      onSave={onSave}
+      onCancel={onCancel}
     />
   ) : null;
 };
@@ -57,11 +61,13 @@ const EditDrug = ({
   initialIds,
   loading,
   onSave,
+  onCancel,
 }: {
   entity: EntityDetails;
   loading: boolean;
   initialIds: string[];
-  onSave: (updated: UpsertEntityInput) => Promise<void>;
+  onSave: (updated: UpsertEntityInput) => void;
+  onCancel: () => void;
 }) => {
   const t = useTranslation('system');
 
@@ -76,14 +82,22 @@ const EditDrug = ({
   return (
     <Box sx={{ width: '100%' }}>
       <DrugFormTree draft={draft} setDraft={setDraft} initialIds={initialIds} />
-      <LoadingButton
-        startIcon={<CheckIcon />}
-        onClick={onSubmit}
-        isLoading={loading}
-        sx={{ float: 'right' }}
-      >
-        {t('label.save')}
-      </LoadingButton>
+      <Box sx={{ float: 'right', display: 'flex', gap: '10px' }}>
+        <ButtonWithIcon
+          variant="outlined"
+          onClick={onCancel}
+          Icon={<CloseIcon />}
+          label={t('button.cancel')}
+        />
+        <LoadingButton
+          startIcon={<CheckIcon />}
+          onClick={onSubmit}
+          isLoading={loading}
+          sx={{ float: 'right' }}
+        >
+          {t('label.save')}
+        </LoadingButton>
+      </Box>
     </Box>
   );
 };
@@ -93,11 +107,13 @@ const EditVaccine = ({
   initialIds,
   loading,
   onSave,
+  onCancel,
 }: {
   entity: EntityDetails;
   loading: boolean;
   initialIds: string[];
-  onSave: (updated: UpsertEntityInput) => Promise<void>;
+  onSave: (updated: UpsertEntityInput) => void;
+  onCancel: () => void;
 }) => {
   const t = useTranslation('system');
 
@@ -115,6 +131,12 @@ const EditVaccine = ({
         draft={draft}
         setDraft={setDraft}
         initialIds={initialIds}
+      />
+      <ButtonWithIcon
+        variant="outlined"
+        onClick={onCancel}
+        Icon={<CloseIcon />}
+        label={t('button.cancel')}
       />
       <LoadingButton
         startIcon={<CheckIcon />}
