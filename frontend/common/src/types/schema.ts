@@ -27,6 +27,11 @@ export type AccessDenied = LogoutErrorInterface & {
   fullError: Scalars['String']['output'];
 };
 
+export type AddConfigurationItemInput = {
+  name: Scalars['String']['input'];
+  type: ConfigurationItemTypeInput;
+};
+
 export type AuthToken = {
   __typename: 'AuthToken';
   /** Bearer token */
@@ -43,6 +48,28 @@ export type AuthTokenErrorInterface = {
 };
 
 export type AuthTokenResponse = AuthToken | AuthTokenError;
+
+export type ConfigurationItemConnector = {
+  __typename: 'ConfigurationItemConnector';
+  data: Array<ConfigurationItemNode>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type ConfigurationItemNode = {
+  __typename: 'ConfigurationItemNode';
+  code: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+};
+
+export enum ConfigurationItemTypeInput {
+  Form = 'form',
+  ImmediatePackaging = 'immediate_packaging',
+  Route = 'route'
+}
+
+export type ConfigurationItemsResponse = ConfigurationItemConnector;
 
 export type CreateUserAccountInput = {
   displayName?: InputMaybe<Scalars['String']['input']>;
@@ -128,7 +155,9 @@ export type FullMutation = {
   __typename: 'FullMutation';
   /** Updates user account based on a token and their information (Response to initiate_user_invite) */
   acceptUserInvite: InviteUserResponse;
+  addConfigurationItem: Scalars['Int']['output'];
   createUserAccount: CreateUserAccountResponse;
+  deleteConfigurationItem: Scalars['Int']['output'];
   deleteUserAccount: DeleteUserAccountResponse;
   /**
    * Initiates the password reset flow for a user based on email address
@@ -152,8 +181,18 @@ export type FullMutationAcceptUserInviteArgs = {
 };
 
 
+export type FullMutationAddConfigurationItemArgs = {
+  input: AddConfigurationItemInput;
+};
+
+
 export type FullMutationCreateUserAccountArgs = {
   input: CreateUserAccountInput;
+};
+
+
+export type FullMutationDeleteConfigurationItemArgs = {
+  code: Scalars['String']['input'];
 };
 
 
@@ -200,6 +239,8 @@ export type FullQuery = {
    * The refresh token is returned as a cookie
    */
   authToken: AuthTokenResponse;
+  /** Get the configuration items for a given type. */
+  configurationItems: ConfigurationItemsResponse;
   entities: EntityCollectionType;
   /** Query "universal codes" entry by code */
   entity?: Maybe<EntityType>;
@@ -219,6 +260,11 @@ export type FullQuery = {
 export type FullQueryAuthTokenArgs = {
   password: Scalars['String']['input'];
   username: Scalars['String']['input'];
+};
+
+
+export type FullQueryConfigurationItemsArgs = {
+  type: ConfigurationItemTypeInput;
 };
 
 
@@ -300,6 +346,8 @@ export type LogNode = {
 };
 
 export enum LogNodeType {
+  ConfigurationItemCreated = 'CONFIGURATION_ITEM_CREATED',
+  ConfigurationItemDeleted = 'CONFIGURATION_ITEM_DELETED',
   UniversalCodeCreated = 'UNIVERSAL_CODE_CREATED',
   UniversalCodeUpdated = 'UNIVERSAL_CODE_UPDATED',
   UserAccountCreated = 'USER_ACCOUNT_CREATED',

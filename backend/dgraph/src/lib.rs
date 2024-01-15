@@ -1,5 +1,7 @@
 use serde::{Deserialize, Deserializer, Serialize};
 
+pub mod configuration;
+pub use configuration::*;
 pub mod client;
 pub use client::*;
 pub mod database_settings;
@@ -98,4 +100,28 @@ pub struct EntityInput {
     pub properties: Option<Vec<PropertyInput>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub children: Option<Vec<EntityInput>>,
+}
+
+#[allow(non_snake_case)]
+#[derive(Deserialize, Debug, Clone)]
+pub struct DeleteResponseData {
+    pub data: DeleteResponse,
+}
+
+#[allow(non_snake_case)]
+#[derive(Deserialize, Debug, Clone)]
+pub struct DeleteResponse {
+    pub numUids: u32,
+}
+
+#[allow(non_snake_case)]
+#[derive(Deserialize, Debug, Clone)]
+pub struct UpsertResponseData {
+    pub data: UpsertResponse,
+}
+
+#[allow(non_snake_case)]
+#[derive(Deserialize, Debug, Clone)]
+pub struct UpsertResponse {
+    pub numUids: u32,
 }

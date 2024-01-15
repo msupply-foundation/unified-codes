@@ -1,0 +1,24 @@
+fragment ConfigurationItem on ConfigurationItemNode {
+  id
+  name
+  type
+}
+
+query ConfigurationItems($type: ConfigurationItemTypeInput!) {
+  configurationItems(type: $type) {
+    ... on ConfigurationItemConnector {
+      data {
+        ...ConfigurationItem
+      }
+      totalCount
+    }
+  }
+}
+
+mutation AddConfigItem($input: AddConfigurationItemInput!) {
+  addConfigurationItem(input: $input)
+}
+
+mutation DeleteConfigItem($code: String!) {
+  deleteConfigurationItem(code: $code)
+}
