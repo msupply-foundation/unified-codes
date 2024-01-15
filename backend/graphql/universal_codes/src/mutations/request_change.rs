@@ -51,6 +51,7 @@ fn map_error(error: ModifyUniversalCodeError) -> Result<RequestChangeResponse> {
         ModifyUniversalCodeError::UniversalCodeDoesNotExist => BadUserInput(formatted_error),
         ModifyUniversalCodeError::UniversalCodeAlreadyExists => BadUserInput(formatted_error),
         ModifyUniversalCodeError::PendingChangeDoesNotExist => BadUserInput(formatted_error),
+        ModifyUniversalCodeError::PendingChangeAlreadyExists => BadUserInput(formatted_error),
         ModifyUniversalCodeError::DescriptionAlreadyExists(msg) => BadUserInput(msg),
         ModifyUniversalCodeError::NotAuthorised => Forbidden(formatted_error),
         ModifyUniversalCodeError::DatabaseError(_) => InternalError(formatted_error),

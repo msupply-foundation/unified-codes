@@ -37,6 +37,7 @@ pub enum ModifyUniversalCodeError {
     UniversalCodeDoesNotExist,
     UniversalCodeAlreadyExists,
     PendingChangeDoesNotExist,
+    PendingChangeAlreadyExists,
     DescriptionAlreadyExists(String),
     NotAuthorised,
     InternalError(String),

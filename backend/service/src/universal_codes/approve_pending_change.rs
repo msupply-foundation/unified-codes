@@ -57,7 +57,11 @@ pub async fn validate(
         None => return Err(ModifyUniversalCodeError::PendingChangeDoesNotExist),
     };
 
-    // TODO: check pending change is pending
+    if pending_change.status.clone() != ChangeStatus::Pending {
+        return Err(ModifyUniversalCodeError::InternalError(
+            "Not in Pending status".to_string(),
+        ));
+    }
 
     Ok(pending_change)
 }
