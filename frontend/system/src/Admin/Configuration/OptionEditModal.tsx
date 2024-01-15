@@ -36,7 +36,7 @@ export const OptionEditModal = ({
   const t = useTranslation('system');
 
   const [value, setValue] = useState(config?.name ?? '');
-  const [addEntity, invalidateQueries] = useAddConfigItem();
+  const [addConfigItem, invalidateQueries] = useAddConfigItem();
 
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -49,7 +49,7 @@ export const OptionEditModal = ({
         <LoadingButton
           onClick={() => {
             setIsLoading(true);
-            addEntity({
+            addConfigItem({
               input: {
                 name: value,
                 type: type,
