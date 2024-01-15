@@ -1,7 +1,6 @@
 #[cfg(test)]
 #[cfg(feature = "dgraph-tests")]
 mod universal_codes_upsert_pending_change_test {
-    use dgraph::ChangeStatus;
     use dgraph::ChangeType;
     use repository::{mock::MockDataInserts, test_db::setup_all};
     use std::sync::Arc;
@@ -34,7 +33,6 @@ mod universal_codes_upsert_pending_change_test {
             body: "test body".to_string(),
             requested_for: "test country".to_string(),
             change_type: ChangeType::New,
-            status: ChangeStatus::Pending,
         };
 
         let result = service
@@ -71,7 +69,6 @@ mod universal_codes_upsert_pending_change_test {
             body: "test body".to_string(),
             requested_for: "test country".to_string(),
             change_type: ChangeType::New,
-            status: ChangeStatus::Pending,
         };
 
         let result = service
