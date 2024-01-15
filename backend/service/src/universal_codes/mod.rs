@@ -25,6 +25,7 @@ pub mod entity_collection;
 pub mod entity_filter;
 pub mod pending_change_collection;
 pub mod properties;
+pub mod reject_pending_change;
 pub mod upsert;
 pub mod upsert_pending_change;
 pub mod validate;
@@ -212,6 +213,16 @@ impl UniversalCodesService {
             entity,
         )
         .await
+    }
+
+    pub async fn reject_pending_change(
+        &self,
+        sp: Arc<ServiceProvider>,
+        user_id: String,
+        request_id: String,
+    ) -> Result<String, ModifyUniversalCodeError> {
+        reject_pending_change::reject_pending_change(sp, user_id, self.client.clone(), request_id)
+            .await
     }
 
     pub async fn upsert_entity(

@@ -7,6 +7,12 @@ mutation approvePendingChange($id: String, $input: UpsertEntityInput!) {
   }
 }
 
+mutation rejectPendingChange($id: String) {
+  rejectPendingChange(requestId: $id) {
+    id
+  }
+}
+
 fragment PendingChangeSummary on PendingChangeNode {
   id: requestId
   name

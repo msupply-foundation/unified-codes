@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { useApprovePendingChange, useRequestChange } from '../api';
 import { usePendingChange } from '../api/hooks/usePendingChange';
+import { useRejectPendingChange } from '../api/hooks/useRejectPendingChange';
 import { EditPendingChange } from './EditPendingChange';
 import { PendingChangeTreeItem } from './TreeItem';
 
@@ -19,11 +20,14 @@ export const PendingChangeDetails = () => {
   const t = useTranslation('system');
   const navigate = useNavigate();
   const { error } = useNotification();
+  const [rejectPendingChange, invalidateQueriesAfterRejection] =
+    useRejectPendingChange();
   const [approvePendingChange, invalidateQueriesAfterApproval] =
     useApprovePendingChange();
   const [requestChange, invalidateQueriesAfterChangeRequest] =
     useRequestChange();
 
+  const [rejectionLoading, setRejectionLoading] = useState(false);
   const [approvalLoading, setApprovalLoading] = useState(false);
   const [editChangeLoading, setEditChangeLoading] = useState(false);
 
@@ -109,6 +113,29 @@ export const PendingChangeDetails = () => {
     }
   };
 
+  const reject = async () => {
+    try {
+      setRejectionLoading(true);
+
+      await rejectPendingChange({ id });
+
+      invalidateQueriesAfterRejection();
+
+      setRejectionLoading(false);
+
+      // or should this go next too...
+      navigate(
+        RouteBuilder.create(AppRoute.Admin)
+          .addPart(AppRoute.PendingChanges)
+          .build()
+      );
+    } catch (e) {
+      setRejectionLoading(false);
+      console.error(e);
+      error(t('message.entity-error'))();
+    }
+  };
+
   // TODO: what do display if no data
   if (!entity) return null;
 
@@ -144,8 +171,8 @@ export const PendingChangeDetails = () => {
       <Box sx={{ float: 'right' }}>
         <LoadingButton
           startIcon={<CloseIcon />}
-          onClick={() => console.log('TODO')}
-          isLoading={false}
+          onClick={reject}
+          isLoading={rejectionLoading}
           variant="outlined"
           sx={{ border: '2px solid #e95c30', marginX: '3px' }}
         >

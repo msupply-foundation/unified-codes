@@ -44,6 +44,12 @@ export type AuthTokenErrorInterface = {
 
 export type AuthTokenResponse = AuthToken | AuthTokenError;
 
+export enum ChangeStatusNode {
+  Approved = 'APPROVED',
+  Pending = 'PENDING',
+  Rejected = 'REJECTED'
+}
+
 export enum ChangeTypeNode {
   Change = 'CHANGE',
   New = 'NEW'
@@ -143,6 +149,7 @@ export type FullMutation = {
   initiatePasswordReset: PasswordResetResponse;
   /** Invites a new user to the system */
   initiateUserInvite: InviteUserResponse;
+  rejectPendingChange: IdResponse;
   requestChange: RequestChangeResponse;
   /** Resets the password for a user based on the password reset token */
   resetPasswordUsingToken: PasswordResetResponse;
@@ -181,6 +188,11 @@ export type FullMutationInitiatePasswordResetArgs = {
 
 export type FullMutationInitiateUserInviteArgs = {
   input: InviteUserInput;
+};
+
+
+export type FullMutationRejectPendingChangeArgs = {
+  requestId: Scalars['String']['input'];
 };
 
 
@@ -272,6 +284,11 @@ export type FullQueryUserAccountsArgs = {
   sort?: InputMaybe<Array<UserAccountSortInput>>;
 };
 
+export type IdResponse = {
+  __typename: 'IdResponse';
+  id: Scalars['String']['output'];
+};
+
 export type InternalError = LogoutErrorInterface & RefreshTokenErrorInterface & {
   __typename: 'InternalError';
   description: Scalars['String']['output'];
@@ -326,6 +343,7 @@ export type LogNode = {
 
 export enum LogNodeType {
   UniversalCodeChangeApproved = 'UNIVERSAL_CODE_CHANGE_APPROVED',
+  UniversalCodeChangeRejected = 'UNIVERSAL_CODE_CHANGE_REJECTED',
   UniversalCodeChangeRequested = 'UNIVERSAL_CODE_CHANGE_REQUESTED',
   UniversalCodeCreated = 'UNIVERSAL_CODE_CREATED',
   UniversalCodeUpdated = 'UNIVERSAL_CODE_UPDATED',
@@ -417,6 +435,7 @@ export type PendingChangeNode = {
   requestId: Scalars['String']['output'];
   requestedBy: Scalars['String']['output'];
   requestedFor: Scalars['String']['output'];
+  status: ChangeStatusNode;
 };
 
 export enum PendingChangeSortFieldInput {

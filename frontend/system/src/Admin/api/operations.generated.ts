@@ -11,6 +11,13 @@ export type ApprovePendingChangeMutationVariables = Types.Exact<{
 
 export type ApprovePendingChangeMutation = { __typename?: 'FullMutation', approvePendingChange: { __typename: 'EntityType', code: string } };
 
+export type RejectPendingChangeMutationVariables = Types.Exact<{
+  id?: Types.InputMaybe<Types.Scalars['String']['input']>;
+}>;
+
+
+export type RejectPendingChangeMutation = { __typename?: 'FullMutation', rejectPendingChange: { __typename?: 'IdResponse', id: string } };
+
 export type PendingChangeSummaryFragment = { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, id: string };
 
 export type PendingChangesQueryVariables = Types.Exact<{
@@ -70,6 +77,13 @@ export const ApprovePendingChangeDocument = gql`
   }
 }
     `;
+export const RejectPendingChangeDocument = gql`
+    mutation rejectPendingChange($id: String) {
+  rejectPendingChange(requestId: $id) {
+    id
+  }
+}
+    `;
 export const PendingChangesDocument = gql`
     query pendingChanges($page: PaginationInput, $sort: [PendingChangeSortInput!]) {
   pendingChanges(page: $page, sort: $sort) {
@@ -110,6 +124,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     approvePendingChange(variables: ApprovePendingChangeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ApprovePendingChangeMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<ApprovePendingChangeMutation>(ApprovePendingChangeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'approvePendingChange', 'mutation');
+    },
+    rejectPendingChange(variables?: RejectPendingChangeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RejectPendingChangeMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RejectPendingChangeMutation>(RejectPendingChangeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'rejectPendingChange', 'mutation');
     },
     pendingChanges(variables?: PendingChangesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PendingChangesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PendingChangesQuery>(PendingChangesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pendingChanges', 'query');

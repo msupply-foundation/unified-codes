@@ -26,6 +26,7 @@ pub enum LogNodeType {
     UniversalCodeCreated,
     UniversalCodeUpdated,
     UniversalCodeChangeApproved,
+    UniversalCodeChangeRejected,
     UniversalCodeChangeRequested,
 }
 
@@ -85,6 +86,7 @@ impl LogNodeType {
             LogType::UniversalCodeUpdated => LogNodeType::UniversalCodeUpdated,
             LogType::UniversalCodeChangeRequested => LogNodeType::UniversalCodeChangeRequested,
             LogType::UniversalCodeChangeApproved => LogNodeType::UniversalCodeChangeApproved,
+            LogType::UniversalCodeChangeRejected => LogNodeType::UniversalCodeChangeRejected,
         }
     }
 
@@ -100,6 +102,7 @@ impl LogNodeType {
             LogNodeType::UniversalCodeUpdated => LogType::UniversalCodeUpdated,
             LogNodeType::UniversalCodeChangeRequested => LogType::UniversalCodeChangeRequested,
             LogNodeType::UniversalCodeChangeApproved => LogType::UniversalCodeChangeApproved,
+            LogNodeType::UniversalCodeChangeRejected => LogType::UniversalCodeChangeRejected,
         }
     }
 }

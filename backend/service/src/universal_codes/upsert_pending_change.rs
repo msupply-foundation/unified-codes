@@ -17,7 +17,6 @@ pub struct UpsertPendingChange {
     pub category: String,
     pub body: String,
     pub change_type: ChangeType,
-    pub status: ChangeStatus,
     pub requested_for: String,
 }
 

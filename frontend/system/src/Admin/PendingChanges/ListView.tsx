@@ -18,6 +18,8 @@ export const PendingChangesListView = () => {
   const navigate = useNavigate();
   const { setSuffix } = useBreadcrumbs();
 
+  // TODO: success snack after redirect from rejection...
+
   const { queryParams, updatePaginationQuery, updateSortQuery } =
     useQueryParamsState({
       initialSort: { key: 'dateRequested', dir: 'asc' },
@@ -49,7 +51,7 @@ export const PendingChangesListView = () => {
   useEffect(() => {
     if (data?.totalCount) {
       setSuffix(`${t('pending-changes', { ns: 'host' })} (${data.totalCount})`);
-    }
+    } else setSuffix();
   }, [data?.totalCount]);
 
   const pendingChanges = data?.nodes ?? [];
