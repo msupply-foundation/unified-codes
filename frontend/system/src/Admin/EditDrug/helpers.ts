@@ -17,7 +17,7 @@ export const getAllEntityCodes = (
 
   addChildCodes(entity);
 
-  return codes;
+  return codes.filter(c => c !== '');
 };
 
 export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
@@ -337,4 +337,22 @@ export const isValidVaccineInput = (input: VaccineInput) => {
   }
 
   return true;
+};
+
+export const buildEntityDetailsFromPendingChangeBody = (
+  input: UpsertEntityInput
+): EntityDetails => {
+  return {
+    code: input.code || '',
+    name: input.name || '',
+    type: input.type || '',
+    properties:
+      input.properties?.map(p => ({
+        code: p.code,
+        value: p.value,
+        type: p.key,
+      })) || [],
+    children:
+      input.children?.map(buildEntityDetailsFromPendingChangeBody) || [],
+  };
 };

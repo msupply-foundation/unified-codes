@@ -1,8 +1,8 @@
 import { useBreadcrumbs, useNotification } from '@common/hooks';
-import { CheckIcon, ChevronDownIcon, CloseIcon } from '@common/icons';
+import { CheckIcon, ChevronDownIcon, CloseIcon, EditIcon } from '@common/icons';
 import { useTranslation } from '@common/intl';
 import { UpsertEntityInput } from '@common/types';
-import { Box, LoadingButton } from '@common/ui';
+import { Box, ButtonWithIcon, LoadingButton } from '@common/ui';
 import { RouteBuilder } from '@common/utils';
 import { TreeView } from '@mui/lab';
 import { AppRoute } from 'frontend/config/src';
@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { useApprovePendingChange } from '../api';
 import { usePendingChange } from '../api/hooks/usePendingChange';
+import { EditPendingChange } from './EditPendingChange';
 import { PendingChangeTreeItem } from './TreeItem';
 
 export const PendingChangeDetails = () => {
@@ -20,8 +21,12 @@ export const PendingChangeDetails = () => {
   const { error } = useNotification();
   const [approvePendingChange, invalidateQueries] = useApprovePendingChange();
 
-  const [expanded, setExpanded] = useState<string[]>([]);
   const [approvalLoading, setApprovalLoading] = useState(false);
+  const [editChangeLoading, setEditChangeLoading] = useState(false);
+
+  const [isEditMode, setEditMode] = useState(false);
+
+  const [expanded, setExpanded] = useState<string[]>([]);
   const [entity, setEntity] = useState<UpsertEntityInput | null>(null);
 
   const { data: pendingChange } = usePendingChange(id ?? '');
@@ -53,6 +58,16 @@ export const PendingChangeDetails = () => {
     }
   }, [entity]);
 
+  const savePendingChange = async (updatedEntity: UpsertEntityInput) => {
+    setEditChangeLoading(true);
+
+    console.log(updatedEntity);
+    // TODO: call requestChange
+
+    setEditChangeLoading(false);
+    setEditMode(false);
+  };
+
   const approveAndNext = async () => {
     try {
       if (!entity) throw new Error('Entity input is null');
@@ -78,17 +93,36 @@ export const PendingChangeDetails = () => {
   };
 
   // TODO: what do display if no data
-  return (
+  if (!entity) return null;
+
+  return isEditMode ? (
+    <EditPendingChange
+      entity={entity}
+      loading={editChangeLoading}
+      onSave={savePendingChange}
+    />
+  ) : (
     <Box sx={{ width: '100%' }}>
-      <TreeView
-        disableSelection
-        expanded={expanded}
-        defaultExpandIcon={<ChevronDownIcon sx={{ rotate: '-90deg' }} />}
-        defaultCollapseIcon={<ChevronDownIcon />}
-        sx={{ overflow: 'auto', width: '100%', marginY: '16px' }}
-      >
-        <PendingChangeTreeItem node={entity} isRoot />
-      </TreeView>
+      <Box sx={{ display: 'flex' }}>
+        <TreeView
+          disableSelection
+          expanded={expanded}
+          defaultExpandIcon={<ChevronDownIcon sx={{ rotate: '-90deg' }} />}
+          defaultCollapseIcon={<ChevronDownIcon />}
+          sx={{ overflow: 'auto', width: '100%', marginY: '16px' }}
+        >
+          <PendingChangeTreeItem node={entity} isRoot />
+        </TreeView>
+        <Box>
+          <ButtonWithIcon
+            sx={{ marginTop: '16px' }}
+            variant="contained"
+            onClick={() => setEditMode(true)}
+            Icon={<EditIcon />}
+            label={t('label.edit')}
+          />
+        </Box>
+      </Box>
       <Box sx={{ float: 'right' }}>
         <LoadingButton
           startIcon={<CloseIcon />}
