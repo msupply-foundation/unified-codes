@@ -148,7 +148,7 @@ export const PendingChangeDetails = () => {
     } catch (e) {
       setRejectionLoading(false);
       console.error(e);
-      error(t('message.entity-error'))(); // todo diff message
+      error(t('message.reject-change-error'))();
     }
   };
 

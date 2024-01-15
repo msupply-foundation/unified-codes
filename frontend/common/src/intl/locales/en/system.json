@@ -75,5 +75,6 @@
   "message.status-updated": "Change request {{ status }} for {{ name }}",
   "message.entity-created": "Request submitted to create {{ name }}",
   "message.entity-updated": "Request submitted to update {{ name }}",
-  "message.entity-error": "Error creating or updating this entity"
+  "message.entity-error": "Error creating or updating this entity",
+  "message.reject-change-error": "Error occurred while rejecting this change"
 }
