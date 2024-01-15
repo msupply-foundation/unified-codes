@@ -63,23 +63,27 @@ export const VaccineEditForm = ({
       .then(() => {
         invalidateQueries();
         if (!initialEntity) {
-          // new entity - clear the form and show success snack
           success(
             t('message.entity-created', {
               name: entity.name,
             })
           )();
+          // new entity - clear the form
           setDraft({
             id: uuid(),
             name: '',
             components: [],
           });
         } else {
+          success(
+            t('message.entity-updated', {
+              name: entity.name,
+            })
+          )();
           // existing entity - back to details page
           navigate(
             RouteBuilder.create(AppRoute.Browse)
               .addPart(initialEntity.code)
-              .addPart('?changeRequested=true')
               .build()
           );
         }

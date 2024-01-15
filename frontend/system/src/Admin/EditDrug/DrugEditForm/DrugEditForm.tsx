@@ -62,8 +62,9 @@ export const DrugEditForm = ({
     })
       .then(() => {
         invalidateQueries();
+
         if (!initialEntity) {
-          // new entity - clear the form and show success snack
+          // new entity - clear the form
           success(
             t('message.entity-created', {
               name: entity.name,
@@ -76,10 +77,14 @@ export const DrugEditForm = ({
           });
         } else {
           // existing entity - back to details page
+          success(
+            t('message.entity-updated', {
+              name: entity.name,
+            })
+          )();
           navigate(
             RouteBuilder.create(AppRoute.Browse)
               .addPart(initialEntity.code)
-              .addPart('?changeRequested=true')
               .build()
           );
         }
