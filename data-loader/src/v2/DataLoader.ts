@@ -211,10 +211,10 @@ export class DataLoader {
     for await (const form of forms) {
       if (!form) continue;
       const nQuads = `
-        _:route <name> "${form}" .
-        _:route <code> "${form}" .
-        _:route <type> "Form" .
-        _:route <dgraph.type> "ConfigurationItem" .
+        _:form <name> "${form}" .
+        _:form <code> "${form}" .
+        _:form <type> "Form" .
+        _:form <dgraph.type> "ConfigurationItem" .
       `;
 
       if (await this.dgraph.mutate(nQuads)) {
@@ -234,10 +234,10 @@ export class DataLoader {
             entity.description.includes(`${form} ${formQualifier}`)
           ) {
             const nQuads = `
-              _:route <name> "${form} (${formQualifier})" .
-              _:route <code> "${form} (${formQualifier})" .
-              _:route <type> "Form" .
-              _:route <dgraph.type> "ConfigurationItem" .
+              _:form <name> "${form} (${formQualifier})" .
+              _:form <code> "${form} (${formQualifier})" .
+              _:form <type> "Form" .
+              _:form <dgraph.type> "ConfigurationItem" .
             `;
 
             if (await this.dgraph.mutate(nQuads)) {
@@ -259,10 +259,10 @@ export class DataLoader {
     for await (const immediatePackaging of immediatePackagings) {
       if (!immediatePackaging) continue;
       const nQuads = `
-        _:route <name> "${immediatePackaging}" .
-        _:route <code> "${immediatePackaging}" .
-        _:route <type> "ImmediatePackaging" .
-        _:route <dgraph.type> "ConfigurationItem" .
+        _:pack <name> "${immediatePackaging}" .
+        _:pack <code> "${immediatePackaging}" .
+        _:pack <type> "ImmediatePackaging" .
+        _:pack <dgraph.type> "ConfigurationItem" .
       `;
 
       if (await this.dgraph.mutate(nQuads)) {
