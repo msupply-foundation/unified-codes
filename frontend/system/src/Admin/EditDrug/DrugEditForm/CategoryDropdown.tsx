@@ -20,6 +20,9 @@ export const CategoryDropdown = ({
   onDelete: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }) => {
   const t = useTranslation('system');
+  if (!options.find(o => o.value === value)) {
+    options.push({ label: value, value: value });
+  }
   return (
     <>
       <Select
