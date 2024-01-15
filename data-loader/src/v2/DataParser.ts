@@ -15,12 +15,14 @@ enum UCCode {
   Root = 'root',
   Drug = '933f3f00',
   Consumable = '77fcbb00',
+  Vaccine = '5048e0ad',
 }
 
 enum UCName {
   Root = 'Root',
   Drug = 'Drug',
   Consumable = 'Consumable',
+  Vaccine = 'Vaccine',
 }
 
 const UC_ENTITY: { [name: string]: IEntityNode } = {
@@ -44,6 +46,14 @@ const UC_ENTITY: { [name: string]: IEntityNode } = {
     code: UCCode.Consumable,
     name: UCName.Consumable,
     description: UCName.Consumable,
+    type: EEntityType.Category,
+    children: [],
+    properties: [],
+  },
+  VACCINE: {
+    code: UCCode.Vaccine,
+    name: UCName.Vaccine,
+    description: UCName.Vaccine,
     type: EEntityType.Category,
     children: [],
     properties: [],
@@ -145,9 +155,14 @@ export class DataParser {
       [UC_ENTITY.ROOT.code]: UC_ENTITY.ROOT,
       [UC_ENTITY.DRUG.code]: UC_ENTITY.DRUG,
       [UC_ENTITY.CONSUMABLE.code]: UC_ENTITY.CONSUMABLE,
+      [UC_ENTITY.VACCINE.code]: UC_ENTITY.VACCINE,
     };
 
-    UC_ENTITY.ROOT.children = [UC_ENTITY.DRUG, UC_ENTITY.CONSUMABLE];
+    UC_ENTITY.ROOT.children = [
+      UC_ENTITY.DRUG,
+      UC_ENTITY.CONSUMABLE,
+      UC_ENTITY.VACCINE,
+    ];
 
     try {
       // Initialise duplicate codes.

@@ -28,7 +28,11 @@ pub async fn upsert_entity(
     match service_context
         .service_provider
         .universal_codes_service
-        .upsert_entity(input.into())
+        .upsert_entity(
+            ctx.service_provider(),
+            service_context.user_id.clone(),
+            input.into(),
+        )
         .await
     {
         Ok(entity) => Ok(UpsertEntityResponse::Response(EntityType::from_domain(

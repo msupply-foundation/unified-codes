@@ -27,7 +27,6 @@ assets = [
     ["debian/universal_codes.service", "/lib/systemd/system/universal_codes.service", "644"],
     ["../configuration/base.yaml", "/opt/universal_codes/configuration/", "755"],
     ["../configuration/example.yaml", "/opt/universal_codes/configuration/", "755"],
-    ["../templates/**/*.html", "/opt/universal_codes/templates/", "755"]
 ]
 maintainer-scripts = "debian/scripts"
 

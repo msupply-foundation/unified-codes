@@ -21,6 +21,7 @@ pub async fn entity_by_code(
   __typename
   properties {
     __typename
+    code
     type
     value
   }
@@ -71,6 +72,7 @@ query EntityQuery($code: String!) {
 }
 
 #[cfg(test)]
+#[cfg(feature = "dgraph-tests")]
 mod tests {
 
     use super::*;

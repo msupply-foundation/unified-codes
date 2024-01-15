@@ -10,18 +10,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build data-service
-        run: yarn build-data-service
-
-      - name: Build data-loader
-        run: yarn build-data-service
-
       - name: Build frontend
         run: yarn build-frontend
 
       - name: Test frontend
         run: yarn test-frontend
 
-      # This only runs the unit tests - integration tests in CI would be more expensive
-      - name: Test data-service
-        run: yarn test-data-service
+      - name: Test backend
+        run: yarn test-backend-ci

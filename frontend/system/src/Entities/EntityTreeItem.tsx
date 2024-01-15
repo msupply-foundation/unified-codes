@@ -1,8 +1,8 @@
 import React from 'react';
-import { useTranslation } from '@common/intl';
+import { LocaleKey, useTranslation } from '@common/intl';
 import { CopyIcon, FlatButton } from '@common/ui';
 import { useNotification } from '@common/hooks';
-import { Link, Typography } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { EntityDetailsFragment } from './api/operations.generated';
 import { config } from '../config';
@@ -51,7 +51,18 @@ export const EntityTreeItem = ({
       }}
       nodeId={entity.code}
       label={
-        <Typography sx={{ height: '26px' }}>
+        <Box>
+          {/* show node type above name */}
+          {!isRoot && (
+            <Typography
+              sx={{
+                color: '#898989',
+                fontSize: '10px',
+              }}
+            >
+              {t(`entity-type.${entity.type}` as LocaleKey)}
+            </Typography>
+          )}
           {entity.name}{' '}
           {showCode && (
             <>
@@ -64,13 +75,13 @@ export const EntityTreeItem = ({
               />
             </>
           )}
-        </Typography>
+        </Box>
       }
     >
       {entity.children?.map(c => (
         <EntityTreeItem entity={c} key={c.code} showAllCodes={showAllCodes} />
       ))}
-      {entity.properties && (
+      {!!entity.properties.length && (
         <TreeItem
           nodeId={entity.code + '_properties'}
           label={t('label.properties')}
