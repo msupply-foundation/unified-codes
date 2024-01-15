@@ -1,11 +1,5 @@
 import { useTranslation } from '@common/intl';
-import {
-  Box,
-  Typography,
-  SaveIcon,
-  ButtonWithIcon,
-  LoadingButton,
-} from '@common/ui';
+import { Box, Typography, SaveIcon, LoadingButton } from '@common/ui';
 import React, { useState } from 'react';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
@@ -128,9 +122,9 @@ export const DrugEditForm = ({
     addEntity({ input: entity })
       .catch(e => {
         console.error(e);
-        setIsSaving(false);
       })
       .then(e => {
+        setIsSaving(false);
         if (e) {
           success(
             t('message.entity-updated', {
@@ -146,7 +140,6 @@ export const DrugEditForm = ({
         } else {
           error(t('message.entity-error'))();
         }
-        setIsSaving(false);
       });
   };
 
