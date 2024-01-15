@@ -17,9 +17,14 @@ import {
   isValidVaccineInput,
 } from '../helpers';
 import { useAddEntityTree } from 'frontend/system/src/Entities/api';
-import { RouteBuilder, useNavigate } from 'frontend/common/src';
+import {
+  ConfigurationItemTypeInput,
+  RouteBuilder,
+  useNavigate,
+} from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
 import { NameEditField } from './NameEditField';
+import { useConfigurationItems } from '../../Configuration/api';
 
 export const VaccineEditForm = ({
   initialEntity,
@@ -46,6 +51,21 @@ export const VaccineEditForm = ({
           components: [],
         }
   );
+
+  // Get the route, form, and immediate packaging options
+
+  const { data: routes, isLoading: isLoadingRoutes } = useConfigurationItems({
+    type: ConfigurationItemTypeInput.Route,
+  });
+
+  const { data: forms, isLoading: isLoadingForms } = useConfigurationItems({
+    type: ConfigurationItemTypeInput.Form,
+  });
+
+  const { data: immediatePackagings, isLoading: isLoadingImmediatePackagings } =
+    useConfigurationItems({
+      type: ConfigurationItemTypeInput.ImmediatePackaging,
+    });
 
   const [propertiesModalState, setPropertiesModalState] = useState<{
     disabled: boolean;
@@ -244,7 +264,10 @@ export const VaccineEditForm = ({
                     <CategoryDropdown
                       disabled={initialIds.includes(route.id)}
                       value={route.name}
-                      options={config.routes}
+                      options={
+                        routes?.map(r => ({ label: r.name, value: r.name })) ??
+                        []
+                      }
                       onChange={name =>
                         onUpdate({ ...route, name }, brand.routes)
                       }
@@ -270,7 +293,12 @@ export const VaccineEditForm = ({
                         <CategoryDropdown
                           disabled={initialIds.includes(form.id)}
                           value={form.name}
-                          options={config.forms}
+                          options={
+                            forms?.map(r => ({
+                              label: r.name,
+                              value: r.name,
+                            })) ?? []
+                          }
                           onChange={name =>
                             onUpdate({ ...form, name }, route.forms)
                           }
@@ -366,7 +394,12 @@ export const VaccineEditForm = ({
                                     <CategoryDropdown
                                       disabled={initialIds.includes(immPack.id)}
                                       value={immPack.name}
-                                      options={config.immediatePackagings}
+                                      options={
+                                        immediatePackagings?.map(o => ({
+                                          label: o.name,
+                                          value: o.name,
+                                        })) ?? []
+                                      }
                                       onChange={name =>
                                         onUpdate(
                                           { ...immPack, name },
