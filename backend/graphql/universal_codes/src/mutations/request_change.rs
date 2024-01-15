@@ -28,7 +28,7 @@ pub async fn request_change(
     match service_context
         .service_provider
         .universal_codes_service
-        .upsert_pending_change(
+        .add_pending_change(
             ctx.service_provider(),
             service_context.user_id.clone(),
             input.into(),

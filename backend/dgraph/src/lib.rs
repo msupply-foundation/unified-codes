@@ -4,8 +4,8 @@ use chrono::{DateTime, NaiveDateTime, Utc};
 
 pub mod update_pending_change;
 pub use update_pending_change::*;
-pub mod upsert_pending_change;
-pub use upsert_pending_change::*;
+pub mod add_pending_change;
+pub use add_pending_change::*;
 pub mod client;
 pub use client::*;
 pub mod database_settings;

@@ -11,14 +11,16 @@ use repository::RepositoryError;
 
 use crate::{service_provider::ServiceProvider, settings::Settings};
 
-pub use self::{entity_collection::EntityCollection, entity_filter::EntitySearchFilter};
 use self::{
+    add_pending_change::AddPendingChange,
     entity_filter::{dgraph_filter_from_v1_filter, dgraph_order_by_from_v1_filter},
     pending_change_collection::PendingChangeCollection,
 };
+pub use self::{entity_collection::EntityCollection, entity_filter::EntitySearchFilter};
 
 mod tests;
 
+pub mod add_pending_change;
 pub mod approve_pending_change;
 pub mod code_generator;
 pub mod entity_collection;
@@ -27,7 +29,6 @@ pub mod pending_change_collection;
 pub mod properties;
 pub mod reject_pending_change;
 pub mod upsert;
-pub mod upsert_pending_change;
 pub mod validate;
 
 #[derive(Debug)]
@@ -183,19 +184,14 @@ impl UniversalCodesService {
         }
     }
 
-    pub async fn upsert_pending_change(
+    pub async fn add_pending_change(
         &self,
         sp: Arc<ServiceProvider>,
         user_id: String,
-        pending_change: upsert_pending_change::UpsertPendingChange,
+        pending_change: AddPendingChange,
     ) -> Result<PendingChange, ModifyUniversalCodeError> {
-        upsert_pending_change::upsert_pending_change(
-            sp,
-            user_id,
-            self.client.clone(),
-            pending_change,
-        )
-        .await
+        add_pending_change::add_pending_change(sp, user_id, self.client.clone(), pending_change)
+            .await
     }
 
     pub async fn approve_pending_change(

@@ -1,5 +1,5 @@
 #[cfg(test)]
-// #[cfg(feature = "dgraph-tests")]
+#[cfg(feature = "dgraph-tests")]
 mod universal_codes_reject_pending_change_test {
     use dgraph::ChangeStatus;
     use dgraph::ChangeType;
@@ -12,7 +12,7 @@ mod universal_codes_reject_pending_change_test {
     use crate::service_provider::ServiceProvider;
 
     use crate::test_utils::get_test_settings;
-    use crate::universal_codes::upsert_pending_change::UpsertPendingChange;
+    use crate::universal_codes::add_pending_change::AddPendingChange;
 
     #[actix_rt::test]
     async fn reject_pending_change_success() {
@@ -27,7 +27,7 @@ mod universal_codes_reject_pending_change_test {
         let service = &context.service_provider.universal_codes_service;
 
         let request_id = uuid();
-        let input = UpsertPendingChange {
+        let input = AddPendingChange {
             request_id: request_id.clone(),
             name: request_id.clone(),
             category: "test_category".to_string(),
@@ -37,7 +37,7 @@ mod universal_codes_reject_pending_change_test {
         };
 
         let result = service
-            .upsert_pending_change(service_provider.clone(), context.user_id.clone(), input)
+            .add_pending_change(service_provider.clone(), context.user_id.clone(), input)
             .await
             .unwrap();
 

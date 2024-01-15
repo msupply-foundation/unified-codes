@@ -4,9 +4,8 @@ use serde::{Deserialize, Serialize};
 use crate::{DgraphClient, PendingChangeInput};
 
 #[derive(Serialize, Debug, Clone)]
-struct UpsertVars {
+struct AddVars {
     input: PendingChangeInput,
-    upsert: bool,
 }
 
 #[allow(non_snake_case)]
@@ -27,27 +26,25 @@ pub struct AddResponse {
 // Sounds like this could possibly be to do with updating the same index? X-Dgraph-IgnoreIndexConflict?
 const RETRIES: u32 = 3;
 
-pub async fn upsert_pending_change(
+pub async fn add_pending_change(
     client: &DgraphClient,
     pending_change: PendingChangeInput,
-    upsert: bool,
 ) -> Result<AddResponse, GraphQLError> {
     let query = r#"
-mutation UpsertPendingChange($input: [AddPendingChangeInput!]!, $upsert: Boolean = false) {
-  data: addPendingChange(input: $input, upsert: $upsert) {
+mutation AddPendingChange($input: [AddPendingChangeInput!]!) {
+  data: addPendingChange(input: $input) {
     numUids
   }
 }"#;
-    let variables = UpsertVars {
+    let variables = AddVars {
         input: pending_change,
-        upsert,
     };
 
     let mut attempts = 0;
     while attempts < RETRIES {
         let result = client
             .gql
-            .query_with_vars::<AddResponseData, UpsertVars>(&query, variables.clone())
+            .query_with_vars::<AddResponseData, AddVars>(&query, variables.clone())
             .await;
 
         let result = match result {
@@ -59,7 +56,7 @@ mutation UpsertPendingChange($input: [AddPendingChangeInput!]!, $upsert: Boolean
                     return Err(err);
                 }
                 log::error!(
-                    "upsert_pending_change failed, retrying: {:#?} {:#?}",
+                    "add_pending_change failed, retrying: {:#?} {:#?}",
                     attempts,
                     variables
                 );
@@ -77,7 +74,7 @@ mutation UpsertPendingChange($input: [AddPendingChangeInput!]!, $upsert: Boolean
         };
     }
     Err(GraphQLError::with_text(format!(
-        "upsert_pending_change failed after {} retries",
+        "add_pending_change failed after {} retries",
         RETRIES
     )))
 }
@@ -93,7 +90,7 @@ mod tests {
     use super::*;
 
     #[tokio::test]
-    async fn test_upsert_pending_change() {
+    async fn test_add_pending_change() {
         let client = DgraphClient::new("http://localhost:8080/graphql");
 
         let request_id = uuid();
@@ -107,10 +104,10 @@ mod tests {
             ..Default::default()
         };
 
-        let result = upsert_pending_change(&client, pending_change_input, true).await;
+        let result = add_pending_change(&client, pending_change_input).await;
         if result.is_err() {
             println!(
-                "upsert_pending_change err: {:#?} {:#?}",
+                "add_pending_change err: {:#?} {:#?}",
                 result,
                 result.clone().unwrap_err().json()
             );

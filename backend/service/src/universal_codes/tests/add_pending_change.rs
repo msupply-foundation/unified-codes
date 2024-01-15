@@ -1,6 +1,6 @@
 #[cfg(test)]
 #[cfg(feature = "dgraph-tests")]
-mod universal_codes_upsert_pending_change_test {
+mod universal_codes_add_pending_change_test {
     use dgraph::ChangeType;
     use repository::{mock::MockDataInserts, test_db::setup_all};
     use std::sync::Arc;
@@ -9,14 +9,14 @@ mod universal_codes_upsert_pending_change_test {
     use crate::service_provider::ServiceContext;
 
     use crate::service_provider::ServiceProvider;
-    use crate::universal_codes::upsert_pending_change::UpsertPendingChange;
+    use crate::universal_codes::add_pending_change::AddPendingChange;
 
     use crate::test_utils::get_test_settings;
 
     #[actix_rt::test]
-    async fn upsert_pending_change_success() {
+    async fn add_pending_change_success() {
         let (_, _, connection_manager, _) =
-            setup_all("upsert_pending_change_success", MockDataInserts::none()).await;
+            setup_all("add_pending_change_success", MockDataInserts::none()).await;
 
         let service_provider = Arc::new(ServiceProvider::new(
             connection_manager,
@@ -26,7 +26,7 @@ mod universal_codes_upsert_pending_change_test {
         let service = &context.service_provider.universal_codes_service;
 
         let new_request_id = uuid();
-        let input = UpsertPendingChange {
+        let input = AddPendingChange {
             request_id: new_request_id.clone(),
             name: new_request_id.clone(),
             category: "test_category".to_string(),
@@ -36,7 +36,7 @@ mod universal_codes_upsert_pending_change_test {
         };
 
         let result = service
-            .upsert_pending_change(service_provider.clone(), context.user_id.clone(), input)
+            .add_pending_change(service_provider.clone(), context.user_id.clone(), input)
             .await
             .unwrap();
 
@@ -47,9 +47,9 @@ mod universal_codes_upsert_pending_change_test {
     }
 
     #[actix_rt::test]
-    async fn upsert_pending_change_fails_with_empty_string() {
+    async fn add_pending_change_fails_with_empty_string() {
         let (_, _, connection_manager, _) = setup_all(
-            "upsert_pending_change_fails_with_empty_string",
+            "add_pending_change_fails_with_empty_string",
             MockDataInserts::none(),
         )
         .await;
@@ -62,7 +62,7 @@ mod universal_codes_upsert_pending_change_test {
         let service = &context.service_provider.universal_codes_service;
 
         let new_request_id = uuid();
-        let input = UpsertPendingChange {
+        let input = AddPendingChange {
             request_id: new_request_id.clone(),
             name: new_request_id.clone(),
             category: "".to_string(),
@@ -72,7 +72,7 @@ mod universal_codes_upsert_pending_change_test {
         };
 
         let result = service
-            .upsert_pending_change(service_provider, context.user_id, input)
+            .add_pending_change(service_provider, context.user_id, input)
             .await;
 
         assert!(result.is_err());

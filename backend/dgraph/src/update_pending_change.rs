@@ -90,7 +90,7 @@ mutation UpdatePendingChange($request_id: String!, $set: PendingChangePatch!) {
 mod tests {
     use util::uuid::uuid;
 
-    use crate::{pending_change, upsert_pending_change, ChangeStatus, PendingChangeInput};
+    use crate::{add_pending_change, pending_change, ChangeStatus, PendingChangeInput};
 
     use super::*;
 
@@ -106,10 +106,10 @@ mod tests {
             ..Default::default()
         };
 
-        let result = upsert_pending_change(&client, pending_change_input, true).await;
+        let result = add_pending_change(&client, pending_change_input).await;
         if result.is_err() {
             println!(
-                "upsert_pending_change err: {:#?} {:#?}",
+                "add_pending_change err: {:#?} {:#?}",
                 result,
                 result.clone().unwrap_err().json()
             );

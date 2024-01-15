@@ -3,8 +3,8 @@ use dgraph::DgraphOrderByType;
 use graphql_types::types::{ChangeTypeNode, PendingChangeNode};
 use graphql_universal_codes_v1::EntityType;
 use service::universal_codes::{
-    properties::PropertyReference, upsert::UpsertUniversalCode,
-    upsert_pending_change::UpsertPendingChange,
+    add_pending_change::AddPendingChange, properties::PropertyReference,
+    upsert::UpsertUniversalCode,
 };
 
 #[derive(Enum, Copy, Clone, PartialEq, Eq)]
@@ -120,7 +120,7 @@ pub struct RequestChangeInput {
     pub requested_for: String,
 }
 
-impl From<RequestChangeInput> for UpsertPendingChange {
+impl From<RequestChangeInput> for AddPendingChange {
     fn from(
         RequestChangeInput {
             request_id,
@@ -131,7 +131,7 @@ impl From<RequestChangeInput> for UpsertPendingChange {
             change_type,
         }: RequestChangeInput,
     ) -> Self {
-        UpsertPendingChange {
+        AddPendingChange {
             request_id,
             name,
             category,

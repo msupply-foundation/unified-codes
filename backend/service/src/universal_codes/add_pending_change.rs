@@ -11,7 +11,7 @@ use repository::LogType;
 use super::ModifyUniversalCodeError;
 
 #[derive(Clone, Debug)]
-pub struct UpsertPendingChange {
+pub struct AddPendingChange {
     pub request_id: String,
     pub name: String,
     pub category: String,
@@ -20,11 +20,11 @@ pub struct UpsertPendingChange {
     pub requested_for: String,
 }
 
-pub async fn upsert_pending_change(
+pub async fn add_pending_change(
     sp: Arc<ServiceProvider>,
     user_id: String,
     client: dgraph::DgraphClient,
-    pending_change_request: UpsertPendingChange,
+    pending_change_request: AddPendingChange,
 ) -> Result<PendingChange, ModifyUniversalCodeError> {
     // Validate
     let pending_change_request = validate(&pending_change_request).await?;
@@ -32,8 +32,7 @@ pub async fn upsert_pending_change(
     // Generate
     let pending_change_input = generate(pending_change_request.clone(), user_id.clone())?;
 
-    let _result =
-        dgraph::upsert_pending_change(&client, pending_change_input.clone(), true).await?;
+    let _result = dgraph::add_pending_change(&client, pending_change_input.clone()).await?;
 
     let requested_change = pending_change(&client, pending_change_input.request_id)
         .await
@@ -66,7 +65,7 @@ pub async fn upsert_pending_change(
 }
 
 pub fn generate(
-    change_request: UpsertPendingChange,
+    change_request: AddPendingChange,
     user_id: String,
 ) -> Result<PendingChangeInput, ModifyUniversalCodeError> {
     println!("generate: {:?}", change_request);
@@ -80,19 +79,17 @@ pub fn generate(
         requested_for: change_request.requested_for.clone(),
 
         status: ChangeStatus::Pending,
-
-        // TODO: should only set these fields if the change is new!
         date_requested: Utc::now().naive_utc(),
         requested_by_user_id: user_id.clone(),
     })
 }
 
 pub async fn validate(
-    pending_change: &UpsertPendingChange,
-) -> Result<UpsertPendingChange, ModifyUniversalCodeError> {
+    pending_change: &AddPendingChange,
+) -> Result<AddPendingChange, ModifyUniversalCodeError> {
     // We could do a duplication check here... but would need to deserialise body to check each node
 
-    // TODO if exists, check is pending!!
+    // TODO check doesn't exist
 
     // TODO: allow empty if an update...
     if pending_change.name.clone().is_empty() {
