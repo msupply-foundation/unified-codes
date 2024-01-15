@@ -2,6 +2,8 @@ use serde::{Deserialize, Deserializer, Serialize};
 
 use chrono::{DateTime, NaiveDateTime, Utc};
 
+pub mod update_pending_change;
+pub use update_pending_change::*;
 pub mod upsert_pending_change;
 pub use upsert_pending_change::*;
 pub mod client;
@@ -175,4 +177,18 @@ pub struct PendingChangeInput {
     pub requested_for: String,
     pub status: ChangeStatus,
     pub body: String,
+}
+
+#[derive(Serialize, Debug, Clone, Default)]
+pub struct PendingChangePatch {
+    pub name: Option<String>,
+    pub status: Option<ChangeStatus>,
+    pub body: Option<String>,
+
+    // possibly remove these? don't think we would want to change these values?
+    pub category: Option<String>,
+    pub change_type: Option<ChangeType>,
+    pub date_requested: Option<NaiveDateTime>,
+    pub requested_by_user_id: Option<String>,
+    pub requested_for: Option<String>,
 }
