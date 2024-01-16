@@ -24,8 +24,7 @@ export const VaccineEditForm = ({
   const t = useTranslation('system');
   const navigate = useNavigate();
 
-  const [isSaving, setIsSaving] = useState(false);
-  const [requestChange, invalidateQueries] = useRequestChange();
+  const { mutateAsync: requestChange, isLoading } = useRequestChange();
   const { success, error } = useNotification();
 
   const [initialIds] = useState(getAllEntityCodes(initialEntity));
@@ -43,8 +42,6 @@ export const VaccineEditForm = ({
   );
 
   const onSubmit = () => {
-    setIsSaving(true);
-
     // Convert the draft to a UpsertEntityInput type (stored within the change request until approved)
     const entity = buildEntityFromVaccineInput(draft);
 
@@ -64,9 +61,6 @@ export const VaccineEditForm = ({
       },
     })
       .then(() => {
-        invalidateQueries();
-        setIsSaving(false);
-
         if (!initialEntity) {
           success(
             t('message.entity-created', {
@@ -94,7 +88,6 @@ export const VaccineEditForm = ({
         }
       })
       .catch(e => {
-        setIsSaving(false);
         console.error(e);
         error(t('message.entity-error'))();
       });
@@ -119,7 +112,7 @@ export const VaccineEditForm = ({
         sx={{ display: 'flex', justifyContent: 'end', paddingBottom: '16px' }}
       >
         <LoadingButton
-          isLoading={isSaving}
+          isLoading={isLoading}
           startIcon={<SaveIcon />}
           disabled={saveButtonDisabled}
           onClick={onSubmit}

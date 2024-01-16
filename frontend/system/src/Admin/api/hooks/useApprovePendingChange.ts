@@ -1,4 +1,4 @@
-import { useQueryClient, useGql } from '@uc-frontend/common';
+import { useQueryClient, useGql, useMutation } from '@uc-frontend/common';
 import { getSdk } from '../operations.generated';
 import {
   ENTITIES_KEY,
@@ -19,5 +19,7 @@ export const useApprovePendingChange = () => {
     queryClient.invalidateQueries([PENDING_CHANGE_KEY]);
   };
 
-  return [sdk.approvePendingChange, invalidateQueries] as const;
+  return useMutation(sdk.approvePendingChange, {
+    onSettled: invalidateQueries,
+  });
 };

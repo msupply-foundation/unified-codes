@@ -23,15 +23,12 @@ export const PendingChangeDetails = () => {
   const navigate = useNavigate();
   const { error, success } = useNotification();
 
-  const [rejectPendingChange, invalidateQueriesAfterRejection] =
+  const { mutateAsync: rejectPendingChange, isLoading: rejectionLoading } =
     useRejectPendingChange();
-  const [approvePendingChange, invalidateQueriesAfterApproval] =
+  const { mutateAsync: approvePendingChange, isLoading: approvalLoading } =
     useApprovePendingChange();
-  const [editChange, invalidateQueriesAfterEdit] = useEditPendingChange();
-
-  const [rejectionLoading, setRejectionLoading] = useState(false);
-  const [approvalLoading, setApprovalLoading] = useState(false);
-  const [editChangeLoading, setEditChangeLoading] = useState(false);
+  const { mutateAsync: editChange, isLoading: editChangeLoading } =
+    useEditPendingChange();
 
   const [isEditMode, setEditMode] = useState(false);
 
@@ -41,14 +38,17 @@ export const PendingChangeDetails = () => {
   const { data: pendingChange } = usePendingChange(id ?? '');
   const next = useNextPendingChange(id ?? '');
 
+  // Set entity name in the breadcrumb
   useEffect(() => {
     if (pendingChange?.name) setSuffix(pendingChange.name);
   }, [pendingChange?.name]);
 
+  // Parse entity from pending change body
   useEffect(() => {
     if (pendingChange) setEntity(JSON.parse(pendingChange.body));
   }, [pendingChange]);
 
+  // Expand all nodes of the tree
   useEffect(() => {
     if (pendingChange) {
       const expandedIds: string[] = [];
@@ -71,28 +71,19 @@ export const PendingChangeDetails = () => {
   const savePendingChange = async (updatedEntity: UpsertEntityInput) => {
     if (!pendingChange) return;
 
-    setEditChangeLoading(true);
-
     await editChange({
       id: pendingChange.id,
       body: JSON.stringify(updatedEntity),
     });
 
-    invalidateQueriesAfterEdit();
-    setEditChangeLoading(false);
     setEditMode(false);
   };
 
   const approveAndNext = async () => {
     try {
       if (!entity) throw new Error('Entity input is null');
-      setApprovalLoading(true);
 
       await approvePendingChange({ id, input: entity });
-
-      invalidateQueriesAfterApproval();
-
-      setApprovalLoading(false);
 
       success(
         t('message.status-updated', { status: 'approved', name: entity.name })
@@ -105,7 +96,6 @@ export const PendingChangeDetails = () => {
           .build()
       );
     } catch (e) {
-      setApprovalLoading(false);
       console.error(e);
       error(t('message.entity-error'))();
     }
@@ -115,13 +105,7 @@ export const PendingChangeDetails = () => {
     try {
       if (!pendingChange) throw new Error('Pending change is null');
 
-      setRejectionLoading(true);
-
       await rejectPendingChange({ id });
-
-      invalidateQueriesAfterRejection();
-
-      setRejectionLoading(false);
 
       success(
         t('message.status-updated', {
@@ -137,7 +121,6 @@ export const PendingChangeDetails = () => {
           .build()
       );
     } catch (e) {
-      setRejectionLoading(false);
       console.error(e);
       error(t('message.reject-change-error'))();
     }

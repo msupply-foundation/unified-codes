@@ -27,15 +27,12 @@ export const VaccineFormTree = ({
   const uuid = useUuid();
 
   // Get the route, form, and immediate packaging options
-
   const { data: routes, isLoading: isLoadingRoutes } = useConfigurationItems({
     type: ConfigurationItemTypeInput.Route,
   });
-
   const { data: forms, isLoading: isLoadingForms } = useConfigurationItems({
     type: ConfigurationItemTypeInput.Form,
   });
-
   const { data: immediatePackagings, isLoading: isLoadingImmediatePackagings } =
     useConfigurationItems({
       type: ConfigurationItemTypeInput.ImmediatePackaging,
