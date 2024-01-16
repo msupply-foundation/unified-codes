@@ -42,7 +42,7 @@ export const ListView = () => {
     [sortBy, updateSortQuery]
   );
 
-  const [categories, setCategories] = useState<string[]>(['drug']);
+  const [categories, setCategories] = useState<string[]>([]);
 
   const [searchString, setSearchString] = useState<string>('');
 
@@ -51,7 +51,9 @@ export const ListView = () => {
 
   const { data, isError, isLoading } = useEntities({
     filter: {
-      categories,
+      categories: categories.length
+        ? categories
+        : ['drug', 'consumable', 'vaccine'],
       type: 'drug',
       description: search,
       orderBy: {
@@ -82,10 +84,7 @@ export const ListView = () => {
 
   const toggleCategory = (category: string) => {
     if (categories.includes(category)) {
-      // only remove category filter if other categories are also selected
-      if (categories.length > 1) {
-        setCategories(categories.filter(c => c !== category));
-      }
+      setCategories(categories.filter(c => c !== category));
     } else {
       setCategories([...categories, category]);
     }
