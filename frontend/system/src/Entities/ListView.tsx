@@ -70,7 +70,7 @@ export const ListView = () => {
     isLoading: allProductsIsLoading,
   } = useEntities({
     filter: {
-      categories: ['drug', 'consumable'],
+      categories: ['drug', 'consumable', 'vaccine'],
       orderBy: {
         field: sortBy.key,
         descending: sortBy.isDesc,
