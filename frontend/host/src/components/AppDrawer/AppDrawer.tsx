@@ -25,7 +25,7 @@ import { AppDrawerIcon } from './AppDrawerIcon';
 
 const ToolbarIconContainer = styled(Box)({
   display: 'flex',
-  height: 90,
+  height: 120,
   justifyContent: 'center',
 });
 
@@ -175,7 +175,7 @@ export const AppDrawer: React.FC = () => {
         onMouseLeave={onHoverOut}
       >
         <UpperListContainer>
-          <List>
+          <List sx={{ paddingTop: '0' }}>
             <AppNavLink
               to={AppRoute.Browse}
               icon={<ListIcon fontSize="small" color="primary" />}

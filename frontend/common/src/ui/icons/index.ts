@@ -64,6 +64,7 @@ export { SearchIcon } from './Search';
 export { PersonSearchIcon } from './PersonSearch';
 export { ZapIcon } from './Zap';
 export { RunIcon } from './Run';
+export { UCLogo } from './UCLogo';
 
 type Color =
   | 'inherit'
