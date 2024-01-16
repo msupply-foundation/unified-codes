@@ -128,7 +128,20 @@ export const ListView = () => {
       >
         <Stack>
           <SearchToolbar filter={filter} />
-          <MenuList dense>
+          <MenuList
+            dense
+            sx={{
+              position: 'absolute',
+              zIndex: 9999,
+              marginTop: '35px',
+              backgroundColor: 'white',
+            }}
+          >
+            {filterString && (
+              <Typography variant="h6" sx={{ paddingLeft: '10px' }}>
+                {t('label.suggestions')}
+              </Typography>
+            )}
             {filterString &&
               fuse
                 .search(filterString)
