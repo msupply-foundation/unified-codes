@@ -9,10 +9,7 @@ import {
   useColumns,
   SearchToolbar,
   ToggleButton,
-  Box,
-  Typography,
   Stack,
-  NavigateLinkIcon,
 } from '@common/ui';
 import { useQueryParamsState } from '@common/hooks';
 import { EntityRowFragment, useEntities } from './api';
@@ -22,7 +19,7 @@ import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
-import Fuse from 'fuse.js';
+import { EntitySearchBar } from './EntitySearchBar';
 
 export const ListView = () => {
   const t = useTranslation('system');
@@ -46,6 +43,8 @@ export const ListView = () => {
   );
 
   const [categories, setCategories] = useState<string[]>(['drug']);
+
+  const [searchString, setSearchString] = useState<string>('');
 
   const searchFilter = filter.filterBy?.['search'];
   const search = typeof searchFilter === 'string' ? searchFilter : '';
@@ -81,18 +80,6 @@ export const ListView = () => {
     offset,
   });
 
-  const fuse = new Fuse(allProducts?.data ?? [], {
-    keys: ['description', 'code'],
-  });
-
-  useEffect(() => {
-    if (allProductsIsLoading || allProductsIsError) {
-      return;
-    }
-    const products = allProducts?.data ?? [];
-    fuse.setCollection(products);
-  }, [allProducts]);
-
   const toggleCategory = (category: string) => {
     if (categories.includes(category)) {
       // only remove category filter if other categories are also selected
@@ -127,41 +114,15 @@ export const ListView = () => {
         }}
       >
         <Stack>
-          <SearchToolbar filter={filter} />
-          <MenuList
-            dense
-            sx={{
-              position: 'absolute',
-              zIndex: 9999,
-              marginTop: '35px',
-              backgroundColor: 'white',
-            }}
-          >
-            {filterString && (
-              <Typography variant="h6" sx={{ paddingLeft: '10px' }}>
-                {t('label.suggestions')}
-              </Typography>
-            )}
-            {filterString &&
-              fuse
-                .search(filterString)
-                .slice(0, 3)
-                .map((result, index) => (
-                  <MenuItem
-                    key={result.item.code}
-                    onClick={e =>
-                      navigate(
-                        RouteBuilder.create(AppRoute.Browse)
-                          .addPart(result.item.code)
-                          .build()
-                      )
-                    }
-                  >
-                    {result.item.description} ({result.item.code}){' '}
-                    <NavigateLinkIcon />
-                  </MenuItem>
-                ))}
-          </MenuList>
+          <EntitySearchBar
+            products={allProducts?.data ?? []}
+            onChange={newValue =>
+              filter.onChangeStringRule(filterString, newValue)
+            }
+            placeholder={t('placeholder.search')}
+            isLoading={isLoading || allProductsIsLoading}
+            debounceTime={350}
+          />
         </Stack>
 
         <ToggleButtonGroup>
