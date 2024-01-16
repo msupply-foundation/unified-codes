@@ -17,8 +17,6 @@ import { ToggleButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
 import { EntitySearchBar } from './EntitySearchBar';
 
 export const ListView = () => {
@@ -43,8 +41,6 @@ export const ListView = () => {
   );
 
   const [categories, setCategories] = useState<string[]>([]);
-
-  const [searchString, setSearchString] = useState<string>('');
 
   const searchFilter = filter.filterBy?.['search'];
   const search = typeof searchFilter === 'string' ? searchFilter : '';
@@ -115,12 +111,12 @@ export const ListView = () => {
         <Stack>
           <EntitySearchBar
             products={allProducts?.data ?? []}
-            onChange={newValue =>
-              filter.onChangeStringRule(filterString, newValue)
-            }
+            onChange={newValue => {
+              filter.onChangeStringRule('search', newValue);
+            }}
             placeholder={t('placeholder.search')}
             isLoading={isLoading || allProductsIsLoading}
-            debounceTime={350}
+            debounceTime={500}
           />
         </Stack>
 

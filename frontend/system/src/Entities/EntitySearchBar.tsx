@@ -16,7 +16,6 @@ import { RouteBuilder, useNavigate } from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
 
 interface EntitySearchBarProps {
-  // value: string;
   onChange: (value: string) => void;
   products: {
     type: string;
@@ -33,7 +32,6 @@ const Spin: FC<{ isLoading: boolean }> = ({ isLoading }) =>
   isLoading ? <InlineSpinner /> : null;
 
 export const EntitySearchBar: FC<EntitySearchBarProps> = ({
-  // value,
   onChange,
   products,
   placeholder,
