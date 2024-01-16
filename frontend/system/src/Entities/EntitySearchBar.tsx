@@ -76,6 +76,9 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
         onBlur={() => {
           debouncedSuggestions(false);
         }}
+        onFocus={() => {
+          debouncedSuggestions(true);
+        }}
         InputProps={{
           startAdornment: (
             <SearchIcon sx={{ color: 'gray.main' }} fontSize="small" />
@@ -146,7 +149,13 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
                 onBlur={() => {
                   debouncedSuggestions(false);
                 }}
-                onMouseDown={() => {}}
+                onKeyDown={e => {
+                  // translate an tab into a down arrow
+                  if (e.key === 'Tab') {
+                    e.key = 'ArrowDown';
+                  }
+                  e.stopPropagation;
+                }}
                 onClick={e =>
                   navigate(
                     RouteBuilder.create(AppRoute.Browse)
