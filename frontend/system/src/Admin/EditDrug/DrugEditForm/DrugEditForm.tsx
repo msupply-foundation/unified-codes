@@ -1,5 +1,5 @@
 import { useTranslation } from '@common/intl';
-import { Box, Typography, SaveIcon, ButtonWithIcon } from '@common/ui';
+import { Box, Typography, SaveIcon, LoadingButton } from '@common/ui';
 import React, { useState } from 'react';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
@@ -33,6 +33,7 @@ export const DrugEditForm = ({
   const t = useTranslation('system');
   const navigate = useNavigate();
 
+  const [isSaving, setIsSaving] = useState(false);
   const [addEntity, invalidateQueries] = useAddEntityTree();
   const { success, error } = useNotification();
 
@@ -116,13 +117,14 @@ export const DrugEditForm = ({
   const onSubmit = () => {
     // Convert the draft to a UpsertEntityInput type
     const entity = buildEntityFromDrugInput(draft);
-
+    setIsSaving(true);
     // Upsert the entity
     addEntity({ input: entity })
       .catch(e => {
         console.error(e);
       })
       .then(e => {
+        setIsSaving(false);
         if (e) {
           success(
             t('message.entity-updated', {
@@ -362,13 +364,15 @@ export const DrugEditForm = ({
       <Box
         sx={{ display: 'flex', justifyContent: 'end', paddingBottom: '16px' }}
       >
-        <ButtonWithIcon
+        <LoadingButton
+          isLoading={isSaving}
+          startIcon={<SaveIcon />}
           disabled={!isValidDrugInput(draft)}
-          Icon={<SaveIcon />}
-          label={t('button.save')}
           onClick={onSubmit}
           variant="contained"
-        />
+        >
+          {t('button.save')}
+        </LoadingButton>
       </Box>
     </Box>
   );
