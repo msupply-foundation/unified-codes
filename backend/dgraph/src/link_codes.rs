@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::DgraphClient;
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Debug, Clone)]
 struct LinkCodesVars {
     parent: String,
     child: String,
@@ -37,8 +37,7 @@ mutation LinkCodes($parent: String!, $child: String!) {
     let variables = LinkCodesVars { parent, child };
 
     let result = client
-        .gql
-        .query_with_vars::<LinkResponseData, LinkCodesVars>(&query, variables)
+        .query_with_retry::<LinkResponseData, LinkCodesVars>(&query, variables)
         .await?;
 
     match result {
