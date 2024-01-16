@@ -13,4 +13,6 @@ export const enum EntityType {
   ImmediatePackaging = 'PackImmediate',
   Component = 'Component',
   Brand = 'Brand',
+  Presentation = 'Presentation',
+  ExtraDescription = 'ExtraDescription',
 }
