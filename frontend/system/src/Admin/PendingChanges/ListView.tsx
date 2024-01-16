@@ -68,7 +68,7 @@ export const PendingChangesListView = () => {
         data={pendingChanges}
         isError={isError}
         isLoading={isLoading}
-        noDataElement={<NothingHere body={t('error.no-data')} />}
+        noDataElement={<NothingHere body={t('error.no-pending-changes')} />}
         pagination={pagination}
         onChangePage={updatePaginationQuery}
         onRowClick={change =>
