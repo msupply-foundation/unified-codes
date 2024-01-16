@@ -2,7 +2,13 @@ import { useBreadcrumbs, useNotification } from '@common/hooks';
 import { CheckIcon, ChevronDownIcon, CloseIcon, EditIcon } from '@common/icons';
 import { useTranslation } from '@common/intl';
 import { UpsertEntityInput } from '@common/types';
-import { Box, ButtonWithIcon, LoadingButton } from '@common/ui';
+import {
+  BasicSpinner,
+  Box,
+  ButtonWithIcon,
+  LoadingButton,
+  NothingHere,
+} from '@common/ui';
 import { RouteBuilder } from '@common/utils';
 import { TreeView } from '@mui/lab';
 import { AppRoute } from 'frontend/config/src';
@@ -35,7 +41,7 @@ export const PendingChangeDetails = () => {
   const [expanded, setExpanded] = useState<string[]>([]);
   const [entity, setEntity] = useState<UpsertEntityInput | null>(null);
 
-  const { data: pendingChange } = usePendingChange(id ?? '');
+  const { data: pendingChange, isLoading } = usePendingChange(id ?? '');
   const next = useNextPendingChange(id ?? '');
 
   // Set entity name in the breadcrumb
@@ -126,8 +132,9 @@ export const PendingChangeDetails = () => {
     }
   };
 
-  // TODO: what do display if no data
-  if (!entity) return null;
+  if (isLoading) return <BasicSpinner />;
+
+  if (!entity) return <NothingHere body={t('error.no-data')} />;
 
   return isEditMode ? (
     <EditPendingChange
