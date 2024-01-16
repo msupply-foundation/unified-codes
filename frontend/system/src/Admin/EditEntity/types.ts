@@ -36,20 +36,13 @@ export interface DrugInput extends Entity {
   routes: Route[];
 }
 
-export interface DeviceDetail extends Entity {
-  units: Unit[];
-}
-export interface SpecificCategory extends Entity {
-  deviceDetails: DeviceDetail[];
-}
-export interface IntermediateCategory extends Entity {
-  specificCategories: SpecificCategory[];
-}
-export interface BasicCategory extends Entity {
-  intermediateCategories: IntermediateCategory[];
+export interface ExtraDescription extends Entity {}
+export interface Presentation extends Entity {
+  extraDescriptions: ExtraDescription[];
 }
 export interface ConsumableInput extends Entity {
-  basicCategories: BasicCategory[];
+  presentations: Presentation[];
+  extraDescriptions: ExtraDescription[];
 }
 
 export interface Brand extends Entity {

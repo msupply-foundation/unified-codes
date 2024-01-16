@@ -26,6 +26,7 @@ export const AddFieldButton = ({
       onClick={onClick}
       disableFocusRipple
       sx={{
+        width: 'fit-content',
         marginLeft: '20px',
         '&.Mui-focusVisible': {
           backgroundColor: '#e95c3029',
