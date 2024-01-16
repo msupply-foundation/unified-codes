@@ -61,8 +61,8 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
   );
 
   const debouncedSuggestions = useDebounceCallback(
-    () => {
-      setShowSuggestions(false);
+    b => {
+      setShowSuggestions(b);
     },
     [],
     600
@@ -74,7 +74,7 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
     <>
       <BasicTextInput
         onBlur={() => {
-          debouncedSuggestions();
+          debouncedSuggestions(false);
         }}
         InputProps={{
           startAdornment: (
@@ -141,10 +141,10 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
               <MenuItem
                 key={result.item.code}
                 onFocus={() => {
-                  setShowSuggestions(true);
+                  debouncedSuggestions(true);
                 }}
                 onBlur={() => {
-                  debouncedSuggestions();
+                  debouncedSuggestions(false);
                 }}
                 onMouseDown={() => {}}
                 onClick={e =>
