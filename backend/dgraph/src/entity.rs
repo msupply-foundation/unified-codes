@@ -71,6 +71,88 @@ query EntityQuery($code: String!) {
     }
 }
 
+pub async fn entity_with_parents_by_code(
+    client: &DgraphClient,
+    code: String,
+) -> Result<Option<Entity>, GraphQLError> {
+    let query = r#"fragment Details on Entity {
+  id
+  code
+  name
+  description
+  type
+  __typename
+  properties {
+    __typename
+    code
+    type
+    value
+  }
+}
+query EntityQuery($code: String!) {
+  data: queryEntity(filter: { code: { eq: $code } }) {
+  ...Details
+  parents {
+    ...Details
+    parents {
+      ...Details
+      parents {
+        ...Details
+        parents {
+          ...Details
+          parents {
+            ...Details
+            parents {
+              ...Details
+              parents {
+                ...Details
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  children {
+    ...Details
+    children {
+      ...Details
+      children {
+        ...Details
+        children {
+          ...Details
+          children {
+            ...Details
+            children {
+              ...Details
+              children {
+                ...Details
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+}"#;
+    let variables = Vars { code: code };
+
+    let result = client
+        .gql
+        .query_with_vars::<EntityData, Vars>(query, variables)
+        .await?;
+
+    match result {
+        Some(result) => match result.data.first() {
+            Some(entity) => Ok(Some(entity.clone())),
+            None => Ok(None),
+        },
+        None => Ok(None),
+    }
+}
+
 #[cfg(test)]
 #[cfg(feature = "dgraph-tests")]
 mod tests {

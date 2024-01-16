@@ -80,6 +80,21 @@ impl Display for UniversalCodesServiceError {
     }
 }
 
+fn extract_product_code_from_entity(entity: &Entity) -> Option<String> {
+    if entity.r#type == "Product" {
+        return Some(entity.code.clone());
+    }
+
+    for parent in &entity.parents {
+        let result = extract_product_code_from_entity(parent);
+        if result.is_some() {
+            return result;
+        }
+    }
+
+    None
+}
+
 impl UniversalCodesService {
     pub fn new(settings: Settings) -> Self {
         let url = format!(
@@ -105,6 +120,32 @@ impl UniversalCodesService {
             Some(entity) => Ok(Some(entity)),
             None => Ok(None),
         }
+    }
+
+    pub async fn product_by_code(
+        &self,
+        code: String,
+    ) -> Result<Option<Entity>, UniversalCodesServiceError> {
+        let result = dgraph::entity_with_parents_by_code(&self.client, code.clone())
+            .await
+            .map_err(|e| UniversalCodesServiceError::InternalError(e.message().to_string()))?;
+
+        let entity_with_parents = match result {
+            Some(entity) => entity,
+            None => return Ok(None),
+        };
+
+        if entity_with_parents.r#type == "Product" {
+            return Ok(Some(entity_with_parents));
+        }
+        // search through parents to find the parent code that matches the code
+
+        let product_code = match extract_product_code_from_entity(&entity_with_parents) {
+            Some(code) => code,
+            None => return Ok(None),
+        };
+
+        self.entity_by_code(product_code).await
     }
 
     pub async fn entities(

@@ -280,6 +280,7 @@ export type FullQuery = {
   me: UserResponse;
   pendingChange?: Maybe<PendingChangeNode>;
   pendingChanges: PendingChangesResponse;
+  product?: Maybe<EntityType>;
   /**
    * Retrieves a new auth bearer and refresh token
    * The refresh token is returned as a cookie
@@ -328,6 +329,11 @@ export type FullQueryPendingChangeArgs = {
 export type FullQueryPendingChangesArgs = {
   page?: InputMaybe<PaginationInput>;
   sort?: InputMaybe<Array<PendingChangeSortInput>>;
+};
+
+
+export type FullQueryProductArgs = {
+  code: Scalars['String']['input'];
 };
 
 

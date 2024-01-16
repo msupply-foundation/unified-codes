@@ -9,7 +9,7 @@ import {
   Box,
 } from '@common/ui';
 import { useBreadcrumbs } from '@common/hooks';
-import { useEntity } from './api';
+import { useEntity, useProduct } from './api';
 import { FormControlLabel } from '@mui/material';
 import { TreeView } from '@mui/lab';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -29,7 +29,7 @@ export const EntityDetails = () => {
   const [expanded, setExpanded] = useState<string[]>([]);
   const [showAllCodes, setShowAllCodes] = useState(false);
 
-  const { data: entity } = useEntity(code || '');
+  const { data: entity } = useProduct(code || '');
 
   useEffect(() => {
     if (entity?.name) setSuffix(entity.name);
@@ -81,7 +81,12 @@ export const EntityDetails = () => {
         onNodeToggle={(_, codes: string[]) => setExpanded(codes)}
         sx={{ overflow: 'auto', width: '100%', marginY: '16px' }}
       >
-        <EntityTreeItem showAllCodes={showAllCodes} entity={entity} isRoot />
+        <EntityTreeItem
+          showAllCodes={showAllCodes}
+          entity={entity}
+          isRoot
+          highlightCode={code}
+        />
       </TreeView>
 
       {hasPermission(PermissionNode.ServerAdmin) && (
