@@ -2,21 +2,22 @@ import React from 'react';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 const sizes = {
-  large: { height: 120, width: 140 },
+  large: { height: 110, width: 140 },
   medium: { height: 90, width: 95 },
 };
 
 type UCLogoProps = SvgIconProps & {
   size?: 'large' | 'medium';
+  showName?: boolean;
 };
 
 export const UCLogo = (props: UCLogoProps) => {
-  const { size, ...svgProps } = props;
+  const { showName, size, ...svgProps } = props;
   const sizeStyle = size ? sizes[size] : { ...svgProps.style };
   return (
     <SvgIcon
-      {...props}
-      viewBox={size === 'large' ? '0 0 500 415' : '0 0 475 400'}
+      {...svgProps}
+      viewBox={showName ? '0 0 500 415' : '0 0 475 400'}
       style={sizeStyle}
     >
       <g>
@@ -34,7 +35,7 @@ export const UCLogo = (props: UCLogoProps) => {
         />
 
         {/* APP NAME: Universal Drug Code Database */}
-        {size === 'large' && (
+        {showName && (
           <>
             <path
               fill="#2F3D45"

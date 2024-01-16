@@ -4,5 +4,9 @@ import { useDrawer, UCLogo } from '@uc-frontend/common';
 export const AppDrawerIcon: React.FC = () => {
   const drawer = useDrawer();
 
-  return <UCLogo size={drawer.isOpen ? 'large' : 'medium'} />;
+  return drawer.isOpen ? (
+    <UCLogo size={'large'} showName />
+  ) : (
+    <UCLogo size={'medium'} />
+  );
 };
