@@ -1,7 +1,12 @@
 import { useTranslation } from '@common/intl';
-import { Box, Typography, SaveIcon, ButtonWithIcon } from '@common/ui';
+import {
+  Box,
+  Typography,
+  SaveIcon,
+  ButtonWithIcon,
+  LoadingButton,
+} from '@common/ui';
 import React, { useState } from 'react';
-import { config } from '../../../config';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
 import { useEditModal, useNotification } from '@common/hooks';
@@ -36,6 +41,7 @@ export const VaccineEditForm = ({
   const t = useTranslation('system');
   const navigate = useNavigate();
 
+  const [isSaving, setIsSaving] = useState(false);
   const [requestChange, invalidateQueries] = useRequestChange();
   const { success, error } = useNotification();
 
@@ -121,6 +127,8 @@ export const VaccineEditForm = ({
   };
 
   const onSubmit = () => {
+    setIsSaving(true);
+
     // Convert the draft to a UpsertEntityInput type (stored within the change request until approved)
     const entity = buildEntityFromVaccineInput(draft);
 
@@ -141,6 +149,8 @@ export const VaccineEditForm = ({
     })
       .then(() => {
         invalidateQueries();
+        setIsSaving(false);
+
         if (!initialEntity) {
           // new entity - clear the form and show success snack
           success(
@@ -164,6 +174,7 @@ export const VaccineEditForm = ({
         }
       })
       .catch(e => {
+        setIsSaving(false);
         console.error(e);
         error(t('message.entity-error'))();
       });
@@ -542,13 +553,15 @@ export const VaccineEditForm = ({
       <Box
         sx={{ display: 'flex', justifyContent: 'end', paddingBottom: '16px' }}
       >
-        <ButtonWithIcon
+        <LoadingButton
+          isLoading={isSaving}
+          startIcon={<SaveIcon />}
           disabled={!isValidVaccineInput(draft)}
-          Icon={<SaveIcon />}
-          label={t('button.save')}
           onClick={onSubmit}
           variant="contained"
-        />
+        >
+          {t('button.save')}
+        </LoadingButton>
       </Box>
     </Box>
   );

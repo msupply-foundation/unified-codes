@@ -16,12 +16,6 @@ struct UpsertVars {
     upsert: bool,
 }
 
-// Dgraph sometimes returns an error like this:
-// {"errors":[{"message":"Transaction has been aborted. Please retry","locations":[{"line":2,"column":3}],"extensions":{"code":"Error"}}],"data":null}
-// Seems to mostly happen in tests, but in case this happens in production we'll retry a few times
-// Sounds like this could possibly be to do with updating the same index? X-Dgraph-IgnoreIndexConflict?
-const RETRIES: u32 = 3;
-
 pub async fn insert_configuration_item(
     client: &DgraphClient,
     config_item: ConfigurationItemInput,
@@ -38,43 +32,18 @@ mutation AddConfigurationInput($input: [AddConfigurationItemInput!]!, $upsert: B
         upsert: upsert,
     };
 
-    let mut attempts = 0;
-    while attempts < RETRIES {
-        let result = client
-            .gql
-            .query_with_vars::<UpsertResponseData, UpsertVars>(&query, variables.clone())
-            .await;
+    let result = client
+        .query_with_retry::<UpsertResponseData, UpsertVars>(&query, variables)
+        .await?;
 
-        let result = match result {
-            Ok(result) => result,
-            Err(err) => {
-                attempts += 1;
-
-                if attempts >= RETRIES {
-                    return Err(err);
-                }
-                log::error!(
-                    "add_configuration_item failed, retrying: {:#?} {:#?}",
-                    attempts,
-                    variables
-                );
-                continue;
-            }
-        };
-
-        match result {
-            Some(result) => {
-                return Ok(UpsertResponse {
-                    numUids: result.data.numUids,
-                })
-            }
-            None => return Ok(UpsertResponse { numUids: 0 }),
-        };
+    match result {
+        Some(result) => {
+            return Ok(UpsertResponse {
+                numUids: result.data.numUids,
+            })
+        }
+        None => return Ok(UpsertResponse { numUids: 0 }),
     }
-    Err(GraphQLError::with_text(format!(
-        "add_configuration_item failed after {} retries",
-        RETRIES
-    )))
 }
 
 #[cfg(test)]
