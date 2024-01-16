@@ -6,6 +6,8 @@ pub mod update_pending_change;
 pub use update_pending_change::*;
 pub mod add_pending_change;
 pub use add_pending_change::*;
+pub mod configuration;
+pub use configuration::*;
 pub mod client;
 pub use client::*;
 pub mod database_settings;
@@ -184,4 +186,28 @@ pub struct PendingChangePatch {
     pub name: Option<String>,
     pub status: Option<ChangeStatus>,
     pub body: Option<String>,
+}
+
+#[allow(non_snake_case)]
+#[derive(Deserialize, Debug, Clone)]
+pub struct DeleteResponseData {
+    pub data: DeleteResponse,
+}
+
+#[allow(non_snake_case)]
+#[derive(Deserialize, Debug, Clone)]
+pub struct DeleteResponse {
+    pub numUids: u32,
+}
+
+#[allow(non_snake_case)]
+#[derive(Deserialize, Debug, Clone)]
+pub struct UpsertResponseData {
+    pub data: UpsertResponse,
+}
+
+#[allow(non_snake_case)]
+#[derive(Deserialize, Debug, Clone)]
+pub struct UpsertResponse {
+    pub numUids: u32,
 }

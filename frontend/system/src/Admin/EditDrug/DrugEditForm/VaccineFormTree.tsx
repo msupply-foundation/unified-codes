@@ -1,7 +1,6 @@
 import { useTranslation } from '@common/intl';
 import { Box, Typography } from '@common/ui';
 import React, { useState } from 'react';
-import { config } from '../../../config';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
 import { useEditModal } from '@common/hooks';
@@ -11,6 +10,8 @@ import { CategoryDropdown } from './CategoryDropdown';
 import { AddFieldButton } from './AddFieldButton';
 import { EditPropertiesButton } from './EditPropertiesButton';
 import { NameEditField } from './NameEditField';
+import { useConfigurationItems } from '../../Configuration/api';
+import { ConfigurationItemTypeInput } from '@common/types';
 
 export const VaccineFormTree = ({
   draft,
@@ -24,6 +25,21 @@ export const VaccineFormTree = ({
   const t = useTranslation('system');
 
   const uuid = useUuid();
+
+  // Get the route, form, and immediate packaging options
+
+  const { data: routes, isLoading: isLoadingRoutes } = useConfigurationItems({
+    type: ConfigurationItemTypeInput.Route,
+  });
+
+  const { data: forms, isLoading: isLoadingForms } = useConfigurationItems({
+    type: ConfigurationItemTypeInput.Form,
+  });
+
+  const { data: immediatePackagings, isLoading: isLoadingImmediatePackagings } =
+    useConfigurationItems({
+      type: ConfigurationItemTypeInput.ImmediatePackaging,
+    });
 
   const [propertiesModalState, setPropertiesModalState] = useState<{
     disabled: boolean;
@@ -194,7 +210,10 @@ export const VaccineFormTree = ({
                     <CategoryDropdown
                       disabled={initialIds.includes(route.id)}
                       value={route.name}
-                      options={config.routes}
+                      options={
+                        routes?.map(r => ({ label: r.name, value: r.name })) ??
+                        []
+                      }
                       onChange={name =>
                         onUpdate({ ...route, name }, brand.routes)
                       }
@@ -220,7 +239,12 @@ export const VaccineFormTree = ({
                         <CategoryDropdown
                           disabled={initialIds.includes(form.id)}
                           value={form.name}
-                          options={config.forms}
+                          options={
+                            forms?.map(r => ({
+                              label: r.name,
+                              value: r.name,
+                            })) ?? []
+                          }
                           onChange={name =>
                             onUpdate({ ...form, name }, route.forms)
                           }
@@ -316,7 +340,12 @@ export const VaccineFormTree = ({
                                     <CategoryDropdown
                                       disabled={initialIds.includes(immPack.id)}
                                       value={immPack.name}
-                                      options={config.immediatePackagings}
+                                      options={
+                                        immediatePackagings?.map(o => ({
+                                          label: o.name,
+                                          value: o.name,
+                                        })) ?? []
+                                      }
                                       onChange={name =>
                                         onUpdate(
                                           { ...immPack, name },
@@ -362,6 +391,7 @@ export const VaccineFormTree = ({
                                     unit.immediatePackagings
                                   )
                                 }
+                                isLoading={isLoadingImmediatePackagings}
                               />
                             </TreeFormBox>
                           ))}
@@ -402,6 +432,7 @@ export const VaccineFormTree = ({
                         route.forms
                       )
                     }
+                    isLoading={isLoadingForms}
                   />
                 </TreeFormBox>
               ))}
@@ -411,6 +442,7 @@ export const VaccineFormTree = ({
                 onClick={() =>
                   onUpdate({ id: uuid(), name: '', forms: [] }, brand.routes)
                 }
+                isLoading={isLoadingRoutes}
               />
             </TreeFormBox>
           ))}

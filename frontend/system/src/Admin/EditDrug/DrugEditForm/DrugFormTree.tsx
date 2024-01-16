@@ -1,7 +1,6 @@
 import { useTranslation } from '@common/intl';
 import { Box, Typography } from '@common/ui';
 import React, { useState } from 'react';
-import { config } from '../../../config';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
 import { useEditModal } from '@common/hooks';
@@ -11,6 +10,8 @@ import { CategoryDropdown } from './CategoryDropdown';
 import { AddFieldButton } from './AddFieldButton';
 import { EditPropertiesButton } from './EditPropertiesButton';
 import { NameEditField } from './NameEditField';
+import { useConfigurationItems } from '../../Configuration/api';
+import { ConfigurationItemTypeInput } from '@common/types';
 
 export const DrugFormTree = ({
   draft,
@@ -41,6 +42,14 @@ export const DrugFormTree = ({
     onOpen,
     entity: propertiesModalData,
   } = useEditModal<Property[]>();
+
+  // Get the route, form, and immediate packaging options
+  const { data: routes, isLoading: isLoadingRoutes } = useConfigurationItems({
+    type: ConfigurationItemTypeInput.Route,
+  });
+  const { data: forms, isLoading: isLoadingForms } = useConfigurationItems({
+    type: ConfigurationItemTypeInput.Form,
+  });
 
   const onOpenPropertiesModal = (
     disabled: boolean,
@@ -144,7 +153,9 @@ export const DrugFormTree = ({
             <CategoryDropdown
               disabled={initialIds.includes(route.id)}
               value={route.name}
-              options={config.routes}
+              options={
+                routes?.map(r => ({ label: r.name, value: r.name })) ?? []
+              }
               onChange={name => onUpdate({ ...route, name }, draft.routes)}
               getOptionDisabled={o =>
                 !!draft.routes.find(r => r.name === o.value)
@@ -170,7 +181,9 @@ export const DrugFormTree = ({
                 <CategoryDropdown
                   disabled={initialIds.includes(form.id)}
                   value={form.name}
-                  options={config.forms}
+                  options={
+                    forms?.map(r => ({ label: r.name, value: r.name })) ?? []
+                  }
                   onChange={name => onUpdate({ ...form, name }, route.forms)}
                   getOptionDisabled={o =>
                     !!route.forms.find(f => f.name === o.value)
@@ -273,6 +286,7 @@ export const DrugFormTree = ({
             onClick={() =>
               onUpdate({ id: uuid(), name: '', strengths: [] }, route.forms)
             }
+            isLoading={isLoadingForms}
           />
         </TreeFormBox>
       ))}
@@ -282,6 +296,7 @@ export const DrugFormTree = ({
         onClick={() =>
           onUpdate({ id: uuid(), name: '', forms: [] }, draft.routes)
         }
+        isLoading={isLoadingRoutes}
       />
     </Box>
   );

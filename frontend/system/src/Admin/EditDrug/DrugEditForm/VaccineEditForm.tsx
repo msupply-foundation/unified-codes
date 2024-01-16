@@ -1,5 +1,5 @@
 import { useTranslation } from '@common/intl';
-import { Box, SaveIcon, ButtonWithIcon } from '@common/ui';
+import { Box, SaveIcon, LoadingButton } from '@common/ui';
 import React, { useState } from 'react';
 import { useUuid } from '../../../hooks';
 import { useNotification } from '@common/hooks';
@@ -24,6 +24,7 @@ export const VaccineEditForm = ({
   const t = useTranslation('system');
   const navigate = useNavigate();
 
+  const [isSaving, setIsSaving] = useState(false);
   const [requestChange, invalidateQueries] = useRequestChange();
   const { success, error } = useNotification();
 
@@ -42,6 +43,8 @@ export const VaccineEditForm = ({
   );
 
   const onSubmit = () => {
+    setIsSaving(true);
+
     // Convert the draft to a UpsertEntityInput type (stored within the change request until approved)
     const entity = buildEntityFromVaccineInput(draft);
 
@@ -62,6 +65,8 @@ export const VaccineEditForm = ({
     })
       .then(() => {
         invalidateQueries();
+        setIsSaving(false);
+
         if (!initialEntity) {
           success(
             t('message.entity-created', {
@@ -89,10 +94,18 @@ export const VaccineEditForm = ({
         }
       })
       .catch(e => {
+        setIsSaving(false);
         console.error(e);
         error(t('message.entity-error'))();
       });
   };
+
+  const saveButtonDisabled =
+    !isValidVaccineInput(draft) ||
+    // if editing existing entity, disable save if no change has been made
+    (initialEntity &&
+      JSON.stringify(draft) ===
+        JSON.stringify(buildVaccineInputFromEntity(initialEntity)));
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -105,13 +118,15 @@ export const VaccineEditForm = ({
       <Box
         sx={{ display: 'flex', justifyContent: 'end', paddingBottom: '16px' }}
       >
-        <ButtonWithIcon
-          disabled={!isValidVaccineInput(draft)}
-          Icon={<SaveIcon />}
-          label={t('button.save')}
+        <LoadingButton
+          isLoading={isSaving}
+          startIcon={<SaveIcon />}
+          disabled={saveButtonDisabled}
           onClick={onSubmit}
           variant="contained"
-        />
+        >
+          {t('button.save')}
+        </LoadingButton>
       </Box>
     </Box>
   );

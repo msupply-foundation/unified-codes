@@ -43,7 +43,8 @@ export class DgraphClient {
       await txn.doRequest(request);
       txn.discard();
       return true;
-    } catch {
+    } catch (e) {
+      console.log(e);
       txn.discard();
       return false;
     }
@@ -95,6 +96,11 @@ export class DataLoader {
 
     console.log(`INFO: Extracted entity nodes`);
 
+    const routes = new Set();
+    const forms = new Set();
+    const formQualifiers = new Set();
+    const immediatePackagings = new Set();
+
     // Load individual entities.
     for await (const entity of entities) {
       const query = `
@@ -117,6 +123,18 @@ export class DataLoader {
       } else {
         console.log(`WARNING: Failed to load entity with code ${entity.code}`);
       }
+      if (entity.type === 'Route') routes.add(entity.name.trim());
+      if (entity.type === 'Form') forms.add(entity.name.trim());
+      if (
+        entity.type === 'FormQualifier' &&
+        entity.name &&
+        entity.name.trim() &&
+        entity.name.trim().length < 20
+      ) {
+        formQualifiers.add(entity.name.trim());
+      }
+      if (entity.type === 'PackImmediate')
+        immediatePackagings.add(entity.name.trim());
     }
 
     // Link parent entities to children.
@@ -169,6 +187,92 @@ export class DataLoader {
             );
           }
         }
+      }
+    }
+
+    // Create routes.
+    for await (const route of routes) {
+      if (!route) continue;
+      const nQuads = `
+        _:route <name> "${route}" .
+        _:route <code> "${route}" .
+        _:route <type> "Route" .
+        _:route <dgraph.type> "ConfigurationItem" .
+      `;
+
+      if (await this.dgraph.mutate(nQuads)) {
+        console.log(`INFO: Loaded route with name ${route}`);
+      } else {
+        console.log(`WARNING: Failed to load route with name ${route}`);
+      }
+    }
+
+    // Create forms.
+    for await (const form of forms) {
+      if (!form) continue;
+      const nQuads = `
+        _:form <name> "${form}" .
+        _:form <code> "${form}" .
+        _:form <type> "Form" .
+        _:form <dgraph.type> "ConfigurationItem" .
+      `;
+
+      if (await this.dgraph.mutate(nQuads)) {
+        console.log(`INFO: Loaded form with name ${form}`);
+      } else {
+        console.log(`WARNING: Failed to load form with name ${form}`);
+      }
+
+      // Look to see if the form and qualifier combination exists in a entity description...
+      // If so we need to create a form with the qualifier attached
+
+      for await (const formQualifier of formQualifiers) {
+        if (!formQualifier) continue;
+        for await (const entity of entities) {
+          if (
+            entity.description &&
+            entity.description.includes(`${form} ${formQualifier}`)
+          ) {
+            const nQuads = `
+              _:form <name> "${form} (${formQualifier})" .
+              _:form <code> "${form} (${formQualifier})" .
+              _:form <type> "Form" .
+              _:form <dgraph.type> "ConfigurationItem" .
+            `;
+
+            if (await this.dgraph.mutate(nQuads)) {
+              console.log(
+                `INFO: Loaded form qualifier with name ${formQualifier}`
+              );
+            } else {
+              console.log(
+                `WARNING: Failed to load form qualifier with name ${formQualifier}`
+              );
+            }
+            break;
+          }
+        }
+      }
+    }
+
+    // Create immediate packagings.
+    for await (const immediatePackaging of immediatePackagings) {
+      if (!immediatePackaging) continue;
+      const nQuads = `
+        _:pack <name> "${immediatePackaging}" .
+        _:pack <code> "${immediatePackaging}" .
+        _:pack <type> "ImmediatePackaging" .
+        _:pack <dgraph.type> "ConfigurationItem" .
+      `;
+
+      if (await this.dgraph.mutate(nQuads)) {
+        console.log(
+          `INFO: Loaded immediate packaging with name ${immediatePackaging}`
+        );
+      } else {
+        console.log(
+          `WARNING: Failed to load immediate packaging with name ${immediatePackaging}`
+        );
       }
     }
 

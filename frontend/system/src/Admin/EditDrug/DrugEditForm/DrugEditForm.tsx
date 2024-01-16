@@ -1,5 +1,5 @@
 import { useTranslation } from '@common/intl';
-import { Box, SaveIcon, ButtonWithIcon } from '@common/ui';
+import { Box, SaveIcon, LoadingButton } from '@common/ui';
 import React, { useState } from 'react';
 import { useUuid } from '../../../hooks';
 import { useNotification } from '@common/hooks';
@@ -24,6 +24,7 @@ export const DrugEditForm = ({
   const t = useTranslation('system');
   const navigate = useNavigate();
 
+  const [isSaving, setIsSaving] = useState(false);
   const [requestChange, invalidateQueries] = useRequestChange();
   const { success, error } = useNotification();
 
@@ -42,6 +43,8 @@ export const DrugEditForm = ({
   );
 
   const onSubmit = () => {
+    setIsSaving(true);
+
     // Convert the draft to a UpsertEntityInput type (stored within the change request until approved)
     const entity = buildEntityFromDrugInput(draft);
 
@@ -62,6 +65,7 @@ export const DrugEditForm = ({
     })
       .then(() => {
         invalidateQueries();
+        setIsSaving(false);
 
         if (!initialEntity) {
           // new entity - clear the form
@@ -90,6 +94,7 @@ export const DrugEditForm = ({
         }
       })
       .catch(e => {
+        setIsSaving(false);
         console.error(e);
         error(t('message.entity-error'))();
       });
@@ -108,13 +113,15 @@ export const DrugEditForm = ({
       <Box
         sx={{ display: 'flex', justifyContent: 'end', paddingBottom: '16px' }}
       >
-        <ButtonWithIcon
+        <LoadingButton
+          isLoading={isSaving}
+          startIcon={<SaveIcon />}
           disabled={saveButtonDisabled}
-          Icon={<SaveIcon />}
-          label={t('button.save')}
           onClick={onSubmit}
           variant="contained"
-        />
+        >
+          {t('button.save')}
+        </LoadingButton>
       </Box>
     </Box>
   );
