@@ -44,19 +44,16 @@ export const PendingChangeDetails = () => {
   const { data: pendingChange, isLoading } = usePendingChange(id ?? '');
   const next = useNextPendingChange(id ?? '');
 
-  // Set entity name in the breadcrumb
-  useEffect(() => {
-    if (pendingChange?.name) setSuffix(pendingChange.name);
-  }, [pendingChange?.name]);
-
-  // Parse entity from pending change body
-  useEffect(() => {
-    if (pendingChange) setEntity(JSON.parse(pendingChange.body));
-  }, [pendingChange]);
-
-  // Expand all nodes of the tree
   useEffect(() => {
     if (pendingChange) {
+      // Set entity name in the breadcrumb
+      setSuffix(pendingChange.name);
+
+      // Parse entity from pending change body
+      const entity = JSON.parse(pendingChange.body);
+      setEntity(entity);
+
+      // Expand all nodes of the tree
       const expandedIds: string[] = [];
 
       const addToExpandedIds = (ent?: UpsertEntityInput | null) => {
@@ -72,7 +69,7 @@ export const PendingChangeDetails = () => {
 
       setExpanded(expandedIds);
     }
-  }, [entity]);
+  }, [pendingChange]);
 
   const savePendingChange = async (updatedEntity: UpsertEntityInput) => {
     if (!pendingChange) return;
