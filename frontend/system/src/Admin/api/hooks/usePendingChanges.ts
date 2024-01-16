@@ -14,7 +14,7 @@ export const usePendingChanges = ({
 }: {
   first: number;
   offset: number;
-  sortBy: SortBy<PendingChangeSummaryFragment>;
+  sortBy?: SortBy<PendingChangeSummaryFragment>;
 }) => {
   const { client } = useGql();
   const sdk = getSdk(client);

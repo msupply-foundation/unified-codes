@@ -8,7 +8,7 @@ import {
   Switch,
   Box,
 } from '@common/ui';
-import { useBreadcrumbs, useNotification, useUrlQuery } from '@common/hooks';
+import { useBreadcrumbs } from '@common/hooks';
 import { useEntity } from './api';
 import { FormControlLabel } from '@mui/material';
 import { TreeView } from '@mui/lab';
@@ -22,11 +22,9 @@ import { PermissionNode } from '@common/types';
 export const EntityDetails = () => {
   const t = useTranslation('system');
   const { code } = useParams();
-  const { urlQuery, updateQuery } = useUrlQuery();
   const { setSuffix } = useBreadcrumbs();
   const navigate = useNavigate();
   const { hasPermission } = useAuthContext();
-  const { success } = useNotification();
 
   const [expanded, setExpanded] = useState<string[]>([]);
   const [showAllCodes, setShowAllCodes] = useState(false);
@@ -36,13 +34,6 @@ export const EntityDetails = () => {
   useEffect(() => {
     if (entity?.name) setSuffix(entity.name);
   }, [entity?.name]);
-
-  useEffect(() => {
-    if (entity?.name && urlQuery.changeRequested) {
-      success(t('message.entity-updated', { name: entity.name }))();
-      updateQuery({}, true);
-    }
-  }, [entity?.name, urlQuery.changeRequested]);
 
   useEffect(() => {
     const expandedIds: string[] = [];

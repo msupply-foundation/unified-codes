@@ -49,6 +49,12 @@ export type AuthTokenErrorInterface = {
 
 export type AuthTokenResponse = AuthToken | AuthTokenError;
 
+export enum ChangeStatusNode {
+  Approved = 'APPROVED',
+  Pending = 'PENDING',
+  Rejected = 'REJECTED'
+}
+
 export enum ChangeTypeNode {
   Change = 'CHANGE',
   New = 'NEW'
@@ -161,6 +167,7 @@ export type FullMutation = {
   /** Updates user account based on a token and their information (Response to initiate_user_invite) */
   acceptUserInvite: InviteUserResponse;
   addConfigurationItem: Scalars['Int']['output'];
+  approvePendingChange: UpsertEntityResponse;
   createUserAccount: CreateUserAccountResponse;
   deleteConfigurationItem: Scalars['Int']['output'];
   deleteUserAccount: DeleteUserAccountResponse;
@@ -171,11 +178,12 @@ export type FullMutation = {
   initiatePasswordReset: PasswordResetResponse;
   /** Invites a new user to the system */
   initiateUserInvite: InviteUserResponse;
+  rejectPendingChange: IdResponse;
   requestChange: RequestChangeResponse;
   /** Resets the password for a user based on the password reset token */
   resetPasswordUsingToken: PasswordResetResponse;
+  updatePendingChange: RequestChangeResponse;
   updateUserAccount: UpdateUserAccountResponse;
-  upsertEntity: UpsertEntityResponse;
   /** Validates Password Reset Token */
   validatePasswordResetToken: PasswordResetResponse;
 };
@@ -189,6 +197,12 @@ export type FullMutationAcceptUserInviteArgs = {
 
 export type FullMutationAddConfigurationItemArgs = {
   input: AddConfigurationItemInput;
+};
+
+
+export type FullMutationApprovePendingChangeArgs = {
+  input: UpsertEntityInput;
+  requestId: Scalars['String']['input'];
 };
 
 
@@ -217,6 +231,11 @@ export type FullMutationInitiateUserInviteArgs = {
 };
 
 
+export type FullMutationRejectPendingChangeArgs = {
+  requestId: Scalars['String']['input'];
+};
+
+
 export type FullMutationRequestChangeArgs = {
   input: RequestChangeInput;
 };
@@ -228,13 +247,14 @@ export type FullMutationResetPasswordUsingTokenArgs = {
 };
 
 
-export type FullMutationUpdateUserAccountArgs = {
-  input: UpdateUserAccountInput;
+export type FullMutationUpdatePendingChangeArgs = {
+  body: Scalars['String']['input'];
+  requestId: Scalars['String']['input'];
 };
 
 
-export type FullMutationUpsertEntityArgs = {
-  input: UpsertEntityInput;
+export type FullMutationUpdateUserAccountArgs = {
+  input: UpdateUserAccountInput;
 };
 
 
@@ -258,6 +278,7 @@ export type FullQuery = {
   logout: LogoutResponse;
   logs: LogResponse;
   me: UserResponse;
+  pendingChange?: Maybe<PendingChangeNode>;
   pendingChanges: PendingChangesResponse;
   /**
    * Retrieves a new auth bearer and refresh token
@@ -299,6 +320,11 @@ export type FullQueryLogsArgs = {
 };
 
 
+export type FullQueryPendingChangeArgs = {
+  requestId: Scalars['String']['input'];
+};
+
+
 export type FullQueryPendingChangesArgs = {
   page?: InputMaybe<PaginationInput>;
   sort?: InputMaybe<Array<PendingChangeSortInput>>;
@@ -309,6 +335,11 @@ export type FullQueryUserAccountsArgs = {
   filter?: InputMaybe<UserAccountFilterInput>;
   page?: InputMaybe<PaginationInput>;
   sort?: InputMaybe<Array<UserAccountSortInput>>;
+};
+
+export type IdResponse = {
+  __typename: 'IdResponse';
+  id: Scalars['String']['output'];
 };
 
 export type InternalError = LogoutErrorInterface & RefreshTokenErrorInterface & {
@@ -366,6 +397,8 @@ export type LogNode = {
 export enum LogNodeType {
   ConfigurationItemCreated = 'CONFIGURATION_ITEM_CREATED',
   ConfigurationItemDeleted = 'CONFIGURATION_ITEM_DELETED',
+  UniversalCodeChangeApproved = 'UNIVERSAL_CODE_CHANGE_APPROVED',
+  UniversalCodeChangeRejected = 'UNIVERSAL_CODE_CHANGE_REJECTED',
   UniversalCodeChangeRequested = 'UNIVERSAL_CODE_CHANGE_REQUESTED',
   UniversalCodeCreated = 'UNIVERSAL_CODE_CREATED',
   UniversalCodeUpdated = 'UNIVERSAL_CODE_UPDATED',
@@ -457,6 +490,7 @@ export type PendingChangeNode = {
   requestId: Scalars['String']['output'];
   requestedBy: Scalars['String']['output'];
   requestedFor: Scalars['String']['output'];
+  status: ChangeStatusNode;
 };
 
 export enum PendingChangeSortFieldInput {

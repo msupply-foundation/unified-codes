@@ -5,18 +5,13 @@ use graphql_core::{
     ContextExt,
 };
 
-use graphql_types::types::PendingChangeNode;
+use graphql_types::types::IdResponse;
 use service::{
     auth::{Resource, ResourceAccessRequest},
     universal_codes::ModifyUniversalCodeError,
 };
 
-use crate::types::{RequestChangeInput, RequestChangeResponse};
-
-pub async fn request_change(
-    ctx: &Context<'_>,
-    input: RequestChangeInput,
-) -> Result<RequestChangeResponse> {
+pub async fn reject_pending_change(ctx: &Context<'_>, request_id: String) -> Result<IdResponse> {
     let user = validate_auth(
         ctx,
         &ResourceAccessRequest {
@@ -28,21 +23,19 @@ pub async fn request_change(
     match service_context
         .service_provider
         .universal_codes_service
-        .add_pending_change(
+        .reject_pending_change(
             ctx.service_provider(),
             service_context.user_id.clone(),
-            input.into(),
+            request_id.clone(),
         )
         .await
     {
-        Ok(entity) => Ok(RequestChangeResponse::Response(
-            PendingChangeNode::from_domain(entity),
-        )),
+        Ok(id) => Ok(IdResponse(id)),
         Err(error) => map_error(error),
     }
 }
 
-fn map_error(error: ModifyUniversalCodeError) -> Result<RequestChangeResponse> {
+fn map_error(error: ModifyUniversalCodeError) -> Result<IdResponse> {
     use StandardGraphqlError::*;
     let formatted_error = format!("{:#?}", error);
 

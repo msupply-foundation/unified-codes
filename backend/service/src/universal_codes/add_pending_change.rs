@@ -5,10 +5,10 @@ use crate::{
     service_provider::{ServiceContext, ServiceProvider},
 };
 use chrono::Utc;
-use dgraph::{pending_change, ChangeType, PendingChange, PendingChangeInput};
+use dgraph::{pending_change, ChangeStatus, ChangeType, PendingChange, PendingChangeInput};
 use repository::LogType;
 
-use super::ModifyUniversalCodeError;
+use super::{validate::check_pending_change_does_not_exist, ModifyUniversalCodeError};
 
 #[derive(Clone, Debug)]
 pub struct AddPendingChange {
@@ -27,7 +27,7 @@ pub async fn add_pending_change(
     pending_change_request: AddPendingChange,
 ) -> Result<PendingChange, ModifyUniversalCodeError> {
     // Validate
-    let pending_change_request = validate(&pending_change_request).await?;
+    let pending_change_request = validate(&client, &pending_change_request).await?;
 
     // Generate
     let pending_change_input = generate(pending_change_request.clone(), user_id.clone())?;
@@ -78,12 +78,14 @@ pub fn generate(
         change_type: change_request.change_type.clone(),
         requested_for: change_request.requested_for.clone(),
 
+        status: ChangeStatus::Pending,
         date_requested: Utc::now().naive_utc(),
         requested_by_user_id: user_id.clone(),
     })
 }
 
 pub async fn validate(
+    client: &dgraph::DgraphClient,
     pending_change: &AddPendingChange,
 ) -> Result<AddPendingChange, ModifyUniversalCodeError> {
     if pending_change.name.clone().is_empty() {
@@ -105,6 +107,10 @@ pub async fn validate(
         return Err(ModifyUniversalCodeError::InternalError(
             "Requested For is required".to_string(),
         ));
+    }
+
+    if !check_pending_change_does_not_exist(client, &pending_change.request_id).await? {
+        return Err(ModifyUniversalCodeError::PendingChangeAlreadyExists);
     }
 
     Ok(pending_change.clone())

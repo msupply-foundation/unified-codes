@@ -24,6 +24,7 @@ query PendingChangeQuery($request_id: String!) {
     requested_by_user_id
     requested_for
     body
+    status
   }
 }"#;
 

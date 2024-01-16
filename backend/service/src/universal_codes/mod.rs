@@ -4,33 +4,40 @@ use std::{
 };
 
 use dgraph::{
-    DgraphClient, DgraphOrderByType, Entity, GraphQLError, PendingChange,
-    PendingChangesDgraphFilter, PendingChangesQueryVars, SearchVars,
+    ChangeStatus, ChangeStatusDgraphFilterType, DgraphClient, DgraphOrderByType, Entity,
+    GraphQLError, PendingChange, PendingChangesDgraphFilter, PendingChangesQueryVars, SearchVars,
 };
 use repository::RepositoryError;
 
 use crate::{service_provider::ServiceProvider, settings::Settings};
 
-pub use self::{entity_collection::EntityCollection, entity_filter::EntitySearchFilter};
 use self::{
+    add_pending_change::AddPendingChange,
     entity_filter::{dgraph_filter_from_v1_filter, dgraph_order_by_from_v1_filter},
     pending_change_collection::PendingChangeCollection,
 };
+pub use self::{entity_collection::EntityCollection, entity_filter::EntitySearchFilter};
 
 mod tests;
 
 pub mod add_pending_change;
+pub mod approve_pending_change;
 pub mod code_generator;
 pub mod entity_collection;
 pub mod entity_filter;
 pub mod pending_change_collection;
 pub mod properties;
+pub mod reject_pending_change;
+pub mod update_pending_change_body;
 pub mod upsert;
+pub mod validate;
 
 #[derive(Debug)]
 pub enum ModifyUniversalCodeError {
     UniversalCodeDoesNotExist,
     UniversalCodeAlreadyExists,
+    PendingChangeDoesNotExist,
+    PendingChangeAlreadyExists,
     DescriptionAlreadyExists(String),
     NotAuthorised,
     InternalError(String),
@@ -129,15 +136,33 @@ impl UniversalCodesService {
         }
     }
 
+    pub async fn pending_change(
+        &self,
+        request_id: String,
+    ) -> Result<Option<PendingChange>, UniversalCodesServiceError> {
+        let result = dgraph::pending_change(&self.client, request_id)
+            .await
+            .map_err(|e| UniversalCodesServiceError::InternalError(e.message().to_string()))?; // TODO: Improve error handling?
+
+        match result {
+            Some(pending_change) => Ok(Some(pending_change)),
+            None => Ok(None),
+        }
+    }
+
     pub async fn pending_changes(
         &self,
-        // filter: PendingChangesFilter, // TODO: need this once filtering by state?
+        // filter: PendingChangesFilter, // TODO: probably should expose this to allow filtering by state?
         first: Option<u32>,
         offset: Option<u32>,
         order: Option<DgraphOrderByType>,
     ) -> Result<PendingChangeCollection, UniversalCodesServiceError> {
         let dgraph_vars = PendingChangesQueryVars {
             filter: PendingChangesDgraphFilter {
+                status: Some(ChangeStatusDgraphFilterType {
+                    eq: Some(ChangeStatus::Pending),
+                    ..Default::default()
+                }),
                 ..Default::default()
             },
             first,
@@ -165,9 +190,53 @@ impl UniversalCodesService {
         &self,
         sp: Arc<ServiceProvider>,
         user_id: String,
-        pending_change: add_pending_change::AddPendingChange,
+        pending_change: AddPendingChange,
     ) -> Result<PendingChange, ModifyUniversalCodeError> {
         add_pending_change::add_pending_change(sp, user_id, self.client.clone(), pending_change)
+            .await
+    }
+
+    pub async fn update_pending_change_body(
+        &self,
+        sp: Arc<ServiceProvider>,
+        user_id: String,
+        request_id: String,
+        body: String,
+    ) -> Result<PendingChange, ModifyUniversalCodeError> {
+        update_pending_change_body::update_pending_change_body(
+            sp,
+            user_id,
+            self.client.clone(),
+            request_id,
+            body,
+        )
+        .await
+    }
+
+    pub async fn approve_pending_change(
+        &self,
+        sp: Arc<ServiceProvider>,
+        user_id: String,
+        request_id: String,
+        entity: upsert::UpsertUniversalCode,
+    ) -> Result<Entity, ModifyUniversalCodeError> {
+        approve_pending_change::approve_pending_change(
+            sp,
+            user_id,
+            self.client.clone(),
+            request_id,
+            entity,
+        )
+        .await
+    }
+
+    pub async fn reject_pending_change(
+        &self,
+        sp: Arc<ServiceProvider>,
+        user_id: String,
+        request_id: String,
+    ) -> Result<String, ModifyUniversalCodeError> {
+        reject_pending_change::reject_pending_change(sp, user_id, self.client.clone(), request_id)
             .await
     }
 

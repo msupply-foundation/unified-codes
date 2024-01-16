@@ -43,7 +43,15 @@ mod universal_codes_add_pending_change_test {
         assert_eq!(result.request_id, new_request_id);
         assert_eq!(result.name, new_request_id);
 
-        // TODO: Delete new pending change from dgraph
+        // TODO: A better way to remove new pending change from dgraph
+        // marking as rejected so as not to show up in PendingChange queries
+        let _result = service
+            .reject_pending_change(
+                service_provider.clone(),
+                context.user_id.clone(),
+                new_request_id.clone(),
+            )
+            .await;
     }
 
     #[actix_rt::test]

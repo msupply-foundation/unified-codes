@@ -1,12 +1,24 @@
 use gql_client::GraphQLError;
 use serde::Serialize;
 
-use crate::{DgraphClient, DgraphFilterType, DgraphOrderByType, PendingChangeData};
+use crate::{ChangeStatus, DgraphClient, DgraphFilterType, DgraphOrderByType, PendingChangeData};
+
+#[derive(Serialize, Debug, Default)]
+pub struct ChangeStatusDgraphFilterType {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub regexp: Option<ChangeStatus>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub eq: Option<ChangeStatus>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub r#in: Option<Vec<ChangeStatus>>,
+}
 
 #[derive(Serialize, Debug, Default)]
 pub struct PendingChangesDgraphFilter {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<DgraphFilterType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub status: Option<ChangeStatusDgraphFilterType>,
 }
 
 #[derive(Serialize, Debug)]
@@ -34,6 +46,7 @@ query PendingChangesQuery($filter: PendingChangeFilter, $first: Int, $offset: In
     requested_by_user_id
     requested_for
     body
+    status
   }
 
   aggregates: aggregatePendingChange(filter: $filter) {

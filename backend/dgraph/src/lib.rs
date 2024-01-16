@@ -2,6 +2,8 @@ use serde::{Deserialize, Deserializer, Serialize};
 
 use chrono::{DateTime, NaiveDateTime, Utc};
 
+pub mod update_pending_change;
+pub use update_pending_change::*;
 pub mod add_pending_change;
 pub use add_pending_change::*;
 pub mod configuration;
@@ -97,6 +99,19 @@ impl Default for ChangeType {
     }
 }
 
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Hash)]
+pub enum ChangeStatus {
+    Pending,
+    Approved,
+    Rejected,
+}
+
+impl Default for ChangeStatus {
+    fn default() -> Self {
+        ChangeStatus::Pending
+    }
+}
+
 #[derive(Deserialize, Debug, Clone, Default, PartialEq)]
 pub struct PendingChange {
     #[serde(default)]
@@ -115,6 +130,8 @@ pub struct PendingChange {
     pub requested_by_user_id: String,
     #[serde(default)]
     pub requested_for: String,
+    #[serde(default)]
+    pub status: ChangeStatus,
     #[serde(default)]
     pub body: String,
 }
@@ -160,7 +177,15 @@ pub struct PendingChangeInput {
     pub date_requested: NaiveDateTime,
     pub requested_by_user_id: String,
     pub requested_for: String,
+    pub status: ChangeStatus,
     pub body: String,
+}
+
+#[derive(Serialize, Debug, Clone, Default)]
+pub struct PendingChangePatch {
+    pub name: Option<String>,
+    pub status: Option<ChangeStatus>,
+    pub body: Option<String>,
 }
 
 #[allow(non_snake_case)]

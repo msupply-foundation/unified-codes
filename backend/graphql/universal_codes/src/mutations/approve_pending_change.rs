@@ -5,18 +5,19 @@ use graphql_core::{
     ContextExt,
 };
 
-use graphql_types::types::PendingChangeNode;
 use service::{
     auth::{Resource, ResourceAccessRequest},
     universal_codes::ModifyUniversalCodeError,
 };
 
-use crate::types::{RequestChangeInput, RequestChangeResponse};
+use crate::types::{UpsertEntityInput, UpsertEntityResponse};
+use graphql_universal_codes_v1::EntityType;
 
-pub async fn request_change(
+pub async fn approve_pending_change(
     ctx: &Context<'_>,
-    input: RequestChangeInput,
-) -> Result<RequestChangeResponse> {
+    request_id: String,
+    input: UpsertEntityInput,
+) -> Result<UpsertEntityResponse> {
     let user = validate_auth(
         ctx,
         &ResourceAccessRequest {
@@ -28,21 +29,22 @@ pub async fn request_change(
     match service_context
         .service_provider
         .universal_codes_service
-        .add_pending_change(
+        .approve_pending_change(
             ctx.service_provider(),
             service_context.user_id.clone(),
+            request_id.clone(),
             input.into(),
         )
         .await
     {
-        Ok(entity) => Ok(RequestChangeResponse::Response(
-            PendingChangeNode::from_domain(entity),
-        )),
+        Ok(entity) => Ok(UpsertEntityResponse::Response(EntityType::from_domain(
+            entity,
+        ))),
         Err(error) => map_error(error),
     }
 }
 
-fn map_error(error: ModifyUniversalCodeError) -> Result<RequestChangeResponse> {
+fn map_error(error: ModifyUniversalCodeError) -> Result<UpsertEntityResponse> {
     use StandardGraphqlError::*;
     let formatted_error = format!("{:#?}", error);
 

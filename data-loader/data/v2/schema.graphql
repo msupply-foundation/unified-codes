@@ -28,6 +28,12 @@ enum ChangeType {
   Change
 }
 
+enum ChangeStatus {
+  Pending
+  Approved
+  Rejected
+}
+
 type PendingChange {
   id: ID!
   request_id: String!
@@ -40,6 +46,7 @@ type PendingChange {
   date_requested: DateTime!
   requested_by_user_id: String!
   requested_for: String!
+  status: ChangeStatus! @search(by: [exact])
   body: String!
 }
 

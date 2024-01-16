@@ -20,12 +20,6 @@ pub struct AddResponse {
     pub numUids: u32,
 }
 
-// Dgraph sometimes returns an error like this:
-// {"errors":[{"message":"Transaction has been aborted. Please retry","locations":[{"line":2,"column":3}],"extensions":{"code":"Error"}}],"data":null}
-// Seems to mostly happen in tests, but in case this happens in production we'll retry a few times
-// Sounds like this could possibly be to do with updating the same index? X-Dgraph-IgnoreIndexConflict?
-const RETRIES: u32 = 3;
-
 pub async fn add_pending_change(
     client: &DgraphClient,
     pending_change: PendingChangeInput,
@@ -40,43 +34,18 @@ mutation AddPendingChange($input: [AddPendingChangeInput!]!) {
         input: pending_change,
     };
 
-    let mut attempts = 0;
-    while attempts < RETRIES {
-        let result = client
-            .gql
-            .query_with_vars::<AddResponseData, AddVars>(&query, variables.clone())
-            .await;
+    let result = client
+        .query_with_retry::<AddResponseData, AddVars>(&query, variables.clone())
+        .await?;
 
-        let result = match result {
-            Ok(result) => result,
-            Err(err) => {
-                attempts += 1;
-
-                if attempts >= RETRIES {
-                    return Err(err);
-                }
-                log::error!(
-                    "add_pending_change failed, retrying: {:#?} {:#?}",
-                    attempts,
-                    variables
-                );
-                continue;
-            }
-        };
-
-        match result {
-            Some(result) => {
-                return Ok(AddResponse {
-                    numUids: result.data.numUids,
-                })
-            }
-            None => return Ok(AddResponse { numUids: 0 }),
-        };
-    }
-    Err(GraphQLError::with_text(format!(
-        "add_pending_change failed after {} retries",
-        RETRIES
-    )))
+    match result {
+        Some(result) => {
+            return Ok(AddResponse {
+                numUids: result.data.numUids,
+            })
+        }
+        None => return Ok(AddResponse { numUids: 0 }),
+    };
 }
 
 #[cfg(test)]
@@ -85,7 +54,9 @@ mod tests {
 
     use util::uuid::uuid;
 
-    use crate::{pending_change, ChangeType};
+    use crate::{
+        pending_change, update_pending_change, ChangeStatus, ChangeType, PendingChangePatch,
+    };
 
     use super::*;
 
@@ -117,11 +88,21 @@ mod tests {
         assert_eq!(result.numUids, 1);
 
         // Query for the new change
-        let result = pending_change(&client, request_id).await;
+        let result = pending_change(&client, request_id.clone()).await;
         let res = result.unwrap().unwrap();
 
         assert_eq!(res.name, "new name".to_string());
 
-        // TODO: Delete new pending change from dgraph
+        // TODO: A better way to remove new pending change from dgraph
+        // marking as rejected so as not to show up in PendingChange queries
+        let _result = update_pending_change(
+            &client,
+            request_id.clone(),
+            PendingChangePatch {
+                status: Some(ChangeStatus::Rejected),
+                ..Default::default()
+            },
+        )
+        .await;
     }
 }

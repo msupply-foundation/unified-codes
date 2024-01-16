@@ -25,6 +25,8 @@ pub enum LogNodeType {
     UserAccountPasswordResetInitiated,
     UniversalCodeCreated,
     UniversalCodeUpdated,
+    UniversalCodeChangeApproved,
+    UniversalCodeChangeRejected,
     UniversalCodeChangeRequested,
     ConfigurationItemCreated,
     ConfigurationItemDeleted,
@@ -85,6 +87,8 @@ impl LogNodeType {
             LogType::UniversalCodeCreated => LogNodeType::UniversalCodeCreated,
             LogType::UniversalCodeUpdated => LogNodeType::UniversalCodeUpdated,
             LogType::UniversalCodeChangeRequested => LogNodeType::UniversalCodeChangeRequested,
+            LogType::UniversalCodeChangeApproved => LogNodeType::UniversalCodeChangeApproved,
+            LogType::UniversalCodeChangeRejected => LogNodeType::UniversalCodeChangeRejected,
             LogType::ConfigurationItemCreated => LogNodeType::ConfigurationItemCreated,
             LogType::ConfigurationItemDeleted => LogNodeType::ConfigurationItemDeleted,
         }
@@ -101,6 +105,8 @@ impl LogNodeType {
             LogNodeType::UniversalCodeCreated => LogType::UniversalCodeCreated,
             LogNodeType::UniversalCodeUpdated => LogType::UniversalCodeUpdated,
             LogNodeType::UniversalCodeChangeRequested => LogType::UniversalCodeChangeRequested,
+            LogNodeType::UniversalCodeChangeApproved => LogType::UniversalCodeChangeApproved,
+            LogNodeType::UniversalCodeChangeRejected => LogType::UniversalCodeChangeRejected,
             LogNodeType::ConfigurationItemCreated => LogType::ConfigurationItemCreated,
             LogNodeType::ConfigurationItemDeleted => LogType::ConfigurationItemDeleted,
         }
