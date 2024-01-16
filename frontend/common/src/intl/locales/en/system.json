@@ -2,6 +2,7 @@
   "button.return-to-home": "Home",
   "button.return-to-login": "Login",
   "button.send-password-reset": "Send Password Reset",
+  "button.submit": "Submit",
   "entity-type.Brand": "Brand",
   "entity-type.Component": "Components",
   "entity-type.Form": "Form",

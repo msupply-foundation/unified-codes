@@ -113,7 +113,7 @@ export const DrugEditForm = ({
           onClick={onSubmit}
           variant="contained"
         >
-          {t('button.save')}
+          {t('button.submit')}
         </LoadingButton>
       </Box>
     </Box>
