@@ -20,12 +20,6 @@ pub struct AddResponse {
     pub numUids: u32,
 }
 
-// Dgraph sometimes returns an error like this:
-// {"errors":[{"message":"Transaction has been aborted. Please retry","locations":[{"line":2,"column":3}],"extensions":{"code":"Error"}}],"data":null}
-// Seems to mostly happen in tests, but in case this happens in production we'll retry a few times
-// Sounds like this could possibly be to do with updating the same index? X-Dgraph-IgnoreIndexConflict?
-const RETRIES: u32 = 3;
-
 pub async fn add_pending_change(
     client: &DgraphClient,
     pending_change: PendingChangeInput,
@@ -40,43 +34,18 @@ mutation AddPendingChange($input: [AddPendingChangeInput!]!) {
         input: pending_change,
     };
 
-    let mut attempts = 0;
-    while attempts < RETRIES {
-        let result = client
-            .gql
-            .query_with_vars::<AddResponseData, AddVars>(&query, variables.clone())
-            .await;
+    let result = client
+        .query_with_retry::<AddResponseData, AddVars>(&query, variables.clone())
+        .await?;
 
-        let result = match result {
-            Ok(result) => result,
-            Err(err) => {
-                attempts += 1;
-
-                if attempts >= RETRIES {
-                    return Err(err);
-                }
-                log::error!(
-                    "add_pending_change failed, retrying: {:#?} {:#?}",
-                    attempts,
-                    variables
-                );
-                continue;
-            }
-        };
-
-        match result {
-            Some(result) => {
-                return Ok(AddResponse {
-                    numUids: result.data.numUids,
-                })
-            }
-            None => return Ok(AddResponse { numUids: 0 }),
-        };
-    }
-    Err(GraphQLError::with_text(format!(
-        "add_pending_change failed after {} retries",
-        RETRIES
-    )))
+    match result {
+        Some(result) => {
+            return Ok(AddResponse {
+                numUids: result.data.numUids,
+            })
+        }
+        None => return Ok(AddResponse { numUids: 0 }),
+    };
 }
 
 #[cfg(test)]
