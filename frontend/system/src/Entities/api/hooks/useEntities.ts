@@ -1,4 +1,5 @@
 import { EntitySearchInput, useGql, useQuery } from '@uc-frontend/common';
+import { ENTITIES_KEY } from '../../../queryKeys';
 import { getSdk } from './../operations.generated';
 
 export const useEntities = ({
@@ -13,7 +14,7 @@ export const useEntities = ({
   const { client } = useGql();
   const sdk = getSdk(client);
 
-  const cacheKeys = ['ENTITIES', first, offset, filter];
+  const cacheKeys = [ENTITIES_KEY, first, offset, filter];
 
   return useQuery(cacheKeys, async () => {
     const response = await sdk.entities({

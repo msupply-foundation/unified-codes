@@ -24,7 +24,7 @@ curl -s $CRONITOR_URL?state=run
 
 echo "sqlite snapshot"
 rm /opt/universal_codes/backup.sqlite
-/usr/bin/sqlite3 /opt/universal_codes/universal_codes-database.sqlite "VACUUM INTO '/opt/universal_codes/backup.sqlite'"
+/usr/bin/sqlite3 /opt/universal_codes/universalcodes.sqlite "VACUUM INTO '/opt/universal_codes/backup.sqlite'"
 
 echo "backing up..."
 /usr/bin/restic -q backup /opt/universal_codes

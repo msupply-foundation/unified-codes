@@ -17,8 +17,9 @@ import {
   RouteBuilder,
   ListIcon,
   UsersIcon,
-  MedicineIcon,
   StockIcon,
+  ClockIcon,
+  EditIcon,
 } from '@uc-frontend/common';
 import { AppRoute } from '@uc-frontend/config';
 import { AppDrawerIcon } from './AppDrawerIcon';
@@ -190,10 +191,17 @@ export const AppDrawer: React.FC = () => {
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)
-                .addPart(AppRoute.NewDrug)
+                .addPart(AppRoute.NewItem)
                 .build()}
-              icon={<MedicineIcon fontSize="small" color="primary" />}
-              text={t('new-drug')}
+              icon={<EditIcon fontSize="small" color="primary" />}
+              text={t('new-item')}
+            />
+            <AppNavLink
+              to={RouteBuilder.create(AppRoute.Admin)
+                .addPart(AppRoute.PendingChanges)
+                .build()}
+              icon={<ClockIcon fontSize="small" color="primary" />}
+              text={t('pending-changes')}
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)

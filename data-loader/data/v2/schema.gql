@@ -1,4 +1,5 @@
 type Property {
+  code
   type
   value
 }
@@ -6,6 +7,7 @@ type Property {
 type Category {
   code
   name
+  description
   children
   properties
 }
@@ -13,6 +15,7 @@ type Category {
 type Product {
   code
   name
+  description
   combines
   children
   properties
@@ -21,6 +24,7 @@ type Product {
 type Route {
   code
   name
+  description
   children
   properties
 }
@@ -28,6 +32,7 @@ type Route {
 type DoseForm {
   code
   name
+  description
   children
   properties
 }
@@ -35,6 +40,7 @@ type DoseForm {
 type DoseFormQualifier {
   code
   name
+  description
   children
   properties
 }
@@ -42,6 +48,7 @@ type DoseFormQualifier {
 type DoseStrength {
   code
   name
+  description
   children
   properties
 }
@@ -49,6 +56,7 @@ type DoseStrength {
 type DoseUnit {
   code
   name
+  description
   children
   properties
 }
@@ -74,9 +82,15 @@ type PackOuter {
   properties
 }
 
-code: string @index(exact, fulltext).
-name: string .
-description: string @index(exact, term, trigram) .
+type ConfigurationItem {
+  code
+  name
+  type
+}
+
+code: string @index(exact, trigram).
+name: string @index(exact, fulltext, trigram) .
+description: string @index(exact, fulltext, trigram) .
 type: string @index(term) .
 value: string .
 combines: [uid] .

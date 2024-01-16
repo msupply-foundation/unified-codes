@@ -23,6 +23,13 @@ pub enum LogNodeType {
     UserAccountCreated,
     UserAccountUpdated,
     UserAccountPasswordResetInitiated,
+    UniversalCodeCreated,
+    UniversalCodeUpdated,
+    UniversalCodeChangeApproved,
+    UniversalCodeChangeRejected,
+    UniversalCodeChangeRequested,
+    ConfigurationItemCreated,
+    ConfigurationItemDeleted,
 }
 
 #[Object]
@@ -77,6 +84,13 @@ impl LogNodeType {
             LogType::UserAccountPasswordResetInitiated => {
                 LogNodeType::UserAccountPasswordResetInitiated
             }
+            LogType::UniversalCodeCreated => LogNodeType::UniversalCodeCreated,
+            LogType::UniversalCodeUpdated => LogNodeType::UniversalCodeUpdated,
+            LogType::UniversalCodeChangeRequested => LogNodeType::UniversalCodeChangeRequested,
+            LogType::UniversalCodeChangeApproved => LogNodeType::UniversalCodeChangeApproved,
+            LogType::UniversalCodeChangeRejected => LogNodeType::UniversalCodeChangeRejected,
+            LogType::ConfigurationItemCreated => LogNodeType::ConfigurationItemCreated,
+            LogType::ConfigurationItemDeleted => LogNodeType::ConfigurationItemDeleted,
         }
     }
 
@@ -88,6 +102,13 @@ impl LogNodeType {
             LogNodeType::UserAccountPasswordResetInitiated => {
                 LogType::UserAccountPasswordResetInitiated
             }
+            LogNodeType::UniversalCodeCreated => LogType::UniversalCodeCreated,
+            LogNodeType::UniversalCodeUpdated => LogType::UniversalCodeUpdated,
+            LogNodeType::UniversalCodeChangeRequested => LogType::UniversalCodeChangeRequested,
+            LogNodeType::UniversalCodeChangeApproved => LogType::UniversalCodeChangeApproved,
+            LogNodeType::UniversalCodeChangeRejected => LogType::UniversalCodeChangeRejected,
+            LogNodeType::ConfigurationItemCreated => LogType::ConfigurationItemCreated,
+            LogNodeType::ConfigurationItemDeleted => LogType::ConfigurationItemDeleted,
         }
     }
 }

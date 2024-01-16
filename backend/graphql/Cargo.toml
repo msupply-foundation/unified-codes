@@ -11,11 +11,13 @@ path = "./lib.rs"
 repository = { path = "../repository" }
 service = { path = "../service" }
 util = { path = "../util" }
+graphql_configuration = { path = "configuration" }
 graphql_core = { path = "core" }
 graphql_types = { path = "types" }
 graphql_general = { path = "general" }
 graphql_user_account = { path = "user_account" }
-graphql_universal_codes = { path = "../graphql_v1/universal_codes" }
+graphql_universal_codes = { path = "universal_codes" }
+graphql_universal_codes_v1 = { path = "../graphql_v1/universal_codes" }
 
 
 actix-web = { version = "4.0.1", default-features = false, features = [

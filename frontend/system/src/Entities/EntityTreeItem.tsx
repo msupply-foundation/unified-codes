@@ -1,8 +1,8 @@
 import React from 'react';
-import { useTranslation } from '@common/intl';
+import { LocaleKey, useTranslation } from '@common/intl';
 import { CopyIcon, FlatButton } from '@common/ui';
 import { useNotification } from '@common/hooks';
-import { Link, Typography } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { EntityDetailsFragment } from './api/operations.generated';
 import { config } from '../config';
@@ -39,8 +39,11 @@ export const EntityTreeItem = ({
   const isLeaf = !entity.children?.length;
   const showCode = showAllCodes || isLeaf;
 
-  // use default chevron icons, unless we're looking at a leaf node
-  const customIcons = isLeaf ? { expandIcon: <></>, collapseIcon: <></> } : {};
+  // use default chevron icons, unless we're looking at a leaf node with no properties
+  const customIcons =
+    isLeaf && !entity.properties?.length
+      ? { expandIcon: <></>, collapseIcon: <></> }
+      : {};
 
   return (
     <TreeItem
@@ -51,7 +54,18 @@ export const EntityTreeItem = ({
       }}
       nodeId={entity.code}
       label={
-        <Typography>
+        <Box>
+          {/* show node type above name */}
+          {!isRoot && (
+            <Typography
+              sx={{
+                color: '#898989',
+                fontSize: '10px',
+              }}
+            >
+              {t(`entity-type.${entity.type}` as LocaleKey)}
+            </Typography>
+          )}
           {entity.name}{' '}
           {showCode && (
             <>
@@ -64,7 +78,7 @@ export const EntityTreeItem = ({
               />
             </>
           )}
-        </Typography>
+        </Box>
       }
     >
       {entity.children?.map(c => (

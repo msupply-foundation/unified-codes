@@ -23,6 +23,13 @@ pub enum LogType {
     UserAccountCreated,
     UserAccountUpdated,
     UserAccountPasswordResetInitiated,
+    UniversalCodeChangeApproved,
+    UniversalCodeChangeRejected,
+    UniversalCodeChangeRequested,
+    UniversalCodeCreated,
+    UniversalCodeUpdated,
+    ConfigurationItemCreated,
+    ConfigurationItemDeleted,
 }
 
 #[derive(Clone, Queryable, Insertable, AsChangeset, Debug, PartialEq)]

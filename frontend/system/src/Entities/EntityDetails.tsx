@@ -6,12 +6,13 @@ import {
   ChevronDownIcon,
   EditIcon,
   Switch,
+  Box,
 } from '@common/ui';
 import { useBreadcrumbs } from '@common/hooks';
 import { useEntity } from './api';
 import { FormControlLabel } from '@mui/material';
 import { TreeView } from '@mui/lab';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { EntityTreeItem, EntityData } from './EntityTreeItem';
 import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
@@ -22,9 +23,11 @@ export const EntityDetails = () => {
   const t = useTranslation('system');
   const { code } = useParams();
   const { setSuffix } = useBreadcrumbs();
+  const navigate = useNavigate();
+  const { hasPermission } = useAuthContext();
+
   const [expanded, setExpanded] = useState<string[]>([]);
   const [showAllCodes, setShowAllCodes] = useState(false);
-  const { hasPermission } = useAuthContext();
 
   const { data: entity } = useEntity(code || '');
 
@@ -82,20 +85,22 @@ export const EntityDetails = () => {
       </TreeView>
 
       {hasPermission(PermissionNode.ServerAdmin) && (
-        <Link
-          to={RouteBuilder.create(AppRoute.Admin)
-            .addPart(AppRoute.Edit)
-            .addPart(entity?.code ?? '')
-            .build()}
-        >
+        <Box>
           <ButtonWithIcon
             sx={{ marginTop: '16px' }}
             variant="contained"
-            onClick={() => {}}
+            onClick={() => {
+              navigate(
+                RouteBuilder.create(AppRoute.Admin)
+                  .addPart(AppRoute.Edit)
+                  .addPart(entity?.code ?? '')
+                  .build()
+              );
+            }}
             Icon={<EditIcon />}
             label={t('label.update')}
           />
-        </Link>
+        </Box>
       )}
     </>
   );

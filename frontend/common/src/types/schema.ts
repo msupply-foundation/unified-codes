@@ -27,6 +27,11 @@ export type AccessDenied = LogoutErrorInterface & {
   fullError: Scalars['String']['output'];
 };
 
+export type AddConfigurationItemInput = {
+  name: Scalars['String']['input'];
+  type: ConfigurationItemTypeInput;
+};
+
 export type AuthToken = {
   __typename: 'AuthToken';
   /** Bearer token */
@@ -43,6 +48,39 @@ export type AuthTokenErrorInterface = {
 };
 
 export type AuthTokenResponse = AuthToken | AuthTokenError;
+
+export enum ChangeStatusNode {
+  Approved = 'APPROVED',
+  Pending = 'PENDING',
+  Rejected = 'REJECTED'
+}
+
+export enum ChangeTypeNode {
+  Change = 'CHANGE',
+  New = 'NEW'
+}
+
+export type ConfigurationItemConnector = {
+  __typename: 'ConfigurationItemConnector';
+  data: Array<ConfigurationItemNode>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type ConfigurationItemNode = {
+  __typename: 'ConfigurationItemNode';
+  code: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+};
+
+export enum ConfigurationItemTypeInput {
+  Form = 'form',
+  ImmediatePackaging = 'immediate_packaging',
+  Route = 'route'
+}
+
+export type ConfigurationItemsResponse = ConfigurationItemConnector;
 
 export type CreateUserAccountInput = {
   displayName?: InputMaybe<Scalars['String']['input']>;
@@ -128,7 +166,10 @@ export type FullMutation = {
   __typename: 'FullMutation';
   /** Updates user account based on a token and their information (Response to initiate_user_invite) */
   acceptUserInvite: InviteUserResponse;
+  addConfigurationItem: Scalars['Int']['output'];
+  approvePendingChange: UpsertEntityResponse;
   createUserAccount: CreateUserAccountResponse;
+  deleteConfigurationItem: Scalars['Int']['output'];
   deleteUserAccount: DeleteUserAccountResponse;
   /**
    * Initiates the password reset flow for a user based on email address
@@ -137,8 +178,11 @@ export type FullMutation = {
   initiatePasswordReset: PasswordResetResponse;
   /** Invites a new user to the system */
   initiateUserInvite: InviteUserResponse;
+  rejectPendingChange: IdResponse;
+  requestChange: RequestChangeResponse;
   /** Resets the password for a user based on the password reset token */
   resetPasswordUsingToken: PasswordResetResponse;
+  updatePendingChange: RequestChangeResponse;
   updateUserAccount: UpdateUserAccountResponse;
   /** Validates Password Reset Token */
   validatePasswordResetToken: PasswordResetResponse;
@@ -151,8 +195,24 @@ export type FullMutationAcceptUserInviteArgs = {
 };
 
 
+export type FullMutationAddConfigurationItemArgs = {
+  input: AddConfigurationItemInput;
+};
+
+
+export type FullMutationApprovePendingChangeArgs = {
+  input: UpsertEntityInput;
+  requestId: Scalars['String']['input'];
+};
+
+
 export type FullMutationCreateUserAccountArgs = {
   input: CreateUserAccountInput;
+};
+
+
+export type FullMutationDeleteConfigurationItemArgs = {
+  code: Scalars['String']['input'];
 };
 
 
@@ -171,9 +231,25 @@ export type FullMutationInitiateUserInviteArgs = {
 };
 
 
+export type FullMutationRejectPendingChangeArgs = {
+  requestId: Scalars['String']['input'];
+};
+
+
+export type FullMutationRequestChangeArgs = {
+  input: RequestChangeInput;
+};
+
+
 export type FullMutationResetPasswordUsingTokenArgs = {
   password: Scalars['String']['input'];
   token: Scalars['String']['input'];
+};
+
+
+export type FullMutationUpdatePendingChangeArgs = {
+  body: Scalars['String']['input'];
+  requestId: Scalars['String']['input'];
 };
 
 
@@ -194,12 +270,16 @@ export type FullQuery = {
    * The refresh token is returned as a cookie
    */
   authToken: AuthTokenResponse;
+  /** Get the configuration items for a given type. */
+  configurationItems: ConfigurationItemsResponse;
   entities: EntityCollectionType;
   /** Query "universal codes" entry by code */
   entity?: Maybe<EntityType>;
   logout: LogoutResponse;
   logs: LogResponse;
   me: UserResponse;
+  pendingChange?: Maybe<PendingChangeNode>;
+  pendingChanges: PendingChangesResponse;
   /**
    * Retrieves a new auth bearer and refresh token
    * The refresh token is returned as a cookie
@@ -213,6 +293,11 @@ export type FullQuery = {
 export type FullQueryAuthTokenArgs = {
   password: Scalars['String']['input'];
   username: Scalars['String']['input'];
+};
+
+
+export type FullQueryConfigurationItemsArgs = {
+  type: ConfigurationItemTypeInput;
 };
 
 
@@ -235,10 +320,26 @@ export type FullQueryLogsArgs = {
 };
 
 
+export type FullQueryPendingChangeArgs = {
+  requestId: Scalars['String']['input'];
+};
+
+
+export type FullQueryPendingChangesArgs = {
+  page?: InputMaybe<PaginationInput>;
+  sort?: InputMaybe<Array<PendingChangeSortInput>>;
+};
+
+
 export type FullQueryUserAccountsArgs = {
   filter?: InputMaybe<UserAccountFilterInput>;
   page?: InputMaybe<PaginationInput>;
   sort?: InputMaybe<Array<UserAccountSortInput>>;
+};
+
+export type IdResponse = {
+  __typename: 'IdResponse';
+  id: Scalars['String']['output'];
 };
 
 export type InternalError = LogoutErrorInterface & RefreshTokenErrorInterface & {
@@ -294,6 +395,13 @@ export type LogNode = {
 };
 
 export enum LogNodeType {
+  ConfigurationItemCreated = 'CONFIGURATION_ITEM_CREATED',
+  ConfigurationItemDeleted = 'CONFIGURATION_ITEM_DELETED',
+  UniversalCodeChangeApproved = 'UNIVERSAL_CODE_CHANGE_APPROVED',
+  UniversalCodeChangeRejected = 'UNIVERSAL_CODE_CHANGE_REJECTED',
+  UniversalCodeChangeRequested = 'UNIVERSAL_CODE_CHANGE_REQUESTED',
+  UniversalCodeCreated = 'UNIVERSAL_CODE_CREATED',
+  UniversalCodeUpdated = 'UNIVERSAL_CODE_UPDATED',
   UserAccountCreated = 'USER_ACCOUNT_CREATED',
   UserAccountPasswordResetInitiated = 'USER_ACCOUNT_PASSWORD_RESET_INITIATED',
   UserAccountUpdated = 'USER_ACCOUNT_UPDATED',
@@ -366,6 +474,43 @@ export type PasswordResetResponseMessage = {
   message: Scalars['String']['output'];
 };
 
+export type PendingChangeConnector = {
+  __typename: 'PendingChangeConnector';
+  nodes: Array<PendingChangeNode>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type PendingChangeNode = {
+  __typename: 'PendingChangeNode';
+  body: Scalars['String']['output'];
+  category: Scalars['String']['output'];
+  changeType: ChangeTypeNode;
+  dateRequested: Scalars['DateTime']['output'];
+  name: Scalars['String']['output'];
+  requestId: Scalars['String']['output'];
+  requestedBy: Scalars['String']['output'];
+  requestedFor: Scalars['String']['output'];
+  status: ChangeStatusNode;
+};
+
+export enum PendingChangeSortFieldInput {
+  Category = 'category',
+  DateRequested = 'dateRequested',
+  Name = 'name'
+}
+
+export type PendingChangeSortInput = {
+  /**
+   * Sort query result is sorted descending or ascending (if not provided the default is
+   * ascending)
+   */
+  desc?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Sort query result by `key` */
+  key: PendingChangeSortFieldInput;
+};
+
+export type PendingChangesResponse = PendingChangeConnector;
+
 export enum PermissionNode {
   Reader = 'READER',
   ServerAdmin = 'SERVER_ADMIN'
@@ -373,8 +518,15 @@ export enum PermissionNode {
 
 export type PropertiesType = {
   __typename: 'PropertiesType';
+  code: Scalars['String']['output'];
   type: Scalars['String']['output'];
   value: Scalars['String']['output'];
+};
+
+export type PropertyInput = {
+  code: Scalars['String']['input'];
+  key: Scalars['String']['input'];
+  value: Scalars['String']['input'];
 };
 
 export type RefreshToken = {
@@ -393,6 +545,17 @@ export type RefreshTokenErrorInterface = {
 };
 
 export type RefreshTokenResponse = RefreshToken | RefreshTokenError;
+
+export type RequestChangeInput = {
+  body: Scalars['String']['input'];
+  category: Scalars['String']['input'];
+  changeType: ChangeTypeNode;
+  name: Scalars['String']['input'];
+  requestId: Scalars['String']['input'];
+  requestedFor: Scalars['String']['input'];
+};
+
+export type RequestChangeResponse = PendingChangeNode;
 
 export type SimpleStringFilterInput = {
   /** Search term must be an exact match (case sensitive) */
@@ -416,6 +579,19 @@ export type UpdateUserAccountInput = {
 };
 
 export type UpdateUserAccountResponse = UserAccountNode;
+
+export type UpsertEntityInput = {
+  category?: InputMaybe<Scalars['String']['input']>;
+  children?: InputMaybe<Array<UpsertEntityInput>>;
+  code?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  parentCode?: InputMaybe<Scalars['String']['input']>;
+  properties?: InputMaybe<Array<PropertyInput>>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpsertEntityResponse = EntityType;
 
 export type UserAccountConnector = {
   __typename: 'UserAccountConnector';
