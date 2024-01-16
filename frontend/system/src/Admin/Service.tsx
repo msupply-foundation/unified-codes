@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditDrugView, NewItemView } from './EditEntity';
+import { EditEntityView, NewItemView } from './EditEntity';
 import { Routes, Route, Navigate } from '@uc-frontend/common';
 import { AppRoute } from 'frontend/config/src';
 import { UserAccountListView } from './Users/ListView';
@@ -10,7 +10,7 @@ const AdminService = () => {
   return (
     <Routes>
       <Route path={`/${AppRoute.NewItem}`} element={<NewItemView />} />
-      <Route path={`/${AppRoute.Edit}/:code`} element={<EditDrugView />} />
+      <Route path={`/${AppRoute.Edit}/:code`} element={<EditEntityView />} />
       <Route
         path={`/${AppRoute.UserAccounts}`}
         element={<UserAccountListView />}

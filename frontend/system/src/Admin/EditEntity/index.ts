@@ -1,4 +1,4 @@
-export * from './EditDrugView';
+export * from './EditEntityView';
 export * from './NewItemView';
 
 export * from './components/DrugFormTree';
