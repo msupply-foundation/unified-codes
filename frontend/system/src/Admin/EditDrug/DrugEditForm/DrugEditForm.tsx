@@ -1,7 +1,6 @@
 import { useTranslation } from '@common/intl';
 import { Box, Typography, SaveIcon, ButtonWithIcon } from '@common/ui';
 import React, { useState } from 'react';
-import { config } from '../../../config';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
 import { useEditModal, useNotification } from '@common/hooks';
@@ -16,11 +15,17 @@ import {
   getAllEntityCodes,
   isValidDrugInput,
 } from '../helpers';
-import { ChangeTypeNode, RouteBuilder, useNavigate } from 'frontend/common/src';
+import {
+  ChangeTypeNode,
+  RouteBuilder,
+  useNavigate,
+  ConfigurationItemTypeInput,
+} from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
 import { NameEditField } from './NameEditField';
 import { useRequestChange } from '../../api';
 import { EntityCategory } from 'frontend/system/src/constants';
+import { useConfigurationItems } from '../../Configuration/api';
 
 export const DrugEditForm = ({
   initialEntity,
@@ -46,6 +51,16 @@ export const DrugEditForm = ({
           routes: [],
         }
   );
+
+  // Get the route, form, and immediate packaging options
+
+  const { data: routes, isLoading: isLoadingRoutes } = useConfigurationItems({
+    type: ConfigurationItemTypeInput.Route,
+  });
+
+  const { data: forms, isLoading: isLoadingForms } = useConfigurationItems({
+    type: ConfigurationItemTypeInput.Form,
+  });
 
   const [propertiesModalState, setPropertiesModalState] = useState<{
     disabled: boolean;
@@ -215,7 +230,9 @@ export const DrugEditForm = ({
             <CategoryDropdown
               disabled={initialIds.includes(route.id)}
               value={route.name}
-              options={config.routes}
+              options={
+                routes?.map(r => ({ label: r.name, value: r.name })) ?? []
+              }
               onChange={name => onUpdate({ ...route, name }, draft.routes)}
               getOptionDisabled={o =>
                 !!draft.routes.find(r => r.name === o.value)
@@ -241,7 +258,9 @@ export const DrugEditForm = ({
                 <CategoryDropdown
                   disabled={initialIds.includes(form.id)}
                   value={form.name}
-                  options={config.forms}
+                  options={
+                    forms?.map(r => ({ label: r.name, value: r.name })) ?? []
+                  }
                   onChange={name => onUpdate({ ...form, name }, route.forms)}
                   getOptionDisabled={o =>
                     !!route.forms.find(f => f.name === o.value)
@@ -344,6 +363,7 @@ export const DrugEditForm = ({
             onClick={() =>
               onUpdate({ id: uuid(), name: '', strengths: [] }, route.forms)
             }
+            isLoading={isLoadingForms}
           />
         </TreeFormBox>
       ))}
@@ -353,6 +373,7 @@ export const DrugEditForm = ({
         onClick={() =>
           onUpdate({ id: uuid(), name: '', forms: [] }, draft.routes)
         }
+        isLoading={isLoadingRoutes}
       />
 
       <Box

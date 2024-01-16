@@ -16,11 +16,17 @@ import {
   getAllEntityCodes,
   isValidVaccineInput,
 } from '../helpers';
-import { ChangeTypeNode, RouteBuilder, useNavigate } from 'frontend/common/src';
+import {
+  ChangeTypeNode,
+  RouteBuilder,
+  useNavigate,
+  ConfigurationItemTypeInput,
+} from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
 import { NameEditField } from './NameEditField';
 import { useRequestChange } from '../../api';
 import { EntityCategory } from 'frontend/system/src/constants';
+import { useConfigurationItems } from '../../Configuration/api';
 
 export const VaccineEditForm = ({
   initialEntity,
@@ -46,6 +52,21 @@ export const VaccineEditForm = ({
           components: [],
         }
   );
+
+  // Get the route, form, and immediate packaging options
+
+  const { data: routes, isLoading: isLoadingRoutes } = useConfigurationItems({
+    type: ConfigurationItemTypeInput.Route,
+  });
+
+  const { data: forms, isLoading: isLoadingForms } = useConfigurationItems({
+    type: ConfigurationItemTypeInput.Form,
+  });
+
+  const { data: immediatePackagings, isLoading: isLoadingImmediatePackagings } =
+    useConfigurationItems({
+      type: ConfigurationItemTypeInput.ImmediatePackaging,
+    });
 
   const [propertiesModalState, setPropertiesModalState] = useState<{
     disabled: boolean;
@@ -265,7 +286,10 @@ export const VaccineEditForm = ({
                     <CategoryDropdown
                       disabled={initialIds.includes(route.id)}
                       value={route.name}
-                      options={config.routes}
+                      options={
+                        routes?.map(r => ({ label: r.name, value: r.name })) ??
+                        []
+                      }
                       onChange={name =>
                         onUpdate({ ...route, name }, brand.routes)
                       }
@@ -291,7 +315,12 @@ export const VaccineEditForm = ({
                         <CategoryDropdown
                           disabled={initialIds.includes(form.id)}
                           value={form.name}
-                          options={config.forms}
+                          options={
+                            forms?.map(r => ({
+                              label: r.name,
+                              value: r.name,
+                            })) ?? []
+                          }
                           onChange={name =>
                             onUpdate({ ...form, name }, route.forms)
                           }
@@ -387,7 +416,12 @@ export const VaccineEditForm = ({
                                     <CategoryDropdown
                                       disabled={initialIds.includes(immPack.id)}
                                       value={immPack.name}
-                                      options={config.immediatePackagings}
+                                      options={
+                                        immediatePackagings?.map(o => ({
+                                          label: o.name,
+                                          value: o.name,
+                                        })) ?? []
+                                      }
                                       onChange={name =>
                                         onUpdate(
                                           { ...immPack, name },
@@ -433,6 +467,7 @@ export const VaccineEditForm = ({
                                     unit.immediatePackagings
                                   )
                                 }
+                                isLoading={isLoadingImmediatePackagings}
                               />
                             </TreeFormBox>
                           ))}
@@ -473,6 +508,7 @@ export const VaccineEditForm = ({
                         route.forms
                       )
                     }
+                    isLoading={isLoadingForms}
                   />
                 </TreeFormBox>
               ))}
@@ -482,6 +518,7 @@ export const VaccineEditForm = ({
                 onClick={() =>
                   onUpdate({ id: uuid(), name: '', forms: [] }, brand.routes)
                 }
+                isLoading={isLoadingRoutes}
               />
             </TreeFormBox>
           ))}
