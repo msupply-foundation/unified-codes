@@ -4,16 +4,11 @@ import { Routes, Route, Navigate } from '@uc-frontend/common';
 import { AppRoute } from 'frontend/config/src';
 import { UserAccountListView } from './Users/ListView';
 import { ConfigurationTabsView } from './Configuration';
-import { ConsumableEditForm } from './EditEntity/ConsumableEditForm';
 import { PendingChangeDetails, PendingChangesListView } from './PendingChanges';
 
 const AdminService = () => {
   return (
     <Routes>
-      <Route
-        path={`/${AppRoute.NewConsumable}`}
-        element={<ConsumableEditForm />}
-      />
       <Route path={`/${AppRoute.NewItem}`} element={<NewItemView />} />
       <Route path={`/${AppRoute.Edit}/:code`} element={<EditDrugView />} />
       <Route

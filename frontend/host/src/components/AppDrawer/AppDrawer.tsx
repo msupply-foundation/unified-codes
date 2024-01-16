@@ -17,7 +17,6 @@ import {
   RouteBuilder,
   ListIcon,
   UsersIcon,
-  StockIcon,
   ClockIcon,
   EditIcon,
 } from '@uc-frontend/common';
@@ -202,13 +201,6 @@ export const AppDrawer: React.FC = () => {
                 .build()}
               icon={<ClockIcon fontSize="small" color="primary" />}
               text={t('pending-changes')}
-            />
-            <AppNavLink
-              to={RouteBuilder.create(AppRoute.Admin)
-                .addPart(AppRoute.NewConsumable)
-                .build()}
-              icon={<StockIcon fontSize="small" color="primary" />}
-              text={t('new-consumable')}
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)

@@ -9,7 +9,6 @@ export enum AppRoute {
 
   Admin = 'admin',
   UserAccounts = 'users',
-  NewConsumable = 'new-consumable',
   NewItem = 'new-item',
   Configuration = 'configuration',
   Edit = 'edit',
