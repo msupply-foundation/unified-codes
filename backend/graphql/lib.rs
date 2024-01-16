@@ -11,8 +11,8 @@ use graphql_configuration::{ConfigurationMutations, ConfigurationQueries};
 use graphql_core::loader::LoaderRegistry;
 use graphql_core::{refresh_token_from_cookie, RefreshTokenData, SelfRequest};
 use graphql_general::GeneralQueries;
-use graphql_universal_codes::UniversalCodesMutations;
-use graphql_universal_codes_v1::UniversalCodesQueries;
+use graphql_universal_codes::{UniversalCodesMutations, UniversalCodesQueries};
+use graphql_universal_codes_v1::UniversalCodesV1Queries;
 use graphql_user_account::{UserAccountMutations, UserAccountQueries};
 
 use logger::{RequestLogger, ResponseLogger};
@@ -27,6 +27,7 @@ pub struct FullQuery(
     pub GeneralQueries,
     pub UserAccountQueries,
     pub UniversalCodesQueries,
+    pub UniversalCodesV1Queries,
     pub ConfigurationQueries,
 );
 
@@ -45,6 +46,7 @@ pub fn full_query() -> FullQuery {
         GeneralQueries,
         UserAccountQueries,
         UniversalCodesQueries,
+        UniversalCodesV1Queries,
         ConfigurationQueries,
     )
 }

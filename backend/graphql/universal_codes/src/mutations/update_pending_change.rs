@@ -5,18 +5,19 @@ use graphql_core::{
     ContextExt,
 };
 
+use graphql_types::types::PendingChangeNode;
 use service::{
     auth::{Resource, ResourceAccessRequest},
-    universal_codes::upsert::ModifyUniversalCodeError,
+    universal_codes::ModifyUniversalCodeError,
 };
 
-use crate::types::{UpsertEntityInput, UpsertEntityResponse};
-use graphql_universal_codes_v1::EntityType;
+use crate::types::RequestChangeResponse;
 
-pub async fn upsert_entity(
+pub async fn update_pending_change(
     ctx: &Context<'_>,
-    input: UpsertEntityInput,
-) -> Result<UpsertEntityResponse> {
+    request_id: String,
+    body: String,
+) -> Result<RequestChangeResponse> {
     let user = validate_auth(
         ctx,
         &ResourceAccessRequest {
@@ -28,21 +29,22 @@ pub async fn upsert_entity(
     match service_context
         .service_provider
         .universal_codes_service
-        .upsert_entity(
+        .update_pending_change_body(
             ctx.service_provider(),
             service_context.user_id.clone(),
-            input.into(),
+            request_id.clone(),
+            body.clone(),
         )
         .await
     {
-        Ok(entity) => Ok(UpsertEntityResponse::Response(EntityType::from_domain(
-            entity,
-        ))),
+        Ok(pending_change) => Ok(RequestChangeResponse::Response(
+            PendingChangeNode::from_domain(pending_change),
+        )),
         Err(error) => map_error(error),
     }
 }
 
-fn map_error(error: ModifyUniversalCodeError) -> Result<UpsertEntityResponse> {
+fn map_error(error: ModifyUniversalCodeError) -> Result<RequestChangeResponse> {
     use StandardGraphqlError::*;
     let formatted_error = format!("{:#?}", error);
 
@@ -50,6 +52,8 @@ fn map_error(error: ModifyUniversalCodeError) -> Result<UpsertEntityResponse> {
         ModifyUniversalCodeError::InternalError(message) => InternalError(message),
         ModifyUniversalCodeError::UniversalCodeDoesNotExist => BadUserInput(formatted_error),
         ModifyUniversalCodeError::UniversalCodeAlreadyExists => BadUserInput(formatted_error),
+        ModifyUniversalCodeError::PendingChangeDoesNotExist => BadUserInput(formatted_error),
+        ModifyUniversalCodeError::PendingChangeAlreadyExists => BadUserInput(formatted_error),
         ModifyUniversalCodeError::DescriptionAlreadyExists(msg) => BadUserInput(msg),
         ModifyUniversalCodeError::NotAuthorised => Forbidden(formatted_error),
         ModifyUniversalCodeError::DatabaseError(_) => InternalError(formatted_error),

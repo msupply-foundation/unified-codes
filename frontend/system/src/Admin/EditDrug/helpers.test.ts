@@ -11,6 +11,35 @@ describe('getAllEntityCodes', () => {
   it('returns empty array when entity is not defined', () => {
     expect(getAllEntityCodes(undefined)).toMatchObject([]);
   });
+  it('returns array of codes with empty strings filtered out', () => {
+    const entityDetails = {
+      code: '7c8c2b5b',
+      name: 'Acetic Acid',
+      type: 'drug',
+      properties: [],
+      children: [
+        {
+          code: '6e5f7a00',
+          name: 'Topical',
+          type: 'Route',
+          properties: [],
+          children: [
+            {
+              code: '',
+              name: 'Solution',
+              type: 'Form',
+              properties: [],
+              children: [],
+            },
+          ],
+        },
+      ],
+    };
+    expect(getAllEntityCodes(entityDetails)).toMatchObject([
+      '7c8c2b5b',
+      '6e5f7a00',
+    ]);
+  });
   it('returns codes of entity and all its children', () => {
     const entityDetails = {
       code: '7c8c2b5b',

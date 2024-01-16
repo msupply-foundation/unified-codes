@@ -7,7 +7,7 @@ use actix_web::web::{self, Data};
 use actix_web::HttpResponse;
 use async_graphql::{EmptyMutation, EmptySubscription, MergedObject, SchemaBuilder};
 use async_graphql_actix_web::{GraphQLRequest, GraphQLResponse};
-use graphql_universal_codes_v1::UniversalCodesQueries;
+use graphql_universal_codes_v1::UniversalCodesV1Queries;
 
 use logger::{RequestLogger, ResponseLogger};
 use repository::StorageConnectionManager;
@@ -15,16 +15,16 @@ use service::service_provider::ServiceProvider;
 use service::settings::Settings;
 
 #[derive(MergedObject, Default, Clone)]
-pub struct FullQuery(pub UniversalCodesQueries);
+pub struct FullQuery(pub UniversalCodesV1Queries);
 
 #[derive(MergedObject, Default, Clone)]
-pub struct FullMutation(pub UniversalCodesQueries);
+pub struct FullMutation(pub UniversalCodesV1Queries);
 
 pub type Schema = async_graphql::Schema<FullQuery, EmptyMutation, async_graphql::EmptySubscription>;
 type Builder = SchemaBuilder<FullQuery, EmptyMutation, EmptySubscription>;
 
 pub fn full_query() -> FullQuery {
-    FullQuery(UniversalCodesQueries)
+    FullQuery(UniversalCodesV1Queries)
 }
 
 pub fn schema_builder() -> Builder {

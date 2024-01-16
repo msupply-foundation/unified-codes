@@ -1,5 +1,6 @@
 import { FlatButton, InlineSpinner } from '@common/components';
 import { PlusCircleIcon } from '@common/icons';
+import { Box } from '@common/ui';
 import React from 'react';
 
 export const AddFieldButton = ({
@@ -12,7 +13,11 @@ export const AddFieldButton = ({
   isLoading?: boolean;
 }) => {
   if (isLoading) {
-    return <InlineSpinner />;
+    return (
+      <Box width={'fit-content'} margin={'10px 20px'}>
+        <InlineSpinner />
+      </Box>
+    );
   }
   return (
     <FlatButton

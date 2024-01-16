@@ -23,6 +23,7 @@ pub enum Resource {
     MutateUsers,
     ServerAdmin,
     QueryLog,
+    QueryPendingChanges,
     QueryUsers,
     MutateUniversalCodes,
 }
@@ -49,6 +50,11 @@ fn all_permissions() -> HashMap<Resource, PermissionDSL> {
 
     map.insert(
         Resource::QueryUsers,
+        PermissionDSL::Any(vec![PermissionDSL::HasPermission(Permission::ServerAdmin)]),
+    );
+
+    map.insert(
+        Resource::QueryPendingChanges,
         PermissionDSL::Any(vec![PermissionDSL::HasPermission(Permission::ServerAdmin)]),
     );
 
