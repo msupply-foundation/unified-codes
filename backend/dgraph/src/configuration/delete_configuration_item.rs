@@ -8,12 +8,6 @@ struct DeleteVars {
     code: String,
 }
 
-// Dgraph sometimes returns an error like this:
-// {"errors":[{"message":"Transaction has been aborted. Please retry","locations":[{"line":2,"column":3}],"extensions":{"code":"Error"}}],"data":null}
-// Seems to mostly happen in tests, but in case this happens in production we'll retry a few times
-// Sounds like this could possibly be to do with updating the same index? X-Dgraph-IgnoreIndexConflict?
-const RETRIES: u32 = 3;
-
 pub async fn delete_configuration_item(
     client: &DgraphClient,
     code: String,
@@ -26,43 +20,18 @@ mutation DeleteConfigurationInput($code: String) {
 }"#;
     let variables = DeleteVars { code: code };
 
-    let mut attempts = 0;
-    while attempts < RETRIES {
-        let result = client
-            .gql
-            .query_with_vars::<DeleteResponseData, DeleteVars>(&query, variables.clone())
-            .await;
+    let result = client
+        .query_with_retry::<DeleteResponseData, DeleteVars>(&query, variables)
+        .await?;
 
-        let result = match result {
-            Ok(result) => result,
-            Err(err) => {
-                attempts += 1;
-
-                if attempts >= RETRIES {
-                    return Err(err);
-                }
-                log::error!(
-                    "delete_configuration_item failed, retrying: {:#?} {:#?}",
-                    attempts,
-                    variables
-                );
-                continue;
-            }
-        };
-
-        match result {
-            Some(result) => {
-                return Ok(DeleteResponse {
-                    numUids: result.data.numUids,
-                })
-            }
-            None => return Ok(DeleteResponse { numUids: 0 }),
-        };
+    match result {
+        Some(result) => {
+            return Ok(DeleteResponse {
+                numUids: result.data.numUids,
+            })
+        }
+        None => return Ok(DeleteResponse { numUids: 0 }),
     }
-    Err(GraphQLError::with_text(format!(
-        "delete_configuration_item failed after {} retries",
-        RETRIES
-    )))
 }
 
 #[cfg(test)]

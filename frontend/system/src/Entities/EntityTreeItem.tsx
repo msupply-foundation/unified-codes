@@ -39,8 +39,11 @@ export const EntityTreeItem = ({
   const isLeaf = !entity.children?.length;
   const showCode = showAllCodes || isLeaf;
 
-  // use default chevron icons, unless we're looking at a leaf node
-  const customIcons = isLeaf ? { expandIcon: <></>, collapseIcon: <></> } : {};
+  // use default chevron icons, unless we're looking at a leaf node with no properties
+  const customIcons =
+    isLeaf && !entity.properties?.length
+      ? { expandIcon: <></>, collapseIcon: <></> }
+      : {};
 
   return (
     <TreeItem

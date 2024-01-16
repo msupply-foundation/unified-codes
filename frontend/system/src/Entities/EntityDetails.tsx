@@ -24,9 +24,10 @@ export const EntityDetails = () => {
   const { code } = useParams();
   const { setSuffix } = useBreadcrumbs();
   const navigate = useNavigate();
+  const { hasPermission } = useAuthContext();
+
   const [expanded, setExpanded] = useState<string[]>([]);
   const [showAllCodes, setShowAllCodes] = useState(false);
-  const { hasPermission } = useAuthContext();
 
   const { data: entity } = useEntity(code || '');
 

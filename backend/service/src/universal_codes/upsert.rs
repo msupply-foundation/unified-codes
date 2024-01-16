@@ -6,35 +6,10 @@ use crate::{
     universal_codes::code_generator::generate_code,
 };
 use chrono::Utc;
-use dgraph::{
-    check_description_duplication, entity_by_code, Entity, EntityInput, GraphQLError, PropertyInput,
-};
-use repository::{LogType, RepositoryError};
+use dgraph::{check_description_duplication, entity_by_code, Entity, EntityInput, PropertyInput};
+use repository::LogType;
 
-use super::properties::PropertyReference;
-
-#[derive(Debug)]
-pub enum ModifyUniversalCodeError {
-    UniversalCodeDoesNotExist,
-    UniversalCodeAlreadyExists,
-    DescriptionAlreadyExists(String),
-    NotAuthorised,
-    InternalError(String),
-    DatabaseError(RepositoryError),
-    DgraphError(GraphQLError),
-}
-
-impl From<RepositoryError> for ModifyUniversalCodeError {
-    fn from(error: RepositoryError) -> Self {
-        ModifyUniversalCodeError::DatabaseError(error)
-    }
-}
-
-impl From<GraphQLError> for ModifyUniversalCodeError {
-    fn from(error: GraphQLError) -> Self {
-        ModifyUniversalCodeError::DgraphError(error)
-    }
-}
+use super::{properties::PropertyReference, ModifyUniversalCodeError};
 
 #[derive(Clone, Debug)]
 pub struct UpsertUniversalCode {

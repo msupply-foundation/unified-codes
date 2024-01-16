@@ -2,6 +2,8 @@ pub mod user_account;
 pub use self::user_account::*;
 pub mod log;
 pub use self::log::*;
+pub mod pending_change;
+pub use self::pending_change::*;
 
 use async_graphql::*;
 pub struct DeleteResponse(pub String);
