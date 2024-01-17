@@ -15,10 +15,12 @@ export const EntityTreeItem = ({
   entity,
   showAllCodes,
   isRoot = false,
+  highlightCode,
 }: {
   entity?: EntityData | null;
   showAllCodes: boolean;
   isRoot?: boolean;
+  highlightCode?: string;
 }) => {
   const t = useTranslation('system');
   const { success } = useNotification();
@@ -36,7 +38,7 @@ export const EntityTreeItem = ({
     };
 
   const isLeaf = !entity.children?.length;
-  const showCode = showAllCodes || isLeaf;
+  const showCode = showAllCodes || isLeaf || highlightCode === entity.code;
 
   // use default chevron icons, unless we're looking at a leaf node with no properties
   const customIcons =
@@ -65,23 +67,33 @@ export const EntityTreeItem = ({
               {t(`entity-type.${entity.type}` as LocaleKey)}
             </Typography>
           )}
-          {entity.name}{' '}
-          {showCode && (
-            <>
-              -
-              <FlatButton
-                endIcon={<CopyIcon />}
-                sx={{ padding: 0 }}
-                label={entity.code}
-                onClick={handleCopyToClipboard(entity.code)}
-              />
-            </>
-          )}
+          <Typography
+            id={entity.code}
+            variant={highlightCode === entity.code ? 'h6' : 'body1'}
+          >
+            {entity.name}{' '}
+            {showCode && (
+              <>
+                -
+                <FlatButton
+                  endIcon={<CopyIcon />}
+                  sx={{ padding: 0 }}
+                  label={entity.code}
+                  onClick={handleCopyToClipboard(entity.code)}
+                />
+              </>
+            )}
+          </Typography>
         </Box>
       }
     >
       {entity.children?.map(c => (
-        <EntityTreeItem entity={c} key={c.code} showAllCodes={showAllCodes} />
+        <EntityTreeItem
+          entity={c}
+          key={c.code}
+          showAllCodes={showAllCodes}
+          highlightCode={highlightCode}
+        />
       ))}
       {!!entity.properties.length && (
         <TreeItem
