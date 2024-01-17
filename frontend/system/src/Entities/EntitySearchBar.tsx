@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { CloseIcon, SearchIcon } from '@common/icons';
+import { CloseIcon, NavigateLinkIcon, SearchIcon } from '@common/icons';
 import { useDebounceCallback } from '@common/hooks';
 import { useTranslation } from '@common/intl';
 import {
@@ -90,6 +90,7 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
       renderOption={(props, item) => (
         <ListItem {...props}>
           <Typography>{item.description}</Typography>
+          <NavigateLinkIcon />
         </ListItem>
       )}
       getOptionLabel={option => option.description}
