@@ -1,8 +1,7 @@
-import csv from 'csv-parser';
 import * as fs from 'fs';
+import { parseCsv } from './parseCsv';
 
 import {
-  ICSVRow,
   ICSVData,
   IEntityGraph,
   IEntityNode,
@@ -37,38 +36,7 @@ export class DrugDataParser {
   public async parseData(): Promise<ICSVData> {
     if (this.isParsed) return this.data;
 
-    const parseColumn = (column: string) => {
-      const REGEX = {
-        CR_LF: /[\r\n]/g,
-        BRACKETED_DESCRIPTION: / *\([^)]*\) */g,
-        SPACE: / /g,
-      };
-
-      return column
-        .trim()
-        .toLowerCase()
-        .replace(REGEX.CR_LF, '')
-        .replace(REGEX.BRACKETED_DESCRIPTION, '')
-        .replace(REGEX.SPACE, '_');
-    };
-
-    // Read data stream.
-    const stream = fs.createReadStream(this.path, this.options);
-    await new Promise(resolve => {
-      stream
-        .pipe(csv())
-        .on('data', (row: string) => {
-          const entity = Object.entries<string>(row).reduce(
-            (acc: ICSVRow, [column, value]: [string, string]) => {
-              const key = parseColumn(column);
-              return { ...acc, [key]: value };
-            },
-            {} as ICSVRow
-          );
-          this.data.push(entity);
-        })
-        .on('end', () => resolve(null));
-    });
+    this.data = await parseCsv(this.path, this.options);
 
     this.isParsed = true;
     return this.data;
