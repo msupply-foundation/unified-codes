@@ -1,5 +1,5 @@
 #[cfg(test)]
-// #[cfg(feature = "dgraph-tests")]
+#[cfg(feature = "dgraph-tests")]
 mod universal_codes_product_by_code_test {
     // Product by code should return the product with the code supplied, or the product with the code underneath it in the tree
     /*
