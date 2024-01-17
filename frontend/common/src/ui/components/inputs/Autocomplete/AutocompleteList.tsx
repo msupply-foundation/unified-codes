@@ -33,6 +33,7 @@ export type AutocompleteListProps<T> = {
   value?: any;
   disableClearable?: boolean;
   getOptionDisabled?: (option: T) => boolean;
+  open?: boolean;
 };
 
 export const AutocompleteList = <T,>({
@@ -57,6 +58,7 @@ export const AutocompleteList = <T,>({
   value,
   disableClearable,
   getOptionDisabled,
+  open,
 }: AutocompleteListProps<T>): JSX.Element => {
   const createdFilterOptions = createFilterOptions(filterOptionConfig);
   const optionRenderer = optionKey
@@ -94,7 +96,7 @@ export const AutocompleteList = <T,>({
         renderInput || (props => <BasicTextInput {...props} autoFocus />)
       }
       filterOptions={filterOptions ?? createdFilterOptions}
-      open
+      open={open}
       forcePopupIcon={false}
       options={mappedOptions}
       renderOption={optionRenderer}
