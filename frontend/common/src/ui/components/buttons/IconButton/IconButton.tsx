@@ -9,7 +9,7 @@ interface ButtonProps {
   width?: string;
   height?: string;
   sx?: SxProps;
-  color?: 'inherit' | 'default' | 'primary' | 'secondary';
+  color?: 'inherit' | 'default' | 'primary' | 'secondary' | 'info';
 }
 
 export const IconButton: React.FC<ButtonProps> = ({

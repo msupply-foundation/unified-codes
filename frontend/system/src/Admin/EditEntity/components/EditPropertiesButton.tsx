@@ -15,6 +15,7 @@ export const EditPropertiesButton = ({
   const t = useTranslation('system');
 
   const hasProperties = !!entity.properties?.length;
+  const hasNewProperties = entity.properties?.some(prop => !prop.code);
 
   const modalTitle = [...parents, entity].map(e => e.name).join(' - ');
 
@@ -29,7 +30,7 @@ export const EditPropertiesButton = ({
 
         onOpen(modalTitle, entity);
       }}
-      color="primary"
+      color={hasNewProperties ? 'info' : 'primary'}
     />
   );
 };
