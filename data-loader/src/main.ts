@@ -7,16 +7,21 @@ const port = '9080';
 
 const dirPath = '../data';
 const schemaPath = 'v2/schema.gql';
-const dataPath = 'v2/products.csv';
+const drugDataPath = 'v2/drugs.csv';
 
 const schemaFile = path.resolve(__dirname, `${dirPath}/${schemaPath}`);
-const dataFile = path.resolve(__dirname, `${dirPath}/${dataPath}`);
+const drugDataFile = path.resolve(__dirname, `${dirPath}/${drugDataPath}`);
 
 const main = async () => {
   const schemaParser = new SchemaParser(schemaFile);
   await schemaParser.parseSchema();
 
-  const dataParser = new DataParser(dataFile);
+  const dataParser = new DataParser({
+    drugs: drugDataFile,
+    consumables: 'todo',
+    vaccines: 'todo',
+  });
+
   await dataParser.parseData();
 
   dataParser.buildGraph();
