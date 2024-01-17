@@ -26,6 +26,10 @@ import { EntitiesRouter } from './routers/EntitiesRouter';
 import { AdminRouter } from './routers/AdminRouter';
 import { RequireAuthentication } from './components/Navigation/RequireAuthentication';
 
+const AboutPage = React.lazy(
+  () => import('@uc-frontend/system/src/About/About')
+);
+
 export const Site: FC = () => {
   const location = useLocation();
   const getPageTitle = useGetPageTitle();
@@ -69,6 +73,14 @@ export const Site: FC = () => {
                   .addWildCard()
                   .build()}
                 element={<Settings />}
+              />
+              <Route
+                path={RouteBuilder.create(AppRoute.About).build()}
+                element={
+                  <PageContainer>
+                    <AboutPage />
+                  </PageContainer>
+                }
               />
               <Route
                 path={RouteBuilder.create(AppRoute.Home).build()}

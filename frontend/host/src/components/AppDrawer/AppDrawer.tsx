@@ -19,6 +19,7 @@ import {
   ListIcon,
   UsersIcon,
   ClockIcon,
+  InfoIcon,
 } from '@uc-frontend/common';
 import { AppRoute } from '@uc-frontend/config';
 import { AppDrawerIcon } from './AppDrawerIcon';
@@ -222,6 +223,11 @@ export const AppDrawer: React.FC = () => {
               text={t('docs')}
               trustedSite={true}
             /> */}
+            <AppNavLink
+              to={AppRoute.About}
+              icon={<InfoIcon fontSize="small" color="primary" />}
+              text={t('about')}
+            />
             <AppNavLink
               to={AppRoute.Settings}
               icon={<SettingsIcon fontSize="small" color="primary" />}

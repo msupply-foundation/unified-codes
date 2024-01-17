@@ -17,6 +17,7 @@ export enum AppRoute {
   Settings = 'settings',
   Logout = 'logout',
 
+  About = 'about',
   PageNotFound = 'page-not-found',
 }
 
