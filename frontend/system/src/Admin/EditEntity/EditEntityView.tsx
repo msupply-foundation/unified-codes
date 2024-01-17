@@ -3,9 +3,10 @@ import { useParams } from 'frontend/common/src';
 import { useBreadcrumbs } from '@common/hooks';
 import { useEntity } from '../../Entities/api';
 import { DrugEditForm } from './DrugEditForm';
-import { VaccineEditForm } from './DrugEditForm/VaccineEditForm';
+import { VaccineEditForm } from './VaccineEditForm';
+import { ConsumableEditForm } from './ConsumableEditForm';
 
-export const EditDrugView = () => {
+export const EditEntityView = () => {
   const { code } = useParams();
   const { setSuffix } = useBreadcrumbs();
 
@@ -17,6 +18,8 @@ export const EditDrugView = () => {
   return entity ? (
     entity.type === 'vaccine' ? (
       <VaccineEditForm initialEntity={entity} />
+    ) : entity.type === 'consumable' ? (
+      <ConsumableEditForm initialEntity={entity} />
     ) : (
       <DrugEditForm initialEntity={entity} />
     )

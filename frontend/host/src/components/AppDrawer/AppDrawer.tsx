@@ -15,10 +15,10 @@ import {
   useAuthContext,
   LogoutIcon,
   RouteBuilder,
-  EditIcon,
   ListIcon,
   UsersIcon,
   ClockIcon,
+  EditIcon,
 } from '@uc-frontend/common';
 import { AppRoute } from '@uc-frontend/config';
 import { AppDrawerIcon } from './AppDrawerIcon';

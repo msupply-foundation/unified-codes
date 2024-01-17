@@ -1,11 +1,14 @@
 import {
+  buildConsumableInputFromEntity,
   buildDrugInputFromEntity,
+  buildEntityFromConsumableInput,
   buildVaccineInputFromEntity,
   getAllEntityCodes,
+  isValidConsumableInput,
   isValidDrugInput,
   isValidVaccineInput,
 } from './helpers';
-import { DrugInput, VaccineInput } from './types';
+import { ConsumableInput, DrugInput, VaccineInput } from './types';
 
 describe('getAllEntityCodes', () => {
   it('returns empty array when entity is not defined', () => {
@@ -557,6 +560,189 @@ describe('buildVaccineInputFromEntity', () => {
   });
 });
 
+describe('buildConsumableInputFromEntity', () => {
+  it('builds input from entity details', () => {
+    const entityDetails = {
+      code: '7c8c2b5b',
+      name: 'Examination Glove',
+      type: 'Consumable',
+      properties: [],
+      children: [
+        {
+          code: '7e5f7a00',
+          name: 'Large',
+          type: 'Presentation',
+          properties: [
+            {
+              id: '6e5f7a00_code_rxnav',
+              code: '6e5f7a00_code_rxnav',
+              type: 'code_rxnav',
+              value: '168',
+            },
+          ],
+          children: [
+            {
+              code: '86e85500',
+              name: 'Pink',
+              type: 'ExtraDescription',
+              properties: [],
+              children: [],
+            },
+            {
+              code: '76e85501',
+              name: 'Black',
+              type: 'ExtraDescription',
+              properties: [],
+              children: [],
+            },
+          ],
+        },
+      ],
+    };
+
+    const result = buildConsumableInputFromEntity(entityDetails);
+
+    expect(result).toEqual({
+      id: '7c8c2b5b',
+      code: '7c8c2b5b',
+      name: 'Examination Glove',
+      properties: [],
+      presentations: [
+        {
+          id: '7e5f7a00',
+          code: '7e5f7a00',
+          name: 'Large',
+          properties: [
+            {
+              id: '6e5f7a00_code_rxnav',
+              code: '6e5f7a00_code_rxnav',
+              type: 'code_rxnav',
+              value: '168',
+            },
+          ],
+          extraDescriptions: [
+            {
+              id: '86e85500',
+              code: '86e85500',
+              name: 'Pink',
+              properties: [],
+            },
+            {
+              id: '76e85501',
+              code: '76e85501',
+              name: 'Black',
+              properties: [],
+            },
+          ],
+        },
+      ],
+      extraDescriptions: [],
+    });
+  });
+});
+
+describe('buildEntityFromConsumableInput', () => {
+  it('correctly builds entity', () => {
+    const input: ConsumableInput = {
+      id: '7c8c2b5b',
+      code: '7c8c2b5b',
+      name: 'Examination Glove',
+      properties: [],
+      presentations: [
+        {
+          id: '7e5f7a00',
+          code: '7e5f7a00',
+          name: 'Large',
+          properties: [
+            {
+              id: '6e5f7a00_code_rxnav',
+              code: '6e5f7a00_code_rxnav',
+              type: 'code_rxnav',
+              value: '168',
+            },
+          ],
+          extraDescriptions: [
+            {
+              id: '86e85500',
+              code: '86e85500',
+              name: 'Pink',
+              properties: [],
+            },
+            {
+              id: '76e85501',
+              code: '76e85501',
+              name: 'Black',
+              properties: [],
+            },
+          ],
+        },
+      ],
+      extraDescriptions: [
+        {
+          id: '36e85501',
+          code: '36e85501',
+          name: 'Bundled',
+          properties: [],
+        },
+      ],
+    };
+
+    const result = buildEntityFromConsumableInput(input);
+
+    expect(result).toEqual({
+      parentCode: '77fcbb00',
+      code: '7c8c2b5b',
+      name: 'Examination Glove',
+      description: 'Examination Glove',
+      type: 'Product',
+      category: 'Consumable',
+      properties: [],
+      children: [
+        {
+          code: '7e5f7a00',
+          name: 'Large',
+          description: 'Examination Glove Large',
+          type: 'Presentation',
+          category: 'Consumable',
+          properties: [
+            {
+              code: '6e5f7a00_code_rxnav',
+              key: 'code_rxnav',
+              value: '168',
+            },
+          ],
+          children: [
+            {
+              code: '86e85500',
+              name: 'Pink',
+              description: 'Examination Glove Large Pink',
+              type: 'ExtraDescription',
+              category: 'Consumable',
+              properties: [],
+            },
+            {
+              code: '76e85501',
+              name: 'Black',
+              description: 'Examination Glove Large Black',
+              type: 'ExtraDescription',
+              category: 'Consumable',
+              properties: [],
+            },
+          ],
+        },
+        {
+          code: '36e85501',
+          name: 'Bundled',
+          description: 'Examination Glove Bundled',
+          type: 'ExtraDescription',
+          category: 'Consumable',
+          properties: [],
+        },
+      ],
+    });
+  });
+});
+
 describe('isValidDrugInput', () => {
   it('returns true when drug input is valid', () => {
     const drugInput: DrugInput = {
@@ -720,6 +906,79 @@ describe('isValidVaccineInput', () => {
     };
 
     const result = isValidVaccineInput(vaccineInput);
+
+    expect(result).toBe(false);
+  });
+});
+
+describe('isValidConsumableInput', () => {
+  it('returns true when consumable input is valid', () => {
+    const input: ConsumableInput = {
+      id: '7c8c2b5b',
+      code: '7c8c2b5b',
+      name: 'Examination Glove',
+      properties: [],
+      presentations: [
+        {
+          id: '7e5f7a00',
+          code: '7e5f7a00',
+          name: 'Large',
+          properties: [
+            {
+              id: '6e5f7a00_code_rxnav',
+              code: '6e5f7a00_code_rxnav',
+              type: 'code_rxnav',
+              value: '168',
+            },
+          ],
+          extraDescriptions: [
+            {
+              id: '86e85500',
+              code: '86e85500',
+              name: 'Pink',
+              properties: [],
+            },
+            {
+              id: '76e85501',
+              code: '76e85501',
+              name: 'Black',
+              properties: [],
+            },
+          ],
+        },
+      ],
+      extraDescriptions: [
+        {
+          id: '36e85501',
+          code: '36e85501',
+          name: 'Bundled',
+          properties: [],
+        },
+      ],
+    };
+
+    const result = isValidConsumableInput(input);
+
+    expect(result).toBe(true);
+  });
+
+  it('returns false when a field is missing a name', () => {
+    const consumableInput = {
+      id: '7c8c2b5b',
+      name: 'Examination Glove',
+      properties: [],
+      extraDescriptions: [],
+      presentations: [
+        {
+          id: '7e5f7a00',
+          name: '',
+          properties: [],
+          extraDescriptions: [],
+        },
+      ],
+    };
+
+    const result = isValidConsumableInput(consumableInput);
 
     expect(result).toBe(false);
   });

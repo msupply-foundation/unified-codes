@@ -11,7 +11,6 @@ import { Grid } from '@common/ui';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import React, { useState } from 'react';
-import { useUuid } from '../../hooks';
 import { ConfigurationItemFragment } from './api/operations.generated';
 import { useAddConfigItem } from './api';
 import { ConfigurationItemTypeInput } from '@common/types';
