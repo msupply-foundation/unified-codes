@@ -1,19 +1,19 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { CloseIcon, NavigateLinkIcon, SearchIcon } from '@common/icons';
 import { useDebounceCallback } from '@common/hooks';
 import { useTranslation } from '@common/intl';
 import {
+  AutocompleteList,
   BasicTextInput,
   IconButton,
   InlineSpinner,
   InputAdornment,
   Typography,
 } from '@common/components';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
 import Fuse from 'fuse.js';
-import { RouteBuilder, useNavigate } from 'frontend/common/src';
+import { ListItem, RouteBuilder, useNavigate } from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
+import { isArray } from 'lodash';
 
 interface EntitySearchBarProps {
   onChange: (value: string) => void;
@@ -69,106 +69,77 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
   const isClearable = !(isLoading || loading) && buffer.length > 0;
 
   return (
-    <>
-      <BasicTextInput
-        onBlur={() => {
-          debouncedSuggestions(false);
-        }}
-        onFocus={() => {
-          debouncedSuggestions(true);
-        }}
-        InputProps={{
-          startAdornment: (
-            <SearchIcon sx={{ color: 'gray.main' }} fontSize="small" />
-          ),
-          endAdornment: isClearable ? (
-            <InputAdornment
-              tabIndex={-1}
-              position="end"
-              onMouseDown={() => {
-                setBuffer('');
-                debouncedOnChange('');
-                setLoading(true);
-              }}
-            >
-              <IconButton
-                tabIndex={-1}
-                sx={{ color: 'gray.main' }}
-                icon={<CloseIcon fontSize="small" />}
-                label={t('label.clear-search')}
-                // onClick handled by above `onMouseDown` to prevent race condition with focus shifting away from the input!
-                onClick={() => {}}
-              />
-            </InputAdornment>
-          ) : (
-            <Spin isLoading={isLoading || loading} />
-          ),
-          sx: {
-            paddingLeft: '6px',
-            alignItems: 'center',
-            height: '38px',
-            width: '360px',
-          },
-        }}
-        value={buffer}
-        onChange={e => {
-          setBuffer(e.target.value);
-          setShowSuggestions(true);
-          debouncedOnChange(e.target.value);
-          setLoading(true);
-        }}
-        placeholder={placeholder}
-      />
-      {buffer && showSuggestions && (
-        <MenuList
-          tabIndex={-1}
-          dense
-          sx={{
-            position: 'absolute',
-            zIndex: 9999,
-            marginTop: '35px',
-            backgroundColor: 'white',
-            minWidth: '360px',
-          }}
-        >
-          <Typography variant="h6" sx={{ paddingLeft: '10px' }} tabIndex={-1}>
-            {t('label.suggestions')}
-          </Typography>
-
-          {fuse
-            .search(buffer)
-            .slice(0, 3)
-            .map((result, index) => (
-              <MenuItem
-                key={result.item.code}
-                onFocus={() => {
-                  debouncedSuggestions(true);
-                }}
-                onBlur={() => {
-                  debouncedSuggestions(false);
-                }}
-                onKeyDown={e => {
-                  // translate an tab into a down arrow
-                  if (e.key === 'Tab') {
-                    e.key = 'ArrowDown';
-                  }
-                  e.stopPropagation;
-                }}
-                onClick={e =>
-                  navigate(
-                    RouteBuilder.create(AppRoute.Browse)
-                      .addPart(result.item.code)
-                      .build()
-                  )
-                }
-                tabIndex={index}
-              >
-                {result.item.description} ({result.item.code}){' '}
-                <NavigateLinkIcon />
-              </MenuItem>
-            ))}
-        </MenuList>
+    <AutocompleteList
+      options={products}
+      width={360}
+      inputValue={buffer}
+      filterOptions={(opts, { inputValue }) =>
+        fuse
+          .search(inputValue)
+          .slice(0, 3)
+          .map(r => r.item)
+      }
+      open={showSuggestions}
+      onChange={(e, value) =>
+        navigate(
+          RouteBuilder.create(AppRoute.Browse)
+            .addPart((isArray(value) ? value[0]?.code : value?.code) || '')
+            .build()
+        )
+      }
+      renderOption={(props, item) => (
+        <ListItem {...props}>
+          <Typography>{item.description}</Typography>
+          <NavigateLinkIcon />
+        </ListItem>
       )}
-    </>
+      getOptionLabel={option => option.description}
+      renderInput={props => (
+        <BasicTextInput
+          {...props}
+          onBlur={() => setShowSuggestions(false)}
+          onFocus={() => debouncedSuggestions(true)}
+          InputProps={{
+            ...props.InputProps,
+            startAdornment: (
+              <SearchIcon sx={{ color: 'gray.main' }} fontSize="small" />
+            ),
+            endAdornment: isClearable ? (
+              <InputAdornment
+                position="end"
+                onMouseDown={() => {
+                  setBuffer('');
+                  debouncedOnChange('');
+                  setLoading(true);
+                }}
+              >
+                <IconButton
+                  sx={{ color: 'gray.main' }}
+                  icon={<CloseIcon fontSize="small" />}
+                  label={t('label.clear-search')}
+                  // onClick handled by above `onMouseDown` to prevent race condition with focus shifting away from the input!
+                  onClick={() => {}}
+                />
+              </InputAdornment>
+            ) : (
+              <Spin isLoading={isLoading || loading} />
+            ),
+            sx: {
+              paddingLeft: '6px',
+              alignItems: 'center',
+              height: '38px',
+              width: '360px',
+            },
+          }}
+          onChange={e => {
+            setBuffer(e.target.value);
+            setShowSuggestions(true);
+            debouncedOnChange(e.target.value);
+            setLoading(true);
+          }}
+          placeholder={placeholder}
+        />
+      )}
+    />
   );
 };
