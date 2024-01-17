@@ -25,16 +25,15 @@ export const EntityTreeItem = ({
 
   if (!entity) return null;
 
-  const handleCopyToClipboard = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    // prevent tree nodes opening/collapsing
-    e.stopPropagation();
+  const handleCopyToClipboard =
+    (code: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      // prevent tree nodes opening/collapsing
+      e.stopPropagation();
 
-    navigator.clipboard.writeText(entity.code);
+      navigator.clipboard.writeText(code);
 
-    success(t('message.code-copied-to-clipboard', { code: entity.code }))();
-  };
+      success(t('message.code-copied-to-clipboard', { code }))();
+    };
 
   const isLeaf = !entity.children?.length;
   const showCode = showAllCodes || isLeaf;
@@ -74,7 +73,7 @@ export const EntityTreeItem = ({
                 endIcon={<CopyIcon />}
                 sx={{ padding: 0 }}
                 label={entity.code}
-                onClick={handleCopyToClipboard}
+                onClick={handleCopyToClipboard(entity.code)}
               />
             </>
           )}
@@ -109,6 +108,12 @@ export const EntityTreeItem = ({
                     ) : (
                       p.value
                     )}
+                    <FlatButton
+                      startIcon={<CopyIcon />}
+                      sx={{ padding: 0, minWidth: '40px' }}
+                      onClick={handleCopyToClipboard(p.value)}
+                      label=""
+                    />
                   </Typography>
                 }
               />
