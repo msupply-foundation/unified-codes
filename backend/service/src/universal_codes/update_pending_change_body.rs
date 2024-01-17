@@ -64,7 +64,7 @@ pub async fn validate(
     request_id: &str,
     body: &str,
 ) -> Result<PendingChange, ModifyUniversalCodeError> {
-    if body.clone().is_empty() {
+    if body.is_empty() {
         return Err(ModifyUniversalCodeError::InternalError(
             "Body is required".to_string(),
         ));

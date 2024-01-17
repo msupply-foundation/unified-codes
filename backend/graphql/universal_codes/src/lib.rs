@@ -8,6 +8,7 @@ use graphql_core::pagination::PaginationInput;
 use graphql_core::standard_graphql_error::validate_auth;
 use graphql_core::ContextExt;
 use graphql_types::types::*;
+use graphql_universal_codes_v1::EntityType;
 use service::auth::Resource;
 use service::auth::ResourceAccessRequest;
 
@@ -84,6 +85,19 @@ impl UniversalCodesQueries {
         Ok(PendingChangesResponse::Response(
             PendingChangeConnector::from_domain(pending_changes),
         ))
+    }
+
+    // Finds the product for a given code, with it's child nodes
+    pub async fn product(&self, ctx: &Context<'_>, code: String) -> Result<Option<EntityType>> {
+        let result = ctx
+            .service_provider()
+            .universal_codes_service
+            .product_by_code(code)
+            .await?;
+        match result {
+            Some(entity) => Ok(Some(EntityType::from_domain(entity))),
+            None => Ok(None),
+        }
     }
 }
 

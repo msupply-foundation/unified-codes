@@ -23,6 +23,13 @@ export type EntityQueryVariables = Types.Exact<{
 
 export type EntityQuery = { __typename?: 'FullQuery', entity?: { __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> } | null };
 
+export type ProductQueryVariables = Types.Exact<{
+  code: Types.Scalars['String']['input'];
+}>;
+
+
+export type ProductQuery = { __typename?: 'FullQuery', product?: { __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> } | null };
+
 export const EntityRowFragmentDoc = gql`
     fragment EntityRow on EntityType {
   id: code
@@ -81,6 +88,34 @@ export const EntityDocument = gql`
   }
 }
     ${EntityDetailsFragmentDoc}`;
+export const ProductDocument = gql`
+    query product($code: String!) {
+  product(code: $code) {
+    ...EntityDetails
+    children {
+      ...EntityDetails
+      children {
+        ...EntityDetails
+        children {
+          ...EntityDetails
+          children {
+            ...EntityDetails
+            children {
+              ...EntityDetails
+              children {
+                ...EntityDetails
+                children {
+                  ...EntityDetails
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    ${EntityDetailsFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -94,6 +129,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     entity(variables: EntityQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<EntityQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<EntityQuery>(EntityDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'entity', 'query');
+    },
+    product(variables: ProductQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ProductQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ProductQuery>(ProductDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'product', 'query');
     }
   };
 }
