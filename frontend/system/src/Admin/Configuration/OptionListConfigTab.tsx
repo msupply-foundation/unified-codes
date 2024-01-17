@@ -19,10 +19,7 @@ import {
 } from '@common/ui';
 import { useEditModal, useNotification } from '@common/hooks';
 import { OptionEditModal } from './OptionEditModal';
-import {
-  ConfigurationItemNode,
-  ConfigurationItemTypeInput,
-} from '@common/types';
+import { ConfigurationItemTypeInput } from '@common/types';
 import { useConfigurationItems } from './api';
 import { ConfigurationItemFragment } from './api/operations.generated';
 import { useDeleteConfigurationItem } from './api/hooks/useDeleteConfigurationItem';
@@ -48,7 +45,7 @@ const OptionListConfigTabComponent = ({
   const { onOpen, onClose, isOpen, entity, mode } =
     useEditModal<ConfigurationItemFragment>();
 
-  const { data, isError, isLoading } = useConfigurationItems({
+  const { data } = useConfigurationItems({
     type: type,
   });
 
@@ -68,7 +65,7 @@ const OptionListConfigTabComponent = ({
     'selection',
   ]);
 
-  const deleteAction = (rows: (ConfigurationItemFragment | undefined)[]) => {
+  const deleteAction = () => {
     const numberSelected = selectedRows.length;
     if (selectedRows && numberSelected > 0) {
       const errors: DeleteError[] = [];
@@ -107,7 +104,7 @@ const OptionListConfigTabComponent = ({
   };
 
   const showDeleteConfirmation = useConfirmationModal({
-    onConfirm: () => deleteAction(selectedRows),
+    onConfirm: deleteAction,
     message: t('messages.confirm-delete-generic', {
       count: selectedRows.length,
     }),

@@ -1,22 +1,26 @@
 import { useTranslation } from '@common/intl';
 import { Box, SaveIcon, LoadingButton } from '@common/ui';
-import React, { useState } from 'react';
-import { useUuid } from '../../../hooks';
-import { useNotification } from '@common/hooks';
-import { EntityDetails, VaccineInput } from '../types';
+import React, { useMemo, useState } from 'react';
+import { useUuid } from '../../hooks';
+import { ConsumableInput, EntityDetails } from './types';
 import {
-  buildEntityFromVaccineInput,
-  buildVaccineInputFromEntity,
+  buildConsumableInputFromEntity,
+  buildEntityFromConsumableInput,
   getAllEntityCodes,
-  isValidVaccineInput,
-} from '../helpers';
-import { ChangeTypeNode, RouteBuilder, useNavigate } from 'frontend/common/src';
+  isValidConsumableInput,
+} from './helpers';
+import { ConsumableFormTree } from './components/ConsumableFormTree';
+import {
+  ChangeTypeNode,
+  RouteBuilder,
+  useNavigate,
+  useNotification,
+} from 'frontend/common/src';
+import { useRequestChange } from '../api';
+import { EntityCategory } from '../../constants';
 import { AppRoute } from 'frontend/config/src';
-import { useRequestChange } from '../../api';
-import { EntityCategory } from 'frontend/system/src/constants';
-import { VaccineFormTree } from './VaccineFormTree';
 
-export const VaccineEditForm = ({
+export const ConsumableEditForm = ({
   initialEntity,
 }: {
   initialEntity?: EntityDetails;
@@ -27,31 +31,35 @@ export const VaccineEditForm = ({
   const { mutateAsync: requestChange, isLoading } = useRequestChange();
   const { success, error } = useNotification();
 
-  const [initialIds] = useState(getAllEntityCodes(initialEntity));
+  const initialIds = useMemo(
+    () => getAllEntityCodes(initialEntity),
+    [initialEntity]
+  );
 
   const uuid = useUuid();
 
-  const [draft, setDraft] = useState<VaccineInput>(
+  const [draft, setDraft] = useState<ConsumableInput>(
     initialEntity
-      ? buildVaccineInputFromEntity(initialEntity)
+      ? buildConsumableInputFromEntity(initialEntity)
       : {
           id: uuid(),
           name: '',
-          components: [],
+          presentations: [],
+          extraDescriptions: [],
         }
   );
 
   const onSubmit = () => {
     // Convert the draft to a UpsertEntityInput type (stored within the change request until approved)
-    const entity = buildEntityFromVaccineInput(draft);
+    const entity = buildEntityFromConsumableInput(draft);
 
     requestChange({
       input: {
         requestId: uuid(),
-        category: EntityCategory.Vaccine,
+        category: EntityCategory.Consumable,
         changeType: initialEntity ? ChangeTypeNode.Change : ChangeTypeNode.New,
         name: draft.name,
-        requestedFor: 'Country - coming soon', // TODO: capture this - double check this is useful info?
+        requestedFor: 'Country - coming soon', // TODO: capture this
         body: JSON.stringify(entity),
         // NOTE: storing the full entity, which will be upserted on approval. If two change requests are
         // made, there will be a conflict, and the second would overwrite the first. However it doesn't seem
@@ -62,24 +70,25 @@ export const VaccineEditForm = ({
     })
       .then(() => {
         if (!initialEntity) {
+          // new entity - clear the form
           success(
             t('message.entity-created', {
               name: entity.name,
             })
           )();
-          // new entity - clear the form
           setDraft({
             id: uuid(),
             name: '',
-            components: [],
+            presentations: [],
+            extraDescriptions: [],
           });
         } else {
+          // existing entity - back to details page
           success(
             t('message.entity-updated', {
               name: entity.name,
             })
           )();
-          // existing entity - back to details page
           navigate(
             RouteBuilder.create(AppRoute.Browse)
               .addPart(initialEntity.code)
@@ -94,27 +103,24 @@ export const VaccineEditForm = ({
   };
 
   const saveButtonDisabled =
-    !isValidVaccineInput(draft) ||
+    !isValidConsumableInput(draft) ||
     // if editing existing entity, disable save if no change has been made
     (initialEntity &&
       JSON.stringify(draft) ===
-        JSON.stringify(buildVaccineInputFromEntity(initialEntity)));
+        JSON.stringify(buildConsumableInputFromEntity(initialEntity)));
 
   return (
     <Box sx={{ width: '100%' }}>
-      <VaccineFormTree
+      <ConsumableFormTree
         draft={draft}
         setDraft={setDraft}
         initialIds={initialIds}
       />
-
-      <Box
-        sx={{ display: 'flex', justifyContent: 'end', paddingBottom: '16px' }}
-      >
+      <Box sx={{ display: 'flex', justifyContent: 'end' }}>
         <LoadingButton
           isLoading={isLoading}
-          startIcon={<SaveIcon />}
           disabled={saveButtonDisabled}
+          startIcon={<SaveIcon />}
           onClick={onSubmit}
           variant="contained"
         >

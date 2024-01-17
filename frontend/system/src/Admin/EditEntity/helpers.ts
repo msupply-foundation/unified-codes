@@ -1,5 +1,10 @@
 import { UpsertEntityInput } from '@common/types';
-import { DrugInput, EntityDetails, VaccineInput } from './types';
+import {
+  ConsumableInput,
+  DrugInput,
+  EntityDetails,
+  VaccineInput,
+} from './types';
 import { EntityCategory, EntityType } from '../../constants';
 
 export const getAllEntityCodes = (
@@ -285,6 +290,94 @@ export const buildEntityFromVaccineInput = (
   };
 };
 
+export const buildConsumableInputFromEntity = (
+  entity: EntityDetails
+): ConsumableInput => {
+  return {
+    ...getDetails(entity),
+    presentations:
+      entity.children
+        ?.filter(pres => pres.type === EntityType.Presentation)
+        .map(pres => ({
+          ...getDetails(pres),
+          extraDescriptions:
+            pres.children
+              ?.filter(
+                description => description.type === EntityType.ExtraDescription
+              )
+              .map(description => ({
+                ...getDetails(description),
+              })) || [],
+        })) || [],
+    extraDescriptions:
+      entity.children
+        ?.filter(
+          description => description.type === EntityType.ExtraDescription
+        )
+        .map(description => ({
+          ...getDetails(description),
+        })) || [],
+  };
+};
+
+export const buildEntityFromConsumableInput = (
+  consumable: ConsumableInput
+): UpsertEntityInput => {
+  return {
+    parentCode: '77fcbb00', // Consumable parent code
+    code: consumable.code,
+    name: consumable.name,
+    description: consumable.name,
+    type: EntityType.Product,
+    category: EntityCategory.Consumable,
+    properties: consumable.properties?.map(p => ({
+      code: p.id,
+      key: p.type,
+      value: p.value,
+    })),
+    children: [
+      // Presentations
+      ...consumable.presentations.map(pres => ({
+        code: pres.code,
+        name: pres.name,
+        description: `${consumable.name} ${pres.name}`,
+        type: EntityType.Presentation,
+        category: EntityCategory.Consumable,
+        properties: pres.properties?.map(p => ({
+          code: p.id,
+          key: p.type,
+          value: p.value,
+        })),
+        children: pres.extraDescriptions?.map(description => ({
+          code: description.code,
+          name: description.name,
+          description: `${consumable.name} ${pres.name} ${description.name}`,
+          type: EntityType.ExtraDescription,
+          category: EntityCategory.Consumable,
+          properties: description.properties?.map(p => ({
+            code: p.id,
+            key: p.type,
+            value: p.value,
+          })),
+        })),
+      })),
+      // Extra Descriptions
+      ...consumable.extraDescriptions.map(description => ({
+        code: description.code,
+        name: description.name,
+        description: `${consumable.name} ${description.name}`,
+        type: EntityType.ExtraDescription,
+        category: EntityCategory.Consumable,
+        properties: description.properties?.map(p => ({
+          code: p.id,
+          key: p.type,
+          value: p.value,
+        })),
+      })),
+    ],
+  };
+};
+
 const getDetails = (entity: EntityDetails) => ({
   id: entity.code,
   code: entity.code !== '' ? entity.code : undefined,
@@ -334,6 +427,22 @@ export const isValidVaccineInput = (input: VaccineInput) => {
         }
       }
     }
+  }
+
+  return true;
+};
+
+export const isValidConsumableInput = (input: ConsumableInput) => {
+  if (!input.name) return false;
+
+  for (const presentation of input.presentations || []) {
+    if (!presentation.name) return false;
+    for (const description of presentation.extraDescriptions || []) {
+      if (!description.name) return false;
+    }
+  }
+  for (const description of input.extraDescriptions || []) {
+    if (!description.name) return false;
   }
 
   return true;

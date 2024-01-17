@@ -26,17 +26,23 @@ export interface Unit extends Entity {
 export interface Strength extends Entity {
   units: Unit[];
 }
-
 export interface Form extends Entity {
   strengths: Strength[];
 }
-
 export interface Route extends Entity {
   forms: Form[];
 }
-
 export interface DrugInput extends Entity {
   routes: Route[];
+}
+
+export interface ExtraDescription extends Entity {}
+export interface Presentation extends Entity {
+  extraDescriptions: ExtraDescription[];
+}
+export interface ConsumableInput extends Entity {
+  presentations: Presentation[];
+  extraDescriptions: ExtraDescription[];
 }
 
 export interface Brand extends Entity {

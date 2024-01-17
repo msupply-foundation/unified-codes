@@ -1,20 +1,20 @@
 import { useTranslation } from '@common/intl';
 import { Box, SaveIcon, LoadingButton } from '@common/ui';
 import React, { useState } from 'react';
-import { useUuid } from '../../../hooks';
+import { useUuid } from '../../hooks';
+import { DrugInput, EntityDetails } from './types';
 import { useNotification } from '@common/hooks';
-import { DrugInput, EntityDetails } from '../types';
 import {
   buildDrugInputFromEntity,
   buildEntityFromDrugInput,
   getAllEntityCodes,
   isValidDrugInput,
-} from '../helpers';
+} from './helpers';
 import { ChangeTypeNode, RouteBuilder, useNavigate } from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
-import { useRequestChange } from '../../api';
+import { useRequestChange } from '../api';
 import { EntityCategory } from 'frontend/system/src/constants';
-import { DrugFormTree } from './DrugFormTree';
+import { DrugFormTree } from './components/DrugFormTree';
 
 export const DrugEditForm = ({
   initialEntity,
