@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import { parseCsv } from './parseCsv';
 
 import {
-  ICSVData,
+  IDrugCSVData,
   IEntityGraph,
   IEntityNode,
   IPropertyNode,
@@ -18,7 +18,7 @@ export class DrugDataParser {
   public readonly path: fs.PathLike;
   public readonly options?: ParserOptions;
 
-  private data: ICSVData;
+  private data: IDrugCSVData;
 
   private isParsed: boolean;
   private isBuilt: boolean;
@@ -33,7 +33,7 @@ export class DrugDataParser {
     this.data = [];
   }
 
-  public async parseData(): Promise<ICSVData> {
+  public async parseData(): Promise<IDrugCSVData> {
     if (this.isParsed) return this.data;
 
     this.data = await parseCsv(this.path, this.options);

@@ -1,19 +1,16 @@
 import * as fs from 'fs';
+import ConsumableDataParser from './ConsumableDataParser';
 import DrugDataParser from './DrugDataParser';
 
 import { IEntityGraph, IEntityNode, EEntityType, ParserOptions } from './types';
 
 enum UCCode {
   Root = 'root',
-  Drug = '933f3f00',
-  Consumable = '77fcbb00',
   Vaccine = '5048e0ad',
 }
 
 enum UCName {
   Root = 'Root',
-  Drug = 'Drug',
-  Consumable = 'Consumable',
   Vaccine = 'Vaccine',
 }
 
@@ -23,22 +20,6 @@ const UC_ENTITY: { [name: string]: IEntityNode } = {
     name: UCName.Root,
     description: UCName.Root,
     type: EEntityType.Root,
-    children: [],
-    properties: [],
-  },
-  DRUG: {
-    code: UCCode.Drug,
-    name: UCName.Drug,
-    description: UCName.Drug,
-    type: EEntityType.Category,
-    children: [],
-    properties: [],
-  },
-  CONSUMABLE: {
-    code: UCCode.Consumable,
-    name: UCName.Consumable,
-    description: UCName.Consumable,
-    type: EEntityType.Category,
     children: [],
     properties: [],
   },
@@ -57,6 +38,7 @@ export class DataParser {
   private cycles: IEntityNode[];
 
   private drugParser: DrugDataParser;
+  private consumableParser: ConsumableDataParser;
 
   private isParsed: boolean;
   private isBuilt: boolean;
@@ -75,6 +57,10 @@ export class DataParser {
     this.isTraversed = false;
 
     this.drugParser = new DrugDataParser(paths.drugs, options);
+    this.consumableParser = new ConsumableDataParser(
+      paths.consumables,
+      options
+    );
 
     this.graph = {};
     this.cycles = [];
@@ -84,6 +70,9 @@ export class DataParser {
     if (this.isParsed) return;
 
     await this.drugParser.parseData();
+    await this.consumableParser.parseData();
+
+    this.isParsed = true;
   }
 
   public buildGraph(): IEntityGraph {
@@ -93,10 +82,13 @@ export class DataParser {
     this.graph[UCCode.Root] = UC_ENTITY.ROOT;
 
     const drugNode = this.drugParser.buildDrugNode(this.graph);
+    const consumableNode = this.consumableParser.buildConsumableNode(
+      this.graph
+    );
 
     UC_ENTITY.ROOT.children = [
       drugNode,
-      // consumableNode,
+      consumableNode,
       // vaccineNode,
     ];
 
@@ -169,6 +161,7 @@ export class DataParser {
   public getData() {
     return {
       drugs: this.drugParser.getData(),
+      consumables: this.consumableParser.getData(),
     };
   }
 

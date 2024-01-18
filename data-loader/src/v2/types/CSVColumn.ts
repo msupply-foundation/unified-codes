@@ -30,6 +30,9 @@ export enum ECSVColumn {
   NZULM = 'nzulm',
   NZULMItem = 'nzulm_item',
   UNSPSC = 'unspsc',
+  DeviceName = 'device_name',
+  Presentation = 'presentation',
+  ExtraDescription = 'extra_description',
 }
 
 export default ECSVColumn;

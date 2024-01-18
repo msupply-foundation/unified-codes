@@ -1,12 +1,12 @@
 import csv from 'csv-parser';
 import * as fs from 'fs';
 
-import { ICSVData, ICSVRow, ParserOptions } from './types';
+import { ECSVColumn, ParserOptions } from './types';
 
-export async function parseCsv(
+export async function parseCsv<T extends Record<ECSVColumn, string>>(
   path: fs.PathLike,
   options?: ParserOptions
-): Promise<ICSVData> {
+): Promise<T[]> {
   const data = [];
 
   const parseColumn = (column: string) => {
@@ -31,11 +31,11 @@ export async function parseCsv(
       .pipe(csv())
       .on('data', (row: string) => {
         const entity = Object.entries<string>(row).reduce(
-          (acc: ICSVRow, [column, value]: [string, string]) => {
+          (acc: T, [column, value]: [string, string]) => {
             const key = parseColumn(column);
             return { ...acc, [key]: value };
           },
-          {} as ICSVRow
+          {} as T
         );
         data.push(entity);
       })

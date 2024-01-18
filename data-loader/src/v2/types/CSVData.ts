@@ -1,5 +1,4 @@
-import ICSVRow from './CSVRow';
+import { IConsumableCSVRow, IDrugCSVRow } from './CSVRow';
 
-export type ICSVData = ICSVRow[];
-
-export default ICSVData;
+export type IDrugCSVData = IDrugCSVRow[];
+export type IConsumablesCSVData = IConsumableCSVRow[];
