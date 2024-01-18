@@ -48,3 +48,28 @@ export interface IConsumableCSVRow {
   [ECSVColumn.NZULMItem]: string;
   [ECSVColumn.UNSPSC]: string;
 }
+
+export interface IVaccineCSVRow {
+  [ECSVColumn.Product]: string;
+  [ECSVColumn.ActiveIngredients]: string;
+  [ECSVColumn.Brand]: string;
+  [ECSVColumn.Route]: string;
+  [ECSVColumn.DoseForm]: string;
+  [ECSVColumn.Strength]: string;
+  [ECSVColumn.UnitOfPresentation]: string;
+  [ECSVColumn.ImmediatePackaging]: string;
+  [ECSVColumn.UC1]: string;
+  [ECSVColumn.UC2]: string;
+  [ECSVColumn.UC3]: string;
+  [ECSVColumn.UC4]: string;
+  [ECSVColumn.UC5]: string;
+  [ECSVColumn.UC6]: string;
+  [ECSVColumn.UC7]: string;
+  [ECSVColumn.UC8]: string;
+  [ECSVColumn.RxNav]: string;
+  [ECSVColumn.WHOEMLProduct]: string;
+  [ECSVColumn.WHOEMLItem]: string;
+  [ECSVColumn.NZULM]: string;
+  [ECSVColumn.NZULMItem]: string;
+  [ECSVColumn.UNSPSC]: string;
+}

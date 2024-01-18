@@ -3,42 +3,18 @@ import ConsumableDataParser from './ConsumableDataParser';
 import DrugDataParser from './DrugDataParser';
 
 import { IEntityGraph, IEntityNode, EEntityType, ParserOptions } from './types';
-
-enum UCCode {
-  Root = 'root',
-  Vaccine = '5048e0ad',
-}
-
-enum UCName {
-  Root = 'Root',
-  Vaccine = 'Vaccine',
-}
-
-const UC_ENTITY: { [name: string]: IEntityNode } = {
-  ROOT: {
-    code: UCCode.Root,
-    name: UCName.Root,
-    description: UCName.Root,
-    type: EEntityType.Root,
-    children: [],
-    properties: [],
-  },
-  VACCINE: {
-    code: UCCode.Vaccine,
-    name: UCName.Vaccine,
-    description: UCName.Vaccine,
-    type: EEntityType.Category,
-    children: [],
-    properties: [],
-  },
-};
+import VaccineDataParser from './VaccineDataParser';
 
 export class DataParser {
+  private readonly ROOT_CODE = 'root';
+  private readonly ROOT_NAME = 'Root';
+
   private graph: IEntityGraph;
   private cycles: IEntityNode[];
 
   private drugParser: DrugDataParser;
   private consumableParser: ConsumableDataParser;
+  private vaccineParser: VaccineDataParser;
 
   private isParsed: boolean;
   private isBuilt: boolean;
@@ -61,6 +37,7 @@ export class DataParser {
       paths.consumables,
       options
     );
+    this.vaccineParser = new VaccineDataParser(paths.vaccines, options);
 
     this.graph = {};
     this.cycles = [];
@@ -78,19 +55,20 @@ export class DataParser {
   public buildGraph(): IEntityGraph {
     if (this.isBuilt) return this.graph;
 
-    // Initialise adjacency list for storing graph.
-    this.graph[UCCode.Root] = UC_ENTITY.ROOT;
-
     const drugNode = this.drugParser.buildDrugNode(this.graph);
     const consumableNode = this.consumableParser.buildConsumableNode(
       this.graph
     );
+    const vaccineNode = this.vaccineParser.buildVaccineNode(this.graph);
 
-    UC_ENTITY.ROOT.children = [
-      drugNode,
-      consumableNode,
-      // vaccineNode,
-    ];
+    this.graph[this.ROOT_CODE] = {
+      code: this.ROOT_CODE,
+      name: this.ROOT_NAME,
+      description: this.ROOT_NAME,
+      type: EEntityType.Root,
+      children: [drugNode, consumableNode, vaccineNode],
+      properties: [],
+    };
 
     try {
       // Expand graph edges.
@@ -113,7 +91,7 @@ export class DataParser {
         );
       };
 
-      this.graph[UCCode.Root].children?.forEach(category => {
+      this.graph[this.ROOT_CODE].children?.forEach(category => {
         category.children?.forEach(product => addDescription(product));
       });
 
