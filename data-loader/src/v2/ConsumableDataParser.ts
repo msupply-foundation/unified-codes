@@ -60,7 +60,6 @@ export class ConsumableDataParser {
       // Parse entity graph.
       this.data.forEach(row => {
         const productDefinition = [
-          // TODO: leaving this as Product for now... do we want that??
           { name: row.device_name, code: row.uc1, type: EEntityType.Product },
           {
             name: row.presentation,
