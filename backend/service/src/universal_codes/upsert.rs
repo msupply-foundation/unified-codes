@@ -154,11 +154,13 @@ pub fn generate(
 ) -> Result<EntityInput, ModifyUniversalCodeError> {
     println!("generate: {:?}", updated_entity);
 
+    let entity_code = updated_entity
+        .code
+        .clone()
+        .unwrap_or_else(|| generate_code());
+
     Ok(EntityInput {
-        code: updated_entity
-            .code
-            .clone()
-            .unwrap_or_else(|| generate_code()),
+        code: entity_code.clone(),
         name: updated_entity.name.clone(),
         description: updated_entity.description.clone(),
         r#type: updated_entity.r#type.clone(),
@@ -167,7 +169,7 @@ pub fn generate(
             properties
                 .into_iter()
                 .map(|p| PropertyInput {
-                    code: p.code,
+                    code: format!("{}_{}", entity_code, p.key),
                     key: p.key,
                     value: p.value,
                 })

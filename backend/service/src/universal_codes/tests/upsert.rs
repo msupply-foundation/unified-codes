@@ -8,6 +8,7 @@ mod universal_codes_upsert_test {
     use crate::service_provider::ServiceContext;
 
     use crate::service_provider::ServiceProvider;
+    use crate::universal_codes::properties::PropertyReference;
     use crate::universal_codes::upsert::UpsertUniversalCode;
 
     use crate::test_utils::get_test_settings;
@@ -32,7 +33,11 @@ mod universal_codes_upsert_test {
             description: Some(new_code_id.clone()),
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
-            properties: None,
+            properties: Some(vec![PropertyReference {
+                key: "test_property".to_string(),
+                value: "property value".to_string(),
+                code: "".to_string(),
+            }]),
             children: None,
         };
 
@@ -44,6 +49,12 @@ mod universal_codes_upsert_test {
         // TODO: Check it saved correctly
         assert_eq!(result.code, new_code_id);
         assert_eq!(result.name, new_code_id);
+
+        // Generates property code correctly
+        assert_eq!(
+            result.properties[0].code,
+            format!("{}_test_property", new_code_id.clone())
+        );
 
         // Update the entity
         let input = UpsertUniversalCode {
