@@ -51,3 +51,30 @@ query entity($code: String!) {
     }
   }
 }
+
+query product($code: String!) {
+  product(code: $code) {
+    ...EntityDetails
+    children {
+      ...EntityDetails
+      children {
+        ...EntityDetails
+        children {
+          ...EntityDetails
+          children {
+            ...EntityDetails
+            children {
+              ...EntityDetails
+              children {
+                ...EntityDetails
+                children {
+                  ...EntityDetails
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -28,11 +28,6 @@ export const SearchBar: FC<SearchBarProps> = ({
   const [loading, setLoading] = useState(false);
   const t = useTranslation(['common']);
 
-  // Sync the passed in isLoading state with the internal setLoading state
-  //   useEffect(() => {
-  //     setLoading(isLoading);
-  //   }, [isLoading]);
-
   useEffect(() => {
     setBuffer(value);
   }, [value]);
