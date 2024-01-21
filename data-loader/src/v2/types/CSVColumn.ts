@@ -34,6 +34,7 @@ export enum ECSVColumn {
   Presentation = 'presentation',
   ExtraDescription = 'extra_description',
   DrugName = 'drug_name',
+  DrugNameDetails = 'drug_name_details',
   ActiveIngredients = 'active_ingredients',
 }
 

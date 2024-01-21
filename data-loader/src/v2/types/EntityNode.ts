@@ -15,6 +15,7 @@ export enum EEntityType {
   Presentation = 'Presentation',
   ExtraDescription = 'ExtraDescription',
   ActiveIngredients = 'ActiveIngredients',
+  DrugNameDetails = 'DrugNameDetails',
 }
 
 export enum EPropertyType {

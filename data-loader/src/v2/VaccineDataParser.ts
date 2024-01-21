@@ -62,26 +62,31 @@ export class VaccineDataParser {
         const productDefinition = [
           { name: row.drug_name, code: row.uc1, type: EEntityType.Product },
           {
-            name: row.active_ingredients,
+            name: row.drug_name_details,
             code: row.uc2,
+            type: EEntityType.DrugNameDetails,
+          },
+          {
+            name: row.active_ingredients,
+            code: row.uc3,
             type: EEntityType.ActiveIngredients,
           },
-          { name: row.brand, code: row.uc3, type: EEntityType.Brand },
-          { name: row.route, code: row.uc4, type: EEntityType.Route },
-          { name: row.dose_form, code: row.uc5, type: EEntityType.Form },
+          { name: row.brand, code: row.uc4, type: EEntityType.Brand },
+          { name: row.route, code: row.uc5, type: EEntityType.Route },
+          { name: row.dose_form, code: row.uc6, type: EEntityType.Form },
           {
             name: row.strength,
-            code: row.uc6,
+            code: row.uc7,
             type: EEntityType.DoseStrength,
           },
           {
             name: row.unit_of_presentation,
-            code: row.uc7,
+            code: row.uc8,
             type: EEntityType.Unit,
           },
           {
             name: row.immediate_packaging,
-            code: row.uc8,
+            code: row.uc9,
             type: EEntityType.PackImmediate,
           },
         ];

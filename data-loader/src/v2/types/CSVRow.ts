@@ -51,6 +51,7 @@ export interface IConsumableCSVRow {
 
 export interface IVaccineCSVRow {
   [ECSVColumn.DrugName]: string;
+  [ECSVColumn.DrugNameDetails]: string;
   [ECSVColumn.ActiveIngredients]: string;
   [ECSVColumn.Brand]: string;
   [ECSVColumn.Route]: string;
@@ -66,6 +67,7 @@ export interface IVaccineCSVRow {
   [ECSVColumn.UC6]: string;
   [ECSVColumn.UC7]: string;
   [ECSVColumn.UC8]: string;
+  [ECSVColumn.UC9]: string;
   [ECSVColumn.RxNav]: string;
   [ECSVColumn.WHOEMLProduct]: string;
   [ECSVColumn.WHOEMLItem]: string;
