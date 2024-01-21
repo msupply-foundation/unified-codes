@@ -10,6 +10,8 @@ import {
   AppBarTabs,
   useTranslation,
   useAuthContext,
+  RouteBuilder,
+  Link,
   UCLogo,
   Link,
   Tooltip,
@@ -54,9 +56,10 @@ export const AppBar: React.FC = () => {
           <Box style={{ marginInlineEnd: 5 }}>
             <SectionIcon />
           </Box>
-
           <Breadcrumbs />
           <AppBarButtons />
+          {/* if not logged in, there is no app drawer, so show links */}
+          {!user && <NavLinks />}
         </Toolbar>
         <AppBarContent />
         <AppBarTabs />
@@ -66,3 +69,25 @@ export const AppBar: React.FC = () => {
 };
 
 export default AppBar;
+
+const NavLinks = () => {
+  const t = useTranslation('system');
+
+  return (
+    <Box marginRight="30px" display="flex" gap="10px">
+      <Link
+        to={RouteBuilder.create(AppRoute.Browse).build()}
+        style={{ color: 'black' }}
+      >
+        {t('label.browse')}
+      </Link>
+      |
+      <Link
+        to={RouteBuilder.create(AppRoute.About).build()}
+        style={{ color: 'black' }}
+      >
+        {t('label.about')}
+      </Link>
+    </Box>
+  );
+};

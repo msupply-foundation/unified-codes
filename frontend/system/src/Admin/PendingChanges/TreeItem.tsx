@@ -101,7 +101,7 @@ const PropertyTreeItem = ({
   property: PropertyInput;
   nodeId: string;
 }) => {
-  const isNewProperty = !property.code.endsWith(property.key);
+  const isNewProperty = !property.code;
 
   const propertyConfig = config.properties.find(
     conf => conf.type === property.key

@@ -3,6 +3,7 @@ import {
   ConsumableInput,
   DrugInput,
   EntityDetails,
+  Property,
   VaccineInput,
 } from './types';
 import { EntityCategory, EntityType } from '../../constants';
@@ -74,55 +75,35 @@ export const buildEntityFromDrugInput = (
     description: drug.name,
     type: EntityType.Product,
     category: EntityCategory.Drug,
-    properties: drug.properties?.map(p => ({
-      code: p.id,
-      key: p.type,
-      value: p.value,
-    })),
+    properties: drug.properties?.map(mapProperty),
     children: drug.routes?.map(route => ({
       code: route.code,
       name: route.name,
       description: `${drug.name} ${route.name}`,
       type: EntityType.Route,
       category: EntityCategory.Drug,
-      properties: route.properties?.map(p => ({
-        code: p.id,
-        key: p.type,
-        value: p.value,
-      })),
+      properties: route.properties?.map(mapProperty),
       children: route.forms?.map(form => ({
         code: form.code,
         name: form.name,
         description: `${drug.name} ${route.name} ${form.name}`,
         type: EntityType.Form,
         category: EntityCategory.Drug,
-        properties: form.properties?.map(p => ({
-          code: p.id,
-          key: p.type,
-          value: p.value,
-        })),
+        properties: form.properties?.map(mapProperty),
         children: form.strengths?.map(strength => ({
           code: strength.code,
           name: strength.name,
           description: `${drug.name} ${route.name} ${form.name} ${strength.name}`,
           type: EntityType.Strength,
           category: EntityCategory.Drug,
-          properties: strength.properties?.map(p => ({
-            code: p.id,
-            key: p.type,
-            value: p.value,
-          })),
+          properties: strength.properties?.map(mapProperty),
           children: strength.units?.map(unit => ({
             code: unit.code,
             name: unit.name,
             description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name}`,
             type: EntityType.Unit,
             category: EntityCategory.Drug,
-            properties: unit.properties?.map(p => ({
-              code: p.id,
-              key: p.type,
-              value: p.value,
-            })),
+            properties: unit.properties?.map(mapProperty),
           })),
         })),
       })),
@@ -198,88 +179,56 @@ export const buildEntityFromVaccineInput = (
     description: vaccine.name,
     type: EntityType.Product,
     category: EntityCategory.Vaccine,
-    properties: vaccine.properties?.map(p => ({
-      code: p.id,
-      key: p.type,
-      value: p.value,
-    })),
+    properties: vaccine.properties?.map(mapProperty),
     children: vaccine.components?.map(component => ({
       code: component.code,
       name: component.name,
       description: `${vaccine.name} ${component.name}`,
       type: EntityType.Component,
       category: EntityCategory.Vaccine,
-      properties: component.properties?.map(p => ({
-        code: p.id,
-        key: p.type,
-        value: p.value,
-      })),
+      properties: component.properties?.map(mapProperty),
       children: component.brands?.map(brand => ({
         code: brand.code,
         name: brand.name,
         description: `${vaccine.name} ${component.name} ${brand.name}`,
         type: EntityType.Brand,
         category: EntityCategory.Vaccine,
-        properties: brand.properties?.map(p => ({
-          code: p.id,
-          key: p.type,
-          value: p.value,
-        })),
+        properties: brand.properties?.map(mapProperty),
         children: brand.routes?.map(route => ({
           code: route.code,
           name: route.name,
           description: `${vaccine.name} ${component.name} ${brand.name} ${route.name}`,
           type: EntityType.Route,
           category: EntityCategory.Drug,
-          properties: route.properties?.map(p => ({
-            code: p.id,
-            key: p.type,
-            value: p.value,
-          })),
+          properties: route.properties?.map(mapProperty),
           children: route.forms?.map(form => ({
             code: form.code,
             name: form.name,
             description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name}`,
             type: EntityType.Form,
             category: EntityCategory.Vaccine,
-            properties: form.properties?.map(p => ({
-              code: p.id,
-              key: p.type,
-              value: p.value,
-            })),
+            properties: form.properties?.map(mapProperty),
             children: form.strengths?.map(strength => ({
               code: strength.code,
               name: strength.name,
               description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name} ${strength.name}`,
               type: EntityType.Strength,
               category: EntityCategory.Vaccine,
-              properties: strength.properties?.map(p => ({
-                code: p.id,
-                key: p.type,
-                value: p.value,
-              })),
+              properties: strength.properties?.map(mapProperty),
               children: strength.units?.map(unit => ({
                 code: unit.code,
                 name: unit.name,
                 description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name} ${strength.name} ${unit.name}`,
                 type: EntityType.Unit,
                 category: EntityCategory.Vaccine,
-                properties: unit.properties?.map(p => ({
-                  code: p.id,
-                  key: p.type,
-                  value: p.value,
-                })),
+                properties: unit.properties?.map(mapProperty),
                 children: unit.immediatePackagings?.map(immPack => ({
                   code: immPack.code,
                   name: immPack.name,
                   description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name} ${strength.name} ${unit.name} ${immPack.name}`,
                   type: EntityType.ImmediatePackaging,
                   category: EntityCategory.Vaccine,
-                  properties: immPack.properties?.map(p => ({
-                    code: p.id,
-                    key: p.type,
-                    value: p.value,
-                  })),
+                  properties: immPack.properties?.map(mapProperty),
                 })),
               })),
             })),
@@ -330,11 +279,7 @@ export const buildEntityFromConsumableInput = (
     description: consumable.name,
     type: EntityType.Product,
     category: EntityCategory.Consumable,
-    properties: consumable.properties?.map(p => ({
-      code: p.id,
-      key: p.type,
-      value: p.value,
-    })),
+    properties: consumable.properties?.map(mapProperty),
     children: [
       // Presentations
       ...consumable.presentations.map(pres => ({
@@ -343,22 +288,14 @@ export const buildEntityFromConsumableInput = (
         description: `${consumable.name} ${pres.name}`,
         type: EntityType.Presentation,
         category: EntityCategory.Consumable,
-        properties: pres.properties?.map(p => ({
-          code: p.id,
-          key: p.type,
-          value: p.value,
-        })),
+        properties: pres.properties?.map(mapProperty),
         children: pres.extraDescriptions?.map(description => ({
           code: description.code,
           name: description.name,
           description: `${consumable.name} ${pres.name} ${description.name}`,
           type: EntityType.ExtraDescription,
           category: EntityCategory.Consumable,
-          properties: description.properties?.map(p => ({
-            code: p.id,
-            key: p.type,
-            value: p.value,
-          })),
+          properties: description.properties?.map(mapProperty),
         })),
       })),
       // Extra Descriptions
@@ -368,15 +305,17 @@ export const buildEntityFromConsumableInput = (
         description: `${consumable.name} ${description.name}`,
         type: EntityType.ExtraDescription,
         category: EntityCategory.Consumable,
-        properties: description.properties?.map(p => ({
-          code: p.id,
-          key: p.type,
-          value: p.value,
-        })),
+        properties: description.properties?.map(mapProperty),
       })),
     ],
   };
 };
+
+const mapProperty = (p: Property) => ({
+  code: p.code,
+  key: p.type,
+  value: p.value,
+});
 
 const getDetails = (entity: EntityDetails) => ({
   id: entity.code,

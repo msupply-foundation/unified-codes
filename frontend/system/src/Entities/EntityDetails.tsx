@@ -9,7 +9,7 @@ import {
   Box,
 } from '@common/ui';
 import { useBreadcrumbs } from '@common/hooks';
-import { useEntity, useProduct } from './api';
+import { useProduct } from './api';
 import { FormControlLabel } from '@mui/material';
 import { TreeView } from '@mui/lab';
 import { useNavigate, useParams } from 'react-router-dom';

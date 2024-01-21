@@ -27,11 +27,9 @@ export const DrugFormTree = ({
   const uuid = useUuid();
 
   const [propertiesModalState, setPropertiesModalState] = useState<{
-    disabled: boolean;
     title: string;
     entityToUpdate: Entity;
   }>({
-    disabled: true,
     title: draft.name,
     entityToUpdate: draft,
   });
@@ -51,13 +49,8 @@ export const DrugFormTree = ({
     type: ConfigurationItemTypeInput.Form,
   });
 
-  const onOpenPropertiesModal = (
-    disabled: boolean,
-    title: string,
-    entityToUpdate: Entity
-  ) => {
+  const onOpenPropertiesModal = (title: string, entityToUpdate: Entity) => {
     setPropertiesModalState({
-      disabled,
       title,
       entityToUpdate,
     });

@@ -8,20 +8,16 @@ export const EditPropertiesButton = ({
   entity,
   onOpen,
 }: {
-  onOpen: (
-    disabled: boolean,
-    modalTitle: string,
-    entityToUpdate: Entity
-  ) => void;
+  onOpen: (modalTitle: string, entityToUpdate: Entity) => void;
   parents: Entity[];
   entity: Entity;
 }) => {
   const t = useTranslation('system');
 
   const hasProperties = !!entity.properties?.length;
+  const hasNewProperties = entity.properties?.some(prop => !prop.code);
 
   const modalTitle = [...parents, entity].map(e => e.name).join(' - ');
-  const disabled = !!entity.code; // If the entity has a code already, we can't update properties
 
   return (
     <IconButton
@@ -32,9 +28,9 @@ export const EditPropertiesButton = ({
         // move focus away from the button, otherwise keyboard interactions in the modal do strange things
         e.currentTarget.blur();
 
-        onOpen(disabled, modalTitle, entity);
+        onOpen(modalTitle, entity);
       }}
-      color="primary"
+      color={hasNewProperties ? 'info' : 'primary'}
     />
   );
 };

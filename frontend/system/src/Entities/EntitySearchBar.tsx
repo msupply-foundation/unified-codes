@@ -76,7 +76,7 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
       filterOptions={(opts, { inputValue }) =>
         fuse
           .search(inputValue)
-          .slice(0, 3)
+          .slice(0, 7)
           .map(r => r.item)
       }
       open={showSuggestions}
