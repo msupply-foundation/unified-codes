@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from '@common/intl';
 import {
   AppBarContentPortal,
@@ -9,6 +9,7 @@ import {
   useColumns,
   SearchToolbar,
   ToggleButton,
+  Stack,
 } from '@common/ui';
 import { useQueryParamsState } from '@common/hooks';
 import { EntityRowFragment, useEntities } from './api';
@@ -16,6 +17,7 @@ import { ToggleButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
+import { EntitySearchBar } from './EntitySearchBar';
 
 export const ListView = () => {
   const t = useTranslation('system');
@@ -38,14 +40,16 @@ export const ListView = () => {
     [sortBy, updateSortQuery]
   );
 
-  const [categories, setCategories] = useState<string[]>(['drug']);
+  const [categories, setCategories] = useState<string[]>([]);
 
   const searchFilter = filter.filterBy?.['search'];
   const search = typeof searchFilter === 'string' ? searchFilter : '';
 
   const { data, isError, isLoading } = useEntities({
     filter: {
-      categories,
+      categories: categories.length
+        ? categories
+        : ['drug', 'consumable', 'vaccine'],
       type: 'drug',
       description: search,
       orderBy: {
@@ -58,12 +62,25 @@ export const ListView = () => {
     offset,
   });
 
+  const {
+    data: allProducts,
+    isError: allProductsIsError,
+    isLoading: allProductsIsLoading,
+  } = useEntities({
+    filter: {
+      categories: ['drug', 'consumable', 'vaccine'],
+      orderBy: {
+        field: sortBy.key,
+        descending: sortBy.isDesc,
+      },
+    },
+    first: 10000,
+    offset,
+  });
+
   const toggleCategory = (category: string) => {
     if (categories.includes(category)) {
-      // only remove category filter if other categories are also selected
-      if (categories.length > 1) {
-        setCategories(categories.filter(c => c !== category));
-      }
+      setCategories(categories.filter(c => c !== category));
     } else {
       setCategories([...categories, category]);
     }
@@ -77,6 +94,7 @@ export const ListView = () => {
     first,
     total: data?.totalLength,
   };
+  const filterString = (filter.filterBy?.['search'] as string) || '';
 
   return (
     <TableProvider createStore={createTableStore}>
@@ -90,7 +108,18 @@ export const ListView = () => {
           marginRight: 'max(0px, calc((100vw - 1232px) / 2))',
         }}
       >
-        <SearchToolbar filter={filter} />
+        <Stack>
+          <EntitySearchBar
+            products={allProducts?.data ?? []}
+            onChange={newValue => {
+              filter.onChangeStringRule('search', newValue);
+            }}
+            placeholder={t('placeholder.search')}
+            isLoading={isLoading || allProductsIsLoading}
+            debounceTime={500}
+          />
+        </Stack>
+
         <ToggleButtonGroup>
           <ToggleButton
             label={t('label.drugs')}

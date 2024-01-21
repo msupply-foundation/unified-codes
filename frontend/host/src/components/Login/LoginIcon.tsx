@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  MSupplyGuy,
   useLocalStorage,
   useTheme,
   RegexUtils,
   useIsSmallScreen,
+  UCLogo,
 } from '@uc-frontend/common';
 
 export const LoginIcon = ({ small = false }: { small?: boolean }) => {
@@ -12,10 +12,11 @@ export const LoginIcon = ({ small = false }: { small?: boolean }) => {
   const isSmallScreen = useIsSmallScreen() || small;
   const logoStyle = isSmallScreen
     ? { width: 61, height: 90 }
-    : { width: 122, height: 180 };
+    : { width: 285, height: 180 };
   const theme = useTheme();
 
-  if (!customLogo) return <MSupplyGuy style={logoStyle} />;
+  if (!customLogo)
+    return <UCLogo showName style={{ height: 180, width: 210 }} />;
 
   const style = {
     ...logoStyle,

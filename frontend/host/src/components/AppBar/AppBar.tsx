@@ -14,9 +14,9 @@ import {
   useAuthContext,
   RouteBuilder,
   Link,
+  UCLogo,
 } from '@uc-frontend/common';
 import { SectionIcon } from './SectionIcon';
-import { AppDrawerIcon } from '../AppDrawer/AppDrawerIcon';
 import { AppRoute } from 'frontend/config/src';
 
 const StyledContainer = styled(Box)(({ theme }) => ({
@@ -43,7 +43,7 @@ export const AppBar: React.FC = () => {
         <IconButton
           label={t('button.return-to-home')}
           onClick={() => navigate(AppRoute.Browse)}
-          icon={<AppDrawerIcon />}
+          icon={<UCLogo showName size={'large'} />}
           sx={{
             '&:hover': { backgroundColor: 'inherit' },
             margin: '0 40px 0 20px',
