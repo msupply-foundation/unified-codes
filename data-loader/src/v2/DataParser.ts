@@ -48,6 +48,7 @@ export class DataParser {
 
     await this.drugParser.parseData();
     await this.consumableParser.parseData();
+    await this.vaccineParser.parseData();
 
     this.isParsed = true;
   }
@@ -59,14 +60,14 @@ export class DataParser {
     const consumableNode = this.consumableParser.buildConsumableNode(
       this.graph
     );
-    const vaccineNode = this.vaccineParser.buildVaccineNode(this.graph);
+    // const vaccineNode = this.vaccineParser.buildVaccineNode(this.graph);
 
     this.graph[this.ROOT_CODE] = {
       code: this.ROOT_CODE,
       name: this.ROOT_NAME,
       description: this.ROOT_NAME,
       type: EEntityType.Root,
-      children: [drugNode, consumableNode, vaccineNode],
+      children: [drugNode, consumableNode],
       properties: [],
     };
 
