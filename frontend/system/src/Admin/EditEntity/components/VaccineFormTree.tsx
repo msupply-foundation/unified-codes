@@ -148,7 +148,7 @@ export const VaccineFormTree = ({
             <NameEditField
               disabled={initialIds.includes(component.id)}
               value={component.name}
-              label={t('label.component')}
+              label={t('label.components')}
               onChange={e =>
                 onUpdate(
                   { ...component, name: e.target.value },
