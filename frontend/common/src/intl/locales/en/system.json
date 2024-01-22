@@ -14,6 +14,7 @@
   "entity-type.Presentation": "Presentation",
   "entity-type.DoseStrength": "Strength",
   "entity-type.Unit": "Unit",
+  "error.duplicate": "Duplicates not permitted",
   "error.email-invalid": "Invalid email",
   "error.unknown-error": "Unknown Error",
   "error.username-invalid-characters": "Username must not contain any special characters or spaces",

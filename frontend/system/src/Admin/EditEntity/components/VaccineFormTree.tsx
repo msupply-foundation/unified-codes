@@ -115,6 +115,7 @@ export const VaccineFormTree = ({
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'start' }}>
         <NameEditField
+          siblings={[]}
           disabled={initialIds.includes(draft.id)}
           value={draft.name}
           label={t('label.vaccine-name')}
@@ -146,6 +147,7 @@ export const VaccineFormTree = ({
         <TreeFormBox key={component.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <NameEditField
+              siblings={draft.components}
               disabled={initialIds.includes(component.id)}
               value={component.name}
               label={t('label.component')}
@@ -172,6 +174,7 @@ export const VaccineFormTree = ({
             <TreeFormBox key={brand.id}>
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                 <NameEditField
+                  siblings={component.brands}
                   disabled={initialIds.includes(brand.id)}
                   value={brand.name}
                   label={t('label.brand')}
@@ -259,6 +262,7 @@ export const VaccineFormTree = ({
                         <TreeFormBox key={strength.id}>
                           <Box sx={{ display: 'flex', alignItems: 'end' }}>
                             <NameEditField
+                              siblings={form.strengths}
                               disabled={initialIds.includes(strength.id)}
                               value={strength.name}
                               label={t('label.strength')}
@@ -289,6 +293,7 @@ export const VaccineFormTree = ({
                             <TreeFormBox key={unit.id}>
                               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                                 <NameEditField
+                                  siblings={strength.units}
                                   disabled={initialIds.includes(unit.id)}
                                   value={unit.name}
                                   label={t('label.unit')}
