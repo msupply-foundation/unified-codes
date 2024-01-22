@@ -1,6 +1,6 @@
 import { UpsertEntityInput } from '@common/types';
 import {
-  Component,
+  ActiveIngredients,
   ConsumableInput,
   DrugInput,
   Entity,
@@ -116,13 +116,13 @@ export const buildEntityFromDrugInput = (
 export const buildVaccineInputFromEntity = (
   entity: EntityDetails
 ): VaccineInput => {
-  const getComponents = (entity: EntityDetails) =>
+  const getActiveIngredients = (entity: EntityDetails) =>
     entity.children
-      ?.filter(component => component.type === EntityType.Component)
-      .map(component => ({
-        ...getDetails(component),
+      ?.filter(ingred => ingred.type === EntityType.ActiveIngredients)
+      .map(ingred => ({
+        ...getDetails(ingred),
         brands:
-          component.children
+          ingred.children
             ?.filter(brand => brand.type === EntityType.Brand)
             .map(brand => ({
               ...getDetails(brand),
@@ -168,13 +168,13 @@ export const buildVaccineInputFromEntity = (
 
   return {
     ...getDetails(entity),
-    components: getComponents(entity),
+    activeIngredients: getActiveIngredients(entity),
     details:
       entity.children
         ?.filter(details => details.type === EntityType.VaccineNameDetails)
         .map(details => ({
           ...getDetails(details),
-          components: getComponents(details),
+          activeIngredients: getActiveIngredients(details),
         })) || [],
   };
 };
@@ -190,13 +190,16 @@ export const buildEntityFromVaccineInput = (
     properties: ent.properties?.map(mapProperty),
   });
 
-  const mapComponent = (component: Component, description: string) => {
-    const compDetails = entityDetails(component, description);
+  const mapActiveIngredient = (
+    activeIngredients: ActiveIngredients,
+    description: string
+  ) => {
+    const ingrDetails = entityDetails(activeIngredients, description);
     return {
-      ...compDetails,
-      type: EntityType.Component,
-      children: component.brands?.map(brand => {
-        const brandDetails = entityDetails(brand, compDetails.description);
+      ...ingrDetails,
+      type: EntityType.ActiveIngredients,
+      children: activeIngredients.brands?.map(brand => {
+        const brandDetails = entityDetails(brand, ingrDetails.description);
         return {
           ...brandDetails,
           type: EntityType.Brand,
@@ -248,14 +251,16 @@ export const buildEntityFromVaccineInput = (
     parentCode: '5048e0ad', // Vaccine parent code
     type: EntityType.Product,
     children: [
-      ...vaccine.components?.map(c => mapComponent(c, vaccDetails.description)),
+      ...vaccine.activeIngredients?.map(c =>
+        mapActiveIngredient(c, vaccDetails.description)
+      ),
       ...vaccine.details?.map(details => {
         const detailDetails = entityDetails(details, vaccDetails.description);
         return {
           ...detailDetails,
           type: EntityType.VaccineNameDetails,
-          children: details.components?.map(c =>
-            mapComponent(c, detailDetails.description)
+          children: details.activeIngredients?.map(c =>
+            mapActiveIngredient(c, detailDetails.description)
           ),
         };
       }),
@@ -373,9 +378,9 @@ export const isValidDrugInput = (input: DrugInput) => {
 export const isValidVaccineInput = (input: VaccineInput) => {
   if (!input.name) return false;
 
-  for (const component of input.components || []) {
-    if (!component.name) return false;
-    for (const brand of component.brands || []) {
+  for (const ingred of input.activeIngredients || []) {
+    if (!ingred.name) return false;
+    for (const brand of ingred.brands || []) {
       if (!brand.name) return false;
       for (const route of brand.routes || []) {
         if (!route.name) return false;
