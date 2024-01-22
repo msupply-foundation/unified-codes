@@ -216,7 +216,7 @@ export const VaccineFormTree = ({
             ))}
 
             <AddFieldButton
-              label={t('label.add-component')}
+              label={t('label.add-active-ingredients')}
               onClick={() =>
                 onUpdate(
                   { id: uuid(), name: '', brands: [] },
@@ -267,7 +267,7 @@ export const VaccineFormTree = ({
         />
 
         <AddFieldButton
-          label={t('label.add-component')}
+          label={t('label.add-active-ingredients')}
           onClick={() =>
             onUpdate(
               { id: uuid(), name: '', brands: [] },
