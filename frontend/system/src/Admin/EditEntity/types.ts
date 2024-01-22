@@ -53,6 +53,11 @@ export interface Component extends Entity {
   brands: Brand[];
 }
 
+export interface VaccineNameDetails extends Entity {
+  components: Component[];
+}
+
 export interface VaccineInput extends Entity {
   components: Component[];
+  details: VaccineNameDetails[];
 }

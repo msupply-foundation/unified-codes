@@ -38,6 +38,7 @@ export const VaccineEditForm = ({
           id: uuid(),
           name: '',
           components: [],
+          details: [],
         }
   );
 
@@ -72,6 +73,7 @@ export const VaccineEditForm = ({
             id: uuid(),
             name: '',
             components: [],
+            details: [],
           });
         } else {
           success(

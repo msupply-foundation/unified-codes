@@ -1,3 +1,4 @@
+import { EntityType } from '../../constants';
 import {
   buildConsumableInputFromEntity,
   buildDrugInputFromEntity,
@@ -347,6 +348,29 @@ describe('buildVaccineInputFromEntity', () => {
       properties: [],
       children: [
         {
+          code: 'ae5f7a00',
+          name: '2021 Variant',
+          type: EntityType.VaccineNameDetails,
+          properties: [],
+          children: [
+            {
+              code: '7e5f7a02',
+              name: 'Component 1/Component 2',
+              type: 'Component',
+              properties: [],
+              children: [
+                {
+                  code: 'a6e85500',
+                  name: 'Brand 2',
+                  type: 'Brand',
+                  properties: [],
+                  children: [],
+                },
+              ],
+            },
+          ],
+        },
+        {
           code: '7e5f7a00',
           name: 'Component 1/Component 2',
           type: 'Component',
@@ -417,6 +441,31 @@ describe('buildVaccineInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
+      details: [
+        {
+          id: 'ae5f7a00',
+          code: 'ae5f7a00',
+          name: '2021 Variant',
+          properties: [],
+          components: [
+            {
+              id: '7e5f7a02',
+              code: '7e5f7a02',
+              name: 'Component 1/Component 2',
+              properties: [],
+              brands: [
+                {
+                  id: 'a6e85500',
+                  code: 'a6e85500',
+                  name: 'Brand 2',
+                  properties: [],
+                  routes: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
       components: [
         {
           id: '7e5f7a00',
@@ -531,6 +580,7 @@ describe('buildVaccineInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
+      details: [],
       components: [
         {
           id: '7e5f7a00',
@@ -833,6 +883,7 @@ describe('isValidVaccineInput', () => {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
+      details: [],
       components: [
         {
           id: '7e5f7a00',
@@ -888,6 +939,7 @@ describe('isValidVaccineInput', () => {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
+      details: [],
       components: [
         {
           id: '7e5f7a00',
