@@ -12,6 +12,7 @@ import { EditPropertiesButton } from './EditPropertiesButton';
 import { NameEditField } from './NameEditField';
 import { useConfigurationItems } from '../../Configuration/api';
 import { ConfigurationItemTypeInput } from '@common/types';
+import { useEntities } from 'frontend/system/src/Entities/api';
 
 export const DrugFormTree = ({
   draft,
@@ -40,6 +41,17 @@ export const DrugFormTree = ({
     onOpen,
     entity: propertiesModalData,
   } = useEditModal<Property[]>();
+
+  const { data: matchingEntities } = useEntities({
+    filter: {
+      categories: ['drug', 'consumable', 'vaccine'],
+      match: 'exact',
+      description: draft.name,
+    },
+    first: 1,
+    offset: 0,
+  });
+  const match = matchingEntities?.data[0];
 
   // Get the route, form, and immediate packaging options
   const { data: routes, isLoading: isLoadingRoutes } = useConfigurationItems({
@@ -135,6 +147,11 @@ export const DrugFormTree = ({
           />
         </Box>
       </Box>
+      {match && (
+        <Typography>
+          Did you mean {match.description} ({match.code})?
+        </Typography>
+      )}
 
       {!!draft.routes.length && (
         <Typography fontSize="12px">{t('label.routes')}</Typography>
