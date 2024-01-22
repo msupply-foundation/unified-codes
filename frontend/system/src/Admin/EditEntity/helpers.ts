@@ -2,6 +2,7 @@ import { UpsertEntityInput } from '@common/types';
 import {
   ConsumableInput,
   DrugInput,
+  Entity,
   EntityDetails,
   Property,
   VaccineInput,
@@ -327,15 +328,24 @@ const getDetails = (entity: EntityDetails) => ({
   })),
 });
 
+const hasDuplicates = (entities: Entity[]) => {
+  const entityNames = entities.map(e => e.name);
+  return entityNames.some((name, idx) => entityNames.indexOf(name) !== idx);
+};
+
 export const isValidDrugInput = (input: DrugInput) => {
   if (!input.name) return false;
 
+  if (hasDuplicates(input.routes)) return false;
   for (const route of input.routes || []) {
     if (!route.name) return false;
+    if (hasDuplicates(route.forms)) return false;
     for (const form of route.forms || []) {
       if (!form.name) return false;
+      if (hasDuplicates(form.strengths)) return false;
       for (const strength of form.strengths || []) {
         if (!strength.name) return false;
+        if (hasDuplicates(strength.units)) return false;
         for (const unit of strength.units || []) {
           if (!unit.name) return false;
         }
@@ -349,16 +359,22 @@ export const isValidDrugInput = (input: DrugInput) => {
 export const isValidVaccineInput = (input: VaccineInput) => {
   if (!input.name) return false;
 
+  if (hasDuplicates(input.components)) return false;
   for (const component of input.components || []) {
     if (!component.name) return false;
+    if (hasDuplicates(component.brands)) return false;
     for (const brand of component.brands || []) {
       if (!brand.name) return false;
+      if (hasDuplicates(brand.routes)) return false;
       for (const route of brand.routes || []) {
         if (!route.name) return false;
+        if (hasDuplicates(route.forms)) return false;
         for (const form of route.forms || []) {
           if (!form.name) return false;
+          if (hasDuplicates(form.strengths)) return false;
           for (const strength of form.strengths || []) {
             if (!strength.name) return false;
+            if (hasDuplicates(strength.units)) return false;
             for (const unit of strength.units || []) {
               if (!unit.name) return false;
             }
@@ -374,12 +390,15 @@ export const isValidVaccineInput = (input: VaccineInput) => {
 export const isValidConsumableInput = (input: ConsumableInput) => {
   if (!input.name) return false;
 
+  if (hasDuplicates(input.presentations)) return false;
   for (const presentation of input.presentations || []) {
     if (!presentation.name) return false;
+    if (hasDuplicates(presentation.extraDescriptions)) return false;
     for (const description of presentation.extraDescriptions || []) {
       if (!description.name) return false;
     }
   }
+  if (hasDuplicates(input.extraDescriptions)) return false;
   for (const description of input.extraDescriptions || []) {
     if (!description.name) return false;
   }

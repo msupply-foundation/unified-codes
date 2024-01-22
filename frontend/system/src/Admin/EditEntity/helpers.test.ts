@@ -825,6 +825,46 @@ describe('isValidDrugInput', () => {
 
     expect(result).toBe(false);
   });
+
+  it('returns false when a name is duplicated', () => {
+    const drugInput: DrugInput = {
+      id: '7c8c2b5b',
+      name: 'Acetic Acid',
+      properties: [],
+      routes: [
+        {
+          id: '6e5f7a00',
+          name: 'Topical',
+          properties: [],
+          forms: [
+            {
+              id: '66e85500',
+              name: 'Solution',
+              properties: [],
+              strengths: [
+                {
+                  id: '36e874bf',
+                  name: 'SAME NAME',
+                  properties: [],
+                  units: [],
+                },
+                {
+                  id: '36e874b2',
+                  name: 'SAME NAME',
+                  properties: [],
+                  units: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    const result = isValidDrugInput(drugInput);
+
+    expect(result).toBe(false);
+  });
 });
 
 describe('isValidVaccineInput', () => {
@@ -909,6 +949,39 @@ describe('isValidVaccineInput', () => {
 
     expect(result).toBe(false);
   });
+
+  it('returns false when there is a duplicate name', () => {
+    const vaccineInput = {
+      id: '7c8c2b5b',
+      name: 'Some Vaccine',
+      properties: [],
+      components: [
+        {
+          id: '7e5f7a00',
+          name: 'Component 1/Component 2',
+          properties: [],
+          brands: [
+            {
+              id: '86e85500',
+              name: 'SAME',
+              properties: [],
+              routes: [],
+            },
+            {
+              id: '26e85500',
+              name: 'SAME',
+              properties: [],
+              routes: [],
+            },
+          ],
+        },
+      ],
+    };
+
+    const result = isValidVaccineInput(vaccineInput);
+
+    expect(result).toBe(false);
+  });
 });
 
 describe('isValidConsumableInput', () => {
@@ -972,6 +1045,33 @@ describe('isValidConsumableInput', () => {
         {
           id: '7e5f7a00',
           name: '',
+          properties: [],
+          extraDescriptions: [],
+        },
+      ],
+    };
+
+    const result = isValidConsumableInput(consumableInput);
+
+    expect(result).toBe(false);
+  });
+
+  it('returns false when there is a duplicate name', () => {
+    const consumableInput = {
+      id: '7c8c2b5b',
+      name: 'Examination Glove',
+      properties: [],
+      extraDescriptions: [],
+      presentations: [
+        {
+          id: '2e5f7a00',
+          name: 'SAME',
+          properties: [],
+          extraDescriptions: [],
+        },
+        {
+          id: '7e5f7a00',
+          name: 'SAME',
           properties: [],
           extraDescriptions: [],
         },
