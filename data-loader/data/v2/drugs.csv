@@ -112,6 +112,8 @@ Barium Sulfate,,,Oral,Suspension,,125%,1.25L,,,,,,933f3f00,3754f4bf,ef29e400,6ab
 Barium Sulfate,,,Oral,Suspension,,125%,2L,,,,,,933f3f00,3754f4bf,ef29e400,6ab11700,,ed204900,10bd3f00,,,,,,1311067,14.2,,10760601000116100,,51441577,,,,,,,,,,,,,
 Barium Sulfate,,,Oral,Suspension,,125%,350mL,,,,,,933f3f00,3754f4bf,ef29e400,6ab11700,,ed204900,7b7fa200,,,,,,1311067,14.2,,10760601000116100,,51441577,,,,,,,,,,,,,
 Barium Sulfate,,,Oral,Suspension,,125%,500mL,,,,,,933f3f00,3754f4bf,ef29e400,6ab11700,,ed204900,5227dd00,,,,,,1311067,14.2,,10760601000116100,,51441577,,,,,,,,,,,,,
+Barium Sulfate,,,Oral,Powder for reconstitution,,976.5mg per g,20kg,,,,,,933f3f00,3754f4bf,ef29e400,48a77e00,,ef590b00,5db1b300,,,,,,1311067,14.2,,10760601000116100,45330341000116100,51441577
+Barium Sulfate,,,Oral,Powder for reconstitution,,976.5mg per g,300g,,,,,,933f3f00,3754f4bf,ef29e400,48a77e00,,ef590b00,3839b000,,,,,,1311067,14.2,,10760601000116100,10411861000116100,51441577
 Bedaquiline,,,Oral,Tablet,,100mg,,,,,,,933f3f00,4c3e3e92,63f5f000,1b7cf300,,3798d4bf,,,,,,,1364504,6.2.5,6.2.5,46037271000116108,46037311000116108,,,,,,,,,,,,,,
 Bendamustine,,,Parenteral,Solution,,90mg per mL,2mL,,,,,,933f3f00,3e06c494,c8b3ea00,d7189200,,0f1d0d00,356b14bf,,,,,,134547,8.2.1,8.2.1,46118541000116102,,51112508,,,,,,,,,,,,,
 Bendamustine,,,Parenteral,Solution,,90mg per mL ,0.5mL,,,,,,933f3f00,3e06c494,c8b3ea00,d7189200,,0f1d0d00,357294bf,,,,,,134547,8.2.1,8.2.1,46118541000116102,,51112508,,,,,,,,,,,,,
@@ -412,8 +414,7 @@ Ethosuximide,,,Oral,Capsule,,250mg,,,,,,,933f3f00,cc0368ea,e70ece00,932a5900,,40
 Ethosuximide,,,Oral,Solution,,50mg per mL,200mL,,,,,,933f3f00,cc0368ea,e70ece00,3ec3b800,,75de8c00,4025e4bf,,,,,,4135,5,5,10737631000116102,10737741000116103,51141508,,,,,,,,,,,,,
 Etonogestrel,,,Subdermal,Implant,,68mg,,,,,,,933f3f00,4903422b,3ee4cf00,dc339b00,,3ff944bf,,,,,,,14584,22.1.5,22.1.5,20043871000116107,20043881000116109,51352005,,,,,,,,,,,,,
 Etoposide,,,Oral,Capsule,,100mg,,,,,,,933f3f00,8d1a2536,7056ed00,c28dfc00,,405c74bf,,,,,,,4179,8.2.1,8.2.1,10278701000116105,10698331000116108,51111739,,,,,,,,,,,,,
-Etoposide,,,Parenteral,Solution,,20mg per mL,5mL,,,,,,933f3f00,8d1a2536,132ff200,a0b76500,,db331f00,4053a4bf,,,,,,4179,8.2.1,8.2.1,10278701000116105,"43952161000116108, 10278861000116102
-",51111739,,,,,,,,,,,,,
+Etoposide,,,Parenteral,Solution,,20mg per mL,5mL,,,,,,933f3f00,8d1a2536,132ff200,a0b76500,,db331f00,4053a4bf,,,,,,4179,8.2.1,8.2.1,10278701000116105,"43952161000116108, 10278861000116102",51111739,,,,,,,,,,,,,
 Examination Glove,,,,,,Extra Large,,,,,,,77fcbb00,ffd9a200,,,,c80865da,,,,,,,,,,,,,,,,,,,,,,,,,
 Examination Glove,,,,,,Large,,,,,,,77fcbb00,ffd9a200,,,,a73555da,,,,,,,,,,,,,,,,,,,,,,,,,
 Examination Glove,,,,,,Medium,,,,,,,77fcbb00,ffd9a200,,,,8d3625da,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -792,6 +793,7 @@ Miltefosine,,,Oral,Capsule,,10mg,,,,,,,933f3f00,23f08855,e6450500,5723b400,,50f6
 Miltefosine,,,Oral,Capsule,,50mg,,,,,,,933f3f00,23f08855,e6450500,5723b400,,50fc34bf,,,,,,,1494066,6.5.2,6.5.2,,,51101668,,,,,,,,,,,,,
 Misoprostol,,,Oral,Tablet,,200mcg,,,,,,,933f3f00,a8a8120b,1e03a700,6cefce00,,51f324bf,,,,,,,42331,22.3,22.3,10233281000116100,10233301000116104,51182214,,,,,,,,,,,,,
 Misoprostol,,,Vaginal,Tablet,,25mcg,,,,,,,933f3f00,a8a8120b,1e03a700,6cefce00,,51e824bf,,,,,,,42331,22.3,22.3,10233281000116100,,51182214,,,,,,,,,,,,,
+Molnupiravir,,,Oral,Capsule,,200 mg,,,,,,,933f3f00,8b75169h0,ad9cbab3c,14ec394e4,,4bacb9kbd,,,,,,,2587901,,,47623831000116100,47623921000116100,
 Morphine Hydrochloride,,,Oral,Tablet,Extended-release,100mg,,,,,,,933f3f00,1d2a0860,c36f8100,c5875900,a5277100,538404bf,,,,,,,235751,"1.3, 2.2",2.2,10361001000116102,,51372031,,,,,,,,,,,,,
 Morphine Hydrochloride,,,Oral,Tablet,Extended-release,10mg,,,,,,,933f3f00,1d2a0860,c36f8100,c5875900,a5277100,534684bf,,,,,,,235751,"1.3, 2.2",2.2,10361001000116102,,51372031,,,,,,,,,,,,,
 Morphine Hydrochloride,,,Oral,Tablet,Extended-release,200mg,,,,,,,933f3f00,1d2a0860,c36f8100,c5875900,a5277100,5392f4bf,,,,,,,235751,"1.3, 2.2",2.2,10361001000116102,,51372031,,,,,,,,,,,,,
@@ -840,6 +842,7 @@ Nifedipine,,,Oral,Tablet,Immediate-release,20mg,,,,,,,933f3f00,2b9706b7,f6aed400
 Nifurtimox,,,Oral,Tablet,,120mg,,,,,,,933f3f00,23290191,9b5af900,30b1d800,,5406a4bf,,,,,,,7421,"6.5.5.1, 6.5.5.2","6.5.5.1, 6.5.5.2",,,51101673,,,,,,,,,,,,,
 Nifurtimox,,,Oral,Tablet,,250mg,,,,,,,933f3f00,23290191,9b5af900,30b1d800,,540d54bf,,,,,,,7421,"6.5.5.1, 6.5.5.2",6.5.5.2,,,51101673,,,,,,,,,,,,,
 Nifurtimox,,,Oral,Tablet,,30mg,,,,,,,933f3f00,23290191,9b5af900,30b1d800,,5401b4bf,,,,,,,7421,"6.5.5.1, 6.5.5.2",6.5.5.2,,,51101673,,,,,,,,,,,,,
+Nirmatrelvir/Ritonavir,,933f3f00,Oral,Tablet,,150mg/100mg,,,,,,,933f3f00,ada637fz6,78a1bg536,c59b7e835,,1f495r5c9,,,,,,,,,,10359801000116100,47770301000116100,
 Nitric Oxide,,,Inhalation,Gas,,800ppm,1963L,,,,,,933f3f00,5453a4bf,5d516a00,0dd28500,,f67b3400,fdfd2700,,,,,,7442,,,,,,,,,,,,,,,,,,
 Nitric Oxide,,,Inhalation,Gas,,800ppm,353L,,,,,,933f3f00,5453a4bf,5d516a00,0dd28500,,f67b3400,014cd900,,,,,,7442,,,,,,,,,,,,,,,,,,
 Nitrofurantoin,,,Oral,Suspension,,5mg per mL,300mL,,,,,,933f3f00,c8ec07e6,e6e93b00,518f1200,,a2059a00,544c74bf,,,,,,7454,6.2.1,6.2.1,10331441000116100,,51285307,,,,,,,,,,,,,
@@ -999,6 +1002,7 @@ Rapid Diagnostic Test HIV,RDT,,,,,,1,,,,,Determine HIV 1/2,77fcbb00,5193e174d,,,
 Rapid Diagnostic Test HIV,RDT,,,,,,1,,,,,Uni-Gold HIV,77fcbb00,5193e174d,,,,,6c7db700,,,,,4712d43e,,,,,,,,,,,,,,,,,,,
 Rapid Diagnostic Test HIV,RDT,,,,,,1,,,,,VIKIA HIV 1/2,77fcbb00,5193e174d,,,,,6c7db700,,,,,47e0543e,,,,,,,,,,,,,,,,,,,
 Rapid Diagnostic Test Malaria,RDT,,,,,,1,,,,,,77fcbb00,b4a4105c4,,,,,47b2b43e,,,,,,,,,,,,,,,,,,,,,,,,
+"Rapid Diagnostic Test, COVID-19",RDT,,,,,,1,,,,,,77fcbb00,14e5a5793,,,,,24694gd96,,,,,,,,,,,41116205
 Red Blood Cells,,,Parenteral,Liquid,,,240mL,,,,,,933f3f00,614614bf,ab234f00,3630d600,,,97e44100,,,,,,,11.1,,,,41132001,,,,,,,,,,,,,
 Retinol,Vitamin A,,Oral,Capsule,,100000IU,,,,,,,933f3f00,65877a2c,bcf5ad00,c7b1bc00,,61d3f4bf,,,,,,,11246,27,27,29558351000116103,,50501515,,,,,,,,,,,,,
 Retinol,Vitamin A,,Oral,Capsule,,200000IU,,,,,,,933f3f00,65877a2c,bcf5ad00,c7b1bc00,,61fe94bf,,,,,,,11246,27,27,29558351000116103,,50501515,,,,,,,,,,,,,
@@ -1115,6 +1119,9 @@ Tetracycline,,,Eye,Ointment,,1%,3g,,,,,,933f3f00,573c2c72,a9acac00,a048bf00,,650
 Tetracycline,,,Eye,Ointment,,1%,3.5g,,,,,,933f3f00,573c2c72,a9acac00,a048bf00,,650f14bf,74f82200,,,,,,10395,21.1,21.1,10010981000116101,10011001000116100,51284017,,,,,,,,,,,,,
 Tetracycline,,,Eye,Ointment,,1%,4g,,,,,,933f3f00,573c2c72,a9acac00,a048bf00,,650f14bf,e7be5d00,,,,,,10395,21.1,21.1,10010981000116101,,51284017,,,,,,,,,,,,,
 Tetracycline,,,Eye,Ointment,,1%,5g,,,,,,933f3f00,573c2c72,a9acac00,a048bf00,,650f14bf,8617ac00,,,,,,10395,21.1,21.1,10010981000116101,,51284017,,,,,,,,,,,,,
+Therapeutic Food,"Ready-to-Use Therapeutic Food, RUTF",,Oral,Paste,,500kcal,92g,Sachet,,,,eeZeePaste,,,,,,,,,,,,,,,,,,42231819
+Therapeutic Milk,,,Oral,Powder for reconstitution,,0.75kcal per mL,102.5g,Sachet,,,,F-75,,,,,,,,,,,,,,,,,,42231817
+Therapeutic Milk,,,Oral,Powder for reconstitution,,1kcal per mL,114g,Sachet,,,,F-100,,,,,,,,,,,,,,,,,,42231817
 Thiamine,Vitamin B1,,Oral,Tablet,,50mg,,,,,,,933f3f00,47ebe523,f8808600,6bb53100,,6560b4bf,,,,,,,10454,27,27,10035171000116104,10035191000116100,51191909,,,,,,,,,,,,,
 Timolol,,,Eye,Drop,,0.25%,5mL,,,,,,933f3f00,61c5d25a,0e833000,e0d53300,,658294bf,a2f6ee00,,,,,,10600,21.4,21.4,10063181000116107,"10063381000116105, 10680431000116101, 45213421000116103",51263136,,,,,,,,,,,,,
 Timolol,,,Eye,Drop,,0.5%,5mL,,,,,,933f3f00,61c5d25a,0e833000,e0d53300,,656604bf,a7f1f900,,,,,,10600,21.4,21.4,10063181000116107,"10680301000116102, 10063291000116101, 45213671000116102",51263136,,,,,,,,,,,,,
@@ -1197,10 +1204,14 @@ COVID-19 vaccine [viral vector],,,Parenteral,Suspension,AZD1222 [ChAdOX1-S] (Ast
 COVID-19 vaccine [viral vector],,,Parenteral,Suspension,AZD1222 [ChAdOX1-S] (AstraZeneca),1 x 10^11 vp per mL,5mL,Vial,10 doses,,,,933f3f00,3ab9c2c3e,ca6b457e2,8ea7a1bb7,a60328624,1d2ae3ed7,99cbab488,b9948cd18,ac6cbab3c,,,,2479831,,,,,,,,,,,,,,,,,,,,
 COVID-19 vaccine [viral vector],,,Parenteral,Suspension,,1 x 10^11 vp per mL,2.5mL,Vial,5 doses,,,,933f3f00,3ab9c2c3e,ca6b457e2,8ea7a1bb7,74d966d9e,4bdc32026,62a23619b,617a76ef9,14ec334e4,,,,2479831,,,,,,,,,,,,,,,,,,,,
 COVID-19 vaccine [viral vector],,,Parenteral,Suspension,Gam-COVID-Vac [Sputnik V] (Gamaleya),2 x 10^11 vp per mL,3mL,Vial,5 doses,,,,933f3f00,3ab9c2c3e,ca6b457e2,8ea7a1bb7,85d44350b,8465f8970,54c566d6b,8c1615989,4bacb5cbd,,,,2479831,,,,,,,,,,,,,,,,,,,,
-COVID-19 vaccine [mRNA-based],,,Parenteral,Suspension,BNT162b2 [Tozinameran] (Pfizer/BioNTech),0.1mg per mL,0.45mL,Vial,6 doses,,,,933f3f00,11c672231,a52316e87,235c18bc5,d4b6cb716,3fd9b240c,54c8891b4,5ec96b214,ada637fc6,,,,2468231,,,47407191000116100,47407241000116100,,,,,,,,,,,,,,,,
-COVID-19 vaccine [mRNA-based],,,Parenteral,Suspension,mRNA-1273 (Moderna),0.2mg per mL,5mL,Vial,11 doses,,,,933f3f00,11c672231,a52316e87,235c18bc5,2f99e94d1,cc578c833,765b31d17,be5ac1c73,78a1ad526,,,,2468231,,,,,,,,,,,,,,,,,,,,
-COVID-19 vaccine [mRNA-based],,,Parenteral,Suspension,mRNA-1273 (Moderna),0.2mg per mL,7.5mL,Vial,15 doses,,,,933f3f00,11c672231,a52316e87,235c18bc5,2f99e94d1,cc578c833,bbc37dc67,3694a9911,c56b7b834,,,,2468231,,,,,,,,,,,,,,,,,,,,
-COVID-19 vaccine [inactivated virus],,,Parenteral,Suspension,BBIBP-CorV (Sinopharm Beijing),,0.5mL,Pre-filled syringe,1 dose,,,,933f3f00,b1ab0664f,f3664828e,fcaed62ec,7b4668493,,a6ea839b7,149c11856,1f495d5c3,,,,,,,,,,,,,,,,,,,,,,,,
+COVID-19 vaccine [mRNA-based],Tozinameran,,Parenteral,Suspension,BNT162b2 [Tris/Sucrose Presentation] (Pfizer/BioNTech) Ready To Use,30mcg per 0.3mL dose,2.25mL,Vial,6 doses,,,,933f3f00,11c672231,a52316e87,235c18bc5,6ka0a68rq,zg10c351j,95b89q2y5,5ec96b214,31y89s2a5,,,,,,,,,,,,,,,,,,,,,,,,
+COVID-19 vaccine [mRNA-based],Tozinameran,,Parenteral,Suspension,BNT162b2 [Tris/Sucrose Presentation] (Pfizer/BioNTech) Dilute To Use,10mcg per 0.2mL dose,1.3mL,Vial,10 doses (Orange Cap),,,,933f3f00,11c672231,a52316e87,235c18bc5,5g90ah84d,yf09b240h,94a88r1z4,5ec96b214,30x88r1z4,,,,2468231,,,,,,,,,,,,,,,,,,,,
+COVID-19 vaccine [mRNA-based],Tozinameran,,Parenteral,Suspension,BNT162b2 [Tozinameran] (Pfizer/BioNTech),0.1mg per mL,0.45mL,Vial,6 doses,,,,933f3f00,11c672231,a52316e87,235c18bc5,d4b6cb716,3fd9b240c,54c8891b4,5ec96b214,ada637fd6,,,,2468231,,,47407191000116100,47407241000116100,,,,,,,,,,,,,,,,
+COVID-19 vaccine [mRNA-based],,,Parenteral,Suspension,mRNA-1273 (Moderna),0.2mg per mL,5mL,Vial,11 doses,,,,933f3f00,11c672231,a52316e87,235c18bc5,2f99e94d1,cc578c833,765b31d17,be5ac1c73,78a1ad526,,,,2468231
+COVID-19 vaccine [mRNA-based],,,Parenteral,Suspension,mRNA-1273 (Moderna),0.2mg per mL,7.5mL,Vial,15 doses,,,,933f3f00,11c672231,a52316e87,235c18bc5,2f99e94d1,cc578c833,bbc37dc67,3694a9911,c56b7b834,,,,2468231
+COVID-19 vaccine [mRNA-based],,,Parenteral,Suspension,Pfizer-BioNtec,0.2ml per 10dose,7.5mL,Vial,10 doses (Orange Cap),,,,933f3f00,11c672231,a52316e87,235c18bc5,5g90ah84d,yf09b240h,94a88r1z4,,30x88r1z4,,,,2468231
+COVID-19 vaccine [inactivated virus],,,Parenteral,Suspension,Sinovac (Vero Cell),,0.5mL,,,,,,933f3f00,b1ab0664f,f3664828e,fcaed62ec,9eea0ae0e,,14ec334e5,,,,,,,,,,,,,,,,,,,,,,,,,,
+COVID-19 vaccine [inactivated virus],,,Parenteral,Suspension,BBIBP-CorV (Sinopharm Beijing),,0.5mL,Pre-filled syringe,1 dose,,,,933f3f00,b1ab0664f,f3664828e,fcaed62ec,7b4668493,,a6ea839b7,149c11856,1f495d5c3
 Diphtheria/Tetanus Vaccine,DT,,Parenteral,Suspension,,2IU/20IU,0.5mL,Pre-filled syringe,,,,,933f3f00,4e6a681d,55549b499,fe4cc6977,,2f39a2abc,43858641a,3d2698b25,,,,,1007589,19.3,19.3,20031481000116109,10019601000116109,51201629,,,,,,,,,,,,,,,
 Diphtheria/Tetanus Vaccine,DT,,Parenteral,Suspension,,30IU/40IU per dose,0.5mL,Ampoule,,,,,933f3f00,4e6a681d,55549b499,fe4cc6977,,f9467177e,58d696122,0ce43e365,,,,,1007589,19.3,19.3,20031481000116109,,51201629,,,,,,,,,,,,,,,
 Diphtheria/Tetanus Vaccine,DT,,Parenteral,Suspension,,30IU/40IU per dose,5mL,Vial,10 doses,,,,933f3f00,4e6a681d,55549b499,fe4cc6977,,f9467177e,2b421ad8c,5f982d0cb,246f85e9,,,,1007589,19.3,19.3,20031481000116109,,51201629,,,,,,,,,,,,,,,
