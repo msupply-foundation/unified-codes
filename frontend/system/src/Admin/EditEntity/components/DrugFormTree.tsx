@@ -136,6 +136,7 @@ export const DrugFormTree = ({
           />
         </Box>
       </Box>
+
       {/* No initial ids === new item */}
       {!initialIds.length && <ExistingNameSuggestor name={draft.name} />}
 
