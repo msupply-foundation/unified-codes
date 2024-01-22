@@ -13,6 +13,9 @@ import { NameEditField } from './NameEditField';
 import { useConfigurationItems } from '../../Configuration/api';
 import { ConfigurationItemTypeInput } from '@common/types';
 import { useEntities } from 'frontend/system/src/Entities/api';
+import { Link } from 'react-router-dom';
+import { RouteBuilder } from '@common/utils';
+import { AppRoute } from 'frontend/config/src';
 
 export const DrugFormTree = ({
   draft,
@@ -147,10 +150,17 @@ export const DrugFormTree = ({
           />
         </Box>
       </Box>
+      {/* TODO: only display me on new form! */}
       {match && (
-        <Typography>
+        <Link
+          style={{ display: 'block', marginLeft: '10px' }}
+          to={RouteBuilder.create(AppRoute.Admin)
+            .addPart(AppRoute.Edit)
+            .addPart(match.code)
+            .build()}
+        >
           Did you mean {match.description} ({match.code})?
-        </Typography>
+        </Link>
       )}
 
       {!!draft.routes.length && (
