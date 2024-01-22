@@ -49,10 +49,10 @@ export interface Brand extends Entity {
   routes: Route[];
 }
 
-export interface Component extends Entity {
+export interface ActiveIngredients extends Entity {
   brands: Brand[];
 }
 
 export interface VaccineInput extends Entity {
-  components: Component[];
+  activeIngredients: ActiveIngredients[];
 }

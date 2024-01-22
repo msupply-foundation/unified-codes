@@ -116,13 +116,13 @@ export const buildVaccineInputFromEntity = (
 ): VaccineInput => {
   return {
     ...getDetails(entity),
-    components:
+    activeIngredients:
       entity.children
-        ?.filter(component => component.type === EntityType.Component)
-        .map(component => ({
-          ...getDetails(component),
+        ?.filter(ingred => ingred.type === EntityType.ActiveIngredient)
+        .map(ingred => ({
+          ...getDetails(ingred),
           brands:
-            component.children
+            ingred.children
               ?.filter(brand => brand.type === EntityType.Brand)
               .map(brand => ({
                 ...getDetails(brand),
@@ -180,52 +180,52 @@ export const buildEntityFromVaccineInput = (
     type: EntityType.Product,
     category: EntityCategory.Vaccine,
     properties: vaccine.properties?.map(mapProperty),
-    children: vaccine.components?.map(component => ({
-      code: component.code,
-      name: component.name,
-      description: `${vaccine.name} ${component.name}`,
-      type: EntityType.Component,
+    children: vaccine.activeIngredients?.map(ingred => ({
+      code: ingred.code,
+      name: ingred.name,
+      description: `${vaccine.name} ${ingred.name}`,
+      type: EntityType.ActiveIngredient,
       category: EntityCategory.Vaccine,
-      properties: component.properties?.map(mapProperty),
-      children: component.brands?.map(brand => ({
+      properties: ingred.properties?.map(mapProperty),
+      children: ingred.brands?.map(brand => ({
         code: brand.code,
         name: brand.name,
-        description: `${vaccine.name} ${component.name} ${brand.name}`,
+        description: `${vaccine.name} ${ingred.name} ${brand.name}`,
         type: EntityType.Brand,
         category: EntityCategory.Vaccine,
         properties: brand.properties?.map(mapProperty),
         children: brand.routes?.map(route => ({
           code: route.code,
           name: route.name,
-          description: `${vaccine.name} ${component.name} ${brand.name} ${route.name}`,
+          description: `${vaccine.name} ${ingred.name} ${brand.name} ${route.name}`,
           type: EntityType.Route,
           category: EntityCategory.Drug,
           properties: route.properties?.map(mapProperty),
           children: route.forms?.map(form => ({
             code: form.code,
             name: form.name,
-            description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name}`,
+            description: `${vaccine.name} ${ingred.name} ${brand.name} ${route.name} ${form.name}`,
             type: EntityType.Form,
             category: EntityCategory.Vaccine,
             properties: form.properties?.map(mapProperty),
             children: form.strengths?.map(strength => ({
               code: strength.code,
               name: strength.name,
-              description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name} ${strength.name}`,
+              description: `${vaccine.name} ${ingred.name} ${brand.name} ${route.name} ${form.name} ${strength.name}`,
               type: EntityType.Strength,
               category: EntityCategory.Vaccine,
               properties: strength.properties?.map(mapProperty),
               children: strength.units?.map(unit => ({
                 code: unit.code,
                 name: unit.name,
-                description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name} ${strength.name} ${unit.name}`,
+                description: `${vaccine.name} ${ingred.name} ${brand.name} ${route.name} ${form.name} ${strength.name} ${unit.name}`,
                 type: EntityType.Unit,
                 category: EntityCategory.Vaccine,
                 properties: unit.properties?.map(mapProperty),
                 children: unit.immediatePackagings?.map(immPack => ({
                   code: immPack.code,
                   name: immPack.name,
-                  description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name} ${strength.name} ${unit.name} ${immPack.name}`,
+                  description: `${vaccine.name} ${ingred.name} ${brand.name} ${route.name} ${form.name} ${strength.name} ${unit.name} ${immPack.name}`,
                   type: EntityType.ImmediatePackaging,
                   category: EntityCategory.Vaccine,
                   properties: immPack.properties?.map(mapProperty),
@@ -349,9 +349,9 @@ export const isValidDrugInput = (input: DrugInput) => {
 export const isValidVaccineInput = (input: VaccineInput) => {
   if (!input.name) return false;
 
-  for (const component of input.components || []) {
-    if (!component.name) return false;
-    for (const brand of component.brands || []) {
+  for (const ingred of input.activeIngredients || []) {
+    if (!ingred.name) return false;
+    for (const brand of ingred.brands || []) {
       if (!brand.name) return false;
       for (const route of brand.routes || []) {
         if (!route.name) return false;
