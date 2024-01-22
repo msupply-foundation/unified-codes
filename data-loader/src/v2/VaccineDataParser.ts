@@ -64,7 +64,7 @@ export class VaccineDataParser {
           {
             name: row.drug_name_details,
             code: row.uc2,
-            type: EEntityType.DrugNameDetails,
+            type: EEntityType.VaccineNameDetails,
           },
           {
             name: row.active_ingredients,
