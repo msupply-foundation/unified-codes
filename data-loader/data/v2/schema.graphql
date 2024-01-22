@@ -14,6 +14,12 @@ type Entity {
   properties: [Property] @dgraph(pred: "properties")
   children: [Entity] @dgraph(pred: "children")
   parents: [Entity] @dgraph(pred: "~children")
+  interaction_groups: [DrugInteractionGroup]
+    @dgraph(pred: "interaction_groups")
+    @hasInverse(field: drugs)
+  interactions: [DrugInteraction]
+    @dgraph(pred: "interactions")
+    @hasInverse(field: drugs)
 }
 
 type Property {
@@ -64,4 +70,39 @@ type PropertyConfigurationItem {
   type: String @dgraph(pred: "propertyType") @search(by: [exact])
   title: String @dgraph(pred: "title")
   website: String @dgraph(pred: "website")
+}
+
+enum DrugInteractionSeverity {
+  Severe
+  Moderate
+  NothingExpected
+}
+
+type DrugInteraction {
+  id: ID!
+  interaction_id: String!
+    @id
+    @dgraph(pred: "interaction_id")
+    @search(by: [exact])
+  name: String! @dgraph(pred: "name") @search(by: [exact, fulltext, trigram])
+  severity: DrugInteractionSeverity! @search(by: [exact])
+  description: String @dgraph(pred: "description")
+  action: String @dgraph(pred: "action")
+  reference: String @dgraph(pred: "reference")
+  groups: [DrugInteractionGroup]
+    @dgraph(pred: "groups")
+    @hasInverse(field: interactions)
+  drugs: [Entity] @dgraph(pred: "drugs")
+}
+
+type DrugInteractionGroup {
+  id: ID!
+  interaction_group_id: String!
+    @id
+    @dgraph(pred: "group_id")
+    @search(by: [exact])
+  name: String! @dgraph(pred: "name") @search(by: [exact, fulltext, trigram])
+  description: String @dgraph(pred: "description")
+  drugs: [Entity] @dgraph(pred: "drugs")
+  interactions: [DrugInteraction] @dgraph(pred: "interactions")
 }
