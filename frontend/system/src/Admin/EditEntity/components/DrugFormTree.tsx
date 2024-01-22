@@ -159,7 +159,9 @@ export const DrugFormTree = ({
             .addPart(match.code)
             .build()}
         >
-          Did you mean {match.description} ({match.code})?
+          {t('message.did-you-mean', {
+            suggestion: `${match.description} (${match.code})`,
+          })}
         </Link>
       )}
 
