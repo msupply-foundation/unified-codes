@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
 
-export const ExistingNameSuggestor = ({ name }: { name: string }) => {
+export const ExistingNameSuggester = ({ name }: { name: string }) => {
   const t = useTranslation('system');
 
   const { data: matchingEntities } = useEntities({

@@ -12,7 +12,7 @@ import { EditPropertiesButton } from './EditPropertiesButton';
 import { NameEditField } from './NameEditField';
 import { useConfigurationItems } from '../../Configuration/api';
 import { ConfigurationItemTypeInput } from '@common/types';
-import { ExistingNameSuggestor } from './ExistingItemSuggestor';
+import { ExistingNameSuggester } from './ExistingItemSuggester';
 
 export const DrugFormTree = ({
   draft,
@@ -138,7 +138,7 @@ export const DrugFormTree = ({
       </Box>
 
       {/* No initial ids === new item */}
-      {!initialIds.length && <ExistingNameSuggestor name={draft.name} />}
+      {!initialIds.length && <ExistingNameSuggester name={draft.name} />}
 
       {!!draft.routes.length && (
         <Typography fontSize="12px">{t('label.routes')}</Typography>
