@@ -21,7 +21,7 @@ export const ExistingNameSuggestor = ({ name }: { name: string }) => {
 
   return match ? (
     <Link
-      style={{ display: 'block', marginLeft: '10px' }}
+      style={{ display: 'block', marginLeft: '10px', color: '#003AB1' }}
       to={RouteBuilder.create(AppRoute.Admin)
         .addPart(AppRoute.Edit)
         .addPart(match.code)
