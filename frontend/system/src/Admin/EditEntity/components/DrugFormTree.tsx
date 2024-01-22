@@ -150,8 +150,8 @@ export const DrugFormTree = ({
           />
         </Box>
       </Box>
-      {/* TODO: only display me on new form! */}
-      {match && (
+      {/* No initial ids === new item */}
+      {!initialIds.length && match && (
         <Link
           style={{ display: 'block', marginLeft: '10px' }}
           to={RouteBuilder.create(AppRoute.Admin)
