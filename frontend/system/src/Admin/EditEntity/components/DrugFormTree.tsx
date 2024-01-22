@@ -12,10 +12,7 @@ import { EditPropertiesButton } from './EditPropertiesButton';
 import { NameEditField } from './NameEditField';
 import { useConfigurationItems } from '../../Configuration/api';
 import { ConfigurationItemTypeInput } from '@common/types';
-import { useEntities } from 'frontend/system/src/Entities/api';
-import { Link } from 'react-router-dom';
-import { RouteBuilder } from '@common/utils';
-import { AppRoute } from 'frontend/config/src';
+import { ExistingNameSuggestor } from './ExistingItemSuggestor';
 
 export const DrugFormTree = ({
   draft,
@@ -44,17 +41,6 @@ export const DrugFormTree = ({
     onOpen,
     entity: propertiesModalData,
   } = useEditModal<Property[]>();
-
-  const { data: matchingEntities } = useEntities({
-    filter: {
-      categories: ['drug', 'consumable', 'vaccine'],
-      match: 'exact',
-      description: draft.name,
-    },
-    first: 1,
-    offset: 0,
-  });
-  const match = matchingEntities?.data[0];
 
   // Get the route, form, and immediate packaging options
   const { data: routes, isLoading: isLoadingRoutes } = useConfigurationItems({
@@ -151,19 +137,7 @@ export const DrugFormTree = ({
         </Box>
       </Box>
       {/* No initial ids === new item */}
-      {!initialIds.length && match && (
-        <Link
-          style={{ display: 'block', marginLeft: '10px' }}
-          to={RouteBuilder.create(AppRoute.Admin)
-            .addPart(AppRoute.Edit)
-            .addPart(match.code)
-            .build()}
-        >
-          {t('message.did-you-mean', {
-            suggestion: `${match.description} (${match.code})`,
-          })}
-        </Link>
-      )}
+      {!initialIds.length && <ExistingNameSuggestor name={draft.name} />}
 
       {!!draft.routes.length && (
         <Typography fontSize="12px">{t('label.routes')}</Typography>
