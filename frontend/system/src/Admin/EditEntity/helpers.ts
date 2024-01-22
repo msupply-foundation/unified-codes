@@ -118,7 +118,7 @@ export const buildVaccineInputFromEntity = (
     ...getDetails(entity),
     activeIngredients:
       entity.children
-        ?.filter(ingred => ingred.type === EntityType.ActiveIngredient)
+        ?.filter(ingred => ingred.type === EntityType.ActiveIngredients)
         .map(ingred => ({
           ...getDetails(ingred),
           brands:
@@ -184,7 +184,7 @@ export const buildEntityFromVaccineInput = (
       code: ingred.code,
       name: ingred.name,
       description: `${vaccine.name} ${ingred.name}`,
-      type: EntityType.ActiveIngredient,
+      type: EntityType.ActiveIngredients,
       category: EntityCategory.Vaccine,
       properties: ingred.properties?.map(mapProperty),
       children: ingred.brands?.map(brand => ({

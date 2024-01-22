@@ -11,7 +11,7 @@ export const enum EntityType {
   Strength = 'DoseStrength',
   Unit = 'Unit',
   ImmediatePackaging = 'PackImmediate',
-  ActiveIngredient = 'ActiveIngredient',
+  ActiveIngredients = 'ActiveIngredients',
   Brand = 'Brand',
   Presentation = 'Presentation',
   ExtraDescription = 'ExtraDescription',

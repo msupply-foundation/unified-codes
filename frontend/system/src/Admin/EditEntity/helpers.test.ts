@@ -349,7 +349,7 @@ describe('buildVaccineInputFromEntity', () => {
         {
           code: '7e5f7a00',
           name: 'Component 1/Component 2',
-          type: 'ActiveIngredient',
+          type: 'ActiveIngredients',
           properties: [],
           children: [
             {
@@ -496,7 +496,7 @@ describe('buildVaccineInputFromEntity', () => {
         {
           code: '7e5f7a00',
           name: 'Component 1/Component 2',
-          type: 'ActiveIngredient',
+          type: 'ActiveIngredients',
           properties: [],
           children: [
             {
