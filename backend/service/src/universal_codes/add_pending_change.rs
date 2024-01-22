@@ -17,7 +17,6 @@ pub struct AddPendingChange {
     pub category: String,
     pub body: String,
     pub change_type: ChangeType,
-    pub requested_for: String,
 }
 
 pub async fn add_pending_change(
@@ -76,7 +75,6 @@ pub fn generate(
         category: change_request.category.clone(),
         body: change_request.body.clone(),
         change_type: change_request.change_type.clone(),
-        requested_for: change_request.requested_for.clone(),
 
         status: ChangeStatus::Pending,
         date_requested: Utc::now().naive_utc(),
@@ -101,11 +99,6 @@ pub async fn validate(
     if pending_change.body.clone().is_empty() {
         return Err(ModifyUniversalCodeError::InternalError(
             "Body is required".to_string(),
-        ));
-    }
-    if pending_change.requested_for.clone().is_empty() {
-        return Err(ModifyUniversalCodeError::InternalError(
-            "Requested For is required".to_string(),
         ));
     }
 
