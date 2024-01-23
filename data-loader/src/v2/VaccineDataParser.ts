@@ -7,6 +7,8 @@ import {
   EEntityType,
   ParserOptions,
   IVaccinesData,
+  EPropertyType,
+  IPropertyNode,
 } from './types';
 
 export class VaccineDataParser {
@@ -96,18 +98,17 @@ export class VaccineDataParser {
           },
         ];
 
-        // TODO: properties
-        // const productProperties: IPropertyNode[] = [
-        //   { type: EPropertyType.RxNav, value: row.rxnav },
-        //   { type: EPropertyType.WHOEML, value: row.who_eml_product },
-        //   { type: EPropertyType.NZULM, value: row.nzulm },
-        //   { type: EPropertyType.UNSPSC, value: row.unspsc },
-        // ];
+        const productProperties: IPropertyNode[] = [
+          { type: EPropertyType.RxNav, value: row.rxnav },
+          { type: EPropertyType.WHOEML, value: row.who_eml_product },
+          { type: EPropertyType.NZULM, value: row.nzulm },
+          { type: EPropertyType.UNSPSC, value: row.unspsc },
+        ];
 
-        // const itemProperties: IPropertyNode[] = [
-        //   { type: EPropertyType.WHOEML, value: row.who_eml_item },
-        //   { type: EPropertyType.NZULM, value: row.nzulm_item },
-        // ];
+        const itemProperties: IPropertyNode[] = [
+          { type: EPropertyType.WHOEML, value: row.who_eml_item },
+          { type: EPropertyType.NZULM, value: row.nzulm_item },
+        ];
 
         productDefinition.forEach(item => {
           if (!item.code) return;
@@ -175,6 +176,47 @@ export class VaccineDataParser {
             parentIndex = childIndex;
           }
           childIndex++;
+        }
+
+        // Process external properties at product level
+        if (productCode) {
+          productProperties.forEach(property => {
+            if (property.value) {
+              console.log(
+                `INFO: Property of type ${property.type} with value ${property.value} added for ${productCode}`
+              );
+              if (
+                !graph[productCode].properties.some(
+                  p => p.type === property.type
+                )
+              ) {
+                graph[productCode].properties.push(property);
+              }
+            }
+          });
+        }
+
+        const strengthCode = productDefinition.find(
+          item => item.type === EEntityType.DoseStrength
+        )?.code;
+
+        // Process external properties at item level
+        if (strengthCode) {
+          itemProperties.forEach(property => {
+            // temporary restriction for uc7 - these are not currently imported
+            if (property.value) {
+              console.log(
+                `INFO: Property of type ${property.type} with value ${property.value} added for ${strengthCode}`
+              );
+              if (
+                !graph[strengthCode].properties.some(
+                  p => p.type === property.type
+                )
+              ) {
+                graph[strengthCode].properties.push(property);
+              }
+            }
+          });
         }
       });
 
