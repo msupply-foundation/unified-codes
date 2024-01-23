@@ -16,4 +16,5 @@ export const enum EntityType {
   Presentation = 'Presentation',
   ExtraDescription = 'ExtraDescription',
   VaccineNameDetails = 'VaccineNameDetails',
+  PackSize = 'PackSize',
 }
