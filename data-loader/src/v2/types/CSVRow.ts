@@ -59,6 +59,7 @@ export interface IVaccineCSVRow {
   [ECSVColumn.Strength]: string;
   [ECSVColumn.UnitOfPresentation]: string;
   [ECSVColumn.ImmediatePackaging]: string;
+  [ECSVColumn.PackSize]: string;
   [ECSVColumn.UC1]: string;
   [ECSVColumn.UC2]: string;
   [ECSVColumn.UC3]: string;
@@ -68,6 +69,7 @@ export interface IVaccineCSVRow {
   [ECSVColumn.UC7]: string;
   [ECSVColumn.UC8]: string;
   [ECSVColumn.UC9]: string;
+  [ECSVColumn.UC10]: string;
   [ECSVColumn.RxNav]: string;
   [ECSVColumn.WHOEMLProduct]: string;
   [ECSVColumn.WHOEMLItem]: string;

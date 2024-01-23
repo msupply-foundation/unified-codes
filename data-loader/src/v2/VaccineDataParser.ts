@@ -61,19 +61,19 @@ export class VaccineDataParser {
       this.data.forEach(row => {
         const productDefinition = [
           { name: row.drug_name, code: row.uc1, type: EEntityType.Product },
+          { name: row.route, code: row.uc2, type: EEntityType.Route },
+          { name: row.dose_form, code: row.uc3, type: EEntityType.Form },
           {
             name: row.drug_name_details,
-            code: row.uc2,
+            code: row.uc4,
             type: EEntityType.VaccineNameDetails,
           },
           {
             name: row.active_ingredients,
-            code: row.uc3,
+            code: row.uc5,
             type: EEntityType.ActiveIngredients,
           },
-          { name: row.brand, code: row.uc4, type: EEntityType.Brand },
-          { name: row.route, code: row.uc5, type: EEntityType.Route },
-          { name: row.dose_form, code: row.uc6, type: EEntityType.Form },
+          { name: row.brand, code: row.uc6, type: EEntityType.Brand },
           {
             name: row.strength,
             code: row.uc7,
@@ -88,6 +88,11 @@ export class VaccineDataParser {
             name: row.immediate_packaging,
             code: row.uc9,
             type: EEntityType.PackImmediate,
+          },
+          {
+            name: row.pack_size,
+            code: row.uc10,
+            type: EEntityType.PackSize,
           },
         ];
 
