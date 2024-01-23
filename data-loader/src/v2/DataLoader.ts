@@ -115,9 +115,12 @@ export class DataLoader {
         uid(Entity) <category> "${entity.category}" .
         uid(Entity) <type> "${entity.type}" .
         uid(Entity) <code> "${entity.code}" .
-        uid(Entity) <alternativeNames> "${entity.alternativeNames}" .
         uid(Entity) <dgraph.type> "Entity" .
-      `;
+        ${
+          entity.alternativeNames
+            ? `uid(Entity) <alternativeNames> "${entity.alternativeNames}" .`
+            : ''
+        }`;
 
       if (await this.dgraph.upsert(query, nQuads)) {
         console.log(`INFO: Loaded entity with code ${entity.code}`);

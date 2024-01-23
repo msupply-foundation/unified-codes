@@ -196,14 +196,16 @@ export class DrugDataParser {
               .map(name => name.trim())
               .filter(name => !!name);
 
-            // store as a string so they're searchable...
-            const serialisedAltNames = altNames.join(',');
+            if (altNames.length) {
+              // store as a string so they're searchable...
+              const serialisedAltNames = altNames.join(',');
 
-            graph[productCode].alternativeNames = serialisedAltNames;
+              graph[productCode].alternativeNames = serialisedAltNames;
 
-            console.log(
-              `INFO: Alternate names ${serialisedAltNames} added for ${productCode}`
-            );
+              console.log(
+                `INFO: Alternate names ${serialisedAltNames} added for ${productCode}`
+              );
+            }
           }
 
           // Process external properties at product (UC2) level
