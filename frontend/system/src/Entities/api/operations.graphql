@@ -42,6 +42,12 @@ query entity($code: String!) {
                 ...EntityDetails
                 children {
                   ...EntityDetails
+                  children {
+                    ...EntityDetails
+                    children {
+                      ...EntityDetails
+                    }
+                  }
                 }
               }
             }
@@ -69,6 +75,12 @@ query product($code: String!) {
                 ...EntityDetails
                 children {
                   ...EntityDetails
+                  children {
+                    ...EntityDetails
+                    children {
+                      ...EntityDetails
+                    }
+                  }
                 }
               }
             }
