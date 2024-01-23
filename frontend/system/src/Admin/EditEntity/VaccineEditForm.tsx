@@ -37,7 +37,7 @@ export const VaccineEditForm = ({
       : {
           id: uuid(),
           name: '',
-          components: [],
+          activeIngredients: [],
         }
   );
 
@@ -71,7 +71,7 @@ export const VaccineEditForm = ({
           setDraft({
             id: uuid(),
             name: '',
-            components: [],
+            activeIngredients: [],
           });
         } else {
           success(

@@ -138,37 +138,39 @@ export const VaccineFormTree = ({
         </Box>
       </Box>
 
-      {!!draft.components.length && (
-        <Typography fontSize="12px">{t('label.components')}</Typography>
+      {!!draft.activeIngredients.length && (
+        <Typography fontSize="12px">{t('label.active-ingredients')}</Typography>
       )}
 
-      {draft.components.map(component => (
-        <TreeFormBox key={component.id}>
+      {draft.activeIngredients.map(activeIngredient => (
+        <TreeFormBox key={activeIngredient.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <NameEditField
-              disabled={initialIds.includes(component.id)}
-              value={component.name}
-              label={t('label.component')}
+              disabled={initialIds.includes(activeIngredient.id)}
+              value={activeIngredient.name}
+              label={t('label.active-ingredients')}
               onChange={e =>
                 onUpdate(
-                  { ...component, name: e.target.value },
-                  draft.components
+                  { ...activeIngredient, name: e.target.value },
+                  draft.activeIngredients
                 )
               }
-              onDelete={() => onDelete(component, draft.components)}
+              onDelete={() =>
+                onDelete(activeIngredient, draft.activeIngredients)
+              }
             />
             <EditPropertiesButton
               parents={[draft]}
-              entity={component}
+              entity={activeIngredient}
               onOpen={onOpenPropertiesModal}
             />
           </Box>
 
-          {!!component.brands.length && (
+          {!!activeIngredient.brands.length && (
             <Typography fontSize="12px">{t('label.brands')}</Typography>
           )}
 
-          {component.brands.map(brand => (
+          {activeIngredient.brands.map(brand => (
             <TreeFormBox key={brand.id}>
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                 <NameEditField
@@ -178,13 +180,13 @@ export const VaccineFormTree = ({
                   onChange={e =>
                     onUpdate(
                       { ...brand, name: e.target.value },
-                      component.brands
+                      activeIngredient.brands
                     )
                   }
-                  onDelete={() => onDelete(brand, component.brands)}
+                  onDelete={() => onDelete(brand, activeIngredient.brands)}
                 />
                 <EditPropertiesButton
-                  parents={[draft, component]}
+                  parents={[draft, activeIngredient]}
                   entity={brand}
                   onOpen={onOpenPropertiesModal}
                 />
@@ -213,7 +215,7 @@ export const VaccineFormTree = ({
                       onDelete={() => onDelete(route, brand.routes)}
                     />
                     <EditPropertiesButton
-                      parents={[draft, component, brand]}
+                      parents={[draft, activeIngredient, brand]}
                       entity={route}
                       onOpen={onOpenPropertiesModal}
                     />
@@ -244,7 +246,7 @@ export const VaccineFormTree = ({
                           onDelete={() => onDelete(form, route.forms)}
                         />
                         <EditPropertiesButton
-                          parents={[draft, component, brand, route]}
+                          parents={[draft, activeIngredient, brand, route]}
                           entity={form}
                           onOpen={onOpenPropertiesModal}
                         />
@@ -273,7 +275,13 @@ export const VaccineFormTree = ({
                               }
                             />
                             <EditPropertiesButton
-                              parents={[draft, component, brand, route, form]}
+                              parents={[
+                                draft,
+                                activeIngredient,
+                                brand,
+                                route,
+                                form,
+                              ]}
                               entity={strength}
                               onOpen={onOpenPropertiesModal}
                             />
@@ -305,7 +313,7 @@ export const VaccineFormTree = ({
                                 <EditPropertiesButton
                                   parents={[
                                     draft,
-                                    component,
+                                    activeIngredient,
                                     brand,
                                     route,
                                     form,
@@ -357,7 +365,7 @@ export const VaccineFormTree = ({
                                     <EditPropertiesButton
                                       parents={[
                                         draft,
-                                        component,
+                                        activeIngredient,
                                         brand,
                                         route,
                                         form,
@@ -440,16 +448,22 @@ export const VaccineFormTree = ({
           <AddFieldButton
             label={t('label.add-brand')}
             onClick={() =>
-              onUpdate({ id: uuid(), name: '', routes: [] }, component.brands)
+              onUpdate(
+                { id: uuid(), name: '', routes: [] },
+                activeIngredient.brands
+              )
             }
           />
         </TreeFormBox>
       ))}
 
       <AddFieldButton
-        label={t('label.add-component')}
+        label={t('label.add-active-ingredients')}
         onClick={() =>
-          onUpdate({ id: uuid(), name: '', brands: [] }, draft.components)
+          onUpdate(
+            { id: uuid(), name: '', brands: [] },
+            draft.activeIngredients
+          )
         }
       />
     </Box>
