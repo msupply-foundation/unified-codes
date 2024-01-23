@@ -135,13 +135,11 @@ Betamethasone,,,Topical,Cream,,0.10%,30g,,,,,,933f3f00,cd30cdb0,a834c100,8b44800
 Betamethasone,,,Topical,Lotion,,0.10%,60mL,,,,,,933f3f00,cd30cdb0,a834c100,d3d14300,,379474bf,22e64900,,,,,,1514,13.3,13.3,10095661000116109,10132551000116104,51422303
 Bevacizumab,,,Parenteral,Solution,,25mg per mL,4mL,,,,,,933f3f00,aee45d38,14f6fa00,3121d500,,ab4fe800,37fc84bf,,,,,,253337,21.6,21.6,10085131000116109,10085241000116105,51111731
 Bicalutamide,,,Oral,Tablet,,50mg,,,,,,,933f3f00,dd3655ea,adcd4400,7446f700,,375be4bf,,,,,,,83008,8.2.4,8.2.4,10112711000116104,20037581000116101,51111802
-Biohazard Spill Kit,,,,,,,1,,,,,,77fcbb00,af482fa09,,,,,a70125da,,,,,,,,,,,47131905
 Biperidin,Biperiden,,Oral,Tablet,,2mg,,,,,,,933f3f00,265bd592,edc4eb00,87bc0200,,37eb14bf,,,,,,,1589,9,9,,,51151617
 Biperidin,Biperiden,,Parenteral,Solution,,5mg per mL,1mL,,,,,,933f3f00,265bd592,5b65de00,b4534800,,434f0b00,37eed4bf,,,,,,1589,9,9,,,51151617
 Bisoprolol,,,Oral,Tablet,,1.25mg,,,,,,,933f3f00,c7203a8c,16f2bd00,c1fa8c00,,379c44bf,,,,,,,19484,"12.1, 12.2, 12.3, 12.4","12.1, 12.2, 12.3, 12.4",46119321000116107,44766851000116102,51263105
 Bisoprolol,,,Oral,Tablet,,5mg,,,,,,,933f3f00,c7203a8c,16f2bd00,c1fa8c00,,379fb4bf,,,,,,,19484,"12.1, 12.2, 12.3, 12.4","12.1, 12.2, 12.3, 12.4",46119321000116107,29551701000116106,51263105
 Bleomycin,,,Parenteral,Powder for reconstitution,,15mg,,,,,,,933f3f00,6e6c5fd2,66df1f00,763d6600,,37a954bf,,,,,,,1622,8.2.1,8.2.1,46119491000116103,10099901000116101,51111733
-Breastfeeding Simulator Model,,,,,,,1,,,,,,77fcbb00,f576a368c,,,,,868397ad6,,,,,,,,,,,
 Budesonide,,,Inhalation,Aerosol pressurised,,100mcg per dose,200 doses,,,,,,933f3f00,c8108ffd,7dfe9100,186e0a00,,3762a4bf,85d31d00,,,,,,19831,"25.1, 28",25.1,10037511000116107,10579971000116104,51421802
 Budesonide,,,Inhalation,Aerosol pressurised,,200mcg per dose,200 doses,,,,,,933f3f00,c8108ffd,7dfe9100,186e0a00,,3765f4bf,eed96c00,,,,,,19831,"25.1, 28 ",25.1,10037511000116107,10579821000116106,51421802
 Budesonide,,,Nasal,Spray,,100mcg per dose,200 doses,,,,,,933f3f00,c8108ffd,96fca500,2b7cd400,,375f54bf,73c27f00,,,,,,19831,"25.1, 28 ",28,10037511000116107,10141181000116106,51421802
@@ -197,9 +195,6 @@ Chlorhexidine Digluconate,,,Topical,Gel,,4%,3g,,,,,,933f3f00,8bbc592a,89ca8300,d
 Chlorhexidine Digluconate,,,Topical,Solution,,4%,20g,,,,,,933f3f00,8bbc592a,89ca8300,0b62ad00,,3925f4bf,3866ba00,,,,,,20791,"15.1, 22.6",,10759161000116107,10150821000116106,51472805
 Chlorhexidine Digluconate,,,Topical,Solution,,4%,3g,,,,,,933f3f00,8bbc592a,89ca8300,0b62ad00,,3925f4bf,35d29500,,,,,,20791,"15.1, 22.6",,10759161000116107,,51472805
 Chlorhexidine Digluconate,,,Topical,Solution,,5%,500mL,,,,,,933f3f00,8bbc592a,89ca8300,680b3a00,,394894bf,bdc19e00,,,,,,20791,"15.1, 22.6","15.1, 22.6",10759161000116107,10153091000116105,51472805
-Chlorine,Bleach,,,Powder,Disinfectant,35% for dilution to 0.1%,,,,,,,77fcbb00,5947d4fc,,386504bf,f5e9e500,e0760300,,,,,,,,15.2,15.2,,,12141901
-Chlorine,Bleach,,,Powder,Disinfectant,5% for dilution to 0.1%,,,,,,,77fcbb00,5947d4fc,,386504bf,f5e9e500,a6606c00,,,,,,,1310122,15.2,15.2,,,12141901
-Chlorine,Bleach,,,Powder,Disinfectant,70% for dilution to 0.1%,,,,,,,77fcbb00,5947d4fc,,386504bf,f5e9e500,7208ba00,,,,,,,,15.2,15.2,,,12141901
 Chloroquine Phosphate,,,Oral,Solution,,10mg Chloroquine Base per mL,75mL,,,,,,933f3f00,4c8c0e97,473d5b00,3bfa4b00,,3a3884bf,52bb0400,,,,,,20863,6.5.3.1,6.5.3.1,10482401000116109,,51101905
 Chloroquine Phosphate,,,Oral,Tablet,,100mg,,,,,,,933f3f00,4c8c0e97,473d5b00,0fc66206,,3a61d4bf,,,,,,,20863,6.5.3.1,"6.5.3.1, 29.2",10482401000116109,,51101905
 Chloroquine Phosphate,,,Oral,Tablet,,150mg,,,,,,,933f3f00,4c8c0e97,473d5b00,0fc66206,,3a6c44bf,,,,,,,20863,6.5.3.1,"6.5.3.1, 29.2",10482401000116109,,51101905
@@ -259,12 +254,6 @@ Codeine,codeine phosphate,,Oral,Tablet,,30mg,,,,,,,933f3f00,d9d1d59b,1d8f7300,2c
 Compound Sodium Lactate,"Hartmann's, Ringer's Lactate, Lactated Ringer's",,Parenteral,Solution,,,1000mL,,,,,,933f3f00,53ea14bf,54a61500,a4408400,,,6ded3700,,,,,,,26.2,,20039851000116102,10363941000116104,51172327
 Compound Sodium Lactate,"Hartmann's, Ringer's Lactate, Lactated Ringer's",,Parenteral,Solution,,,250mL,,,,,,933f3f00,53ea14bf,54a61500,a4408400,,,d7731e00,,,,,,,26.2,,20039851000116102,,51172327
 Compound Sodium Lactate,"Hartmann's, Ringer's Lactate, Lactated Ringer's",,Parenteral,Solution,,,500mL,,,,,,933f3f00,53ea14bf,54a61500,a4408400,,,773d6900,,,,,,,26.2,,20039851000116102,10363871000116102,51172327
-Condom Female,,,,,,,1,,,,,,77fcbb00,22c41465e,,,,,bf4be518,,,,,,,22.1.4,,47036841000116101,,53131622
-Condom Male,,,,,,Apple,,,,,,,77fcbb00,3b3444bf,,,,46d1043e,,,,,,,,22.1.4,,47036841000116101,,53131622
-Condom Male,,,,,,Grape,,,,,,,77fcbb00,3b3444bf,,,,46d8143e,,,,,,,,22.1.4,,47036841000116101,,53131622
-Condom Male,,,,,,Rose,,,,,,,77fcbb00,3b3444bf,,,,46ddf43e,,,,,,,,22.1.4,,47036841000116101,,53131622
-Condom Male,,,,,,Strawberry,,,,,,,77fcbb00,3b3444bf,,,,46e3d43e,,,,,,,,22.1.4,,47036841000116101,,53131622
-Condom Male,,,,,,Varied,,,,,,,77fcbb00,3b3444bf,,,,a162942e,,,,,,,,22.1.4,,47036841000116101,,53131622
 Copper-containing Intrauterine Device,TCu380A,,Intrauterine,Device,,,1,,,,,,933f3f00,e95273f20,4718f43e,9f5f2b00,,,3b3994bf,,,,,,2267303,22.1.3,,,,
 Cyclizine,,,Oral,Tablet,,50mg,,,,,,,933f3f00,da2bd345,b6fe3400,8f9e4e00,,395d64bf,,,,,,,2977,2.3,2.3,44123411000116107,10408191000116106,51171809
 Cyclizine,,,Parenteral,Solution,,50mg per mL,1mL,,,,,,933f3f00,da2bd345,0c518500,d7384d00,,4b69dc00,3956b4bf,,,,,,2977,2.3,2.3,44123411000116107,10694211000116104,51171809
@@ -301,7 +290,6 @@ Dexamethasone,,,Parenteral,Powder for reconstitution,,4mg,,,,,,,933f3f00,7070ce2
 Dexamethasone,,,Parenteral,Solution,,4mg per mL,1mL,,,,,,933f3f00,7070ce28,f592c700,ffedbe00,,b04d8900,3e40b4bf,,,,,,3264,"2.3, 3, 8.2.4, 17.2,22.5","2.3, 3, 8.2.4, 17.2, 22.5",10238921000116102,"20015151000116100, 44115811000116104",51422306
 Dexamethasone,,,Parenteral,Solution,,4mg per mL,2mL,,,,,,933f3f00,7070ce28,f592c700,ffedbe00,,b04d8900,6c121c00,,,,,,3264,"2.3, 3, 8.2.4, 17.2,22.5",,10238921000116102,"20015201000116108, 31128411000116106",51422306
 Dextran 70,,,Parenteral,Solution,,6% in Sodium Chloride 0.9%,500mL,,,,,,933f3f00,dc40cff3,48109c00,80dcef00,,3e54b4bf,6fcaa300,,,,,,3274,11.3,11.3,,,
-Diaphragm Contraceptive Device,,,Vaginal,Device,,,1,,,,,,77fcbb00,f6422a66b,abed4200,ff5efd00,,,3e7314bf,,,,,,,22.1.4,,20002501000116101,20002521000116108,
 Diazepam,,,Oral,Solution,,400mcg per mL,5mL,,,,,,933f3f00,886975a0,846ae100,f7222000,,b01a2800,3eea94bf,,,,,,3322,"2.3, 5, 24.3",2.3,10205941000116107,,51401518
 Diazepam,,,Oral,Tablet,,10mg,,,,,,,933f3f00,886975a0,846ae100,8eb86300,,3f12e4bf,,,,,,,3322,"2.3, 5, 24.3",2.3,10205941000116107,10252611000116103,51401518
 Diazepam,,,Oral,Tablet,,2mg,,,,,,,933f3f00,886975a0,846ae100,8eb86300,,3ef344bf,,,,,,,3322,"2.3, 5, 24.3",24.3,10205941000116107,10252731000116101,51401518
@@ -324,13 +312,6 @@ Dimercaprol,,,Parenteral,Solution,,50mg per mL,2mL,,,,,,933f3f00,feadc010,0cde06
 Dinoprostone,Prostaglandin E2,,Parenteral,Solution,,1mg per mL,0.75mL,,,,,,933f3f00,0734ec29,b785f600,f7041900,,5f47b4bf,aa367800,,,,,,3478,22.6,22.6,10122481000116109,,51182201
 Diphtheria Antitoxin,,,Parenteral,Solution,,10000IU,10mL,,,,,,933f3f00,8a1e8d25,849cb100,49a93600,,3e77f4bf,36fb2100,,,,,,3510,19.2,19.2,1.02088E+16,10208781000116107,
 Diphtheria Antitoxin,,,Parenteral,Solution,,20000IU,,,,,,,933f3f00,8a1e8d25,849cb100,49a93600,,3e77f4bf,,,,,,,3510,19.2,19.2,1.02088E+16,,
-Disposable Apron,,,,,,,1,,,,,,77fcbb00,c64e99618,,,,,d3c2e5da,,,,,,,,,,,
-Disposable Surgical Gown,,,,,,Large,,,,,,,77fcbb00,4679c400,,,,169825da,,,,,,,,,,,,42131702
-Disposable Surgical Gown,,,,,,Medium,,,,,,,77fcbb00,4679c400,,,,abb465da,,,,,,,,,,,,42131702
-Disposable Surgical Gown,,,,,,Small,,,,,,,77fcbb00,4679c400,,,,042e35da,,,,,,,,,,,,42131702
-Disposable Surgical Gown Sterile,,,,,,Large,,,,,,,77fcbb00,fc417700,,,,d40f75da,,,,,,,,,,,,42131702
-Disposable Surgical Gown Sterile,,,,,,Medium,,,,,,,77fcbb00,fc417700,,,,8babc5da,,,,,,,,,,,,42131702
-Disposable Surgical Gown Sterile,,,,,,Small,,,,,,,77fcbb00,fc417700,,,,e0c0d5da,,,,,,,,,,,,42131702
 Docetaxel,,,Parenteral,Solution,,20mg per mL,1mL,,,,,,933f3f00,5590ad36,ccf8b300,96c6d200,,e6df0500,3e2644bf,,,,,,72962,8.2.1,8.2.1,10247531000116108,43890881000116105,51101929
 Docusate Sodium,,,Oral,Capsule,,100mg,,,,,,,933f3f00,31f33b4e,5340aa00,f904c500,,3e2144bf,,,,,,,71722,2.3,2.3,10759951000116107,,51171656
 Docusate Sodium,,,Oral,Solution,,10mg per mL,5mL,,,,,,933f3f00,31f33b4e,5340aa00,cde47400,,3d55b400,3e1b94bf,,,,,,71722,2.3,2.3,10759951000116107,,51171656
@@ -415,10 +396,6 @@ Ethosuximide,,,Oral,Solution,,50mg per mL,200mL,,,,,,933f3f00,cc0368ea,e70ece00,
 Etonogestrel,,,Subdermal,Implant,,68mg,,,,,,,933f3f00,4903422b,3ee4cf00,dc339b00,,3ff944bf,,,,,,,14584,22.1.5,22.1.5,20043871000116107,20043881000116109,51352005
 Etoposide,,,Oral,Capsule,,100mg,,,,,,,933f3f00,8d1a2536,7056ed00,c28dfc00,,405c74bf,,,,,,,4179,8.2.1,8.2.1,10278701000116105,10698331000116108,51111739
 Etoposide,,,Parenteral,Solution,,20mg per mL,5mL,,,,,,933f3f00,8d1a2536,132ff200,a0b76500,,db331f00,4053a4bf,,,,,,4179,8.2.1,8.2.1,10278701000116105,"43952161000116108, 10278861000116102",51111739
-Examination Glove,,,,,,Extra Large,,,,,,,77fcbb00,ffd9a200,,,,c80865da,,,,,,,,,,,,
-Examination Glove,,,,,,Large,,,,,,,77fcbb00,ffd9a200,,,,a73555da,,,,,,,,,,,,
-Examination Glove,,,,,,Medium,,,,,,,77fcbb00,ffd9a200,,,,8d3625da,,,,,,,,,,,,
-Examination Glove,,,,,,Small,,,,,,,77fcbb00,ffd9a200,,,,ad5f65da,,,,,,,,,,,,
 Ferrous Salt,Iron Salt,,Oral,Tablet,,60mg iron,,,,,,,933f3f00,4a4f5f4d,09b5cc00,8cad5f00,,41e9d4bf,,,,,,,90176,10.1,10.1,,,
 Ferrous Salt/Folic Acid,Iron Salt/Folic Acid,,Oral,Tablet,,60mg iron/400mcg,,,,,,,933f3f00,6a0d35cd,0dd2a600,9c3ed100,,41f354bf,,,,,,,,10.1,10.1,,,51192445
 Ferrous Sulphate,,,Oral,Solution,,125mg [25mg iron] per mL,100mL,,,,,,933f3f00,41c664bf,2b665000,7eabd300,,72a74a00,fd50e500,,,,,,24947,,,20034611000116104,,51191917
@@ -478,7 +455,6 @@ Glucose/Sodium Chloride,,4fb07e48/9cdb6f5b,Parenteral,Solution,,5%/0.9%,500mL,,,
 Glucose/Sodium Chloride,,4fb07e48/9cdb6f5b,Parenteral,Solution,,5%/0.9%,1L,,,,,,933f3f00,4fb07e48,ca892a00,552b4500,,42aa94bf,f6fb5900,,,,,,108190,26.2,26.2,10637531000116107,"10638241000116104, 44986861000116108",
 Glutaraldehyde,"Formaldehyde, Glutaral",,,Solution,,2%,4L,,,,,,933f3f00,f25dc3ed,,831bcd00,,35bf5c00,42ca94bf,,,,,,1008413,15.2,15.2,10023501000116102,,"12352502, 51472002"
 Glyceryl Trinitrate,Nitroglycerin,,Sublingual,Tablet,,500mcg,,,,,,,933f3f00,8696a277,7370f400,8e1be700,,42e4c4bf,,,,,,,4917,12.1,12.1,10046881000116104,,51411605
-Goggles,,,,,,,1,,,,,,77fcbb00,aed08e6a8,,,,,1cfdc5da,,,,,,,,,,,46181804
 Griseofulvin,,,Oral,Suspension,,125mg per mL,120mL,,,,,,933f3f00,71763dd0,cda70e00,341df800,,53f23100,436c74bf,,,,,,5021,6.3,6.3,,,51301904
 Griseofulvin,,,Oral,Tablet,,125mg,,,,,,,933f3f00,71763dd0,cda70e00,3524db00,,438fb4bf,,,,,,,5021,6.3,6.3,,,51301904
 Griseofulvin,,,Oral,Tablet,,250mg,,,,,,,933f3f00,71763dd0,cda70e00,3524db00,,439514bf,,,,,,,5021,6.3,6.3,,,51301904
@@ -489,7 +465,6 @@ Haloperidol,,,Oral,Tablet,,5mg,,,,,,,933f3f00,6c45e6c7,1bd96400,92d22d00,,451c94
 Haloperidol,,,Parenteral,Solution,,5mg per mL,1mL,,,,,,933f3f00,6c45e6c7,e58c19749,89cc3000,,d2fa3300,450844bf,,,,,,5093,"2.3, 24.1","2.3, 24.1",10335011000116107,10648691000116109,51332501
 Halothane,,,Inhalation,Liquid,,100%,125mL,,,,,,933f3f00,452184bf,e2d0af00,7ca8b600,,73cad000,fbfca100,,,,,,5095,1.1.1,,,,51272503
 Halothane,,,Inhalation,Liquid,,100%,250mL,,,,,,933f3f00,452184bf,e2d0af00,7ca8b600,,d77e5300,076ce000,,,,,,5095,1.1.1,,,,51272503
-Hammock Net,,,,,,,1,,,,,,77fcbb00,8756414f1,,,,,470d043e,,,,,,,,,,,
 Heparin Sodium,,,Parenteral,Solution,,10000IU per mL,1mL,,,,,,933f3f00,10808942,581c3c00,273c2a00,,cb124500,44f924bf,,,,,,9877,10.2,,10078191000116106,,51132101
 Heparin Sodium,,,Parenteral,Solution,,1000IU per mL,1mL,,,,,,933f3f00,10808942,581c3c00,273c2a00,,6dbbf400,44f3b4bf,,,,,,9877,10.2,10.2,10078191000116106,10317301000116105,51132101
 Heparin Sodium,,,Parenteral,Solution,,20000IU per mL,1mL,,,,,,933f3f00,10808942,581c3c00,273c2a00,,8b3ae700,450254bf,,,,,,9877,10.2,10.2,10078191000116106,,51132101
@@ -727,7 +702,6 @@ Loratadine,,,Oral,Solution,,1mg per mL,60mL,,,,,,933f3f00,9e10dc74,0a51c500,0dfd
 Loratadine,,,Oral,Tablet,,10mg,,,,,,,933f3f00,9e10dc74,0a51c500,bbc75b00,,479554bf,,,,,,,28889,3,3,10056971000116105,10056991000116109,51312204
 Lorazepam,,,Parenteral,Solution,,2mg per mL,1mL,,,,,,933f3f00,34d0e9cb,7374b200,a7f2cb00,,e8b26200,483d14bf,,,,,,6470,5,5,10079261000116103,44272271000116109,51401533
 Lorazepam,,,Parenteral,Solution,,4mg per mL,1mL,,,,,,933f3f00,34d0e9cb,7374b200,a7f2cb00,,458f9d00,4840e4bf,,,,,,6470,5,5,10079261000116103,10079571000116105,51401533
-Lubricant,,,,,,,4mL,,,,,,77fcbb00,eefd6cf43,,,,,22333a62,,,,,,,,,,,42181503
 Lugol's Solution,,,Oral,Solution,,130mg iodide per mL,50mL,,,,,,933f3f00,af3fe02c,5288ad00,12f8bc00,,47c104bf,782f4300,,,,,,,18.7,18.7,,,
 Lugol's Solution,,,Oral,Solution,,130mg iodide per mL,60mL,,,,,,933f3f00,af3fe02c,5288ad00,12f8bc00,,47c104bf,1fdcfa00,,,,,,,18.7,18.7,,,
 Lugol's Solution,,,Oral,Solution,,130mg iodide per mL,100mL,,,,,,933f3f00,af3fe02c,5288ad00,12f8bc00,,47c104bf,286fd500,,,,,,,18.7,18.7,,,
@@ -818,12 +792,10 @@ Morphine Sulfate,,,Oral,Tablet,Extended-release,30mg,,,,,,,933f3f00,25196461,697
 Morphine Sulfate,,,Oral,Tablet,Extended-release,60mg,,,,,,,933f3f00,25196461,69789b00,b846fc00,9c35d900,5379b4bf,,,,,,,30236,"1.3, 2.2",2.2,10361001000116102,10366531000116105,51372036
 Morphine Sulfate,,,Oral,Tablet,Immediate-release,10mg,,,,,,,933f3f00,25196461,69789b00,b846fc00,37cedf12,533194bf,,,,,,,30236,"1.3, 2.2",2.2,10361001000116102,10366371000116102,51372036
 Morphine Sulfate,,,Parenteral,Solution,,10mg per mL,1mL,,,,,,933f3f00,25196461,5bacb800,2c466e00,,aa037900,52f844bf,,,,,,30236,"1.3, 2.2","1.3, 2.2",10361001000116102,10446531000116106,51372036
-Mother and Child Registration Book,,,,,,,1,,,,,,77fcbb00,ea862c7b9,,,,,18c19caf,,,,,,,,,,,
 Mupirocin,,,Topical,Cream,,2%,15g,,,,,,933f3f00,08ab0ff3,81b9cf00,2c6d5600,,52a514bf,46b85800,,,,,,42372,13.2,13.2,10087371000116101,,51286501
 Mupirocin,,,Topical,Ointment,,2%,15g,,,,,,933f3f00,08ab0ff3,81b9cf00,472ec100,,52bf34bf,ded5bb00,,,,,,42372,13.2,13.2,10087371000116101,,51286501
 Mupirocin,,,Topical,Ointment,,2%,3g,,,,,,933f3f00,08ab0ff3,81b9cf00,472ec100,,52bf34bf,bbc99200,,,,,,42372,13.2,13.2,10087371000116101,,51286501
 Mupirocin,,,Topical,Ointment,,2%,5g,,,,,,933f3f00,08ab0ff3,81b9cf00,472ec100,,52bf34bf,650a0d00,,,,,,42372,13.2,13.2,10087371000116101,,51286501
-N96 Mask,,,,,,,1,,,,,,77fcbb00,c03125208,,,,,8f2645da,,,,,,,,,,,
 Naloxone,,,Parenteral,Solution,,400mcg per mL,1mL,,,,,,933f3f00,5668c8be,fa9b4300,18f49c00,,9e30ef00,541264bf,,,,,,7242,4.2,4.2,10452871000116108,"24308091000116101, 10452891000116107",51142302
 Neostigmine,,,Oral,Tablet,,15mg,,,,,,,933f3f00,54eb4161,9e3bd500,4e7f4400,,544364bf,,,,,,,7315,20,20,10761531000116103,,51151512
 Neostigmine,,,Parenteral,Solution,,2.5mg per mL,1mL,,,,,,933f3f00,54eb4161,4898fa00,1b87f600,,ac5ee100,543fc4bf,,,,,,7315,20,20,10761531000116103,10477591000116109,51151512
@@ -847,7 +819,6 @@ Nitric Oxide,,,Inhalation,Gas,,800ppm,1963L,,,,,,933f3f00,5453a4bf,5d516a00,0dd2
 Nitric Oxide,,,Inhalation,Gas,,800ppm,353L,,,,,,933f3f00,5453a4bf,5d516a00,0dd28500,,f67b3400,014cd900,,,,,,7442,,,,,
 Nitrofurantoin,,,Oral,Suspension,,5mg per mL,300mL,,,,,,933f3f00,c8ec07e6,e6e93b00,518f1200,,a2059a00,544c74bf,,,,,,7454,6.2.1,6.2.1,1.03314E+16,,51285307
 Nitrofurantoin,,,Oral,Tablet,,100mg,,,,,,,933f3f00,c8ec07e6,e6e93b00,99b98d00,,545014bf,,,,,,,7454,6.2.1,6.2.1,1.03314E+16,10461631000116106,51285307
-Non-Surgical Mask,,,,,,,1,,,,,,77fcbb00,a8c13a752,,,,,4b1585da,,,,,,,,,,,
 Norethisterone,Norethindrone,,,,,,,,,,,,933f3f00,422942rn,,,,,,,,,,,7514,,,10485861000116104,,51352008
 Norethisterone Enanthate,Norethindrone Enathate,,Parenteral,Solution,,200mg per mL,1mL,,,,,,933f3f00,8aa625db,98e61c00,8c75f500,,9450e400,542a34bf,,,,,,31984,22.1.2,22.1.2,,,
 Normal Immunoglobulin,Immunoglobulin G,,Parenteral,Solution,Intramuscular,160mcg per mL [16%],1mL,,,,,,933f3f00,3192bc8a,c45c6f00,d73c1700,45364bah,25f8e800,5423a4bf,,,,,,5666,11.2.1,11.2.1,29573051000116109,,
@@ -964,7 +935,6 @@ Prednisolone,,,Eye,Drop,,0.50%,0.5mL,,,,,,933f3f00,9ed83656,a6a33d00,74e90c00,,5
 Prednisolone,,,Oral,Solution,,5mg per mL,30mL,,,,,,933f3f00,9ed83656,f739c800,df116b00,,55a274bf,b6329800,,,,,,8638,"3, 8.2.4, 21.2","3, 8.2.4",10606051000116102,2.00154E+16,51422315
 Prednisolone,,,Oral,Tablet,,25mg,,,,,,,933f3f00,9ed83656,f739c800,85d68200,,55a884bf,,,,,,,8638,"3, 8.2.4, 21.2","3, 8.2.4",10606051000116102,,51422315
 Prednisolone,,,Oral,Tablet,,5mg,,,,,,,933f3f00,9ed83656,f739c800,85d68200,,55a584bf,,,,,,,8638,"3, 8.2.4, 21.2","3, 8.2.4",10606051000116102,10606511000116109,51422315
-Pregnancy Test,HCG Test; Human Chorionic Gonadotropin (HCG Test),,,,,Strip,,,,,,,77fcbb00,a05a22468,,,,89911a62,,,,,,,,,,,,41142002
 Primaquine,,,Oral,Tablet,,15mg,,,,,,,933f3f00,97840623,28139f00,a49fe600,,5de7d4bf,,,,,,,8687,6.5.3.1,6.5.3.1,20051001000116105,47162661000116101,51101903
 Primaquine,,,Oral,Tablet,,7.5mg,,,,,,,933f3f00,97840623,28139f00,a49fe600,,5de2a4bf,,,,,,,8687,6.5.3.1,6.5.3.1,20051001000116105,10573881000116109,51101903
 Procaine Benzylpenicillin,Penicillin G Procaine,,Parenteral,Powder for reconstitution,,1g [1000000IU],,,,,,,933f3f00,2637f6bd,9cd71100,da9d9000,,556ce4bf,,,,,,,7983,6.2.1,6.2.1,10180211000116107,,51283409
@@ -997,12 +967,6 @@ Quinine Sulfate,,,Oral,Tablet,,300mg,,,,,,,933f3f00,0f8ee8fd,7f9ec500,f82b6700,,
 Ranitidine,,,Oral,Solution,,15mg per mL,300mL,,,,,,933f3f00,23f81b2c,96ed1900,ae7b7800,,52f54b00,619a04bf,,,,,,9143,17.1,17.1,10061691000116104,10537121000116105,51171917
 Ranitidine,,,Oral,Tablet,,150mg,,,,,,,933f3f00,23f81b2c,96ed1900,1c0c5b00,,619354bf,,,,,,,9143,17.1,17.1,10061691000116104,10061711000116102,51171917
 Ranitidine,,,Parenteral,Solution,,25mg per mL,2mL,,,,,,933f3f00,23f81b2c,2d788e00,2c6a8900,,efc32800,619684bf,,,,,,9143,17.1,17.1,10061691000116104,10737051000116102,51171917
-Rapid Diagnostic Test G6PD,RDT,,,,,,1,,,,,,77fcbb00,be81b6773,,,,,47bb143e,,,,,,,,,,,41116205
-Rapid Diagnostic Test HIV,RDT,,,,,,1,,,,,Determine HIV 1/2,77fcbb00,5193e174d,,,,,6c7db700,,,,,47e8543e,,,,,,
-Rapid Diagnostic Test HIV,RDT,,,,,,1,,,,,Uni-Gold HIV,77fcbb00,5193e174d,,,,,6c7db700,,,,,4712d43e,,,,,,
-Rapid Diagnostic Test HIV,RDT,,,,,,1,,,,,VIKIA HIV 1/2,77fcbb00,5193e174d,,,,,6c7db700,,,,,47e0543e,,,,,,
-Rapid Diagnostic Test Malaria,RDT,,,,,,1,,,,,,77fcbb00,b4a4105c4,,,,,47b2b43e,,,,,,,,,,,
-"Rapid Diagnostic Test, COVID-19",RDT,,,,,,1,,,,,,77fcbb00,14e5a5793,,,,,24694gd96,,,,,,,,,,,41116205
 Red Blood Cells,,,Parenteral,Liquid,,,240mL,,,,,,933f3f00,614614bf,ab234f00,3630d600,,,97e44100,,,,,,,11.1,,,,41132001
 Retinol,Vitamin A,,Oral,Capsule,,100000IU,,,,,,,933f3f00,65877a2c,bcf5ad00,c7b1bc00,,61d3f4bf,,,,,,,11246,27,27,29558351000116103,,50501515
 Retinol,Vitamin A,,Oral,Capsule,,200000IU,,,,,,,933f3f00,65877a2c,bcf5ad00,c7b1bc00,,61fe94bf,,,,,,,11246,27,27,29558351000116103,,50501515
@@ -1096,16 +1060,10 @@ Sulfasalazine,,,Oral,Tablet,,500mg,,,,,,,933f3f00,55b6735e,65a10a00,3b63a500,,63
 Sulfasalazine,,,Rectal,Liquid,,30mg per mL,100mL,,,,,,933f3f00,55b6735e,9a47d400,8d174700,,9caf9100,63b934bf,,,,,,9524,"17.3, 29.2",,1.0173E+16,,51202204
 Sulfasalazine,,,Rectal,Suppository,,500mg,,,,,,,933f3f00,55b6735e,9a47d400,7634ee00,,63be84bf,,,,,,,9524,"17.3, 29.2",17.3,1.0173E+16,,51202204
 Suramin sodium,,,Parenteral,Powder for reconstitution,,1g,,,,,,,933f3f00,79533d05,a637f900,c41ad800,,62b944bf,,,,,,,10256,6.5.5.1,6.5.5.1,,,
-Surgical Mask,,,,,,,1,,,,,,77fcbb00,be581a6e2,,,,,098885da,,,,,,,,,,,42131713
 Suxamethonium,"Succinylcholine, Suxamthonium Chloride",,Parenteral,Solution,,50mg per mL,2mL,,,,,,933f3f00,b05302ba,10ae3b00,dd141000,,50a29300,63fa14bf,,,,,,10154,20,20,10760701000116105,"10277071000116101, 20056761000116101",51152046
-Syringe Disposable,,,,,,1mL,,,,,,,77fcbb00,a8af4dce,,,,615f7cdc,,,,,,,,,,,,
-Syringe Disposable,,,,,,5mL,,,,,,,77fcbb00,a8af4dce,,,,dd586cdc,,,,,,,,,,,,
-Syringe Autodisable,Syringe SoloShot,,,,,,1mL,,,,,,77fcbb00,b8837bb6e,,,,,bcf59ab7,,,,,,,,,,,42142600
-Syringe Autodisable,Syringe SoloShot,,,,,,2mL,,,,,,77fcbb00,b8837bb6e,,,,,78a4da62,,,,,,,,,,,42142600
 Tamoxifen,,,Oral,Tablet,,10mg,,,,,,,933f3f00,07647bc5,19a68d00,0d1f1c00,,66a554bf,,,,,,,10324,8.2.4,,10034981000116101,10035091000116104,51111873
 Tamoxifen,,,Oral,Tablet,,25mg,,,,,,,933f3f00,07647bc5,19a68d00,0d1f1c00,,66d964bf,,,,,,,10324,8.2.4,8.2.4,10034981000116101,,51111873
 Tenofovir Disoproxil Fumarate,TDF,,Oral,Tablet,,300mg,,,,,,,933f3f00,dc841f56,8bb16f00,d98b6400,,653ec4bf,,,,,,,322248,"6.4.2.1, 6.4.4.1.1","6.4.2.1, 6.4.4.1.1",10728881000116104,10728901000116101,51343512
-Tent,,,,,,42 Meter Squared with UNFPA Logo,,,,,,,77fcbb00,13a83f706,,,,a07baa62,,,,,,,,,,,,
 Terbinafine,,,Topical,Cream,,1%,15g,,,,,,933f3f00,6e3b7e38,118c9700,2214fe00,,647904bf,47c30a00,,,,,,37801,13.1,13.1,10050921000116109,10365421000116103,51302502
 Terbinafine,,,Topical,Cream,,1%,30g,,,,,,933f3f00,6e3b7e38,118c9700,2214fe00,,647904bf,9cfda500,,,,,,37801,13.1,13.1,10050921000116109,,51302502
 Terbinafine,,,Topical,Ointment,,1%,7.5g,,,,,,933f3f00,6e3b7e38,118c9700,f6d7c900,,647df4bf,ac166400,,,,,,37801,13.1,13.1,10050921000116109,,51302502
@@ -1126,7 +1084,6 @@ Thiamine,Vitamin B1,,Oral,Tablet,,50mg,,,,,,,933f3f00,47ebe523,f8808600,6bb53100
 Timolol,,,Eye,Drop,,0.25%,5mL,,,,,,933f3f00,61c5d25a,0,e0d53300,,658294bf,a2f6ee00,,,,,,10600,21.4,21.4,10063181000116107,"10063381000116105, 10680431000116101, 45213421000116103",51263136
 Timolol,,,Eye,Drop,,0.50%,5mL,,,,,,933f3f00,61c5d25a,0,e0d53300,,656604bf,a7f1f900,,,,,,10600,21.4,21.4,10063181000116107,"10680301000116102, 10063291000116101, 45213671000116102",51263136
 Tioguanine,Thioguanine,,Oral,Tablet,,40mg,,,,,,,933f3f00,0ac56303,29ab2a00,3fc54500,,654404bf,,,,,,,10485,8.2.1,8.2.1,1.03685E+16,10368521000116107,51111665
-Training Model,,,,,,Arm Subcutaneous Implant,,,,,,,77fcbb00,7cd635629,,,,52251a62,,,,,,,,,,,,42301501
 Tranexamic Acid,,,Parenteral,Solution,,100mg per mL,10mL,,,,,,933f3f00,d0e483ee,9ba2f400,26ecd800,,b0383b00,65c144bf,,,,,,10691,"10.2, 22.5","10.2, 22.5",10230411000116101,"10230641000116102, 43915991000116101",51131811
 Trastuzumab,,,Parenteral,Powder for reconstitution,,150mg,,,,,,,933f3f00,62c7df6d,f1a21200,c5808d00,,65e6e4bf,,,,,,,224905,8.2.2,8.2.2,10318351000116107,10318461000116104,51111717
 Trastuzumab,,,Parenteral,Powder for reconstitution,,400mg,,,,,,,933f3f00,62c7df6d,f1a21200,c5808d00,,1ca24554,,,,,,,224905,8.2.2,,10318351000116107,,51111717
@@ -1138,30 +1095,6 @@ Trimethoprim,,,Oral,Tablet,,200mg,,,,,,,933f3f00,60729a62,c3be3200,c18e3c00,,665
 Tropicamide,,,Eye,Drop,,0.50%,0.5mL,,,,,,933f3f00,327df6eb,92e40f00,71ee9600,,6603d4bf,7707bf00,,,,,,10869,14.1,14.1,10449641000116105,10449661000116106,51551606
 Tuberculin PPD,"Mantoux, Tuberculin Purified Protein Derivative",,Parenteral,Solution,,50TU per mL,1mL,,,,,,933f3f00,64a4e4bf,112b0e00,d5d59900,,33c1f800,c638db00,,,,,,10908,19.1,,10691581000116108,10691851000116101,51201651
 Tuberculin PPD,"Mantoux, Tuberculin Purified Protein Derivative",,Parenteral,Solution,,50TU per mL,5mL,,,,,,933f3f00,64a4e4bf,112b0e00,d5d59900,,33c1f800,fa203200,,,,,,10908,19.1,,10691581000116108,,51201651
-UNFPA Consumable Kit for Contraceptive Implants Insertion or Removal,,,,,,Standard,,,,,,,77fcbb00,ad73d65c3,,,,46d38a62,,,,,,,,,,,,
-UNFPA Dignity Kit,,,,,,Women with Disability (WWD),,,,,,,77fcbb00,5b5c29e4e,,,,7e428a62,,,,,,,,,,,,
-UNFPA Dignity Kit,,,,,,Standard,,,,,,,77fcbb00,5b5c29e4e,,,,eaa2aa62,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,0 Administration Training Supplies,,,,,,,77fcbb00,802ebeaa,,,,f2f89000,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,1 Condoms,,,,,,,77fcbb00,802ebeaa,,,,40f51300,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,10 Vacuum Extraction Delivery,,,,,,,77fcbb00,802ebeaa,,,,32c65400,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,11 Referral Level Kit for Reproductive Health,,,,,,,77fcbb00,802ebeaa,,,,49d9842e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,11A Referral Level Kit for Reproductive Health Reusable Equipment,,,,,,,77fcbb00,802ebeaa,,,,7e67742e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,11B Referral Level Kit for Reproductive Health Drugs and Disposable Equipment,,,,,,,77fcbb00,802ebeaa,,,,b26e342e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,12 Blood Transfusion,,,,,,,77fcbb00,802ebeaa,,,,e1e8342e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,1A Condoms Male,,,,,,,77fcbb00,802ebeaa,,,,dd9bc700,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,1B Condoms Female,,,,,,,77fcbb00,802ebeaa,,,,36a76e00,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,2 Clean Delivery,,,,,,,77fcbb00,802ebeaa,,,,1e0e1100,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,2A Clean Delivery Individual,,,,,,,77fcbb00,802ebeaa,,,,a97d742e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,2B Clean Delivery Birth Attendant,,,,,,,77fcbb00,802ebeaa,,,,dd7b542e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,3 Post Rape Treatment,,,,,,,77fcbb00,802ebeaa,,,,088a142e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,4 Oral and Injectable Contraception,,,,,,,77fcbb00,802ebeaa,,,,e0cb8a00,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,5 Treatment of Sexually Transmitted Infections,,,,,,,77fcbb00,802ebeaa,,,,383e142e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,6 Clinical Delivery Assistance,,,,,,,77fcbb00,802ebeaa,,,,93e42500,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,6A Clinical Delivery Assistance Reusable Equipment,,,,,,,77fcbb00,802ebeaa,,,,bca6342e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,6B Clinical Delivery Assistance Drugs and Disposable Equipment,,,,,,,77fcbb00,802ebeaa,,,,756e542e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,7 Intrauterine Devices (IUDs),,,,,,,77fcbb00,802ebeaa,,,,ae11242e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,8 Management of Miscarriage and Complications of Abortion,,,,,,,77fcbb00,802ebeaa,,,,e1d4a42e,,,,,,,,,,,,
-UNFPA Reproductive Health Kit,"UNFPA RH Kit, Reproductive Health Kit",,,,,9 Suture of Tears and Vaginal Examination,,,,,,,77fcbb00,802ebeaa,,,,1193e42e,,,,,,,,,,,,
 Urea,,,Topical,Cream,,5%,100g,,,,,,933f3f00,1f3b9b3c,0bab0100,09e1c000,,66e944bf,4e941100,,,,,,11002,13.4,13.4,20065631000116102,,13101904
 Urea,,,Topical,Cream,,10%,100g,,,,,,933f3f00,1f3b9b3c,0bab0100,09e1c000,,66f494bf,f9669000,,,,,,11002,13.4,13.4,20065631000116102,20013081000116106,13101904
 Urea,,,Topical,Ointment,,5%,100g,,,,,,933f3f00,1f3b9b3c,0bab0100,5cf98300,,66ef44bf,6c61e100,,,,,,11002,13.4,13.4,20065631000116102,,13101904

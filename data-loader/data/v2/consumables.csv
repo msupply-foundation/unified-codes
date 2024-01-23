@@ -30,8 +30,11 @@ N96 Mask,c03125208,Medical equipment and accessories and supplies,Respiratory an
 Non-Surgical Mask,a8c13a752,Medical equipment and accessories and supplies,Respiratory and anesthesia and resuscitation products,Respiratory protection,,1,4b1585da,,
 Pregnancy Test,a05a22468,Laboratory and Measuring and Observing and Testing Equipment,In vitro diagnostic medical devices,Fertility/pregnancy hormones/proteins,Pregnancy testing hormones/proteins,1,89911a62,,
 Rapid Diagnostic Test G6PD,be81b6773,Laboratory and Measuring and Observing and Testing Equipment,In vitro diagnostic medical devices,Patient point of care testing supplies and equipment,Rapid Test Kits,1,47bb143e,,
-Rapid Diagnostic Test HIV,5193e174d,Laboratory and Measuring and Observing and Testing Equipment,In vitro diagnostic medical devices,Patient point of care testing supplies and equipment,Rapid Test Kits,1,6c7db700,,
+Rapid Diagnostic Test HIV,5193e174d,Laboratory and Measuring and Observing and Testing Equipment,In vitro diagnostic medical devices,Patient point of care testing supplies and equipment,Rapid Test Kits,1,6c7db700,Determine HIV 1/2,47e8543e
+Rapid Diagnostic Test HIV,5193e174d,Laboratory and Measuring and Observing and Testing Equipment,In vitro diagnostic medical devices,Patient point of care testing supplies and equipment,Rapid Test Kits,1,6c7db700,Uni-Gold HIV,4712d43e
+Rapid Diagnostic Test HIV,5193e174d,Laboratory and Measuring and Observing and Testing Equipment,In vitro diagnostic medical devices,Patient point of care testing supplies and equipment,Rapid Test Kits,1,6c7db700,VIKIA HIV 1/2,47e0543e
 Rapid Diagnostic Test Malaria,b4a4105c4,Laboratory and Measuring and Observing and Testing Equipment,In vitro diagnostic medical devices,Patient point of care testing supplies and equipment,Rapid Test Kits,1,47b2b43e,,
+"Rapid Diagnostic Test, COVID-19",14e5a5793,,,,,1,24694gd96,,
 Surgical Mask,be581a6e2,Medical equipment and accessories and supplies,Respiratory and anesthesia and resuscitation products,Surgical Textiles,Surgical isolation or surgical masks,1,098885da,,
 Syringe Autodisable,b8837bb6e,Medical equipment and accessories and supplies,Patient care and treatment products and supplies,Syringes and accessories,,1ml,bcf59ab7,,
 Syringe Autodisable,b8837bb6e,,,,,2ml,78a4da62,,
@@ -40,7 +43,8 @@ Syringe Disposable,a8af4dce,,,,,5ml,dd586cdc,,
 Tent,13a83f706,Medical equipment and accessories and supplies,Mobile medical services product,Mobile medical services disaster management products and mobile medical services supplies,,42 meter squared with UNFPA logo,a07baa62,,
 Training Model,7cd635629,Medical equipment and accessories and supplies,Physical and occupational therapy and rehabilitation products,Medical training and education supplies,,,,Arm,52251a62
 UNFPA Consumable Kit for Contraceptive Implants Insertion or Removal,ad73d65c3,Medical equipment and accessories and supplies,Patient care and treatment products and supplies,Obstetrical and gynecological equipment and supplies,Kits,Standard,46d38a62,,
-UNFPA Dignity Kit Standard,5b5c29e4e,Medical equipment and accessories and supplies,Patient care and treatment products and supplies,Obstetrical and gynecological equipment and supplies,Kits,Women with Disability (WWD),7e428a62,Standard,eaa2aa62
+UNFPA Dignity Kit,5b5c29e4e,Medical equipment and accessories and supplies,Patient care and treatment products and supplies,Obstetrical and gynecological equipment and supplies,Kits,Standard,eaa2aa62,,
+UNFPA Dignity Kit,5b5c29e4e,Medical equipment and accessories and supplies,Patient care and treatment products and supplies,Obstetrical and gynecological equipment and supplies,Kits,Women with Disability (WWD),7e428a62,,
 UNFPA Reproductive Health Kit,802ebeaa,Medical equipment and accessories and supplies,Patient care and treatment products and supplies,Obstetrical and gynecological equipment and supplies,Kits,,,0 Administration Training Supplies,f2f89000
 UNFPA Reproductive Health Kit,802ebeaa,Medical equipment and accessories and supplies,Patient care and treatment products and supplies,Obstetrical and gynecological equipment and supplies,Kits,,,1 Condoms,40f51300
 UNFPA Reproductive Health Kit,802ebeaa,Medical equipment and accessories and supplies,Patient care and treatment products and supplies,Obstetrical and gynecological equipment and supplies,Kits,,,1A Condoms Male,dd9bc700
