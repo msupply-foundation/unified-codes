@@ -20,24 +20,6 @@ pub struct DrugInteractionService {
     client: DgraphClient,
 }
 
-pub enum ConfigurationType {
-    Route,
-    Form,
-    ImmediatePackaging,
-    Test,
-}
-
-impl Display for ConfigurationType {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        match self {
-            ConfigurationType::Route => write!(f, "Route"),
-            ConfigurationType::Form => write!(f, "Form"),
-            ConfigurationType::ImmediatePackaging => write!(f, "ImmediatePackaging"),
-            ConfigurationType::Test => write!(f, "test_type"),
-        }
-    }
-}
-
 #[derive(Debug)]
 pub enum DrugInteractionServiceError {
     InternalError(String),
