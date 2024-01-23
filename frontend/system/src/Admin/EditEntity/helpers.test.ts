@@ -1,3 +1,4 @@
+import { EntityType } from '../../constants';
 import {
   buildConsumableInputFromEntity,
   buildDrugInputFromEntity,
@@ -347,9 +348,32 @@ describe('buildVaccineInputFromEntity', () => {
       properties: [],
       children: [
         {
+          code: 'ae5f7a00',
+          name: '2021 Variant',
+          type: EntityType.VaccineNameDetails,
+          properties: [],
+          children: [
+            {
+              code: '7e5f7a02',
+              name: 'Component 1/Component 2',
+              type: EntityType.ActiveIngredients,
+              properties: [],
+              children: [
+                {
+                  code: 'a6e85500',
+                  name: 'Brand 2',
+                  type: 'Brand',
+                  properties: [],
+                  children: [],
+                },
+              ],
+            },
+          ],
+        },
+        {
           code: '7e5f7a00',
           name: 'Component 1/Component 2',
-          type: 'Component',
+          type: EntityType.ActiveIngredients,
           properties: [],
           children: [
             {
@@ -417,7 +441,32 @@ describe('buildVaccineInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
-      components: [
+      details: [
+        {
+          id: 'ae5f7a00',
+          code: 'ae5f7a00',
+          name: '2021 Variant',
+          properties: [],
+          activeIngredients: [
+            {
+              id: '7e5f7a02',
+              code: '7e5f7a02',
+              name: 'Component 1/Component 2',
+              properties: [],
+              brands: [
+                {
+                  id: 'a6e85500',
+                  code: 'a6e85500',
+                  name: 'Brand 2',
+                  properties: [],
+                  routes: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      activeIngredients: [
         {
           id: '7e5f7a00',
           code: '7e5f7a00',
@@ -480,7 +529,7 @@ describe('buildVaccineInputFromEntity', () => {
           ],
         },
       ],
-    });
+    } as VaccineInput);
   });
 
   // TODO: decide on/update this:
@@ -496,7 +545,7 @@ describe('buildVaccineInputFromEntity', () => {
         {
           code: '7e5f7a00',
           name: 'Component 1/Component 2',
-          type: 'Component',
+          type: 'ActiveIngredients',
           properties: [],
           children: [
             {
@@ -531,7 +580,8 @@ describe('buildVaccineInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
-      components: [
+      details: [],
+      activeIngredients: [
         {
           id: '7e5f7a00',
           code: '7e5f7a00',
@@ -556,7 +606,7 @@ describe('buildVaccineInputFromEntity', () => {
           ],
         },
       ],
-    });
+    } as VaccineInput);
   });
 });
 
@@ -833,7 +883,8 @@ describe('isValidVaccineInput', () => {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
-      components: [
+      details: [],
+      activeIngredients: [
         {
           id: '7e5f7a00',
           name: 'Component 1/Component 2',
@@ -884,11 +935,12 @@ describe('isValidVaccineInput', () => {
   });
 
   it('returns false when a field is missing a name', () => {
-    const vaccineInput = {
+    const vaccineInput: VaccineInput = {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
-      components: [
+      details: [],
+      activeIngredients: [
         {
           id: '7e5f7a00',
           name: 'Component 1/Component 2',

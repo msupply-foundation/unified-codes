@@ -4,7 +4,13 @@ import React, { useState } from 'react';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
 import { useEditModal } from '@common/hooks';
-import { Entity, Property, VaccineInput } from '../types';
+import {
+  ActiveIngredients,
+  Entity,
+  Property,
+  VaccineInput,
+  VaccineNameDetails,
+} from '../types';
 import { TreeFormBox } from './TreeFormBox';
 import { CategoryDropdown } from './CategoryDropdown';
 import { AddFieldButton } from './AddFieldButton';
@@ -12,6 +18,16 @@ import { EditPropertiesButton } from './EditPropertiesButton';
 import { NameEditField } from './NameEditField';
 import { useConfigurationItems } from '../../Configuration/api';
 import { ConfigurationItemTypeInput } from '@common/types';
+import { ConfigurationItemsQuery } from '../../Configuration/api/operations.generated';
+
+type ConfigItems = {
+  routes?: ConfigurationItemsQuery['configurationItems']['data'];
+  isLoadingRoutes: boolean;
+  forms?: ConfigurationItemsQuery['configurationItems']['data'];
+  isLoadingForms: boolean;
+  immediatePackagings?: ConfigurationItemsQuery['configurationItems']['data'];
+  isLoadingImmediatePackagings: boolean;
+};
 
 export const VaccineFormTree = ({
   draft,
@@ -38,6 +54,15 @@ export const VaccineFormTree = ({
       type: ConfigurationItemTypeInput.ImmediatePackaging,
     });
 
+  const config: ConfigItems = {
+    routes,
+    isLoadingRoutes,
+    forms,
+    isLoadingForms,
+    immediatePackagings,
+    isLoadingImmediatePackagings,
+  };
+
   const [propertiesModalState, setPropertiesModalState] = useState<{
     title: string;
     entityToUpdate: Entity;
@@ -52,6 +77,8 @@ export const VaccineFormTree = ({
     onOpen,
     entity: propertiesModalData,
   } = useEditModal<Property[]>();
+
+  const isDisabled = (id: string) => initialIds.includes(id);
 
   const onOpenPropertiesModal = (title: string, entityToUpdate: Entity) => {
     setPropertiesModalState({
@@ -138,67 +165,215 @@ export const VaccineFormTree = ({
         </Box>
       </Box>
 
-      {!!draft.components.length && (
-        <Typography fontSize="12px">{t('label.components')}</Typography>
+      {!!draft.details.length && (
+        <Typography fontSize="12px">
+          {t('label.vaccine-name-details')}
+        </Typography>
       )}
 
-      {draft.components.map(component => (
-        <TreeFormBox key={component.id}>
-          <Box sx={{ display: 'flex', alignItems: 'end' }}>
-            <NameEditField
-              disabled={initialIds.includes(component.id)}
-              value={component.name}
-              label={t('label.component')}
-              onChange={e =>
+      {draft.details.map(details => {
+        return (
+          <TreeFormBox key={details.id}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'end',
+              }}
+            >
+              <NameEditField
+                disabled={isDisabled(details.id)}
+                value={details.name}
+                label={t('label.vaccine-name-details')}
+                onChange={e =>
+                  onUpdate({ ...details, name: e.target.value }, draft.details)
+                }
+                onDelete={() => onDelete(details, draft.details)}
+              />
+              <EditPropertiesButton
+                parents={[draft]}
+                entity={details}
+                onOpen={onOpenPropertiesModal}
+              />
+            </Box>
+
+            {!!details.activeIngredients.length && (
+              <Typography fontSize="12px">
+                {t('label.active-ingredients')}
+              </Typography>
+            )}
+            {details.activeIngredients.map(activeIngredient => (
+              <ActiveIngredientsFormBox
+                key={activeIngredient.id}
+                activeIngredient={activeIngredient}
+                configItems={config}
+                immediateParent={details}
+                parentList={[draft, details]}
+                isDisabled={isDisabled}
+                onDelete={onDelete}
+                onOpenPropertiesModal={onOpenPropertiesModal}
+                onUpdate={onUpdate}
+              />
+            ))}
+
+            <AddFieldButton
+              label={t('label.add-active-ingredients')}
+              onClick={() =>
                 onUpdate(
-                  { ...component, name: e.target.value },
-                  draft.components
+                  { id: uuid(), name: '', brands: [] },
+                  details.activeIngredients
                 )
               }
-              onDelete={() => onDelete(component, draft.components)}
             />
-            <EditPropertiesButton
-              parents={[draft]}
-              entity={component}
-              onOpen={onOpenPropertiesModal}
-            />
-          </Box>
+          </TreeFormBox>
+        );
+      })}
 
-          {!!component.brands.length && (
-            <Typography fontSize="12px">{t('label.brands')}</Typography>
-          )}
+      {!!draft.activeIngredients.length && (
+        <Typography fontSize="12px">{t('label.active-ingredients')}</Typography>
+      )}
 
-          {component.brands.map(brand => (
-            <TreeFormBox key={brand.id}>
-              <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                <NameEditField
-                  disabled={initialIds.includes(brand.id)}
-                  value={brand.name}
-                  label={t('label.brand')}
-                  onChange={e =>
-                    onUpdate(
-                      { ...brand, name: e.target.value },
-                      component.brands
-                    )
-                  }
-                  onDelete={() => onDelete(brand, component.brands)}
-                />
-                <EditPropertiesButton
-                  parents={[draft, component]}
-                  entity={brand}
-                  onOpen={onOpenPropertiesModal}
-                />
-              </Box>
+      {draft.activeIngredients.map(activeIngredient => (
+        <ActiveIngredientsFormBox
+          key={activeIngredient.id}
+          activeIngredient={activeIngredient}
+          configItems={config}
+          immediateParent={draft}
+          parentList={[draft]}
+          isDisabled={isDisabled}
+          onDelete={onDelete}
+          onOpenPropertiesModal={onOpenPropertiesModal}
+          onUpdate={onUpdate}
+        />
+      ))}
 
-              {!!brand.routes.length && (
-                <Typography fontSize="12px">{t('label.routes')}</Typography>
-              )}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <AddFieldButton
+          label={t('label.add-vaccine-name-details')}
+          onClick={() =>
+            onUpdate(
+              {
+                id: uuid(),
+                name: '',
+                activeIngredients: [],
+              },
+              draft.details
+            )
+          }
+        />
 
-              {brand.routes.map(route => (
+        <AddFieldButton
+          label={t('label.add-active-ingredients')}
+          onClick={() =>
+            onUpdate(
+              { id: uuid(), name: '', brands: [] },
+              draft.activeIngredients
+            )
+          }
+        />
+      </Box>
+    </Box>
+  );
+};
+
+const ActiveIngredientsFormBox = ({
+  activeIngredient,
+  configItems,
+  immediateParent,
+  parentList,
+  isDisabled,
+  onDelete,
+  onUpdate,
+  onOpenPropertiesModal,
+}: {
+  activeIngredient: ActiveIngredients;
+  configItems: ConfigItems;
+  immediateParent: VaccineInput | VaccineNameDetails;
+  parentList: Entity[];
+  isDisabled: (id: string) => boolean;
+  onUpdate: <T extends Entity>(updated: T, list: T[]) => void;
+  onDelete: <T extends Entity>(updated: T, list: T[]) => void;
+  onOpenPropertiesModal: (modalTitle: string, entityToUpdate: Entity) => void;
+}) => {
+  const t = useTranslation('system');
+  const uuid = useUuid();
+
+  const {
+    routes,
+    isLoadingRoutes,
+    forms,
+    isLoadingForms,
+    immediatePackagings,
+    isLoadingImmediatePackagings,
+  } = configItems;
+
+  return (
+    <TreeFormBox>
+      <Box sx={{ display: 'flex', alignItems: 'end' }}>
+        <NameEditField
+          disabled={isDisabled(activeIngredient.id)}
+          value={activeIngredient.name}
+          label={t('label.active-ingredients')}
+          onChange={e =>
+            onUpdate(
+              { ...activeIngredient, name: e.target.value },
+              immediateParent.activeIngredients
+            )
+          }
+          onDelete={() =>
+            onDelete(activeIngredient, immediateParent.activeIngredients)
+          }
+        />
+        <EditPropertiesButton
+          parents={parentList}
+          entity={activeIngredient}
+          onOpen={onOpenPropertiesModal}
+        />
+      </Box>
+
+      {!!activeIngredient.brands.length && (
+        <Typography fontSize="12px">{t('label.brands')}</Typography>
+      )}
+
+      {activeIngredient.brands.map(brand => {
+        const brandParentList = [...parentList, activeIngredient];
+        return (
+          <TreeFormBox key={brand.id}>
+            <Box sx={{ display: 'flex', alignItems: 'end' }}>
+              <NameEditField
+                disabled={isDisabled(brand.id)}
+                value={brand.name}
+                label={t('label.brand')}
+                onChange={e =>
+                  onUpdate(
+                    { ...brand, name: e.target.value },
+                    activeIngredient.brands
+                  )
+                }
+                onDelete={() => onDelete(brand, activeIngredient.brands)}
+              />
+              <EditPropertiesButton
+                parents={brandParentList}
+                entity={brand}
+                onOpen={onOpenPropertiesModal}
+              />
+            </Box>
+
+            {!!brand.routes.length && (
+              <Typography fontSize="12px">{t('label.routes')}</Typography>
+            )}
+
+            {brand.routes.map(route => {
+              const routeParentList = [...brandParentList, brand];
+              return (
                 <TreeFormBox key={route.id}>
                   <Box sx={{ display: 'flex', alignItems: 'end' }}>
                     <CategoryDropdown
-                      disabled={initialIds.includes(route.id)}
+                      disabled={isDisabled(route.id)}
                       value={route.name}
                       options={
                         routes?.map(r => ({ label: r.name, value: r.name })) ??
@@ -213,7 +388,7 @@ export const VaccineFormTree = ({
                       onDelete={() => onDelete(route, brand.routes)}
                     />
                     <EditPropertiesButton
-                      parents={[draft, component, brand]}
+                      parents={routeParentList}
                       entity={route}
                       onOpen={onOpenPropertiesModal}
                     />
@@ -223,196 +398,207 @@ export const VaccineFormTree = ({
                     <Typography fontSize="12px">{t('label.forms')}</Typography>
                   )}
 
-                  {route.forms.map(form => (
-                    <TreeFormBox key={form.id}>
-                      <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                        <CategoryDropdown
-                          disabled={initialIds.includes(form.id)}
-                          value={form.name}
-                          options={
-                            forms?.map(r => ({
-                              label: r.name,
-                              value: r.name,
-                            })) ?? []
-                          }
-                          onChange={name =>
-                            onUpdate({ ...form, name }, route.forms)
-                          }
-                          getOptionDisabled={o =>
-                            !!route.forms.find(f => f.name === o.value)
-                          }
-                          onDelete={() => onDelete(form, route.forms)}
-                        />
-                        <EditPropertiesButton
-                          parents={[draft, component, brand, route]}
-                          entity={form}
-                          onOpen={onOpenPropertiesModal}
-                        />
-                      </Box>
-                      {!!form.strengths.length && (
-                        <Typography fontSize="12px">
-                          {t('label.strengths')}
-                        </Typography>
-                      )}
+                  {route.forms.map(form => {
+                    const formParentList = [...routeParentList, route];
+                    return (
+                      <TreeFormBox key={form.id}>
+                        <Box sx={{ display: 'flex', alignItems: 'end' }}>
+                          <CategoryDropdown
+                            disabled={isDisabled(form.id)}
+                            value={form.name}
+                            options={
+                              forms?.map(r => ({
+                                label: r.name,
+                                value: r.name,
+                              })) ?? []
+                            }
+                            onChange={name =>
+                              onUpdate({ ...form, name }, route.forms)
+                            }
+                            getOptionDisabled={o =>
+                              !!route.forms.find(f => f.name === o.value)
+                            }
+                            onDelete={() => onDelete(form, route.forms)}
+                          />
+                          <EditPropertiesButton
+                            parents={formParentList}
+                            entity={form}
+                            onOpen={onOpenPropertiesModal}
+                          />
+                        </Box>
+                        {!!form.strengths.length && (
+                          <Typography fontSize="12px">
+                            {t('label.strengths')}
+                          </Typography>
+                        )}
 
-                      {form.strengths.map(strength => (
-                        <TreeFormBox key={strength.id}>
-                          <Box sx={{ display: 'flex', alignItems: 'end' }}>
-                            <NameEditField
-                              disabled={initialIds.includes(strength.id)}
-                              value={strength.name}
-                              label={t('label.strength')}
-                              onChange={e =>
-                                onUpdate(
-                                  { ...strength, name: e.target.value },
-                                  form.strengths
-                                )
-                              }
-                              onDelete={() =>
-                                onDelete(strength, form.strengths)
-                              }
-                            />
-                            <EditPropertiesButton
-                              parents={[draft, component, brand, route, form]}
-                              entity={strength}
-                              onOpen={onOpenPropertiesModal}
-                            />
-                          </Box>
-
-                          {!!strength.units.length && (
-                            <Typography fontSize="12px">
-                              {t('label.units')}
-                            </Typography>
-                          )}
-
-                          {strength.units.map(unit => (
-                            <TreeFormBox key={unit.id}>
+                        {form.strengths.map(strength => {
+                          const strengthParentList = [...formParentList, form];
+                          return (
+                            <TreeFormBox key={strength.id}>
                               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                                 <NameEditField
-                                  disabled={initialIds.includes(unit.id)}
-                                  value={unit.name}
-                                  label={t('label.unit')}
+                                  disabled={isDisabled(strength.id)}
+                                  value={strength.name}
+                                  label={t('label.strength')}
                                   onChange={e =>
                                     onUpdate(
-                                      { ...unit, name: e.target.value },
-                                      strength.units
+                                      { ...strength, name: e.target.value },
+                                      form.strengths
                                     )
                                   }
                                   onDelete={() =>
-                                    onDelete(unit, strength.units)
+                                    onDelete(strength, form.strengths)
                                   }
                                 />
                                 <EditPropertiesButton
-                                  parents={[
-                                    draft,
-                                    component,
-                                    brand,
-                                    route,
-                                    form,
-                                    strength,
-                                  ]}
-                                  entity={unit}
+                                  parents={strengthParentList}
+                                  entity={strength}
                                   onOpen={onOpenPropertiesModal}
                                 />
                               </Box>
 
-                              {!!unit.immediatePackagings.length && (
+                              {!!strength.units.length && (
                                 <Typography fontSize="12px">
-                                  {t('label.immediate-packaging')}
+                                  {t('label.units')}
                                 </Typography>
                               )}
 
-                              {unit.immediatePackagings.map(immPack => (
-                                <TreeFormBox key={immPack.id}>
-                                  <Box
-                                    sx={{ display: 'flex', alignItems: 'end' }}
-                                  >
-                                    <CategoryDropdown
-                                      disabled={initialIds.includes(immPack.id)}
-                                      value={immPack.name}
-                                      options={
-                                        immediatePackagings?.map(o => ({
-                                          label: o.name,
-                                          value: o.name,
-                                        })) ?? []
-                                      }
-                                      onChange={name =>
-                                        onUpdate(
-                                          { ...immPack, name },
-                                          unit.immediatePackagings
-                                        )
-                                      }
-                                      getOptionDisabled={o =>
-                                        !!unit.immediatePackagings.find(
-                                          i => i.name === o.value
-                                        )
-                                      }
-                                      onDelete={() =>
-                                        onDelete(
-                                          immPack,
-                                          unit.immediatePackagings
-                                        )
-                                      }
-                                    />
-                                    <EditPropertiesButton
-                                      parents={[
-                                        draft,
-                                        component,
-                                        brand,
-                                        route,
-                                        form,
-                                        strength,
+                              {strength.units.map(unit => {
+                                const unitParentList = [
+                                  ...strengthParentList,
+                                  strength,
+                                ];
+                                return (
+                                  <TreeFormBox key={unit.id}>
+                                    <Box
+                                      sx={{
+                                        display: 'flex',
+                                        alignItems: 'end',
+                                      }}
+                                    >
+                                      <NameEditField
+                                        disabled={isDisabled(unit.id)}
+                                        value={unit.name}
+                                        label={t('label.unit')}
+                                        onChange={e =>
+                                          onUpdate(
+                                            { ...unit, name: e.target.value },
+                                            strength.units
+                                          )
+                                        }
+                                        onDelete={() =>
+                                          onDelete(unit, strength.units)
+                                        }
+                                      />
+                                      <EditPropertiesButton
+                                        parents={unitParentList}
+                                        entity={unit}
+                                        onOpen={onOpenPropertiesModal}
+                                      />
+                                    </Box>
+
+                                    {!!unit.immediatePackagings.length && (
+                                      <Typography fontSize="12px">
+                                        {t('label.immediate-packaging')}
+                                      </Typography>
+                                    )}
+
+                                    {unit.immediatePackagings.map(immPack => {
+                                      const immPackParentList = [
+                                        ...unitParentList,
                                         unit,
-                                      ]}
-                                      entity={immPack}
-                                      onOpen={onOpenPropertiesModal}
+                                      ];
+                                      return (
+                                        <TreeFormBox key={immPack.id}>
+                                          <Box
+                                            sx={{
+                                              display: 'flex',
+                                              alignItems: 'end',
+                                            }}
+                                          >
+                                            <CategoryDropdown
+                                              disabled={isDisabled(immPack.id)}
+                                              value={immPack.name}
+                                              options={
+                                                immediatePackagings?.map(o => ({
+                                                  label: o.name,
+                                                  value: o.name,
+                                                })) ?? []
+                                              }
+                                              onChange={name =>
+                                                onUpdate(
+                                                  { ...immPack, name },
+                                                  unit.immediatePackagings
+                                                )
+                                              }
+                                              getOptionDisabled={o =>
+                                                !!unit.immediatePackagings.find(
+                                                  i => i.name === o.value
+                                                )
+                                              }
+                                              onDelete={() =>
+                                                onDelete(
+                                                  immPack,
+                                                  unit.immediatePackagings
+                                                )
+                                              }
+                                            />
+                                            <EditPropertiesButton
+                                              parents={immPackParentList}
+                                              entity={immPack}
+                                              onOpen={onOpenPropertiesModal}
+                                            />
+                                          </Box>
+                                        </TreeFormBox>
+                                      );
+                                    })}
+                                    <AddFieldButton
+                                      label={t('label.add-immediate-packaging')}
+                                      onClick={() =>
+                                        onUpdate(
+                                          {
+                                            id: uuid(),
+                                            name: '',
+                                          },
+                                          unit.immediatePackagings
+                                        )
+                                      }
+                                      isLoading={isLoadingImmediatePackagings}
                                     />
-                                  </Box>
-                                </TreeFormBox>
-                              ))}
+                                  </TreeFormBox>
+                                );
+                              })}
+
                               <AddFieldButton
-                                label={t('label.add-immediate-packaging')}
+                                label={t('label.add-unit')}
                                 onClick={() =>
                                   onUpdate(
                                     {
                                       id: uuid(),
                                       name: '',
+                                      immediatePackagings: [],
                                     },
-                                    unit.immediatePackagings
+                                    strength.units
                                   )
                                 }
-                                isLoading={isLoadingImmediatePackagings}
                               />
                             </TreeFormBox>
-                          ))}
+                          );
+                        })}
 
-                          <AddFieldButton
-                            label={t('label.add-unit')}
-                            onClick={() =>
-                              onUpdate(
-                                {
-                                  id: uuid(),
-                                  name: '',
-                                  immediatePackagings: [],
-                                },
-                                strength.units
-                              )
-                            }
-                          />
-                        </TreeFormBox>
-                      ))}
-
-                      <AddFieldButton
-                        label={t('label.add-strength')}
-                        onClick={() =>
-                          onUpdate(
-                            { id: uuid(), name: '', units: [] },
-                            form.strengths
-                          )
-                        }
-                      />
-                    </TreeFormBox>
-                  ))}
+                        <AddFieldButton
+                          label={t('label.add-strength')}
+                          onClick={() =>
+                            onUpdate(
+                              { id: uuid(), name: '', units: [] },
+                              form.strengths
+                            )
+                          }
+                        />
+                      </TreeFormBox>
+                    );
+                  })}
 
                   <AddFieldButton
                     label={t('label.add-form')}
@@ -425,33 +611,29 @@ export const VaccineFormTree = ({
                     isLoading={isLoadingForms}
                   />
                 </TreeFormBox>
-              ))}
+              );
+            })}
 
-              <AddFieldButton
-                label={t('label.add-route')}
-                onClick={() =>
-                  onUpdate({ id: uuid(), name: '', forms: [] }, brand.routes)
-                }
-                isLoading={isLoadingRoutes}
-              />
-            </TreeFormBox>
-          ))}
-
-          <AddFieldButton
-            label={t('label.add-brand')}
-            onClick={() =>
-              onUpdate({ id: uuid(), name: '', routes: [] }, component.brands)
-            }
-          />
-        </TreeFormBox>
-      ))}
+            <AddFieldButton
+              label={t('label.add-route')}
+              onClick={() =>
+                onUpdate({ id: uuid(), name: '', forms: [] }, brand.routes)
+              }
+              isLoading={isLoadingRoutes}
+            />
+          </TreeFormBox>
+        );
+      })}
 
       <AddFieldButton
-        label={t('label.add-component')}
+        label={t('label.add-brand')}
         onClick={() =>
-          onUpdate({ id: uuid(), name: '', brands: [] }, draft.components)
+          onUpdate(
+            { id: uuid(), name: '', routes: [] },
+            activeIngredient.brands
+          )
         }
       />
-    </Box>
+    </TreeFormBox>
   );
 };
