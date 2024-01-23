@@ -57,18 +57,17 @@ export class DataParser {
     if (this.isBuilt) return this.graph;
 
     const drugNode = this.drugParser.buildDrugNode(this.graph);
-    // const consumableNode = this.consumableParser.buildConsumableNode(
-    //   this.graph
-    // );
-    // const vaccineNode = this.vaccineParser.buildVaccineNode(this.graph);
+    const consumableNode = this.consumableParser.buildConsumableNode(
+      this.graph
+    );
+    const vaccineNode = this.vaccineParser.buildVaccineNode(this.graph);
 
     this.graph[this.ROOT_CODE] = {
       code: this.ROOT_CODE,
       name: this.ROOT_NAME,
       description: this.ROOT_NAME,
       type: EEntityType.Root,
-      // children: [drugNode, consumableNode, vaccineNode],
-      children: [drugNode],
+      children: [drugNode, consumableNode, vaccineNode],
       properties: [],
     };
 
@@ -79,7 +78,7 @@ export class DataParser {
         this.graph[code].children = this.graph[code].children?.map(
           uc => this.graph[uc.code]
         );
-        // console.log(`INFO: Expanded edges for node with code ${code}`);
+        console.log(`INFO: Expanded edges for node with code ${code}`);
       });
 
       // Traverse graph and update names.
@@ -93,9 +92,9 @@ export class DataParser {
         );
       };
 
-      // this.graph[this.ROOT_CODE].children?.forEach(category => {
-      //   category.children?.forEach(product => addDescription(product));
-      // });
+      this.graph[this.ROOT_CODE].children?.forEach(category => {
+        category.children?.forEach(product => addDescription(product));
+      });
 
       this.isBuilt = true;
     } catch (err) {

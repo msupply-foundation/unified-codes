@@ -40,6 +40,7 @@ export interface IEntityNode {
   properties?: IPropertyNode[];
   children?: IEntityNode[];
   value?: string;
+  alternativeNames?: string[];
 }
 
 export default IEntityNode;
