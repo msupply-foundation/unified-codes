@@ -115,6 +115,7 @@ export class DataLoader {
         uid(Entity) <category> "${entity.category}" .
         uid(Entity) <type> "${entity.type}" .
         uid(Entity) <code> "${entity.code}" .
+        uid(Entity) <alternativeNames> "${entity.alternativeNames}" .
         uid(Entity) <dgraph.type> "Entity" .
       `;
 

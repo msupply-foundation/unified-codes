@@ -10,6 +10,9 @@ type Entity {
     @dgraph(pred: "description")
     @search(by: [exact, fulltext, trigram])
   category: String @dgraph(pred: "category") @search(by: [exact])
+  alternativeNames: String
+    @dgraph(pred: "alternativeNames")
+    @search(by: [exact, fulltext, trigram])
   type: String @dgraph(pred: "type") @search(by: [exact])
   properties: [Property] @dgraph(pred: "properties")
   children: [Entity] @dgraph(pred: "children")

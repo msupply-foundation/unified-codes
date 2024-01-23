@@ -119,7 +119,6 @@ export class DrugDataParser {
                 combines: [],
                 children: [],
                 properties: [],
-                alternativeNames: [],
               };
               graph[item.code] = node;
 
@@ -191,21 +190,20 @@ export class DrugDataParser {
           // });
 
           // Parse product alternative names
-          const altNames = row.product_synonym
-            .split(',')
-            .map(name => name.trim())
-            .filter(name => !!name);
-
           if (productCode) {
-            altNames.forEach(name => {
-              if (!graph[productCode].alternativeNames.some(n => n === name)) {
-                graph[productCode].alternativeNames.push(name);
+            const altNames = row.product_synonym
+              .split(',')
+              .map(name => name.trim())
+              .filter(name => !!name);
 
-                console.log(
-                  `INFO: Alternate name ${name} added for ${productCode}`
-                );
-              }
-            });
+            // store as a string so they're searchable...
+            const serialisedAltNames = altNames.join(',');
+
+            graph[productCode].alternativeNames = serialisedAltNames;
+
+            console.log(
+              `INFO: Alternate names ${serialisedAltNames} added for ${productCode}`
+            );
           }
 
           // Process external properties at product (UC2) level
