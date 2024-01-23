@@ -88,9 +88,6 @@ export class DrugDataParser {
               type: EEntityType.PackImmediate,
             },
             { name: row.pack_size, code: row.uc9, type: EEntityType.PackSize },
-            // { name: row.outer_packaging, code: row.uc10, type: EEntityType.PackOuter },
-            // { name: row.manufacturer, code: row.uc11, type: EEntityType.Manufacturer },
-            // { name: row.brand, code: row.uc12, type: EEntityType.Brand },
           ];
 
           const productProperties: IPropertyNode[] = [
@@ -191,6 +188,13 @@ export class DrugDataParser {
           //     }
           //   }
           // });
+
+          // Parse product alternative names
+          const altNames = row.product_synonym
+            .split(',')
+            .filter(name => !!name)
+            .map(name => name.trim());
+          console.log(altNames);
 
           // Process external properties at product (UC2) level
           if (productCode) {

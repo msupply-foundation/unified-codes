@@ -42,7 +42,7 @@ const main = async () => {
 
     try {
       const loader = new DataLoader(hostname, port);
-      await loader.load(schema, graph);
+      // await loader.load(schema, graph);
     } catch (err) {
       console.log(`Failed to load data due to following error: ${err}`);
     }
