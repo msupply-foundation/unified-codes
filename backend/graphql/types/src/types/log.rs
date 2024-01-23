@@ -30,6 +30,8 @@ pub enum LogNodeType {
     UniversalCodeChangeRequested,
     ConfigurationItemCreated,
     ConfigurationItemDeleted,
+    InteractionGroupCreated,
+    InteractionGroupDeleted,
 }
 
 #[Object]
@@ -91,6 +93,8 @@ impl LogNodeType {
             LogType::UniversalCodeChangeRejected => LogNodeType::UniversalCodeChangeRejected,
             LogType::ConfigurationItemCreated => LogNodeType::ConfigurationItemCreated,
             LogType::ConfigurationItemDeleted => LogNodeType::ConfigurationItemDeleted,
+            LogType::InteractionGroupCreated => LogNodeType::InteractionGroupCreated,
+            LogType::InteractionGroupDeleted => LogNodeType::InteractionGroupDeleted,
         }
     }
 
@@ -109,6 +113,8 @@ impl LogNodeType {
             LogNodeType::UniversalCodeChangeRejected => LogType::UniversalCodeChangeRejected,
             LogNodeType::ConfigurationItemCreated => LogType::ConfigurationItemCreated,
             LogNodeType::ConfigurationItemDeleted => LogType::ConfigurationItemDeleted,
+            LogNodeType::InteractionGroupCreated => LogType::InteractionGroupCreated,
+            LogNodeType::InteractionGroupDeleted => LogType::InteractionGroupDeleted,
         }
     }
 }
