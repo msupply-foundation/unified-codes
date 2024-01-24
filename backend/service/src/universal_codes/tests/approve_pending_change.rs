@@ -55,6 +55,7 @@ mod universal_codes_approve_pending_change_test {
             description: Some(new_code_id.clone()),
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
+            alternative_names: None,
             properties: None,
             children: None,
         };
@@ -82,7 +83,7 @@ mod universal_codes_approve_pending_change_test {
             .reject_pending_change(
                 service_provider.clone(),
                 context.user_id.clone(),
-                new_request_id.clone(),
+                request_id.clone(),
             )
             .await;
     }
@@ -124,6 +125,7 @@ mod universal_codes_approve_pending_change_test {
             description: Some(new_code_id.clone()),
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
+            alternative_names: None,
             properties: None,
             children: None,
         };

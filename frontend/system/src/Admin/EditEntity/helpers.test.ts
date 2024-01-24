@@ -52,7 +52,12 @@ describe('getAllEntityCodes', () => {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
-      alternativeNames: [],
+      alternativeNames: [
+        {
+          name: 'Other name',
+          code: 'some_alt_name_code',
+        },
+      ],
       properties: [],
       children: [
         {
@@ -112,6 +117,7 @@ describe('getAllEntityCodes', () => {
 
     expect(result).toEqual([
       '7c8c2b5b',
+      'some_alt_name_code',
       '6e5f7a00',
       '66e85500',
       '36e874bf',
@@ -128,7 +134,12 @@ describe('buildDrugInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
-      alternativeNames: [],
+      alternativeNames: [
+        {
+          name: 'AltName',
+          code: 'ABC123',
+        },
+      ],
       properties: [],
       children: [
         {
@@ -174,7 +185,13 @@ describe('buildDrugInputFromEntity', () => {
       id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Acetic Acid',
-      alternativeNames: [],
+      alternativeNames: [
+        {
+          id: 'AltNameABC123',
+          code: 'ABC123',
+          name: 'AltName',
+        },
+      ],
       properties: [],
       routes: [
         {
