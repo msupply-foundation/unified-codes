@@ -18,7 +18,7 @@ export type RejectPendingChangeMutationVariables = Types.Exact<{
 
 export type RejectPendingChangeMutation = { __typename?: 'FullMutation', rejectPendingChange: { __typename?: 'IdResponse', id: string } };
 
-export type PendingChangeSummaryFragment = { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, id: string };
+export type PendingChangeSummaryFragment = { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, dateRequested: string, id: string };
 
 export type PendingChangesQueryVariables = Types.Exact<{
   page?: Types.InputMaybe<Types.PaginationInput>;
@@ -26,16 +26,16 @@ export type PendingChangesQueryVariables = Types.Exact<{
 }>;
 
 
-export type PendingChangesQuery = { __typename?: 'FullQuery', pendingChanges: { __typename?: 'PendingChangeConnector', totalCount: number, nodes: Array<{ __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, id: string }> } };
+export type PendingChangesQuery = { __typename?: 'FullQuery', pendingChanges: { __typename?: 'PendingChangeConnector', totalCount: number, nodes: Array<{ __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, dateRequested: string, id: string }> } };
 
-export type PendingChangeDetailsFragment = { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, body: string, id: string };
+export type PendingChangeDetailsFragment = { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, dateRequested: string, body: string, id: string };
 
 export type PendingChangeQueryVariables = Types.Exact<{
   id: Types.Scalars['String']['input'];
 }>;
 
 
-export type PendingChangeQuery = { __typename?: 'FullQuery', pendingChange?: { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, requestedFor: string, dateRequested: string, body: string, id: string } | null };
+export type PendingChangeQuery = { __typename?: 'FullQuery', pendingChange?: { __typename?: 'PendingChangeNode', name: string, category: string, changeType: Types.ChangeTypeNode, requestedBy: string, dateRequested: string, body: string, id: string } | null };
 
 export type RequestChangeMutationVariables = Types.Exact<{
   input: Types.RequestChangeInput;
@@ -59,7 +59,6 @@ export const PendingChangeSummaryFragmentDoc = gql`
   category
   changeType
   requestedBy
-  requestedFor
   dateRequested
 }
     `;
@@ -70,7 +69,6 @@ export const PendingChangeDetailsFragmentDoc = gql`
   category
   changeType
   requestedBy
-  requestedFor
   dateRequested
   body
 }

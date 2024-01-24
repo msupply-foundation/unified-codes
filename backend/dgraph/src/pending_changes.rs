@@ -44,7 +44,6 @@ query PendingChangesQuery($filter: PendingChangeFilter, $first: Int, $offset: In
     change_type
     date_requested
     requested_by_user_id
-    requested_for
     body
     status
   }

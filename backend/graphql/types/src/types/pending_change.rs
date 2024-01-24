@@ -38,9 +38,6 @@ impl PendingChangeNode {
     pub async fn date_requested(&self) -> &DateTime<Utc> {
         &self.row().date_requested
     }
-    pub async fn requested_for(&self) -> &str {
-        &self.row().requested_for
-    }
     pub async fn status(&self) -> ChangeStatusNode {
         ChangeStatusNode::from_domain(self.row().status.clone())
     }

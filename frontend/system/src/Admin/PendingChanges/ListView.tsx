@@ -38,7 +38,6 @@ export const PendingChangesListView = () => {
       },
       { key: 'changeType', label: 'label.change-type', sortable: false },
       { key: 'requestedBy', label: 'label.requested-by', sortable: false },
-      { key: 'requestedFor', label: 'label.request-for', sortable: false },
     ],
     { sortBy: sortBy, onChangeSortBy: updateSortQuery },
     [sortBy, updateSortQuery]
