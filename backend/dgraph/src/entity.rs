@@ -46,6 +46,12 @@ query EntityQuery($code: String!) {
                 ...Details
                 children {
                   ...Details
+                  children {
+                    ...Details
+                    children {
+                      ...Details
+                    }
+                  }
                 }
               }
             }
@@ -106,6 +112,12 @@ query EntityQuery($code: String!) {
               ...Details
               parents {
                 ...Details
+                parents {
+                  ...Details
+                  parents {
+                    ...Details
+                  }
+                }
               }
             }
           }
@@ -127,6 +139,12 @@ query EntityQuery($code: String!) {
               ...Details
               children {
                 ...Details
+                children {
+                  ...Details
+                  children {
+                    ...Details
+                  }
+                }
               }
             }
           }

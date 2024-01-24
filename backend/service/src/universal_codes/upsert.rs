@@ -194,7 +194,7 @@ pub async fn validate(
         .await?;
         match duplicated {
             Some(duplicated) => {
-                if duplicated.data.len() > 1 {
+                if duplicated.data.len() >= 1 {
                     return Err(ModifyUniversalCodeError::DescriptionAlreadyExists(format!(
                         "Description {} is already in use on code {}",
                         duplicated.data[0].description, duplicated.data[0].code

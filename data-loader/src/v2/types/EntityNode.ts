@@ -12,6 +12,10 @@ export enum EEntityType {
   PackOuter = 'PackOuter',
   Manufacturer = 'Manufacturer',
   Brand = 'Brand',
+  Presentation = 'Presentation',
+  ExtraDescription = 'ExtraDescription',
+  ActiveIngredients = 'ActiveIngredients',
+  VaccineNameDetails = 'VaccineNameDetails',
 }
 
 export enum EPropertyType {

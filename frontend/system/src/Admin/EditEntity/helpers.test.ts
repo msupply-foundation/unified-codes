@@ -1,3 +1,4 @@
+import { EntityType } from '../../constants';
 import {
   buildConsumableInputFromEntity,
   buildDrugInputFromEntity,
@@ -347,35 +348,58 @@ describe('buildVaccineInputFromEntity', () => {
       properties: [],
       children: [
         {
-          code: '7e5f7a00',
-          name: 'Component 1/Component 2',
-          type: 'Component',
+          code: '6e5f7a00',
+          name: 'Intramuscular',
+          type: 'Route',
           properties: [],
           children: [
             {
-              code: '86e85500',
-              name: 'Brand 1',
-              type: 'Brand',
-              properties: [],
+              code: '66e85500',
+              name: 'Injection: suspension',
+              type: 'Form',
+              properties: [
+                {
+                  id: '6e5f7a00_code_rxnav',
+                  code: '6e5f7a00_code_rxnav',
+                  type: 'code_rxnav',
+                  value: '168',
+                },
+              ],
               children: [
                 {
-                  code: '6e5f7a00',
-                  name: 'Intramuscular',
-                  type: 'Route',
+                  code: 'ae5f7a00',
+                  name: '2021 Variant',
+                  type: EntityType.VaccineNameDetails,
                   properties: [],
                   children: [
                     {
-                      code: '66e85500',
-                      name: 'Injection: suspension',
-                      type: 'Form',
-                      properties: [
+                      code: '7e5f7a02',
+                      name: 'Component 1/Component 2',
+                      type: EntityType.ActiveIngredients,
+                      properties: [],
+                      children: [
                         {
-                          id: '6e5f7a00_code_rxnav',
-                          code: '6e5f7a00_code_rxnav',
-                          type: 'code_rxnav',
-                          value: '168',
+                          code: 'a6e85500',
+                          name: 'Brand 2',
+                          type: 'Brand',
+                          properties: [],
+                          children: [],
                         },
                       ],
+                    },
+                  ],
+                },
+                {
+                  code: '7e5f7a00',
+                  name: 'Component 1/Component 2',
+                  type: EntityType.ActiveIngredients,
+                  properties: [],
+                  children: [
+                    {
+                      code: '86e85500',
+                      name: 'Brand 1',
+                      type: 'Brand',
+                      properties: [],
                       children: [
                         {
                           code: '36e874bf',
@@ -417,37 +441,63 @@ describe('buildVaccineInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
-      components: [
+      routes: [
         {
-          id: '7e5f7a00',
-          code: '7e5f7a00',
-          name: 'Component 1/Component 2',
+          id: '6e5f7a00',
+          code: '6e5f7a00',
+          name: 'Intramuscular',
           properties: [],
-          brands: [
+          forms: [
             {
-              id: '86e85500',
-              code: '86e85500',
-              name: 'Brand 1',
-              properties: [],
-              routes: [
+              id: '66e85500',
+              code: '66e85500',
+              name: 'Injection: suspension',
+              properties: [
                 {
-                  id: '6e5f7a00',
-                  code: '6e5f7a00',
-                  name: 'Intramuscular',
+                  id: '6e5f7a00_code_rxnav',
+                  code: '6e5f7a00_code_rxnav',
+                  type: 'code_rxnav',
+                  value: '168',
+                },
+              ],
+              details: [
+                {
+                  id: 'ae5f7a00',
+                  code: 'ae5f7a00',
+                  name: '2021 Variant',
                   properties: [],
-                  forms: [
+                  activeIngredients: [
                     {
-                      id: '66e85500',
-                      code: '66e85500',
-                      name: 'Injection: suspension',
-                      properties: [
+                      id: '7e5f7a02',
+                      code: '7e5f7a02',
+                      name: 'Component 1/Component 2',
+                      properties: [],
+                      brands: [
                         {
-                          id: '6e5f7a00_code_rxnav',
-                          code: '6e5f7a00_code_rxnav',
-                          type: 'code_rxnav',
-                          value: '168',
+                          id: 'a6e85500',
+                          code: 'a6e85500',
+                          name: 'Brand 2',
+                          properties: [],
+                          strengths: [],
                         },
                       ],
+                    },
+                  ],
+                },
+              ],
+              activeIngredients: [
+                {
+                  id: '7e5f7a00',
+                  code: '7e5f7a00',
+                  name: 'Component 1/Component 2',
+                  properties: [],
+                  brands: [
+                    {
+                      id: '86e85500',
+                      code: '86e85500',
+                      name: 'Brand 1',
+                      properties: [],
+
                       strengths: [
                         {
                           id: '36e874bf',
@@ -466,6 +516,7 @@ describe('buildVaccineInputFromEntity', () => {
                                   code: 'x4edcb00',
                                   name: 'Ampoule',
                                   properties: [],
+                                  packSizes: [],
                                 },
                               ],
                             },
@@ -480,7 +531,7 @@ describe('buildVaccineInputFromEntity', () => {
           ],
         },
       ],
-    });
+    } as VaccineInput);
   });
 
   // TODO: decide on/update this:
@@ -494,32 +545,16 @@ describe('buildVaccineInputFromEntity', () => {
       properties: [],
       children: [
         {
-          code: '7e5f7a00',
-          name: 'Component 1/Component 2',
-          type: 'Component',
+          code: '6e5f7a00',
+          name: 'Intramuscular',
+          type: 'Route', // include: valid child
           properties: [],
-          children: [
-            {
-              code: '86e85500',
-              name: 'Brand 1',
-              type: 'Brand',
-              properties: [],
-              children: [
-                {
-                  code: '6e5f7a00',
-                  name: 'Intramuscular',
-                  type: 'Route', // include: valid child
-                  properties: [],
-                },
-                {
-                  code: 'e4edcb00',
-                  name: '0.5mL',
-                  type: 'Unit', // exclude: invalid (should be deeper in the tree)
-                  properties: [],
-                },
-              ],
-            },
-          ],
+        },
+        {
+          code: 'e4edcb00',
+          name: '0.5mL',
+          type: 'Unit', // exclude: invalid (should be deeper in the tree)
+          properties: [],
         },
       ],
     };
@@ -531,32 +566,16 @@ describe('buildVaccineInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
-      components: [
+      routes: [
         {
-          id: '7e5f7a00',
-          code: '7e5f7a00',
-          name: 'Component 1/Component 2',
+          id: '6e5f7a00',
+          code: '6e5f7a00',
+          name: 'Intramuscular',
           properties: [],
-          brands: [
-            {
-              id: '86e85500',
-              code: '86e85500',
-              name: 'Brand 1',
-              properties: [],
-              routes: [
-                {
-                  id: '6e5f7a00',
-                  code: '6e5f7a00',
-                  name: 'Intramuscular',
-                  properties: [],
-                  forms: [],
-                },
-              ],
-            },
-          ],
+          forms: [],
         },
       ],
-    });
+    } as VaccineInput);
   });
 });
 
@@ -825,6 +844,46 @@ describe('isValidDrugInput', () => {
 
     expect(result).toBe(false);
   });
+
+  it('returns false when a name is duplicated', () => {
+    const drugInput: DrugInput = {
+      id: '7c8c2b5b',
+      name: 'Acetic Acid',
+      properties: [],
+      routes: [
+        {
+          id: '6e5f7a00',
+          name: 'Topical',
+          properties: [],
+          forms: [
+            {
+              id: '66e85500',
+              name: 'Solution',
+              properties: [],
+              strengths: [
+                {
+                  id: '36e874bf',
+                  name: 'SAME NAME',
+                  properties: [],
+                  units: [],
+                },
+                {
+                  id: '36e874b2',
+                  name: 'SAME NAME',
+                  properties: [],
+                  units: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    const result = isValidDrugInput(drugInput);
+
+    expect(result).toBe(false);
+  });
 });
 
 describe('isValidVaccineInput', () => {
@@ -833,25 +892,26 @@ describe('isValidVaccineInput', () => {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
-      components: [
+      routes: [
         {
-          id: '7e5f7a00',
-          name: 'Component 1/Component 2',
+          id: '6e5f7a00',
+          name: 'Intramuscular',
           properties: [],
-          brands: [
+          forms: [
             {
-              id: '86e85500',
-              name: 'Brand 1',
+              id: '66e85500',
+              name: 'Injection: suspension',
               properties: [],
-              routes: [
+              details: [],
+              activeIngredients: [
                 {
-                  id: '6e5f7a00',
-                  name: 'Intramuscular',
+                  id: '7e5f7a00',
+                  name: 'Component 1/Component 2',
                   properties: [],
-                  forms: [
+                  brands: [
                     {
-                      id: '66e85500',
-                      name: 'Injection: suspension',
+                      id: '86e85500',
+                      name: 'Brand 1',
                       properties: [],
                       strengths: [
                         {
@@ -884,21 +944,57 @@ describe('isValidVaccineInput', () => {
   });
 
   it('returns false when a field is missing a name', () => {
-    const vaccineInput = {
+    const vaccineInput: VaccineInput = {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
-      components: [
+      routes: [
         {
           id: '7e5f7a00',
-          name: 'Component 1/Component 2',
+          name: 'Oral',
           properties: [],
-          brands: [
+          forms: [
             {
               id: '86e85500',
               name: '',
               properties: [],
-              routes: [],
+              activeIngredients: [],
+              details: [],
+            },
+          ],
+        },
+      ],
+    };
+
+    const result = isValidVaccineInput(vaccineInput);
+
+    expect(result).toBe(false);
+  });
+
+  it('returns false when there is a duplicate name', () => {
+    const vaccineInput = {
+      id: '7c8c2b5b',
+      name: 'Some Vaccine',
+      properties: [],
+      routes: [
+        {
+          id: '7e5f7a00',
+          name: 'Oral',
+          properties: [],
+          forms: [
+            {
+              id: '86e85500',
+              name: 'SAME',
+              properties: [],
+              details: [],
+              activeIngredients: [],
+            },
+            {
+              id: '26e85500',
+              name: 'SAME',
+              properties: [],
+              details: [],
+              activeIngredients: [],
             },
           ],
         },
@@ -972,6 +1068,33 @@ describe('isValidConsumableInput', () => {
         {
           id: '7e5f7a00',
           name: '',
+          properties: [],
+          extraDescriptions: [],
+        },
+      ],
+    };
+
+    const result = isValidConsumableInput(consumableInput);
+
+    expect(result).toBe(false);
+  });
+
+  it('returns false when there is a duplicate name', () => {
+    const consumableInput = {
+      id: '7c8c2b5b',
+      name: 'Examination Glove',
+      properties: [],
+      extraDescriptions: [],
+      presentations: [
+        {
+          id: '2e5f7a00',
+          name: 'SAME',
+          properties: [],
+          extraDescriptions: [],
+        },
+        {
+          id: '7e5f7a00',
+          name: 'SAME',
           properties: [],
           extraDescriptions: [],
         },

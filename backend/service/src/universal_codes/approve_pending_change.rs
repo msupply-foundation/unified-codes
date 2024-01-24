@@ -26,24 +26,26 @@ pub async fn approve_pending_change(
     let updated_entity =
         upsert_entity(sp.clone(), user_id.clone(), client.clone(), updated_entity).await;
 
-    let _res = update_pending_change(
-        &client,
-        request_id.clone(),
-        PendingChangePatch {
-            status: Some(ChangeStatus::Approved),
-            ..Default::default()
-        },
-    )
-    .await;
+    if updated_entity.is_ok() {
+        let _res = update_pending_change(
+            &client,
+            request_id.clone(),
+            PendingChangePatch {
+                status: Some(ChangeStatus::Approved),
+                ..Default::default()
+            },
+        )
+        .await;
 
-    let service_context = ServiceContext::with_user(sp.clone(), user_id)?;
+        let service_context = ServiceContext::with_user(sp.clone(), user_id)?;
 
-    audit_log_entry(
-        &service_context,
-        LogType::UniversalCodeChangeApproved,
-        Some(request_id),
-        Utc::now().naive_utc(),
-    )?;
+        audit_log_entry(
+            &service_context,
+            LogType::UniversalCodeChangeApproved,
+            Some(request_id),
+            Utc::now().naive_utc(),
+        )?;
+    }
 
     updated_entity
 }

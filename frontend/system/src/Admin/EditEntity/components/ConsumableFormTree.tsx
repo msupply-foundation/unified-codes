@@ -101,6 +101,7 @@ export const ConsumableFormTree = ({
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'start' }}>
         <NameEditField
+          siblings={[]}
           disabled={initialIds.includes(draft.id)}
           value={draft.name}
           label={t('label.device-name')}
@@ -137,6 +138,7 @@ export const ConsumableFormTree = ({
         <TreeFormBox key={pres.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <NameEditField
+              siblings={draft.presentations}
               disabled={initialIds.includes(pres.id)}
               value={pres.name}
               label={t('label.presentation')}
@@ -164,6 +166,7 @@ export const ConsumableFormTree = ({
             <TreeFormBox key={description.id}>
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                 <NameEditField
+                  siblings={pres.extraDescriptions}
                   disabled={initialIds.includes(description.id)}
                   value={description.name}
                   label={t('label.extra-description')}
@@ -204,6 +207,7 @@ export const ConsumableFormTree = ({
         <TreeFormBox key={description.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <NameEditField
+              siblings={draft.extraDescriptions}
               disabled={initialIds.includes(description.id)}
               value={description.name}
               label={t('label.extra-description')}
