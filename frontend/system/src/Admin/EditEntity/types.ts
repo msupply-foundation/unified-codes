@@ -53,6 +53,11 @@ export interface ActiveIngredients extends Entity {
   brands: Brand[];
 }
 
+export interface VaccineNameDetails extends Entity {
+  activeIngredients: ActiveIngredients[];
+}
+
 export interface VaccineInput extends Entity {
   activeIngredients: ActiveIngredients[];
+  details: VaccineNameDetails[];
 }
