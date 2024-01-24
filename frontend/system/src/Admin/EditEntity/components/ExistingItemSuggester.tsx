@@ -1,14 +1,15 @@
 import { useTranslation } from '@common/intl';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useEntities } from 'frontend/system/src/Entities/api';
 import { Link } from 'react-router-dom';
 import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
+import { useDebounceCallback } from '@common/hooks';
 
 export const ExistingNameSuggester = ({ name }: { name: string }) => {
   const t = useTranslation('system');
 
-  const { data: matchingEntities } = useEntities({
+  const { refetch, data: matchingEntities } = useEntities({
     filter: {
       categories: ['drug', 'consumable', 'vaccine'],
       match: 'exact',
@@ -16,8 +17,19 @@ export const ExistingNameSuggester = ({ name }: { name: string }) => {
     },
     first: 1,
     offset: 0,
+    options: { enabled: false }, // prevent automatic fetch - manual refetch called by debouncedOnChange
   });
   const match = matchingEntities?.data[0];
+
+  const debouncedOnChange = useDebounceCallback(
+    () => refetch(),
+    [refetch],
+    750
+  );
+
+  useEffect(() => {
+    debouncedOnChange();
+  }, [name]);
 
   return match ? (
     <Link
