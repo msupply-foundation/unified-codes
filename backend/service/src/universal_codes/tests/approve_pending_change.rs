@@ -36,7 +36,6 @@ mod universal_codes_approve_pending_change_test {
             name: request_id.clone(),
             category: "test_category".to_string(),
             body: "would be the upsert body below..".to_string(),
-            requested_for: "test country".to_string(),
             change_type: ChangeType::New,
         };
 
@@ -96,7 +95,6 @@ mod universal_codes_approve_pending_change_test {
             name: request_id.clone(),
             category: "test_category".to_string(),
             body: "would be the upsert body below..".to_string(),
-            requested_for: "test country".to_string(),
             change_type: ChangeType::New,
         };
 
