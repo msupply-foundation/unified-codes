@@ -19,6 +19,7 @@ import { EditPropertiesButton } from './EditPropertiesButton';
 import { NameEditField } from './NameEditField';
 import { useConfigurationItems } from '../../Configuration/api';
 import { ConfigurationItemTypeInput } from '@common/types';
+import { ExistingNameSuggester } from './ExistingItemSuggester';
 import { ConfigurationItemsQuery } from '../../Configuration/api/operations.generated';
 
 export const VaccineFormTree = ({
@@ -148,6 +149,9 @@ export const VaccineFormTree = ({
           />
         </Box>
       </Box>
+
+      {/* No initial ids === new item */}
+      {!initialIds.length && <ExistingNameSuggester name={draft.name} />}
 
       {!!draft.routes.length && (
         <Typography fontSize="12px">{t('label.routes')}</Typography>

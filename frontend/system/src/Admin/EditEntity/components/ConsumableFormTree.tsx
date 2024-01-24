@@ -9,6 +9,7 @@ import { TreeFormBox } from './TreeFormBox';
 import { AddFieldButton } from './AddFieldButton';
 import { EditPropertiesButton } from './EditPropertiesButton';
 import { NameEditField } from './NameEditField';
+import { ExistingNameSuggester } from './ExistingItemSuggester';
 
 export const ConsumableFormTree = ({
   draft,
@@ -125,6 +126,9 @@ export const ConsumableFormTree = ({
           />
         </Box>
       </Box>
+
+      {/* No initial ids === new item */}
+      {!initialIds.length && <ExistingNameSuggester name={draft.name} />}
 
       {!!draft.presentations.length && (
         <Typography fontSize="12px">{t('label.presentations')}</Typography>
