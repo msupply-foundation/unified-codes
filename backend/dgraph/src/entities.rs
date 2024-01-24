@@ -28,9 +28,13 @@ pub struct DgraphFilter {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<DgraphFilterType>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub alternative_names: Option<DgraphFilterType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub category: Option<DgraphFilterType>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub r#type: Option<DgraphFilterType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub or: Option<Vec<DgraphFilter>>,
 }
 
 #[derive(Serialize, Debug)]

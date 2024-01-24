@@ -91,7 +91,7 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
     };
 
     let description_regexp = match filter.description.clone() {
-        Some(description) => match filter.r#match {
+        Some(description) => match filter.r#match.clone() {
             Some(r#match) => match r#match.as_str() {
                 "exact" => Some(format!("/^{}$/i", description)),
                 "contains" => Some(format!("/.*{}.*/i", description)),
@@ -100,6 +100,29 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
             },
             None => Some(format!("/^{}.*$/i", description)),
         },
+        None => match filter.search.clone() {
+            Some(search) => Some(format!("/.*{}.*/i", search)),
+            None => None,
+        },
+    };
+
+    let search_filter = match filter.search.clone() {
+        Some(search) => Some(vec![
+            DgraphFilter {
+                alternative_names: Some(DgraphFilterType {
+                    regexp: Some(format!("/.*{}.*/i", search)),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            DgraphFilter {
+                code: Some(DgraphFilterType {
+                    eq: Some(search), // do we want equal or contains here??
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+        ]),
         None => None,
     };
 
@@ -116,7 +139,7 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
                 ..Default::default()
             }
         }),
-        description: filter.description.map(|_desc| DgraphFilterType {
+        description: description_regexp.clone().map(|_desc| DgraphFilterType {
             regexp: description_regexp,
             ..Default::default()
         }),
@@ -124,7 +147,9 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
             r#in: Some(categories),
             ..Default::default()
         }),
+        or: search_filter,
         r#type: filter_type,
+        alternative_names: None,
     }
 }
 

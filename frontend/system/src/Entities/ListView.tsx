@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from '@common/intl';
 import {
   AppBarContentPortal,
@@ -7,7 +7,6 @@ import {
   TableProvider,
   createTableStore,
   useColumns,
-  SearchToolbar,
   ToggleButton,
   Stack,
 } from '@common/ui';
@@ -51,22 +50,17 @@ export const ListView = () => {
         ? categories
         : ['drug', 'consumable', 'vaccine'],
       type: 'drug',
-      description: search,
+      search,
       orderBy: {
         field: sortBy.key,
         descending: sortBy.isDesc,
       },
-      match: 'contains',
     },
     first,
     offset,
   });
 
-  const {
-    data: allProducts,
-    isError: allProductsIsError,
-    isLoading: allProductsIsLoading,
-  } = useEntities({
+  const { data: allProducts, isLoading: allProductsIsLoading } = useEntities({
     filter: {
       categories: ['drug', 'consumable', 'vaccine'],
       orderBy: {
@@ -94,7 +88,6 @@ export const ListView = () => {
     first,
     total: data?.totalLength,
   };
-  const filterString = (filter.filterBy?.['search'] as string) || '';
 
   return (
     <TableProvider createStore={createTableStore}>

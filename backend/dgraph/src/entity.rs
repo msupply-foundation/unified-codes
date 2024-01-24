@@ -164,8 +164,6 @@ query EntityQuery($code: String!) {
         .query_with_vars::<EntityData, Vars>(query, variables)
         .await?;
 
-    println!("{:#?}", result.clone().unwrap().data.first().clone());
-
     match result {
         Some(result) => match result.data.first() {
             Some(entity) => Ok(Some(entity.clone())),
