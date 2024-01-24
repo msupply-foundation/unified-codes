@@ -307,9 +307,7 @@ export const DrugFormTree = ({
             <Box sx={{ display: 'flex', alignItems: 'end' }}>
               <NameEditField
                 siblings={draft.alternativeNames}
-                // TODO
-                // disabled={initialIds.includes(unit.id)}
-                disabled={n.id === n.name} // existing name
+                disabled={initialIds.includes(n.code || '')}
                 value={n.name}
                 label={t('label.alt-name')}
                 onChange={e =>

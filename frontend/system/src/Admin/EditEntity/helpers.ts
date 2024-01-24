@@ -17,6 +17,8 @@ export const getAllEntityCodes = (
 
   const codes = [entity.code];
 
+  entity.alternativeNames?.forEach(n => codes.push(n.code));
+
   const addChildCodes = (e: EntityDetails) =>
     e.children?.forEach(c => {
       codes.push(c.code);
@@ -32,7 +34,7 @@ export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
   return {
     ...getDetails(entity),
     alternativeNames: entity.alternativeNames.map(n => ({
-      id: n.code, // add ID field so react knows which node to update
+      id: n.name + n.code, // add ID field so react knows which node to update
       code: n.code,
       name: n.name,
     })),
