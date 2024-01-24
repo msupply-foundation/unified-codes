@@ -118,7 +118,7 @@ export class DataLoader {
         uid(Entity) <dgraph.type> "Entity" .
         ${
           entity.alternativeNames
-            ? `uid(Entity) <alternativeNames> "${entity.alternativeNames}" .`
+            ? `uid(Entity) <alternative_names> "${entity.alternativeNames}" .`
             : ''
         }`;
 

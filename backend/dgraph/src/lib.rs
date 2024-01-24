@@ -70,6 +70,8 @@ pub struct Entity {
     #[serde(deserialize_with = "null_as_empty_string")]
     pub category: String,
     #[serde(default)]
+    pub alternative_names: Option<String>,
+    #[serde(default)]
     pub properties: Vec<Property>,
     #[serde(default)]
     pub children: Vec<Entity>,

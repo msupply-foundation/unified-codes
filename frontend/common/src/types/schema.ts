@@ -138,6 +138,7 @@ export type EntitySortInput = {
 
 export type EntityType = {
   __typename: 'EntityType';
+  alternativeNames: Array<Scalars['String']['output']>;
   children: Array<EntityType>;
   code: Scalars['String']['output'];
   description: Scalars['String']['output'];

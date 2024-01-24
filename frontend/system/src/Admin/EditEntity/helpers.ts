@@ -451,6 +451,7 @@ export const buildEntityDetailsFromPendingChangeBody = (
     code: input.code || '',
     name: input.name || '',
     type: input.type || '',
+    alternativeNames: [], // TODO
     properties:
       input.properties?.map(p => ({
         code: p.code,

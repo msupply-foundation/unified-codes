@@ -17,6 +17,7 @@ pub async fn entity_by_code(
   code
   name
   description
+  alternative_names
   type
   __typename
   properties {
@@ -86,6 +87,7 @@ pub async fn entity_with_parents_by_code(
   code
   name
   description
+  alternative_names
   type
   __typename
   properties {
@@ -161,6 +163,8 @@ query EntityQuery($code: String!) {
         .gql
         .query_with_vars::<EntityData, Vars>(query, variables)
         .await?;
+
+    println!("{:#?}", result.clone().unwrap().data.first().clone());
 
     match result {
         Some(result) => match result.data.first() {

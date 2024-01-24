@@ -12,6 +12,7 @@ pub struct EntityType {
     pub description: String,
     pub r#type: String,
     pub category: String,
+    pub alternative_names: Vec<String>,
     pub properties: Vec<PropertiesType>,
     pub children: Vec<EntityType>,
     pub parents: Vec<EntityType>,
@@ -27,6 +28,10 @@ impl EntityType {
             r#type: entity.r#type,
             category: entity.category,
             properties: PropertiesType::from_domain(entity.properties),
+            alternative_names: match entity.alternative_names {
+                Some(names) => names.split(',').map(str::to_string).collect(),
+                None => vec![],
+            },
             children: entity
                 .children
                 .iter()
@@ -67,6 +72,10 @@ impl EntityType {
 
     pub async fn children(&self) -> &Vec<EntityType> {
         &self.children
+    }
+
+    pub async fn alternative_names(&self) -> &Vec<String> {
+        &self.alternative_names
     }
 
     pub async fn product(&self) -> Option<EntityType> {
