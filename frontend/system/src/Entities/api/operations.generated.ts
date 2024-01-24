@@ -21,14 +21,14 @@ export type EntityQueryVariables = Types.Exact<{
 }>;
 
 
-export type EntityQuery = { __typename?: 'FullQuery', entity?: { __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> } | null };
+export type EntityQuery = { __typename?: 'FullQuery', entity?: { __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> } | null };
 
 export type ProductQueryVariables = Types.Exact<{
   code: Types.Scalars['String']['input'];
 }>;
 
 
-export type ProductQuery = { __typename?: 'FullQuery', product?: { __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> } | null };
+export type ProductQuery = { __typename?: 'FullQuery', product?: { __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, type: string, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> } | null };
 
 export const EntityRowFragmentDoc = gql`
     fragment EntityRow on EntityType {
@@ -78,6 +78,12 @@ export const EntityDocument = gql`
                 ...EntityDetails
                 children {
                   ...EntityDetails
+                  children {
+                    ...EntityDetails
+                    children {
+                      ...EntityDetails
+                    }
+                  }
                 }
               }
             }
@@ -106,6 +112,12 @@ export const ProductDocument = gql`
                 ...EntityDetails
                 children {
                   ...EntityDetails
+                  children {
+                    ...EntityDetails
+                    children {
+                      ...EntityDetails
+                    }
+                  }
                 }
               }
             }

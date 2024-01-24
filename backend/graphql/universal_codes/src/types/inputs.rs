@@ -117,7 +117,6 @@ pub struct RequestChangeInput {
     pub category: String,
     pub body: String,
     pub change_type: ChangeTypeNode,
-    pub requested_for: String,
 }
 
 impl From<RequestChangeInput> for AddPendingChange {
@@ -126,7 +125,6 @@ impl From<RequestChangeInput> for AddPendingChange {
             request_id,
             name,
             category,
-            requested_for,
             body,
             change_type,
         }: RequestChangeInput,
@@ -136,7 +134,6 @@ impl From<RequestChangeInput> for AddPendingChange {
             name,
             category,
             body,
-            requested_for,
             change_type: ChangeTypeNode::to_domain(change_type),
         }
     }

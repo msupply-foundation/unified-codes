@@ -31,7 +31,6 @@ mod universal_codes_add_pending_change_test {
             name: new_request_id.clone(),
             category: "test_category".to_string(),
             body: "test body".to_string(),
-            requested_for: "test country".to_string(),
             change_type: ChangeType::New,
         };
 
@@ -75,7 +74,6 @@ mod universal_codes_add_pending_change_test {
             name: new_request_id.clone(),
             category: "".to_string(),
             body: "test body".to_string(),
-            requested_for: "test country".to_string(),
             change_type: ChangeType::New,
         };
 
