@@ -32,6 +32,18 @@ export type AddConfigurationItemInput = {
   type: ConfigurationItemTypeInput;
 };
 
+export type AlternativeNameInput = {
+  code: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+};
+
+export type AlternativeNameType = {
+  __typename: 'AlternativeNameType';
+  code: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+};
+
 export type AuthToken = {
   __typename: 'AuthToken';
   /** Bearer token */
@@ -138,7 +150,7 @@ export type EntitySortInput = {
 
 export type EntityType = {
   __typename: 'EntityType';
-  alternativeNames: Array<Scalars['String']['output']>;
+  alternativeNames: Array<AlternativeNameType>;
   children: Array<EntityType>;
   code: Scalars['String']['output'];
   description: Scalars['String']['output'];
@@ -586,7 +598,7 @@ export type UpdateUserAccountInput = {
 export type UpdateUserAccountResponse = UserAccountNode;
 
 export type UpsertEntityInput = {
-  alternativeNames?: InputMaybe<Array<Scalars['String']['input']>>;
+  alternativeNames?: InputMaybe<Array<AlternativeNameInput>>;
   category?: InputMaybe<Scalars['String']['input']>;
   children?: InputMaybe<Array<UpsertEntityInput>>;
   code?: InputMaybe<Scalars['String']['input']>;

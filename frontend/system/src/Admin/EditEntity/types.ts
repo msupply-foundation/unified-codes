@@ -20,6 +20,7 @@ export interface Entity {
 export interface AlternativeName {
   id: string;
   name: string;
+  code?: string;
 }
 
 export interface PackSize extends Entity {}

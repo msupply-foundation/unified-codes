@@ -51,6 +51,8 @@ export const EntityDetails = () => {
     setExpanded(expandedIds);
   }, [entity]);
 
+  const altNames = entity?.alternativeNames.map(n => n.name).join(', ');
+
   return (
     <>
       <AppBarContentPortal
@@ -63,7 +65,7 @@ export const EntityDetails = () => {
         }}
       >
         <Typography fontStyle="italic" marginLeft="10px" maxWidth="70%">
-          {entity?.alternativeNames.join(', ')}
+          {altNames}
         </Typography>
         <FormControlLabel
           control={

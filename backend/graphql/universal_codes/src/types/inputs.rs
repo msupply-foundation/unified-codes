@@ -93,6 +93,7 @@ impl From<UpsertEntityInput> for UpsertUniversalCode {
             description,
             r#type,
             category,
+            // TODO: what does this look like when none?
             alternative_names: alternative_names.map(|alt_names| {
                 alt_names
                     .into_iter()

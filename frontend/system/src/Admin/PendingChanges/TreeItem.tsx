@@ -3,7 +3,11 @@ import { LocaleKey, useTranslation } from '@common/intl';
 import { Box, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { config } from '../../config';
-import { PropertyInput, UpsertEntityInput } from '@common/types';
+import {
+  AlternativeNameInput,
+  PropertyInput,
+  UpsertEntityInput,
+} from '@common/types';
 
 export const PendingChangeTreeItem = ({
   node,
@@ -23,7 +27,6 @@ export const PendingChangeTreeItem = ({
 
   const nodeId = node.code || node.description || '?';
   const isNew = !node.code;
-  console.log(node.alternativeNames);
 
   const grey = '#898989';
   const green = '#008b08';
@@ -91,6 +94,25 @@ export const PendingChangeTreeItem = ({
           ))}
         </TreeItem>
       )}
+      {!!node.alternativeNames?.length && (
+        <TreeItem
+          nodeId={nodeId + '_altNames'}
+          label={
+            <Typography sx={{ color: grey }}>{t('label.alt-names')}</Typography>
+          }
+          sx={{
+            borderLeft: isRoot ? '1px solid black' : undefined,
+          }}
+        >
+          {node.alternativeNames.map(n => (
+            <AltNameTreeItem
+              key={n.name}
+              nodeId={node.code + n.name}
+              altName={n}
+            />
+          ))}
+        </TreeItem>
+      )}
     </TreeItem>
   );
 };
@@ -124,6 +146,36 @@ const PropertyTreeItem = ({
           }
         >
           {propertyConfig?.label}: {property.value}
+        </Typography>
+      }
+    />
+  );
+};
+
+const AltNameTreeItem = ({
+  altName,
+  nodeId,
+}: {
+  nodeId: string;
+  altName: AlternativeNameInput;
+}) => {
+  const isNewName = !altName.code;
+
+  return (
+    <TreeItem
+      nodeId={nodeId}
+      label={
+        <Typography
+          sx={
+            isNewName
+              ? {
+                  color: '#008b08',
+                  fontWeight: 'bold',
+                }
+              : { color: '#898989' }
+          }
+        >
+          {altName.name}
         </Typography>
       }
     />

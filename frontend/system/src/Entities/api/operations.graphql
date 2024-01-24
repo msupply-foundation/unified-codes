@@ -9,7 +9,10 @@ fragment EntityDetails on EntityType {
   code
   name
   type
-  alternativeNames
+  alternativeNames {
+    code
+    name
+  }
   properties {
     code
     type

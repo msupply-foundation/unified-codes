@@ -31,9 +31,10 @@ export const getAllEntityCodes = (
 export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
   return {
     ...getDetails(entity),
-    alternativeNames: entity.alternativeNames.map(name => ({
-      id: name, // add ID field so react knows which node to update!
-      name,
+    alternativeNames: entity.alternativeNames.map(n => ({
+      id: n.code, // add ID field so react knows which node to update
+      code: n.code,
+      name: n.name,
     })),
     routes:
       entity.children
@@ -82,7 +83,10 @@ export const buildEntityFromDrugInput = (
     description: drug.name,
     type: EntityType.Product,
     category: EntityCategory.Drug,
-    alternativeNames: drug.alternativeNames.map(n => n.name),
+    alternativeNames: drug.alternativeNames.map(({ name, code }) => ({
+      name,
+      code: code ?? '',
+    })),
     properties: drug.properties?.map(mapProperty),
     children: drug.routes?.map(route => ({
       code: route.code,
@@ -477,7 +481,7 @@ export const buildEntityDetailsFromPendingChangeBody = (
     code: input.code || '',
     name: input.name || '',
     type: input.type || '',
-    alternativeNames: [], // TODO
+    alternativeNames: input.alternativeNames || [],
     properties:
       input.properties?.map(p => ({
         code: p.code,
