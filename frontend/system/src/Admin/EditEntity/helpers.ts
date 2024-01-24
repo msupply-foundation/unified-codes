@@ -385,6 +385,11 @@ const hasDuplicates = (entities: Entity[]) => {
 export const isValidDrugInput = (input: DrugInput) => {
   if (!input.name) return false;
 
+  if (hasDuplicates(input.alternativeNames)) return false;
+  for (const altName of input.alternativeNames || []) {
+    if (!altName.name) return false;
+  }
+
   if (hasDuplicates(input.routes)) return false;
   for (const route of input.routes || []) {
     if (!route.name) return false;
