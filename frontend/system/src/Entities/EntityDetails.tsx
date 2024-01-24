@@ -10,7 +10,7 @@ import {
 } from '@common/ui';
 import { useBreadcrumbs } from '@common/hooks';
 import { useProduct } from './api';
-import { FormControlLabel } from '@mui/material';
+import { FormControlLabel, Typography } from '@mui/material';
 import { TreeView } from '@mui/lab';
 import { useNavigate, useParams } from 'react-router-dom';
 import { EntityTreeItem, EntityData } from './EntityTreeItem';
@@ -58,10 +58,13 @@ export const EntityDetails = () => {
           paddingBottom: '16px',
           flex: 1,
           display: 'flex',
-          justifyContent: 'end',
+          justifyContent: 'space-between',
           marginRight: 'max(0px, calc((100vw - 1200px) / 2))',
         }}
       >
+        <Typography fontStyle="italic" marginLeft="10px" maxWidth="70%">
+          {entity?.alternativeNames.join(', ')}
+        </Typography>
         <FormControlLabel
           control={
             <Switch
