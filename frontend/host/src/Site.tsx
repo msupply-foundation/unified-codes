@@ -25,6 +25,7 @@ import { QueryErrorHandler } from './QueryErrorHandler';
 import { EntitiesRouter } from './routers/EntitiesRouter';
 import { AdminRouter } from './routers/AdminRouter';
 import { RequireAuthentication } from './components/Navigation/RequireAuthentication';
+import { RedirectDetails } from './RedirectDetails';
 
 const AboutPage = React.lazy(
   () => import('@uc-frontend/system/src/About/About')
@@ -91,6 +92,7 @@ export const Site: FC = () => {
                   />
                 }
               />
+              <Route path={'/details/:code'} element={<RedirectDetails />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Box>
