@@ -92,6 +92,7 @@
   "property-who_eml": "WHO EML Categories",
   "property-code_unspsc": "UNSPSC Code",
   "message.status-updated": "Change request {{ status }} for {{ name }}",
+  "message.did-you-mean": "Did you mean {{ suggestion }}?",
   "message.entity-created": "Request submitted to create {{ name }}",
   "message.entity-updated": "Request submitted to update {{ name }}",
   "message.entity-error": "Error creating or updating this entity",
