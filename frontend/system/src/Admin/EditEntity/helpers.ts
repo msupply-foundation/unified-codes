@@ -366,15 +366,24 @@ const getDetails = (entity: EntityDetails) => ({
   })),
 });
 
+const hasDuplicates = (entities: Entity[]) => {
+  const entityNames = entities.map(e => e.name);
+  return entityNames.some((name, idx) => entityNames.indexOf(name) !== idx);
+};
+
 export const isValidDrugInput = (input: DrugInput) => {
   if (!input.name) return false;
 
+  if (hasDuplicates(input.routes)) return false;
   for (const route of input.routes || []) {
     if (!route.name) return false;
+    if (hasDuplicates(route.forms)) return false;
     for (const form of route.forms || []) {
       if (!form.name) return false;
+      if (hasDuplicates(form.strengths)) return false;
       for (const strength of form.strengths || []) {
         if (!strength.name) return false;
+        if (hasDuplicates(strength.units)) return false;
         for (const unit of strength.units || []) {
           if (!unit.name) return false;
         }
@@ -390,14 +399,19 @@ export const isValidVaccineInput = (input: VaccineInput) => {
 
   const activeIngredientsIsValid = (ingred: ActiveIngredients) => {
     if (!ingred.name) return false;
+    if (hasDuplicates(ingred.brands)) return false;
     for (const brand of ingred.brands || []) {
       if (!brand.name) return false;
+      if (hasDuplicates(brand.strengths)) return false;
       for (const strength of brand.strengths || []) {
         if (!strength.name) return false;
+        if (hasDuplicates(strength.units)) return false;
         for (const unit of strength.units || []) {
           if (!unit.name) return false;
+          if (hasDuplicates(unit.immediatePackagings)) return false;
           for (const immPack of unit.immediatePackagings || []) {
             if (!immPack.name) return false;
+            if (hasDuplicates(immPack.packSizes)) return false;
             for (const size of immPack.packSizes || []) {
               if (!size.name) return false;
             }
@@ -408,17 +422,21 @@ export const isValidVaccineInput = (input: VaccineInput) => {
     return true;
   };
 
+  if (hasDuplicates(input.routes)) return false;
   for (const route of input.routes || []) {
     if (!route.name) return false;
+    if (hasDuplicates(route.forms)) return false;
     for (const form of route.forms || []) {
       if (!form.name) return false;
+      if (hasDuplicates(form.activeIngredients)) return false;
       for (const ingred of form.activeIngredients || []) {
         if (!activeIngredientsIsValid(ingred)) return false;
       }
+      if (hasDuplicates(form.details)) return false;
       for (const detail of form.details || []) {
         if (!detail.name) return false;
+        if (hasDuplicates(detail.activeIngredients)) return false;
         for (const ingredient of detail.activeIngredients || []) {
-          if (!ingredient.name) return false;
           if (!activeIngredientsIsValid(ingredient)) return false;
         }
       }
@@ -431,12 +449,15 @@ export const isValidVaccineInput = (input: VaccineInput) => {
 export const isValidConsumableInput = (input: ConsumableInput) => {
   if (!input.name) return false;
 
+  if (hasDuplicates(input.presentations)) return false;
   for (const presentation of input.presentations || []) {
     if (!presentation.name) return false;
+    if (hasDuplicates(presentation.extraDescriptions)) return false;
     for (const description of presentation.extraDescriptions || []) {
       if (!description.name) return false;
     }
   }
+  if (hasDuplicates(input.extraDescriptions)) return false;
   for (const description of input.extraDescriptions || []) {
     if (!description.name) return false;
   }

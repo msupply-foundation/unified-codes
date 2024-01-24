@@ -111,6 +111,7 @@ export const DrugFormTree = ({
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'start' }}>
         <NameEditField
+          siblings={[]}
           disabled={initialIds.includes(draft.id)}
           value={draft.name}
           label={t('label.drug-name')}
@@ -199,6 +200,7 @@ export const DrugFormTree = ({
                 <TreeFormBox key={strength.id}>
                   <Box sx={{ display: 'flex', alignItems: 'end' }}>
                     <NameEditField
+                      siblings={form.strengths}
                       disabled={initialIds.includes(strength.id)}
                       value={strength.name}
                       label={t('label.strength')}
@@ -208,9 +210,7 @@ export const DrugFormTree = ({
                           form.strengths
                         )
                       }
-                      onDelete={() => {
-                        onDelete(strength, form.strengths);
-                      }}
+                      onDelete={() => onDelete(strength, form.strengths)}
                     />
                     <EditPropertiesButton
                       parents={[draft, route, form]}
@@ -227,6 +227,7 @@ export const DrugFormTree = ({
                     <TreeFormBox key={unit.id}>
                       <Box sx={{ display: 'flex', alignItems: 'end' }}>
                         <NameEditField
+                          siblings={strength.units}
                           disabled={initialIds.includes(unit.id)}
                           value={unit.name}
                           label={t('label.unit')}

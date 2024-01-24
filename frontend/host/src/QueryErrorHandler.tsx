@@ -16,6 +16,7 @@ export const QueryErrorHandler = () => {
   useEffect(() => {
     if (!!errorMessage && authError !== AuthError.Unauthenticated) {
       error(errorMessage)();
+      setErrorMessage(null);
     }
   }, [errorMessage]);
 

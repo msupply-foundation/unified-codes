@@ -15,6 +15,7 @@
   "entity-type.DoseStrength": "Strength",
   "entity-type.Unit": "Unit",
   "entity-type.VaccineNameDetails": "Vaccine Name Details",
+  "error.duplicate": "Duplicates not permitted",
   "error.email-invalid": "Invalid email",
   "error.unknown-error": "Unknown Error",
   "error.username-invalid-characters": "Username must not contain any special characters or spaces",
