@@ -32,7 +32,6 @@ mod universal_codes_reject_pending_change_test {
             name: request_id.clone(),
             category: "test_category".to_string(),
             body: "test body".to_string(),
-            requested_for: "test country".to_string(),
             change_type: ChangeType::New,
         };
 

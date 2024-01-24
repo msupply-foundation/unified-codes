@@ -19,7 +19,6 @@ fragment PendingChangeSummary on PendingChangeNode {
   category
   changeType
   requestedBy
-  requestedFor
   dateRequested
 }
 
@@ -40,7 +39,6 @@ fragment PendingChangeDetails on PendingChangeNode {
   category
   changeType
   requestedBy
-  requestedFor
   dateRequested
   body
 }

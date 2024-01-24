@@ -131,8 +131,6 @@ pub struct PendingChange {
     #[serde(default)]
     pub requested_by_user_id: String,
     #[serde(default)]
-    pub requested_for: String,
-    #[serde(default)]
     pub status: ChangeStatus,
     #[serde(default)]
     pub body: String,
@@ -178,7 +176,6 @@ pub struct PendingChangeInput {
     pub change_type: ChangeType,
     pub date_requested: NaiveDateTime,
     pub requested_by_user_id: String,
-    pub requested_for: String,
     pub status: ChangeStatus,
     pub body: String,
 }

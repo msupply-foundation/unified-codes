@@ -125,6 +125,7 @@ export const VaccineFormTree = ({
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'start' }}>
         <NameEditField
+          siblings={[]}
           disabled={initialIds.includes(draft.id)}
           value={draft.name}
           label={t('label.vaccine-name')}
@@ -225,6 +226,7 @@ export const VaccineFormTree = ({
                           }}
                         >
                           <NameEditField
+                            siblings={form.details}
                             disabled={isDisabled(details.id)}
                             value={details.name}
                             label={t('label.vaccine-name-details')}
@@ -391,6 +393,7 @@ const ActiveIngredientsFormBox = ({
     <TreeFormBox>
       <Box sx={{ display: 'flex', alignItems: 'end' }}>
         <NameEditField
+          siblings={immediateParent.activeIngredients}
           disabled={isDisabled(activeIngredient.id)}
           value={activeIngredient.name}
           label={t('label.active-ingredients')}
@@ -421,6 +424,7 @@ const ActiveIngredientsFormBox = ({
           <TreeFormBox key={brand.id}>
             <Box sx={{ display: 'flex', alignItems: 'end' }}>
               <NameEditField
+                siblings={activeIngredient.brands}
                 disabled={isDisabled(brand.id)}
                 value={brand.name}
                 label={t('label.brand')}
@@ -449,6 +453,7 @@ const ActiveIngredientsFormBox = ({
                 <TreeFormBox key={strength.id}>
                   <Box sx={{ display: 'flex', alignItems: 'end' }}>
                     <NameEditField
+                      siblings={brand.strengths}
                       disabled={isDisabled(strength.id)}
                       value={strength.name}
                       label={t('label.strength')}
@@ -482,6 +487,7 @@ const ActiveIngredientsFormBox = ({
                           }}
                         >
                           <NameEditField
+                            siblings={strength.units}
                             disabled={isDisabled(unit.id)}
                             value={unit.name}
                             label={t('label.unit')}
