@@ -60,16 +60,37 @@ pub struct UpsertEntityInput {
 }
 
 #[derive(InputObject, Clone)]
+pub struct PropertyInput {
+    pub code: String,
+    pub key: String,
+    pub value: String,
+}
+
+#[derive(InputObject, Clone)]
 pub struct AlternativeNameInput {
     pub code: String,
     pub name: String,
 }
 
-#[derive(InputObject, Clone)]
-pub struct PropertyInput {
-    pub code: String,
-    pub key: String,
-    pub value: String,
+impl AlternativeNameInput {
+    pub fn to_domain(names: Option<Vec<AlternativeNameInput>>) -> Option<String> {
+        match names {
+            Some(names) => {
+                if names.len() > 0 {
+                    Some(
+                        names
+                            .into_iter()
+                            .map(|alt_name| alt_name.name)
+                            .collect::<Vec<String>>()
+                            .join(","),
+                    )
+                } else {
+                    None
+                }
+            }
+            None => None,
+        }
+    }
 }
 
 impl From<UpsertEntityInput> for UpsertUniversalCode {
@@ -93,22 +114,7 @@ impl From<UpsertEntityInput> for UpsertUniversalCode {
             description,
             r#type,
             category,
-            alternative_names: match alternative_names {
-                Some(alt_names) => {
-                    if alt_names.len() > 0 {
-                        Some(
-                            alt_names
-                                .into_iter()
-                                .map(|alt_name| alt_name.name)
-                                .collect::<Vec<String>>()
-                                .join(","),
-                        )
-                    } else {
-                        None
-                    }
-                }
-                None => None,
-            },
+            alternative_names: AlternativeNameInput::to_domain(alternative_names),
             properties: properties.map(|properties| {
                 properties
                     .into_iter()
@@ -166,4 +172,44 @@ impl From<RequestChangeInput> for AddPendingChange {
 #[derive(Union)]
 pub enum RequestChangeResponse {
     Response(PendingChangeNode),
+}
+
+#[cfg(test)]
+mod test {
+    use super::AlternativeNameInput;
+
+    #[test]
+    fn alt_name_input_to_domain_maps_names() {
+        let alt_names = vec![
+            AlternativeNameInput {
+                code: "test_1_code".to_string(),
+                name: "test_1".to_string(),
+            },
+            AlternativeNameInput {
+                code: "test_2_code".to_string(),
+                name: "test_2".to_string(),
+            },
+        ];
+
+        let res = AlternativeNameInput::to_domain(Some(alt_names));
+
+        assert!(res.is_some());
+        assert_eq!(res.unwrap(), "test_1,test_2".to_string())
+    }
+
+    #[test]
+    fn alt_name_input_to_domain_empty_arr_to_none() {
+        let alt_names = vec![];
+
+        let res = AlternativeNameInput::to_domain(Some(alt_names));
+
+        assert!(res.is_none());
+    }
+
+    #[test]
+    fn alt_name_input_to_domain_none_to_none() {
+        let res = AlternativeNameInput::to_domain(None);
+
+        assert!(res.is_none());
+    }
 }

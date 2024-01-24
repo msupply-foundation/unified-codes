@@ -1,6 +1,6 @@
 use async_graphql::*;
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct AlternativeNameType {
     pub code: String,
     pub name: String,
@@ -30,5 +30,31 @@ impl AlternativeNameType {
                 name: name.to_string(),
             })
             .collect()
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::AlternativeNameType;
+
+    #[test]
+    fn alt_name_type_from_domain_maps_names() {
+        let alt_names = "test_1,test_2".to_string();
+
+        let res = AlternativeNameType::from_domain(alt_names);
+
+        assert_eq!(
+            res,
+            vec![
+                AlternativeNameType {
+                    code: "test_1".to_string(),
+                    name: "test_1".to_string(),
+                },
+                AlternativeNameType {
+                    code: "test_2".to_string(),
+                    name: "test_2".to_string(),
+                },
+            ]
+        );
     }
 }
