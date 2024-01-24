@@ -586,6 +586,7 @@ export type UpdateUserAccountInput = {
 export type UpdateUserAccountResponse = UserAccountNode;
 
 export type UpsertEntityInput = {
+  alternativeNames?: InputMaybe<Array<Scalars['String']['input']>>;
   category?: InputMaybe<Scalars['String']['input']>;
   children?: InputMaybe<Array<UpsertEntityInput>>;
   code?: InputMaybe<Scalars['String']['input']>;

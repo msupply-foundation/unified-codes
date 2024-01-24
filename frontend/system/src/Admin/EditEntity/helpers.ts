@@ -32,7 +32,7 @@ export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
   return {
     ...getDetails(entity),
     alternativeNames: entity.alternativeNames.map(name => ({
-      id: name,
+      id: name, // add ID field so react knows which node to update!
       name,
     })),
     routes:
@@ -82,6 +82,7 @@ export const buildEntityFromDrugInput = (
     description: drug.name,
     type: EntityType.Product,
     category: EntityCategory.Drug,
+    alternativeNames: drug.alternativeNames.map(n => n.name),
     properties: drug.properties?.map(mapProperty),
     children: drug.routes?.map(route => ({
       code: route.code,

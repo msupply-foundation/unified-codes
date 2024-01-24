@@ -54,8 +54,15 @@ pub struct UpsertEntityInput {
     pub description: Option<String>,
     pub r#type: Option<String>,
     pub category: Option<String>,
+    pub alternative_names: Option<Vec<AlternativeNameInput>>,
     pub properties: Option<Vec<PropertyInput>>,
     pub children: Option<Vec<UpsertEntityInput>>,
+}
+
+#[derive(InputObject, Clone)]
+pub struct AlternativeNameInput {
+    pub code: String,
+    pub name: String,
 }
 
 #[derive(InputObject, Clone)]
@@ -74,6 +81,7 @@ impl From<UpsertEntityInput> for UpsertUniversalCode {
             description,
             r#type,
             category,
+            alternative_names,
             properties,
             children,
         }: UpsertEntityInput,
@@ -85,6 +93,13 @@ impl From<UpsertEntityInput> for UpsertUniversalCode {
             description,
             r#type,
             category,
+            alternative_names: alternative_names.map(|alt_names| {
+                alt_names
+                    .into_iter()
+                    .map(|alt_name| alt_name.name)
+                    .collect::<Vec<String>>()
+                    .join(",")
+            }),
             properties: properties.map(|properties| {
                 properties
                     .into_iter()

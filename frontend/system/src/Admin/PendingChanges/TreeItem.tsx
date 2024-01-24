@@ -23,6 +23,7 @@ export const PendingChangeTreeItem = ({
 
   const nodeId = node.code || node.description || '?';
   const isNew = !node.code;
+  console.log(node.alternativeNames);
 
   const grey = '#898989';
   const green = '#008b08';

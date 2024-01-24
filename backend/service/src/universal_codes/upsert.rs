@@ -19,6 +19,7 @@ pub struct UpsertUniversalCode {
     pub description: Option<String>,
     pub r#type: Option<String>,
     pub category: Option<String>,
+    pub alternative_names: Option<String>,
     pub properties: Option<Vec<PropertyReference>>,
     pub children: Option<Vec<UpsertUniversalCode>>,
 }
