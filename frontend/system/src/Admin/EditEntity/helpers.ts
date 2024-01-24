@@ -1,7 +1,9 @@
 import { UpsertEntityInput } from '@common/types';
 import {
+  ActiveIngredients,
   ConsumableInput,
   DrugInput,
+  Entity,
   EntityDetails,
   Property,
   VaccineInput,
@@ -57,6 +59,7 @@ export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
                                 )
                                 .map(immPack => ({
                                   ...getDetails(immPack),
+                                  packSizes: [], // to bring in later
                                 })) || [],
                           })) || [],
                     })) || [],
@@ -114,55 +117,69 @@ export const buildEntityFromDrugInput = (
 export const buildVaccineInputFromEntity = (
   entity: EntityDetails
 ): VaccineInput => {
+  const getActiveIngredients = (entity: EntityDetails) =>
+    entity.children
+      ?.filter(ingred => ingred.type === EntityType.ActiveIngredients)
+      .map(ingred => ({
+        ...getDetails(ingred),
+        brands:
+          ingred.children
+            ?.filter(brand => brand.type === EntityType.Brand)
+            .map(brand => ({
+              ...getDetails(brand),
+              strengths:
+                brand.children
+                  ?.filter(strength => strength.type === EntityType.Strength)
+                  .map(strength => ({
+                    ...getDetails(strength),
+                    units:
+                      strength.children
+                        ?.filter(unit => unit.type === EntityType.Unit)
+                        .map(unit => ({
+                          ...getDetails(unit),
+                          immediatePackagings:
+                            unit.children
+                              ?.filter(
+                                immPack =>
+                                  immPack.type === EntityType.ImmediatePackaging
+                              )
+                              .map(immPack => ({
+                                ...getDetails(immPack),
+                                packSizes:
+                                  immPack.children
+                                    ?.filter(
+                                      packSize =>
+                                        packSize.type === EntityType.PackSize
+                                    )
+                                    .map(packSize => getDetails(packSize)) ||
+                                  [],
+                              })) || [],
+                        })) || [],
+                  })) || [],
+            })) || [],
+      })) || [];
+
   return {
     ...getDetails(entity),
-    components:
+    routes:
       entity.children
-        ?.filter(component => component.type === EntityType.Component)
-        .map(component => ({
-          ...getDetails(component),
-          brands:
-            component.children
-              ?.filter(brand => brand.type === EntityType.Brand)
-              .map(brand => ({
-                ...getDetails(brand),
-                routes:
-                  brand.children
-                    ?.filter(route => route.type === EntityType.Route)
-                    .map(route => ({
-                      ...getDetails(route),
-                      forms:
-                        route.children
-                          ?.filter(form => form.type === EntityType.Form)
-                          .map(form => ({
-                            ...getDetails(form),
-                            strengths:
-                              form.children
-                                ?.filter(
-                                  strength =>
-                                    strength.type === EntityType.Strength
-                                )
-                                .map(strength => ({
-                                  ...getDetails(strength),
-                                  units:
-                                    strength.children
-                                      ?.filter(
-                                        unit => unit.type === EntityType.Unit
-                                      )
-                                      .map(unit => ({
-                                        ...getDetails(unit),
-                                        immediatePackagings:
-                                          unit.children
-                                            ?.filter(
-                                              immPack =>
-                                                immPack.type ===
-                                                EntityType.ImmediatePackaging
-                                            )
-                                            .map(unit => getDetails(unit)) ||
-                                          [],
-                                      })) || [],
-                                })) || [],
-                          })) || [],
+        ?.filter(route => route.type === EntityType.Route)
+        .map(route => ({
+          ...getDetails(route),
+          forms:
+            route.children
+              ?.filter(form => form.type === EntityType.Form)
+              .map(form => ({
+                ...getDetails(form),
+                activeIngredients: getActiveIngredients(form),
+                details:
+                  form.children
+                    ?.filter(
+                      details => details.type === EntityType.VaccineNameDetails
+                    )
+                    .map(details => ({
+                      ...getDetails(details),
+                      activeIngredients: getActiveIngredients(details),
                     })) || [],
               })) || [],
         })) || [],
@@ -172,70 +189,92 @@ export const buildVaccineInputFromEntity = (
 export const buildEntityFromVaccineInput = (
   vaccine: VaccineInput
 ): UpsertEntityInput => {
-  return {
-    parentCode: '5048e0ad', // Vaccine parent code
-    code: vaccine.code,
-    name: vaccine.name,
-    description: vaccine.name,
-    type: EntityType.Product,
+  const entityDetails = (ent: Entity, description: string) => ({
+    code: ent.code,
+    name: ent.name,
+    description: `${description} ${ent.name}`.trim(),
     category: EntityCategory.Vaccine,
-    properties: vaccine.properties?.map(mapProperty),
-    children: vaccine.components?.map(component => ({
-      code: component.code,
-      name: component.name,
-      description: `${vaccine.name} ${component.name}`,
-      type: EntityType.Component,
-      category: EntityCategory.Vaccine,
-      properties: component.properties?.map(mapProperty),
-      children: component.brands?.map(brand => ({
-        code: brand.code,
-        name: brand.name,
-        description: `${vaccine.name} ${component.name} ${brand.name}`,
-        type: EntityType.Brand,
-        category: EntityCategory.Vaccine,
-        properties: brand.properties?.map(mapProperty),
-        children: brand.routes?.map(route => ({
-          code: route.code,
-          name: route.name,
-          description: `${vaccine.name} ${component.name} ${brand.name} ${route.name}`,
-          type: EntityType.Route,
-          category: EntityCategory.Drug,
-          properties: route.properties?.map(mapProperty),
-          children: route.forms?.map(form => ({
-            code: form.code,
-            name: form.name,
-            description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name}`,
-            type: EntityType.Form,
-            category: EntityCategory.Vaccine,
-            properties: form.properties?.map(mapProperty),
-            children: form.strengths?.map(strength => ({
-              code: strength.code,
-              name: strength.name,
-              description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name} ${strength.name}`,
+    properties: ent.properties?.map(mapProperty),
+  });
+
+  const mapActiveIngredient = (
+    activeIngredients: ActiveIngredients,
+    description: string
+  ) => {
+    const ingrDetails = entityDetails(activeIngredients, description);
+    return {
+      ...ingrDetails,
+      type: EntityType.ActiveIngredients,
+      children: activeIngredients.brands?.map(brand => {
+        const brandDetails = entityDetails(brand, ingrDetails.description);
+        return {
+          ...brandDetails,
+          type: EntityType.Brand,
+          children: brand.strengths?.map(strength => {
+            const strengthDetails = entityDetails(
+              strength,
+              brandDetails.description
+            );
+            return {
+              ...strengthDetails,
               type: EntityType.Strength,
-              category: EntityCategory.Vaccine,
-              properties: strength.properties?.map(mapProperty),
-              children: strength.units?.map(unit => ({
-                code: unit.code,
-                name: unit.name,
-                description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name} ${strength.name} ${unit.name}`,
-                type: EntityType.Unit,
-                category: EntityCategory.Vaccine,
-                properties: unit.properties?.map(mapProperty),
-                children: unit.immediatePackagings?.map(immPack => ({
-                  code: immPack.code,
-                  name: immPack.name,
-                  description: `${vaccine.name} ${component.name} ${brand.name} ${route.name} ${form.name} ${strength.name} ${unit.name} ${immPack.name}`,
-                  type: EntityType.ImmediatePackaging,
-                  category: EntityCategory.Vaccine,
-                  properties: immPack.properties?.map(mapProperty),
-                })),
-              })),
-            })),
-          })),
-        })),
-      })),
-    })),
+              children: strength.units?.map(unit => {
+                const unitDetails = entityDetails(
+                  unit,
+                  strengthDetails.description
+                );
+                return {
+                  ...unitDetails,
+                  type: EntityType.Unit,
+                  children: unit.immediatePackagings?.map(immPack => ({
+                    ...entityDetails(immPack, unitDetails.description),
+                    type: EntityType.ImmediatePackaging,
+                  })),
+                };
+              }),
+            };
+          }),
+        };
+      }),
+    };
+  };
+  const vaccDetails = entityDetails(vaccine, '');
+  return {
+    ...vaccDetails,
+    parentCode: '5048e0ad', // Vaccine parent code
+    type: EntityType.Product,
+    children: vaccine.routes?.map(route => {
+      const routeDetails = entityDetails(route, vaccDetails.description);
+      return {
+        ...routeDetails,
+        type: EntityType.Route,
+        children: route.forms?.map(form => {
+          const formDeets = entityDetails(form, routeDetails.description);
+          return {
+            ...formDeets,
+            type: EntityType.Form,
+            children: [
+              ...form.activeIngredients?.map(c =>
+                mapActiveIngredient(c, formDeets.description)
+              ),
+              ...form.details?.map(details => {
+                const detailDetails = entityDetails(
+                  details,
+                  formDeets.description
+                );
+                return {
+                  ...detailDetails,
+                  type: EntityType.VaccineNameDetails,
+                  children: details.activeIngredients?.map(c =>
+                    mapActiveIngredient(c, detailDetails.description)
+                  ),
+                };
+              }),
+            ],
+          };
+        }),
+      };
+    }),
   };
 };
 
@@ -349,20 +388,38 @@ export const isValidDrugInput = (input: DrugInput) => {
 export const isValidVaccineInput = (input: VaccineInput) => {
   if (!input.name) return false;
 
-  for (const component of input.components || []) {
-    if (!component.name) return false;
-    for (const brand of component.brands || []) {
+  const activeIngredientsIsValid = (ingred: ActiveIngredients) => {
+    if (!ingred.name) return false;
+    for (const brand of ingred.brands || []) {
       if (!brand.name) return false;
-      for (const route of brand.routes || []) {
-        if (!route.name) return false;
-        for (const form of route.forms || []) {
-          if (!form.name) return false;
-          for (const strength of form.strengths || []) {
-            if (!strength.name) return false;
-            for (const unit of strength.units || []) {
-              if (!unit.name) return false;
+      for (const strength of brand.strengths || []) {
+        if (!strength.name) return false;
+        for (const unit of strength.units || []) {
+          if (!unit.name) return false;
+          for (const immPack of unit.immediatePackagings || []) {
+            if (!immPack.name) return false;
+            for (const size of immPack.packSizes || []) {
+              if (!size.name) return false;
             }
           }
+        }
+      }
+    }
+    return true;
+  };
+
+  for (const route of input.routes || []) {
+    if (!route.name) return false;
+    for (const form of route.forms || []) {
+      if (!form.name) return false;
+      for (const ingred of form.activeIngredients || []) {
+        if (!activeIngredientsIsValid(ingred)) return false;
+      }
+      for (const detail of form.details || []) {
+        if (!detail.name) return false;
+        for (const ingredient of detail.activeIngredients || []) {
+          if (!ingredient.name) return false;
+          if (!activeIngredientsIsValid(ingredient)) return false;
         }
       }
     }

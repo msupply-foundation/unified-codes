@@ -22,7 +22,6 @@ query PendingChangeQuery($request_id: String!) {
     change_type
     date_requested
     requested_by_user_id
-    requested_for
     body
     status
   }

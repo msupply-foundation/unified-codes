@@ -495,7 +495,6 @@ export type PendingChangeNode = {
   name: Scalars['String']['output'];
   requestId: Scalars['String']['output'];
   requestedBy: Scalars['String']['output'];
-  requestedFor: Scalars['String']['output'];
   status: ChangeStatusNode;
 };
 
@@ -558,7 +557,6 @@ export type RequestChangeInput = {
   changeType: ChangeTypeNode;
   name: Scalars['String']['input'];
   requestId: Scalars['String']['input'];
-  requestedFor: Scalars['String']['input'];
 };
 
 export type RequestChangeResponse = PendingChangeNode;

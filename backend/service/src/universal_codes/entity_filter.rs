@@ -21,7 +21,7 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
     // TODO: Better Search!
 
     // mSupply has a `special` way of querying that v1 API uses.
-    // and we need to set the type to ["Unit", "DoseStrength"] (in clause, where as normally this is a single string)
+    // and we need to set the type to ["Unit", "DoseStrength", "Presentation", "ExtraDescription"] (in clause, where as normally this is a single string)
     let is_msupply = filter
         .r#type
         .clone()
@@ -52,7 +52,14 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
     let filter_type: Option<DgraphFilterType> = match filter.r#type.clone() {
         Some(r#type) => match is_msupply {
             true => Some(DgraphFilterType {
-                r#in: Some(vec!["Unit".to_string(), "DoseStrength".to_string()]),
+                r#in: Some(vec![
+                    // for vaccines and drugs
+                    "Unit".to_string(),
+                    "DoseStrength".to_string(),
+                    // for consumables
+                    "Presentation".to_string(),
+                    "ExtraDescription".to_string(),
+                ]),
                 ..Default::default()
             }),
             false => {
