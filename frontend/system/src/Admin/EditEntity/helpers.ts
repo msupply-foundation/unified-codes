@@ -31,6 +31,10 @@ export const getAllEntityCodes = (
 export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
   return {
     ...getDetails(entity),
+    alternativeNames: entity.alternativeNames.map(name => ({
+      id: name,
+      name,
+    })),
     routes:
       entity.children
         ?.filter(route => route.type === EntityType.Route)

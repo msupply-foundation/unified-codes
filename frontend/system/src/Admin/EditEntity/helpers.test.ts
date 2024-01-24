@@ -174,6 +174,7 @@ describe('buildDrugInputFromEntity', () => {
       id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -258,6 +259,7 @@ describe('buildDrugInputFromEntity', () => {
       id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [],
       properties: [
         {
           id: '7c8c2b5b_who_eml',
@@ -338,6 +340,7 @@ describe('buildDrugInputFromEntity', () => {
       id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -806,6 +809,7 @@ describe('isValidDrugInput', () => {
     const drugInput: DrugInput = {
       id: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -847,6 +851,7 @@ describe('isValidDrugInput', () => {
     const drugInput: DrugInput = {
       id: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -888,6 +893,7 @@ describe('isValidDrugInput', () => {
     const drugInput: DrugInput = {
       id: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [],
       properties: [],
       routes: [
         {

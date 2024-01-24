@@ -17,6 +17,11 @@ export interface Entity {
   properties?: Property[];
 }
 
+export interface AlternativeName {
+  id: string;
+  name: string;
+}
+
 export interface PackSize extends Entity {}
 
 export interface ImmediatePackaging extends Entity {
@@ -37,6 +42,7 @@ export interface Route extends Entity {
   forms: Form[];
 }
 export interface DrugInput extends Entity {
+  alternativeNames: AlternativeName[];
   routes: Route[];
 }
 
