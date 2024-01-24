@@ -10,12 +10,13 @@ export const EditEntityView = () => {
   const { code } = useParams();
   const { setSuffix } = useBreadcrumbs();
 
-  const { data: entity } = useEntity(code || '');
+  const { data: entity, isFetchedAfterMount } = useEntity(code || '');
 
   useEffect(() => {
     if (entity?.name) setSuffix(entity.name);
   }, [entity?.name]);
-  return entity ? (
+
+  return isFetchedAfterMount && entity ? (
     entity.type === 'vaccine' ? (
       <VaccineEditForm initialEntity={entity} />
     ) : entity.type === 'consumable' ? (
