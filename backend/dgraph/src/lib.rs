@@ -163,6 +163,8 @@ pub struct EntityInput {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub category: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub alternative_names: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub properties: Option<Vec<PropertyInput>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub children: Option<Vec<EntityInput>>,

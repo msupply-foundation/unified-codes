@@ -93,14 +93,22 @@ impl From<UpsertEntityInput> for UpsertUniversalCode {
             description,
             r#type,
             category,
-            // TODO: what does this look like when none?
-            alternative_names: alternative_names.map(|alt_names| {
-                alt_names
-                    .into_iter()
-                    .map(|alt_name| alt_name.name)
-                    .collect::<Vec<String>>()
-                    .join(",")
-            }),
+            alternative_names: match alternative_names {
+                Some(alt_names) => {
+                    if alt_names.len() > 0 {
+                        Some(
+                            alt_names
+                                .into_iter()
+                                .map(|alt_name| alt_name.name)
+                                .collect::<Vec<String>>()
+                                .join(","),
+                        )
+                    } else {
+                        None
+                    }
+                }
+                None => None,
+            },
             properties: properties.map(|properties| {
                 properties
                     .into_iter()

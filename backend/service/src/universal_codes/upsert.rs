@@ -166,6 +166,7 @@ pub fn generate(
         description: updated_entity.description.clone(),
         r#type: updated_entity.r#type.clone(),
         category: updated_entity.category.clone(),
+        alternative_names: updated_entity.alternative_names.clone(),
         properties: updated_entity.properties.map(|properties| {
             properties
                 .into_iter()
