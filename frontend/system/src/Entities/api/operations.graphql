@@ -3,6 +3,9 @@ fragment EntityRow on EntityType {
   type
   description
   code
+  alternativeNames {
+    name
+  }
 }
 
 fragment EntityDetails on EntityType {

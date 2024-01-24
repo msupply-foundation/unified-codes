@@ -3,7 +3,7 @@ import * as Types from '@uc-frontend/common';
 import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
-export type EntityRowFragment = { __typename?: 'EntityType', type: string, description: string, code: string, id: string };
+export type EntityRowFragment = { __typename?: 'EntityType', type: string, description: string, code: string, id: string, alternativeNames: Array<{ __typename?: 'AlternativeNameType', name: string }> };
 
 export type EntityDetailsFragment = { __typename?: 'EntityType', code: string, name: string, type: string, alternativeNames: Array<{ __typename?: 'AlternativeNameType', code: string, name: string }>, properties: Array<{ __typename?: 'PropertiesType', code: string, type: string, value: string }> };
 
@@ -14,7 +14,7 @@ export type EntitiesQueryVariables = Types.Exact<{
 }>;
 
 
-export type EntitiesQuery = { __typename?: 'FullQuery', entities: { __typename?: 'EntityCollectionType', totalLength: number, data: Array<{ __typename?: 'EntityType', type: string, description: string, code: string, id: string }> } };
+export type EntitiesQuery = { __typename?: 'FullQuery', entities: { __typename?: 'EntityCollectionType', totalLength: number, data: Array<{ __typename?: 'EntityType', type: string, description: string, code: string, id: string, alternativeNames: Array<{ __typename?: 'AlternativeNameType', name: string }> }> } };
 
 export type EntityQueryVariables = Types.Exact<{
   code: Types.Scalars['String']['input'];
@@ -36,6 +36,9 @@ export const EntityRowFragmentDoc = gql`
   type
   description
   code
+  alternativeNames {
+    name
+  }
 }
     `;
 export const EntityDetailsFragmentDoc = gql`

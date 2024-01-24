@@ -58,6 +58,7 @@ query EntitiesQuery($filter: EntityFilter, $first: Int, $offset: Int, $order: En
     description
     type
     code
+    alternative_names
     __typename
     parents {
         id
@@ -65,6 +66,7 @@ query EntitiesQuery($filter: EntityFilter, $first: Int, $offset: Int, $order: En
         description
         type
         code
+        alternative_names
         __typename
     }
   }
