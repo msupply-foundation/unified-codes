@@ -398,6 +398,14 @@ export const isValidDrugInput = (input: DrugInput) => {
         if (hasDuplicates(strength.units)) return false;
         for (const unit of strength.units || []) {
           if (!unit.name) return false;
+          if (hasDuplicates(unit.immediatePackagings)) return false;
+          for (const immPack of unit.immediatePackagings || []) {
+            if (!immPack.name) return false;
+            if (hasDuplicates(immPack.packSizes)) return false;
+            for (const packSize of immPack.packSizes || []) {
+              if (!packSize.name) return false;
+            }
+          }
         }
       }
     }
