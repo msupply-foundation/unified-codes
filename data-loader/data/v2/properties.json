@@ -6,8 +6,13 @@
   },
   {
     "type": "code_nzulm",
-    "label": "NZULM ID",
+    "label": "NZULM Product ID (MP)",
     "url": "https://search.nzulm.org.nz/search/product?table=MP&id={{code}}"
+  },
+    {
+    "type": "code_nzulm_item",
+    "label": "NZULM Unit of Use ID (MPUU)",
+    "url": "https://search.nzulm.org.nz/search/nzmtrecord?sctid={{code}}&mode=page"
   },
   {
     "type": "who_eml",
