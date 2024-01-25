@@ -6,17 +6,36 @@ use std::{
 use dgraph::{
     configuration_items::{configuration_items, ConfigurationItem, ConfigurationItemFilter},
     property_configuration_items::{property_configuration_items, PropertyConfigurationItem},
-    DgraphClient,
+    DgraphClient, GraphQLError,
 };
+use repository::RepositoryError;
 use util::usize_to_u32;
 
 use crate::{service_provider::ServiceProvider, settings::Settings};
 
-use self::upsert::ModifyConfigurationError;
+#[derive(Debug)]
+pub enum ModifyConfigurationError {
+    InternalError(String),
+    DatabaseError(RepositoryError),
+    DgraphError(GraphQLError),
+}
+
+impl From<RepositoryError> for ModifyConfigurationError {
+    fn from(error: RepositoryError) -> Self {
+        ModifyConfigurationError::DatabaseError(error)
+    }
+}
+
+impl From<GraphQLError> for ModifyConfigurationError {
+    fn from(error: GraphQLError) -> Self {
+        ModifyConfigurationError::DgraphError(error)
+    }
+}
 
 pub mod delete;
 mod tests;
 pub mod upsert;
+pub mod upsert_property;
 
 pub struct ConfigurationService {
     client: DgraphClient,
@@ -141,5 +160,15 @@ impl ConfigurationService {
         code: String,
     ) -> Result<u32, ModifyConfigurationError> {
         delete::delete_configuration_item(sp, user_id, self.client.clone(), code).await
+    }
+
+    pub async fn upsert_property_configuration_item(
+        &self,
+        sp: Arc<ServiceProvider>,
+        user_id: String,
+        item: upsert_property::UpsertPropertyConfigurationItem,
+    ) -> Result<u32, ModifyConfigurationError> {
+        upsert_property::upsert_property_configuration_item(sp, user_id, self.client.clone(), item)
+            .await
     }
 }

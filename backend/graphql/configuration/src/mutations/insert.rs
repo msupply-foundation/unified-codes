@@ -7,7 +7,7 @@ use graphql_core::{
 
 use service::{
     auth::{Resource, ResourceAccessRequest},
-    configuration::upsert::ModifyConfigurationError,
+    configuration::ModifyConfigurationError,
 };
 
 use crate::types::AddConfigurationItemInput;

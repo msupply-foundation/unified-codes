@@ -7,7 +7,7 @@ use graphql_core::{
 
 use service::{
     auth::{Resource, ResourceAccessRequest},
-    configuration::upsert::ModifyConfigurationError,
+    configuration::ModifyConfigurationError,
 };
 
 pub async fn delete_configuration_item(ctx: &Context<'_>, code: String) -> Result<u32> {
