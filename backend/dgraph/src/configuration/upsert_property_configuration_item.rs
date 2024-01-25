@@ -137,5 +137,27 @@ mod tests {
             }
         }
         assert!(found);
+
+        //  -- DELETE FROM DGRAPH --
+        #[derive(Serialize, Debug, Clone)]
+        struct DeleteVars {
+            r#type: String,
+        }
+
+        let query = r#"
+mutation DeleteTestConfig($type: String!) {
+  data: deletePropertyConfigurationItem(filter: { type: { eq: $type }}) {
+    numUids
+  }
+}"#;
+
+        let _result = client
+            .query_with_retry::<UpsertResponseData, DeleteVars>(
+                &query,
+                DeleteVars {
+                    r#type: config_type,
+                },
+            )
+            .await;
     }
 }
