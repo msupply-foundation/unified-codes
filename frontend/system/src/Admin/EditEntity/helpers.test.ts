@@ -686,6 +686,7 @@ describe('buildConsumableInputFromEntity', () => {
       id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Examination Glove',
+      alternativeNames: [],
       properties: [],
       presentations: [
         {
@@ -777,6 +778,7 @@ describe('buildEntityFromConsumableInput', () => {
       description: 'Examination Glove',
       type: 'Product',
       category: 'Consumable',
+      alternativeNames: [],
       properties: [],
       children: [
         {
