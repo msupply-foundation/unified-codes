@@ -59,13 +59,14 @@ export const PropertiesModal = ({
   }, [config]);
 
   const onChange = (property: Property) => {
-    const propertyIndex = properties.findIndex(p => p.id === property.id);
-    if (propertyIndex >= 0) {
-      properties[propertyIndex] = property;
-    } else {
-      properties.push(property);
-    }
-    setProperties([...properties]);
+    setProperties(properties => {
+      const propertyIndex = properties.findIndex(p => p.id === property.id);
+      if (propertyIndex >= 0) {
+        properties[propertyIndex] = property;
+        return [...properties];
+      }
+      return properties;
+    });
   };
 
   const columns = useColumns<Property>([
