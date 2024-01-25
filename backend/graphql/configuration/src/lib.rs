@@ -79,6 +79,14 @@ impl ConfigurationMutations {
         add_configuration_item(ctx, input).await
     }
 
+    async fn upsert_property_configuration_item(
+        &self,
+        ctx: &Context<'_>,
+        input: UpsertPropertyConfigItemInput,
+    ) -> Result<u32> {
+        upsert_property_configuration_item(ctx, input).await
+    }
+
     async fn delete_configuration_item(&self, ctx: &Context<'_>, code: String) -> Result<u32> {
         delete_configuration_item(ctx, code).await
     }

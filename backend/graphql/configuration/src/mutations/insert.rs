@@ -1,16 +1,10 @@
 use async_graphql::*;
 
-use graphql_core::{
-    standard_graphql_error::{validate_auth, StandardGraphqlError},
-    ContextExt,
-};
+use graphql_core::{standard_graphql_error::validate_auth, ContextExt};
 
-use service::{
-    auth::{Resource, ResourceAccessRequest},
-    configuration::ModifyConfigurationError,
-};
+use service::auth::{Resource, ResourceAccessRequest};
 
-use crate::types::AddConfigurationItemInput;
+use crate::{map_modify_config_error, types::AddConfigurationItemInput};
 
 pub async fn add_configuration_item(
     ctx: &Context<'_>,
@@ -35,21 +29,6 @@ pub async fn add_configuration_item(
         .await
     {
         Ok(affected_items) => Ok(affected_items),
-        Err(error) => map_error(error),
+        Err(error) => map_modify_config_error(error),
     }
-}
-
-fn map_error(error: ModifyConfigurationError) -> Result<u32> {
-    use StandardGraphqlError::*;
-    let formatted_error = format!("{:#?}", error);
-
-    let graphql_error = match error {
-        ModifyConfigurationError::InternalError(message) => InternalError(message),
-        ModifyConfigurationError::DatabaseError(_) => InternalError(formatted_error),
-        ModifyConfigurationError::DgraphError(gql_error) => {
-            InternalError(format!("{:#?} - {:?}", gql_error, gql_error.json()))
-        }
-    };
-
-    Err(graphql_error.extend())
 }
