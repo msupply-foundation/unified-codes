@@ -18,5 +18,10 @@
     "type": "code_unspsc",
     "label": "UNSPSC Code",
     "url": ""
+  },
+  {
+    "type": "code_medevis",
+    "label": "MEDEVIS Code",
+    "url": "https://medevis.who-healthtechnologies.org/devices/{{code}}"
   }
 ]
