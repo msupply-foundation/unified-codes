@@ -234,10 +234,20 @@ export const buildEntityFromVaccineInput = (
                 return {
                   ...unitDetails,
                   type: EntityType.Unit,
-                  children: unit.immediatePackagings?.map(immPack => ({
-                    ...entityDetails(immPack, unitDetails.description),
-                    type: EntityType.ImmediatePackaging,
-                  })),
+                  children: unit.immediatePackagings?.map(immPack => {
+                    const immPackDetails = entityDetails(
+                      immPack,
+                      unitDetails.description
+                    );
+                    return {
+                      ...immPackDetails,
+                      type: EntityType.ImmediatePackaging,
+                      children: immPack.packSizes?.map(packSize => ({
+                        ...entityDetails(packSize, immPackDetails.description),
+                        type: EntityType.PackSize,
+                      })),
+                    };
+                  }),
                 };
               }),
             };
