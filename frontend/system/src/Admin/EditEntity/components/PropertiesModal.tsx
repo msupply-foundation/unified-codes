@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   useDialog,
   DialogButton,
@@ -15,7 +15,7 @@ import {
 } from '@uc-frontend/common';
 import { useUuid } from '../../../hooks';
 import { Property } from '../types';
-import { config } from '../../../config';
+import { usePropertyConfigurationItems } from '../../Configuration/api/hooks/usePropertyConfigurationItems';
 
 interface PropertiesModalProps {
   isOpen: boolean;
@@ -35,18 +35,28 @@ export const PropertiesModal = ({
   const t = useTranslation('system');
   const uuid = useUuid();
 
-  const [properties, setProperties] = useState<Property[]>(
-    config.properties.map(config => {
-      const existing = data?.find(property => property.type === config.type);
-      return {
-        id: existing ? existing.id : uuid(),
-        code: existing ? existing.code : '',
-        value: existing ? existing.value : '',
-        label: config.label,
-        type: config.type,
-      };
-    })
-  );
+  const { data: config } = usePropertyConfigurationItems();
+
+  const [properties, setProperties] = useState<Property[]>([]);
+
+  useEffect(() => {
+    if (config) {
+      setProperties(
+        config.map(configItem => {
+          const existing = data?.find(
+            property => property.type === configItem.type
+          );
+          return {
+            id: existing ? existing.id : uuid(),
+            code: existing ? existing.code : '',
+            value: existing ? existing.value : '',
+            label: configItem.label,
+            type: configItem.type,
+          };
+        })
+      );
+    }
+  }, [config]);
 
   const onChange = (property: Property) => {
     const propertyIndex = properties.findIndex(p => p.id === property.id);
