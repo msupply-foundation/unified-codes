@@ -281,6 +281,8 @@ export type FullQuery = {
   pendingChange?: Maybe<PendingChangeNode>;
   pendingChanges: PendingChangesResponse;
   product?: Maybe<EntityType>;
+  /** Get the property configuration items */
+  propertyConfigurationItems: PropertyConfigurationItemsResponse;
   /**
    * Retrieves a new auth bearer and refresh token
    * The refresh token is returned as a cookie
@@ -527,6 +529,22 @@ export type PropertiesType = {
   type: Scalars['String']['output'];
   value: Scalars['String']['output'];
 };
+
+export type PropertyConfigurationItemConnector = {
+  __typename: 'PropertyConfigurationItemConnector';
+  data: Array<PropertyConfigurationItemNode>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type PropertyConfigurationItemNode = {
+  __typename: 'PropertyConfigurationItemNode';
+  id: Scalars['String']['output'];
+  label: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+  url: Scalars['String']['output'];
+};
+
+export type PropertyConfigurationItemsResponse = PropertyConfigurationItemConnector;
 
 export type PropertyInput = {
   code: Scalars['String']['input'];

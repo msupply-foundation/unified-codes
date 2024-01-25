@@ -5,6 +5,7 @@ use std::{
 
 use dgraph::{
     configuration_items::{configuration_items, ConfigurationItem, ConfigurationItemFilter},
+    property_configuration_items::{property_configuration_items, PropertyConfigurationItem},
     DgraphClient,
 };
 use util::usize_to_u32;
@@ -63,6 +64,11 @@ pub struct ConfigurationItemCollection {
     pub total_length: u32,
 }
 
+pub struct PropertyConfigurationItemCollection {
+    pub data: Vec<PropertyConfigurationItem>,
+    pub total_length: u32,
+}
+
 impl ConfigurationService {
     pub fn new(settings: Settings) -> Self {
         let url = format!(
@@ -94,6 +100,25 @@ impl ConfigurationService {
                 data: data.data,
             }),
             None => Ok(ConfigurationItemCollection {
+                data: vec![],
+                total_length: 0,
+            }),
+        }
+    }
+
+    pub async fn property_configuration_items(
+        &self,
+    ) -> Result<PropertyConfigurationItemCollection, ConfigurationServiceError> {
+        let result = property_configuration_items(&self.client)
+            .await
+            .map_err(|e| ConfigurationServiceError::InternalError(e.message().to_string()))?; // TODO: Improve error handling?
+
+        match result {
+            Some(data) => Ok(PropertyConfigurationItemCollection {
+                total_length: usize_to_u32(data.data.len()),
+                data: data.data,
+            }),
+            None => Ok(PropertyConfigurationItemCollection {
                 data: vec![],
                 total_length: 0,
             }),

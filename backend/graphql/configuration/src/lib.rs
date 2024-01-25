@@ -39,6 +39,31 @@ impl ConfigurationQueries {
             ConfigurationItemConnector::from_domain(result),
         ))
     }
+
+    /// Get the property configuration items
+    pub async fn property_configuration_items(
+        &self,
+        ctx: &Context<'_>,
+    ) -> Result<PropertyConfigurationItemsResponse> {
+        let user = validate_auth(
+            ctx,
+            &ResourceAccessRequest {
+                resource: Resource::MutateUniversalCodes,
+            },
+        )?;
+
+        let service_context = ctx.service_context(Some(&user))?;
+
+        let result = service_context
+            .service_provider
+            .configuration_service
+            .property_configuration_items()
+            .await?;
+
+        Ok(PropertyConfigurationItemsResponse::Response(
+            PropertyConfigurationItemConnector::from_domain(result),
+        ))
+    }
 }
 
 #[derive(Default, Clone)]
