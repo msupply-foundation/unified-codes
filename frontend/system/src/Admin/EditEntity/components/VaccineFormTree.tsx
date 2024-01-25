@@ -20,7 +20,6 @@ import { NameEditField } from './NameEditField';
 import { useConfigurationItems } from '../../Configuration/api';
 import { ConfigurationItemTypeInput } from '@common/types';
 import { ExistingNameSuggester } from './ExistingItemSuggester';
-import { ConfigurationItemsQuery } from '../../Configuration/api/operations.generated';
 
 export const VaccineFormTree = ({
   draft,
@@ -42,10 +41,6 @@ export const VaccineFormTree = ({
   const { data: forms, isLoading: isLoadingForms } = useConfigurationItems({
     type: ConfigurationItemTypeInput.Form,
   });
-  const { data: immediatePackagings, isLoading: isLoadingImmediatePackagings } =
-    useConfigurationItems({
-      type: ConfigurationItemTypeInput.ImmediatePackaging,
-    });
 
   const [propertiesModalState, setPropertiesModalState] = useState<{
     title: string;
@@ -253,10 +248,6 @@ export const VaccineFormTree = ({
                             activeIngredient={activeIngredient}
                             immediateParent={details}
                             parentList={[draft, details]}
-                            immediatePackagings={immediatePackagings}
-                            isLoadingImmediatePackagings={
-                              isLoadingImmediatePackagings
-                            }
                             isDisabled={isDisabled}
                             onDelete={onDelete}
                             onOpenPropertiesModal={onOpenPropertiesModal}
@@ -289,10 +280,6 @@ export const VaccineFormTree = ({
                       activeIngredient={activeIngredient}
                       immediateParent={form}
                       parentList={[draft]}
-                      immediatePackagings={immediatePackagings}
-                      isLoadingImmediatePackagings={
-                        isLoadingImmediatePackagings
-                      }
                       isDisabled={isDisabled}
                       onDelete={onDelete}
                       onOpenPropertiesModal={onOpenPropertiesModal}
@@ -366,8 +353,6 @@ const ActiveIngredientsFormBox = ({
   activeIngredient,
   immediateParent,
   parentList,
-  immediatePackagings,
-  isLoadingImmediatePackagings,
   isDisabled,
   onDelete,
   onUpdate,
@@ -376,8 +361,6 @@ const ActiveIngredientsFormBox = ({
   activeIngredient: ActiveIngredients;
   immediateParent: VaccineForm | VaccineNameDetails;
   parentList: Entity[];
-  immediatePackagings?: ConfigurationItemsQuery['configurationItems']['data'];
-  isLoadingImmediatePackagings: boolean;
   isDisabled: (id: string) => boolean;
   onUpdate: <T extends Entity>(updated: T, list: T[]) => void;
   onDelete: <T extends Entity>(updated: T, list: T[]) => void;
@@ -385,6 +368,11 @@ const ActiveIngredientsFormBox = ({
 }) => {
   const t = useTranslation('system');
   const uuid = useUuid();
+
+  const { data: immediatePackagings, isLoading: isLoadingImmediatePackagings } =
+    useConfigurationItems({
+      type: ConfigurationItemTypeInput.ImmediatePackaging,
+    });
 
   return (
     <TreeFormBox>

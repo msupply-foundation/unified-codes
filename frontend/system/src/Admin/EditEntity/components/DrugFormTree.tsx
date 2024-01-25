@@ -49,6 +49,10 @@ export const DrugFormTree = ({
   const { data: forms, isLoading: isLoadingForms } = useConfigurationItems({
     type: ConfigurationItemTypeInput.Form,
   });
+  const { data: immediatePackagings, isLoading: isLoadingImmediatePackagings } =
+    useConfigurationItems({
+      type: ConfigurationItemTypeInput.ImmediatePackaging,
+    });
 
   const onOpenPropertiesModal = (title: string, entityToUpdate: Entity) => {
     setPropertiesModalState({
@@ -235,6 +239,58 @@ export const DrugFormTree = ({
                           onOpen={onOpenPropertiesModal}
                         />
                       </Box>
+
+                      {!!unit.immediatePackagings.length && (
+                        <Typography fontSize="12px">
+                          {t('label.immediate-packaging')}
+                        </Typography>
+                      )}
+
+                      {unit.immediatePackagings.map(immPack => {
+                        return (
+                          <TreeFormBox key={immPack.id}>
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'end',
+                              }}
+                            >
+                              <CategoryDropdown
+                                disabled={isDisabled(immPack.id)}
+                                options={
+                                  immediatePackagings?.map(o => ({
+                                    label: o.name,
+                                    value: o.name,
+                                  })) ?? []
+                                }
+                                entity={immPack}
+                                siblings={unit.immediatePackagings}
+                                onUpdate={onUpdate}
+                                onDelete={onDelete}
+                              />
+                              <EditPropertiesButton
+                                parents={[draft, route, form, strength, unit]}
+                                entity={immPack}
+                                onOpen={onOpenPropertiesModal}
+                              />
+                            </Box>
+                          </TreeFormBox>
+                        );
+                      })}
+                      <AddFieldButton
+                        label={t('label.add-immediate-packaging')}
+                        onClick={() =>
+                          onUpdate(
+                            {
+                              id: uuid(),
+                              name: '',
+                              packSizes: [],
+                            },
+                            unit.immediatePackagings
+                          )
+                        }
+                        isLoading={isLoadingImmediatePackagings}
+                      />
                     </TreeFormBox>
                   ))}
 
