@@ -286,7 +286,7 @@ export class DataLoader {
       const nQuads = `
         _:pack <label> "${propertyConfigItem.label}" .
         _:pack <url> "${propertyConfigItem.url}" .
-        _:pack <type> "${propertyConfigItem.type}" .
+        _:pack <propertyType> "${propertyConfigItem.type}" .
         _:pack <dgraph.type> "PropertyConfigurationItem" .
       `;
 
