@@ -203,7 +203,6 @@ export class VaccineDataParser {
         // Process external properties at item level
         if (strengthCode) {
           itemProperties.forEach(property => {
-            // temporary restriction for uc7 - these are not currently imported
             if (property.value) {
               console.log(
                 `INFO: Property of type ${property.type} with value ${property.value} added for ${strengthCode}`
@@ -217,6 +216,25 @@ export class VaccineDataParser {
               }
             }
           });
+        }
+
+        // Parse product alternative names
+        if (productCode) {
+          const altNames = row.product_synonym
+            .split(',')
+            .map(name => name.trim())
+            .filter(name => !!name);
+
+          if (altNames.length) {
+            // store as a string so they're searchable...
+            const serialisedAltNames = altNames.join(',');
+
+            graph[productCode].alternativeNames = serialisedAltNames;
+
+            console.log(
+              `INFO: Alternate names ${serialisedAltNames} added for ${productCode}`
+            );
+          }
         }
       });
 
