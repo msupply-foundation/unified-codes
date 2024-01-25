@@ -32,6 +32,13 @@ export type AddConfigurationItemInput = {
   type: ConfigurationItemTypeInput;
 };
 
+export type AddDrugInteractionGroupInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  drugs: Array<Scalars['String']['input']>;
+  id: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+};
+
 export type AuthToken = {
   __typename: 'AuthToken';
   /** Bearer token */
@@ -106,6 +113,22 @@ export type DeleteResponse = {
 
 export type DeleteUserAccountResponse = DeleteResponse;
 
+export type DrugInteractionGroupConnector = {
+  __typename: 'DrugInteractionGroupConnector';
+  data: Array<DrugInteractionGroupNode>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type DrugInteractionGroupNode = {
+  __typename: 'DrugInteractionGroupNode';
+  description?: Maybe<Scalars['String']['output']>;
+  drugs: Array<EntityType>;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type DrugInteractionGroupsResponse = DrugInteractionGroupConnector;
+
 export type DrugInteractionType = {
   __typename: 'DrugInteractionType';
   description: Scalars['String']['output'];
@@ -167,9 +190,11 @@ export type FullMutation = {
   /** Updates user account based on a token and their information (Response to initiate_user_invite) */
   acceptUserInvite: InviteUserResponse;
   addConfigurationItem: Scalars['Int']['output'];
+  addDrugInteractionGroup: Scalars['Int']['output'];
   approvePendingChange: UpsertEntityResponse;
   createUserAccount: CreateUserAccountResponse;
   deleteConfigurationItem: Scalars['Int']['output'];
+  deleteDrugInteractionGroup: Scalars['Int']['output'];
   deleteUserAccount: DeleteUserAccountResponse;
   /**
    * Initiates the password reset flow for a user based on email address
@@ -200,6 +225,11 @@ export type FullMutationAddConfigurationItemArgs = {
 };
 
 
+export type FullMutationAddDrugInteractionGroupArgs = {
+  input: AddDrugInteractionGroupInput;
+};
+
+
 export type FullMutationApprovePendingChangeArgs = {
   input: UpsertEntityInput;
   requestId: Scalars['String']['input'];
@@ -212,6 +242,11 @@ export type FullMutationCreateUserAccountArgs = {
 
 
 export type FullMutationDeleteConfigurationItemArgs = {
+  code: Scalars['String']['input'];
+};
+
+
+export type FullMutationDeleteDrugInteractionGroupArgs = {
   code: Scalars['String']['input'];
 };
 
@@ -264,6 +299,8 @@ export type FullMutationValidatePasswordResetTokenArgs = {
 
 export type FullQuery = {
   __typename: 'FullQuery';
+  /** Get the configuration items for a given type. */
+  allDrugInteractionGroups: DrugInteractionGroupsResponse;
   apiVersion: Scalars['String']['output'];
   /**
    * Retrieves a new auth bearer and refresh token
@@ -403,6 +440,8 @@ export type LogNode = {
 export enum LogNodeType {
   ConfigurationItemCreated = 'CONFIGURATION_ITEM_CREATED',
   ConfigurationItemDeleted = 'CONFIGURATION_ITEM_DELETED',
+  InteractionGroupCreated = 'INTERACTION_GROUP_CREATED',
+  InteractionGroupDeleted = 'INTERACTION_GROUP_DELETED',
   UniversalCodeChangeApproved = 'UNIVERSAL_CODE_CHANGE_APPROVED',
   UniversalCodeChangeRejected = 'UNIVERSAL_CODE_CHANGE_REJECTED',
   UniversalCodeChangeRequested = 'UNIVERSAL_CODE_CHANGE_REQUESTED',
