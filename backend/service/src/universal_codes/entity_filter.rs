@@ -148,7 +148,7 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
                 },
                 DgraphFilter {
                     code: Some(DgraphFilterType {
-                        eq: Some(search_string), // do we want equal or contains here??
+                        eq: Some(search_string),
                         ..Default::default()
                     }),
                     ..base_filter.clone()
