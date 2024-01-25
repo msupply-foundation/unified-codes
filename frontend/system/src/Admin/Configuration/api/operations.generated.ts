@@ -26,10 +26,25 @@ export type DeleteConfigItemMutationVariables = Types.Exact<{
 
 export type DeleteConfigItemMutation = { __typename?: 'FullMutation', deleteConfigurationItem: number };
 
+export type PropertyConfigurationItemFragment = { __typename?: 'PropertyConfigurationItemNode', id: string, label: string, url: string, type: string };
+
+export type PropertyConfigurationItemsQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type PropertyConfigurationItemsQuery = { __typename?: 'FullQuery', propertyConfigurationItems: { __typename?: 'PropertyConfigurationItemConnector', totalCount: number, data: Array<{ __typename?: 'PropertyConfigurationItemNode', id: string, label: string, url: string, type: string }> } };
+
 export const ConfigurationItemFragmentDoc = gql`
     fragment ConfigurationItem on ConfigurationItemNode {
   id
   name
+  type
+}
+    `;
+export const PropertyConfigurationItemFragmentDoc = gql`
+    fragment PropertyConfigurationItem on PropertyConfigurationItemNode {
+  id
+  label
+  url
   type
 }
     `;
@@ -55,6 +70,18 @@ export const DeleteConfigItemDocument = gql`
   deleteConfigurationItem(code: $code)
 }
     `;
+export const PropertyConfigurationItemsDocument = gql`
+    query PropertyConfigurationItems {
+  propertyConfigurationItems {
+    ... on PropertyConfigurationItemConnector {
+      data {
+        ...PropertyConfigurationItem
+      }
+      totalCount
+    }
+  }
+}
+    ${PropertyConfigurationItemFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -71,6 +98,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     DeleteConfigItem(variables: DeleteConfigItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteConfigItemMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<DeleteConfigItemMutation>(DeleteConfigItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteConfigItem', 'mutation');
+    },
+    PropertyConfigurationItems(variables?: PropertyConfigurationItemsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PropertyConfigurationItemsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PropertyConfigurationItemsQuery>(PropertyConfigurationItemsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PropertyConfigurationItems', 'query');
     }
   };
 }

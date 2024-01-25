@@ -10,24 +10,17 @@ import {
 } from '@common/ui';
 import { useEditModal } from '@common/hooks';
 import { PropertyOptionEditModal } from './PropertyEditModal';
+import { usePropertyConfigurationItems } from './api/hooks/usePropertyConfigurationItems';
+import { PropertyConfigurationItemFragment } from './api/operations.generated';
 
-// TODO: this type should come from gql codegen types
-type Property = {
-  id: string;
-  type: string;
-  label: string;
-  url: string;
-};
-
-type PropertiesConfigTabProps = {
-  data: Property[];
-};
-
-export const PropertiesConfigTab = ({ data }: PropertiesConfigTabProps) => {
+export const PropertiesConfigTab = () => {
   const t = useTranslation('system');
-  const { onOpen, onClose, isOpen, entity, mode } = useEditModal<Property>();
+  const { onOpen, onClose, isOpen, entity, mode } =
+    useEditModal<PropertyConfigurationItemFragment>();
 
-  const columns = useColumns<Property>([
+  const { data } = usePropertyConfigurationItems();
+
+  const columns = useColumns<PropertyConfigurationItemFragment>([
     { key: 'type', label: 'label.type' },
     { key: 'label', label: 'label.title' },
     { key: 'url', label: 'label.website' },

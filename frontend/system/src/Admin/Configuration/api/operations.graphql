@@ -22,3 +22,21 @@ mutation AddConfigItem($input: AddConfigurationItemInput!) {
 mutation DeleteConfigItem($code: String!) {
   deleteConfigurationItem(code: $code)
 }
+
+fragment PropertyConfigurationItem on PropertyConfigurationItemNode {
+  id
+  label
+  url
+  type
+}
+
+query PropertyConfigurationItems {
+  propertyConfigurationItems {
+    ... on PropertyConfigurationItemConnector {
+      data {
+        ...PropertyConfigurationItem
+      }
+      totalCount
+    }
+  }
+}
