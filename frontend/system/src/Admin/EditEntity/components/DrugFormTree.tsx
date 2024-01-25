@@ -274,6 +274,54 @@ export const DrugFormTree = ({
                                 onOpen={onOpenPropertiesModal}
                               />
                             </Box>
+                            {!!immPack.packSizes.length && (
+                              <Typography fontSize="12px">
+                                {t('label.pack-sizes')}
+                              </Typography>
+                            )}
+
+                            {immPack.packSizes.map(packSize => {
+                              return (
+                                <TreeFormBox key={packSize.id}>
+                                  <Box
+                                    sx={{
+                                      display: 'flex',
+                                      alignItems: 'end',
+                                    }}
+                                  >
+                                    <NameEditField
+                                      label={t('label.pack-size')}
+                                      entity={packSize}
+                                      siblings={immPack.packSizes}
+                                      isDisabled={isDisabled}
+                                      onUpdate={onUpdate}
+                                      onDelete={onDelete}
+                                    />
+                                    <EditPropertiesButton
+                                      parents={[
+                                        draft,
+                                        route,
+                                        form,
+                                        strength,
+                                        unit,
+                                        immPack,
+                                      ]}
+                                      entity={packSize}
+                                      onOpen={onOpenPropertiesModal}
+                                    />
+                                  </Box>
+                                </TreeFormBox>
+                              );
+                            })}
+                            <AddFieldButton
+                              label={t('label.add-pack-size')}
+                              onClick={() =>
+                                onUpdate(
+                                  { id: uuid(), name: '' },
+                                  immPack.packSizes
+                                )
+                              }
+                            />
                           </TreeFormBox>
                         );
                       })}

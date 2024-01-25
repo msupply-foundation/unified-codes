@@ -71,49 +71,43 @@ export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
 export const buildEntityFromDrugInput = (
   drug: DrugInput
 ): UpsertEntityInput => {
+  const entityDetails = (e: Entity) => ({
+    code: e.code,
+    name: e.name,
+    category: EntityCategory.Drug,
+    properties: e.properties?.map(mapProperty),
+  });
+
   return {
     parentCode: '933f3f00', // Drug parent code
-    code: drug.code,
-    name: drug.name,
+    ...entityDetails(drug),
     description: drug.name,
     type: EntityType.Product,
-    category: EntityCategory.Drug,
-    properties: drug.properties?.map(mapProperty),
     children: drug.routes?.map(route => ({
-      code: route.code,
-      name: route.name,
+      ...entityDetails(route),
       description: `${drug.name} ${route.name}`,
       type: EntityType.Route,
-      category: EntityCategory.Drug,
-      properties: route.properties?.map(mapProperty),
       children: route.forms?.map(form => ({
-        code: form.code,
-        name: form.name,
+        ...entityDetails(form),
         description: `${drug.name} ${route.name} ${form.name}`,
         type: EntityType.Form,
-        category: EntityCategory.Drug,
-        properties: form.properties?.map(mapProperty),
         children: form.strengths?.map(strength => ({
-          code: strength.code,
-          name: strength.name,
+          ...entityDetails(strength),
           description: `${drug.name} ${route.name} ${form.name} ${strength.name}`,
           type: EntityType.Strength,
-          category: EntityCategory.Drug,
-          properties: strength.properties?.map(mapProperty),
           children: strength.units?.map(unit => ({
-            code: unit.code,
-            name: unit.name,
+            ...entityDetails(unit),
             description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name}`,
             type: EntityType.Unit,
-            category: EntityCategory.Drug,
-            properties: unit.properties?.map(mapProperty),
             children: unit.immediatePackagings?.map(immPack => ({
-              code: immPack.code,
-              name: immPack.name,
-              description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name}, ${immPack.name}`,
+              ...entityDetails(immPack),
+              description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name} ${immPack.name}`,
               type: EntityType.ImmediatePackaging,
-              category: EntityCategory.Drug,
-              properties: immPack.properties?.map(mapProperty),
+              children: immPack.packSizes?.map(packSize => ({
+                ...entityDetails(packSize),
+                description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name} ${immPack.name} ${packSize.name}`,
+                type: EntityType.PackSize,
+              })),
             })),
           })),
         })),
