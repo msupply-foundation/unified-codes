@@ -1,22 +1,8 @@
 use gql_client::GraphQLError;
-use serde::Deserialize;
 use serde::Serialize;
 
 use crate::DgraphClient;
-use crate::Entity;
-
-#[derive(Deserialize, Debug, Clone)]
-pub struct InteractionGroup {
-    pub interaction_group_id: String,
-    pub name: String,
-    pub description: Option<String>,
-    pub drugs: Vec<Entity>,
-}
-
-#[derive(Deserialize, Debug, Clone)]
-pub struct InteractionGroupData {
-    pub data: Vec<InteractionGroup>,
-}
+use crate::InteractionGroupsData;
 
 #[derive(Serialize, Debug, Clone)]
 pub struct InteractionGroupFilter {
@@ -26,7 +12,7 @@ pub struct InteractionGroupFilter {
 pub async fn interaction_groups(
     client: &DgraphClient,
     filter: Option<InteractionGroupFilter>,
-) -> Result<Option<InteractionGroupData>, GraphQLError> {
+) -> Result<Option<InteractionGroupsData>, GraphQLError> {
     let data = match filter {
         Some(filter) => {
             let query = r#"
@@ -46,7 +32,7 @@ query drugInteractionGroups($name: String) {
 "#;
             client
                 .gql
-                .query_with_vars::<InteractionGroupData, InteractionGroupFilter>(query, filter)
+                .query_with_vars::<InteractionGroupsData, InteractionGroupFilter>(query, filter)
                 .await?
         }
         None => {
@@ -65,7 +51,7 @@ query drugInteractionGroups {
     }
 }"#;
 
-            client.gql.query::<InteractionGroupData>(query).await?
+            client.gql.query::<InteractionGroupsData>(query).await?
         }
     };
 

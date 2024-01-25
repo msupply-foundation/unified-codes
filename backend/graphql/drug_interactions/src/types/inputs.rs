@@ -1,5 +1,5 @@
 use async_graphql::*;
-use service::drug_interactions::insert::AddInteractionGroup;
+use service::drug_interactions::upsert::UpsertDrugInteractionGroup;
 
 #[derive(InputObject, Clone)]
 pub struct AddDrugInteractionGroupInput {
@@ -9,9 +9,9 @@ pub struct AddDrugInteractionGroupInput {
     pub drugs: Vec<String>,
 }
 
-impl From<AddDrugInteractionGroupInput> for AddInteractionGroup {
+impl From<AddDrugInteractionGroupInput> for UpsertDrugInteractionGroup {
     fn from(input: AddDrugInteractionGroupInput) -> Self {
-        AddInteractionGroup {
+        UpsertDrugInteractionGroup {
             interaction_group_id: input.id,
             name: input.name,
             description: input.description,

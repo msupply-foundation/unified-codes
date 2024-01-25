@@ -27,7 +27,7 @@ pub async fn add_drug_interaction_group(
     match service_context
         .service_provider
         .drug_interaction_service
-        .add_drug_interaction_group(
+        .upsert_drug_interaction_group(
             ctx.service_provider(),
             service_context.user_id.clone(),
             input.into(),

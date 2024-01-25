@@ -1,5 +1,5 @@
 use async_graphql::*;
-use dgraph::interaction_groups::InteractionGroup;
+use dgraph::InteractionGroup;
 use graphql_universal_codes_v1::EntityType;
 use service::drug_interactions::InteractionGroupCollection;
 

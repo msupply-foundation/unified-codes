@@ -51,7 +51,6 @@
   "label.create-user": "Create User",
   "label.device-name": "Device Name",
   "label.drug-name": "Drug Name",
-  "label.drugs": "Drugs",
   "label.edit-option": "Edit {{ option }}",
   "label.edit-property": "Edit Property",
   "label.edit-user": "Edit User",

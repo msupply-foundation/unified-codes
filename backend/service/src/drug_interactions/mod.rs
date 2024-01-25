@@ -4,8 +4,7 @@ use std::{
 };
 
 use dgraph::{
-    interaction_groups::{interaction_groups, InteractionGroup},
-    DgraphClient, GraphQLError,
+    interaction_groups::interaction_groups, DgraphClient, GraphQLError, InteractionGroup,
 };
 use repository::RepositoryError;
 use util::usize_to_u32;
@@ -13,8 +12,8 @@ use util::usize_to_u32;
 use crate::{service_provider::ServiceProvider, settings::Settings};
 
 pub mod delete;
-pub mod insert;
 mod tests;
+pub mod upsert;
 
 pub struct DrugInteractionService {
     client: DgraphClient,
@@ -95,13 +94,13 @@ impl DrugInteractionService {
         }
     }
 
-    pub async fn add_drug_interaction_group(
+    pub async fn upsert_drug_interaction_group(
         &self,
         sp: Arc<ServiceProvider>,
         user_id: String,
-        item: insert::AddInteractionGroup,
+        item: upsert::UpsertDrugInteractionGroup,
     ) -> Result<u32, ModifyDrugInteractionError> {
-        insert::add_drug_interaction_group(sp, user_id, self.client.clone(), item).await
+        upsert::upsert_drug_interaction_group(sp, user_id, self.client.clone(), item).await
     }
 
     pub async fn delete_drug_interaction_group(

@@ -22,7 +22,8 @@ import { InteractionGroupEditModal } from './InteractionGroupEditModal';
 import { useAllDrugInteractionGroups } from './api';
 import { InteractionGroupFragment } from './api/operations.generated';
 import { useDeleteInteractionGroup } from './api/hooks/useDeleteInteractionGroup';
-import { LocalStorage } from 'frontend/common/src';
+import { LocalStorage, Typography } from 'frontend/common/src';
+import { Tooltip } from '@uc-frontend/common';
 
 type DeleteError = {
   name: string;
@@ -60,7 +61,29 @@ const InteractionGroupTabComponent = () => {
       label: 'label.drugs',
       sortable: false,
       Cell: ({ rowData }) => {
-        return <>{rowData.drugs.map(drug => drug.description).join(', ')}</>;
+        const drugs_csv = rowData.drugs
+          .map(drug => drug.description)
+          .join(', ');
+
+        return (
+          <>
+            <Tooltip
+              title={
+                <ul>
+                  {rowData.drugs.map(drug => (
+                    <li>{drug.description}</li>
+                  ))}
+                </ul>
+              }
+            >
+              <Typography>
+                {drugs_csv.length > 30
+                  ? drugs_csv.substring(0, 30) + '...'
+                  : drugs_csv}
+              </Typography>
+            </Tooltip>
+          </>
+        );
       },
     },
     'selection',
