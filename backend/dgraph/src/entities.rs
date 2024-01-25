@@ -3,7 +3,7 @@ use serde::Serialize;
 
 use crate::{DgraphClient, EntityData};
 
-#[derive(Serialize, Debug, Default)]
+#[derive(Serialize, Debug, Default, Clone)]
 pub struct DgraphFilterType {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub regexp: Option<String>,
@@ -13,7 +13,7 @@ pub struct DgraphFilterType {
     pub r#in: Option<Vec<String>>,
 }
 
-#[derive(Serialize, Debug, Default)]
+#[derive(Serialize, Debug, Default, Clone)]
 pub struct DgraphOrderByType {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub asc: Option<String>,
@@ -21,7 +21,7 @@ pub struct DgraphOrderByType {
     pub desc: Option<String>,
 }
 
-#[derive(Serialize, Debug, Default)]
+#[derive(Serialize, Debug, Default, Clone)]
 pub struct DgraphFilter {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub code: Option<DgraphFilterType>,

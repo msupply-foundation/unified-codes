@@ -106,27 +106,7 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
         },
     };
 
-    let search_filter = match filter.search.clone() {
-        Some(search) => Some(vec![
-            DgraphFilter {
-                alternative_names: Some(DgraphFilterType {
-                    regexp: Some(format!("/.*{}.*/i", search)),
-                    ..Default::default()
-                }),
-                ..Default::default()
-            },
-            DgraphFilter {
-                code: Some(DgraphFilterType {
-                    eq: Some(search), // do we want equal or contains here??
-                    ..Default::default()
-                }),
-                ..Default::default()
-            },
-        ]),
-        None => None,
-    };
-
-    DgraphFilter {
+    let base_filter = DgraphFilter {
         code: filter.code.map(|code| {
             // Empty string should be considered missing
             if code == "" {
@@ -139,17 +119,47 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
                 ..Default::default()
             }
         }),
-        description: description_regexp.clone().map(|_desc| DgraphFilterType {
-            regexp: description_regexp,
-            ..Default::default()
-        }),
         category: filter_categories.map(|categories| DgraphFilterType {
             r#in: Some(categories),
             ..Default::default()
         }),
-        or: search_filter,
         r#type: filter_type,
+        description: None,
+        or: None,
         alternative_names: None,
+    };
+
+    DgraphFilter {
+        or: filter.search.map(|search_string| {
+            vec![
+                DgraphFilter {
+                    description: Some(DgraphFilterType {
+                        regexp: Some(format!("/.*{}.*/i", search_string)),
+                        ..Default::default()
+                    }),
+                    ..base_filter.clone()
+                },
+                DgraphFilter {
+                    alternative_names: Some(DgraphFilterType {
+                        regexp: Some(format!("/.*{}.*/i", search_string)),
+                        ..Default::default()
+                    }),
+                    ..base_filter.clone()
+                },
+                DgraphFilter {
+                    code: Some(DgraphFilterType {
+                        eq: Some(search_string), // do we want equal or contains here??
+                        ..Default::default()
+                    }),
+                    ..base_filter.clone()
+                },
+            ]
+        }),
+        description: description_regexp.map(|desc| DgraphFilterType {
+            regexp: Some(desc),
+            ..Default::default()
+        }),
+        ..base_filter
     }
 }
 
