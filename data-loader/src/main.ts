@@ -2,6 +2,8 @@ import path from 'path';
 
 import { DataLoader, DataParser, SchemaParser } from './v2';
 
+import propertyConfigItems from '../data/v2/properties.json';
+
 const hostname = 'localhost';
 const port = '9080';
 
@@ -42,7 +44,7 @@ const main = async () => {
 
     try {
       const loader = new DataLoader(hostname, port);
-      await loader.load(schema, graph);
+      await loader.load(schema, graph, propertyConfigItems);
     } catch (err) {
       console.log(`Failed to load data due to following error: ${err}`);
     }
