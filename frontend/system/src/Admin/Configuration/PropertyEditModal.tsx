@@ -8,21 +8,16 @@ import { ModalMode, useDialog } from '@common/hooks';
 import { CheckIcon } from '@common/icons';
 import { useTranslation } from '@common/intl';
 import { Grid } from '@common/ui';
+import { Alert, AlertTitle } from '@mui/material';
 import React, { useState } from 'react';
 import { useUuid } from '../../hooks';
-
-// TODO: this type should come from gql codegen types
-type Property = {
-  id: string;
-  type: string;
-  label: string;
-  url: string;
-};
+import { useUpsertPropertyConfigItem } from './api';
+import { PropertyConfigurationItemFragment } from './api/operations.generated';
 
 type PropertyEditModalProps = {
   isOpen: boolean;
   mode: ModalMode | null;
-  property: Property | null;
+  property: PropertyConfigurationItemFragment | null;
   onClose: () => void;
 };
 
@@ -35,7 +30,8 @@ export const PropertyOptionEditModal = ({
   const t = useTranslation('system');
   const uuid = useUuid();
 
-  const [draft, setDraft] = useState<Property>(
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [draft, setDraft] = useState<PropertyConfigurationItemFragment>(
     property ?? {
       id: uuid(),
       type: '',
@@ -46,8 +42,23 @@ export const PropertyOptionEditModal = ({
 
   const { Modal } = useDialog({ isOpen, onClose });
 
-  // TODO: set from queries
-  const isLoading = false;
+  const { mutateAsync: upsertItem, isLoading } = useUpsertPropertyConfigItem();
+
+  const onSubmit = async () => {
+    try {
+      await upsertItem({
+        input: {
+          type: draft.type,
+          label: draft.label,
+          url: draft.url,
+        },
+      });
+      onClose();
+    } catch (err) {
+      if (err instanceof Error) setErrorMessage(err.message);
+      else setErrorMessage(t('messages.unknown-error'));
+    }
+  };
 
   const isInvalid = !draft.type || !draft.label;
   const modalWidth = Math.min(window.innerWidth - 200, 800);
@@ -58,15 +69,7 @@ export const PropertyOptionEditModal = ({
       okButton={
         <LoadingButton
           disabled={isInvalid}
-          onClick={() => {
-            // TODO: save and handle errors
-            console.log('value to be saved:', draft);
-            // if (!err || !err.message) {
-            //   err = { message: t('messages.unknown-error') };
-            // }
-            // setErrorMessage(err.message);
-            onClose();
-          }}
+          onClick={onSubmit}
           isLoading={isLoading}
           startIcon={<CheckIcon />}
           variant="contained"
@@ -111,7 +114,7 @@ export const PropertyOptionEditModal = ({
             onChange={e => setDraft({ ...draft, url: e.target.value })}
             helperText={t('helper-text.website-placeholder')}
           />
-          {/* {errorMessage ? (
+          {errorMessage ? (
             <Grid item>
               <Alert
                 severity="error"
@@ -123,7 +126,7 @@ export const PropertyOptionEditModal = ({
                 {errorMessage}
               </Alert>
             </Grid>
-          ) : null} */}
+          ) : null}
         </Grid>
       )}
     </Modal>

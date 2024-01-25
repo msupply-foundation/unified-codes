@@ -33,6 +33,13 @@ export type PropertyConfigurationItemsQueryVariables = Types.Exact<{ [key: strin
 
 export type PropertyConfigurationItemsQuery = { __typename?: 'FullQuery', propertyConfigurationItems: { __typename?: 'PropertyConfigurationItemConnector', totalCount: number, data: Array<{ __typename?: 'PropertyConfigurationItemNode', id: string, label: string, url: string, type: string }> } };
 
+export type UpsertPropertyConfigItemMutationVariables = Types.Exact<{
+  input: Types.UpsertPropertyConfigItemInput;
+}>;
+
+
+export type UpsertPropertyConfigItemMutation = { __typename?: 'FullMutation', upsertPropertyConfigurationItem: number };
+
 export const ConfigurationItemFragmentDoc = gql`
     fragment ConfigurationItem on ConfigurationItemNode {
   id
@@ -82,6 +89,11 @@ export const PropertyConfigurationItemsDocument = gql`
   }
 }
     ${PropertyConfigurationItemFragmentDoc}`;
+export const UpsertPropertyConfigItemDocument = gql`
+    mutation UpsertPropertyConfigItem($input: UpsertPropertyConfigItemInput!) {
+  upsertPropertyConfigurationItem(input: $input)
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -101,6 +113,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     PropertyConfigurationItems(variables?: PropertyConfigurationItemsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PropertyConfigurationItemsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PropertyConfigurationItemsQuery>(PropertyConfigurationItemsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PropertyConfigurationItems', 'query');
+    },
+    UpsertPropertyConfigItem(variables: UpsertPropertyConfigItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpsertPropertyConfigItemMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UpsertPropertyConfigItemMutation>(UpsertPropertyConfigItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'UpsertPropertyConfigItem', 'mutation');
     }
   };
 }

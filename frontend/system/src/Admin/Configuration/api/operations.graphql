@@ -40,3 +40,7 @@ query PropertyConfigurationItems {
     }
   }
 }
+
+mutation UpsertPropertyConfigItem($input: UpsertPropertyConfigItemInput!) {
+  upsertPropertyConfigurationItem(input: $input)
+}

@@ -184,6 +184,7 @@ export type FullMutation = {
   resetPasswordUsingToken: PasswordResetResponse;
   updatePendingChange: RequestChangeResponse;
   updateUserAccount: UpdateUserAccountResponse;
+  upsertPropertyConfigurationItem: Scalars['Int']['output'];
   /** Validates Password Reset Token */
   validatePasswordResetToken: PasswordResetResponse;
 };
@@ -255,6 +256,11 @@ export type FullMutationUpdatePendingChangeArgs = {
 
 export type FullMutationUpdateUserAccountArgs = {
   input: UpdateUserAccountInput;
+};
+
+
+export type FullMutationUpsertPropertyConfigurationItemArgs = {
+  input: UpsertPropertyConfigItemInput;
 };
 
 
@@ -405,6 +411,7 @@ export type LogNode = {
 export enum LogNodeType {
   ConfigurationItemCreated = 'CONFIGURATION_ITEM_CREATED',
   ConfigurationItemDeleted = 'CONFIGURATION_ITEM_DELETED',
+  PropertyConfigurationItemUpserted = 'PROPERTY_CONFIGURATION_ITEM_UPSERTED',
   UniversalCodeChangeApproved = 'UNIVERSAL_CODE_CHANGE_APPROVED',
   UniversalCodeChangeRejected = 'UNIVERSAL_CODE_CHANGE_REJECTED',
   UniversalCodeChangeRequested = 'UNIVERSAL_CODE_CHANGE_REQUESTED',
@@ -614,6 +621,12 @@ export type UpsertEntityInput = {
 };
 
 export type UpsertEntityResponse = EntityType;
+
+export type UpsertPropertyConfigItemInput = {
+  label: Scalars['String']['input'];
+  type: Scalars['String']['input'];
+  url: Scalars['String']['input'];
+};
 
 export type UserAccountConnector = {
   __typename: 'UserAccountConnector';
