@@ -46,6 +46,7 @@ export const ConsumableEditForm = ({
           name: '',
           presentations: [],
           extraDescriptions: [],
+          alternativeNames: [],
         }
   );
 
@@ -80,6 +81,7 @@ export const ConsumableEditForm = ({
             name: '',
             presentations: [],
             extraDescriptions: [],
+            alternativeNames: [],
           });
         } else {
           // existing entity - back to details page

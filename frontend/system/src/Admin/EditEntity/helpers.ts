@@ -33,11 +33,7 @@ export const getAllEntityCodes = (
 export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
   return {
     ...getDetails(entity),
-    alternativeNames: entity.alternativeNames.map(n => ({
-      id: n.name + n.code, // add ID field so react knows which node to update
-      code: n.code,
-      name: n.name,
-    })),
+    alternativeNames: entity.alternativeNames.map(mapAltName),
     routes:
       entity.children
         ?.filter(route => route.type === EntityType.Route)
@@ -172,6 +168,7 @@ export const buildVaccineInputFromEntity = (
 
   return {
     ...getDetails(entity),
+    alternativeNames: entity.alternativeNames.map(mapAltName),
     routes:
       entity.children
         ?.filter(route => route.type === EntityType.Route)
@@ -254,6 +251,10 @@ export const buildEntityFromVaccineInput = (
     ...vaccDetails,
     parentCode: '5048e0ad', // Vaccine parent code
     type: EntityType.Product,
+    alternativeNames: vaccine.alternativeNames.map(n => ({
+      name: n.name,
+      code: n.code ?? '',
+    })),
     children: vaccine.routes?.map(route => {
       const routeDetails = entityDetails(route, vaccDetails.description);
       return {
@@ -316,6 +317,7 @@ export const buildConsumableInputFromEntity = (
         .map(description => ({
           ...getDetails(description),
         })) || [],
+    alternativeNames: entity.alternativeNames.map(mapAltName),
   };
 };
 
@@ -330,6 +332,10 @@ export const buildEntityFromConsumableInput = (
     type: EntityType.Product,
     category: EntityCategory.Consumable,
     properties: consumable.properties?.map(mapProperty),
+    alternativeNames: consumable.alternativeNames.map(n => ({
+      name: n.name,
+      code: n.code ?? '',
+    })),
     children: [
       // Presentations
       ...consumable.presentations.map(pres => ({
@@ -365,6 +371,12 @@ const mapProperty = (p: Property) => ({
   code: p.code,
   key: p.type,
   value: p.value,
+});
+
+const mapAltName = (n: { code: string; name: string }) => ({
+  id: n.name + n.code, // add ID field so react knows which node to update
+  code: n.code,
+  name: n.name,
 });
 
 const getDetails = (entity: EntityDetails) => ({
@@ -438,6 +450,11 @@ export const isValidVaccineInput = (input: VaccineInput) => {
     return true;
   };
 
+  if (hasDuplicates(input.alternativeNames)) return false;
+  for (const altName of input.alternativeNames || []) {
+    if (!altName.name) return false;
+  }
+
   if (hasDuplicates(input.routes)) return false;
   for (const route of input.routes || []) {
     if (!route.name) return false;
@@ -464,6 +481,11 @@ export const isValidVaccineInput = (input: VaccineInput) => {
 
 export const isValidConsumableInput = (input: ConsumableInput) => {
   if (!input.name) return false;
+
+  if (hasDuplicates(input.alternativeNames)) return false;
+  for (const altName of input.alternativeNames || []) {
+    if (!altName.name) return false;
+  }
 
   if (hasDuplicates(input.presentations)) return false;
   for (const presentation of input.presentations || []) {

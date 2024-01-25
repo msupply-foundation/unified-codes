@@ -52,6 +52,7 @@ export interface Presentation extends Entity {
   extraDescriptions: ExtraDescription[];
 }
 export interface ConsumableInput extends Entity {
+  alternativeNames: AlternativeName[];
   presentations: Presentation[];
   extraDescriptions: ExtraDescription[];
 }
@@ -77,5 +78,6 @@ export interface VaccineRoute extends Entity {
 }
 
 export interface VaccineInput extends Entity {
+  alternativeNames: AlternativeName[];
   routes: VaccineRoute[];
 }

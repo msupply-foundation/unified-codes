@@ -492,6 +492,7 @@ describe('buildVaccineInputFromEntity', () => {
       id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Some Vaccine',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -621,6 +622,7 @@ describe('buildVaccineInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
+      alternativeNames: [],
       routes: [
         {
           id: '6e5f7a00',
@@ -726,6 +728,7 @@ describe('buildEntityFromConsumableInput', () => {
       code: '7c8c2b5b',
       name: 'Examination Glove',
       properties: [],
+      alternativeNames: [],
       presentations: [
         {
           id: '7e5f7a00',
@@ -954,6 +957,7 @@ describe('isValidVaccineInput', () => {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
+      alternativeNames: [],
       routes: [
         {
           id: '6e5f7a00',
@@ -1009,6 +1013,7 @@ describe('isValidVaccineInput', () => {
     const vaccineInput: VaccineInput = {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -1034,9 +1039,10 @@ describe('isValidVaccineInput', () => {
   });
 
   it('returns false when there is a duplicate name', () => {
-    const vaccineInput = {
+    const vaccineInput: VaccineInput = {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -1076,6 +1082,7 @@ describe('isValidConsumableInput', () => {
       code: '7c8c2b5b',
       name: 'Examination Glove',
       properties: [],
+      alternativeNames: [],
       presentations: [
         {
           id: '7e5f7a00',
@@ -1126,6 +1133,7 @@ describe('isValidConsumableInput', () => {
       name: 'Examination Glove',
       properties: [],
       extraDescriptions: [],
+      alternativeNames: [],
       presentations: [
         {
           id: '7e5f7a00',
@@ -1147,6 +1155,7 @@ describe('isValidConsumableInput', () => {
       name: 'Examination Glove',
       properties: [],
       extraDescriptions: [],
+      alternativeNames: [],
       presentations: [
         {
           id: '2e5f7a00',
