@@ -1,5 +1,5 @@
 import { useTranslation } from '@common/intl';
-import { Box, Typography } from '@common/ui';
+import { BasicTextInput, Box, Typography } from '@common/ui';
 import React, { useState } from 'react';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
@@ -47,6 +47,8 @@ export const ConsumableFormTree = ({
 
     onOpen(entityToUpdate.properties);
   };
+
+  const isDisabled = (id: string) => initialIds.includes(id);
 
   // It's a bit icky to reassign the property rather than maintaining immutability
   // but as long as we spread `draft` in the `setDraft`, the state is being updated
@@ -100,16 +102,18 @@ export const ConsumableFormTree = ({
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'start' }}>
-        <NameEditField
-          siblings={[]}
-          disabled={initialIds.includes(draft.id)}
+        <BasicTextInput
+          autoFocus
+          disabled={isDisabled(draft.id)}
           value={draft.name}
-          label={t('label.device-name')}
-          showDeleteButton={false}
           onChange={e => setDraft({ ...draft, name: e.target.value })}
-          onDelete={() => {
-            setDraft({ ...draft, name: '' });
-          }}
+          fullWidth
+          error={!draft.name}
+          helperText={
+            !draft.name
+              ? t('error.required', { field: t('label.device-name') })
+              : undefined
+          }
         />
         <Box
           sx={{
@@ -138,16 +142,12 @@ export const ConsumableFormTree = ({
         <TreeFormBox key={pres.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <NameEditField
-              siblings={draft.presentations}
-              disabled={initialIds.includes(pres.id)}
-              value={pres.name}
               label={t('label.presentation')}
-              onChange={e =>
-                onUpdate({ ...pres, name: e.target.value }, draft.presentations)
-              }
-              onDelete={() => {
-                onDelete(pres, draft.presentations);
-              }}
+              entity={pres}
+              siblings={draft.presentations}
+              isDisabled={isDisabled}
+              onUpdate={onUpdate}
+              onDelete={onDelete}
             />
             <EditPropertiesButton
               parents={[draft]}
@@ -166,19 +166,12 @@ export const ConsumableFormTree = ({
             <TreeFormBox key={description.id}>
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                 <NameEditField
-                  siblings={pres.extraDescriptions}
-                  disabled={initialIds.includes(description.id)}
-                  value={description.name}
                   label={t('label.extra-description')}
-                  onChange={e =>
-                    onUpdate(
-                      { ...description, name: e.target.value },
-                      pres.extraDescriptions
-                    )
-                  }
-                  onDelete={() => {
-                    onDelete(description, pres.extraDescriptions);
-                  }}
+                  entity={description}
+                  siblings={pres.extraDescriptions}
+                  isDisabled={isDisabled}
+                  onUpdate={onUpdate}
+                  onDelete={onDelete}
                 />
                 <EditPropertiesButton
                   parents={[draft, pres]}
@@ -207,19 +200,12 @@ export const ConsumableFormTree = ({
         <TreeFormBox key={description.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <NameEditField
-              siblings={draft.extraDescriptions}
-              disabled={initialIds.includes(description.id)}
-              value={description.name}
               label={t('label.extra-description')}
-              onChange={e =>
-                onUpdate(
-                  { ...description, name: e.target.value },
-                  draft.extraDescriptions
-                )
-              }
-              onDelete={() => {
-                onDelete(description, draft.extraDescriptions);
-              }}
+              entity={description}
+              siblings={draft.extraDescriptions}
+              isDisabled={isDisabled}
+              onUpdate={onUpdate}
+              onDelete={onDelete}
             />
             <EditPropertiesButton
               parents={[draft]}
