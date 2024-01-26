@@ -88,9 +88,6 @@ export class DrugDataParser {
               type: EEntityType.PackImmediate,
             },
             { name: row.pack_size, code: row.uc9, type: EEntityType.PackSize },
-            // { name: row.outer_packaging, code: row.uc10, type: EEntityType.PackOuter },
-            // { name: row.manufacturer, code: row.uc11, type: EEntityType.Manufacturer },
-            // { name: row.brand, code: row.uc12, type: EEntityType.Brand },
           ];
 
           const productProperties: IPropertyNode[] = [
@@ -102,7 +99,7 @@ export class DrugDataParser {
 
           const itemProperties: IPropertyNode[] = [
             { type: EPropertyType.WHOEML, value: row.who_eml_item },
-            { type: EPropertyType.NZULM, value: row.nzulm_item },
+            { type: EPropertyType.NZULMItem, value: row.nzulm_item },
           ];
 
           productDefinition.forEach(item => {
@@ -192,6 +189,25 @@ export class DrugDataParser {
           //   }
           // });
 
+          // Parse product alternative names
+          if (productCode) {
+            const altNames = row.product_synonym
+              .split(',')
+              .map(name => name.trim())
+              .filter(name => !!name);
+
+            if (altNames.length) {
+              // store as a string so they're searchable...
+              const serialisedAltNames = altNames.join(',');
+
+              graph[productCode].alternativeNames = serialisedAltNames;
+
+              console.log(
+                `INFO: Alternate names ${serialisedAltNames} added for ${productCode}`
+              );
+            }
+          }
+
           // Process external properties at product (UC2) level
           if (productCode) {
             productProperties.forEach(property => {
@@ -214,14 +230,10 @@ export class DrugDataParser {
           const strengthCode = productDefinition.find(
             item => item.type === EEntityType.DoseStrength
           )?.code; // UC6
-          const unitCode = productDefinition.find(
-            item => item.type === EEntityType.Unit
-          )?.code; // UC7
 
-          // Process external properties at item (UC6) level
-          if (!unitCode && strengthCode) {
+          // Process external properties at item (strength) level
+          if (strengthCode) {
             itemProperties.forEach(property => {
-              // temporary restriction for uc7 - these are not currently imported
               if (property.value) {
                 console.log(
                   `INFO: Property of type ${property.type} with value ${property.value} added for ${strengthCode}`

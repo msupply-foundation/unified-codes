@@ -38,6 +38,7 @@ export const DrugEditForm = ({
           id: uuid(),
           name: '',
           routes: [],
+          alternativeNames: [],
         }
   );
 
@@ -71,6 +72,7 @@ export const DrugEditForm = ({
             id: uuid(),
             name: '',
             routes: [],
+            alternativeNames: [],
           });
         } else {
           // existing entity - back to details page

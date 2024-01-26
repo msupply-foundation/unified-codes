@@ -70,6 +70,8 @@ pub struct Entity {
     #[serde(deserialize_with = "null_as_empty_string")]
     pub category: String,
     #[serde(default)]
+    pub alternative_names: Option<String>,
+    #[serde(default)]
     pub properties: Vec<Property>,
     #[serde(default)]
     pub children: Vec<Entity>,
@@ -160,6 +162,8 @@ pub struct EntityInput {
     pub description: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub category: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub alternative_names: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub properties: Option<Vec<PropertyInput>>,
     #[serde(skip_serializing_if = "Option::is_none")]

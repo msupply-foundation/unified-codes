@@ -1,6 +1,6 @@
 import dgraph from 'dgraph-js';
 
-import { IEntityNode, IEntityGraph } from './types';
+import { IEntityNode, IEntityGraph, PropertyConfigItem } from './types';
 
 export class DgraphClient {
   public readonly host: string;
@@ -80,7 +80,11 @@ export class DataLoader {
     this.dgraph = new DgraphClient(host, port);
   }
 
-  public async load(schema: string, graph: IEntityGraph): Promise<boolean> {
+  public async load(
+    schema: string,
+    graph: IEntityGraph,
+    propertyConfigItems: PropertyConfigItem[]
+  ): Promise<boolean> {
     // Delete all existing data.
     await this.dgraph.dropAll();
 
@@ -116,7 +120,11 @@ export class DataLoader {
         uid(Entity) <type> "${entity.type}" .
         uid(Entity) <code> "${entity.code}" .
         uid(Entity) <dgraph.type> "Entity" .
-      `;
+        ${
+          entity.alternativeNames
+            ? `uid(Entity) <alternative_names> "${entity.alternativeNames}" .`
+            : ''
+        }`;
 
       if (await this.dgraph.upsert(query, nQuads)) {
         console.log(`INFO: Loaded entity with code ${entity.code}`);
@@ -272,6 +280,27 @@ export class DataLoader {
       } else {
         console.log(
           `WARNING: Failed to load immediate packaging with name ${immediatePackaging}`
+        );
+      }
+    }
+
+    // Create property config items
+    for await (const propertyConfigItem of propertyConfigItems) {
+      if (!propertyConfigItem) continue;
+      const nQuads = `
+        _:pack <label> "${propertyConfigItem.label}" .
+        _:pack <url> "${propertyConfigItem.url}" .
+        _:pack <propertyType> "${propertyConfigItem.type}" .
+        _:pack <dgraph.type> "PropertyConfigurationItem" .
+      `;
+
+      if (await this.dgraph.mutate(nQuads)) {
+        console.log(
+          `INFO: Loaded property config item with label ${propertyConfigItem.label}`
+        );
+      } else {
+        console.log(
+          `WARNING: Failed to load property config item with label ${propertyConfigItem.label}`
         );
       }
     }

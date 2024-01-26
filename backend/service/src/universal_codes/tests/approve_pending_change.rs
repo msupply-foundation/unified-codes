@@ -55,6 +55,7 @@ mod universal_codes_approve_pending_change_test {
             description: Some(new_code_id.clone()),
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
+            alternative_names: None,
             properties: None,
             children: None,
         };
@@ -75,6 +76,16 @@ mod universal_codes_approve_pending_change_test {
 
         assert!(result.is_some());
         assert_eq!(result.unwrap().status, ChangeStatus::Pending); // upsert failed, still pending
+
+        // TODO: A better way to remove new pending change from dgraph
+        // marking as rejected so as not to show up in PendingChange queries
+        let _result = service
+            .reject_pending_change(
+                service_provider.clone(),
+                context.user_id.clone(),
+                request_id.clone(),
+            )
+            .await;
     }
 
     #[actix_rt::test]
@@ -114,6 +125,7 @@ mod universal_codes_approve_pending_change_test {
             description: Some(new_code_id.clone()),
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
+            alternative_names: None,
             properties: None,
             children: None,
         };

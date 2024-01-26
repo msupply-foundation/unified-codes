@@ -32,6 +32,18 @@ export type AddConfigurationItemInput = {
   type: ConfigurationItemTypeInput;
 };
 
+export type AlternativeNameInput = {
+  code: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+};
+
+export type AlternativeNameType = {
+  __typename: 'AlternativeNameType';
+  code: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+};
+
 export type AuthToken = {
   __typename: 'AuthToken';
   /** Bearer token */
@@ -138,6 +150,7 @@ export type EntitySortInput = {
 
 export type EntityType = {
   __typename: 'EntityType';
+  alternativeNames: Array<AlternativeNameType>;
   children: Array<EntityType>;
   code: Scalars['String']['output'];
   description: Scalars['String']['output'];
@@ -184,6 +197,7 @@ export type FullMutation = {
   resetPasswordUsingToken: PasswordResetResponse;
   updatePendingChange: RequestChangeResponse;
   updateUserAccount: UpdateUserAccountResponse;
+  upsertPropertyConfigurationItem: Scalars['Int']['output'];
   /** Validates Password Reset Token */
   validatePasswordResetToken: PasswordResetResponse;
 };
@@ -258,6 +272,11 @@ export type FullMutationUpdateUserAccountArgs = {
 };
 
 
+export type FullMutationUpsertPropertyConfigurationItemArgs = {
+  input: UpsertPropertyConfigItemInput;
+};
+
+
 export type FullMutationValidatePasswordResetTokenArgs = {
   token: Scalars['String']['input'];
 };
@@ -281,6 +300,8 @@ export type FullQuery = {
   pendingChange?: Maybe<PendingChangeNode>;
   pendingChanges: PendingChangesResponse;
   product?: Maybe<EntityType>;
+  /** Get the property configuration items */
+  propertyConfigurationItems: PropertyConfigurationItemsResponse;
   /**
    * Retrieves a new auth bearer and refresh token
    * The refresh token is returned as a cookie
@@ -403,6 +424,7 @@ export type LogNode = {
 export enum LogNodeType {
   ConfigurationItemCreated = 'CONFIGURATION_ITEM_CREATED',
   ConfigurationItemDeleted = 'CONFIGURATION_ITEM_DELETED',
+  PropertyConfigurationItemUpserted = 'PROPERTY_CONFIGURATION_ITEM_UPSERTED',
   UniversalCodeChangeApproved = 'UNIVERSAL_CODE_CHANGE_APPROVED',
   UniversalCodeChangeRejected = 'UNIVERSAL_CODE_CHANGE_REJECTED',
   UniversalCodeChangeRequested = 'UNIVERSAL_CODE_CHANGE_REQUESTED',
@@ -528,6 +550,22 @@ export type PropertiesType = {
   value: Scalars['String']['output'];
 };
 
+export type PropertyConfigurationItemConnector = {
+  __typename: 'PropertyConfigurationItemConnector';
+  data: Array<PropertyConfigurationItemNode>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type PropertyConfigurationItemNode = {
+  __typename: 'PropertyConfigurationItemNode';
+  id: Scalars['String']['output'];
+  label: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+  url: Scalars['String']['output'];
+};
+
+export type PropertyConfigurationItemsResponse = PropertyConfigurationItemConnector;
+
 export type PropertyInput = {
   code: Scalars['String']['input'];
   key: Scalars['String']['input'];
@@ -585,6 +623,7 @@ export type UpdateUserAccountInput = {
 export type UpdateUserAccountResponse = UserAccountNode;
 
 export type UpsertEntityInput = {
+  alternativeNames?: InputMaybe<Array<AlternativeNameInput>>;
   category?: InputMaybe<Scalars['String']['input']>;
   children?: InputMaybe<Array<UpsertEntityInput>>;
   code?: InputMaybe<Scalars['String']['input']>;
@@ -596,6 +635,12 @@ export type UpsertEntityInput = {
 };
 
 export type UpsertEntityResponse = EntityType;
+
+export type UpsertPropertyConfigItemInput = {
+  label: Scalars['String']['input'];
+  type: Scalars['String']['input'];
+  url: Scalars['String']['input'];
+};
 
 export type UserAccountConnector = {
   __typename: 'UserAccountConnector';

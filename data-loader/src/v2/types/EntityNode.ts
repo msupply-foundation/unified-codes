@@ -22,6 +22,7 @@ export enum EPropertyType {
   RxNav = 'code_rxnav',
   WHOEML = 'who_eml',
   NZULM = 'code_nzulm',
+  NZULMItem = 'code_nzulm_item',
   UNSPSC = 'code_unspsc',
 }
 
@@ -40,6 +41,7 @@ export interface IEntityNode {
   properties?: IPropertyNode[];
   children?: IEntityNode[];
   value?: string;
+  alternativeNames?: string;
 }
 
 export default IEntityNode;

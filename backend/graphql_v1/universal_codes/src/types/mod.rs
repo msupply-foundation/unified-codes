@@ -2,6 +2,8 @@ mod entity;
 pub use entity::*;
 mod property;
 pub use property::*;
+mod alternative_names;
+pub use alternative_names::*;
 mod drug_interaction;
 pub use drug_interaction::*;
 mod entity_search_input;

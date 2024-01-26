@@ -38,6 +38,7 @@ mod universal_codes_upsert_test {
                 value: "property value".to_string(),
                 code: "".to_string(),
             }]),
+            alternative_names: None,
             children: None,
         };
 
@@ -64,6 +65,7 @@ mod universal_codes_upsert_test {
             description: Some(new_code_id.clone()),
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
+            alternative_names: None,
             properties: None,
             children: None,
         };
@@ -103,6 +105,7 @@ mod universal_codes_upsert_test {
             description: Some(new_code_id.clone()),
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
+            alternative_names: None,
             properties: None,
             children: None,
         };
@@ -137,6 +140,7 @@ mod universal_codes_upsert_test {
             description: Some(new_code_id.clone()),
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
+            alternative_names: None,
             properties: None,
             children: Some(vec![
                 UpsertUniversalCode {
@@ -146,6 +150,7 @@ mod universal_codes_upsert_test {
                     description: Some(uuid()),
                     r#type: Some("test_type".to_string()),
                     category: Some("test_category".to_string()),
+                    alternative_names: None,
                     properties: None,
                     children: None,
                 },
@@ -156,6 +161,7 @@ mod universal_codes_upsert_test {
                     description: Some(uuid()),
                     r#type: Some("test_type".to_string()),
                     category: Some("test_category".to_string()),
+                    alternative_names: None,
                     properties: None,
                     children: None,
                 },

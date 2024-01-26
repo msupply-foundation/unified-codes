@@ -30,6 +30,7 @@ pub enum LogNodeType {
     UniversalCodeChangeRequested,
     ConfigurationItemCreated,
     ConfigurationItemDeleted,
+    PropertyConfigurationItemUpserted,
 }
 
 #[Object]
@@ -91,6 +92,9 @@ impl LogNodeType {
             LogType::UniversalCodeChangeRejected => LogNodeType::UniversalCodeChangeRejected,
             LogType::ConfigurationItemCreated => LogNodeType::ConfigurationItemCreated,
             LogType::ConfigurationItemDeleted => LogNodeType::ConfigurationItemDeleted,
+            LogType::PropertyConfigurationItemUpserted => {
+                LogNodeType::PropertyConfigurationItemUpserted
+            }
         }
     }
 
@@ -109,6 +113,9 @@ impl LogNodeType {
             LogNodeType::UniversalCodeChangeRejected => LogType::UniversalCodeChangeRejected,
             LogNodeType::ConfigurationItemCreated => LogType::ConfigurationItemCreated,
             LogNodeType::ConfigurationItemDeleted => LogType::ConfigurationItemDeleted,
+            LogNodeType::PropertyConfigurationItemUpserted => {
+                LogType::PropertyConfigurationItemUpserted
+            }
         }
     }
 }

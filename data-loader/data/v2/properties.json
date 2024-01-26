@@ -1,0 +1,32 @@
+[
+  {
+    "type": "code_rxnav",
+    "label": "RxNav RXCUI",
+    "url": "https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm={{code}}"
+  },
+  {
+    "type": "code_nzulm",
+    "label": "NZULM Product ID (MP)",
+    "url": "https://search.nzulm.org.nz/search/product?table=MP&id={{code}}"
+  },
+    {
+    "type": "code_nzulm_item",
+    "label": "NZULM Unit of Use ID (MPUU)",
+    "url": "https://search.nzulm.org.nz/search/nzmtrecord?sctid={{code}}&mode=page"
+  },
+  {
+    "type": "who_eml",
+    "label": "WHO EML Categories",
+    "url": ""
+  },
+  {
+    "type": "code_unspsc",
+    "label": "UNSPSC Code",
+    "url": ""
+  },
+  {
+    "type": "code_medevis",
+    "label": "MEDEVIS Code",
+    "url": "https://medevis.who-healthtechnologies.org/devices/{{code}}"
+  }
+]

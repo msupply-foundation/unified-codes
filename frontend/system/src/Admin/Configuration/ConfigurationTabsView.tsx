@@ -1,7 +1,6 @@
 import { DetailTabs, TabDefinition } from '@common/components';
 import { useTranslation } from '@common/intl';
 import React from 'react';
-import { config } from '../../config';
 import { OptionListConfigTab } from './OptionListConfigTab';
 import { PropertiesConfigTab } from './PropertiesConfigTab';
 import { ConfigurationItemTypeInput } from '@common/types';
@@ -38,7 +37,7 @@ export const ConfigurationTabsView = () => {
       value: t('label.immediate-packaging'),
     },
     {
-      Component: <PropertiesConfigTab data={config.properties} />,
+      Component: <PropertiesConfigTab />,
       value: t('label.properties'),
     },
   ];
