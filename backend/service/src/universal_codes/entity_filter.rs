@@ -148,7 +148,7 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
                 },
                 DgraphFilter {
                     code: Some(DgraphFilterType {
-                        eq: Some(search_string),
+                        regexp: Some(format!("/^{}.*$/i", search_string)), // begins with
                         ..Default::default()
                     }),
                     ..base_filter.clone()
