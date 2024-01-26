@@ -111,7 +111,7 @@ export const DrugSelectionModal: FC<DrugSelectionSelectionModalProps> = ({
             options={options}
             onChange={onChangeSelectedQueries}
             renderOption={renderOption}
-            getOptionLabel={option => `${option.name}`}
+            getOptionLabel={option => `${option.id}`}
             filterProperties={['name', 'id']}
             filterPlaceholder={t('placeholder.search')}
             width={modalWidth - 50}
