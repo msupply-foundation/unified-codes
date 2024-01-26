@@ -58,7 +58,7 @@ export const AutocompleteList = <T,>({
   value,
   disableClearable,
   getOptionDisabled,
-  open,
+  open = true,
 }: AutocompleteListProps<T>): JSX.Element => {
   const createdFilterOptions = createFilterOptions(filterOptionConfig);
   const optionRenderer = optionKey
