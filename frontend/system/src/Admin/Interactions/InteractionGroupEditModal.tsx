@@ -124,7 +124,6 @@ export const InteractionGroupEditModal = ({
             onChange={e => onUpdate({ name: e.target.value })}
           />
           <BasicTextInput
-            autoFocus
             InputLabelProps={{ shrink: true }}
             label={t('label.description')}
             value={group.description}
