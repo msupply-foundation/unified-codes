@@ -3,42 +3,43 @@ import { useTranslation } from '@common/intl';
 import { BasicTextInput, DeleteIcon, IconButton } from '@common/ui';
 import { Entity } from '../types';
 
-export const NameEditField = ({
-  value,
+export const NameEditField = <T extends Entity>({
   label,
-  disabled,
+  entity,
   siblings,
   showDeleteButton = true,
-  onChange,
+  isDisabled,
+  onUpdate,
   onDelete,
 }: {
-  value: string;
   label: string;
-  disabled: boolean;
-  siblings: Entity[];
+  entity: T;
+  siblings: T[];
   showDeleteButton?: boolean;
-  onChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
-  onDelete: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  isDisabled: (id: string) => boolean;
+  onUpdate: (updated: T, list: T[]) => void;
+  onDelete: (updated: T, list: T[]) => void;
 }) => {
   const t = useTranslation('system');
 
   const siblingNames = siblings.map(node => node.name);
-
   const isDuplicate = siblingNames.some(
-    (name, idx) => name === value && siblingNames.indexOf(name) !== idx
+    (name, idx) => name === entity.name && siblingNames.indexOf(name) !== idx
   );
+
+  const disabled = isDisabled(entity.id);
 
   return (
     <>
       <BasicTextInput
         autoFocus
         disabled={disabled}
-        value={value}
-        onChange={onChange}
+        value={entity.name}
+        onChange={e => onUpdate({ ...entity, name: e.target.value }, siblings)}
         fullWidth
-        error={!value || isDuplicate}
+        error={!entity.name || isDuplicate}
         helperText={
-          !value
+          !entity.name
             ? t('error.required', { field: label })
             : isDuplicate
             ? t('error.duplicate')
@@ -49,7 +50,7 @@ export const NameEditField = ({
         <IconButton
           label={t('label.delete')}
           icon={<DeleteIcon />}
-          onClick={onDelete}
+          onClick={() => onDelete(entity, siblings)}
         />
       )}
     </>

@@ -1,35 +1,41 @@
 import React from 'react';
 import { DeleteIcon, IconButton, MenuItem, Option, Select } from '@common/ui';
 import { useTranslation } from '@common/intl';
+import { Entity } from '../types';
 
-export const CategoryDropdown = ({
-  value,
+export const CategoryDropdown = <T extends Entity>({
   options,
+  entity,
+  siblings,
   disabled,
-  onChange,
-  getOptionDisabled,
   showDeleteButton = true,
+  onUpdate,
   onDelete,
 }: {
-  value: string;
   options: Option[];
+  entity: T;
+  siblings: T[];
   disabled?: boolean;
-  onChange: (value: string) => void;
-  getOptionDisabled: (o: Option) => boolean;
   showDeleteButton?: boolean;
-  onDelete: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onUpdate: (updated: T, list: T[]) => void;
+  onDelete: (updated: T, list: T[]) => void;
 }) => {
   const t = useTranslation('system');
-  if (!options.find(o => o.value === value)) {
-    options.push({ label: value, value: value });
+
+  if (!options.find(o => o.value === entity.name)) {
+    options.push({ label: entity.name, value: entity.name });
   }
+
+  const getOptionDisabled = (o: Option) =>
+    !!siblings.find(n => n.name === o.value);
+
   return (
     <>
       <Select
         autoFocus
         disabled={disabled}
-        value={value}
-        onChange={e => onChange(e.target.value)}
+        value={entity.name}
+        onChange={e => onUpdate({ ...entity, name: e.target.value }, siblings)}
         options={options}
         renderOption={(option: Option) => (
           <MenuItem
@@ -46,7 +52,7 @@ export const CategoryDropdown = ({
         <IconButton
           label={t('label.delete')}
           icon={<DeleteIcon />}
-          onClick={onDelete}
+          onClick={() => onDelete(entity, siblings)}
         />
       )}
     </>

@@ -74,46 +74,48 @@ export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
 export const buildEntityFromDrugInput = (
   drug: DrugInput
 ): UpsertEntityInput => {
+  const entityDetails = (e: Entity) => ({
+    code: e.code,
+    name: e.name,
+    category: EntityCategory.Drug,
+    properties: e.properties?.map(mapProperty),
+  });
+
   return {
     parentCode: '933f3f00', // Drug parent code
-    code: drug.code,
-    name: drug.name,
+    ...entityDetails(drug),
     description: drug.name,
     type: EntityType.Product,
-    category: EntityCategory.Drug,
     alternativeNames: drug.alternativeNames.map(({ name, code }) => ({
       name,
       code: code ?? '',
     })),
-    properties: drug.properties?.map(mapProperty),
     children: drug.routes?.map(route => ({
-      code: route.code,
-      name: route.name,
+      ...entityDetails(route),
       description: `${drug.name} ${route.name}`,
       type: EntityType.Route,
-      category: EntityCategory.Drug,
-      properties: route.properties?.map(mapProperty),
       children: route.forms?.map(form => ({
-        code: form.code,
-        name: form.name,
+        ...entityDetails(form),
         description: `${drug.name} ${route.name} ${form.name}`,
         type: EntityType.Form,
-        category: EntityCategory.Drug,
-        properties: form.properties?.map(mapProperty),
         children: form.strengths?.map(strength => ({
-          code: strength.code,
-          name: strength.name,
+          ...entityDetails(strength),
           description: `${drug.name} ${route.name} ${form.name} ${strength.name}`,
           type: EntityType.Strength,
-          category: EntityCategory.Drug,
-          properties: strength.properties?.map(mapProperty),
           children: strength.units?.map(unit => ({
-            code: unit.code,
-            name: unit.name,
+            ...entityDetails(unit),
             description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name}`,
             type: EntityType.Unit,
-            category: EntityCategory.Drug,
-            properties: unit.properties?.map(mapProperty),
+            children: unit.immediatePackagings?.map(immPack => ({
+              ...entityDetails(immPack),
+              description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name} ${immPack.name}`,
+              type: EntityType.ImmediatePackaging,
+              children: immPack.packSizes?.map(packSize => ({
+                ...entityDetails(packSize),
+                description: `${drug.name} ${route.name} ${form.name} ${strength.name} ${unit.name} ${immPack.name} ${packSize.name}`,
+                type: EntityType.PackSize,
+              })),
+            })),
           })),
         })),
       })),
@@ -234,10 +236,20 @@ export const buildEntityFromVaccineInput = (
                 return {
                   ...unitDetails,
                   type: EntityType.Unit,
-                  children: unit.immediatePackagings?.map(immPack => ({
-                    ...entityDetails(immPack, unitDetails.description),
-                    type: EntityType.ImmediatePackaging,
-                  })),
+                  children: unit.immediatePackagings?.map(immPack => {
+                    const immPackDetails = entityDetails(
+                      immPack,
+                      unitDetails.description
+                    );
+                    return {
+                      ...immPackDetails,
+                      type: EntityType.ImmediatePackaging,
+                      children: immPack.packSizes?.map(packSize => ({
+                        ...entityDetails(packSize, immPackDetails.description),
+                        type: EntityType.PackSize,
+                      })),
+                    };
+                  }),
                 };
               }),
             };
@@ -414,6 +426,14 @@ export const isValidDrugInput = (input: DrugInput) => {
         if (hasDuplicates(strength.units)) return false;
         for (const unit of strength.units || []) {
           if (!unit.name) return false;
+          if (hasDuplicates(unit.immediatePackagings)) return false;
+          for (const immPack of unit.immediatePackagings || []) {
+            if (!immPack.name) return false;
+            if (hasDuplicates(immPack.packSizes)) return false;
+            for (const packSize of immPack.packSizes || []) {
+              if (!packSize.name) return false;
+            }
+          }
         }
       }
     }
