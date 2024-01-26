@@ -3,7 +3,7 @@ use serde::Serialize;
 
 use crate::{DgraphClient, EntityData};
 
-#[derive(Serialize, Debug, Default)]
+#[derive(Serialize, Debug, Default, Clone)]
 pub struct DgraphFilterType {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub regexp: Option<String>,
@@ -13,7 +13,7 @@ pub struct DgraphFilterType {
     pub r#in: Option<Vec<String>>,
 }
 
-#[derive(Serialize, Debug, Default)]
+#[derive(Serialize, Debug, Default, Clone)]
 pub struct DgraphOrderByType {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub asc: Option<String>,
@@ -21,16 +21,20 @@ pub struct DgraphOrderByType {
     pub desc: Option<String>,
 }
 
-#[derive(Serialize, Debug, Default)]
+#[derive(Serialize, Debug, Default, Clone)]
 pub struct DgraphFilter {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub code: Option<DgraphFilterType>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<DgraphFilterType>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub alternative_names: Option<DgraphFilterType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub category: Option<DgraphFilterType>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub r#type: Option<DgraphFilterType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub or: Option<Vec<DgraphFilter>>,
 }
 
 #[derive(Serialize, Debug)]
@@ -54,6 +58,7 @@ query EntitiesQuery($filter: EntityFilter, $first: Int, $offset: Int, $order: En
     description
     type
     code
+    alternative_names
     __typename
     parents {
         id
@@ -61,6 +66,7 @@ query EntitiesQuery($filter: EntityFilter, $first: Int, $offset: Int, $order: En
         description
         type
         code
+        alternative_names
         __typename
     }
   }

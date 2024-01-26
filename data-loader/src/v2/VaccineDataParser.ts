@@ -217,6 +217,25 @@ export class VaccineDataParser {
             }
           });
         }
+
+        // Parse product alternative names
+        if (productCode) {
+          const altNames = row.product_synonym
+            .split(',')
+            .map(name => name.trim())
+            .filter(name => !!name);
+
+          if (altNames.length) {
+            // store as a string so they're searchable...
+            const serialisedAltNames = altNames.join(',');
+
+            graph[productCode].alternativeNames = serialisedAltNames;
+
+            console.log(
+              `INFO: Alternate names ${serialisedAltNames} added for ${productCode}`
+            );
+          }
+        }
       });
 
       // Output warnings for any duplicate entity codes.

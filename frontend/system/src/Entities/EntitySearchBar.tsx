@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import { CloseIcon, NavigateLinkIcon, SearchIcon } from '@common/icons';
 import { useDebounceCallback } from '@common/hooks';
 import { useTranslation } from '@common/intl';
@@ -14,15 +14,11 @@ import Fuse from 'fuse.js';
 import { ListItem, RouteBuilder, useNavigate } from 'frontend/common/src';
 import { AppRoute } from 'frontend/config/src';
 import { isArray } from 'lodash';
+import { EntityRowFragment } from './api/operations.generated';
 
 interface EntitySearchBarProps {
   onChange: (value: string) => void;
-  products: {
-    type: string;
-    description: string;
-    code: string;
-    id: string;
-  }[];
+  products: EntityRowFragment[];
   placeholder: string;
   isLoading?: boolean;
   debounceTime?: number;
@@ -44,10 +40,20 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
   const t = useTranslation(['common']);
   const navigate = useNavigate();
 
-  const fuse = new Fuse(products ?? [], {
-    keys: ['description', 'code'],
+  const fuseProducts = useMemo(() => {
+    return products.map(p => ({
+      id: p.id,
+      code: p.code,
+      type: p.type,
+      description: p.description,
+      alternativeNames: p.alternativeNames.map(n => n.name).join(', '),
+    }));
+  }, [products]);
+
+  const fuse = new Fuse(fuseProducts ?? [], {
+    keys: ['description', 'code', 'alternativeNames'],
   });
-  fuse.setCollection(products);
+  fuse.setCollection(fuseProducts);
 
   const debouncedOnChange = useDebounceCallback(
     value => {
@@ -70,7 +76,7 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
 
   return (
     <AutocompleteList
-      options={products}
+      options={fuseProducts}
       width={360}
       inputValue={buffer}
       filterOptions={(opts, { inputValue }) =>
@@ -89,7 +95,16 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
       }
       renderOption={(props, item) => (
         <ListItem {...props}>
-          <Typography>{item.description}</Typography>
+          <Typography>
+            {item.description}
+            {item.alternativeNames ? (
+              <Typography fontStyle="italic" component="span">
+                {' '}
+                - {item.alternativeNames}
+              </Typography>
+            ) : null}{' '}
+            ({item.code})
+          </Typography>
           <NavigateLinkIcon />
         </ListItem>
       )}

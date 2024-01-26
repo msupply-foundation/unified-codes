@@ -365,6 +365,39 @@ export const VaccineFormTree = ({
         }
         isLoading={isLoadingRoutes}
       />
+
+      <Box>
+        {!!draft.alternativeNames.length && (
+          <Typography fontSize="12px">{t('label.alt-names')}</Typography>
+        )}
+
+        {draft.alternativeNames.map(n => (
+          <TreeFormBox key={n.id}>
+            <Box sx={{ display: 'flex', alignItems: 'end' }}>
+              <NameEditField
+                siblings={draft.alternativeNames}
+                disabled={initialIds.includes(n.code || '')}
+                value={n.name}
+                label={t('label.alt-name')}
+                onChange={e =>
+                  onUpdate(
+                    { ...n, name: e.target.value },
+                    draft.alternativeNames
+                  )
+                }
+                onDelete={() => onDelete(n, draft.alternativeNames)}
+              />
+            </Box>
+          </TreeFormBox>
+        ))}
+
+        <AddFieldButton
+          label={t('label.add-alternative-name')}
+          onClick={() =>
+            onUpdate({ id: uuid(), name: '' }, draft.alternativeNames)
+          }
+        />
+      </Box>
     </Box>
   );
 };

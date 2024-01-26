@@ -63,6 +63,7 @@ export const PendingChangeDetails = () => {
           ent.children?.forEach(addToExpandedIds);
 
           ent?.properties && expandedIds.push(`${nodeId}_properties`);
+          ent?.alternativeNames && expandedIds.push(`${nodeId}_altNames`);
         }
       };
       addToExpandedIds(entity);
