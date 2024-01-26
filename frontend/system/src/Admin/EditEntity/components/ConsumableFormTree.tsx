@@ -247,17 +247,12 @@ export const ConsumableFormTree = ({
           <TreeFormBox key={n.id}>
             <Box sx={{ display: 'flex', alignItems: 'end' }}>
               <NameEditField
+                entity={n}
                 siblings={draft.alternativeNames}
-                disabled={initialIds.includes(n.code || '')}
-                value={n.name}
+                isDisabled={() => initialIds.includes(n.code || '')}
                 label={t('label.alt-name')}
-                onChange={e =>
-                  onUpdate(
-                    { ...n, name: e.target.value },
-                    draft.alternativeNames
-                  )
-                }
-                onDelete={() => onDelete(n, draft.alternativeNames)}
+                onUpdate={onUpdate}
+                onDelete={onDelete}
               />
             </Box>
           </TreeFormBox>
