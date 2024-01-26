@@ -63,7 +63,7 @@ type ConfigurationItem {
 
 type PropertyConfigurationItem {
   id: ID!
-  type: String @dgraph(pred: "propertyType") @search(by: [exact])
-  title: String @dgraph(pred: "title")
-  website: String @dgraph(pred: "website")
+  type: String! @id @dgraph(pred: "propertyType") @search(by: [exact])
+  label: String @dgraph(pred: "label")
+  url: String @dgraph(pred: "url")
 }

@@ -8,7 +8,7 @@ use chrono::Utc;
 use dgraph::delete_configuration_item::delete_configuration_item as dgraph_delete_configuration_item;
 use repository::LogType;
 
-use super::upsert::ModifyConfigurationError;
+use super::ModifyConfigurationError;
 
 pub async fn delete_configuration_item(
     sp: Arc<ServiceProvider>,

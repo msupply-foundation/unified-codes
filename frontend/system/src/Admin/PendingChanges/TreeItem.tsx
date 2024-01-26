@@ -2,7 +2,7 @@ import React from 'react';
 import { LocaleKey, useTranslation } from '@common/intl';
 import { Box, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
-import { config } from '../../config';
+import { usePropertyConfigurationItems } from '../Configuration/api/hooks/usePropertyConfigurationItems';
 import {
   AlternativeNameInput,
   PropertyInput,
@@ -126,9 +126,9 @@ const PropertyTreeItem = ({
 }) => {
   const isNewProperty = !property.code;
 
-  const propertyConfig = config.properties.find(
-    conf => conf.type === property.key
-  );
+  const { data: config } = usePropertyConfigurationItems();
+
+  const propertyConfig = config?.find(conf => conf.type === property.key);
 
   return (
     <TreeItem

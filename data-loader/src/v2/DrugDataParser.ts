@@ -99,7 +99,7 @@ export class DrugDataParser {
 
           const itemProperties: IPropertyNode[] = [
             { type: EPropertyType.WHOEML, value: row.who_eml_item },
-            { type: EPropertyType.NZULM, value: row.nzulm_item },
+            { type: EPropertyType.NZULMItem, value: row.nzulm_item },
           ];
 
           productDefinition.forEach(item => {
@@ -230,14 +230,10 @@ export class DrugDataParser {
           const strengthCode = productDefinition.find(
             item => item.type === EEntityType.DoseStrength
           )?.code; // UC6
-          const unitCode = productDefinition.find(
-            item => item.type === EEntityType.Unit
-          )?.code; // UC7
 
-          // Process external properties at item (UC6) level
-          if (!unitCode && strengthCode) {
+          // Process external properties at item (strength) level
+          if (strengthCode) {
             itemProperties.forEach(property => {
-              // temporary restriction for uc7 - these are not currently imported
               if (property.value) {
                 console.log(
                   `INFO: Property of type ${property.type} with value ${property.value} added for ${strengthCode}`

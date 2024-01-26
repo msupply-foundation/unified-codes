@@ -4,9 +4,12 @@ use graphql_core::{standard_graphql_error::validate_auth, ContextExt};
 
 use service::auth::{Resource, ResourceAccessRequest};
 
-use crate::map_modify_config_error;
+use crate::{map_modify_config_error, UpsertPropertyConfigItemInput};
 
-pub async fn delete_configuration_item(ctx: &Context<'_>, code: String) -> Result<u32> {
+pub async fn upsert_property_configuration_item(
+    ctx: &Context<'_>,
+    input: UpsertPropertyConfigItemInput,
+) -> Result<u32> {
     let user = validate_auth(
         ctx,
         &ResourceAccessRequest {
@@ -18,10 +21,10 @@ pub async fn delete_configuration_item(ctx: &Context<'_>, code: String) -> Resul
     match service_context
         .service_provider
         .configuration_service
-        .delete_configuration_item(
+        .upsert_property_configuration_item(
             ctx.service_provider(),
             service_context.user_id.clone(),
-            code,
+            input.into(),
         )
         .await
     {

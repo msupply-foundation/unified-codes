@@ -107,7 +107,7 @@ export class VaccineDataParser {
 
         const itemProperties: IPropertyNode[] = [
           { type: EPropertyType.WHOEML, value: row.who_eml_item },
-          { type: EPropertyType.NZULM, value: row.nzulm_item },
+          { type: EPropertyType.NZULMItem, value: row.nzulm_item },
         ];
 
         productDefinition.forEach(item => {
@@ -200,7 +200,7 @@ export class VaccineDataParser {
           item => item.type === EEntityType.DoseStrength
         )?.code;
 
-        // Process external properties at item level
+        // Process external properties at unit of use/strength level
         if (strengthCode) {
           itemProperties.forEach(property => {
             if (property.value) {
