@@ -1,6 +1,8 @@
 use async_graphql::*;
 use dgraph::Entity;
 
+use crate::AlternativeNameType;
+
 use super::DrugInteractionType;
 use super::PropertiesType;
 
@@ -12,6 +14,7 @@ pub struct EntityType {
     pub description: String,
     pub r#type: String,
     pub category: String,
+    pub alternative_names: Vec<AlternativeNameType>,
     pub properties: Vec<PropertiesType>,
     pub children: Vec<EntityType>,
     pub parents: Vec<EntityType>,
@@ -27,6 +30,10 @@ impl EntityType {
             r#type: entity.r#type,
             category: entity.category,
             properties: PropertiesType::from_domain(entity.properties),
+            alternative_names: match entity.alternative_names {
+                Some(names) => AlternativeNameType::from_domain(names),
+                None => vec![],
+            },
             children: entity
                 .children
                 .iter()
@@ -67,6 +74,10 @@ impl EntityType {
 
     pub async fn children(&self) -> &Vec<EntityType> {
         &self.children
+    }
+
+    pub async fn alternative_names(&self) -> &Vec<AlternativeNameType> {
+        &self.alternative_names
     }
 
     pub async fn product(&self) -> Option<EntityType> {

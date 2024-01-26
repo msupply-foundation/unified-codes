@@ -20,18 +20,21 @@ describe('getAllEntityCodes', () => {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
+      alternativeNames: [],
       properties: [],
       children: [
         {
           code: '6e5f7a00',
           name: 'Topical',
           type: 'Route',
+          alternativeNames: [],
           properties: [],
           children: [
             {
               code: '',
               name: 'Solution',
               type: 'Form',
+              alternativeNames: [],
               properties: [],
               children: [],
             },
@@ -49,30 +52,40 @@ describe('getAllEntityCodes', () => {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
+      alternativeNames: [
+        {
+          name: 'Other name',
+          code: 'some_alt_name_code',
+        },
+      ],
       properties: [],
       children: [
         {
           code: '6e5f7a00',
           name: 'Topical',
           type: 'Route',
+          alternativeNames: [],
           properties: [],
           children: [
             {
               code: '66e85500',
               name: 'Solution',
               type: 'Form',
+              alternativeNames: [],
               properties: [],
               children: [
                 {
                   code: '36e874bf',
                   name: '2%',
                   type: 'DoseStrength',
+                  alternativeNames: [],
                   properties: [],
                   children: [
                     {
                       code: 'e4edcb00',
                       name: '15mL',
                       type: 'Unit',
+                      alternativeNames: [],
                       properties: [],
                     },
                   ],
@@ -81,12 +94,14 @@ describe('getAllEntityCodes', () => {
                   code: '36e874bg',
                   name: '3%',
                   type: 'DoseStrength',
+                  alternativeNames: [],
                   properties: [],
                   children: [
                     {
                       code: 'e4edcb01',
                       name: '15mL',
                       type: 'Unit',
+                      alternativeNames: [],
                       properties: [],
                     },
                   ],
@@ -102,6 +117,7 @@ describe('getAllEntityCodes', () => {
 
     expect(result).toEqual([
       '7c8c2b5b',
+      'some_alt_name_code',
       '6e5f7a00',
       '66e85500',
       '36e874bf',
@@ -118,30 +134,40 @@ describe('buildDrugInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
+      alternativeNames: [
+        {
+          name: 'AltName',
+          code: 'ABC123',
+        },
+      ],
       properties: [],
       children: [
         {
           code: '6e5f7a00',
           name: 'Topical',
           type: 'Route',
+          alternativeNames: [],
           properties: [],
           children: [
             {
               code: '66e85500',
               name: 'Solution',
               type: 'Form',
+              alternativeNames: [],
               properties: [],
               children: [
                 {
                   code: '36e874bf',
                   name: '2%',
                   type: 'DoseStrength',
+                  alternativeNames: [],
                   properties: [],
                   children: [
                     {
                       code: 'e4edcb00',
                       name: '15mL',
                       type: 'Unit',
+                      alternativeNames: [],
                       properties: [],
                     },
                   ],
@@ -159,6 +185,13 @@ describe('buildDrugInputFromEntity', () => {
       id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [
+        {
+          id: 'AltNameABC123',
+          code: 'ABC123',
+          name: 'AltName',
+        },
+      ],
       properties: [],
       routes: [
         {
@@ -202,6 +235,7 @@ describe('buildDrugInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
+      alternativeNames: [],
       properties: [
         {
           id: '7c8c2b5b_who_eml',
@@ -222,6 +256,7 @@ describe('buildDrugInputFromEntity', () => {
           code: '6e5f7a00',
           name: 'Topical',
           type: 'Route',
+          alternativeNames: [],
           properties: [
             {
               id: '6e5f7a00_code_rxnav',
@@ -241,6 +276,7 @@ describe('buildDrugInputFromEntity', () => {
       id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [],
       properties: [
         {
           id: '7c8c2b5b_who_eml',
@@ -284,18 +320,21 @@ describe('buildDrugInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
+      alternativeNames: [],
       properties: [],
       children: [
         {
           code: '6e5f7a00',
           name: 'Topical',
           type: 'Route',
+          alternativeNames: [],
           properties: [],
           children: [
             {
               code: '66e85500',
               name: 'Solution',
               type: 'Form', // include: direct child of route
+              alternativeNames: [],
               properties: [],
               children: [],
             },
@@ -303,6 +342,7 @@ describe('buildDrugInputFromEntity', () => {
               code: 'e4edcb00',
               name: '15mL',
               type: 'Unit', // exclude: not a direct child of route
+              alternativeNames: [],
               properties: [],
               children: [],
             },
@@ -317,6 +357,7 @@ describe('buildDrugInputFromEntity', () => {
       id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -345,18 +386,21 @@ describe('buildVaccineInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       type: 'Vaccine',
+      alternativeNames: [],
       properties: [],
       children: [
         {
           code: '6e5f7a00',
           name: 'Intramuscular',
           type: 'Route',
+          alternativeNames: [],
           properties: [],
           children: [
             {
               code: '66e85500',
               name: 'Injection: suspension',
               type: 'Form',
+              alternativeNames: [],
               properties: [
                 {
                   id: '6e5f7a00_code_rxnav',
@@ -370,18 +414,21 @@ describe('buildVaccineInputFromEntity', () => {
                   code: 'ae5f7a00',
                   name: '2021 Variant',
                   type: EntityType.VaccineNameDetails,
+                  alternativeNames: [],
                   properties: [],
                   children: [
                     {
                       code: '7e5f7a02',
                       name: 'Component 1/Component 2',
                       type: EntityType.ActiveIngredients,
+                      alternativeNames: [],
                       properties: [],
                       children: [
                         {
                           code: 'a6e85500',
                           name: 'Brand 2',
                           type: 'Brand',
+                          alternativeNames: [],
                           properties: [],
                           children: [],
                         },
@@ -393,30 +440,35 @@ describe('buildVaccineInputFromEntity', () => {
                   code: '7e5f7a00',
                   name: 'Component 1/Component 2',
                   type: EntityType.ActiveIngredients,
+                  alternativeNames: [],
                   properties: [],
                   children: [
                     {
                       code: '86e85500',
                       name: 'Brand 1',
                       type: 'Brand',
+                      alternativeNames: [],
                       properties: [],
                       children: [
                         {
                           code: '36e874bf',
                           name: '2 IU/1 IU',
                           type: 'DoseStrength',
+                          alternativeNames: [],
                           properties: [],
                           children: [
                             {
                               code: 'e4edcb00',
                               name: '0.5mL',
                               type: 'Unit',
+                              alternativeNames: [],
                               properties: [],
                               children: [
                                 {
                                   code: 'x4edcb00',
                                   name: 'Ampoule',
                                   type: 'PackImmediate',
+                                  alternativeNames: [],
                                   properties: [],
                                 },
                               ],
@@ -440,6 +492,7 @@ describe('buildVaccineInputFromEntity', () => {
       id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Some Vaccine',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -542,18 +595,21 @@ describe('buildVaccineInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       type: 'Vaccine',
+      alternativeNames: [],
       properties: [],
       children: [
         {
           code: '6e5f7a00',
           name: 'Intramuscular',
           type: 'Route', // include: valid child
+          alternativeNames: [],
           properties: [],
         },
         {
           code: 'e4edcb00',
           name: '0.5mL',
           type: 'Unit', // exclude: invalid (should be deeper in the tree)
+          alternativeNames: [],
           properties: [],
         },
       ],
@@ -566,6 +622,7 @@ describe('buildVaccineInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
+      alternativeNames: [],
       routes: [
         {
           id: '6e5f7a00',
@@ -585,12 +642,14 @@ describe('buildConsumableInputFromEntity', () => {
       code: '7c8c2b5b',
       name: 'Examination Glove',
       type: 'Consumable',
+      alternativeNames: [],
       properties: [],
       children: [
         {
           code: '7e5f7a00',
           name: 'Large',
           type: 'Presentation',
+          alternativeNames: [],
           properties: [
             {
               id: '6e5f7a00_code_rxnav',
@@ -604,6 +663,7 @@ describe('buildConsumableInputFromEntity', () => {
               code: '86e85500',
               name: 'Pink',
               type: 'ExtraDescription',
+              alternativeNames: [],
               properties: [],
               children: [],
             },
@@ -611,6 +671,7 @@ describe('buildConsumableInputFromEntity', () => {
               code: '76e85501',
               name: 'Black',
               type: 'ExtraDescription',
+              alternativeNames: [],
               properties: [],
               children: [],
             },
@@ -625,6 +686,7 @@ describe('buildConsumableInputFromEntity', () => {
       id: '7c8c2b5b',
       code: '7c8c2b5b',
       name: 'Examination Glove',
+      alternativeNames: [],
       properties: [],
       presentations: [
         {
@@ -667,6 +729,7 @@ describe('buildEntityFromConsumableInput', () => {
       code: '7c8c2b5b',
       name: 'Examination Glove',
       properties: [],
+      alternativeNames: [],
       presentations: [
         {
           id: '7e5f7a00',
@@ -715,6 +778,7 @@ describe('buildEntityFromConsumableInput', () => {
       description: 'Examination Glove',
       type: 'Product',
       category: 'Consumable',
+      alternativeNames: [],
       properties: [],
       children: [
         {
@@ -767,6 +831,7 @@ describe('isValidDrugInput', () => {
     const drugInput: DrugInput = {
       id: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -808,6 +873,7 @@ describe('isValidDrugInput', () => {
     const drugInput: DrugInput = {
       id: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -849,6 +915,7 @@ describe('isValidDrugInput', () => {
     const drugInput: DrugInput = {
       id: '7c8c2b5b',
       name: 'Acetic Acid',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -892,6 +959,7 @@ describe('isValidVaccineInput', () => {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
       properties: [],
+      alternativeNames: [],
       routes: [
         {
           id: '6e5f7a00',
@@ -947,6 +1015,7 @@ describe('isValidVaccineInput', () => {
     const vaccineInput: VaccineInput = {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -972,9 +1041,10 @@ describe('isValidVaccineInput', () => {
   });
 
   it('returns false when there is a duplicate name', () => {
-    const vaccineInput = {
+    const vaccineInput: VaccineInput = {
       id: '7c8c2b5b',
       name: 'Some Vaccine',
+      alternativeNames: [],
       properties: [],
       routes: [
         {
@@ -1014,6 +1084,7 @@ describe('isValidConsumableInput', () => {
       code: '7c8c2b5b',
       name: 'Examination Glove',
       properties: [],
+      alternativeNames: [],
       presentations: [
         {
           id: '7e5f7a00',
@@ -1064,6 +1135,7 @@ describe('isValidConsumableInput', () => {
       name: 'Examination Glove',
       properties: [],
       extraDescriptions: [],
+      alternativeNames: [],
       presentations: [
         {
           id: '7e5f7a00',
@@ -1085,6 +1157,7 @@ describe('isValidConsumableInput', () => {
       name: 'Examination Glove',
       properties: [],
       extraDescriptions: [],
+      alternativeNames: [],
       presentations: [
         {
           id: '2e5f7a00',

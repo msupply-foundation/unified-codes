@@ -36,6 +36,7 @@ export interface IDrugCSVRow {
 
 export interface IConsumableCSVRow {
   [ECSVColumn.DeviceName]: string;
+  [ECSVColumn.ProductSynonym]: string;
   [ECSVColumn.Presentation]: string;
   [ECSVColumn.ExtraDescription]: string;
   [ECSVColumn.UC1]: string;
@@ -51,6 +52,7 @@ export interface IConsumableCSVRow {
 
 export interface IVaccineCSVRow {
   [ECSVColumn.DrugName]: string;
+  [ECSVColumn.ProductSynonym]: string;
   [ECSVColumn.DrugNameDetails]: string;
   [ECSVColumn.ActiveIngredients]: string;
   [ECSVColumn.Brand]: string;
