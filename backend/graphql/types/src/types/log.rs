@@ -30,6 +30,7 @@ pub enum LogNodeType {
     UniversalCodeChangeRequested,
     ConfigurationItemCreated,
     ConfigurationItemDeleted,
+    PropertyConfigurationItemUpserted,
     InteractionGroupCreated,
     InteractionGroupDeleted,
 }
@@ -93,6 +94,9 @@ impl LogNodeType {
             LogType::UniversalCodeChangeRejected => LogNodeType::UniversalCodeChangeRejected,
             LogType::ConfigurationItemCreated => LogNodeType::ConfigurationItemCreated,
             LogType::ConfigurationItemDeleted => LogNodeType::ConfigurationItemDeleted,
+            LogType::PropertyConfigurationItemUpserted => {
+                LogNodeType::PropertyConfigurationItemUpserted
+            }
             LogType::InteractionGroupCreated => LogNodeType::InteractionGroupCreated,
             LogType::InteractionGroupDeleted => LogNodeType::InteractionGroupDeleted,
         }
@@ -113,6 +117,9 @@ impl LogNodeType {
             LogNodeType::UniversalCodeChangeRejected => LogType::UniversalCodeChangeRejected,
             LogNodeType::ConfigurationItemCreated => LogType::ConfigurationItemCreated,
             LogNodeType::ConfigurationItemDeleted => LogType::ConfigurationItemDeleted,
+            LogNodeType::PropertyConfigurationItemUpserted => {
+                LogType::PropertyConfigurationItemUpserted
+            }
             LogNodeType::InteractionGroupCreated => LogType::InteractionGroupCreated,
             LogNodeType::InteractionGroupDeleted => LogType::InteractionGroupDeleted,
         }

@@ -6,27 +6,9 @@ use crate::{
 };
 use chrono::Utc;
 use dgraph::insert_configuration_item::{insert_configuration_item, ConfigurationItemInput};
-use dgraph::GraphQLError;
-use repository::{LogType, RepositoryError};
+use repository::LogType;
 
-#[derive(Debug)]
-pub enum ModifyConfigurationError {
-    InternalError(String),
-    DatabaseError(RepositoryError),
-    DgraphError(GraphQLError),
-}
-
-impl From<RepositoryError> for ModifyConfigurationError {
-    fn from(error: RepositoryError) -> Self {
-        ModifyConfigurationError::DatabaseError(error)
-    }
-}
-
-impl From<GraphQLError> for ModifyConfigurationError {
-    fn from(error: GraphQLError) -> Self {
-        ModifyConfigurationError::DgraphError(error)
-    }
-}
+use super::ModifyConfigurationError;
 
 #[derive(Clone, Debug)]
 pub struct AddConfigurationItem {

@@ -72,6 +72,8 @@ pub struct Entity {
     #[serde(deserialize_with = "null_as_empty_string")]
     pub category: String,
     #[serde(default)]
+    pub alternative_names: Option<String>,
+    #[serde(default)]
     pub properties: Vec<Property>,
     #[serde(default)]
     pub children: Vec<Entity>,
@@ -131,8 +133,6 @@ pub struct PendingChange {
     #[serde(default)]
     pub requested_by_user_id: String,
     #[serde(default)]
-    pub requested_for: String,
-    #[serde(default)]
     pub status: ChangeStatus,
     #[serde(default)]
     pub body: String,
@@ -165,6 +165,8 @@ pub struct EntityInput {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub category: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub alternative_names: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub properties: Option<Vec<PropertyInput>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub children: Option<Vec<EntityInput>>,
@@ -178,7 +180,6 @@ pub struct PendingChangeInput {
     pub change_type: ChangeType,
     pub date_requested: NaiveDateTime,
     pub requested_by_user_id: String,
-    pub requested_for: String,
     pub status: ChangeStatus,
     pub body: String,
 }

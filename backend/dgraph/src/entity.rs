@@ -17,6 +17,7 @@ pub async fn entity_by_code(
   code
   name
   description
+  alternative_names
   type
   __typename
   properties {
@@ -46,6 +47,12 @@ query EntityQuery($code: String!) {
                 ...Details
                 children {
                   ...Details
+                  children {
+                    ...Details
+                    children {
+                      ...Details
+                    }
+                  }
                 }
               }
             }
@@ -80,6 +87,7 @@ pub async fn entity_with_parents_by_code(
   code
   name
   description
+  alternative_names
   type
   __typename
   properties {
@@ -106,6 +114,12 @@ query EntityQuery($code: String!) {
               ...Details
               parents {
                 ...Details
+                parents {
+                  ...Details
+                  parents {
+                    ...Details
+                  }
+                }
               }
             }
           }
@@ -127,6 +141,12 @@ query EntityQuery($code: String!) {
               ...Details
               children {
                 ...Details
+                children {
+                  ...Details
+                  children {
+                    ...Details
+                  }
+                }
               }
             }
           }

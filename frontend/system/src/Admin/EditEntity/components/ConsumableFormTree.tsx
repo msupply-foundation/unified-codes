@@ -1,5 +1,5 @@
 import { useTranslation } from '@common/intl';
-import { Box, Typography } from '@common/ui';
+import { BasicTextInput, Box, Typography } from '@common/ui';
 import React, { useState } from 'react';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
@@ -9,6 +9,7 @@ import { TreeFormBox } from './TreeFormBox';
 import { AddFieldButton } from './AddFieldButton';
 import { EditPropertiesButton } from './EditPropertiesButton';
 import { NameEditField } from './NameEditField';
+import { ExistingNameSuggester } from './ExistingItemSuggester';
 
 export const ConsumableFormTree = ({
   draft,
@@ -46,6 +47,8 @@ export const ConsumableFormTree = ({
 
     onOpen(entityToUpdate.properties);
   };
+
+  const isDisabled = (id: string) => initialIds.includes(id);
 
   // It's a bit icky to reassign the property rather than maintaining immutability
   // but as long as we spread `draft` in the `setDraft`, the state is being updated
@@ -99,15 +102,18 @@ export const ConsumableFormTree = ({
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'start' }}>
-        <NameEditField
-          disabled={initialIds.includes(draft.id)}
+        <BasicTextInput
+          autoFocus
+          disabled={isDisabled(draft.id)}
           value={draft.name}
-          label={t('label.device-name')}
-          showDeleteButton={false}
           onChange={e => setDraft({ ...draft, name: e.target.value })}
-          onDelete={() => {
-            setDraft({ ...draft, name: '' });
-          }}
+          fullWidth
+          error={!draft.name}
+          helperText={
+            !draft.name
+              ? t('error.required', { field: t('label.device-name') })
+              : undefined
+          }
         />
         <Box
           sx={{
@@ -125,6 +131,9 @@ export const ConsumableFormTree = ({
         </Box>
       </Box>
 
+      {/* No initial ids === new item */}
+      {!initialIds.length && <ExistingNameSuggester name={draft.name} />}
+
       {!!draft.presentations.length && (
         <Typography fontSize="12px">{t('label.presentations')}</Typography>
       )}
@@ -133,15 +142,12 @@ export const ConsumableFormTree = ({
         <TreeFormBox key={pres.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <NameEditField
-              disabled={initialIds.includes(pres.id)}
-              value={pres.name}
               label={t('label.presentation')}
-              onChange={e =>
-                onUpdate({ ...pres, name: e.target.value }, draft.presentations)
-              }
-              onDelete={() => {
-                onDelete(pres, draft.presentations);
-              }}
+              entity={pres}
+              siblings={draft.presentations}
+              isDisabled={isDisabled}
+              onUpdate={onUpdate}
+              onDelete={onDelete}
             />
             <EditPropertiesButton
               parents={[draft]}
@@ -160,18 +166,12 @@ export const ConsumableFormTree = ({
             <TreeFormBox key={description.id}>
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                 <NameEditField
-                  disabled={initialIds.includes(description.id)}
-                  value={description.name}
                   label={t('label.extra-description')}
-                  onChange={e =>
-                    onUpdate(
-                      { ...description, name: e.target.value },
-                      pres.extraDescriptions
-                    )
-                  }
-                  onDelete={() => {
-                    onDelete(description, pres.extraDescriptions);
-                  }}
+                  entity={description}
+                  siblings={pres.extraDescriptions}
+                  isDisabled={isDisabled}
+                  onUpdate={onUpdate}
+                  onDelete={onDelete}
                 />
                 <EditPropertiesButton
                   parents={[draft, pres]}
@@ -200,18 +200,12 @@ export const ConsumableFormTree = ({
         <TreeFormBox key={description.id}>
           <Box sx={{ display: 'flex', alignItems: 'end' }}>
             <NameEditField
-              disabled={initialIds.includes(description.id)}
-              value={description.name}
               label={t('label.extra-description')}
-              onChange={e =>
-                onUpdate(
-                  { ...description, name: e.target.value },
-                  draft.extraDescriptions
-                )
-              }
-              onDelete={() => {
-                onDelete(description, draft.extraDescriptions);
-              }}
+              entity={description}
+              siblings={draft.extraDescriptions}
+              isDisabled={isDisabled}
+              onUpdate={onUpdate}
+              onDelete={onDelete}
             />
             <EditPropertiesButton
               parents={[draft]}
@@ -240,6 +234,34 @@ export const ConsumableFormTree = ({
           label={t('label.add-extra-description')}
           onClick={() =>
             onUpdate({ id: uuid(), name: '' }, draft.extraDescriptions)
+          }
+        />
+      </Box>
+
+      <Box>
+        {!!draft.alternativeNames.length && (
+          <Typography fontSize="12px">{t('label.alt-names')}</Typography>
+        )}
+
+        {draft.alternativeNames.map(n => (
+          <TreeFormBox key={n.id}>
+            <Box sx={{ display: 'flex', alignItems: 'end' }}>
+              <NameEditField
+                entity={n}
+                siblings={draft.alternativeNames}
+                isDisabled={() => initialIds.includes(n.code || '')}
+                label={t('label.alt-name')}
+                onUpdate={onUpdate}
+                onDelete={onDelete}
+              />
+            </Box>
+          </TreeFormBox>
+        ))}
+
+        <AddFieldButton
+          label={t('label.add-alternative-name')}
+          onClick={() =>
+            onUpdate({ id: uuid(), name: '' }, draft.alternativeNames)
           }
         />
       </Box>

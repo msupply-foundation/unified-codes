@@ -27,7 +27,7 @@ export const PendingChangeDetails = () => {
   const { setSuffix } = useBreadcrumbs();
   const t = useTranslation('system');
   const navigate = useNavigate();
-  const { error, success } = useNotification();
+  const { success } = useNotification();
 
   const { mutateAsync: rejectPendingChange, isLoading: rejectionLoading } =
     useRejectPendingChange();
@@ -63,6 +63,7 @@ export const PendingChangeDetails = () => {
           ent.children?.forEach(addToExpandedIds);
 
           ent?.properties && expandedIds.push(`${nodeId}_properties`);
+          ent?.alternativeNames && expandedIds.push(`${nodeId}_altNames`);
         }
       };
       addToExpandedIds(entity);
@@ -99,8 +100,7 @@ export const PendingChangeDetails = () => {
           .build()
       );
     } catch (e) {
-      console.error(e);
-      error(t('message.entity-error'))();
+      // Errors handled by GQLContext
     }
   };
 
@@ -124,8 +124,7 @@ export const PendingChangeDetails = () => {
           .build()
       );
     } catch (e) {
-      console.error(e);
-      error(t('message.reject-change-error'))();
+      // Errors handled by GQLContext
     }
   };
 

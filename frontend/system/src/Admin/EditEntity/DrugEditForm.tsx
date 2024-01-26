@@ -38,6 +38,7 @@ export const DrugEditForm = ({
           id: uuid(),
           name: '',
           routes: [],
+          alternativeNames: [],
         }
   );
 
@@ -51,7 +52,6 @@ export const DrugEditForm = ({
         category: EntityCategory.Drug,
         changeType: initialEntity ? ChangeTypeNode.Change : ChangeTypeNode.New,
         name: draft.name,
-        requestedFor: 'Country - coming soon', // TODO: capture this
         body: JSON.stringify(entity),
         // NOTE: storing the full entity, which will be upserted on approval. If two change requests are
         // made, there will be a conflict, and the second would overwrite the first. However it doesn't seem
@@ -72,6 +72,7 @@ export const DrugEditForm = ({
             id: uuid(),
             name: '',
             routes: [],
+            alternativeNames: [],
           });
         } else {
           // existing entity - back to details page

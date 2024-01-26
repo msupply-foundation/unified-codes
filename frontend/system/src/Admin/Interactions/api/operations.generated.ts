@@ -3,12 +3,12 @@ import * as Types from '@uc-frontend/common';
 import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
-export type InteractionGroupFragment = { __typename?: 'DrugInteractionGroupNode', description?: string | null, id: string, name: string, drugs: Array<{ __typename?: 'EntityType', code: string, description: string }> };
+export type InteractionGroupFragment = { __typename?: 'DrugInteractionGroupNode', id: string, name: string, description?: string | null, drugs: Array<{ __typename?: 'EntityType', code: string, description: string }> };
 
 export type DrugInteractionGroupsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type DrugInteractionGroupsQuery = { __typename?: 'FullQuery', allDrugInteractionGroups: { __typename?: 'DrugInteractionGroupConnector', totalCount: number, data: Array<{ __typename?: 'DrugInteractionGroupNode', description?: string | null, id: string, name: string, drugs: Array<{ __typename?: 'EntityType', code: string, description: string }> }> } };
+export type DrugInteractionGroupsQuery = { __typename?: 'FullQuery', allDrugInteractionGroups: { __typename?: 'DrugInteractionGroupConnector', totalCount: number, data: Array<{ __typename?: 'DrugInteractionGroupNode', id: string, name: string, description?: string | null, drugs: Array<{ __typename?: 'EntityType', code: string, description: string }> }> } };
 
 export type AddDrugInteractionGroupMutationVariables = Types.Exact<{
   input: Types.AddDrugInteractionGroupInput;
@@ -26,9 +26,9 @@ export type DeleteDrugInteractionGroupMutation = { __typename?: 'FullMutation', 
 
 export const InteractionGroupFragmentDoc = gql`
     fragment InteractionGroup on DrugInteractionGroupNode {
-  description
   id
   name
+  description
   drugs {
     code
     description

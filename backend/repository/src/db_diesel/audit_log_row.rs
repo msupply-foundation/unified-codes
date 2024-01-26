@@ -30,6 +30,7 @@ pub enum LogType {
     UniversalCodeUpdated,
     ConfigurationItemCreated,
     ConfigurationItemDeleted,
+    PropertyConfigurationItemUpserted,
     InteractionGroupDeleted,
     InteractionGroupCreated,
 }

@@ -71,6 +71,7 @@ mod tests {
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
             description: Some(parent_code.clone()), // Needs a unique description
+            alternative_names: None,
             properties: None,
             children: None,
         };
@@ -95,6 +96,7 @@ mod tests {
             r#type: Some("test_type".to_string()),
             category: Some("test_category".to_string()),
             description: Some(child_code.clone()), // Needs a unique description
+            alternative_names: None,
             properties: None,
             children: None,
         };

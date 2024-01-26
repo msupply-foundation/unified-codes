@@ -46,6 +46,7 @@ export const ConsumableEditForm = ({
           name: '',
           presentations: [],
           extraDescriptions: [],
+          alternativeNames: [],
         }
   );
 
@@ -59,7 +60,6 @@ export const ConsumableEditForm = ({
         category: EntityCategory.Consumable,
         changeType: initialEntity ? ChangeTypeNode.Change : ChangeTypeNode.New,
         name: draft.name,
-        requestedFor: 'Country - coming soon', // TODO: capture this
         body: JSON.stringify(entity),
         // NOTE: storing the full entity, which will be upserted on approval. If two change requests are
         // made, there will be a conflict, and the second would overwrite the first. However it doesn't seem
@@ -81,6 +81,7 @@ export const ConsumableEditForm = ({
             name: '',
             presentations: [],
             extraDescriptions: [],
+            alternativeNames: [],
           });
         } else {
           // existing entity - back to details page

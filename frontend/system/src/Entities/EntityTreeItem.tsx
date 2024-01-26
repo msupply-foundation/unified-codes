@@ -5,7 +5,7 @@ import { useNotification } from '@common/hooks';
 import { Box, Link, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
 import { EntityDetailsFragment } from './api/operations.generated';
-import { config } from '../config';
+import { usePropertyConfigurationItems } from '../Admin/Configuration/api/hooks/usePropertyConfigurationItems';
 
 export type EntityData = EntityDetailsFragment & {
   children?: EntityData[] | null;
@@ -24,6 +24,8 @@ export const EntityTreeItem = ({
 }) => {
   const t = useTranslation('system');
   const { success } = useNotification();
+
+  const { data: config } = usePropertyConfigurationItems();
 
   if (!entity) return null;
 
@@ -102,9 +104,7 @@ export const EntityTreeItem = ({
           sx={{ borderLeft: isRoot ? '1px solid black' : undefined }}
         >
           {entity.properties.map(p => {
-            const propertyConfig = config.properties.find(
-              conf => conf.type === p.type
-            );
+            const propertyConfig = config?.find(conf => conf.type === p.type);
             const url = propertyConfig?.url.replace(/{{code}}/g, p.value);
             return (
               <TreeItem

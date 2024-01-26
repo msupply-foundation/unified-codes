@@ -5,6 +5,9 @@ mod upsert;
 mod add_pending_change;
 
 #[cfg(test)]
+mod approve_pending_change;
+
+#[cfg(test)]
 mod reject_pending_change;
 
 #[cfg(test)]

@@ -54,6 +54,7 @@ pub struct UpsertEntityInput {
     pub description: Option<String>,
     pub r#type: Option<String>,
     pub category: Option<String>,
+    pub alternative_names: Option<Vec<AlternativeNameInput>>,
     pub properties: Option<Vec<PropertyInput>>,
     pub children: Option<Vec<UpsertEntityInput>>,
 }
@@ -65,6 +66,33 @@ pub struct PropertyInput {
     pub value: String,
 }
 
+#[derive(InputObject, Clone)]
+pub struct AlternativeNameInput {
+    pub code: String,
+    pub name: String,
+}
+
+impl AlternativeNameInput {
+    pub fn to_domain(names: Option<Vec<AlternativeNameInput>>) -> Option<String> {
+        match names {
+            Some(names) => {
+                if names.len() > 0 {
+                    Some(
+                        names
+                            .into_iter()
+                            .map(|alt_name| alt_name.name)
+                            .collect::<Vec<String>>()
+                            .join(","),
+                    )
+                } else {
+                    None
+                }
+            }
+            None => None,
+        }
+    }
+}
+
 impl From<UpsertEntityInput> for UpsertUniversalCode {
     fn from(
         UpsertEntityInput {
@@ -74,6 +102,7 @@ impl From<UpsertEntityInput> for UpsertUniversalCode {
             description,
             r#type,
             category,
+            alternative_names,
             properties,
             children,
         }: UpsertEntityInput,
@@ -85,6 +114,7 @@ impl From<UpsertEntityInput> for UpsertUniversalCode {
             description,
             r#type,
             category,
+            alternative_names: AlternativeNameInput::to_domain(alternative_names),
             properties: properties.map(|properties| {
                 properties
                     .into_iter()
@@ -117,7 +147,6 @@ pub struct RequestChangeInput {
     pub category: String,
     pub body: String,
     pub change_type: ChangeTypeNode,
-    pub requested_for: String,
 }
 
 impl From<RequestChangeInput> for AddPendingChange {
@@ -126,7 +155,6 @@ impl From<RequestChangeInput> for AddPendingChange {
             request_id,
             name,
             category,
-            requested_for,
             body,
             change_type,
         }: RequestChangeInput,
@@ -136,7 +164,6 @@ impl From<RequestChangeInput> for AddPendingChange {
             name,
             category,
             body,
-            requested_for,
             change_type: ChangeTypeNode::to_domain(change_type),
         }
     }
@@ -145,4 +172,44 @@ impl From<RequestChangeInput> for AddPendingChange {
 #[derive(Union)]
 pub enum RequestChangeResponse {
     Response(PendingChangeNode),
+}
+
+#[cfg(test)]
+mod test {
+    use super::AlternativeNameInput;
+
+    #[test]
+    fn alt_name_input_to_domain_maps_names() {
+        let alt_names = vec![
+            AlternativeNameInput {
+                code: "test_1_code".to_string(),
+                name: "test_1".to_string(),
+            },
+            AlternativeNameInput {
+                code: "test_2_code".to_string(),
+                name: "test_2".to_string(),
+            },
+        ];
+
+        let res = AlternativeNameInput::to_domain(Some(alt_names));
+
+        assert!(res.is_some());
+        assert_eq!(res.unwrap(), "test_1,test_2".to_string())
+    }
+
+    #[test]
+    fn alt_name_input_to_domain_empty_arr_to_none() {
+        let alt_names = vec![];
+
+        let res = AlternativeNameInput::to_domain(Some(alt_names));
+
+        assert!(res.is_none());
+    }
+
+    #[test]
+    fn alt_name_input_to_domain_none_to_none() {
+        let res = AlternativeNameInput::to_domain(None);
+
+        assert!(res.is_none());
+    }
 }

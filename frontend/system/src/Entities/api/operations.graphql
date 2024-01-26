@@ -3,12 +3,19 @@ fragment EntityRow on EntityType {
   type
   description
   code
+  alternativeNames {
+    name
+  }
 }
 
 fragment EntityDetails on EntityType {
   code
   name
   type
+  alternativeNames {
+    code
+    name
+  }
   properties {
     code
     type
@@ -42,6 +49,12 @@ query entity($code: String!) {
                 ...EntityDetails
                 children {
                   ...EntityDetails
+                  children {
+                    ...EntityDetails
+                    children {
+                      ...EntityDetails
+                    }
+                  }
                 }
               }
             }
@@ -69,6 +82,12 @@ query product($code: String!) {
                 ...EntityDetails
                 children {
                   ...EntityDetails
+                  children {
+                    ...EntityDetails
+                    children {
+                      ...EntityDetails
+                    }
+                  }
                 }
               }
             }

@@ -17,7 +17,17 @@ export interface Entity {
   properties?: Property[];
 }
 
-export interface ImmediatePackaging extends Entity {}
+export interface AlternativeName {
+  id: string;
+  name: string;
+  code?: string;
+}
+
+export interface PackSize extends Entity {}
+
+export interface ImmediatePackaging extends Entity {
+  packSizes: PackSize[];
+}
 
 export interface Unit extends Entity {
   immediatePackagings: ImmediatePackaging[];
@@ -33,6 +43,7 @@ export interface Route extends Entity {
   forms: Form[];
 }
 export interface DrugInput extends Entity {
+  alternativeNames: AlternativeName[];
   routes: Route[];
 }
 
@@ -41,18 +52,32 @@ export interface Presentation extends Entity {
   extraDescriptions: ExtraDescription[];
 }
 export interface ConsumableInput extends Entity {
+  alternativeNames: AlternativeName[];
   presentations: Presentation[];
   extraDescriptions: ExtraDescription[];
 }
 
 export interface Brand extends Entity {
-  routes: Route[];
+  strengths: Strength[];
 }
 
-export interface Component extends Entity {
+export interface ActiveIngredients extends Entity {
   brands: Brand[];
 }
 
+export interface VaccineNameDetails extends Entity {
+  activeIngredients: ActiveIngredients[];
+}
+
+export interface VaccineForm extends Entity {
+  activeIngredients: ActiveIngredients[];
+  details: VaccineNameDetails[];
+}
+export interface VaccineRoute extends Entity {
+  forms: VaccineForm[];
+}
+
 export interface VaccineInput extends Entity {
-  components: Component[];
+  alternativeNames: AlternativeName[];
+  routes: VaccineRoute[];
 }
