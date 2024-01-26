@@ -71,7 +71,5 @@ pub async fn validate(
         ));
     }
 
-    // Could check label doesn't exist on another type here??
-
     Ok(())
 }
