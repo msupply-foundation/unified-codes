@@ -45,17 +45,8 @@ impl ConfigurationQueries {
         &self,
         ctx: &Context<'_>,
     ) -> Result<PropertyConfigurationItemsResponse> {
-        let user = validate_auth(
-            ctx,
-            &ResourceAccessRequest {
-                resource: Resource::MutateUniversalCodes,
-            },
-        )?;
-
-        let service_context = ctx.service_context(Some(&user))?;
-
-        let result = service_context
-            .service_provider
+        let result = ctx
+            .service_provider()
             .configuration_service
             .property_configuration_items()
             .await?;
