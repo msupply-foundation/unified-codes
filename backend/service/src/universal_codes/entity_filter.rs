@@ -106,6 +106,19 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
         },
     };
 
+    let code_regexp = match filter.code.clone() {
+        Some(code) => match filter.r#match.clone() {
+            Some(r#match) => match r#match.as_str() {
+                "exact" => Some(format!("/^{}$/i", code)),
+                "contains" => Some(format!("/.*{}.*/i", code)),
+                "begin" => Some(format!("/^{}.*$/i", code)),
+                _ => Some(format!("^/{}.*/i", code)),
+            },
+            None => Some(format!("/^{}.*$/i", code)),
+        },
+        None => None,
+    };
+
     let base_filter = DgraphFilter {
         code: filter.code.map(|code| {
             // Empty string should be considered missing
@@ -157,6 +170,10 @@ pub fn dgraph_filter_from_v1_filter(filter: EntitySearchFilter) -> DgraphFilter 
         }),
         description: description_regexp.map(|desc| DgraphFilterType {
             regexp: Some(desc),
+            ..Default::default()
+        }),
+        code: code_regexp.map(|code| DgraphFilterType {
+            regexp: Some(code),
             ..Default::default()
         }),
         ..base_filter
