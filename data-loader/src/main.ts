@@ -54,7 +54,7 @@ const main = async () => {
 
     try {
       const loader = new DataLoader(hostname, port);
-      await loader.load(schema, graph, propertyConfigItems);
+      await loader.load(schema, graph, configItems, propertyConfigItems);
     } catch (err) {
       console.log(`Failed to load data due to following error: ${err}`);
     }

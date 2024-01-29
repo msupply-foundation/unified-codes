@@ -1,11 +1,6 @@
 import * as fs from 'fs';
 import csv from 'csv-parser';
-
-interface ConfigItems {
-  forms: string[];
-  immediatePackaging: string[];
-  routes: string[];
-}
+import { ConfigItems } from './types';
 
 export class ConfigItemsDataParser {
   public readonly path: fs.PathLike;
