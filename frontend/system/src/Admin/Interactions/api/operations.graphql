@@ -19,8 +19,8 @@ query DrugInteractionGroups {
   }
 }
 
-mutation AddDrugInteractionGroup($input: AddDrugInteractionGroupInput!) {
-  addDrugInteractionGroup(input: $input)
+mutation UpsertDrugInteractionGroup($input: UpsertDrugInteractionGroupInput!) {
+  upsertDrugInteractionGroup(input: $input)
 }
 
 mutation DeleteDrugInteractionGroup($id: String!) {

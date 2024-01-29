@@ -10,11 +10,11 @@ use service::{
     drug_interactions::ModifyDrugInteractionError,
 };
 
-use crate::types::AddDrugInteractionGroupInput;
+use crate::types::UpsertDrugInteractionGroupInput;
 
-pub async fn add_drug_interaction_group(
+pub async fn upsert_drug_interaction_group(
     ctx: &Context<'_>,
-    input: AddDrugInteractionGroupInput,
+    input: UpsertDrugInteractionGroupInput,
 ) -> Result<u32> {
     let user = validate_auth(
         ctx,

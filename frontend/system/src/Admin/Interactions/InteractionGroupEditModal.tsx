@@ -12,7 +12,7 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import React, { useState } from 'react';
 import { InteractionGroupFragment } from './api/operations.generated';
-import { useAddDrugInteractionGroup } from './api';
+import { useUpsertDrugInteractionGroup } from './api';
 import { FnUtils } from '@common/utils';
 import { DrugSelectionModal } from './DrugSelectionModal';
 import { DrugSelector } from './DrugSelector';
@@ -50,7 +50,7 @@ export const InteractionGroupEditModal = ({
   const onUpdate = (patch: Partial<InteractionGroupFragment>) => {
     setGroup({ ...group, ...patch });
   };
-  const [addConfigItem, invalidateQueries] = useAddDrugInteractionGroup();
+  const [addConfigItem, invalidateQueries] = useUpsertDrugInteractionGroup();
 
   const { data, isLoading: drugListLoading } = useEntities({
     filter: {

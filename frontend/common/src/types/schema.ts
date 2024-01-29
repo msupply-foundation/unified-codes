@@ -32,13 +32,6 @@ export type AddConfigurationItemInput = {
   type: ConfigurationItemTypeInput;
 };
 
-export type AddDrugInteractionGroupInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  drugs: Array<Scalars['String']['input']>;
-  id: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-};
-
 export type AlternativeNameInput = {
   code: Scalars['String']['input'];
   name: Scalars['String']['input'];
@@ -203,7 +196,6 @@ export type FullMutation = {
   /** Updates user account based on a token and their information (Response to initiate_user_invite) */
   acceptUserInvite: InviteUserResponse;
   addConfigurationItem: Scalars['Int']['output'];
-  addDrugInteractionGroup: Scalars['Int']['output'];
   approvePendingChange: UpsertEntityResponse;
   createUserAccount: CreateUserAccountResponse;
   deleteConfigurationItem: Scalars['Int']['output'];
@@ -222,6 +214,7 @@ export type FullMutation = {
   resetPasswordUsingToken: PasswordResetResponse;
   updatePendingChange: RequestChangeResponse;
   updateUserAccount: UpdateUserAccountResponse;
+  upsertDrugInteractionGroup: Scalars['Int']['output'];
   upsertPropertyConfigurationItem: Scalars['Int']['output'];
   /** Validates Password Reset Token */
   validatePasswordResetToken: PasswordResetResponse;
@@ -236,11 +229,6 @@ export type FullMutationAcceptUserInviteArgs = {
 
 export type FullMutationAddConfigurationItemArgs = {
   input: AddConfigurationItemInput;
-};
-
-
-export type FullMutationAddDrugInteractionGroupArgs = {
-  input: AddDrugInteractionGroupInput;
 };
 
 
@@ -304,6 +292,11 @@ export type FullMutationUpdatePendingChangeArgs = {
 
 export type FullMutationUpdateUserAccountArgs = {
   input: UpdateUserAccountInput;
+};
+
+
+export type FullMutationUpsertDrugInteractionGroupArgs = {
+  input: UpsertDrugInteractionGroupInput;
 };
 
 
@@ -660,6 +653,13 @@ export type UpdateUserAccountInput = {
 };
 
 export type UpdateUserAccountResponse = UserAccountNode;
+
+export type UpsertDrugInteractionGroupInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  drugs: Array<Scalars['String']['input']>;
+  id: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+};
 
 export type UpsertEntityInput = {
   alternativeNames?: InputMaybe<Array<AlternativeNameInput>>;

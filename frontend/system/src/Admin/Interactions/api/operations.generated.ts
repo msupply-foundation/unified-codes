@@ -10,12 +10,12 @@ export type DrugInteractionGroupsQueryVariables = Types.Exact<{ [key: string]: n
 
 export type DrugInteractionGroupsQuery = { __typename?: 'FullQuery', allDrugInteractionGroups: { __typename?: 'DrugInteractionGroupConnector', totalCount: number, data: Array<{ __typename?: 'DrugInteractionGroupNode', id: string, name: string, description?: string | null, drugs: Array<{ __typename?: 'EntityType', code: string, description: string }> }> } };
 
-export type AddDrugInteractionGroupMutationVariables = Types.Exact<{
-  input: Types.AddDrugInteractionGroupInput;
+export type UpsertDrugInteractionGroupMutationVariables = Types.Exact<{
+  input: Types.UpsertDrugInteractionGroupInput;
 }>;
 
 
-export type AddDrugInteractionGroupMutation = { __typename?: 'FullMutation', addDrugInteractionGroup: number };
+export type UpsertDrugInteractionGroupMutation = { __typename?: 'FullMutation', upsertDrugInteractionGroup: number };
 
 export type DeleteDrugInteractionGroupMutationVariables = Types.Exact<{
   id: Types.Scalars['String']['input'];
@@ -47,9 +47,9 @@ export const DrugInteractionGroupsDocument = gql`
   }
 }
     ${InteractionGroupFragmentDoc}`;
-export const AddDrugInteractionGroupDocument = gql`
-    mutation AddDrugInteractionGroup($input: AddDrugInteractionGroupInput!) {
-  addDrugInteractionGroup(input: $input)
+export const UpsertDrugInteractionGroupDocument = gql`
+    mutation UpsertDrugInteractionGroup($input: UpsertDrugInteractionGroupInput!) {
+  upsertDrugInteractionGroup(input: $input)
 }
     `;
 export const DeleteDrugInteractionGroupDocument = gql`
@@ -68,8 +68,8 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     DrugInteractionGroups(variables?: DrugInteractionGroupsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DrugInteractionGroupsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<DrugInteractionGroupsQuery>(DrugInteractionGroupsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DrugInteractionGroups', 'query');
     },
-    AddDrugInteractionGroup(variables: AddDrugInteractionGroupMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AddDrugInteractionGroupMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AddDrugInteractionGroupMutation>(AddDrugInteractionGroupDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AddDrugInteractionGroup', 'mutation');
+    UpsertDrugInteractionGroup(variables: UpsertDrugInteractionGroupMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpsertDrugInteractionGroupMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UpsertDrugInteractionGroupMutation>(UpsertDrugInteractionGroupDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'UpsertDrugInteractionGroup', 'mutation');
     },
     DeleteDrugInteractionGroup(variables: DeleteDrugInteractionGroupMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteDrugInteractionGroupMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<DeleteDrugInteractionGroupMutation>(DeleteDrugInteractionGroupDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteDrugInteractionGroup', 'mutation');

@@ -45,12 +45,12 @@ pub struct DrugInteractionMutations;
 
 #[Object]
 impl DrugInteractionMutations {
-    async fn add_drug_interaction_group(
+    async fn upsert_drug_interaction_group(
         &self,
         ctx: &Context<'_>,
-        input: AddDrugInteractionGroupInput,
+        input: UpsertDrugInteractionGroupInput,
     ) -> Result<u32> {
-        add_drug_interaction_group(ctx, input).await
+        upsert_drug_interaction_group(ctx, input).await
     }
 
     async fn delete_drug_interaction_group(&self, ctx: &Context<'_>, code: String) -> Result<u32> {

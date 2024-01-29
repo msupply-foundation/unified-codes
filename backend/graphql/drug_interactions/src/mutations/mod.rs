@@ -1,5 +1,5 @@
 mod delete;
-mod insert;
+mod upsert;
 
 pub use delete::*;
-pub use insert::*;
+pub use upsert::*;
