@@ -31,7 +31,7 @@ pub enum LogNodeType {
     ConfigurationItemCreated,
     ConfigurationItemDeleted,
     PropertyConfigurationItemUpserted,
-    InteractionGroupCreated,
+    InteractionGroupUpserted,
     InteractionGroupDeleted,
 }
 
@@ -97,7 +97,7 @@ impl LogNodeType {
             LogType::PropertyConfigurationItemUpserted => {
                 LogNodeType::PropertyConfigurationItemUpserted
             }
-            LogType::InteractionGroupCreated => LogNodeType::InteractionGroupCreated,
+            LogType::InteractionGroupUpserted => LogNodeType::InteractionGroupUpserted,
             LogType::InteractionGroupDeleted => LogNodeType::InteractionGroupDeleted,
         }
     }
@@ -120,7 +120,7 @@ impl LogNodeType {
             LogNodeType::PropertyConfigurationItemUpserted => {
                 LogType::PropertyConfigurationItemUpserted
             }
-            LogNodeType::InteractionGroupCreated => LogType::InteractionGroupCreated,
+            LogNodeType::InteractionGroupUpserted => LogType::InteractionGroupUpserted,
             LogNodeType::InteractionGroupDeleted => LogType::InteractionGroupDeleted,
         }
     }

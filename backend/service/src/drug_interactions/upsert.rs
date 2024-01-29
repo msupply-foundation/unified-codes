@@ -54,7 +54,7 @@ pub async fn upsert_drug_interaction_group(
     let service_context = ServiceContext::with_user(sp.clone(), user_id)?;
     audit_log_entry(
         &service_context,
-        LogType::InteractionGroupCreated,
+        LogType::InteractionGroupUpserted,
         Some(item_input.interaction_group_id),
         Utc::now().naive_utc(),
     )?;
