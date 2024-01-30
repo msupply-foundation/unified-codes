@@ -19,3 +19,9 @@ query Gs1Barcodes {
     }
   }
 }
+
+mutation AddGs1($input: AddGS1Input!) {
+  addGs1(input: $input) {
+    ...GS1
+  }
+}
