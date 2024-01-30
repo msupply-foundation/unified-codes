@@ -3,6 +3,7 @@ fragment EntityRow on EntityType {
   type
   description
   code
+  name
   alternativeNames {
     name
   }

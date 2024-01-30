@@ -1,17 +1,21 @@
 import {
+  AutocompleteList,
+  AutocompleteOptionRenderer,
   BasicTextInput,
   DialogButton,
-  FlatButton,
   InlineSpinner,
   LoadingButton,
 } from '@common/components';
 import { useDialog } from '@common/hooks';
-import { CheckIcon, SearchIcon } from '@common/icons';
+import { CheckIcon } from '@common/icons';
 import { useTranslation } from '@common/intl';
 import { AddGs1Input } from '@common/types';
-import { Box, Grid } from '@common/ui';
+import { Grid, Typography } from '@common/ui';
+import { RegexUtils } from '@common/utils';
 import { Alert, AlertTitle } from '@mui/material';
 import React, { useState } from 'react';
+import { useEntities } from '../../Entities/api';
+import { EntityRowFragment } from '../../Entities/api/operations.generated';
 import { useAddGS1 } from './api';
 
 type GS1EditModalProps = {
@@ -31,6 +35,12 @@ export const GS1EditModal = ({ isOpen, onClose }: GS1EditModalProps) => {
 
   const { Modal } = useDialog({ isOpen, onClose });
 
+  const { data: packSizeEntities } = useEntities({
+    first: 10000,
+    filter: { type: 'PackSize', orderBy: { field: 'description' } },
+    offset: 0,
+  });
+
   const { mutateAsync: addGs1, isLoading } = useAddGS1();
 
   const onSubmit = async () => {
@@ -46,6 +56,8 @@ export const GS1EditModal = ({ isOpen, onClose }: GS1EditModalProps) => {
       else setErrorMessage(t('messages.unknown-error'));
     }
   };
+
+  const packSizeOptions: EntityRowFragment[] = packSizeEntities?.data ?? [];
 
   const isInvalid = !draft.gtin || !draft.manufacturer || !draft.entityCode;
   const modalWidth = Math.min(window.innerWidth - 200, 800);
@@ -86,22 +98,35 @@ export const GS1EditModal = ({ isOpen, onClose }: GS1EditModalProps) => {
             value={draft.manufacturer}
             onChange={e => setDraft({ ...draft, manufacturer: e.target.value })}
           />
-          <Box display="flex" alignItems="end">
-            <BasicTextInput
-              required
-              fullWidth
-              InputLabelProps={{ shrink: true }}
-              label={t('label.pack-size-code')}
-              value={draft.entityCode}
-              onChange={e => setDraft({ ...draft, entityCode: e.target.value })}
-            />
-            <FlatButton
-              sx={{ width: '110px' }}
-              startIcon={<SearchIcon />}
-              onClick={() => {}}
-              label={t('label.lookup')}
-            />
-          </Box>
+          <AutocompleteList
+            options={packSizeOptions}
+            renderOption={renderOption}
+            getOptionLabel={option => `${option.id}`}
+            width={modalWidth - 50}
+            openOnFocus
+            renderInput={props => (
+              <BasicTextInput
+                required
+                label={t('label.pack-size-code')}
+                {...props}
+                InputLabelProps={{ shrink: true }}
+              />
+            )}
+            filterOptions={(options, state) =>
+              options.filter(option =>
+                RegexUtils.matchObjectProperties(state.inputValue, option, [
+                  'description',
+                  'code',
+                ])
+              )
+            }
+            onChange={(e, value) =>
+              setDraft({
+                ...draft,
+                entityCode: (value as unknown as EntityRowFragment)?.code ?? '',
+              })
+            }
+          />
           {errorMessage ? (
             <Grid item>
               <Alert
@@ -120,3 +145,25 @@ export const GS1EditModal = ({ isOpen, onClose }: GS1EditModalProps) => {
     </Modal>
   );
 };
+const getParentDescription = (description: string, name: string) => {
+  const nameIndex = description.lastIndexOf(name);
+  if (nameIndex === -1) return description;
+  return description.substring(0, nameIndex);
+};
+
+const renderOption: AutocompleteOptionRenderer<EntityRowFragment> = (
+  props,
+  option
+): JSX.Element => (
+  <li key={option.id} {...props}>
+    <Typography component="span" width="100px">
+      {option.code}
+    </Typography>
+    <Typography component="span" width={`calc(100% - 100px)`}>
+      {getParentDescription(option.description, option.name)}
+      <Typography component="span" fontWeight="bold">
+        {option.name}
+      </Typography>
+    </Typography>
+  </li>
+);
