@@ -1,14 +1,15 @@
 import {
   BasicTextInput,
   DialogButton,
+  FlatButton,
   InlineSpinner,
   LoadingButton,
 } from '@common/components';
 import { useDialog } from '@common/hooks';
-import { CheckIcon } from '@common/icons';
+import { CheckIcon, SearchIcon } from '@common/icons';
 import { useTranslation } from '@common/intl';
 import { AddGs1Input } from '@common/types';
-import { Grid } from '@common/ui';
+import { Box, Grid } from '@common/ui';
 import { Alert, AlertTitle } from '@mui/material';
 import React, { useState } from 'react';
 import { useAddGS1 } from './api';
@@ -85,12 +86,22 @@ export const GS1EditModal = ({ isOpen, onClose }: GS1EditModalProps) => {
             value={draft.manufacturer}
             onChange={e => setDraft({ ...draft, manufacturer: e.target.value })}
           />
-          <BasicTextInput
-            InputLabelProps={{ shrink: true }}
-            label={t('label.pack-size-code')}
-            value={draft.entityCode}
-            onChange={e => setDraft({ ...draft, entityCode: e.target.value })}
-          />
+          <Box display="flex" alignItems="end">
+            <BasicTextInput
+              required
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+              label={t('label.pack-size-code')}
+              value={draft.entityCode}
+              onChange={e => setDraft({ ...draft, entityCode: e.target.value })}
+            />
+            <FlatButton
+              sx={{ width: '110px' }}
+              startIcon={<SearchIcon />}
+              onClick={() => {}}
+              label={t('label.lookup')}
+            />
+          </Box>
           {errorMessage ? (
             <Grid item>
               <Alert
