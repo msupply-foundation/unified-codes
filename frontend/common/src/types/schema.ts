@@ -32,6 +32,12 @@ export type AddConfigurationItemInput = {
   type: ConfigurationItemTypeInput;
 };
 
+export type AddGs1Input = {
+  entityCode: Scalars['String']['input'];
+  gtin: Scalars['String']['input'];
+  manufacturer: Scalars['String']['input'];
+};
+
 export type AlternativeNameInput = {
   code: Scalars['String']['input'];
   name: Scalars['String']['input'];
@@ -180,9 +186,11 @@ export type FullMutation = {
   /** Updates user account based on a token and their information (Response to initiate_user_invite) */
   acceptUserInvite: InviteUserResponse;
   addConfigurationItem: Scalars['Int']['output'];
+  addGs1: Gs1Response;
   approvePendingChange: UpsertEntityResponse;
   createUserAccount: CreateUserAccountResponse;
   deleteConfigurationItem: Scalars['Int']['output'];
+  deleteGs1: Scalars['Int']['output'];
   deleteUserAccount: DeleteUserAccountResponse;
   /**
    * Initiates the password reset flow for a user based on email address
@@ -214,6 +222,11 @@ export type FullMutationAddConfigurationItemArgs = {
 };
 
 
+export type FullMutationAddGs1Args = {
+  input: AddGs1Input;
+};
+
+
 export type FullMutationApprovePendingChangeArgs = {
   input: UpsertEntityInput;
   requestId: Scalars['String']['input'];
@@ -227,6 +240,11 @@ export type FullMutationCreateUserAccountArgs = {
 
 export type FullMutationDeleteConfigurationItemArgs = {
   code: Scalars['String']['input'];
+};
+
+
+export type FullMutationDeleteGs1Args = {
+  gtin: Scalars['String']['input'];
 };
 
 
@@ -294,6 +312,8 @@ export type FullQuery = {
   entities: EntityCollectionType;
   /** Query "universal codes" entry by code */
   entity?: Maybe<EntityType>;
+  /** Get all GS1s */
+  gs1Barcodes: Gs1CollectionResponse;
   logout: LogoutResponse;
   logs: LogResponse;
   me: UserResponse;
@@ -364,6 +384,24 @@ export type FullQueryUserAccountsArgs = {
   sort?: InputMaybe<Array<UserAccountSortInput>>;
 };
 
+export type Gs1CollectionConnector = {
+  __typename: 'Gs1CollectionConnector';
+  data: Array<Gs1Node>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type Gs1CollectionResponse = Gs1CollectionConnector;
+
+export type Gs1Node = {
+  __typename: 'Gs1Node';
+  gtin: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  manufacturer: Scalars['String']['output'];
+  type: EntityType;
+};
+
+export type Gs1Response = Gs1Node;
+
 export type IdResponse = {
   __typename: 'IdResponse';
   id: Scalars['String']['output'];
@@ -424,6 +462,8 @@ export type LogNode = {
 export enum LogNodeType {
   ConfigurationItemCreated = 'CONFIGURATION_ITEM_CREATED',
   ConfigurationItemDeleted = 'CONFIGURATION_ITEM_DELETED',
+  Gs1Created = 'GS1_CREATED',
+  Gs1Deleted = 'GS1_DELETED',
   PropertyConfigurationItemUpserted = 'PROPERTY_CONFIGURATION_ITEM_UPSERTED',
   UniversalCodeChangeApproved = 'UNIVERSAL_CODE_CHANGE_APPROVED',
   UniversalCodeChangeRejected = 'UNIVERSAL_CODE_CHANGE_REJECTED',

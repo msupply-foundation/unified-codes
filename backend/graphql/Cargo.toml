@@ -13,6 +13,7 @@ service = { path = "../service" }
 util = { path = "../util" }
 graphql_configuration = { path = "configuration" }
 graphql_core = { path = "core" }
+graphql_gs1 = { path = "gs1" }
 graphql_types = { path = "types" }
 graphql_general = { path = "general" }
 graphql_user_account = { path = "user_account" }
