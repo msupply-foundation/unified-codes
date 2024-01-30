@@ -1,0 +1,99 @@
+fragment EntityRow on EntityType {
+  id: code
+  type
+  description
+  code
+  alternativeNames {
+    name
+  }
+}
+
+fragment EntityDetails on EntityType {
+  code
+  name
+  type
+  alternativeNames {
+    code
+    name
+  }
+  properties {
+    code
+    type
+    value
+  }
+}
+
+query entities($filter: EntitySearchInput!, $first: Int!, $offset: Int!) {
+  entities(filter: $filter, first: $first, offset: $offset) {
+    totalLength
+    data {
+      ...EntityRow
+    }
+  }
+}
+
+query entity($code: String!) {
+  entity(code: $code) {
+    ...EntityDetails
+    children {
+      ...EntityDetails
+      children {
+        ...EntityDetails
+        children {
+          ...EntityDetails
+          children {
+            ...EntityDetails
+            children {
+              ...EntityDetails
+              children {
+                ...EntityDetails
+                children {
+                  ...EntityDetails
+                  children {
+                    ...EntityDetails
+                    children {
+                      ...EntityDetails
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query product($code: String!) {
+  product(code: $code) {
+    ...EntityDetails
+    children {
+      ...EntityDetails
+      children {
+        ...EntityDetails
+        children {
+          ...EntityDetails
+          children {
+            ...EntityDetails
+            children {
+              ...EntityDetails
+              children {
+                ...EntityDetails
+                children {
+                  ...EntityDetails
+                  children {
+                    ...EntityDetails
+                    children {
+                      ...EntityDetails
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

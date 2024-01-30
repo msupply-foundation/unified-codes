@@ -1,0 +1,24 @@
+server:
+  port: 4007
+  debug_cors_permissive: true # enable this to allow any origin for development purposes
+  cors_origins: [http://localhost:4201] # Used to set the allowed origins in Cross Origin Request Security
+  app_url: 'http://localhost:4201'
+database:
+  database_name: 'universalcodes.sqlite'
+mail:
+  host: 'localhost'
+  #1025 is the default port for mailhog (https://github.com/mailhog/MailHog)
+  port: '1025'
+  starttls: false
+  username: ''
+  password: ''
+  from: 'no-reply@msupply.foundation'
+dgraph:
+  host: 'http://localhost'
+  port: 8080
+logging:
+  mode: 'All'
+  level: 'Info'
+  filename: 'universalcodes.log'
+  max_file_size: 1
+  max_file_count: 1

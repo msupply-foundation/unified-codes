@@ -1,0 +1,68 @@
+mutation approvePendingChange($id: String, $input: UpsertEntityInput!) {
+  approvePendingChange(requestId: $id, input: $input) {
+    ... on EntityType {
+      __typename
+      code
+    }
+  }
+}
+
+mutation rejectPendingChange($id: String) {
+  rejectPendingChange(requestId: $id) {
+    id
+  }
+}
+
+fragment PendingChangeSummary on PendingChangeNode {
+  id: requestId
+  name
+  category
+  changeType
+  requestedBy
+  dateRequested
+}
+
+query pendingChanges($page: PaginationInput, $sort: [PendingChangeSortInput!]) {
+  pendingChanges(page: $page, sort: $sort) {
+    ... on PendingChangeConnector {
+      totalCount
+      nodes {
+        ...PendingChangeSummary
+      }
+    }
+  }
+}
+
+fragment PendingChangeDetails on PendingChangeNode {
+  id: requestId
+  name
+  category
+  changeType
+  requestedBy
+  dateRequested
+  body
+}
+
+query pendingChange($id: String!) {
+  pendingChange(requestId: $id) {
+    ... on PendingChangeNode {
+      ...PendingChangeDetails
+    }
+  }
+}
+
+mutation requestChange($input: RequestChangeInput!) {
+  requestChange(input: $input) {
+    ... on PendingChangeNode {
+      requestId
+    }
+  }
+}
+
+mutation updatePendingChange($id: String!, $body: String!) {
+  updatePendingChange(requestId: $id, body: $body) {
+    ... on PendingChangeNode {
+      requestId
+    }
+  }
+}

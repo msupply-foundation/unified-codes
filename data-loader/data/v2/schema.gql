@@ -1,0 +1,98 @@
+type Property {
+  code
+  type
+  value
+}
+
+type Category {
+  code
+  name
+  description
+  children
+  properties
+}
+
+type Product {
+  code
+  name
+  description
+  combines
+  children
+  properties
+}
+
+type Route {
+  code
+  name
+  description
+  children
+  properties
+}
+
+type DoseForm {
+  code
+  name
+  description
+  children
+  properties
+}
+
+type DoseFormQualifier {
+  code
+  name
+  description
+  children
+  properties
+}
+
+type DoseStrength {
+  code
+  name
+  description
+  children
+  properties
+}
+
+type DoseUnit {
+  code
+  name
+  description
+  children
+  properties
+}
+
+type PackImmediate {
+  code
+  name
+  children
+  properties
+}
+
+type PackSize {
+  code
+  name
+  children
+  properties
+}
+
+type PackOuter {
+  code
+  name
+  children
+  properties
+}
+
+type ConfigurationItem {
+  code
+  name
+  type
+}
+
+code: string @index(exact, trigram).
+name: string @index(exact, fulltext, trigram) .
+description: string @index(exact, fulltext, trigram) .
+type: string @index(term) .
+value: string .
+combines: [uid] .
+properties: [uid] .
+children: [uid] @reverse . 

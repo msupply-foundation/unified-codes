@@ -1,0 +1,69 @@
+# THIS IS THE SCHEMA FOR THE DGRAPH GRAPHQL ENDPOINT
+# IT MAPS TO AND THEREFORE CHANGES THE DGRAPH SCHEMA WHEN YOU UPDATE IT
+# WE SHOULD MIGRATE TO ONLY MAINTAINING THIS SCHEMA, AND NOT THE DGRAPH SCHEMA IN ./schema.gql
+
+type Entity {
+  id: ID!
+  code: String! @id @dgraph(pred: "code") @search(by: [exact, trigram])
+  name: String @dgraph(pred: "name") @search(by: [exact, fulltext, trigram])
+  description: String
+    @dgraph(pred: "description")
+    @search(by: [exact, fulltext, trigram])
+  category: String @dgraph(pred: "category") @search(by: [exact])
+  alternative_names: String
+    @dgraph(pred: "alternative_names")
+    @search(by: [exact, fulltext, trigram])
+  type: String @dgraph(pred: "type") @search(by: [exact])
+  properties: [Property] @dgraph(pred: "properties")
+  children: [Entity] @dgraph(pred: "children")
+  parents: [Entity] @dgraph(pred: "~children")
+}
+
+type Property {
+  id: ID!
+  code: String! @id @dgraph(pred: "code") @search(by: [exact, trigram])
+  type: String @dgraph(pred: "type") @search(by: [exact])
+  value: String @dgraph(pred: "value") @search(by: [exact])
+}
+
+enum ChangeType {
+  New
+  Change
+}
+
+enum ChangeStatus {
+  Pending
+  Approved
+  Rejected
+}
+
+type PendingChange {
+  id: ID!
+  request_id: String!
+    @id
+    @dgraph(pred: "request_id")
+    @search(by: [exact, trigram])
+  name: String! @dgraph(pred: "name") @search(by: [exact, fulltext, trigram])
+  category: String!
+  change_type: ChangeType!
+  date_requested: DateTime!
+  requested_by_user_id: String!
+  status: ChangeStatus! @search(by: [exact])
+  body: String!
+}
+
+type ConfigurationItem {
+  id: ID!
+  code: String! @id @dgraph(pred: "code") @search(by: [exact, trigram])
+  name: String @dgraph(pred: "name") @search(by: [exact, fulltext, trigram])
+  type: String @dgraph(pred: "type") @search(by: [exact])
+  children: [ConfigurationItem] @dgraph(pred: "subItems")
+  parents: [ConfigurationItem] @dgraph(pred: "~subItems")
+}
+
+type PropertyConfigurationItem {
+  id: ID!
+  type: String! @id @dgraph(pred: "propertyType") @search(by: [exact])
+  label: String @dgraph(pred: "label")
+  url: String @dgraph(pred: "url")
+}

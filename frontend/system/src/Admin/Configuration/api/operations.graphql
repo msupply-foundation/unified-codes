@@ -1,0 +1,46 @@
+fragment ConfigurationItem on ConfigurationItemNode {
+  id
+  name
+  type
+}
+
+query ConfigurationItems($type: ConfigurationItemTypeInput!) {
+  configurationItems(type: $type) {
+    ... on ConfigurationItemConnector {
+      data {
+        ...ConfigurationItem
+      }
+      totalCount
+    }
+  }
+}
+
+mutation AddConfigItem($input: AddConfigurationItemInput!) {
+  addConfigurationItem(input: $input)
+}
+
+mutation DeleteConfigItem($code: String!) {
+  deleteConfigurationItem(code: $code)
+}
+
+fragment PropertyConfigurationItem on PropertyConfigurationItemNode {
+  id
+  label
+  url
+  type
+}
+
+query PropertyConfigurationItems {
+  propertyConfigurationItems {
+    ... on PropertyConfigurationItemConnector {
+      data {
+        ...PropertyConfigurationItem
+      }
+      totalCount
+    }
+  }
+}
+
+mutation UpsertPropertyConfigItem($input: UpsertPropertyConfigItemInput!) {
+  upsertPropertyConfigurationItem(input: $input)
+}
