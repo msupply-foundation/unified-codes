@@ -26,7 +26,7 @@ impl GS1Node {
     pub async fn manufacturer(&self) -> &str {
         &self.row.manufacturer
     }
-    pub async fn r#type(&self) -> EntityType {
+    pub async fn entity(&self) -> EntityType {
         EntityType::from_domain(self.row.entity.clone())
     }
 }

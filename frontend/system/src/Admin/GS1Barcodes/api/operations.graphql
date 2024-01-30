@@ -1,0 +1,21 @@
+fragment GS1 on Gs1Node {
+  id
+  gtin
+  manufacturer
+  entity {
+    code
+    name
+    description
+  }
+}
+
+query Gs1Barcodes {
+  gs1Barcodes {
+    ... on Gs1CollectionConnector {
+      data {
+        ...GS1
+      }
+      totalCount
+    }
+  }
+}

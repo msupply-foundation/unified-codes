@@ -5,6 +5,7 @@ import { AppRoute } from 'frontend/config/src';
 import { UserAccountListView } from './Users/ListView';
 import { ConfigurationTabsView } from './Configuration';
 import { PendingChangeDetails, PendingChangesListView } from './PendingChanges';
+import { GS1ListView } from './GS1Barcodes';
 
 const AdminService = () => {
   return (
@@ -27,6 +28,7 @@ const AdminService = () => {
         path={`/${AppRoute.PendingChanges}/:id`}
         element={<PendingChangeDetails />}
       />
+      <Route path={`/${AppRoute.GS1Barcodes}`} element={<GS1ListView />} />
       <Route
         path="*"
         element={<Navigate to={`/${AppRoute.Browse}`} replace={true} />}

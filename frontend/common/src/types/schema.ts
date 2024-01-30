@@ -394,10 +394,10 @@ export type Gs1CollectionResponse = Gs1CollectionConnector;
 
 export type Gs1Node = {
   __typename: 'Gs1Node';
+  entity: EntityType;
   gtin: Scalars['String']['output'];
   id: Scalars['String']['output'];
   manufacturer: Scalars['String']['output'];
-  type: EntityType;
 };
 
 export type Gs1Response = Gs1Node;

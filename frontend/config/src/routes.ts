@@ -13,6 +13,7 @@ export enum AppRoute {
   Configuration = 'configuration',
   Edit = 'edit',
   PendingChanges = 'pending-changes',
+  GS1Barcodes = 'barcodes',
 
   Settings = 'settings',
   Logout = 'logout',
