@@ -1,0 +1,28 @@
+fragment InteractionGroup on DrugInteractionGroupNode {
+  id
+  name
+  description
+  drugs {
+    code
+    description
+  }
+}
+
+query DrugInteractionGroups {
+  allDrugInteractionGroups {
+    ... on DrugInteractionGroupConnector {
+      data {
+        ...InteractionGroup
+      }
+      totalCount
+    }
+  }
+}
+
+mutation UpsertDrugInteractionGroup($input: UpsertDrugInteractionGroupInput!) {
+  upsertDrugInteractionGroup(input: $input)
+}
+
+mutation DeleteDrugInteractionGroup($id: String!) {
+  deleteDrugInteractionGroup(code: $id)
+}

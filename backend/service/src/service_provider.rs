@@ -5,6 +5,7 @@ use repository::{RepositoryError, StorageConnection, StorageConnectionManager};
 use crate::{
     auth::{AuthService, AuthServiceTrait},
     configuration::ConfigurationService,
+    drug_interactions::DrugInteractionService,
     email::{EmailService, EmailServiceTrait},
     log_service::{LogService, LogServiceTrait},
     settings::Settings,
@@ -17,6 +18,7 @@ pub struct ServiceProvider {
     pub email_service: Box<dyn EmailServiceTrait>,
     pub universal_codes_service: Box<UniversalCodesService>,
     pub configuration_service: Box<ConfigurationService>,
+    pub drug_interaction_service: Box<DrugInteractionService>,
     pub validation_service: Box<dyn AuthServiceTrait>,
     pub user_account_service: Box<dyn UserAccountServiceTrait>,
     pub settings: Settings,
@@ -70,6 +72,7 @@ impl ServiceProvider {
             email_service: Box::new(EmailService::new(settings.clone())),
             universal_codes_service: Box::new(UniversalCodesService::new(settings.clone())),
             configuration_service: Box::new(ConfigurationService::new(settings.clone())),
+            drug_interaction_service: Box::new(DrugInteractionService::new(settings.clone())),
             validation_service: Box::new(AuthService::new()),
             user_account_service: Box::new(UserAccountService {}),
             settings,

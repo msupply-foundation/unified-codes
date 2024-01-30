@@ -5,6 +5,7 @@ pub mod audit_log;
 pub mod auth;
 pub mod auth_data;
 pub mod configuration;
+pub mod drug_interactions;
 pub mod email;
 pub mod log_service;
 pub mod login;

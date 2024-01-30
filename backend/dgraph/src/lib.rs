@@ -12,6 +12,8 @@ pub mod client;
 pub use client::*;
 pub mod database_settings;
 pub use database_settings::*;
+pub mod drug_interaction_group;
+pub use drug_interaction_group::*;
 pub mod entity;
 pub use entity::*;
 pub mod entity_duplication;
