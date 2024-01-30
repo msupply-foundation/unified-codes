@@ -95,6 +95,6 @@ mod tests {
         assert_eq!(data.manufacturer, gs1_input.manufacturer);
 
         // Delete the record
-        let _result = delete_gs1(&client, gs1_input.gtin.clone()).await;
+        let _result = delete_gs1(&client, gs1_input.gtin.clone()).await.unwrap();
     }
 }

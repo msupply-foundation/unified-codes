@@ -6,6 +6,7 @@ pub mod auth;
 pub mod auth_data;
 pub mod configuration;
 pub mod email;
+pub mod gs1;
 pub mod log_service;
 pub mod login;
 pub mod service_provider;
