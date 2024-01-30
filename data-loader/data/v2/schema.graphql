@@ -72,6 +72,6 @@ type PropertyConfigurationItem {
 type GS1 {
   id: ID!
   gtin: String! @id @dgraph(pred: "code") @search(by: [exact, trigram])
-  manufacturer: String @dgraph(pred: "manufacturer")
-  entity: Entity @dgraph(pred: "entity")
+  manufacturer: String! @dgraph(pred: "manufacturer")
+  entity: Entity! @dgraph(pred: "entity")
 }

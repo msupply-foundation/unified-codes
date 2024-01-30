@@ -26,6 +26,8 @@ pub mod upsert_entity;
 pub use upsert_entity::*;
 pub mod link_codes;
 pub use link_codes::*;
+pub mod gs1;
+pub use gs1::*;
 
 pub use gql_client::GraphQLError;
 
