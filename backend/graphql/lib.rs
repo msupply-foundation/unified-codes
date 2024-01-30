@@ -10,6 +10,7 @@ use async_graphql_actix_web::{GraphQLRequest, GraphQLResponse};
 use graphql_configuration::{ConfigurationMutations, ConfigurationQueries};
 use graphql_core::loader::LoaderRegistry;
 use graphql_core::{refresh_token_from_cookie, RefreshTokenData, SelfRequest};
+use graphql_drug_interactions::{DrugInteractionMutations, DrugInteractionQueries};
 use graphql_general::GeneralQueries;
 use graphql_gs1::{GS1Mutations, GS1Queries};
 use graphql_universal_codes::{UniversalCodesMutations, UniversalCodesQueries};
@@ -31,6 +32,7 @@ pub struct FullQuery(
     pub UniversalCodesV1Queries,
     pub ConfigurationQueries,
     pub GS1Queries,
+    pub DrugInteractionQueries,
 );
 
 #[derive(MergedObject, Default, Clone)]
@@ -39,6 +41,7 @@ pub struct FullMutation(
     pub UniversalCodesMutations,
     pub ConfigurationMutations,
     pub GS1Mutations,
+    pub DrugInteractionMutations,
 );
 
 pub type Schema = async_graphql::Schema<FullQuery, FullMutation, async_graphql::EmptySubscription>;
@@ -52,6 +55,7 @@ pub fn full_query() -> FullQuery {
         UniversalCodesV1Queries,
         ConfigurationQueries,
         GS1Queries,
+        DrugInteractionQueries,
     )
 }
 
@@ -61,6 +65,7 @@ pub fn full_mutation() -> FullMutation {
         UniversalCodesMutations,
         ConfigurationMutations,
         GS1Mutations,
+        DrugInteractionMutations,
     )
 }
 

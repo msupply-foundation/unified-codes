@@ -12,6 +12,7 @@ repository = { path = "../repository" }
 service = { path = "../service" }
 util = { path = "../util" }
 graphql_configuration = { path = "configuration" }
+graphql_drug_interactions = { path = "drug_interactions" }
 graphql_core = { path = "core" }
 graphql_gs1 = { path = "gs1" }
 graphql_types = { path = "types" }

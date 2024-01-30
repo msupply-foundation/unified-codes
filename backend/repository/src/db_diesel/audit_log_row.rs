@@ -33,6 +33,8 @@ pub enum LogType {
     ConfigurationItemCreated,
     ConfigurationItemDeleted,
     PropertyConfigurationItemUpserted,
+    InteractionGroupDeleted,
+    InteractionGroupUpserted,
 }
 
 #[derive(Clone, Queryable, Insertable, AsChangeset, Debug, PartialEq)]

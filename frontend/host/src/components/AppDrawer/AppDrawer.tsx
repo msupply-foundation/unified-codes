@@ -21,6 +21,7 @@ import {
   InfoIcon,
   EditIcon,
   BarcodeIcon,
+  CableIcon,
 } from '@uc-frontend/common';
 import { AppRoute } from '@uc-frontend/config';
 import { AppDrawerIcon } from './AppDrawerIcon';
@@ -217,6 +218,13 @@ export const AppDrawer: React.FC = () => {
                 .build()}
               icon={<SettingsIcon fontSize="small" color="primary" />}
               text={t('configuration')}
+            />
+            <AppNavLink
+              to={RouteBuilder.create(AppRoute.Admin)
+                .addPart(AppRoute.Interactions)
+                .build()}
+              icon={<CableIcon fontSize="small" color="primary" />}
+              text={t('interactions')}
             />
           </List>
         </UpperListContainer>
