@@ -8,6 +8,8 @@ import {
   NothingHere,
   PlusCircleIcon,
   TableProvider,
+  Tooltip,
+  Typography,
   useColumns,
 } from '@common/ui';
 import React from 'react';
@@ -20,17 +22,37 @@ export const GS1ListView = () => {
 
   const { onOpen, onClose, isOpen } = useEditModal<Gs1Fragment>();
 
+  const removeName = (description: string, name: string) => {
+    const nameIndex = description.indexOf(name);
+    if (nameIndex === -1) return description;
+    return description.substring(0, nameIndex);
+  };
+
   const columns = useColumns<Gs1Fragment>(
     [
       {
         key: 'entity',
         label: 'label.product',
-        Cell: ({ rowData }) => <>{rowData.entity?.description}</>,
+        Cell: ({ rowData }) => {
+          const description = removeName(
+            rowData.entity.description,
+            rowData.entity.name
+          );
+          return (
+            <Tooltip title={description}>
+              <Typography>
+                {description.length > 35
+                  ? description.substring(0, 35) + '...'
+                  : description}
+              </Typography>
+            </Tooltip>
+          );
+        },
       },
       {
         key: 'also entity', // TODO does this have implications...
         label: 'label.pack-size',
-        Cell: ({ rowData }) => <>{rowData.entity?.name}</>,
+        Cell: ({ rowData }) => <>{rowData.entity.name}</>,
       },
       { key: 'manufacturer', label: 'label.manufacturer' },
       { key: 'id', label: 'label.gtin' },
