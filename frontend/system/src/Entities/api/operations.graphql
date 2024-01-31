@@ -13,6 +13,9 @@ fragment EntityDetails on EntityType {
   code
   name
   type
+  gs1Barcodes {
+    id
+  }
   alternativeNames {
     code
     name

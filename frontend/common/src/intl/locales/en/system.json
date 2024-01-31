@@ -68,6 +68,7 @@
   "label.extra-descriptions": "Extra Descriptions",
   "label.form": "Form",
   "label.forms": "Forms",
+  "label.linked-gs1s": "{{ count }} Linked GS1s",
   "label.immediate-packaging": "Immediate Packaging",
   "label.invite-user": "Invite User",
   "label.lookup": "Look up",
