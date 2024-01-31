@@ -92,6 +92,7 @@
   "label.vaccine-name-details": "Vaccine Name Details",
   "label.vaccines": "Vaccines",
   "label.viewed": "Viewed",
+  "label.drug-interaction-group": "Drug Interaction Group",
   "label.drug-interaction-groups": "Drug Interaction Groups",
   "label.drug-interactions": "Drug Interactions",
   "message.code-copied-to-clipboard": "Code {{ code }} copied to clipboard",

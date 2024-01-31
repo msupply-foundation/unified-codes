@@ -14,7 +14,6 @@ import React, { useState } from 'react';
 import { InteractionGroupFragment } from './api/operations.generated';
 import { useUpsertDrugInteractionGroup } from './api';
 import { FnUtils } from '@common/utils';
-import { DrugSelectionModal } from './DrugSelectionModal';
 import { DrugSelector } from './DrugSelector';
 import { useEntities } from '../../Entities/api';
 

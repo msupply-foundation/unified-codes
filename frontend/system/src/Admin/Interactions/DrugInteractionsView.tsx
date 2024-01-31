@@ -13,7 +13,7 @@ export const DrugInteractionsView = () => {
       value: t('label.drug-interaction-groups'),
     },
     {
-      Component: <InteractionTab data={[]} />,
+      Component: <InteractionTab />,
       value: t('label.drug-interactions'),
     },
   ];
