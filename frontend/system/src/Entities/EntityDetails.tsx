@@ -18,6 +18,13 @@ import { RouteBuilder } from '@common/utils';
 import { AppRoute } from 'frontend/config/src';
 import { useAuthContext } from '@common/authentication';
 import { PermissionNode } from '@common/types';
+import { EntityType } from '../constants';
+
+const TYPES_TO_COLLAPSE = [
+  EntityType.Unit,
+  EntityType.ImmediatePackaging,
+  EntityType.PackSize,
+];
 
 export const EntityDetails = () => {
   const t = useTranslation('system');
@@ -39,7 +46,7 @@ export const EntityDetails = () => {
     const expandedIds: string[] = [];
 
     const addToExpandedIds = (ent?: EntityData | null) => {
-      if (ent) {
+      if (ent && !TYPES_TO_COLLAPSE.includes(ent.type as EntityType)) {
         expandedIds.push(ent.code);
         ent.children?.forEach(addToExpandedIds);
       }
