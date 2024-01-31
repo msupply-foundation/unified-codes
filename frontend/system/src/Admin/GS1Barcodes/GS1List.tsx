@@ -71,7 +71,11 @@ const GS1ListComponent = ({
     {
       key: 'entity2', // also on entity, but we need to use different key to avoid error
       label: 'label.pack-size',
-      Cell: ({ rowData }) => <>{rowData.entity.name}</>,
+      Cell: ({ rowData }) => (
+        <>
+          {rowData.entity.name} ({rowData.entity.code})
+        </>
+      ),
     },
     { key: 'manufacturer', label: 'label.manufacturer' },
     { key: 'id', label: 'label.gtin' },
