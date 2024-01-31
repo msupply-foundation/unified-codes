@@ -156,7 +156,7 @@ const renderOption: AutocompleteOptionRenderer<EntityRowFragment> = (
       {option.code}
     </Typography>
     <Typography component="span" width={`calc(100% - 100px)`}>
-      {getParentDescription(option)}
+      {getParentDescription(option)}{' '}
       <Typography component="span" fontWeight="bold">
         {option.name}
       </Typography>
