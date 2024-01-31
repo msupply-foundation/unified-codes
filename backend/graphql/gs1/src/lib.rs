@@ -15,11 +15,14 @@ impl GS1Queries {
     pub async fn gs1_barcodes(
         &self,
         ctx: &Context<'_>,
-        // order_by: Option<GS1OrderByInput>,
-        // first: Option<u32>,
-        // offset: Option<u32>,
+        first: Option<u32>,
+        offset: Option<u32>,
     ) -> Result<GS1CollectionResponse> {
-        let result = ctx.service_provider().gs1_service.gs1s().await?;
+        let result = ctx
+            .service_provider()
+            .gs1_service
+            .gs1s(first, offset)
+            .await?;
 
         Ok(GS1CollectionResponse::Response(
             GS1CollectionConnector::from_domain(result),

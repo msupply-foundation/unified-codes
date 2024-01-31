@@ -3,7 +3,11 @@ use std::{
     sync::Arc,
 };
 
-use dgraph::{gs1::gs1::gs1_by_gtin, gs1s::gs1s, DgraphClient, GraphQLError, GS1};
+use dgraph::{
+    gs1::gs1::gs1_by_gtin,
+    gs1s::{gs1s, GS1QueryVars},
+    DgraphClient, GraphQLError, GS1,
+};
 use repository::RepositoryError;
 use util::usize_to_u32;
 
@@ -77,8 +81,12 @@ impl GS1Service {
         }
     }
 
-    pub async fn gs1s(&self) -> Result<GS1Collection, GS1ServiceError> {
-        let result = gs1s(&self.client)
+    pub async fn gs1s(
+        &self,
+        first: Option<u32>,
+        offset: Option<u32>,
+    ) -> Result<GS1Collection, GS1ServiceError> {
+        let result = gs1s(&self.client, GS1QueryVars { first, offset })
             .await
             .map_err(|e| GS1ServiceError::InternalError(e.message().to_string()))?; // TODO: Improve error handling?
 

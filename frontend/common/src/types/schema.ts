@@ -385,6 +385,12 @@ export type FullQueryEntityArgs = {
 };
 
 
+export type FullQueryGs1BarcodesArgs = {
+  first?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
 export type FullQueryLogsArgs = {
   filter?: InputMaybe<LogFilterInput>;
   page?: InputMaybe<PaginationInput>;

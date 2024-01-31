@@ -9,8 +9,8 @@ fragment GS1 on Gs1Node {
   }
 }
 
-query Gs1Barcodes {
-  gs1Barcodes {
+query Gs1Barcodes($first: Int, $offset: Int) {
+  gs1Barcodes(first: $first, offset: $offset) {
     ... on Gs1CollectionConnector {
       data {
         ...GS1

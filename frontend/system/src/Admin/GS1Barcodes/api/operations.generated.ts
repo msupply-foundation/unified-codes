@@ -5,7 +5,10 @@ import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
 export type Gs1Fragment = { __typename?: 'Gs1Node', id: string, gtin: string, manufacturer: string, entity: { __typename?: 'EntityType', code: string, name: string, description: string } };
 
-export type Gs1BarcodesQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type Gs1BarcodesQueryVariables = Types.Exact<{
+  first?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+  offset?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+}>;
 
 
 export type Gs1BarcodesQuery = { __typename?: 'FullQuery', gs1Barcodes: { __typename?: 'Gs1CollectionConnector', totalCount: number, data: Array<{ __typename?: 'Gs1Node', id: string, gtin: string, manufacturer: string, entity: { __typename?: 'EntityType', code: string, name: string, description: string } }> } };
@@ -37,8 +40,8 @@ export const Gs1FragmentDoc = gql`
 }
     `;
 export const Gs1BarcodesDocument = gql`
-    query Gs1Barcodes {
-  gs1Barcodes {
+    query Gs1Barcodes($first: Int, $offset: Int) {
+  gs1Barcodes(first: $first, offset: $offset) {
     ... on Gs1CollectionConnector {
       data {
         ...GS1

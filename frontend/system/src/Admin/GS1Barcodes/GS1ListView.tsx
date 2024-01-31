@@ -1,4 +1,4 @@
-import { useEditModal } from '@common/hooks';
+import { useEditModal, useQueryParamsState } from '@common/hooks';
 import { useTranslation } from '@common/intl';
 import {
   AppBarButtonsPortal,
@@ -27,13 +27,17 @@ const GS1ListViewComponent = () => {
 
   const { onOpen, onClose, isOpen } = useEditModal<Gs1Fragment>();
 
+  const { queryParams, updatePaginationQuery } = useQueryParamsState();
+
+  const { data, isError, isLoading } = useGS1Barcodes(queryParams);
   const { mutateAsync: deleteGS1 } = useDeleteGS1();
-  const { data, isError, isLoading } = useGS1Barcodes();
+
+  const gs1Barcodes = data?.data ?? [];
 
   const selectedRows = useTableStore(state =>
     Object.keys(state.rowState)
       .filter(id => state.rowState[id]?.isSelected)
-      .map(selectedId => data?.find(({ id }) => selectedId === id))
+      .map(selectedId => gs1Barcodes.find(({ id }) => selectedId === id))
       .filter(Boolean)
   );
 
@@ -64,6 +68,14 @@ const GS1ListViewComponent = () => {
     'selection',
   ]);
 
+  const { page, first, offset } = queryParams;
+  const pagination = {
+    page,
+    offset,
+    first,
+    total: data?.totalCount,
+  };
+
   return (
     <>
       {isOpen && <GS1EditModal isOpen={isOpen} onClose={onClose} />}
@@ -91,12 +103,12 @@ const GS1ListViewComponent = () => {
 
       <DataTable
         columns={columns}
-        data={data ?? []}
+        data={gs1Barcodes}
         isLoading={isLoading}
         isError={isError}
         noDataElement={<NothingHere />}
-        // pagination={false} // TODO
-        // onChangePage={updatePaginationQuery}
+        pagination={pagination}
+        onChangePage={updatePaginationQuery}
       />
     </>
   );

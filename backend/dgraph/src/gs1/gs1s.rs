@@ -1,11 +1,21 @@
 use gql_client::GraphQLError;
+use serde::Serialize;
 
 use crate::{DgraphClient, GS1Data};
 
-pub async fn gs1s(client: &DgraphClient) -> Result<Option<GS1Data>, GraphQLError> {
+#[derive(Serialize, Debug)]
+pub struct GS1QueryVars {
+    pub first: Option<u32>,
+    pub offset: Option<u32>,
+}
+
+pub async fn gs1s(
+    client: &DgraphClient,
+    vars: GS1QueryVars,
+) -> Result<Option<GS1Data>, GraphQLError> {
     let query = r#"
-query gs1s {
-  data: queryGS1 {
+query gs1s($first: Int, $offset: Int) {
+  data: queryGS1(first: $first, offset: $offset) {
     manufacturer
     gtin
     entity {
@@ -16,7 +26,10 @@ query gs1s {
   }
 }
 "#;
-    let data = client.gql.query::<GS1Data>(query).await?;
+    let data = client
+        .gql
+        .query_with_vars::<GS1Data, GS1QueryVars>(query, vars)
+        .await?;
 
     Ok(data)
 }
