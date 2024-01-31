@@ -120,7 +120,7 @@ const GS1ListComponent = ({
         data={gs1Barcodes}
         isLoading={isLoading}
         isError={isError}
-        noDataElement={<NothingHere />}
+        noDataElement={<NothingHere body={t('error.no-gs1s')} />}
         pagination={pagination}
         onChangePage={updatePaginationQuery}
       />
