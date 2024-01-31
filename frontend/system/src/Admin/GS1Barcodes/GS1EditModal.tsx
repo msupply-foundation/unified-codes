@@ -22,19 +22,19 @@ import { getParentDescription } from './helpers';
 type GS1EditModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  entityCode?: string;
+  entityCodes?: string[];
 };
 
 export const GS1EditModal = ({
   isOpen,
   onClose,
-  entityCode,
+  entityCodes,
 }: GS1EditModalProps) => {
   const t = useTranslation('system');
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [draft, setDraft] = useState<AddGs1Input>({
-    entityCode: entityCode ?? '',
+    entityCode: '',
     gtin: '',
     manufacturer: '',
   });
@@ -104,38 +104,38 @@ export const GS1EditModal = ({
             value={draft.manufacturer}
             onChange={e => setDraft({ ...draft, manufacturer: e.target.value })}
           />
-          {entityCode ? null : (
-            <AutocompleteList
-              options={packSizeOptions}
-              renderOption={renderOption}
-              getOptionLabel={option => `${option.id}`}
-              width={modalWidth - 50}
-              openOnFocus
-              renderInput={props => (
-                <BasicTextInput
-                  required
-                  label={t('label.pack-size-code')}
-                  {...props}
-                  InputLabelProps={{ shrink: true }}
-                />
-              )}
-              filterOptions={(options, state) =>
-                options.filter(option =>
+          <AutocompleteList
+            options={packSizeOptions}
+            renderOption={renderOption}
+            getOptionLabel={option => `${option.id}`}
+            width={modalWidth - 50}
+            openOnFocus
+            renderInput={props => (
+              <BasicTextInput
+                required
+                label={t('label.pack-size-code')}
+                {...props}
+                InputLabelProps={{ shrink: true }}
+              />
+            )}
+            filterOptions={(options, state) =>
+              options.filter(
+                option =>
+                  // if entityCodes are defined, filter out options that are not in the list
+                  (entityCodes?.includes(option.code) ?? true) &&
                   RegexUtils.matchObjectProperties(state.inputValue, option, [
                     'description',
                     'code',
                   ])
-                )
-              }
-              onChange={(e, value) =>
-                setDraft({
-                  ...draft,
-                  entityCode:
-                    (value as unknown as EntityRowFragment)?.code ?? '',
-                })
-              }
-            />
-          )}
+              )
+            }
+            onChange={(e, value) =>
+              setDraft({
+                ...draft,
+                entityCode: (value as unknown as EntityRowFragment)?.code ?? '',
+              })
+            }
+          />
           {errorMessage ? (
             <Grid item>
               <Alert

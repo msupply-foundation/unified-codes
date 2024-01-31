@@ -34,6 +34,7 @@ fragment EntityWithGS1s on EntityType {
   code
   name
   description
+  type
   gs1Barcodes {
     id
     gtin
@@ -44,5 +45,11 @@ fragment EntityWithGS1s on EntityType {
 query entityWithGS1s($code: String!) {
   entity(code: $code) {
     ...EntityWithGS1s
+    children {
+      ...EntityWithGS1s
+      children {
+        ...EntityWithGS1s
+      }
+    }
   }
 }

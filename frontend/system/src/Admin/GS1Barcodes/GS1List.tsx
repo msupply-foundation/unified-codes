@@ -27,7 +27,7 @@ interface GS1ListProps {
   gs1Barcodes: Omit<Gs1Fragment, '__typename'>[];
   isError: boolean;
   isLoading: boolean;
-  entityCode?: string;
+  entityCodes?: string[];
   pagination?: TableProps<Gs1Fragment>['pagination'];
   updatePaginationQuery?: (page: number) => void;
 }
@@ -36,7 +36,7 @@ const GS1ListComponent = ({
   gs1Barcodes,
   isError,
   isLoading,
-  entityCode,
+  entityCodes,
   pagination,
   updatePaginationQuery,
 }: GS1ListProps) => {
@@ -62,8 +62,8 @@ const GS1ListComponent = ({
         return (
           <Tooltip title={description}>
             <Typography>
-              {description.length > 35
-                ? description.substring(0, 35) + '...'
+              {description.length > 50
+                ? description.substring(0, 50) + '...'
                 : description}
             </Typography>
           </Tooltip>
@@ -90,7 +90,7 @@ const GS1ListComponent = ({
         <GS1EditModal
           isOpen={isOpen}
           onClose={onClose}
-          entityCode={entityCode}
+          entityCodes={entityCodes}
         />
       )}
 

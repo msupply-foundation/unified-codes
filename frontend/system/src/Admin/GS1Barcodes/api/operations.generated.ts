@@ -27,14 +27,14 @@ export type DeleteGs1MutationVariables = Types.Exact<{
 
 export type DeleteGs1Mutation = { __typename?: 'FullMutation', deleteGs1: number };
 
-export type EntityWithGs1sFragment = { __typename?: 'EntityType', code: string, name: string, description: string, gs1Barcodes: Array<{ __typename?: 'Gs1Type', id: string, gtin: string, manufacturer: string }>, alternativeNames: Array<{ __typename?: 'AlternativeNameType', code: string, name: string }> };
+export type EntityWithGs1sFragment = { __typename?: 'EntityType', code: string, name: string, description: string, type: string, gs1Barcodes: Array<{ __typename?: 'Gs1Type', id: string, gtin: string, manufacturer: string }> };
 
 export type EntityWithGs1sQueryVariables = Types.Exact<{
   code: Types.Scalars['String']['input'];
 }>;
 
 
-export type EntityWithGs1sQuery = { __typename?: 'FullQuery', entity?: { __typename?: 'EntityType', code: string, name: string, description: string, gs1Barcodes: Array<{ __typename?: 'Gs1Type', id: string, gtin: string, manufacturer: string }>, alternativeNames: Array<{ __typename?: 'AlternativeNameType', code: string, name: string }> } | null };
+export type EntityWithGs1sQuery = { __typename?: 'FullQuery', entity?: { __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, gs1Barcodes: Array<{ __typename?: 'Gs1Type', id: string, gtin: string, manufacturer: string }> }>, gs1Barcodes: Array<{ __typename?: 'Gs1Type', id: string, gtin: string, manufacturer: string }> }>, gs1Barcodes: Array<{ __typename?: 'Gs1Type', id: string, gtin: string, manufacturer: string }> } | null };
 
 export const Gs1FragmentDoc = gql`
     fragment GS1 on Gs1Node {
@@ -53,14 +53,11 @@ export const EntityWithGs1sFragmentDoc = gql`
   code
   name
   description
+  type
   gs1Barcodes {
     id
     gtin
     manufacturer
-  }
-  alternativeNames {
-    code
-    name
   }
 }
     `;
@@ -92,6 +89,12 @@ export const EntityWithGs1sDocument = gql`
     query entityWithGS1s($code: String!) {
   entity(code: $code) {
     ...EntityWithGS1s
+    children {
+      ...EntityWithGS1s
+      children {
+        ...EntityWithGS1s
+      }
+    }
   }
 }
     ${EntityWithGs1sFragmentDoc}`;
