@@ -24,9 +24,10 @@ import { GS1EditModal } from './GS1EditModal';
 import { getParentDescription } from './helpers';
 
 interface GS1ListProps {
-  gs1Barcodes: Gs1Fragment[];
+  gs1Barcodes: Omit<Gs1Fragment, '__typename'>[];
   isError: boolean;
   isLoading: boolean;
+  entityCode?: string;
   pagination?: TableProps<Gs1Fragment>['pagination'];
   updatePaginationQuery?: (page: number) => void;
 }
@@ -35,6 +36,7 @@ const GS1ListComponent = ({
   gs1Barcodes,
   isError,
   isLoading,
+  entityCode,
   pagination,
   updatePaginationQuery,
 }: GS1ListProps) => {
@@ -84,7 +86,13 @@ const GS1ListComponent = ({
 
   return (
     <>
-      {isOpen && <GS1EditModal isOpen={isOpen} onClose={onClose} />}
+      {isOpen && (
+        <GS1EditModal
+          isOpen={isOpen}
+          onClose={onClose}
+          entityCode={entityCode}
+        />
+      )}
 
       <AppBarButtonsPortal>
         <LoadingButton

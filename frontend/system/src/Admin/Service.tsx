@@ -7,6 +7,7 @@ import { ConfigurationTabsView } from './Configuration';
 import { DrugInteractionsView } from './Interactions';
 import { PendingChangeDetails, PendingChangesListView } from './PendingChanges';
 import { GS1ListView } from './GS1Barcodes';
+import { GS1ListForEntityView } from './GS1Barcodes/GS1ListForEntityView';
 
 const AdminService = () => {
   return (
@@ -34,6 +35,10 @@ const AdminService = () => {
         element={<PendingChangeDetails />}
       />
       <Route path={`/${AppRoute.GS1Barcodes}`} element={<GS1ListView />} />
+      <Route
+        path={`/${AppRoute.GS1Barcodes}/:code`}
+        element={<GS1ListForEntityView />}
+      />
       <Route
         path="*"
         element={<Navigate to={`/${AppRoute.Browse}`} replace={true} />}

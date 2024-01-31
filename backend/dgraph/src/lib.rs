@@ -76,6 +76,8 @@ pub struct Entity {
     #[serde(default)]
     pub alternative_names: Option<String>,
     #[serde(default)]
+    pub gs1s: Vec<GS1Info>,
+    #[serde(default)]
     pub properties: Vec<Property>,
     #[serde(default)]
     pub children: Vec<Entity>,
@@ -91,6 +93,12 @@ pub struct Property {
     pub key: String,
     #[serde(deserialize_with = "null_as_empty_string")]
     pub value: String,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct GS1Info {
+    pub gtin: String,
+    pub manufacturer: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Hash)]

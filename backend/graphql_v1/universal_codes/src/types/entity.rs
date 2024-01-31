@@ -2,6 +2,7 @@ use async_graphql::*;
 use dgraph::Entity;
 
 use crate::AlternativeNameType;
+use crate::GS1Type;
 
 use super::DrugInteractionType;
 use super::PropertiesType;
@@ -15,6 +16,7 @@ pub struct EntityType {
     pub r#type: String,
     pub category: String,
     pub alternative_names: Vec<AlternativeNameType>,
+    pub gs1s: Vec<GS1Type>,
     pub properties: Vec<PropertiesType>,
     pub children: Vec<EntityType>,
     pub parents: Vec<EntityType>,
@@ -29,6 +31,7 @@ impl EntityType {
             description: entity.description,
             r#type: entity.r#type,
             category: entity.category,
+            gs1s: GS1Type::from_domain(entity.gs1s),
             properties: PropertiesType::from_domain(entity.properties),
             alternative_names: match entity.alternative_names {
                 Some(names) => AlternativeNameType::from_domain(names),
@@ -66,6 +69,10 @@ impl EntityType {
     }
     pub async fn r#type(&self) -> &str {
         get_type_for_entity(&self)
+    }
+
+    pub async fn gs1_barcodes(&self) -> &Vec<GS1Type> {
+        &self.gs1s
     }
 
     pub async fn properties(&self) -> &Vec<PropertiesType> {

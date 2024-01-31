@@ -176,6 +176,7 @@ export type EntityType = {
   children: Array<EntityType>;
   code: Scalars['String']['output'];
   description: Scalars['String']['output'];
+  gs1Barcodes: Array<Gs1Type>;
   interactions?: Maybe<Array<DrugInteractionType>>;
   name: Scalars['String']['output'];
   parents: Array<EntityType>;
@@ -437,6 +438,13 @@ export type Gs1Node = {
 };
 
 export type Gs1Response = Gs1Node;
+
+export type Gs1Type = {
+  __typename: 'Gs1Type';
+  gtin: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  manufacturer: Scalars['String']['output'];
+};
 
 export type IdResponse = {
   __typename: 'IdResponse';

@@ -29,3 +29,20 @@ mutation AddGs1($input: AddGS1Input!) {
 mutation DeleteGS1($gtin: String!) {
   deleteGs1(gtin: $gtin)
 }
+
+fragment EntityWithGS1s on EntityType {
+  code
+  name
+  description
+  gs1Barcodes {
+    id
+    gtin
+    manufacturer
+  }
+}
+
+query entityWithGS1s($code: String!) {
+  entity(code: $code) {
+    ...EntityWithGS1s
+  }
+}
