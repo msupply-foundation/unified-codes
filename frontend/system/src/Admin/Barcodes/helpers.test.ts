@@ -104,8 +104,8 @@ describe('getPackSizeCodes', () => {
   });
 });
 
-describe('getGS1Barcodes', () => {
-  it('returns an empty array when entity has no GS1 barcodes', () => {
+describe('getBarcodes', () => {
+  it('returns an empty array when entity has no barcodes', () => {
     const entity: EntityWithBarcodes = {
       type: EntityType.Unit,
       code: '123',
@@ -117,7 +117,7 @@ describe('getGS1Barcodes', () => {
     expect(getBarcodes(entity)).toEqual([]);
   });
 
-  it('returns an array with the entity GS1 barcodes', () => {
+  it('returns an array with the entity barcodes', () => {
     const entity: EntityWithBarcodes = {
       type: EntityType.PackSize,
       code: '123',
@@ -135,7 +135,7 @@ describe('getGS1Barcodes', () => {
     ]);
   });
 
-  it('returns an array with the entity and child GS1 barcodes', () => {
+  it('returns an array with the entity and child barcodes', () => {
     const entity = {
       type: EntityType.ImmediatePackaging,
       code: '123',
