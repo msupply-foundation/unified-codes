@@ -39,21 +39,21 @@ describe('getPackSizeCodes', () => {
       code: '123',
       name: '123',
       description: '123',
-      gs1Barcodes: [],
+      barcodes: [],
       children: [
         {
           type: EntityType.Brand,
           code: '456',
           name: '456',
           description: '456',
-          gs1Barcodes: [],
+          barcodes: [],
           children: [
             {
               type: EntityType.Strength,
               code: '789',
               name: '789',
               description: '789',
-              gs1Barcodes: [],
+              barcodes: [],
             },
           ],
         },
@@ -69,7 +69,7 @@ describe('getPackSizeCodes', () => {
       code: '123',
       name: '123',
       description: '123',
-      gs1Barcodes: [],
+      barcodes: [],
     };
 
     expect(getPackSizeCodes(entity)).toEqual(['123']);
@@ -81,21 +81,21 @@ describe('getPackSizeCodes', () => {
       code: '123',
       name: '123',
       description: '123',
-      gs1Barcodes: [],
+      barcodes: [],
       children: [
         {
           type: EntityType.PackSize,
           code: '456',
           name: '456',
           description: '456',
-          gs1Barcodes: [],
+          barcodes: [],
         },
         {
           type: EntityType.PackSize,
           code: '789',
           name: '789',
           description: '789',
-          gs1Barcodes: [],
+          barcodes: [],
         },
       ],
     };
@@ -111,7 +111,7 @@ describe('getGS1Barcodes', () => {
       code: '123',
       name: '123',
       description: '123',
-      gs1Barcodes: [],
+      barcodes: [],
     };
 
     expect(getBarcodes(entity)).toEqual([]);
@@ -123,7 +123,7 @@ describe('getGS1Barcodes', () => {
       code: '123',
       name: '123',
       description: '123',
-      gs1Barcodes: [
+      barcodes: [
         { id: '1234567890', gtin: '1234567890', manufacturer: 'X' },
         { id: '0987654321', gtin: '0987654321', manufacturer: 'Y' },
       ],
@@ -141,14 +141,14 @@ describe('getGS1Barcodes', () => {
       code: '123',
       name: '123',
       description: '123',
-      gs1Barcodes: [],
+      barcodes: [],
       children: [
         {
           type: EntityType.PackSize,
           code: '456',
           name: '456',
           description: '456',
-          gs1Barcodes: [
+          barcodes: [
             { id: '1234567890', gtin: '1234567890', manufacturer: 'X' },
             { id: '0987654321', gtin: '0987654321', manufacturer: 'Y' },
           ],
@@ -158,7 +158,7 @@ describe('getGS1Barcodes', () => {
           code: '789',
           name: '789',
           description: '789',
-          gs1Barcodes: [
+          barcodes: [
             { id: '1111111111', gtin: '1111111111', manufacturer: 'X' },
             { id: '2222222222', gtin: '2222222222', manufacturer: 'Y' },
           ],
