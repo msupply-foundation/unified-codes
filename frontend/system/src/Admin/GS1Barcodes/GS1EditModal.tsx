@@ -17,6 +17,7 @@ import React, { useState } from 'react';
 import { useEntities } from '../../Entities/api';
 import { EntityRowFragment } from '../../Entities/api/operations.generated';
 import { useAddGS1 } from './api';
+import { getParentDescription } from './helpers';
 
 type GS1EditModalProps = {
   isOpen: boolean;
@@ -145,11 +146,6 @@ export const GS1EditModal = ({ isOpen, onClose }: GS1EditModalProps) => {
     </Modal>
   );
 };
-const getParentDescription = (description: string, name: string) => {
-  const nameIndex = description.lastIndexOf(name);
-  if (nameIndex === -1) return description;
-  return description.substring(0, nameIndex);
-};
 
 const renderOption: AutocompleteOptionRenderer<EntityRowFragment> = (
   props,
@@ -160,7 +156,7 @@ const renderOption: AutocompleteOptionRenderer<EntityRowFragment> = (
       {option.code}
     </Typography>
     <Typography component="span" width={`calc(100% - 100px)`}>
-      {getParentDescription(option.description, option.name)}
+      {getParentDescription(option)}
       <Typography component="span" fontWeight="bold">
         {option.name}
       </Typography>

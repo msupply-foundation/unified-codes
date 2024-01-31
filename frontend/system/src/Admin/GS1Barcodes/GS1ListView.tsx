@@ -20,12 +20,7 @@ import React from 'react';
 import { useDeleteGS1, useGS1Barcodes } from './api';
 import { Gs1Fragment } from './api/operations.generated';
 import { GS1EditModal } from './GS1EditModal';
-
-const removeName = (description: string, name: string) => {
-  const nameIndex = description.lastIndexOf(name);
-  if (nameIndex === -1) return description;
-  return description.substring(0, nameIndex);
-};
+import { getParentDescription } from './helpers';
 
 const GS1ListViewComponent = () => {
   const t = useTranslation('system');
@@ -47,10 +42,7 @@ const GS1ListViewComponent = () => {
       key: 'entity',
       label: 'label.product',
       Cell: ({ rowData }) => {
-        const description = removeName(
-          rowData.entity.description,
-          rowData.entity.name
-        );
+        const description = getParentDescription(rowData.entity);
         return (
           <Tooltip title={description}>
             <Typography>
