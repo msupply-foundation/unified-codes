@@ -25,3 +25,7 @@ mutation AddGs1($input: AddGS1Input!) {
     ...GS1
   }
 }
+
+mutation DeleteGS1($gtin: String!) {
+  deleteGs1(gtin: $gtin)
+}

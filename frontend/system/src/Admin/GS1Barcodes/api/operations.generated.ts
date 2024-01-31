@@ -17,6 +17,13 @@ export type AddGs1MutationVariables = Types.Exact<{
 
 export type AddGs1Mutation = { __typename?: 'FullMutation', addGs1: { __typename?: 'Gs1Node', id: string, gtin: string, manufacturer: string, entity: { __typename?: 'EntityType', code: string, name: string, description: string } } };
 
+export type DeleteGs1MutationVariables = Types.Exact<{
+  gtin: Types.Scalars['String']['input'];
+}>;
+
+
+export type DeleteGs1Mutation = { __typename?: 'FullMutation', deleteGs1: number };
+
 export const Gs1FragmentDoc = gql`
     fragment GS1 on Gs1Node {
   id
@@ -48,6 +55,11 @@ export const AddGs1Document = gql`
   }
 }
     ${Gs1FragmentDoc}`;
+export const DeleteGs1Document = gql`
+    mutation DeleteGS1($gtin: String!) {
+  deleteGs1(gtin: $gtin)
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -61,6 +73,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     AddGs1(variables: AddGs1MutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AddGs1Mutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<AddGs1Mutation>(AddGs1Document, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AddGs1', 'mutation');
+    },
+    DeleteGS1(variables: DeleteGs1MutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteGs1Mutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DeleteGs1Mutation>(DeleteGs1Document, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteGS1', 'mutation');
     }
   };
 }
