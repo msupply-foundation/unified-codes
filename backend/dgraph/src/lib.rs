@@ -28,8 +28,8 @@ pub mod upsert_entity;
 pub use upsert_entity::*;
 pub mod link_codes;
 pub use link_codes::*;
-pub mod gs1;
-pub use gs1::*;
+pub mod barcode;
+pub use barcode::*;
 
 pub use gql_client::GraphQLError;
 
@@ -76,7 +76,7 @@ pub struct Entity {
     #[serde(default)]
     pub alternative_names: Option<String>,
     #[serde(default)]
-    pub gs1s: Vec<GS1Info>,
+    pub barcodes: Vec<BarcodeInfo>,
     #[serde(default)]
     pub properties: Vec<Property>,
     #[serde(default)]
@@ -96,7 +96,7 @@ pub struct Property {
 }
 
 #[derive(Deserialize, Debug, Clone)]
-pub struct GS1Info {
+pub struct BarcodeInfo {
     pub gtin: String,
     pub manufacturer: String,
 }

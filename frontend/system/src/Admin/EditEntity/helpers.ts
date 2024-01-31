@@ -538,7 +538,7 @@ export const buildEntityDetailsFromPendingChangeBody = (
     name: input.name || '',
     type: input.type || '',
     alternativeNames: input.alternativeNames || [],
-    gs1Barcodes: [],
+    barcodes: [],
     properties:
       input.properties?.map(p => ({
         code: p.code,

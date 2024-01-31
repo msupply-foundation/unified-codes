@@ -6,8 +6,7 @@ import { UserAccountListView } from './Users/ListView';
 import { ConfigurationTabsView } from './Configuration';
 import { DrugInteractionsView } from './Interactions';
 import { PendingChangeDetails, PendingChangesListView } from './PendingChanges';
-import { GS1ListView } from './GS1Barcodes';
-import { GS1ListForEntityView } from './GS1Barcodes/GS1ListForEntityView';
+import { BarcodeListView, BarcodeListForEntityView } from './Barcodes';
 
 const AdminService = () => {
   return (
@@ -34,10 +33,10 @@ const AdminService = () => {
         path={`/${AppRoute.PendingChanges}/:id`}
         element={<PendingChangeDetails />}
       />
-      <Route path={`/${AppRoute.GS1Barcodes}`} element={<GS1ListView />} />
+      <Route path={`/${AppRoute.Barcodes}`} element={<BarcodeListView />} />
       <Route
-        path={`/${AppRoute.GS1Barcodes}/:code`}
-        element={<GS1ListForEntityView />}
+        path={`/${AppRoute.Barcodes}/:code`}
+        element={<BarcodeListForEntityView />}
       />
       <Route
         path="*"

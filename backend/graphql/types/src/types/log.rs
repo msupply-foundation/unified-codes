@@ -28,8 +28,8 @@ pub enum LogNodeType {
     UniversalCodeChangeApproved,
     UniversalCodeChangeRejected,
     UniversalCodeChangeRequested,
-    GS1Created,
-    GS1Deleted,
+    BarcodeCreated,
+    BarcodeDeleted,
     ConfigurationItemCreated,
     ConfigurationItemDeleted,
     PropertyConfigurationItemUpserted,
@@ -99,8 +99,8 @@ impl LogNodeType {
             LogType::PropertyConfigurationItemUpserted => {
                 LogNodeType::PropertyConfigurationItemUpserted
             }
-            LogType::GS1Created => LogNodeType::GS1Created,
-            LogType::GS1Deleted => LogNodeType::GS1Deleted,
+            LogType::BarcodeCreated => LogNodeType::BarcodeCreated,
+            LogType::BarcodeDeleted => LogNodeType::BarcodeDeleted,
             LogType::InteractionGroupUpserted => LogNodeType::InteractionGroupUpserted,
             LogType::InteractionGroupDeleted => LogNodeType::InteractionGroupDeleted,
         }
@@ -124,8 +124,8 @@ impl LogNodeType {
             LogNodeType::PropertyConfigurationItemUpserted => {
                 LogType::PropertyConfigurationItemUpserted
             }
-            LogNodeType::GS1Created => LogType::GS1Created,
-            LogNodeType::GS1Deleted => LogType::GS1Deleted,
+            LogNodeType::BarcodeCreated => LogType::BarcodeCreated,
+            LogNodeType::BarcodeDeleted => LogType::BarcodeDeleted,
             LogNodeType::InteractionGroupUpserted => LogType::InteractionGroupUpserted,
             LogNodeType::InteractionGroupDeleted => LogType::InteractionGroupDeleted,
         }

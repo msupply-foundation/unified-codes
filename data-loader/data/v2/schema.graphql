@@ -17,7 +17,7 @@ type Entity {
   properties: [Property] @dgraph(pred: "properties")
   children: [Entity] @dgraph(pred: "children")
   parents: [Entity] @dgraph(pred: "~children")
-  gs1s: [GS1] @dgraph(pred: "gs1s") @hasInverse(field: entity)
+  barcodes: [Barcode] @dgraph(pred: "barcodes") @hasInverse(field: entity)
   interaction_groups: [DrugInteractionGroup]
     @dgraph(pred: "interaction_groups")
     @hasInverse(field: drugs)
@@ -75,7 +75,7 @@ type PropertyConfigurationItem {
   url: String @dgraph(pred: "url")
 }
 
-type GS1 {
+type Barcode {
   id: ID!
   gtin: String! @id @dgraph(pred: "code") @search(by: [exact, trigram])
   manufacturer: String! @dgraph(pred: "manufacturer")

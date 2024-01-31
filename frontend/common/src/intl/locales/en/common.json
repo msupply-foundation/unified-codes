@@ -89,7 +89,7 @@
   "label.expand-all": "Expand all",
   "label.expiry": "Expiry",
   "label.event": "Event",
-  "label.gtin": "GTIN",
+  "label.gtin": "Barcode/GTIN",
   "label.hours": "Hours",
   "label.hours_one": "Hour",
   "label.hours_other": "Hours",

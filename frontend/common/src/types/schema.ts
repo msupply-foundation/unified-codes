@@ -27,15 +27,15 @@ export type AccessDenied = LogoutErrorInterface & {
   fullError: Scalars['String']['output'];
 };
 
-export type AddConfigurationItemInput = {
-  name: Scalars['String']['input'];
-  type: ConfigurationItemTypeInput;
-};
-
-export type AddGs1Input = {
+export type AddBarcodeInput = {
   entityCode: Scalars['String']['input'];
   gtin: Scalars['String']['input'];
   manufacturer: Scalars['String']['input'];
+};
+
+export type AddConfigurationItemInput = {
+  name: Scalars['String']['input'];
+  type: ConfigurationItemTypeInput;
 };
 
 export type AlternativeNameInput = {
@@ -66,6 +66,31 @@ export type AuthTokenErrorInterface = {
 };
 
 export type AuthTokenResponse = AuthToken | AuthTokenError;
+
+export type BarcodeCollectionConnector = {
+  __typename: 'BarcodeCollectionConnector';
+  data: Array<BarcodeNode>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type BarcodeCollectionResponse = BarcodeCollectionConnector;
+
+export type BarcodeNode = {
+  __typename: 'BarcodeNode';
+  entity: EntityType;
+  gtin: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  manufacturer: Scalars['String']['output'];
+};
+
+export type BarcodeResponse = BarcodeNode;
+
+export type BarcodeType = {
+  __typename: 'BarcodeType';
+  gtin: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  manufacturer: Scalars['String']['output'];
+};
 
 export enum ChangeStatusNode {
   Approved = 'APPROVED',
@@ -173,10 +198,10 @@ export type EntitySortInput = {
 export type EntityType = {
   __typename: 'EntityType';
   alternativeNames: Array<AlternativeNameType>;
+  barcodes: Array<BarcodeType>;
   children: Array<EntityType>;
   code: Scalars['String']['output'];
   description: Scalars['String']['output'];
-  gs1Barcodes: Array<Gs1Type>;
   interactions?: Maybe<Array<DrugInteractionType>>;
   name: Scalars['String']['output'];
   parents: Array<EntityType>;
@@ -202,13 +227,13 @@ export type FullMutation = {
   __typename: 'FullMutation';
   /** Updates user account based on a token and their information (Response to initiate_user_invite) */
   acceptUserInvite: InviteUserResponse;
+  addBarcode: BarcodeResponse;
   addConfigurationItem: Scalars['Int']['output'];
-  addGs1: Gs1Response;
   approvePendingChange: UpsertEntityResponse;
   createUserAccount: CreateUserAccountResponse;
+  deleteBarcode: Scalars['Int']['output'];
   deleteConfigurationItem: Scalars['Int']['output'];
   deleteDrugInteractionGroup: Scalars['Int']['output'];
-  deleteGs1: Scalars['Int']['output'];
   deleteUserAccount: DeleteUserAccountResponse;
   /**
    * Initiates the password reset flow for a user based on email address
@@ -236,13 +261,13 @@ export type FullMutationAcceptUserInviteArgs = {
 };
 
 
-export type FullMutationAddConfigurationItemArgs = {
-  input: AddConfigurationItemInput;
+export type FullMutationAddBarcodeArgs = {
+  input: AddBarcodeInput;
 };
 
 
-export type FullMutationAddGs1Args = {
-  input: AddGs1Input;
+export type FullMutationAddConfigurationItemArgs = {
+  input: AddConfigurationItemInput;
 };
 
 
@@ -257,6 +282,11 @@ export type FullMutationCreateUserAccountArgs = {
 };
 
 
+export type FullMutationDeleteBarcodeArgs = {
+  gtin: Scalars['String']['input'];
+};
+
+
 export type FullMutationDeleteConfigurationItemArgs = {
   code: Scalars['String']['input'];
 };
@@ -264,11 +294,6 @@ export type FullMutationDeleteConfigurationItemArgs = {
 
 export type FullMutationDeleteDrugInteractionGroupArgs = {
   code: Scalars['String']['input'];
-};
-
-
-export type FullMutationDeleteGs1Args = {
-  gtin: Scalars['String']['input'];
 };
 
 
@@ -338,13 +363,13 @@ export type FullQuery = {
    * The refresh token is returned as a cookie
    */
   authToken: AuthTokenResponse;
+  /** Get all barcodes */
+  barcodes: BarcodeCollectionResponse;
   /** Get the configuration items for a given type. */
   configurationItems: ConfigurationItemsResponse;
   entities: EntityCollectionType;
   /** Query "universal codes" entry by code */
   entity?: Maybe<EntityType>;
-  /** Get all GS1s */
-  gs1Barcodes: Gs1CollectionResponse;
   logout: LogoutResponse;
   logs: LogResponse;
   me: UserResponse;
@@ -369,6 +394,12 @@ export type FullQueryAuthTokenArgs = {
 };
 
 
+export type FullQueryBarcodesArgs = {
+  first?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
 export type FullQueryConfigurationItemsArgs = {
   type: ConfigurationItemTypeInput;
 };
@@ -383,12 +414,6 @@ export type FullQueryEntitiesArgs = {
 
 export type FullQueryEntityArgs = {
   code: Scalars['String']['input'];
-};
-
-
-export type FullQueryGs1BarcodesArgs = {
-  first?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -419,31 +444,6 @@ export type FullQueryUserAccountsArgs = {
   filter?: InputMaybe<UserAccountFilterInput>;
   page?: InputMaybe<PaginationInput>;
   sort?: InputMaybe<Array<UserAccountSortInput>>;
-};
-
-export type Gs1CollectionConnector = {
-  __typename: 'Gs1CollectionConnector';
-  data: Array<Gs1Node>;
-  totalCount: Scalars['Int']['output'];
-};
-
-export type Gs1CollectionResponse = Gs1CollectionConnector;
-
-export type Gs1Node = {
-  __typename: 'Gs1Node';
-  entity: EntityType;
-  gtin: Scalars['String']['output'];
-  id: Scalars['String']['output'];
-  manufacturer: Scalars['String']['output'];
-};
-
-export type Gs1Response = Gs1Node;
-
-export type Gs1Type = {
-  __typename: 'Gs1Type';
-  gtin: Scalars['String']['output'];
-  id: Scalars['String']['output'];
-  manufacturer: Scalars['String']['output'];
 };
 
 export type IdResponse = {
@@ -504,10 +504,10 @@ export type LogNode = {
 };
 
 export enum LogNodeType {
+  BarcodeCreated = 'BARCODE_CREATED',
+  BarcodeDeleted = 'BARCODE_DELETED',
   ConfigurationItemCreated = 'CONFIGURATION_ITEM_CREATED',
   ConfigurationItemDeleted = 'CONFIGURATION_ITEM_DELETED',
-  Gs1Created = 'GS1_CREATED',
-  Gs1Deleted = 'GS1_DELETED',
   InteractionGroupDeleted = 'INTERACTION_GROUP_DELETED',
   InteractionGroupUpserted = 'INTERACTION_GROUP_UPSERTED',
   PropertyConfigurationItemUpserted = 'PROPERTY_CONFIGURATION_ITEM_UPSERTED',

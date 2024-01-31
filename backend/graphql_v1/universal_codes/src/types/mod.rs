@@ -10,5 +10,5 @@ mod entity_search_input;
 pub use entity_search_input::*;
 mod entity_sort;
 pub use entity_sort::*;
-mod gs1;
-pub use gs1::*;
+mod barcode;
+pub use barcode::*;

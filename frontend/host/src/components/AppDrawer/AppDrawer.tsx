@@ -207,7 +207,7 @@ export const AppDrawer: React.FC = () => {
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)
-                .addPart(AppRoute.GS1Barcodes)
+                .addPart(AppRoute.Barcodes)
                 .build()}
               icon={<BarcodeIcon fontSize="small" color="primary" />}
               text={t('barcodes')}

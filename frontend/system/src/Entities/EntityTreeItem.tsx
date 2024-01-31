@@ -7,7 +7,7 @@ import { TreeItem } from '@mui/lab';
 import { usePropertyConfigurationItems } from '../Admin/Configuration/api/hooks/usePropertyConfigurationItems';
 import { EntityType } from '../constants';
 import { EntityData } from './EntityData';
-import { GS1Link } from './GS1Link';
+import { BarcodeLink } from './BarcodeLink';
 
 export const EntityTreeItem = ({
   entity,
@@ -91,7 +91,7 @@ export const EntityTreeItem = ({
             )}
           </Typography>
 
-          <GS1Link entity={entity} />
+          <BarcodeLink entity={entity} />
         </Box>
       }
     >
