@@ -62,7 +62,14 @@ export const buildDrugInputFromEntity = (entity: EntityDetails): DrugInput => {
                                 )
                                 .map(immPack => ({
                                   ...getDetails(immPack),
-                                  packSizes: [], // to bring in later
+                                  packSizes:
+                                    immPack.children
+                                      ?.filter(
+                                        packSize =>
+                                          packSize.type === EntityType.PackSize
+                                      )
+                                      .map(packSize => getDetails(packSize)) ||
+                                    [],
                                 })) || [],
                           })) || [],
                     })) || [],
@@ -531,6 +538,7 @@ export const buildEntityDetailsFromPendingChangeBody = (
     name: input.name || '',
     type: input.type || '',
     alternativeNames: input.alternativeNames || [],
+    gs1Barcodes: [],
     properties:
       input.properties?.map(p => ({
         code: p.code,
