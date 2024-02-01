@@ -7,11 +7,11 @@ use crate::{
 };
 use chrono::Utc;
 use dgraph::{
-    insert_interaction_group::{insert_interaction_group, DrugCode, InteractionGroupInput},
+    insert_interaction_group::{insert_interaction_group, InteractionGroupInput},
     interaction_group::interaction_group_by_id,
     interaction_groups::{interaction_groups, InteractionGroupFilter},
     update_interaction_group::{update_interaction_group, InteractionGroupUpdateInput},
-    InteractionGroup,
+    DrugCode, InteractionGroup,
 };
 use repository::LogType;
 

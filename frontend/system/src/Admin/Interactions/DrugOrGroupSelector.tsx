@@ -3,7 +3,6 @@ import { EntityRowFragment } from '../../Entities/api';
 import { InteractionGroupFragment } from './api/operations.generated';
 import { Autocomplete, Grid, Typography } from '@common/ui';
 import { useTranslation } from '@common/intl';
-import { set } from 'lodash';
 
 type DrugOrGroupSelectorProps = {
   drugs: EntityRowFragment[];

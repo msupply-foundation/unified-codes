@@ -1,12 +1,7 @@
 use gql_client::GraphQLError;
 use serde::Serialize;
 
-use crate::{DgraphClient, UpsertResponse, UpsertResponseData};
-
-#[derive(Serialize, Debug, Clone)]
-pub struct DrugCode {
-    pub code: String,
-}
+use crate::{DgraphClient, DrugCode, UpsertResponse, UpsertResponseData};
 
 #[derive(Serialize, Debug, Clone)]
 pub struct InteractionGroupInput {
@@ -60,6 +55,7 @@ mod tests {
     use crate::delete_interaction_group::delete_interaction_group;
     use crate::interaction_groups::interaction_groups;
     use crate::interaction_groups::InteractionGroupFilter;
+    use crate::DrugCode;
 
     use super::*;
 

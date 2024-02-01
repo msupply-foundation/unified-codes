@@ -41,8 +41,9 @@ mutation DeleteConfigurationInput($group_id: String) {
 mod tests {
     use util::uuid::uuid;
 
-    use crate::insert_interaction_group::{
-        insert_interaction_group, DrugCode, InteractionGroupInput,
+    use crate::{
+        insert_interaction_group::{insert_interaction_group, InteractionGroupInput},
+        DrugCode,
     };
 
     use super::*;

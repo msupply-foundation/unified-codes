@@ -19,7 +19,7 @@ pub async fn upsert_drug_interaction_group(
     let user = validate_auth(
         ctx,
         &ResourceAccessRequest {
-            resource: Resource::MutateUniversalCodes,
+            resource: Resource::MutateDrugInteractions,
         },
     )?;
 

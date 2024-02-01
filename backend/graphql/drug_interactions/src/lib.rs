@@ -19,14 +19,7 @@ impl DrugInteractionQueries {
         &self,
         ctx: &Context<'_>,
     ) -> Result<DrugInteractionGroupsResponse> {
-        let user = validate_auth(
-            ctx,
-            &ResourceAccessRequest {
-                resource: Resource::MutateUniversalCodes,
-            },
-        )?;
-
-        let service_context = ctx.service_context(Some(&user))?;
+        let service_context = ctx.service_context(None)?;
 
         let result = service_context
             .service_provider
