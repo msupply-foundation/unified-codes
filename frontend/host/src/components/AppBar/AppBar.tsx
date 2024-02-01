@@ -82,6 +82,15 @@ const NavLinks = () => {
       </Link>
       |
       <Link
+        to={RouteBuilder.create(AppRoute.Browse)
+          .addPart(AppRoute.Barcodes)
+          .build()}
+        style={{ color: 'black' }}
+      >
+        {t('label.barcodes')}
+      </Link>
+      |
+      <Link
         to={RouteBuilder.create(AppRoute.About).build()}
         style={{ color: 'black' }}
       >
