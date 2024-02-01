@@ -12,52 +12,18 @@ import { ModalMode, useDialog } from '@common/hooks';
 import { CheckIcon } from '@common/icons';
 import { useTranslation } from '@common/intl';
 import { Grid } from '@common/ui';
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { useUuid } from '../../hooks';
 import { useEntities } from '../../Entities/api';
 import { useAllDrugInteractionGroups } from './api';
-import { useTheme } from '@common/styles';
 import { DrugOrGroupSelector } from './DrugOrGroupSelector';
-
-// TODO: Use real type from api
-enum InteractionSeverity {
-  LOW = 'LOW',
-  MEDIUM = 'MEDIUM',
-  HIGH = 'HIGH',
-}
-
-/*
-type DrugInteraction {
-  id: ID!
-  interaction_id: String!
-    @id
-    @dgraph(pred: "interaction_id")
-    @search(by: [exact])
-  name: String! @dgraph(pred: "name") @search(by: [exact, fulltext, trigram])
-  severity: DrugInteractionSeverity! @search(by: [exact])
-  description: String @dgraph(pred: "description")
-  action: String @dgraph(pred: "action")
-  reference: String @dgraph(pred: "reference")
-  groups: [DrugInteractionGroup]
-    @dgraph(pred: "groups")
-    @hasInverse(field: interactions)
-  drugs: [Entity] @dgraph(pred: "drugs")
-}
-*/
-// TODO: Use real type from api
-type InteractionFragment = {
-  id: string;
-  name: string;
-  severity: InteractionSeverity;
-  description: string;
-  action: string;
-  reference: string;
-};
+import { DrugInteractionSeverityNode } from '@common/types';
+import { DrugInteractionFragment } from './api/operations.generated';
 
 type InteractionEditModalProps = {
   isOpen: boolean;
   mode: ModalMode | null;
-  interaction: InteractionFragment | null;
+  interaction: DrugInteractionFragment | null;
   onClose: () => void;
 };
 
@@ -70,13 +36,18 @@ export const InteractionEditModal = ({
   const t = useTranslation('system');
   const uuid = useUuid();
 
-  const [draft, setDraft] = useState<InteractionFragment>({
+  const [draft, setDraft] = useState<DrugInteractionFragment>({
     id: interaction?.id ?? uuid(),
     name: interaction?.name ?? '',
-    severity: interaction?.severity ?? InteractionSeverity.LOW,
+    severity:
+      interaction?.severity ?? DrugInteractionSeverityNode.NothingExpected,
     description: interaction?.description ?? '',
     action: interaction?.action ?? '',
     reference: interaction?.reference ?? '',
+    drug1: interaction?.drug1,
+    drug2: interaction?.drug2,
+    group1: interaction?.group1,
+    group2: interaction?.group2,
   });
 
   const { data: drugs, isLoading: drugListLoading } = useEntities({
@@ -143,7 +114,7 @@ export const InteractionEditModal = ({
           <DrugOrGroupSelector
             drugs={drugs?.data ?? []}
             groups={groups ?? []}
-            initialSelectedId={''} //TODO
+            initialSelectedId={draft.group1?.id ?? draft.drug1?.code}
             setSelection={function (input: {
               drugId?: string | undefined;
               groupId?: string | undefined;
@@ -161,7 +132,7 @@ export const InteractionEditModal = ({
           <DrugOrGroupSelector
             drugs={drugs?.data ?? []}
             groups={groups ?? []}
-            initialSelectedId={''} // todo
+            initialSelectedId={draft.group2?.id ?? draft.drug2?.code}
             setSelection={function (input: {
               drugId?: string | undefined;
               groupId?: string | undefined;
@@ -175,16 +146,18 @@ export const InteractionEditModal = ({
           <Select
             label={t('label.severity')}
             required
-            value={draft?.severity ?? InteractionSeverity.LOW}
-            options={Object.values(InteractionSeverity).map(severity => ({
-              id: severity,
-              label: severity,
-              value: severity,
-            }))}
+            value={draft?.severity ?? DrugInteractionSeverityNode.Unknown}
+            options={Object.values(DrugInteractionSeverityNode).map(
+              severity => ({
+                id: severity,
+                label: severity,
+                value: severity,
+              })
+            )}
             onChange={e =>
               setDraft({
                 ...draft,
-                severity: e.target.value as InteractionSeverity,
+                severity: e.target.value as DrugInteractionSeverityNode,
               })
             }
             fullWidth
