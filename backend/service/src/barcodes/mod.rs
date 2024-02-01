@@ -17,6 +17,7 @@ pub enum ModifyBarcodeError {
     BarcodeDoesNotExist,
     BarcodeAlreadyExists,
     UniversalCodeDoesNotExist,
+    BadUserInput(String),
     InternalError(String),
     DatabaseError(RepositoryError),
     DgraphError(GraphQLError),

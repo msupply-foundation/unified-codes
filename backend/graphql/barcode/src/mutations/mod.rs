@@ -17,6 +17,7 @@ pub fn map_modify_barcode_error(error: ModifyBarcodeError) -> Result<BarcodeResp
         ModifyBarcodeError::BarcodeAlreadyExists => BadUserInput(formatted_error),
         ModifyBarcodeError::BarcodeDoesNotExist => BadUserInput(formatted_error),
         ModifyBarcodeError::UniversalCodeDoesNotExist => BadUserInput(formatted_error),
+        ModifyBarcodeError::BadUserInput(message) => BadUserInput(message),
         ModifyBarcodeError::InternalError(message) => InternalError(message),
         ModifyBarcodeError::DatabaseError(_) => InternalError(formatted_error),
         ModifyBarcodeError::DgraphError(gql_error) => {

@@ -82,19 +82,19 @@ pub async fn validate(
     new_barcode: &AddBarcode,
 ) -> Result<(), ModifyBarcodeError> {
     if new_barcode.gtin.is_empty() {
-        return Err(ModifyBarcodeError::InternalError(
+        return Err(ModifyBarcodeError::BadUserInput(
             "GTIN is required".to_string(),
         ));
     }
 
     if new_barcode.manufacturer.is_empty() {
-        return Err(ModifyBarcodeError::InternalError(
+        return Err(ModifyBarcodeError::BadUserInput(
             "Manufacturer is required".to_string(),
         ));
     }
 
     if new_barcode.entity_code.is_empty() {
-        return Err(ModifyBarcodeError::InternalError(
+        return Err(ModifyBarcodeError::BadUserInput(
             "Entity code is required".to_string(),
         ));
     }
