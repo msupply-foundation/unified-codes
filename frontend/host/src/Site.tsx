@@ -92,7 +92,7 @@ export const Site: FC = () => {
                   />
                 }
               />
-              <Route path={'/detail/:code'} element={<RedirectDetails />} />
+              <Route path={'/details/:code'} element={<RedirectDetails />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Box>
