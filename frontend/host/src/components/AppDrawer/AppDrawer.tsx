@@ -206,7 +206,7 @@ export const AppDrawer: React.FC = () => {
               text={t('pending-changes')}
             />
             <AppNavLink
-              to={RouteBuilder.create(AppRoute.Admin)
+              to={RouteBuilder.create(AppRoute.Browse)
                 .addPart(AppRoute.Barcodes)
                 .build()}
               icon={<BarcodeIcon fontSize="small" color="primary" />}

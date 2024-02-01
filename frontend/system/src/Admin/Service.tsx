@@ -6,7 +6,6 @@ import { UserAccountListView } from './Users/ListView';
 import { ConfigurationTabsView } from './Configuration';
 import { DrugInteractionsView } from './Interactions';
 import { PendingChangeDetails, PendingChangesListView } from './PendingChanges';
-import { BarcodeListView, BarcodeListForEntityView } from './Barcodes';
 
 const AdminService = () => {
   return (
@@ -32,11 +31,6 @@ const AdminService = () => {
       <Route
         path={`/${AppRoute.PendingChanges}/:id`}
         element={<PendingChangeDetails />}
-      />
-      <Route path={`/${AppRoute.Barcodes}`} element={<BarcodeListView />} />
-      <Route
-        path={`/${AppRoute.Barcodes}/:code`}
-        element={<BarcodeListForEntityView />}
       />
       <Route
         path="*"
