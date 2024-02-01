@@ -24,6 +24,9 @@ query barcodes($first: Int, $offset: Int) {
         code
     }
   }
+  aggregates: aggregateBarcode {
+    count
+  }
 }
 "#;
     let data = client

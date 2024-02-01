@@ -9,7 +9,6 @@ use dgraph::{
     Barcode, DgraphClient, GraphQLError,
 };
 use repository::RepositoryError;
-use util::usize_to_u32;
 
 use crate::{service_provider::ServiceProvider, settings::Settings};
 
@@ -92,8 +91,8 @@ impl BarcodeService {
 
         match result {
             Some(data) => Ok(BarcodeCollection {
-                total_length: usize_to_u32(data.data.len()),
                 data: data.data,
+                total_length: data.aggregates.unwrap_or_default().count,
             }),
             None => Ok(BarcodeCollection {
                 data: vec![],

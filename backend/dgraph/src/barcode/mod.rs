@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-use crate::Entity;
+use crate::{AggregateResult, Entity};
 
 pub mod barcode;
 pub mod barcodes;
@@ -17,4 +17,6 @@ pub struct Barcode {
 #[derive(Deserialize, Debug, Clone)]
 pub struct BarcodeData {
     pub data: Vec<Barcode>,
+    #[serde(default)]
+    pub aggregates: Option<AggregateResult>,
 }
