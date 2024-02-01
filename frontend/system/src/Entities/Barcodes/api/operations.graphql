@@ -1,0 +1,55 @@
+fragment Barcode on BarcodeNode {
+  id
+  gtin
+  manufacturer
+  entity {
+    code
+    name
+    description
+  }
+}
+
+query Barcodes($first: Int, $offset: Int) {
+  barcodes(first: $first, offset: $offset) {
+    ... on BarcodeCollectionConnector {
+      data {
+        ...Barcode
+      }
+      totalCount
+    }
+  }
+}
+
+mutation AddBarcode($input: AddBarcodeInput!) {
+  addBarcode(input: $input) {
+    ...Barcode
+  }
+}
+
+mutation DeleteBarcode($gtin: String!) {
+  deleteBarcode(gtin: $gtin)
+}
+
+fragment EntityWithBarcodes on EntityType {
+  code
+  name
+  description
+  type
+  barcodes {
+    id
+    gtin
+    manufacturer
+  }
+}
+
+query entityWithBarcodes($code: String!) {
+  entity(code: $code) {
+    ...EntityWithBarcodes
+    children {
+      ...EntityWithBarcodes
+      children {
+        ...EntityWithBarcodes
+      }
+    }
+  }
+}

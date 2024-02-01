@@ -14,6 +14,7 @@ export enum AppRoute {
   Interactions = 'interactions',
   Edit = 'edit',
   PendingChanges = 'pending-changes',
+  Barcodes = 'barcodes',
 
   Settings = 'settings',
   Logout = 'logout',

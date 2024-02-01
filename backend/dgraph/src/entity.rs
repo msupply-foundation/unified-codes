@@ -18,6 +18,10 @@ pub async fn entity_by_code(
   name
   description
   alternative_names
+  barcodes {
+    gtin
+    manufacturer
+  }
   type
   __typename
   properties {
@@ -87,6 +91,10 @@ pub async fn entity_with_parents_by_code(
   code
   name
   description
+  barcodes {
+    gtin
+    manufacturer
+  }
   alternative_names
   type
   __typename

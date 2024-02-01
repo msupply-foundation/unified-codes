@@ -34,6 +34,7 @@ export type AutocompleteListProps<T> = {
   disableClearable?: boolean;
   getOptionDisabled?: (option: T) => boolean;
   open?: boolean;
+  openOnFocus?: boolean;
 };
 
 export const AutocompleteList = <T,>({
@@ -59,6 +60,7 @@ export const AutocompleteList = <T,>({
   disableClearable,
   getOptionDisabled,
   open = true,
+  openOnFocus,
 }: AutocompleteListProps<T>): JSX.Element => {
   const createdFilterOptions = createFilterOptions(filterOptionConfig);
   const optionRenderer = optionKey
@@ -72,6 +74,8 @@ export const AutocompleteList = <T,>({
   } else {
     mappedOptions = options;
   }
+
+  const openProp = !openOnFocus ? open : undefined;
 
   return (
     <MuiAutocomplete
@@ -96,7 +100,7 @@ export const AutocompleteList = <T,>({
         renderInput || (props => <BasicTextInput {...props} autoFocus />)
       }
       filterOptions={filterOptions ?? createdFilterOptions}
-      open={open}
+      open={openProp}
       forcePopupIcon={false}
       options={mappedOptions}
       renderOption={optionRenderer}
@@ -116,6 +120,7 @@ export const AutocompleteList = <T,>({
       clearText={clearText}
       value={value}
       getOptionDisabled={getOptionDisabled}
+      openOnFocus={openOnFocus}
     />
   );
 };

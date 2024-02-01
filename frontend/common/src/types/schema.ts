@@ -27,6 +27,12 @@ export type AccessDenied = LogoutErrorInterface & {
   fullError: Scalars['String']['output'];
 };
 
+export type AddBarcodeInput = {
+  entityCode: Scalars['String']['input'];
+  gtin: Scalars['String']['input'];
+  manufacturer: Scalars['String']['input'];
+};
+
 export type AddConfigurationItemInput = {
   name: Scalars['String']['input'];
   type: ConfigurationItemTypeInput;
@@ -60,6 +66,31 @@ export type AuthTokenErrorInterface = {
 };
 
 export type AuthTokenResponse = AuthToken | AuthTokenError;
+
+export type BarcodeCollectionConnector = {
+  __typename: 'BarcodeCollectionConnector';
+  data: Array<BarcodeNode>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type BarcodeCollectionResponse = BarcodeCollectionConnector;
+
+export type BarcodeNode = {
+  __typename: 'BarcodeNode';
+  entity: EntityType;
+  gtin: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  manufacturer: Scalars['String']['output'];
+};
+
+export type BarcodeResponse = BarcodeNode;
+
+export type BarcodeType = {
+  __typename: 'BarcodeType';
+  gtin: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  manufacturer: Scalars['String']['output'];
+};
 
 export enum ChangeStatusNode {
   Approved = 'APPROVED',
@@ -167,6 +198,7 @@ export type EntitySortInput = {
 export type EntityType = {
   __typename: 'EntityType';
   alternativeNames: Array<AlternativeNameType>;
+  barcodes: Array<BarcodeType>;
   children: Array<EntityType>;
   code: Scalars['String']['output'];
   description: Scalars['String']['output'];
@@ -195,9 +227,11 @@ export type FullMutation = {
   __typename: 'FullMutation';
   /** Updates user account based on a token and their information (Response to initiate_user_invite) */
   acceptUserInvite: InviteUserResponse;
+  addBarcode: BarcodeResponse;
   addConfigurationItem: Scalars['Int']['output'];
   approvePendingChange: UpsertEntityResponse;
   createUserAccount: CreateUserAccountResponse;
+  deleteBarcode: Scalars['Int']['output'];
   deleteConfigurationItem: Scalars['Int']['output'];
   deleteDrugInteractionGroup: Scalars['Int']['output'];
   deleteUserAccount: DeleteUserAccountResponse;
@@ -227,6 +261,11 @@ export type FullMutationAcceptUserInviteArgs = {
 };
 
 
+export type FullMutationAddBarcodeArgs = {
+  input: AddBarcodeInput;
+};
+
+
 export type FullMutationAddConfigurationItemArgs = {
   input: AddConfigurationItemInput;
 };
@@ -240,6 +279,11 @@ export type FullMutationApprovePendingChangeArgs = {
 
 export type FullMutationCreateUserAccountArgs = {
   input: CreateUserAccountInput;
+};
+
+
+export type FullMutationDeleteBarcodeArgs = {
+  gtin: Scalars['String']['input'];
 };
 
 
@@ -319,6 +363,8 @@ export type FullQuery = {
    * The refresh token is returned as a cookie
    */
   authToken: AuthTokenResponse;
+  /** Get all barcodes */
+  barcodes: BarcodeCollectionResponse;
   /** Get the configuration items for a given type. */
   configurationItems: ConfigurationItemsResponse;
   entities: EntityCollectionType;
@@ -345,6 +391,12 @@ export type FullQuery = {
 export type FullQueryAuthTokenArgs = {
   password: Scalars['String']['input'];
   username: Scalars['String']['input'];
+};
+
+
+export type FullQueryBarcodesArgs = {
+  first?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -452,10 +504,12 @@ export type LogNode = {
 };
 
 export enum LogNodeType {
+  BarcodeCreated = 'BARCODE_CREATED',
+  BarcodeDeleted = 'BARCODE_DELETED',
   ConfigurationItemCreated = 'CONFIGURATION_ITEM_CREATED',
   ConfigurationItemDeleted = 'CONFIGURATION_ITEM_DELETED',
-  InteractionGroupCreated = 'INTERACTION_GROUP_CREATED',
   InteractionGroupDeleted = 'INTERACTION_GROUP_DELETED',
+  InteractionGroupUpserted = 'INTERACTION_GROUP_UPSERTED',
   PropertyConfigurationItemUpserted = 'PROPERTY_CONFIGURATION_ITEM_UPSERTED',
   UniversalCodeChangeApproved = 'UNIVERSAL_CODE_CHANGE_APPROVED',
   UniversalCodeChangeRejected = 'UNIVERSAL_CODE_CHANGE_REJECTED',

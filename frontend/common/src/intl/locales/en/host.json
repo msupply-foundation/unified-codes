@@ -10,6 +10,7 @@
   "auth.timeout-message": "You have been logged out of your session due to inactivity. Click OK to return to the login screen.",
   "auth.timeout-title": "Session Timed Out",
   "auth.unauthenticated-message": "You are not currently logged in. Click OK to return to the login screen.",
+  "barcodes": "Barcodes",
   "browse": "Browse",
   "button.activate-account": "Activate Account",
   "button.close-the-menu": "Close the menu",

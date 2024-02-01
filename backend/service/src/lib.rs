@@ -4,6 +4,7 @@ use repository::{Pagination, PaginationOption, DEFAULT_PAGINATION_LIMIT};
 pub mod audit_log;
 pub mod auth;
 pub mod auth_data;
+pub mod barcodes;
 pub mod configuration;
 pub mod drug_interactions;
 pub mod email;
