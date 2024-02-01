@@ -4,16 +4,19 @@ use std::{
 };
 
 use dgraph::{
-    interaction_groups::interaction_groups, DgraphClient, GraphQLError, InteractionGroup,
+    interaction_groups::interaction_groups, interactions::interactions, DgraphClient,
+    DrugInteraction, GraphQLError, InteractionGroup,
 };
 use repository::RepositoryError;
 use util::usize_to_u32;
 
 use crate::{service_provider::ServiceProvider, settings::Settings};
 
-pub mod delete;
+pub mod delete_group;
+pub mod delete_interaction;
 mod tests;
-pub mod upsert;
+pub mod upsert_group;
+pub mod upsert_interaction;
 
 pub struct DrugInteractionService {
     client: DgraphClient,
@@ -62,6 +65,11 @@ pub struct InteractionGroupCollection {
     pub total_length: u32,
 }
 
+pub struct DrugInteractionCollection {
+    pub data: Vec<DrugInteraction>,
+    pub total_length: u32,
+}
+
 impl DrugInteractionService {
     pub fn new(settings: Settings) -> Self {
         let url = format!(
@@ -94,13 +102,32 @@ impl DrugInteractionService {
         }
     }
 
+    pub async fn all_drug_interactions(
+        &self,
+    ) -> Result<DrugInteractionCollection, DrugInteractionServiceError> {
+        let result = interactions(&self.client, None)
+            .await
+            .map_err(|e| DrugInteractionServiceError::InternalError(e.message().to_string()))?;
+
+        match result {
+            Some(data) => Ok(DrugInteractionCollection {
+                total_length: usize_to_u32(data.data.len()),
+                data: data.data,
+            }),
+            None => Ok(DrugInteractionCollection {
+                data: vec![],
+                total_length: 0,
+            }),
+        }
+    }
+
     pub async fn upsert_drug_interaction_group(
         &self,
         sp: Arc<ServiceProvider>,
         user_id: String,
-        item: upsert::UpsertDrugInteractionGroup,
+        item: upsert_group::UpsertDrugInteractionGroup,
     ) -> Result<u32, ModifyDrugInteractionError> {
-        upsert::upsert_drug_interaction_group(sp, user_id, self.client.clone(), item).await
+        upsert_group::upsert_drug_interaction_group(sp, user_id, self.client.clone(), item).await
     }
 
     pub async fn delete_drug_interaction_group(
@@ -109,6 +136,24 @@ impl DrugInteractionService {
         user_id: String,
         code: String,
     ) -> Result<u32, ModifyDrugInteractionError> {
-        delete::delete_drug_interaction_group(sp, user_id, self.client.clone(), code).await
+        delete_group::delete_drug_interaction_group(sp, user_id, self.client.clone(), code).await
+    }
+
+    pub async fn upsert_drug_interaction(
+        &self,
+        sp: Arc<ServiceProvider>,
+        user_id: String,
+        item: upsert_interaction::UpsertDrugInteraction,
+    ) -> Result<u32, ModifyDrugInteractionError> {
+        upsert_interaction::upsert_drug_interaction(sp, user_id, self.client.clone(), item).await
+    }
+
+    pub async fn delete_drug_interaction(
+        &self,
+        sp: Arc<ServiceProvider>,
+        user_id: String,
+        code: String,
+    ) -> Result<u32, ModifyDrugInteractionError> {
+        delete_interaction::delete_drug_interaction(sp, user_id, self.client.clone(), code).await
     }
 }

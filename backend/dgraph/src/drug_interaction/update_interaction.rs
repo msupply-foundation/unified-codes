@@ -68,8 +68,8 @@ mutation UpdateDrugInteraction($interaction_id: String!, $add: DrugInteractionPa
         add: Some(DrugInteractionChange {
             name: Some(input.name),
             description: Some(input.description),
-            action: Some(input.action),
             severity: Some(input.severity),
+            action: Some(input.action),
             reference: Some(input.reference),
             drugs: match input.drugs_add.is_empty() {
                 true => None,

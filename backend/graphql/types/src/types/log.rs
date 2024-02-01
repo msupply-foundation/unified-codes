@@ -31,8 +31,10 @@ pub enum LogNodeType {
     ConfigurationItemCreated,
     ConfigurationItemDeleted,
     PropertyConfigurationItemUpserted,
-    InteractionGroupUpserted,
-    InteractionGroupDeleted,
+    DrugInteractionGroupUpserted,
+    DrugInteractionGroupDeleted,
+    DrugInteractionUpserted,
+    DrugInteractionDeleted,
 }
 
 #[Object]
@@ -97,8 +99,10 @@ impl LogNodeType {
             LogType::PropertyConfigurationItemUpserted => {
                 LogNodeType::PropertyConfigurationItemUpserted
             }
-            LogType::InteractionGroupUpserted => LogNodeType::InteractionGroupUpserted,
-            LogType::InteractionGroupDeleted => LogNodeType::InteractionGroupDeleted,
+            LogType::InteractionGroupUpserted => LogNodeType::DrugInteractionGroupUpserted,
+            LogType::InteractionGroupDeleted => LogNodeType::DrugInteractionGroupDeleted,
+            LogType::InteractionUpserted => LogNodeType::DrugInteractionUpserted,
+            LogType::InteractionDeleted => LogNodeType::DrugInteractionUpserted,
         }
     }
 
@@ -120,8 +124,10 @@ impl LogNodeType {
             LogNodeType::PropertyConfigurationItemUpserted => {
                 LogType::PropertyConfigurationItemUpserted
             }
-            LogNodeType::InteractionGroupUpserted => LogType::InteractionGroupUpserted,
-            LogNodeType::InteractionGroupDeleted => LogType::InteractionGroupDeleted,
+            LogNodeType::DrugInteractionGroupUpserted => LogType::InteractionGroupUpserted,
+            LogNodeType::DrugInteractionGroupDeleted => LogType::InteractionGroupDeleted,
+            LogNodeType::DrugInteractionUpserted => LogType::InteractionUpserted,
+            LogNodeType::DrugInteractionDeleted => LogType::InteractionDeleted,
         }
     }
 }
