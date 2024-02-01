@@ -1,8 +1,11 @@
+import { useAuthContext } from '@common/authentication';
 import { useEditModal } from '@common/hooks';
 import { useTranslation } from '@common/intl';
+import { PermissionNode } from '@common/types';
 import {
   AppBarButtonsPortal,
   AppBarContentPortal,
+  ColumnDescription,
   createTableStore,
   DataTable,
   DeleteLinesDropdownItem,
@@ -41,6 +44,8 @@ const BarcodeListComponent = ({
   updatePaginationQuery,
 }: BarcodeListProps) => {
   const t = useTranslation('system');
+  const { hasPermission } = useAuthContext();
+  const isAdmin = hasPermission(PermissionNode.ServerAdmin);
 
   const { onOpen, onClose, isOpen } = useEditModal<BarcodeFragment>();
 
@@ -53,7 +58,7 @@ const BarcodeListComponent = ({
       .filter(Boolean)
   );
 
-  const columns = useColumns<BarcodeFragment>([
+  const columnDefs: ColumnDescription<BarcodeFragment>[] = [
     {
       key: 'entity',
       label: 'label.product',
@@ -81,39 +86,46 @@ const BarcodeListComponent = ({
     },
     { key: 'manufacturer', label: 'label.manufacturer' },
     { key: 'id', label: 'label.gtin' },
-    'selection',
-  ]);
+  ];
+
+  const columns = useColumns<BarcodeFragment>(
+    isAdmin ? [...columnDefs, 'selection'] : columnDefs
+  );
 
   return (
     <>
-      {isOpen && (
-        <BarcodeEditModal
-          isOpen={isOpen}
-          onClose={onClose}
-          entityCodes={entityCodes}
-        />
+      {isAdmin && (
+        <>
+          {isOpen && (
+            <BarcodeEditModal
+              isOpen={isOpen}
+              onClose={onClose}
+              entityCodes={entityCodes}
+            />
+          )}
+
+          <AppBarButtonsPortal>
+            <LoadingButton
+              onClick={() => onOpen()}
+              isLoading={false}
+              startIcon={<PlusCircleIcon />}
+            >
+              {t('label.add-barcode')}
+            </LoadingButton>
+          </AppBarButtonsPortal>
+
+          <AppBarContentPortal marginBottom={'10px'}>
+            <DropdownMenu label={t('label.select')}>
+              <DeleteLinesDropdownItem
+                selectedRows={selectedRows}
+                deleteItem={async (item: BarcodeFragment) => {
+                  await deleteGS1({ gtin: item.gtin });
+                }}
+              />
+            </DropdownMenu>
+          </AppBarContentPortal>
+        </>
       )}
-
-      <AppBarButtonsPortal>
-        <LoadingButton
-          onClick={() => onOpen()}
-          isLoading={false}
-          startIcon={<PlusCircleIcon />}
-        >
-          {t('label.add-barcode')}
-        </LoadingButton>
-      </AppBarButtonsPortal>
-
-      <AppBarContentPortal marginBottom={'10px'}>
-        <DropdownMenu label={t('label.select')}>
-          <DeleteLinesDropdownItem
-            selectedRows={selectedRows}
-            deleteItem={async (item: BarcodeFragment) => {
-              await deleteGS1({ gtin: item.gtin });
-            }}
-          />
-        </DropdownMenu>
-      </AppBarContentPortal>
 
       <DataTable
         columns={columns}

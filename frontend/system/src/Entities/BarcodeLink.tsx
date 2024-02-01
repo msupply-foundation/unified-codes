@@ -25,7 +25,7 @@ export const BarcodeLink = ({ entity }: { entity: EntityData }) => {
       {!!barcodeCount && (
         <Link
           style={{ color: '#e95c30' }}
-          to={RouteBuilder.create(AppRoute.Admin)
+          to={RouteBuilder.create(AppRoute.Browse)
             .addPart(AppRoute.Barcodes)
             .addPart(entity.code)
             .build()}
