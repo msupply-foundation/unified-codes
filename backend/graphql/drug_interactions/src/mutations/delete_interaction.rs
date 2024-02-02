@@ -14,7 +14,7 @@ pub async fn delete_drug_interaction(ctx: &Context<'_>, code: String) -> Result<
     let user = validate_auth(
         ctx,
         &ResourceAccessRequest {
-            resource: Resource::MutateUniversalCodes,
+            resource: Resource::MutateDrugInteractions,
         },
     )?;
 
