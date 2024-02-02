@@ -28,6 +28,8 @@ pub enum LogType {
     UniversalCodeChangeRequested,
     UniversalCodeCreated,
     UniversalCodeUpdated,
+    BarcodeCreated,
+    BarcodeDeleted,
     ConfigurationItemCreated,
     ConfigurationItemDeleted,
     PropertyConfigurationItemUpserted,

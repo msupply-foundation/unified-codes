@@ -3,6 +3,7 @@ export { AngleCircleRightIcon } from './AngleCircleRight';
 export { ArrowLeftIcon } from './ArrowLeft';
 export { ArrowRightIcon } from './ArrowRight';
 export { BarChartIcon } from './BarChart';
+export { BarcodeIcon } from './Barcode';
 export { BookIcon } from './Book';
 export { CartIcon } from './Cart';
 export { CableIcon } from './Cable';

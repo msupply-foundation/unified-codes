@@ -4,12 +4,10 @@ import { CopyIcon, FlatButton } from '@common/ui';
 import { useNotification } from '@common/hooks';
 import { Box, Link, Typography } from '@mui/material';
 import { TreeItem } from '@mui/lab';
-import { EntityDetailsFragment } from './api/operations.generated';
 import { usePropertyConfigurationItems } from '../Admin/Configuration/api/hooks/usePropertyConfigurationItems';
-
-export type EntityData = EntityDetailsFragment & {
-  children?: EntityData[] | null;
-};
+import { EntityType } from '../constants';
+import { EntityData } from './EntityData';
+import { BarcodeLink } from './BarcodeLink';
 
 export const EntityTreeItem = ({
   entity,
@@ -40,7 +38,13 @@ export const EntityTreeItem = ({
     };
 
   const isLeaf = !entity.children?.length;
-  const showCode = showAllCodes || isLeaf || highlightCode === entity.code;
+  const showCode =
+    showAllCodes ||
+    isLeaf ||
+    highlightCode === entity.code ||
+    // mSupply users will usually want these codes:
+    entity.type === EntityType.Strength ||
+    entity.type === EntityType.Unit;
 
   // use default chevron icons, unless we're looking at a leaf node with no properties
   const customIcons =
@@ -86,6 +90,8 @@ export const EntityTreeItem = ({
               </>
             )}
           </Typography>
+
+          <BarcodeLink entity={entity} />
         </Box>
       }
     >

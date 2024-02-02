@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProps, Tooltip } from '@mui/material';
+import { Box, ButtonProps, Tooltip } from '@mui/material';
 import { ShrinkableBaseButton } from './ShrinkableBaseButton';
 import { useIsScreen } from '@common/hooks';
 
@@ -41,23 +41,25 @@ export const ButtonWithIcon: React.FC<ButtonWithIconProps> = ({
   const text = shrink ? null : label;
 
   return (
-    <Tooltip title={title}>
-      <span>
-        <ShrinkableBaseButton
-          disabled={disabled}
-          shrink={shrink}
-          onClick={onClick}
-          variant={variant}
-          color={color}
-          size="small"
-          startIcon={startIcon}
-          aria-label={label}
-          {...buttonProps}
-        >
-          {centeredIcon}
-          {text}
-        </ShrinkableBaseButton>
-      </span>
-    </Tooltip>
+    <span>
+      <ShrinkableBaseButton
+        disabled={disabled}
+        shrink={shrink}
+        onClick={onClick}
+        variant={variant}
+        color={color}
+        size="small"
+        startIcon={startIcon}
+        aria-label={label}
+        {...buttonProps}
+      >
+        <Tooltip title={title}>
+          <Box>
+            {centeredIcon}
+            {text}
+          </Box>
+        </Tooltip>
+      </ShrinkableBaseButton>
+    </span>
   );
 };

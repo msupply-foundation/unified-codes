@@ -20,6 +20,7 @@ import {
   ClockIcon,
   InfoIcon,
   EditIcon,
+  BarcodeIcon,
   CableIcon,
 } from '@uc-frontend/common';
 import { AppRoute } from '@uc-frontend/config';
@@ -203,6 +204,13 @@ export const AppDrawer: React.FC = () => {
                 .build()}
               icon={<ClockIcon fontSize="small" color="primary" />}
               text={t('pending-changes')}
+            />
+            <AppNavLink
+              to={RouteBuilder.create(AppRoute.Browse)
+                .addPart(AppRoute.Barcodes)
+                .build()}
+              icon={<BarcodeIcon fontSize="small" color="primary" />}
+              text={t('barcodes')}
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)

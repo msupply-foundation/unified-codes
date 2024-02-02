@@ -105,6 +105,14 @@ export class DrugDataParser {
           productDefinition.forEach(item => {
             if (!item.code) return;
 
+            const regex = /^[A-Za-z0-9]+$/;
+            if (!regex.test(item.code)) {
+              console.log(
+                `WARNING: Code ${item.code} contains non-alphanumeric characters! Skipping...`
+              );
+              return;
+            }
+
             if (item.code in graph) {
               // check for conflicts.
               if (item.type && graph[item.code].type != item.type) {

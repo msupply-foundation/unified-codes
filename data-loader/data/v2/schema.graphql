@@ -17,6 +17,7 @@ type Entity {
   properties: [Property] @dgraph(pred: "properties")
   children: [Entity] @dgraph(pred: "children")
   parents: [Entity] @dgraph(pred: "~children")
+  barcodes: [Barcode] @dgraph(pred: "barcodes") @hasInverse(field: entity)
   interaction_groups: [DrugInteractionGroup]
     @dgraph(pred: "interaction_groups")
     @hasInverse(field: drugs)
@@ -72,6 +73,13 @@ type PropertyConfigurationItem {
   type: String! @id @dgraph(pred: "propertyType") @search(by: [exact])
   label: String @dgraph(pred: "label")
   url: String @dgraph(pred: "url")
+}
+
+type Barcode {
+  id: ID!
+  gtin: String! @id @dgraph(pred: "code") @search(by: [exact, trigram])
+  manufacturer: String! @dgraph(pred: "manufacturer")
+  entity: Entity! @dgraph(pred: "entity")
 }
 
 enum DrugInteractionSeverity {
