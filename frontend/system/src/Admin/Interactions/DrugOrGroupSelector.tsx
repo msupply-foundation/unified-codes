@@ -55,27 +55,6 @@ export const DrugOrGroupSelector: FC<DrugOrGroupSelectorProps> = ({
     <Grid item>
       <Grid flexDirection={'row'} display={'flex'} gap={2}>
         <Grid item>
-          <Typography variant="body2">{t('label.drug-name')} </Typography>
-          <Autocomplete
-            loading={isLoading}
-            value={drugOptions.find(drug => drug.id === selectedId) ?? null}
-            title={t('label.drug-name')}
-            options={drugOptions}
-            onChange={(e, v) => {
-              setSelectedId(v?.id ?? null);
-              setSelection({ drugId: v?.id });
-            }}
-            getOptionLabel={option => option.name}
-            getOptionDisabled={option => option.id === otherSelectedId}
-            width="250px"
-            popperMinWidth={500}
-            disabled={isLoading}
-          />
-        </Grid>
-        <Grid item>
-          <Typography variant="h6">{t('label.or')}</Typography>
-        </Grid>
-        <Grid item>
           <Typography variant="body2">
             {t('label.drug-interaction-group')}
           </Typography>
@@ -92,6 +71,27 @@ export const DrugOrGroupSelector: FC<DrugOrGroupSelectorProps> = ({
             getOptionDisabled={option => option.id === otherSelectedId}
             width="250px"
             popperMinWidth={300}
+            disabled={isLoading}
+          />
+        </Grid>
+        <Grid item>
+          <Typography variant="h6">{t('label.or')}</Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant="body2">{t('label.drug-name')} </Typography>
+          <Autocomplete
+            loading={isLoading}
+            value={drugOptions.find(drug => drug.id === selectedId) ?? null}
+            title={t('label.drug-name')}
+            options={drugOptions}
+            onChange={(e, v) => {
+              setSelectedId(v?.id ?? null);
+              setSelection({ drugId: v?.id });
+            }}
+            getOptionLabel={option => option.name}
+            getOptionDisabled={option => option.id === otherSelectedId}
+            width="250px"
+            popperMinWidth={500}
             disabled={isLoading}
           />
         </Grid>
