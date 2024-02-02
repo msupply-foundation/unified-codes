@@ -173,7 +173,7 @@ export const InteractionEditModal = ({
             isLoading={drugListLoading || groupListLoading}
           />
           <Grid item>
-            <Typography variant="h6">Interacts with</Typography>
+            <Typography variant="h6">{t('heading.interacts-with')}</Typography>
           </Grid>
           <DrugOrGroupSelector
             drugs={drugs?.data ?? []}

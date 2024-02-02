@@ -26,6 +26,7 @@
   "error.username-too-short": "Username must be at least 3 characters long",
   "error.name-too-short": "Name must be at least 3 characters long",
   "filename.users": "Users",
+  "heading.interacts-with": "Interacts with",
   "helper-text.website-placeholder": "You can use a placeholder for the property code: e.g. https://link.com?search={{code}}",
   "helper-text.you-cant-change-this": "Careful! You won't be able to change this value.",
   "label.about": "About",
