@@ -186,13 +186,6 @@ export const AppDrawer: React.FC = () => {
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)
-                .addPart(AppRoute.UserAccounts)
-                .build()}
-              icon={<UsersIcon fontSize="small" color="primary" />}
-              text={t('users')}
-            />
-            <AppNavLink
-              to={RouteBuilder.create(AppRoute.Admin)
                 .addPart(AppRoute.NewItem)
                 .build()}
               icon={<EditIcon fontSize="small" color="primary" />}
@@ -214,6 +207,13 @@ export const AppDrawer: React.FC = () => {
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)
+                .addPart(AppRoute.Interactions)
+                .build()}
+              icon={<CableIcon fontSize="small" color="primary" />}
+              text={t('interactions')}
+            />
+            <AppNavLink
+              to={RouteBuilder.create(AppRoute.Admin)
                 .addPart(AppRoute.Configuration)
                 .build()}
               icon={<SettingsIcon fontSize="small" color="primary" />}
@@ -221,10 +221,10 @@ export const AppDrawer: React.FC = () => {
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)
-                .addPart(AppRoute.Interactions)
+                .addPart(AppRoute.UserAccounts)
                 .build()}
-              icon={<CableIcon fontSize="small" color="primary" />}
-              text={t('interactions')}
+              icon={<UsersIcon fontSize="small" color="primary" />}
+              text={t('users')}
             />
           </List>
         </UpperListContainer>
