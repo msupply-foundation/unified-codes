@@ -10,7 +10,7 @@ use dgraph::{
     insert_interaction::{insert_drug_interaction, DrugInteractionInput},
     interaction::interaction_by_id,
     interactions::{interactions, DrugInteractionFilter},
-    update_interaction::{update_interaction, DrugInteractionUpdateInput},
+    update_interaction::{update_drug_interaction, DrugInteractionUpdateInput},
     DrugCode, DrugInteraction, DrugInteractionSeverity, InteractionGroupRef,
 };
 use repository::LogType;
@@ -43,7 +43,7 @@ pub async fn upsert_drug_interaction(
         generate(new_interaction.clone(), old_record)?;
 
     // If we have drugs or groups to remove, we need to update the existing record
-    let result = match drugs_to_remove.is_empty() || groups_to_remove.is_empty() {
+    let result = match drugs_to_remove.is_empty() && groups_to_remove.is_empty() {
         true => insert_drug_interaction(&client, item_input.clone(), true).await?,
         false => {
             let update_input = DrugInteractionUpdateInput {
@@ -58,7 +58,7 @@ pub async fn upsert_drug_interaction(
                 groups_add: item_input.groups.clone(),
                 groups_remove: groups_to_remove,
             };
-            update_interaction(&client, update_input).await?
+            update_drug_interaction(&client, update_input).await?
         }
     };
 

@@ -108,10 +108,8 @@ pub async fn validate(
         ));
     }
 
-    print!("Validating new_item: {:?}", new_item);
     // look up existing record
     let old_record = interaction_group_by_id(client, new_item.interaction_group_id.clone()).await?;
-    print!("Old record: {:?}", old_record);
 
     let groups_with_same_name = interaction_groups(
         client,

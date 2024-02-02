@@ -53,7 +53,7 @@ struct UpdateVars {
     remove: Option<DrugOrGroupList>,
 }
 
-pub async fn update_interaction(
+pub async fn update_drug_interaction(
     client: &DgraphClient,
     input: DrugInteractionUpdateInput,
 ) -> Result<UpsertResponse, GraphQLError> {
@@ -219,7 +219,7 @@ mod tests {
             }],
         };
 
-        let result = update_interaction(&client, interaction.clone()).await;
+        let result = update_drug_interaction(&client, interaction.clone()).await;
         if result.is_err() {
             println!(
                 "update_interaction(add/remove) err: {:#?} {:#?}",
@@ -259,7 +259,7 @@ mod tests {
             groups_remove: vec![],
         };
 
-        let result = update_interaction(&client, interaction.clone()).await;
+        let result = update_drug_interaction(&client, interaction.clone()).await;
         if result.is_err() {
             println!(
                 "update_interaction(remove/add) err: {:#?} {:#?}",

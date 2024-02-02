@@ -4,3 +4,5 @@ mod insert_group;
 mod insert_interaction;
 #[cfg(test)]
 mod update_group;
+#[cfg(test)]
+mod update_interaction;
