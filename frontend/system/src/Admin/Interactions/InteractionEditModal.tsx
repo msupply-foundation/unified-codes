@@ -228,6 +228,7 @@ export const InteractionEditModal = ({
             fullWidth
           />
           <TextArea
+            required
             label={t('label.description')}
             value={draft?.description ?? ''}
             onChange={e =>
