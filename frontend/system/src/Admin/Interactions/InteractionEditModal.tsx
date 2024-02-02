@@ -142,6 +142,7 @@ export const InteractionEditModal = ({
             drugs={drugs?.data ?? []}
             groups={groups ?? []}
             initialSelectedId={draft.group1?.id ?? draft.drug1?.code}
+            otherSelectedId={draft.group2?.id ?? draft.drug2?.code}
             setSelection={function (input: {
               drugId?: string | undefined;
               groupId?: string | undefined;
@@ -176,6 +177,7 @@ export const InteractionEditModal = ({
             drugs={drugs?.data ?? []}
             groups={groups ?? []}
             initialSelectedId={draft.group2?.id ?? draft.drug2?.code}
+            otherSelectedId={draft.group1?.id ?? draft.drug1?.code}
             setSelection={function (input: {
               drugId?: string | undefined;
               groupId?: string | undefined;

@@ -8,6 +8,7 @@ type DrugOrGroupSelectorProps = {
   drugs: EntityRowFragment[];
   groups: InteractionGroupFragment[];
   initialSelectedId?: string;
+  otherSelectedId?: string;
   setSelection: (input: { drugId?: string; groupId?: string }) => void;
   isLoading: boolean;
 };
@@ -22,6 +23,7 @@ export const DrugOrGroupSelector: FC<DrugOrGroupSelectorProps> = ({
   drugs,
   groups,
   initialSelectedId,
+  otherSelectedId,
   setSelection,
   isLoading,
 }) => {
@@ -64,6 +66,7 @@ export const DrugOrGroupSelector: FC<DrugOrGroupSelectorProps> = ({
               setSelection({ drugId: v?.id });
             }}
             getOptionLabel={option => option.name}
+            getOptionDisabled={option => option.id === otherSelectedId}
             width="250px"
             popperMinWidth={500}
             disabled={isLoading}
@@ -86,6 +89,7 @@ export const DrugOrGroupSelector: FC<DrugOrGroupSelectorProps> = ({
               setSelection({ groupId: v?.id });
             }}
             getOptionLabel={option => option.name}
+            getOptionDisabled={option => option.id === otherSelectedId}
             width="250px"
             popperMinWidth={300}
             disabled={isLoading}
