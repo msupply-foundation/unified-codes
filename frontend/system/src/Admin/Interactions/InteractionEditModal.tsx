@@ -85,6 +85,7 @@ export const InteractionEditModal = ({
         <LoadingButton
           disabled={isInvalid}
           onClick={() => {
+            setIsLoading(true);
             addDrugInteration({
               input: {
                 id: draft.id,
@@ -99,19 +100,18 @@ export const InteractionEditModal = ({
                 group2: draft.group2?.id,
               },
             })
+              .then(() => {
+                invalidateQueries();
+                setIsLoading(false);
+                onClose();
+              })
               .catch(err => {
                 setIsLoading(false);
                 if (!err || !err.message) {
                   err = { message: t('messages.unknown-error') };
                 }
                 setErrorMessage(err.message);
-              })
-              .then(() => {
-                invalidateQueries();
-                setIsLoading(false);
-                onClose();
               });
-            setIsLoading(false);
           }}
           isLoading={isLoading}
           startIcon={<CheckIcon />}
