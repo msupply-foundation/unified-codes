@@ -5,7 +5,7 @@ mod test {
     use std::sync::Arc;
     use util::uuid::uuid;
 
-    use crate::drug_interactions::upsert::UpsertDrugInteractionGroup;
+    use crate::drug_interactions::upsert_group::UpsertDrugInteractionGroup;
     use crate::service_provider::ServiceContext;
     use crate::service_provider::ServiceProvider;
 

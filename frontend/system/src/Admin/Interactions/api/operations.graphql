@@ -19,10 +19,54 @@ query DrugInteractionGroups {
   }
 }
 
+fragment DrugInteraction on DrugInteractionNode {
+  id
+  name
+  description
+  severity
+  action
+  reference
+  drug1 {
+    code
+    description
+  }
+  drug2 {
+    code
+    description
+  }
+  group1 {
+    id
+    name
+  }
+  group2 {
+    id
+    name
+  }
+}
+
+query DrugInteractions {
+  allDrugInteractions {
+    ... on DrugInteractionConnector {
+      data {
+        ...DrugInteraction
+      }
+      totalCount
+    }
+  }
+}
+
 mutation UpsertDrugInteractionGroup($input: UpsertDrugInteractionGroupInput!) {
   upsertDrugInteractionGroup(input: $input)
 }
 
 mutation DeleteDrugInteractionGroup($id: String!) {
   deleteDrugInteractionGroup(code: $id)
+}
+
+mutation UpsertDrugInteraction($input: UpsertDrugInteractionInput!) {
+  upsertDrugInteraction(input: $input)
+}
+
+mutation DeleteDrugInteraction($id: String!) {
+  deleteDrugInteraction(code: $id)
 }

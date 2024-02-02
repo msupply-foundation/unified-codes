@@ -14,7 +14,6 @@ import React, { useState } from 'react';
 import { InteractionGroupFragment } from './api/operations.generated';
 import { useUpsertDrugInteractionGroup } from './api';
 import { FnUtils } from '@common/utils';
-import { DrugSelectionModal } from './DrugSelectionModal';
 import { DrugSelector } from './DrugSelector';
 import { useEntities } from '../../Entities/api';
 
@@ -50,7 +49,8 @@ export const InteractionGroupEditModal = ({
   const onUpdate = (patch: Partial<InteractionGroupFragment>) => {
     setGroup({ ...group, ...patch });
   };
-  const [addConfigItem, invalidateQueries] = useUpsertDrugInteractionGroup();
+  const { mutateAsync: addDrugInterationGroup, isLoading } =
+    useUpsertDrugInteractionGroup();
 
   const { data, isLoading: drugListLoading } = useEntities({
     filter: {
@@ -65,7 +65,6 @@ export const InteractionGroupEditModal = ({
     offset: 0,
   });
 
-  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const { Modal } = useDialog({ isOpen, onClose });
@@ -75,8 +74,7 @@ export const InteractionGroupEditModal = ({
       okButton={
         <LoadingButton
           onClick={() => {
-            setIsLoading(true);
-            addConfigItem({
+            addDrugInterationGroup({
               input: {
                 id: group.id,
                 name: group.name,
@@ -84,19 +82,13 @@ export const InteractionGroupEditModal = ({
                 drugs: group.drugs.map(drug => drug.code),
               },
             })
+              .then(() => onClose())
               .catch(err => {
-                setIsLoading(false);
                 if (!err || !err.message) {
                   err = { message: t('messages.unknown-error') };
                 }
                 setErrorMessage(err.message);
-              })
-              .then(() => {
-                invalidateQueries();
-                setIsLoading(false);
-                onClose();
               });
-            setIsLoading(false);
           }}
           isLoading={isLoading}
           startIcon={<CheckIcon />}

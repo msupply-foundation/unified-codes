@@ -37,9 +37,9 @@ const InteractionGroupTabComponent = () => {
   const { onOpen, onClose, isOpen, entity, mode } =
     useEditModal<InteractionGroupFragment>();
 
-  const { data, isLoading } = useAllDrugInteractionGroups();
+  const { data, isLoading, isError } = useAllDrugInteractionGroups();
 
-  const [deleteErrors, setDeleteErrors] = React.useState<DeleteError[]>([]);
+  const [, setDeleteErrors] = React.useState<DeleteError[]>([]);
   const selectedRows = useTableStore(state =>
     Object.keys(state.rowState)
       .filter(id => state.rowState[id]?.isSelected)
@@ -61,9 +61,7 @@ const InteractionGroupTabComponent = () => {
       label: 'label.drugs',
       sortable: false,
       Cell: ({ rowData }) => {
-        const drugs_csv = rowData.drugs
-          .map(drug => drug.description)
-          .join(', ');
+        const drugsCsv = rowData.drugs.map(drug => drug.description).join(', ');
 
         return (
           <>
@@ -71,15 +69,15 @@ const InteractionGroupTabComponent = () => {
               title={
                 <ul>
                   {rowData.drugs.map(drug => (
-                    <li>{drug.description}</li>
+                    <li key={drug.code}>{drug.description}</li>
                   ))}
                 </ul>
               }
             >
               <Typography>
-                {drugs_csv.length > 30
-                  ? drugs_csv.substring(0, 30) + '...'
-                  : drugs_csv}
+                {drugsCsv.length > 30
+                  ? drugsCsv.substring(0, 30) + '...'
+                  : drugsCsv}
               </Typography>
             </Tooltip>
           </>
@@ -170,6 +168,7 @@ const InteractionGroupTabComponent = () => {
         columns={columns}
         data={data}
         isLoading={isLoading}
+        isError={isError}
         onRowClick={onOpen}
       />
     </>

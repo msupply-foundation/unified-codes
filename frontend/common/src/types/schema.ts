@@ -149,6 +149,12 @@ export type DeleteResponse = {
 
 export type DeleteUserAccountResponse = DeleteResponse;
 
+export type DrugInteractionConnector = {
+  __typename: 'DrugInteractionConnector';
+  data: Array<DrugInteractionNode>;
+  totalCount: Scalars['Int']['output'];
+};
+
 export type DrugInteractionGroupConnector = {
   __typename: 'DrugInteractionGroupConnector';
   data: Array<DrugInteractionGroupNode>;
@@ -165,6 +171,27 @@ export type DrugInteractionGroupNode = {
 
 export type DrugInteractionGroupsResponse = DrugInteractionGroupConnector;
 
+export type DrugInteractionNode = {
+  __typename: 'DrugInteractionNode';
+  action?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  drug1?: Maybe<EntityType>;
+  drug2?: Maybe<EntityType>;
+  group1?: Maybe<DrugInteractionGroupNode>;
+  group2?: Maybe<DrugInteractionGroupNode>;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  reference?: Maybe<Scalars['String']['output']>;
+  severity: DrugInteractionSeverityNode;
+};
+
+export enum DrugInteractionSeverityNode {
+  Moderate = 'MODERATE',
+  NothingExpected = 'NOTHING_EXPECTED',
+  Severe = 'SEVERE',
+  Unknown = 'UNKNOWN'
+}
+
 export type DrugInteractionType = {
   __typename: 'DrugInteractionType';
   description: Scalars['String']['output'];
@@ -173,6 +200,8 @@ export type DrugInteractionType = {
   severity: Scalars['String']['output'];
   source: Scalars['String']['output'];
 };
+
+export type DrugInteractionsResponse = DrugInteractionConnector;
 
 export type EntityCollectionType = {
   __typename: 'EntityCollectionType';
@@ -233,6 +262,7 @@ export type FullMutation = {
   createUserAccount: CreateUserAccountResponse;
   deleteBarcode: Scalars['Int']['output'];
   deleteConfigurationItem: Scalars['Int']['output'];
+  deleteDrugInteraction: Scalars['Int']['output'];
   deleteDrugInteractionGroup: Scalars['Int']['output'];
   deleteUserAccount: DeleteUserAccountResponse;
   /**
@@ -248,6 +278,7 @@ export type FullMutation = {
   resetPasswordUsingToken: PasswordResetResponse;
   updatePendingChange: RequestChangeResponse;
   updateUserAccount: UpdateUserAccountResponse;
+  upsertDrugInteraction: Scalars['Int']['output'];
   upsertDrugInteractionGroup: Scalars['Int']['output'];
   upsertPropertyConfigurationItem: Scalars['Int']['output'];
   /** Validates Password Reset Token */
@@ -288,6 +319,11 @@ export type FullMutationDeleteBarcodeArgs = {
 
 
 export type FullMutationDeleteConfigurationItemArgs = {
+  code: Scalars['String']['input'];
+};
+
+
+export type FullMutationDeleteDrugInteractionArgs = {
   code: Scalars['String']['input'];
 };
 
@@ -339,6 +375,11 @@ export type FullMutationUpdateUserAccountArgs = {
 };
 
 
+export type FullMutationUpsertDrugInteractionArgs = {
+  input: UpsertDrugInteractionInput;
+};
+
+
 export type FullMutationUpsertDrugInteractionGroupArgs = {
   input: UpsertDrugInteractionGroupInput;
 };
@@ -355,8 +396,10 @@ export type FullMutationValidatePasswordResetTokenArgs = {
 
 export type FullQuery = {
   __typename: 'FullQuery';
-  /** Get the configuration items for a given type. */
+  /** Get all the drug interaction groups, no pagination as we assume it won't get too big... */
   allDrugInteractionGroups: DrugInteractionGroupsResponse;
+  /** Get all the drug interactions, no pagination as we assume it won't get too big... */
+  allDrugInteractions: DrugInteractionsResponse;
   apiVersion: Scalars['String']['output'];
   /**
    * Retrieves a new auth bearer and refresh token
@@ -508,8 +551,10 @@ export enum LogNodeType {
   BarcodeDeleted = 'BARCODE_DELETED',
   ConfigurationItemCreated = 'CONFIGURATION_ITEM_CREATED',
   ConfigurationItemDeleted = 'CONFIGURATION_ITEM_DELETED',
-  InteractionGroupDeleted = 'INTERACTION_GROUP_DELETED',
-  InteractionGroupUpserted = 'INTERACTION_GROUP_UPSERTED',
+  DrugInteractionDeleted = 'DRUG_INTERACTION_DELETED',
+  DrugInteractionGroupDeleted = 'DRUG_INTERACTION_GROUP_DELETED',
+  DrugInteractionGroupUpserted = 'DRUG_INTERACTION_GROUP_UPSERTED',
+  DrugInteractionUpserted = 'DRUG_INTERACTION_UPSERTED',
   PropertyConfigurationItemUpserted = 'PROPERTY_CONFIGURATION_ITEM_UPSERTED',
   UniversalCodeChangeApproved = 'UNIVERSAL_CODE_CHANGE_APPROVED',
   UniversalCodeChangeRejected = 'UNIVERSAL_CODE_CHANGE_REJECTED',
@@ -713,6 +758,19 @@ export type UpsertDrugInteractionGroupInput = {
   drugs: Array<Scalars['String']['input']>;
   id: Scalars['String']['input'];
   name: Scalars['String']['input'];
+};
+
+export type UpsertDrugInteractionInput = {
+  action: Scalars['String']['input'];
+  description: Scalars['String']['input'];
+  drug1?: InputMaybe<Scalars['String']['input']>;
+  drug2?: InputMaybe<Scalars['String']['input']>;
+  group1?: InputMaybe<Scalars['String']['input']>;
+  group2?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  reference: Scalars['String']['input'];
+  severity: DrugInteractionSeverityNode;
 };
 
 export type UpsertEntityInput = {

@@ -7,11 +7,11 @@ use crate::{
 };
 use chrono::Utc;
 use dgraph::{
-    insert_interaction_group::{insert_interaction_group, DrugCode, InteractionGroupInput},
+    insert_interaction_group::{insert_interaction_group, InteractionGroupInput},
     interaction_group::interaction_group_by_id,
     interaction_groups::{interaction_groups, InteractionGroupFilter},
     update_interaction_group::{update_interaction_group, InteractionGroupUpdateInput},
-    InteractionGroup,
+    DrugCode, InteractionGroup,
 };
 use repository::LogType;
 
@@ -103,15 +103,13 @@ pub async fn validate(
     new_item: &UpsertDrugInteractionGroup,
 ) -> Result<Option<InteractionGroup>, ModifyDrugInteractionError> {
     if new_item.name.is_empty() {
-        return Err(ModifyDrugInteractionError::InternalError(
+        return Err(ModifyDrugInteractionError::BadUserInput(
             "Name is required".to_string(),
         ));
     }
 
-    print!("Validating new_item: {:?}", new_item);
     // look up existing record
     let old_record = interaction_group_by_id(client, new_item.interaction_group_id.clone()).await?;
-    print!("Old record: {:?}", old_record);
 
     let groups_with_same_name = interaction_groups(
         client,
@@ -127,7 +125,7 @@ pub async fn validate(
                 && groups_with_same_name.data[0].interaction_group_id
                     != new_item.interaction_group_id
             {
-                return Err(ModifyDrugInteractionError::InternalError(
+                return Err(ModifyDrugInteractionError::BadUserInput(
                     "Interaction group with same name already exists".to_string(),
                 ));
             }

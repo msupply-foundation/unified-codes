@@ -14,6 +14,8 @@ pub mod database_settings;
 pub use database_settings::*;
 pub mod drug_interaction_group;
 pub use drug_interaction_group::*;
+pub mod drug_interaction;
+pub use drug_interaction::*;
 pub mod entity;
 pub use entity::*;
 pub mod entity_duplication;
@@ -223,4 +225,9 @@ pub struct UpsertResponseData {
 #[derive(Deserialize, Debug, Clone)]
 pub struct UpsertResponse {
     pub numUids: u32,
+}
+
+#[derive(Serialize, Debug, Clone)]
+pub struct DrugCode {
+    pub code: String,
 }
