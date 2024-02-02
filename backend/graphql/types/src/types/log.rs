@@ -28,9 +28,15 @@ pub enum LogNodeType {
     UniversalCodeChangeApproved,
     UniversalCodeChangeRejected,
     UniversalCodeChangeRequested,
+    BarcodeCreated,
+    BarcodeDeleted,
     ConfigurationItemCreated,
     ConfigurationItemDeleted,
     PropertyConfigurationItemUpserted,
+    DrugInteractionGroupUpserted,
+    DrugInteractionGroupDeleted,
+    DrugInteractionUpserted,
+    DrugInteractionDeleted,
 }
 
 #[Object]
@@ -95,6 +101,12 @@ impl LogNodeType {
             LogType::PropertyConfigurationItemUpserted => {
                 LogNodeType::PropertyConfigurationItemUpserted
             }
+            LogType::BarcodeCreated => LogNodeType::BarcodeCreated,
+            LogType::BarcodeDeleted => LogNodeType::BarcodeDeleted,
+            LogType::InteractionGroupUpserted => LogNodeType::DrugInteractionGroupUpserted,
+            LogType::InteractionGroupDeleted => LogNodeType::DrugInteractionGroupDeleted,
+            LogType::InteractionUpserted => LogNodeType::DrugInteractionUpserted,
+            LogType::InteractionDeleted => LogNodeType::DrugInteractionUpserted,
         }
     }
 
@@ -116,6 +128,12 @@ impl LogNodeType {
             LogNodeType::PropertyConfigurationItemUpserted => {
                 LogType::PropertyConfigurationItemUpserted
             }
+            LogNodeType::BarcodeCreated => LogType::BarcodeCreated,
+            LogNodeType::BarcodeDeleted => LogType::BarcodeDeleted,
+            LogNodeType::DrugInteractionGroupUpserted => LogType::InteractionGroupUpserted,
+            LogNodeType::DrugInteractionGroupDeleted => LogType::InteractionGroupDeleted,
+            LogNodeType::DrugInteractionUpserted => LogType::InteractionUpserted,
+            LogNodeType::DrugInteractionDeleted => LogType::InteractionDeleted,
         }
     }
 }

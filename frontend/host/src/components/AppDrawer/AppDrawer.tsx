@@ -20,6 +20,8 @@ import {
   ClockIcon,
   InfoIcon,
   EditIcon,
+  BarcodeIcon,
+  CableIcon,
 } from '@uc-frontend/common';
 import { AppRoute } from '@uc-frontend/config';
 import { AppDrawerIcon } from './AppDrawerIcon';
@@ -184,13 +186,6 @@ export const AppDrawer: React.FC = () => {
             />
             <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)
-                .addPart(AppRoute.UserAccounts)
-                .build()}
-              icon={<UsersIcon fontSize="small" color="primary" />}
-              text={t('users')}
-            />
-            <AppNavLink
-              to={RouteBuilder.create(AppRoute.Admin)
                 .addPart(AppRoute.NewItem)
                 .build()}
               icon={<EditIcon fontSize="small" color="primary" />}
@@ -204,11 +199,32 @@ export const AppDrawer: React.FC = () => {
               text={t('pending-changes')}
             />
             <AppNavLink
+              to={RouteBuilder.create(AppRoute.Browse)
+                .addPart(AppRoute.Barcodes)
+                .build()}
+              icon={<BarcodeIcon fontSize="small" color="primary" />}
+              text={t('barcodes')}
+            />
+            <AppNavLink
+              to={RouteBuilder.create(AppRoute.Admin)
+                .addPart(AppRoute.Interactions)
+                .build()}
+              icon={<CableIcon fontSize="small" color="primary" />}
+              text={t('interactions')}
+            />
+            <AppNavLink
               to={RouteBuilder.create(AppRoute.Admin)
                 .addPart(AppRoute.Configuration)
                 .build()}
               icon={<SettingsIcon fontSize="small" color="primary" />}
               text={t('configuration')}
+            />
+            <AppNavLink
+              to={RouteBuilder.create(AppRoute.Admin)
+                .addPart(AppRoute.UserAccounts)
+                .build()}
+              icon={<UsersIcon fontSize="small" color="primary" />}
+              text={t('users')}
             />
           </List>
         </UpperListContainer>

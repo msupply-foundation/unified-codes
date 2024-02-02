@@ -12,6 +12,10 @@ pub mod client;
 pub use client::*;
 pub mod database_settings;
 pub use database_settings::*;
+pub mod drug_interaction_group;
+pub use drug_interaction_group::*;
+pub mod drug_interaction;
+pub use drug_interaction::*;
 pub mod entity;
 pub use entity::*;
 pub mod entity_duplication;
@@ -26,6 +30,8 @@ pub mod upsert_entity;
 pub use upsert_entity::*;
 pub mod link_codes;
 pub use link_codes::*;
+pub mod barcode;
+pub use barcode::*;
 
 pub use gql_client::GraphQLError;
 
@@ -72,6 +78,8 @@ pub struct Entity {
     #[serde(default)]
     pub alternative_names: Option<String>,
     #[serde(default)]
+    pub barcodes: Vec<BarcodeInfo>,
+    #[serde(default)]
     pub properties: Vec<Property>,
     #[serde(default)]
     pub children: Vec<Entity>,
@@ -87,6 +95,12 @@ pub struct Property {
     pub key: String,
     #[serde(deserialize_with = "null_as_empty_string")]
     pub value: String,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct BarcodeInfo {
+    pub gtin: String,
+    pub manufacturer: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Hash)]
@@ -211,4 +225,9 @@ pub struct UpsertResponseData {
 #[derive(Deserialize, Debug, Clone)]
 pub struct UpsertResponse {
     pub numUids: u32,
+}
+
+#[derive(Serialize, Debug, Clone)]
+pub struct DrugCode {
+    pub code: String,
 }

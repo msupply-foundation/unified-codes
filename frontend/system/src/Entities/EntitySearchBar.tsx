@@ -108,7 +108,7 @@ export const EntitySearchBar: FC<EntitySearchBarProps> = ({
           <NavigateLinkIcon />
         </ListItem>
       )}
-      getOptionLabel={option => option.description}
+      getOptionLabel={option => option.id}
       renderInput={props => (
         <BasicTextInput
           {...props}

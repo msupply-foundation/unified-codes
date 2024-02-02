@@ -68,11 +68,6 @@ export class DrugDataParser {
             { name: row.route, code: row.uc3, type: EEntityType.Route },
             { name: row.dose_form, code: row.uc4, type: EEntityType.Form },
             {
-              name: row.dose_qualification,
-              code: row.uc5,
-              type: EEntityType.FormQualifier,
-            },
-            {
               name: row.strength,
               code: row.uc6,
               type: EEntityType.DoseStrength,
@@ -104,6 +99,14 @@ export class DrugDataParser {
 
           productDefinition.forEach(item => {
             if (!item.code) return;
+
+            const regex = /^[A-Za-z0-9]+$/;
+            if (!regex.test(item.code)) {
+              console.log(
+                `WARNING: Code ${item.code} contains non-alphanumeric characters! Skipping...`
+              );
+              return;
+            }
 
             if (item.code in graph) {
               // check for conflicts.

@@ -31,14 +31,15 @@ impl From<EntitySearchInput> for EntitySearchFilter {
     fn from(f: EntitySearchInput) -> Self {
         EntitySearchFilter {
             code: f.code,
-            description: f.description,
+            // many descriptions contain slashes, we need to escape them to provide a valid search input
+            description: f.description.map(|d| d.replace("/", "\\/")),
+            search: f.search.map(|s| s.replace("/", "\\/")),
             order_by: f.order_by.map(|order| EntitySort {
                 descending: order.descending,
                 field: order.field,
             }),
             categories: f.categories,
             r#type: f.r#type,
-            search: f.search,
             r#match: f.r#match,
         }
     }

@@ -11,8 +11,10 @@ export enum AppRoute {
   UserAccounts = 'users',
   NewItem = 'new-item',
   Configuration = 'configuration',
+  Interactions = 'interactions',
   Edit = 'edit',
   PendingChanges = 'pending-changes',
+  Barcodes = 'barcodes',
 
   Settings = 'settings',
   Logout = 'logout',

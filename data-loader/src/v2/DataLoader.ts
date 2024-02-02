@@ -1,6 +1,11 @@
 import dgraph from 'dgraph-js';
 
-import { IEntityNode, IEntityGraph, PropertyConfigItem } from './types';
+import {
+  IEntityNode,
+  IEntityGraph,
+  PropertyConfigItem,
+  ConfigItems,
+} from './types';
 
 export class DgraphClient {
   public readonly host: string;
@@ -83,6 +88,7 @@ export class DataLoader {
   public async load(
     schema: string,
     graph: IEntityGraph,
+    configItems: ConfigItems,
     propertyConfigItems: PropertyConfigItem[]
   ): Promise<boolean> {
     // Delete all existing data.
@@ -99,11 +105,6 @@ export class DataLoader {
     const entities: IEntityNode[] = Object.values(graph);
 
     console.log(`INFO: Extracted entity nodes`);
-
-    const routes = new Set();
-    const forms = new Set();
-    const formQualifiers = new Set();
-    const immediatePackagings = new Set();
 
     // Load individual entities.
     for await (const entity of entities) {
@@ -131,18 +132,6 @@ export class DataLoader {
       } else {
         console.log(`WARNING: Failed to load entity with code ${entity.code}`);
       }
-      if (entity.type === 'Route') routes.add(entity.name.trim());
-      if (entity.type === 'Form') forms.add(entity.name.trim());
-      if (
-        entity.type === 'FormQualifier' &&
-        entity.name &&
-        entity.name.trim() &&
-        entity.name.trim().length < 20
-      ) {
-        formQualifiers.add(entity.name.trim());
-      }
-      if (entity.type === 'PackImmediate')
-        immediatePackagings.add(entity.name.trim());
     }
 
     // Link parent entities to children.
@@ -199,7 +188,7 @@ export class DataLoader {
     }
 
     // Create routes.
-    for await (const route of routes) {
+    for await (const route of configItems.routes) {
       if (!route) continue;
       const nQuads = `
         _:route <name> "${route}" .
@@ -216,7 +205,7 @@ export class DataLoader {
     }
 
     // Create forms.
-    for await (const form of forms) {
+    for await (const form of configItems.forms) {
       if (!form) continue;
       const nQuads = `
         _:form <name> "${form}" .
@@ -230,41 +219,10 @@ export class DataLoader {
       } else {
         console.log(`WARNING: Failed to load form with name ${form}`);
       }
-
-      // Look to see if the form and qualifier combination exists in a entity description...
-      // If so we need to create a form with the qualifier attached
-
-      for await (const formQualifier of formQualifiers) {
-        if (!formQualifier) continue;
-        for await (const entity of entities) {
-          if (
-            entity.description &&
-            entity.description.includes(`${form} ${formQualifier}`)
-          ) {
-            const nQuads = `
-              _:form <name> "${form} (${formQualifier})" .
-              _:form <code> "${form} (${formQualifier})" .
-              _:form <type> "Form" .
-              _:form <dgraph.type> "ConfigurationItem" .
-            `;
-
-            if (await this.dgraph.mutate(nQuads)) {
-              console.log(
-                `INFO: Loaded form qualifier with name ${formQualifier}`
-              );
-            } else {
-              console.log(
-                `WARNING: Failed to load form qualifier with name ${formQualifier}`
-              );
-            }
-            break;
-          }
-        }
-      }
     }
 
     // Create immediate packagings.
-    for await (const immediatePackaging of immediatePackagings) {
+    for await (const immediatePackaging of configItems.immediatePackaging) {
       if (!immediatePackaging) continue;
       const nQuads = `
         _:pack <name> "${immediatePackaging}" .

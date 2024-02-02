@@ -60,7 +60,7 @@ const OptionListConfigTabComponent = ({
   const columns = useColumns<ConfigurationItemFragment>([
     {
       key: 'name',
-      label: 'label.value',
+      label: '', // only one column, so no real need for a label
     },
     'selection',
   ]);
