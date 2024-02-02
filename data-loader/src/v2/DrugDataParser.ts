@@ -68,11 +68,6 @@ export class DrugDataParser {
             { name: row.route, code: row.uc3, type: EEntityType.Route },
             { name: row.dose_form, code: row.uc4, type: EEntityType.Form },
             {
-              name: row.dose_qualification,
-              code: row.uc5,
-              type: EEntityType.FormQualifier,
-            },
-            {
               name: row.strength,
               code: row.uc6,
               type: EEntityType.DoseStrength,
