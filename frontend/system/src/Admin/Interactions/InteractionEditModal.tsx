@@ -152,7 +152,6 @@ export const InteractionEditModal = ({
                   drug1: {
                     code: input.drugId,
                     description: '',
-                    __typename: 'EntityType',
                   },
                   group1: undefined,
                 });
@@ -163,7 +162,6 @@ export const InteractionEditModal = ({
                   group1: {
                     id: input.groupId,
                     name: '',
-                    __typename: 'DrugInteractionGroupNode',
                   },
                   drug1: undefined,
                 });
@@ -188,7 +186,6 @@ export const InteractionEditModal = ({
                   drug2: {
                     code: input.drugId,
                     description: '',
-                    __typename: 'EntityType',
                   },
                   group2: undefined,
                 });
@@ -199,7 +196,6 @@ export const InteractionEditModal = ({
                   group2: {
                     id: input.groupId,
                     name: '',
-                    __typename: 'DrugInteractionGroupNode',
                   },
                   drug2: undefined,
                 });
