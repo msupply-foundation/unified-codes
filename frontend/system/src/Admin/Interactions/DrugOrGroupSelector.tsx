@@ -73,7 +73,7 @@ export const DrugOrGroupSelector: FC<DrugOrGroupSelectorProps> = ({
           />
         </Grid>
         <Grid item>
-          <Typography variant="h6">OR</Typography>
+          <Typography variant="h6">{t('label.or')}</Typography>
         </Grid>
         <Grid item>
           <Typography variant="body2">
