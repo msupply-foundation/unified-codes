@@ -32,7 +32,7 @@ mod test {
         let input = UpsertDrugInteraction {
             interaction_id: new_interaction_id.clone(),
             name: new_interaction_id.clone(),
-            description: "This is just a test".to_string(),
+            description: "add_drug_interaction_drug_drug_success".to_string(),
             severity: dgraph::DrugInteractionSeverity::NothingExpected,
             action: String::new(),
             reference: String::new(),
@@ -64,7 +64,7 @@ mod test {
 
         // Delete the newly created code
         let _result = service
-            .delete_drug_interaction_group(service_provider, context.user_id, new_interaction_id)
+            .delete_drug_interaction(service_provider, context.user_id, new_interaction_id)
             .await
             .unwrap();
     }
@@ -104,7 +104,7 @@ mod test {
         let input = UpsertDrugInteraction {
             interaction_id: new_interaction_id.clone(),
             name: new_interaction_id.clone(),
-            description: "This is just a test".to_string(),
+            description: "add_drug_interaction_group_drug_success".to_string(),
             severity: dgraph::DrugInteractionSeverity::NothingExpected,
             action: String::new(),
             reference: String::new(),
@@ -135,7 +135,7 @@ mod test {
         assert!(found);
         // Delete the newly created interaction
         let _result = service
-            .delete_drug_interaction_group(
+            .delete_drug_interaction(
                 service_provider.clone(),
                 context.user_id.clone(),
                 new_interaction_id.clone(),
@@ -204,7 +204,7 @@ mod test {
         let input = UpsertDrugInteraction {
             interaction_id: new_interaction_id.clone(),
             name: new_interaction_id.clone(),
-            description: "This is just a test".to_string(),
+            description: "add_drug_interaction_group_group_success".to_string(),
             severity: dgraph::DrugInteractionSeverity::NothingExpected,
             action: String::new(),
             reference: String::new(),
@@ -235,7 +235,7 @@ mod test {
         assert!(found);
         // Delete the newly created interaction
         let _result = service
-            .delete_drug_interaction_group(
+            .delete_drug_interaction(
                 service_provider.clone(),
                 context.user_id.clone(),
                 new_interaction_id.clone(),

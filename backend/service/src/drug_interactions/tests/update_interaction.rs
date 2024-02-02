@@ -59,7 +59,7 @@ mod test {
         let input = UpsertDrugInteraction {
             interaction_id: new_interaction_id.clone(),
             name: new_interaction_id.clone(),
-            description: "This is just a test".to_string(),
+            description: "upsert_drug_interaction_success".to_string(),
             severity: dgraph::DrugInteractionSeverity::NothingExpected,
             action: String::new(),
             reference: String::new(),
@@ -227,7 +227,7 @@ mod test {
 
         // Delete the newly created interaction
         let _result = service
-            .delete_drug_interaction_group(
+            .delete_drug_interaction(
                 service_provider.clone(),
                 context.user_id.clone(),
                 new_interaction_id.clone(),
