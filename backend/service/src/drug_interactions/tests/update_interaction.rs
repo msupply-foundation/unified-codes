@@ -1,5 +1,5 @@
 #[cfg(test)]
-// #[cfg(feature = "dgraph-tests")]
+#[cfg(feature = "dgraph-tests")]
 mod test {
     use repository::{mock::MockDataInserts, test_db::setup_all};
     use std::sync::Arc;
