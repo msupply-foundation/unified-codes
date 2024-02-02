@@ -128,9 +128,7 @@ mod tests {
             reference:
                 "https://www.drugs.com/drug-interactions/ace-inhibitors-with-nsaids-11-0-0-940-0"
                     .to_string(),
-            drugs: vec![DrugCode {
-                code: "294d8414".to_string(),
-            }],
+            drugs: vec![],
             groups: vec![
                 InteractionGroupRef {
                     interaction_group_id: interaction_group1_id.clone(),
