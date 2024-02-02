@@ -89,21 +89,6 @@ export const BarcodeEditModal = ({
         <InlineSpinner />
       ) : (
         <Grid flexDirection="column" display="flex" gap={2}>
-          <BasicTextInput
-            autoFocus
-            required
-            InputLabelProps={{ shrink: true }}
-            label={t('label.gtin')}
-            value={draft.gtin}
-            onChange={e => setDraft({ ...draft, gtin: e.target.value })}
-          />
-          <BasicTextInput
-            required
-            InputLabelProps={{ shrink: true }}
-            label={t('label.manufacturer')}
-            value={draft.manufacturer}
-            onChange={e => setDraft({ ...draft, manufacturer: e.target.value })}
-          />
           <AutocompleteList
             options={packSizeOptions}
             renderOption={renderOption}
@@ -135,6 +120,20 @@ export const BarcodeEditModal = ({
                 entityCode: (value as unknown as EntityRowFragment)?.code ?? '',
               })
             }
+          />
+          <BasicTextInput
+            required
+            InputLabelProps={{ shrink: true }}
+            label={t('label.gtin')}
+            value={draft.gtin}
+            onChange={e => setDraft({ ...draft, gtin: e.target.value })}
+          />
+          <BasicTextInput
+            required
+            InputLabelProps={{ shrink: true }}
+            label={t('label.manufacturer')}
+            value={draft.manufacturer}
+            onChange={e => setDraft({ ...draft, manufacturer: e.target.value })}
           />
           {errorMessage ? (
             <Grid item>
