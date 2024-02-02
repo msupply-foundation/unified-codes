@@ -212,5 +212,14 @@ pub async fn validate(
         ));
     }
 
+    // Check that we haven't specified the same thing twice
+    if new_item.drug_code_1 == new_item.drug_code_2
+        || new_item.interaction_group_id_1 == new_item.interaction_group_id_2
+    {
+        return Err(ModifyDrugInteractionError::BadUserInput(
+            "Please specify different drugs or interaction_groups".to_string(),
+        ));
+    }
+
     Ok(old_record)
 }
