@@ -1,5 +1,4 @@
 import {
-  Autocomplete,
   BasicTextInput,
   DialogButton,
   InlineSpinner,
@@ -234,12 +233,11 @@ export const InteractionEditModal = ({
             onChange={e =>
               setDraft({ ...draft, description: e.currentTarget.value })
             }
-            inputProps={{
+            InputProps={{
               sx: {
                 backgroundColor: (theme: {
                   palette: { background: { menu: any } };
                 }) => theme.palette.background.menu,
-                borderRadius: '8px',
               },
             }}
             InputLabelProps={{ shrink: true }}
@@ -250,7 +248,7 @@ export const InteractionEditModal = ({
             onChange={e =>
               setDraft({ ...draft, action: e.currentTarget.value })
             }
-            inputProps={{
+            InputProps={{
               sx: {
                 backgroundColor: (theme: {
                   palette: { background: { menu: any } };
@@ -266,7 +264,7 @@ export const InteractionEditModal = ({
             onChange={e =>
               setDraft({ ...draft, reference: e.currentTarget.value })
             }
-            inputProps={{
+            InputProps={{
               sx: {
                 backgroundColor: (theme: {
                   palette: { background: { menu: any } };
