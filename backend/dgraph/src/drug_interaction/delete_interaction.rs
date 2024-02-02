@@ -5,7 +5,7 @@ use crate::{DeleteResponse, DeleteResponseData, DgraphClient};
 
 #[derive(Serialize, Debug, Clone)]
 struct DeleteVars {
-    interaction_id: String,
+    id: String,
 }
 
 pub async fn delete_interaction(
@@ -18,9 +18,7 @@ mutation DeleteDrugInteraction($id: String) {
     numUids
   }
 }"#;
-    let variables = DeleteVars {
-        interaction_id: interaction_id,
-    };
+    let variables = DeleteVars { id: interaction_id };
 
     let result = client
         .query_with_retry::<DeleteResponseData, DeleteVars>(&query, variables)
@@ -39,5 +37,60 @@ mutation DeleteDrugInteraction($id: String) {
 #[cfg(test)]
 #[cfg(feature = "dgraph-tests")]
 mod tests {
-    // Deletes are tested in the insert tests, so no specific tests are needed here
+    use util::uuid::uuid;
+
+    use crate::{
+        delete_interaction::delete_interaction,
+        insert_interaction::{insert_drug_interaction, DrugInteractionInput},
+        DgraphClient, DrugCode, DrugInteractionSeverity,
+    };
+
+    #[tokio::test]
+    async fn test_delete_interaction() {
+        let client = DgraphClient::new("http://localhost:8080/graphql");
+
+        let interaction_id = uuid();
+
+        // Create a new Interaction
+
+        let interaction = DrugInteractionInput {
+            interaction_id: interaction_id.clone(),
+            name: interaction_id.clone(),
+            severity: DrugInteractionSeverity::NothingExpected,
+            description: "Some description here".to_string(),
+            action: "None".to_string(),
+            reference: "Reference".to_string(),
+            drugs: vec![
+                DrugCode {
+                    code: "294d8414".to_string(),
+                },
+                DrugCode {
+                    code: "294d8414".to_string(),
+                },
+            ],
+            groups: vec![],
+        };
+
+        let result = insert_drug_interaction(&client, interaction, true).await;
+        if result.is_err() {
+            println!(
+                "insert_drug_interaction err: {:#?} {:#?}",
+                result,
+                result.clone().unwrap_err().json()
+            );
+        }
+        assert!(result.is_ok());
+
+        // Delete the interaction
+        let result = delete_interaction(&client, interaction_id).await;
+
+        if result.is_err() {
+            println!(
+                "delete_interaction err: {:#?} {:#?}",
+                result,
+                result.clone().unwrap_err().json()
+            );
+        }
+        assert_eq!(result.unwrap().numUids, 1);
+    }
 }
