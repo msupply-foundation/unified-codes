@@ -9,12 +9,12 @@ export const DrugInteractionsView = () => {
 
   const tabs: TabDefinition[] = [
     {
-      Component: <InteractionGroupTab />,
-      value: t('label.drug-interaction-groups'),
-    },
-    {
       Component: <InteractionTab />,
       value: t('label.drug-interactions'),
+    },
+    {
+      Component: <InteractionGroupTab />,
+      value: t('label.drug-interaction-groups'),
     },
   ];
   return <DetailTabs tabs={tabs} />;
