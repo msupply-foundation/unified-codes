@@ -71,7 +71,7 @@ const InteractionGroupTabComponent = () => {
               title={
                 <ul>
                   {rowData.drugs.map(drug => (
-                    <li>{drug.description}</li>
+                    <li key={drug.code}>{drug.description}</li>
                   ))}
                 </ul>
               }
