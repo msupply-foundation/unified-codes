@@ -37,7 +37,7 @@ const InteractionGroupTabComponent = () => {
   const { onOpen, onClose, isOpen, entity, mode } =
     useEditModal<InteractionGroupFragment>();
 
-  const { data, isLoading } = useAllDrugInteractionGroups();
+  const { data, isLoading, isError } = useAllDrugInteractionGroups();
 
   const [deleteErrors, setDeleteErrors] = React.useState<DeleteError[]>([]);
   const selectedRows = useTableStore(state =>
@@ -170,6 +170,7 @@ const InteractionGroupTabComponent = () => {
         columns={columns}
         data={data}
         isLoading={isLoading}
+        isError={isError}
         onRowClick={onOpen}
       />
     </>

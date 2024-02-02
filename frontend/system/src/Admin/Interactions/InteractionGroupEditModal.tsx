@@ -49,7 +49,8 @@ export const InteractionGroupEditModal = ({
   const onUpdate = (patch: Partial<InteractionGroupFragment>) => {
     setGroup({ ...group, ...patch });
   };
-  const [addConfigItem, invalidateQueries] = useUpsertDrugInteractionGroup();
+  const [addDrugInterationGroup, invalidateQueries] =
+    useUpsertDrugInteractionGroup();
 
   const { data, isLoading: drugListLoading } = useEntities({
     filter: {
@@ -75,7 +76,7 @@ export const InteractionGroupEditModal = ({
         <LoadingButton
           onClick={() => {
             setIsLoading(true);
-            addConfigItem({
+            addDrugInterationGroup({
               input: {
                 id: group.id,
                 name: group.name,

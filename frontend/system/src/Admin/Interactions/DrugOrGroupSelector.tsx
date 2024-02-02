@@ -42,10 +42,10 @@ export const DrugOrGroupSelector: FC<DrugOrGroupSelectorProps> = ({
 
   const groupOptions = useMemo<SelectionOption[]>(() => {
     if (!groups) return [];
-    return groups.map(drug => ({
-      id: drug.id,
-      name: drug.description ?? 'Unknown',
-      label: drug.name ?? 'Unknown',
+    return groups.map(group => ({
+      id: group.id,
+      name: group.name ?? 'Unknown',
+      label: group.name ?? 'Unknown',
     }));
   }, [groups]);
 

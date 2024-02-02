@@ -19,6 +19,9 @@ import { useAllDrugInteractionGroups } from './api';
 import { DrugOrGroupSelector } from './DrugOrGroupSelector';
 import { DrugInteractionSeverityNode } from '@common/types';
 import { DrugInteractionFragment } from './api/operations.generated';
+import { useUpsertDrugInteraction } from './api/hooks/useUpsertInteraction';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 type InteractionEditModalProps = {
   isOpen: boolean;
@@ -50,6 +53,8 @@ export const InteractionEditModal = ({
     group2: interaction?.group2,
   });
 
+  const [addDrugInteration, invalidateQueries] = useUpsertDrugInteraction();
+
   const { data: drugs, isLoading: drugListLoading } = useEntities({
     filter: {
       categories: ['drug'],
@@ -66,10 +71,10 @@ export const InteractionEditModal = ({
   const { data: groups, isLoading: groupListLoading } =
     useAllDrugInteractionGroups();
 
-  const { Modal } = useDialog({ isOpen, onClose });
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  // TODO: set from queries
-  const isLoading = false;
+  const { Modal } = useDialog({ isOpen, onClose });
 
   const isInvalid = !draft.name || !draft.description || !draft.severity;
   const modalWidth = Math.min(window.innerWidth - 200, 800);
@@ -81,9 +86,33 @@ export const InteractionEditModal = ({
         <LoadingButton
           disabled={isInvalid}
           onClick={() => {
-            // TODO: save and handle errors
-            console.log('value to be saved:', draft);
-            onClose();
+            addDrugInteration({
+              input: {
+                id: draft.id,
+                name: draft.name,
+                description: draft.description ?? '',
+                action: draft.action ?? '',
+                reference: draft.reference ?? '',
+                severity: draft.severity,
+                drug1: draft.drug1?.code,
+                drug2: draft.drug2?.code,
+                group1: draft.group1?.id,
+                group2: draft.group2?.id,
+              },
+            })
+              .catch(err => {
+                setIsLoading(false);
+                if (!err || !err.message) {
+                  err = { message: t('messages.unknown-error') };
+                }
+                setErrorMessage(err.message);
+              })
+              .then(() => {
+                invalidateQueries();
+                setIsLoading(false);
+                onClose();
+              });
+            setIsLoading(false);
           }}
           isLoading={isLoading}
           startIcon={<CheckIcon />}
@@ -110,7 +139,6 @@ export const InteractionEditModal = ({
             value={draft?.name ?? ''}
             onChange={e => setDraft({ ...draft, name: e.currentTarget.value })}
           />
-
           <DrugOrGroupSelector
             drugs={drugs?.data ?? []}
             groups={groups ?? []}
@@ -119,16 +147,34 @@ export const InteractionEditModal = ({
               drugId?: string | undefined;
               groupId?: string | undefined;
             }): void {
-              // TODO....
-              // throw new Error('Function not implemented.');
+              if (input.drugId) {
+                setDraft({
+                  ...draft,
+                  drug1: {
+                    code: input.drugId,
+                    description: '',
+                    __typename: 'EntityType',
+                  },
+                  group1: undefined,
+                });
+              }
+              if (input.groupId) {
+                setDraft({
+                  ...draft,
+                  group1: {
+                    id: input.groupId,
+                    name: '',
+                    __typename: 'DrugInteractionGroupNode',
+                  },
+                  drug1: undefined,
+                });
+              }
             }}
             isLoading={drugListLoading || groupListLoading}
           />
-
           <Grid item>
             <Typography variant="h6">Interacts with</Typography>
           </Grid>
-
           <DrugOrGroupSelector
             drugs={drugs?.data ?? []}
             groups={groups ?? []}
@@ -137,12 +183,31 @@ export const InteractionEditModal = ({
               drugId?: string | undefined;
               groupId?: string | undefined;
             }): void {
-              // TODO....
-              // throw new Error('Function not implemented.');
+              if (input.drugId) {
+                setDraft({
+                  ...draft,
+                  drug2: {
+                    code: input.drugId,
+                    description: '',
+                    __typename: 'EntityType',
+                  },
+                  group2: undefined,
+                });
+              }
+              if (input.groupId) {
+                setDraft({
+                  ...draft,
+                  group2: {
+                    id: input.groupId,
+                    name: '',
+                    __typename: 'DrugInteractionGroupNode',
+                  },
+                  drug2: undefined,
+                });
+              }
             }}
             isLoading={drugListLoading || groupListLoading}
           />
-
           <Select
             label={t('label.severity')}
             required
@@ -176,8 +241,8 @@ export const InteractionEditModal = ({
                 borderRadius: '8px',
               },
             }}
+            InputLabelProps={{ shrink: true }}
           />
-
           <TextArea
             label={t('label.action')}
             value={draft?.action ?? ''}
@@ -192,8 +257,8 @@ export const InteractionEditModal = ({
                 borderRadius: '8px',
               },
             }}
+            InputLabelProps={{ shrink: true }}
           />
-
           <TextArea
             label={t('label.reference')}
             value={draft?.reference ?? ''}
@@ -208,7 +273,21 @@ export const InteractionEditModal = ({
                 borderRadius: '8px',
               },
             }}
+            InputLabelProps={{ shrink: true }}
           />
+          {errorMessage ? (
+            <Grid item>
+              <Alert
+                severity="error"
+                onClose={() => {
+                  setErrorMessage('');
+                }}
+              >
+                <AlertTitle>{t('error')}</AlertTitle>
+                {errorMessage}
+              </Alert>
+            </Grid>
+          ) : null}{' '}
         </Grid>
       )}
     </Modal>
