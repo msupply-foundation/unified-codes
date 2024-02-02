@@ -9,7 +9,7 @@ use chrono::Utc;
 use dgraph::{
     insert_interaction::{insert_drug_interaction, DrugInteractionInput},
     interaction::interaction_by_id,
-    interactions::{interactions, DrugInteractionFilter},
+    interactions::interactions,
     update_interaction::{update_drug_interaction, DrugInteractionUpdateInput},
     DrugCode, DrugInteraction, DrugInteractionSeverity, InteractionGroupRef,
 };
@@ -172,13 +172,7 @@ pub async fn validate(
     // look up existing record
     let old_record = interaction_by_id(client, new_item.interaction_id.clone()).await?;
 
-    let groups_with_same_name = interactions(
-        client,
-        Some(DrugInteractionFilter {
-            name: Some(new_item.name.clone()),
-        }),
-    )
-    .await?;
+    let groups_with_same_name = interactions(client, Some(new_item.name.clone())).await?;
 
     match groups_with_same_name {
         Some(groups_with_same_name) => {

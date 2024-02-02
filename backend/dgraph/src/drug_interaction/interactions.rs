@@ -5,16 +5,16 @@ use crate::DgraphClient;
 use crate::DrugInteractionsData;
 
 #[derive(Serialize, Debug, Clone)]
-pub struct DrugInteractionFilter {
+pub struct Vars {
     pub name: Option<String>,
 }
 
 pub async fn interactions(
     client: &DgraphClient,
-    filter: Option<DrugInteractionFilter>,
+    name_filter: Option<String>,
 ) -> Result<Option<DrugInteractionsData>, GraphQLError> {
-    let data = match filter {
-        Some(filter) => {
+    let data = match name_filter {
+        Some(name) => {
             let query = r#"
 query drugInteractions($name: String) {
   data: queryDrugInteraction(filter: {name: {eq: $name}}) {
@@ -43,9 +43,10 @@ query drugInteractions($name: String) {
   }
 }
 "#;
+            let vars = Vars { name: Some(name) };
             client
                 .gql
-                .query_with_vars::<DrugInteractionsData, DrugInteractionFilter>(query, filter)
+                .query_with_vars::<DrugInteractionsData, Vars>(query, vars)
                 .await?
         }
         None => {
@@ -103,13 +104,7 @@ mod tests {
     #[tokio::test]
     async fn test_name_filter() {
         let client = DgraphClient::new("http://localhost:8080/graphql");
-        let result = interactions(
-            &client,
-            Some(DrugInteractionFilter {
-                name: Some("test".to_string()),
-            }),
-        )
-        .await;
+        let result = interactions(&client, Some("test".to_string())).await;
         if result.is_err() {
             println!("{:#?}", result.clone().unwrap_err().json());
         }
