@@ -52,7 +52,8 @@ export const InteractionEditModal = ({
     group2: interaction?.group2,
   });
 
-  const [addDrugInteration, invalidateQueries] = useUpsertDrugInteraction();
+  const { mutateAsync: addDrugInteration, isLoading } =
+    useUpsertDrugInteraction();
 
   const { data: drugs, isLoading: drugListLoading } = useEntities({
     filter: {
@@ -70,7 +71,6 @@ export const InteractionEditModal = ({
   const { data: groups, isLoading: groupListLoading } =
     useAllDrugInteractionGroups();
 
-  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const { Modal } = useDialog({ isOpen, onClose });
@@ -85,7 +85,6 @@ export const InteractionEditModal = ({
         <LoadingButton
           disabled={isInvalid}
           onClick={() => {
-            setIsLoading(true);
             addDrugInteration({
               input: {
                 id: draft.id,
@@ -100,13 +99,8 @@ export const InteractionEditModal = ({
                 group2: draft.group2?.id,
               },
             })
-              .then(() => {
-                invalidateQueries();
-                setIsLoading(false);
-                onClose();
-              })
+              .then(() => onClose())
               .catch(err => {
-                setIsLoading(false);
                 if (!err || !err.message) {
                   err = { message: t('messages.unknown-error') };
                 }

@@ -1,4 +1,4 @@
-import { useQueryClient, useGql } from '@uc-frontend/common';
+import { useQueryClient, useGql, useMutation } from '@uc-frontend/common';
 import { getSdk } from '../operations.generated';
 import { DRUG_INTERACTION_GROUP_KEY } from '.';
 
@@ -11,5 +11,7 @@ export const useUpsertDrugInteractionGroup = () => {
     queryClient.invalidateQueries([DRUG_INTERACTION_GROUP_KEY]);
   };
 
-  return [sdk.UpsertDrugInteractionGroup, invalidateQueries] as const;
+  return useMutation(sdk.UpsertDrugInteractionGroup, {
+    onSettled: invalidateQueries,
+  });
 };
