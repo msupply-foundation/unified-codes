@@ -103,7 +103,7 @@ pub async fn validate(
     new_item: &UpsertDrugInteractionGroup,
 ) -> Result<Option<InteractionGroup>, ModifyDrugInteractionError> {
     if new_item.name.is_empty() {
-        return Err(ModifyDrugInteractionError::InternalError(
+        return Err(ModifyDrugInteractionError::BadUserInput(
             "Name is required".to_string(),
         ));
     }
@@ -125,7 +125,7 @@ pub async fn validate(
                 && groups_with_same_name.data[0].interaction_group_id
                     != new_item.interaction_group_id
             {
-                return Err(ModifyDrugInteractionError::InternalError(
+                return Err(ModifyDrugInteractionError::BadUserInput(
                     "Interaction group with same name already exists".to_string(),
                 ));
             }

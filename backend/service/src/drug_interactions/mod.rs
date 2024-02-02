@@ -31,6 +31,7 @@ pub enum DrugInteractionServiceError {
 #[derive(Debug)]
 pub enum ModifyDrugInteractionError {
     InternalError(String),
+    BadUserInput(String),
     DatabaseError(RepositoryError),
     DgraphError(GraphQLError),
 }

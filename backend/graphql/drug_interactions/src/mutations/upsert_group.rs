@@ -45,6 +45,7 @@ fn map_error(error: ModifyDrugInteractionError) -> Result<u32> {
 
     let graphql_error = match error {
         ModifyDrugInteractionError::InternalError(message) => InternalError(message),
+        ModifyDrugInteractionError::BadUserInput(message) => BadUserInput(message),
         ModifyDrugInteractionError::DatabaseError(_) => InternalError(formatted_error),
         ModifyDrugInteractionError::DgraphError(gql_error) => {
             InternalError(format!("{:#?} - {:?}", gql_error, gql_error.json()))

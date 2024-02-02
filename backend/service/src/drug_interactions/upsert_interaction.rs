@@ -185,7 +185,7 @@ pub async fn validate(
             if groups_with_same_name.data.len() > 0
                 && groups_with_same_name.data[0].interaction_id != new_item.interaction_id
             {
-                return Err(ModifyDrugInteractionError::InternalError(
+                return Err(ModifyDrugInteractionError::BadUserInput(
                     "Interaction with same name already exists".to_string(),
                 ));
             }
@@ -195,25 +195,25 @@ pub async fn validate(
 
     // Check that we have only 2 interacting items specified
     if new_item.drug_code_1.is_some() && new_item.interaction_group_id_1.is_some() {
-        return Err(ModifyDrugInteractionError::InternalError(
+        return Err(ModifyDrugInteractionError::BadUserInput(
             "Please specify only 1 drug or interaction_group in the first slot".to_string(),
         ));
     }
 
     if new_item.drug_code_2.is_some() && new_item.interaction_group_id_2.is_some() {
-        return Err(ModifyDrugInteractionError::InternalError(
+        return Err(ModifyDrugInteractionError::BadUserInput(
             "Please specify only 1 drug or interaction_group in the second slot".to_string(),
         ));
     }
 
     // Check that we have both interacting items specified
     if new_item.drug_code_1.is_none() && new_item.interaction_group_id_1.is_none() {
-        return Err(ModifyDrugInteractionError::InternalError(
+        return Err(ModifyDrugInteractionError::BadUserInput(
             "Please specify a drug or interaction_group in the first slot".to_string(),
         ));
     }
     if new_item.drug_code_2.is_none() && new_item.interaction_group_id_2.is_none() {
-        return Err(ModifyDrugInteractionError::InternalError(
+        return Err(ModifyDrugInteractionError::BadUserInput(
             "Please specify a drug or interaction_group in the second slot".to_string(),
         ));
     }
