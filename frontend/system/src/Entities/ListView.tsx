@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from '@common/intl';
 import {
   AppBarContentPortal,
@@ -10,7 +10,7 @@ import {
   ToggleButton,
   Stack,
 } from '@common/ui';
-import { useQueryParamsState } from '@common/hooks';
+import { useQueryParamsState, useUrlQuery } from '@common/hooks';
 import { EntityRowFragment, useEntities } from './api';
 import { ToggleButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router';
@@ -27,6 +27,8 @@ export const ListView = () => {
       initialSort: { key: 'description', dir: 'asc' },
     });
 
+  const { urlQuery, updateQuery } = useUrlQuery();
+
   const { sortBy, page, offset, first } = queryParams;
 
   const columns = useColumns<EntityRowFragment>(
@@ -39,7 +41,7 @@ export const ListView = () => {
     [sortBy, updateSortQuery]
   );
 
-  const [categories, setCategories] = useState<string[]>([]);
+  const categories: string[] = urlQuery.categories ?? [];
 
   const searchFilter = filter.filterBy?.['search'];
   const search = typeof searchFilter === 'string' ? searchFilter : '';
@@ -74,9 +76,9 @@ export const ListView = () => {
 
   const toggleCategory = (category: string) => {
     if (categories.includes(category)) {
-      setCategories(categories.filter(c => c !== category));
+      updateQuery({ ['categories[]']: categories.filter(c => c !== category) });
     } else {
-      setCategories([...categories, category]);
+      updateQuery({ ['categories[]']: [...categories, category] });
     }
   };
 
