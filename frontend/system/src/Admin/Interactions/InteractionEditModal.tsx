@@ -57,7 +57,7 @@ export const InteractionEditModal = ({
 
   const { data: drugs, isLoading: drugListLoading } = useEntities({
     filter: {
-      categories: ['drug'],
+      categories: ['drug', 'vaccine'],
       type: 'drug',
       orderBy: {
         field: 'name',
