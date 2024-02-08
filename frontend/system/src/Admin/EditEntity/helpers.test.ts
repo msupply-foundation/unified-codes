@@ -9,19 +9,25 @@ import {
   isValidDrugInput,
   isValidVaccineInput,
 } from './helpers';
-import { ConsumableInput, DrugInput, VaccineInput } from './types';
+import {
+  ConsumableInput,
+  DrugInput,
+  EntityDetails,
+  VaccineInput,
+} from './types';
 
 describe('getAllEntityCodes', () => {
   it('returns empty array when entity is not defined', () => {
     expect(getAllEntityCodes(undefined)).toMatchObject([]);
   });
   it('returns array of codes with empty strings filtered out', () => {
-    const entityDetails = {
+    const entityDetails: EntityDetails = {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
       alternativeNames: [],
       properties: [],
+      barcodes: [],
       children: [
         {
           code: '6e5f7a00',
@@ -29,6 +35,7 @@ describe('getAllEntityCodes', () => {
           type: 'Route',
           alternativeNames: [],
           properties: [],
+          barcodes: [],
           children: [
             {
               code: '',
@@ -37,6 +44,7 @@ describe('getAllEntityCodes', () => {
               alternativeNames: [],
               properties: [],
               children: [],
+              barcodes: [],
             },
           ],
         },
@@ -48,7 +56,7 @@ describe('getAllEntityCodes', () => {
     ]);
   });
   it('returns codes of entity and all its children', () => {
-    const entityDetails = {
+    const entityDetails: EntityDetails = {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
@@ -59,6 +67,7 @@ describe('getAllEntityCodes', () => {
         },
       ],
       properties: [],
+      barcodes: [],
       children: [
         {
           code: '6e5f7a00',
@@ -66,6 +75,7 @@ describe('getAllEntityCodes', () => {
           type: 'Route',
           alternativeNames: [],
           properties: [],
+          barcodes: [],
           children: [
             {
               code: '66e85500',
@@ -73,6 +83,7 @@ describe('getAllEntityCodes', () => {
               type: 'Form',
               alternativeNames: [],
               properties: [],
+              barcodes: [],
               children: [
                 {
                   code: '36e874bf',
@@ -80,6 +91,7 @@ describe('getAllEntityCodes', () => {
                   type: 'DoseStrength',
                   alternativeNames: [],
                   properties: [],
+                  barcodes: [],
                   children: [
                     {
                       code: 'e4edcb00',
@@ -87,6 +99,7 @@ describe('getAllEntityCodes', () => {
                       type: 'Unit',
                       alternativeNames: [],
                       properties: [],
+                      barcodes: [],
                     },
                   ],
                 },
@@ -96,6 +109,7 @@ describe('getAllEntityCodes', () => {
                   type: 'DoseStrength',
                   alternativeNames: [],
                   properties: [],
+                  barcodes: [],
                   children: [
                     {
                       code: 'e4edcb01',
@@ -103,6 +117,7 @@ describe('getAllEntityCodes', () => {
                       type: 'Unit',
                       alternativeNames: [],
                       properties: [],
+                      barcodes: [],
                     },
                   ],
                 },
@@ -130,7 +145,7 @@ describe('getAllEntityCodes', () => {
 
 describe('buildDrugInputFromEntity', () => {
   it('builds input from entity details', () => {
-    const entityDetails = {
+    const entityDetails: EntityDetails = {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
@@ -141,6 +156,7 @@ describe('buildDrugInputFromEntity', () => {
         },
       ],
       properties: [],
+      barcodes: [],
       children: [
         {
           code: '6e5f7a00',
@@ -148,6 +164,7 @@ describe('buildDrugInputFromEntity', () => {
           type: 'Route',
           alternativeNames: [],
           properties: [],
+          barcodes: [],
           children: [
             {
               code: '66e85500',
@@ -155,6 +172,7 @@ describe('buildDrugInputFromEntity', () => {
               type: 'Form',
               alternativeNames: [],
               properties: [],
+              barcodes: [],
               children: [
                 {
                   code: '36e874bf',
@@ -162,6 +180,7 @@ describe('buildDrugInputFromEntity', () => {
                   type: 'DoseStrength',
                   alternativeNames: [],
                   properties: [],
+                  barcodes: [],
                   children: [
                     {
                       code: 'e4edcb00',
@@ -169,6 +188,7 @@ describe('buildDrugInputFromEntity', () => {
                       type: 'Unit',
                       alternativeNames: [],
                       properties: [],
+                      barcodes: [],
                     },
                   ],
                 },
@@ -230,36 +250,33 @@ describe('buildDrugInputFromEntity', () => {
   });
 
   it('includes properties', () => {
-    const entityDetails = {
-      id: '7c8c2b5b',
+    const entityDetails: EntityDetails = {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
       alternativeNames: [],
       properties: [
         {
-          id: '7c8c2b5b_who_eml',
           code: '7c8c2b5b_who_eml',
           type: 'who_eml',
           value: '28',
         },
         {
-          id: '7c8c2b5b_code_unspsc',
           code: '7c8c2b5b_code_unspsc',
           type: 'code_unspsc',
           value: '51471602',
         },
       ],
+      barcodes: [],
       children: [
         {
-          id: '6e5f7a00',
           code: '6e5f7a00',
           name: 'Topical',
           type: 'Route',
           alternativeNames: [],
+          barcodes: [],
           properties: [
             {
-              id: '6e5f7a00_code_rxnav',
               code: '6e5f7a00_code_rxnav',
               type: 'code_rxnav',
               value: '168',
@@ -316,12 +333,13 @@ describe('buildDrugInputFromEntity', () => {
   // for now we'll just ignore nodes that show up at strange levels, until we decide whether/where we
   // support breaking the hierarchy structure
   it('only includes children in the result if they are for the correct level of the hierarchy', () => {
-    const entityDetails = {
+    const entityDetails: EntityDetails = {
       code: '7c8c2b5b',
       name: 'Acetic Acid',
       type: 'drug',
       alternativeNames: [],
       properties: [],
+      barcodes: [],
       children: [
         {
           code: '6e5f7a00',
@@ -329,6 +347,7 @@ describe('buildDrugInputFromEntity', () => {
           type: 'Route',
           alternativeNames: [],
           properties: [],
+          barcodes: [],
           children: [
             {
               code: '66e85500',
@@ -337,6 +356,7 @@ describe('buildDrugInputFromEntity', () => {
               alternativeNames: [],
               properties: [],
               children: [],
+              barcodes: [],
             },
             {
               code: 'e4edcb00',
@@ -345,6 +365,7 @@ describe('buildDrugInputFromEntity', () => {
               alternativeNames: [],
               properties: [],
               children: [],
+              barcodes: [],
             },
           ],
         },
@@ -382,12 +403,13 @@ describe('buildDrugInputFromEntity', () => {
 
 describe('buildVaccineInputFromEntity', () => {
   it('builds input from entity details', () => {
-    const entityDetails = {
+    const entityDetails: EntityDetails = {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       type: 'Vaccine',
       alternativeNames: [],
       properties: [],
+      barcodes: [],
       children: [
         {
           code: '6e5f7a00',
@@ -395,15 +417,16 @@ describe('buildVaccineInputFromEntity', () => {
           type: 'Route',
           alternativeNames: [],
           properties: [],
+          barcodes: [],
           children: [
             {
               code: '66e85500',
               name: 'Injection: suspension',
               type: 'Form',
               alternativeNames: [],
+              barcodes: [],
               properties: [
                 {
-                  id: '6e5f7a00_code_rxnav',
                   code: '6e5f7a00_code_rxnav',
                   type: 'code_rxnav',
                   value: '168',
@@ -416,6 +439,7 @@ describe('buildVaccineInputFromEntity', () => {
                   type: EntityType.VaccineNameDetails,
                   alternativeNames: [],
                   properties: [],
+                  barcodes: [],
                   children: [
                     {
                       code: '7e5f7a02',
@@ -423,6 +447,7 @@ describe('buildVaccineInputFromEntity', () => {
                       type: EntityType.ActiveIngredients,
                       alternativeNames: [],
                       properties: [],
+                      barcodes: [],
                       children: [
                         {
                           code: 'a6e85500',
@@ -430,6 +455,7 @@ describe('buildVaccineInputFromEntity', () => {
                           type: 'Brand',
                           alternativeNames: [],
                           properties: [],
+                          barcodes: [],
                           children: [],
                         },
                       ],
@@ -442,12 +468,14 @@ describe('buildVaccineInputFromEntity', () => {
                   type: EntityType.ActiveIngredients,
                   alternativeNames: [],
                   properties: [],
+                  barcodes: [],
                   children: [
                     {
                       code: '86e85500',
                       name: 'Brand 1',
                       type: 'Brand',
                       alternativeNames: [],
+                      barcodes: [],
                       properties: [],
                       children: [
                         {
@@ -456,6 +484,7 @@ describe('buildVaccineInputFromEntity', () => {
                           type: 'DoseStrength',
                           alternativeNames: [],
                           properties: [],
+                          barcodes: [],
                           children: [
                             {
                               code: 'e4edcb00',
@@ -463,6 +492,7 @@ describe('buildVaccineInputFromEntity', () => {
                               type: 'Unit',
                               alternativeNames: [],
                               properties: [],
+                              barcodes: [],
                               children: [
                                 {
                                   code: 'x4edcb00',
@@ -470,6 +500,7 @@ describe('buildVaccineInputFromEntity', () => {
                                   type: 'PackImmediate',
                                   alternativeNames: [],
                                   properties: [],
+                                  barcodes: [],
                                 },
                               ],
                             },
@@ -591,12 +622,13 @@ describe('buildVaccineInputFromEntity', () => {
   // for now we'll just ignore nodes that show up at strange levels, until we decide whether/where we
   // support breaking the hierarchy structure
   it('only includes children in the result if they are for the correct level of the hierarchy', () => {
-    const entityDetails = {
+    const entityDetails: EntityDetails = {
       code: '7c8c2b5b',
       name: 'Some Vaccine',
       type: 'Vaccine',
       alternativeNames: [],
       properties: [],
+      barcodes: [],
       children: [
         {
           code: '6e5f7a00',
@@ -604,6 +636,7 @@ describe('buildVaccineInputFromEntity', () => {
           type: 'Route', // include: valid child
           alternativeNames: [],
           properties: [],
+          barcodes: [],
         },
         {
           code: 'e4edcb00',
@@ -611,6 +644,7 @@ describe('buildVaccineInputFromEntity', () => {
           type: 'Unit', // exclude: invalid (should be deeper in the tree)
           alternativeNames: [],
           properties: [],
+          barcodes: [],
         },
       ],
     };
@@ -638,21 +672,22 @@ describe('buildVaccineInputFromEntity', () => {
 
 describe('buildConsumableInputFromEntity', () => {
   it('builds input from entity details', () => {
-    const entityDetails = {
+    const entityDetails: EntityDetails = {
       code: '7c8c2b5b',
       name: 'Examination Glove',
       type: 'Consumable',
       alternativeNames: [],
       properties: [],
+      barcodes: [],
       children: [
         {
           code: '7e5f7a00',
           name: 'Large',
           type: 'Presentation',
           alternativeNames: [],
+          barcodes: [],
           properties: [
             {
-              id: '6e5f7a00_code_rxnav',
               code: '6e5f7a00_code_rxnav',
               type: 'code_rxnav',
               value: '168',
@@ -666,6 +701,7 @@ describe('buildConsumableInputFromEntity', () => {
               alternativeNames: [],
               properties: [],
               children: [],
+              barcodes: [],
             },
             {
               code: '76e85501',
@@ -674,6 +710,7 @@ describe('buildConsumableInputFromEntity', () => {
               alternativeNames: [],
               properties: [],
               children: [],
+              barcodes: [],
             },
           ],
         },
