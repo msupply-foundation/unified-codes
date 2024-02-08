@@ -54,7 +54,7 @@ export const InteractionGroupEditModal = ({
 
   const { data, isLoading: drugListLoading } = useEntities({
     filter: {
-      categories: ['drug'],
+      categories: ['drug', 'vaccine'],
       type: 'drug',
       orderBy: {
         field: 'name',
