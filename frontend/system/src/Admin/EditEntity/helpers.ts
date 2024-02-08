@@ -319,12 +319,6 @@ export const buildConsumableInputFromEntity = (
         ?.filter(pres => pres.type === EntityType.Presentation)
         .map(pres => ({
           ...getDetails(pres),
-          packSizes:
-            pres.children
-              ?.filter(packSize => packSize.type === EntityType.PackSize)
-              .map(packSize => ({
-                ...getDetails(packSize),
-              })) || [],
           extraDescriptions:
             pres.children
               ?.filter(
@@ -336,6 +330,12 @@ export const buildConsumableInputFromEntity = (
                   description.children
                     ?.filter(packSize => packSize.type === EntityType.PackSize)
                     .map(packSize => getDetails(packSize)) || [],
+              })) || [],
+          packSizes:
+            pres.children
+              ?.filter(packSize => packSize.type === EntityType.PackSize)
+              .map(packSize => ({
+                ...getDetails(packSize),
               })) || [],
         })) || [],
     extraDescriptions:
