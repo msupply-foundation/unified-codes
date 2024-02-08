@@ -23,6 +23,7 @@ query drugInteractions($name: String) {
     description
     action
     severity
+    reference
     drugs {
         name
         description
@@ -58,6 +59,7 @@ query drugInteractions {
     description
     action
     severity
+    reference
     drugs {
         name
         description
