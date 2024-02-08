@@ -792,7 +792,14 @@ describe('buildEntityFromConsumableInput', () => {
           id: '7e5f7a00',
           code: '7e5f7a00',
           name: 'Large',
-          packSizes: [],
+          packSizes: [
+            {
+              id: 'cba12345',
+              code: 'cba12345',
+              name: '10pack',
+              properties: [],
+            },
+          ],
           properties: [
             {
               id: '6e5f7a00_code_rxnav',
@@ -807,7 +814,14 @@ describe('buildEntityFromConsumableInput', () => {
               code: '86e85500',
               name: 'Pink',
               properties: [],
-              packSizes: [],
+              packSizes: [
+                {
+                  id: 'abc12345',
+                  code: 'abc12345',
+                  name: '10pack',
+                  properties: [],
+                },
+              ],
             },
             {
               id: '76e85501',
@@ -825,7 +839,14 @@ describe('buildEntityFromConsumableInput', () => {
           code: '36e85501',
           name: 'Bundled',
           properties: [],
-          packSizes: [],
+          packSizes: [
+            {
+              id: '2305945',
+              code: '2305945',
+              name: '15pack',
+              properties: [],
+            },
+          ],
         },
       ],
     };
@@ -863,12 +884,31 @@ describe('buildEntityFromConsumableInput', () => {
               type: 'ExtraDescription',
               category: 'Consumable',
               properties: [],
+              children: [
+                {
+                  code: 'abc12345',
+                  name: '10pack',
+                  description: 'Examination Glove Large Pink 10pack',
+                  type: 'PackSize',
+                  category: 'Consumable',
+                  properties: [],
+                },
+              ],
             },
             {
               code: '76e85501',
               name: 'Black',
               description: 'Examination Glove Large Black',
               type: 'ExtraDescription',
+              category: 'Consumable',
+              properties: [],
+              children: [],
+            },
+            {
+              code: 'cba12345',
+              name: '10pack',
+              description: 'Examination Glove Large 10pack',
+              type: 'PackSize',
               category: 'Consumable',
               properties: [],
             },
@@ -881,6 +921,16 @@ describe('buildEntityFromConsumableInput', () => {
           type: 'ExtraDescription',
           category: 'Consumable',
           properties: [],
+          children: [
+            {
+              code: '2305945',
+              name: '15pack',
+              description: 'Examination Glove Bundled 15pack',
+              type: 'PackSize',
+              category: 'Consumable',
+              properties: [],
+            },
+          ],
         },
       ],
     });
