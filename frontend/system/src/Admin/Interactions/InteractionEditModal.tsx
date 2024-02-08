@@ -203,13 +203,7 @@ export const InteractionEditModal = ({
             label={t('label.severity')}
             required
             value={draft?.severity ?? DrugInteractionSeverityNode.Unknown}
-            options={Object.values(DrugInteractionSeverityNode).map(
-              severity => ({
-                id: severity,
-                label: severity,
-                value: severity,
-              })
-            )}
+            options={getSeverityOptions()}
             onChange={e =>
               setDraft({
                 ...draft,
@@ -283,4 +277,19 @@ export const InteractionEditModal = ({
       )}
     </Modal>
   );
+};
+
+const getSeverityOptions = () => {
+  const orderedSeverities = [
+    DrugInteractionSeverityNode.NothingExpected,
+    DrugInteractionSeverityNode.Moderate,
+    DrugInteractionSeverityNode.Severe,
+    DrugInteractionSeverityNode.Unknown,
+  ];
+
+  return orderedSeverities.map(severity => ({
+    id: severity,
+    label: severity,
+    value: severity,
+  }));
 };
