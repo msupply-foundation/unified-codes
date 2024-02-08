@@ -189,6 +189,7 @@ export const ConsumableFormTree = ({
                 {
                   id: uuid(),
                   name: '',
+                  packSizes: [],
                 },
                 pres.extraDescriptions
               )
@@ -225,7 +226,7 @@ export const ConsumableFormTree = ({
           label={t('label.add-presentation')}
           onClick={() =>
             onUpdate(
-              { id: uuid(), name: '', extraDescriptions: [] },
+              { id: uuid(), name: '', extraDescriptions: [], packSizes: [] },
               draft.presentations
             )
           }
@@ -233,7 +234,10 @@ export const ConsumableFormTree = ({
         <AddFieldButton
           label={t('label.add-extra-description')}
           onClick={() =>
-            onUpdate({ id: uuid(), name: '' }, draft.extraDescriptions)
+            onUpdate(
+              { id: uuid(), name: '', packSizes: [] },
+              draft.extraDescriptions
+            )
           }
         />
       </Box>

@@ -47,9 +47,12 @@ export interface DrugInput extends Entity {
   routes: Route[];
 }
 
-export interface ExtraDescription extends Entity {}
+export interface ExtraDescription extends Entity {
+  packSizes: PackSize[];
+}
 export interface Presentation extends Entity {
   extraDescriptions: ExtraDescription[];
+  packSizes: PackSize[];
 }
 export interface ConsumableInput extends Entity {
   alternativeNames: AlternativeName[];

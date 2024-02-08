@@ -319,6 +319,12 @@ export const buildConsumableInputFromEntity = (
         ?.filter(pres => pres.type === EntityType.Presentation)
         .map(pres => ({
           ...getDetails(pres),
+          packSizes:
+            pres.children
+              ?.filter(packSize => packSize.type === EntityType.PackSize)
+              .map(packSize => ({
+                ...getDetails(packSize),
+              })) || [],
           extraDescriptions:
             pres.children
               ?.filter(
@@ -326,6 +332,10 @@ export const buildConsumableInputFromEntity = (
               )
               .map(description => ({
                 ...getDetails(description),
+                packSizes:
+                  description.children
+                    ?.filter(packSize => packSize.type === EntityType.PackSize)
+                    .map(packSize => getDetails(packSize)) || [],
               })) || [],
         })) || [],
     extraDescriptions:
@@ -335,6 +345,10 @@ export const buildConsumableInputFromEntity = (
         )
         .map(description => ({
           ...getDetails(description),
+          packSizes:
+            description.children
+              ?.filter(packSize => packSize.type === EntityType.PackSize)
+              .map(packSize => getDetails(packSize)) || [],
         })) || [],
     alternativeNames: entity.alternativeNames.map(mapAltName),
   };

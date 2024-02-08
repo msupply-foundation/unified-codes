@@ -700,8 +700,18 @@ describe('buildConsumableInputFromEntity', () => {
               type: 'ExtraDescription',
               alternativeNames: [],
               properties: [],
-              children: [],
               barcodes: [],
+              children: [
+                {
+                  code: 'b1234500',
+                  name: '50 pack',
+                  type: EntityType.PackSize,
+                  alternativeNames: [],
+                  properties: [],
+                  children: [],
+                  barcodes: [],
+                },
+              ],
             },
             {
               code: '76e85501',
@@ -738,18 +748,28 @@ describe('buildConsumableInputFromEntity', () => {
               value: '168',
             },
           ],
+          packSizes: [],
           extraDescriptions: [
             {
               id: '86e85500',
               code: '86e85500',
               name: 'Pink',
               properties: [],
+              packSizes: [
+                {
+                  id: 'b1234500',
+                  code: 'b1234500',
+                  name: '50 pack',
+                  properties: [],
+                },
+              ],
             },
             {
               id: '76e85501',
               code: '76e85501',
               name: 'Black',
               properties: [],
+              packSizes: [],
             },
           ],
         },
@@ -772,6 +792,7 @@ describe('buildEntityFromConsumableInput', () => {
           id: '7e5f7a00',
           code: '7e5f7a00',
           name: 'Large',
+          packSizes: [],
           properties: [
             {
               id: '6e5f7a00_code_rxnav',
@@ -786,12 +807,14 @@ describe('buildEntityFromConsumableInput', () => {
               code: '86e85500',
               name: 'Pink',
               properties: [],
+              packSizes: [],
             },
             {
               id: '76e85501',
               code: '76e85501',
               name: 'Black',
               properties: [],
+              packSizes: [],
             },
           ],
         },
@@ -802,6 +825,7 @@ describe('buildEntityFromConsumableInput', () => {
           code: '36e85501',
           name: 'Bundled',
           properties: [],
+          packSizes: [],
         },
       ],
     };
@@ -1127,6 +1151,7 @@ describe('isValidConsumableInput', () => {
           id: '7e5f7a00',
           code: '7e5f7a00',
           name: 'Large',
+          packSizes: [],
           properties: [
             {
               id: '6e5f7a00_code_rxnav',
@@ -1141,12 +1166,14 @@ describe('isValidConsumableInput', () => {
               code: '86e85500',
               name: 'Pink',
               properties: [],
+              packSizes: [],
             },
             {
               id: '76e85501',
               code: '76e85501',
               name: 'Black',
               properties: [],
+              packSizes: [],
             },
           ],
         },
@@ -1157,6 +1184,7 @@ describe('isValidConsumableInput', () => {
           code: '36e85501',
           name: 'Bundled',
           properties: [],
+          packSizes: [],
         },
       ],
     };
@@ -1167,7 +1195,7 @@ describe('isValidConsumableInput', () => {
   });
 
   it('returns false when a field is missing a name', () => {
-    const consumableInput = {
+    const consumableInput: ConsumableInput = {
       id: '7c8c2b5b',
       name: 'Examination Glove',
       properties: [],
@@ -1179,6 +1207,7 @@ describe('isValidConsumableInput', () => {
           name: '',
           properties: [],
           extraDescriptions: [],
+          packSizes: [],
         },
       ],
     };
@@ -1189,7 +1218,7 @@ describe('isValidConsumableInput', () => {
   });
 
   it('returns false when there is a duplicate name', () => {
-    const consumableInput = {
+    const consumableInput: ConsumableInput = {
       id: '7c8c2b5b',
       name: 'Examination Glove',
       properties: [],
@@ -1201,12 +1230,14 @@ describe('isValidConsumableInput', () => {
           name: 'SAME',
           properties: [],
           extraDescriptions: [],
+          packSizes: [],
         },
         {
           id: '7e5f7a00',
           name: 'SAME',
           properties: [],
           extraDescriptions: [],
+          packSizes: [],
         },
       ],
     };
