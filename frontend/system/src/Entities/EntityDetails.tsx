@@ -47,7 +47,12 @@ export const EntityDetails = () => {
     const expandedIds: string[] = [];
 
     const addToExpandedIds = (ent?: EntityData | null) => {
-      if (ent && !TYPES_TO_COLLAPSE.includes(ent.type as EntityType)) {
+      if (
+        ent &&
+        !TYPES_TO_COLLAPSE.includes(ent.type as EntityType) &&
+        // don't expand if only have children that are pack sizes
+        !ent.children?.every(c => c.type === EntityType.PackSize)
+      ) {
         expandedIds.push(ent.code);
         ent.children?.forEach(addToExpandedIds);
       }

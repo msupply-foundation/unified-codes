@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useUuid } from '../../../hooks';
 import { PropertiesModal } from './PropertiesModal';
 import { useEditModal } from '@common/hooks';
-import { ConsumableInput, Entity, Property } from '../types';
+import { ConsumableInput, Entity, Presentation, Property } from '../types';
 import { TreeFormBox } from './TreeFormBox';
 import { AddFieldButton } from './AddFieldButton';
 import { EditPropertiesButton } from './EditPropertiesButton';
@@ -156,26 +156,33 @@ export const ConsumableFormTree = ({
             />
           </Box>
 
-          {!!pres.extraDescriptions.length && (
-            <Typography fontSize="12px">
-              {t('label.extra-descriptions')}
-            </Typography>
+          <ExtraDescriptions
+            parent={pres}
+            grandparents={[draft]}
+            isDisabled={isDisabled}
+            onUpdate={onUpdate}
+            onDelete={onDelete}
+            onOpenPropertiesModal={onOpenPropertiesModal}
+          />
+
+          {!!pres.packSizes.length && (
+            <Typography fontSize="12px">{t('label.pack-sizes')}</Typography>
           )}
 
-          {pres.extraDescriptions.map(description => (
-            <TreeFormBox key={description.id}>
+          {pres.packSizes.map(packSize => (
+            <TreeFormBox key={packSize.id}>
               <Box sx={{ display: 'flex', alignItems: 'end' }}>
                 <NameEditField
-                  label={t('label.extra-description')}
-                  entity={description}
-                  siblings={pres.extraDescriptions}
+                  label={t('label.pack-size')}
+                  entity={packSize}
+                  siblings={pres.packSizes}
                   isDisabled={isDisabled}
                   onUpdate={onUpdate}
                   onDelete={onDelete}
                 />
                 <EditPropertiesButton
                   parents={[draft, pres]}
-                  entity={description}
+                  entity={packSize}
                   onOpen={onOpenPropertiesModal}
                 />
               </Box>
@@ -183,60 +190,29 @@ export const ConsumableFormTree = ({
           ))}
 
           <AddFieldButton
-            label={t('label.add-extra-description')}
-            onClick={() =>
-              onUpdate(
-                {
-                  id: uuid(),
-                  name: '',
-                },
-                pres.extraDescriptions
-              )
-            }
+            label={t('label.add-pack-size')}
+            onClick={() => onUpdate({ id: uuid(), name: '' }, pres.packSizes)}
           />
         </TreeFormBox>
       ))}
-      {draft.extraDescriptions.map(description => (
-        <TreeFormBox key={description.id}>
-          <Box sx={{ display: 'flex', alignItems: 'end' }}>
-            <NameEditField
-              label={t('label.extra-description')}
-              entity={description}
-              siblings={draft.extraDescriptions}
-              isDisabled={isDisabled}
-              onUpdate={onUpdate}
-              onDelete={onDelete}
-            />
-            <EditPropertiesButton
-              parents={[draft]}
-              entity={description}
-              onOpen={onOpenPropertiesModal}
-            />
-          </Box>
-        </TreeFormBox>
-      ))}
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <AddFieldButton
-          label={t('label.add-presentation')}
-          onClick={() =>
-            onUpdate(
-              { id: uuid(), name: '', extraDescriptions: [] },
-              draft.presentations
-            )
-          }
-        />
-        <AddFieldButton
-          label={t('label.add-extra-description')}
-          onClick={() =>
-            onUpdate({ id: uuid(), name: '' }, draft.extraDescriptions)
-          }
-        />
-      </Box>
+      <AddFieldButton
+        label={t('label.add-presentation')}
+        onClick={() =>
+          onUpdate(
+            { id: uuid(), name: '', extraDescriptions: [], packSizes: [] },
+            draft.presentations
+          )
+        }
+      />
+
+      <ExtraDescriptions
+        parent={draft}
+        grandparents={[]}
+        isDisabled={isDisabled}
+        onUpdate={onUpdate}
+        onDelete={onDelete}
+        onOpenPropertiesModal={onOpenPropertiesModal}
+      />
 
       <Box>
         {!!draft.alternativeNames.length && (
@@ -265,6 +241,98 @@ export const ConsumableFormTree = ({
           }
         />
       </Box>
+    </Box>
+  );
+};
+
+const ExtraDescriptions = ({
+  parent,
+  grandparents,
+  isDisabled,
+  onUpdate,
+  onDelete,
+  onOpenPropertiesModal,
+}: {
+  parent: Presentation | ConsumableInput;
+  grandparents: Entity[];
+  isDisabled: (id: string) => boolean;
+  onUpdate: <T extends Entity>(updated: T, list: T[]) => void;
+  onDelete: <T extends Entity>(toDelete: T, list: T[]) => void;
+  onOpenPropertiesModal: (title: string, entityToUpdate: Entity) => void;
+}) => {
+  const uuid = useUuid();
+  const t = useTranslation('system');
+
+  return (
+    <Box>
+      {!!parent.extraDescriptions.length && (
+        <Typography fontSize="12px">{t('label.extra-descriptions')}</Typography>
+      )}
+
+      {parent.extraDescriptions.map(description => (
+        <TreeFormBox key={description.id}>
+          <Box sx={{ display: 'flex', alignItems: 'end' }}>
+            <NameEditField
+              label={t('label.extra-description')}
+              entity={description}
+              siblings={parent.extraDescriptions}
+              isDisabled={isDisabled}
+              onUpdate={onUpdate}
+              onDelete={onDelete}
+            />
+            <EditPropertiesButton
+              parents={[...grandparents, parent]}
+              entity={description}
+              onOpen={onOpenPropertiesModal}
+            />
+          </Box>
+
+          {!!description.packSizes.length && (
+            <Typography fontSize="12px">{t('label.pack-sizes')}</Typography>
+          )}
+
+          {description.packSizes.map(packSize => (
+            <TreeFormBox key={packSize.id}>
+              <Box sx={{ display: 'flex', alignItems: 'end' }}>
+                <NameEditField
+                  label={t('label.pack-size')}
+                  entity={packSize}
+                  siblings={description.packSizes}
+                  isDisabled={isDisabled}
+                  onUpdate={onUpdate}
+                  onDelete={onDelete}
+                />
+                <EditPropertiesButton
+                  parents={[...grandparents, parent, description]}
+                  entity={packSize}
+                  onOpen={onOpenPropertiesModal}
+                />
+              </Box>
+            </TreeFormBox>
+          ))}
+
+          <AddFieldButton
+            label={t('label.add-pack-size')}
+            onClick={() =>
+              onUpdate({ id: uuid(), name: '' }, description.packSizes)
+            }
+          />
+        </TreeFormBox>
+      ))}
+
+      <AddFieldButton
+        label={t('label.add-extra-description')}
+        onClick={() =>
+          onUpdate(
+            {
+              id: uuid(),
+              name: '',
+              packSizes: [],
+            },
+            parent.extraDescriptions
+          )
+        }
+      />
     </Box>
   );
 };

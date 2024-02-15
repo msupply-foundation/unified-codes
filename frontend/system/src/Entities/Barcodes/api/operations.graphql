@@ -49,6 +49,27 @@ query entityWithBarcodes($code: String!) {
       ...EntityWithBarcodes
       children {
         ...EntityWithBarcodes
+        children {
+          ...EntityWithBarcodes
+          children {
+            ...EntityWithBarcodes
+            children {
+              ...EntityWithBarcodes
+              children {
+                ...EntityWithBarcodes
+                children {
+                  ...EntityWithBarcodes
+                  children {
+                    ...EntityWithBarcodes
+                    children {
+                      ...EntityWithBarcodes
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

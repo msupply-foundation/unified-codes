@@ -326,6 +326,16 @@ export const buildConsumableInputFromEntity = (
               )
               .map(description => ({
                 ...getDetails(description),
+                packSizes:
+                  description.children
+                    ?.filter(packSize => packSize.type === EntityType.PackSize)
+                    .map(packSize => getDetails(packSize)) || [],
+              })) || [],
+          packSizes:
+            pres.children
+              ?.filter(packSize => packSize.type === EntityType.PackSize)
+              .map(packSize => ({
+                ...getDetails(packSize),
               })) || [],
         })) || [],
     extraDescriptions:
@@ -335,6 +345,10 @@ export const buildConsumableInputFromEntity = (
         )
         .map(description => ({
           ...getDetails(description),
+          packSizes:
+            description.children
+              ?.filter(packSize => packSize.type === EntityType.PackSize)
+              .map(packSize => getDetails(packSize)) || [],
         })) || [],
     alternativeNames: entity.alternativeNames.map(mapAltName),
   };
@@ -364,14 +378,32 @@ export const buildEntityFromConsumableInput = (
         type: EntityType.Presentation,
         category: EntityCategory.Consumable,
         properties: pres.properties?.map(mapProperty),
-        children: pres.extraDescriptions?.map(description => ({
-          code: description.code,
-          name: description.name,
-          description: `${consumable.name} ${pres.name} ${description.name}`,
-          type: EntityType.ExtraDescription,
-          category: EntityCategory.Consumable,
-          properties: description.properties?.map(mapProperty),
-        })),
+        children: [
+          ...pres.extraDescriptions?.map(description => ({
+            code: description.code,
+            name: description.name,
+            description: `${consumable.name} ${pres.name} ${description.name}`,
+            type: EntityType.ExtraDescription,
+            category: EntityCategory.Consumable,
+            properties: description.properties?.map(mapProperty),
+            children: description.packSizes?.map(packSize => ({
+              code: packSize.code,
+              name: packSize.name,
+              description: `${consumable.name} ${pres.name} ${description.name} ${packSize.name}`,
+              type: EntityType.PackSize,
+              category: EntityCategory.Consumable,
+              properties: packSize.properties?.map(mapProperty),
+            })),
+          })),
+          ...pres.packSizes?.map(packSize => ({
+            code: packSize.code,
+            name: packSize.name,
+            description: `${consumable.name} ${pres.name} ${packSize.name}`,
+            type: EntityType.PackSize,
+            category: EntityCategory.Consumable,
+            properties: packSize.properties?.map(mapProperty),
+          })),
+        ],
       })),
       // Extra Descriptions
       ...consumable.extraDescriptions.map(description => ({
@@ -381,6 +413,14 @@ export const buildEntityFromConsumableInput = (
         type: EntityType.ExtraDescription,
         category: EntityCategory.Consumable,
         properties: description.properties?.map(mapProperty),
+        children: description.packSizes?.map(packSize => ({
+          code: packSize.code,
+          name: packSize.name,
+          description: `${consumable.name} ${description.name} ${packSize.name}`,
+          type: EntityType.PackSize,
+          category: EntityCategory.Consumable,
+          properties: packSize.properties?.map(mapProperty),
+        })),
       })),
     ],
   };

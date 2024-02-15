@@ -34,7 +34,7 @@ export type EntityWithBarcodesQueryVariables = Types.Exact<{
 }>;
 
 
-export type EntityWithBarcodesQuery = { __typename?: 'FullQuery', entity?: { __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> }>, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> }>, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> } | null };
+export type EntityWithBarcodesQuery = { __typename?: 'FullQuery', entity?: { __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, children: Array<{ __typename?: 'EntityType', code: string, name: string, description: string, type: string, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> }>, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> }>, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> }>, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> }>, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> }>, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> }>, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> }>, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> }>, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> }>, barcodes: Array<{ __typename?: 'BarcodeType', id: string, gtin: string, manufacturer: string }> } | null };
 
 export const BarcodeFragmentDoc = gql`
     fragment Barcode on BarcodeNode {
@@ -93,6 +93,27 @@ export const EntityWithBarcodesDocument = gql`
       ...EntityWithBarcodes
       children {
         ...EntityWithBarcodes
+        children {
+          ...EntityWithBarcodes
+          children {
+            ...EntityWithBarcodes
+            children {
+              ...EntityWithBarcodes
+              children {
+                ...EntityWithBarcodes
+                children {
+                  ...EntityWithBarcodes
+                  children {
+                    ...EntityWithBarcodes
+                    children {
+                      ...EntityWithBarcodes
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

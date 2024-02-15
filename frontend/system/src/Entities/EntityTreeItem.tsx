@@ -40,11 +40,13 @@ export const EntityTreeItem = ({
   const isLeaf = !entity.children?.length;
   const showCode =
     showAllCodes ||
-    isLeaf ||
+    (isLeaf && entity.type !== EntityType.PackSize) || // PackSizes are leaf nodes but we don't care about their codes by default, just their link to the barcodes page
     highlightCode === entity.code ||
     // mSupply users will usually want these codes:
     entity.type === EntityType.Strength ||
-    entity.type === EntityType.Unit;
+    entity.type === EntityType.Unit ||
+    entity.type === EntityType.ExtraDescription ||
+    entity.type === EntityType.Presentation;
 
   // use default chevron icons, unless we're looking at a leaf node with no properties
   const customIcons =
@@ -95,14 +97,17 @@ export const EntityTreeItem = ({
         </Box>
       }
     >
-      {entity.children?.map(c => (
-        <EntityTreeItem
-          entity={c}
-          key={c.code}
-          showAllCodes={showAllCodes}
-          highlightCode={highlightCode}
-        />
-      ))}
+      {entity.children
+        // we have some entities that have multiple types of children - we want to group the same types together!
+        ?.sort((a, b) => (a.type > b.type ? 1 : a.type < b.type ? -1 : 0))
+        .map(c => (
+          <EntityTreeItem
+            entity={c}
+            key={c.code}
+            showAllCodes={showAllCodes}
+            highlightCode={highlightCode}
+          />
+        ))}
       {!!entity.properties.length && (
         <TreeItem
           nodeId={entity.code + '_properties'}
