@@ -60,6 +60,12 @@ query EntitiesQuery($filter: EntityFilter, $first: Int, $offset: Int, $order: En
     code
     alternative_names
     __typename
+    properties {
+        __typename
+        code
+        type
+        value
+    }
     parents {
         id
         name
@@ -125,6 +131,7 @@ mod tests {
         assert_eq!(data.data[0].description, "Heparin Sodium");
         assert_eq!(data.data[0].r#type, "Product");
         assert_eq!(data.aggregates.unwrap().count, 1);
+        assert!(!data.properties.is_empty())
     }
 
     #[tokio::test]
