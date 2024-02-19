@@ -16,7 +16,6 @@ use graphql_general::GeneralQueries;
 use graphql_universal_codes::{UniversalCodesMutations, UniversalCodesQueries};
 use graphql_universal_codes_v1::UniversalCodesV1Queries;
 use graphql_user_account::{UserAccountMutations, UserAccountQueries};
-use graphql_v1_core::loader::LoaderRegistry as LoaderRegistryV1;
 
 use logger::{RequestLogger, ResponseLogger};
 use repository::StorageConnectionManager;
@@ -77,7 +76,6 @@ pub fn schema_builder() -> Builder {
 pub fn build_schema(
     connection_manager: Data<StorageConnectionManager>,
     loader_registry: Data<LoaderRegistry>,
-    loader_registry_v1: Data<LoaderRegistryV1>,
     service_provider: Data<ServiceProvider>,
     auth_data: Data<AuthData>,
     settings_data: Data<Settings>,
@@ -88,7 +86,6 @@ pub fn build_schema(
     let mut builder = schema_builder()
         .data(connection_manager)
         .data(loader_registry)
-        .data(loader_registry_v1)
         .data(service_provider)
         .data(auth_data)
         .data(settings_data)
@@ -123,7 +120,6 @@ impl SelfRequest for SelfRequestImpl {
 pub fn config(
     connection_manager: Data<StorageConnectionManager>,
     loader_registry: Data<LoaderRegistry>,
-    loader_registry_v1: Data<LoaderRegistryV1>,
     service_provider: Data<ServiceProvider>,
     auth_data: Data<AuthData>,
     settings_data: Data<Settings>,
@@ -134,7 +130,6 @@ pub fn config(
             schema: build_schema(
                 connection_manager.clone(),
                 loader_registry.clone(),
-                loader_registry_v1.clone(),
                 service_provider.clone(),
                 auth_data.clone(),
                 settings_data.clone(),
@@ -147,7 +142,6 @@ pub fn config(
         let schema = build_schema(
             connection_manager,
             loader_registry,
-            loader_registry_v1,
             service_provider,
             auth_data,
             settings_data,

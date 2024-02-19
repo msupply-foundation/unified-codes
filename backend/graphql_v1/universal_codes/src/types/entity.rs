@@ -1,10 +1,5 @@
-use async_graphql::dataloader::DataLoader;
 use async_graphql::*;
-
 use dgraph::Entity;
-
-use graphql_v1_core::loader::ProductLoader;
-use graphql_v1_core::ContextExt;
 
 use crate::AlternativeNameType;
 use crate::BarcodeType;
@@ -92,17 +87,9 @@ impl EntityType {
         &self.alternative_names
     }
 
-    pub async fn product(
-        &self,
-        ctx: &Context<'_>,
-    ) -> Result<Option<EntityType>, async_graphql::Error> {
-        let loader = ctx.get_loader_v1::<DataLoader<ProductLoader>>();
-        let result = loader
-            .load_one(self.code.to_string())
-            .await?
-            .unwrap_or_default();
-
-        Ok(result.map(EntityType::from_domain))
+    pub async fn product(&self) -> Option<EntityType> {
+        // TODO: Probably a loader? Implement Product Lookup
+        None
     }
 
     pub async fn parents(&self) -> &Vec<EntityType> {

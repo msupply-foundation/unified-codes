@@ -9,7 +9,6 @@ use async_graphql::{EmptyMutation, EmptySubscription, MergedObject, SchemaBuilde
 use async_graphql_actix_web::{GraphQLRequest, GraphQLResponse};
 use graphql_universal_codes_v1::UniversalCodesV1Queries;
 
-use graphql_v1_core::loader::LoaderRegistry;
 use logger::{RequestLogger, ResponseLogger};
 use repository::StorageConnectionManager;
 use service::service_provider::ServiceProvider;
@@ -34,14 +33,12 @@ pub fn schema_builder() -> Builder {
 
 pub fn build_schema(
     connection_manager: Data<StorageConnectionManager>,
-    loader_registry: Data<LoaderRegistry>,
     service_provider: Data<ServiceProvider>,
     settings_data: Data<Settings>,
     include_logger: bool,
 ) -> Schema {
     let mut builder = schema_builder()
         .data(connection_manager)
-        .data(loader_registry)
         .data(service_provider)
         .data(settings_data);
 
@@ -54,18 +51,11 @@ pub fn build_schema(
 
 pub fn config(
     connection_manager: Data<StorageConnectionManager>,
-    loader_registry: Data<LoaderRegistry>,
     service_provider: Data<ServiceProvider>,
     settings_data: Data<Settings>,
 ) -> impl FnOnce(&mut actix_web::web::ServiceConfig) {
     |cfg| {
-        let schema = build_schema(
-            connection_manager,
-            loader_registry,
-            service_provider,
-            settings_data,
-            true,
-        );
+        let schema = build_schema(connection_manager, service_provider, settings_data, true);
 
         cfg.app_data(Data::new(schema))
             .service(

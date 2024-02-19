@@ -1,6 +1,5 @@
 use std::sync::Arc;
 
-use dgraph::DgraphClient;
 use repository::{RepositoryError, StorageConnection, StorageConnectionManager};
 
 use crate::{
@@ -87,15 +86,5 @@ impl ServiceProvider {
     /// Establishes a new DB connection
     pub fn connection(&self) -> Result<StorageConnection, RepositoryError> {
         self.connection_manager.connection()
-    }
-
-    pub fn dgraph_client(&self) -> DgraphClient {
-        let url = format!(
-            "{}:{}/graphql",
-            self.settings.dgraph.host.clone(),
-            self.settings.dgraph.port
-        );
-
-        DgraphClient::new(&url)
     }
 }
