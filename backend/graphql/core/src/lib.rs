@@ -5,6 +5,8 @@ pub mod simple_generic_errors;
 pub mod standard_graphql_error;
 pub mod test_helpers;
 
+use graphql_v1_core::loader::LoaderRegistry as LoaderRegistryV1;
+
 use std::sync::Arc;
 
 use actix_web::cookie::Cookie;
@@ -34,6 +36,7 @@ pub trait SelfRequest: Send + Sync {
 pub trait ContextExt {
     fn get_connection_manager(&self) -> &StorageConnectionManager;
     fn get_loader<T: anymap::any::Any + Send + Sync>(&self) -> &T;
+    fn get_loader_v1<T: anymap::any::Any + Send + Sync>(&self) -> &T;
     fn service_provider(&self) -> Arc<ServiceProvider>;
     fn service_context(
         &self,
@@ -53,6 +56,10 @@ impl<'a> ContextExt for Context<'a> {
 
     fn get_loader<T: anymap::any::Any + Send + Sync>(&self) -> &T {
         self.data_unchecked::<Data<LoaderRegistry>>().get::<T>()
+    }
+
+    fn get_loader_v1<T: anymap::any::Any + Send + Sync>(&self) -> &T {
+        self.data_unchecked::<Data<LoaderRegistryV1>>().get::<T>()
     }
 
     fn service_provider(&self) -> Arc<ServiceProvider> {

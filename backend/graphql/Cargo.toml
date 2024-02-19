@@ -14,6 +14,7 @@ util = { path = "../util" }
 graphql_configuration = { path = "configuration" }
 graphql_drug_interactions = { path = "drug_interactions" }
 graphql_core = { path = "core" }
+graphql_v1_core = { path = "../graphql_v1/core" }
 graphql_barcode = { path = "barcode" }
 graphql_types = { path = "types" }
 graphql_general = { path = "general" }
