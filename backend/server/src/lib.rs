@@ -5,6 +5,8 @@ use crate::{
 
 use self::middleware::{compress as compress_middleware, logger as logger_middleware};
 use graphql_core::loader::{get_loaders, LoaderRegistry};
+use graphql_v1_core::loader::get_loaders_v1;
+use graphql_v1_core::loader::LoaderRegistry as LoaderRegistryV1;
 
 use graphql::config as graphql_config;
 use graphql_v1::config as graphql_v1_config;
@@ -68,6 +70,11 @@ async fn run_server(
 
     let loaders = get_loaders(&connection_manager, service_provider_data.clone()).await;
     let loader_registry_data = Data::new(LoaderRegistry { loaders });
+
+    let loaders_v1 = get_loaders_v1(service_provider_data.clone()).await;
+    let loader_registry_data_v1 = Data::new(LoaderRegistryV1 {
+        loaders: loaders_v1,
+    });
 
     let settings_data = Data::new(config_settings.clone());
 
@@ -140,6 +147,7 @@ async fn run_server(
             .configure(graphql_config(
                 connection_manager_data_app.clone(),
                 loader_registry_data.clone(),
+                loader_registry_data_v1.clone(),
                 service_provider_data.clone(),
                 auth_data.clone(),
                 settings_data.clone(),
@@ -147,6 +155,7 @@ async fn run_server(
             ))
             .configure(graphql_v1_config(
                 connection_manager_data_app.clone(),
+                loader_registry_data_v1.clone(),
                 service_provider_data.clone(),
                 settings_data.clone(),
             ))
