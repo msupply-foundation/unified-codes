@@ -8,3 +8,13 @@ script = "systemfd --no-pid -s http::4007 -- cargo watch --no-vcs-ignores -w .tr
 [tasks.watch]
 workspace = false
 run_task = { name = ["watch_build", "trigger_server_start"], parallel = true }
+
+[tasks.trigger_server_start_with_downtime]
+script = "cargo watch --no-vcs-ignores -w .trigger -x run"
+
+[tasks.watch_with_downtime]
+workspace = false
+run_task = { name = [
+  "watch_build",
+  "trigger_server_start_with_downtime",
+], parallel = true }
