@@ -284,7 +284,9 @@ query FullEntity {
             code: '933f3f00',
           },
         ],
-        product: null,
+        product: {
+          code: '12e6911d',
+        },
         properties: [
           {
             type: 'code_rxnav',
