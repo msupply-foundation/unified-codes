@@ -6,7 +6,7 @@
   "scripts": {
     "load-data": "lerna run --scope @universal-codes/data-loader start --stream && yarn update-dgraph-schema",
     "start-backend": "cd backend && cargo run",
-    "start-backend:watch": "cd backend && systemfd --no-pid -s http::4007 -- cargo watch -x run",
+    "start-backend:watch": "cd backend && cargo make watch",
     "build-data-loader": "lerna run --scope @universal-codes/data-loader build",
     "start-frontend": "lerna run --scope @uc-frontend/* --parallel start",
     "build-frontend": "lerna run --scope @uc-frontend/* build",
