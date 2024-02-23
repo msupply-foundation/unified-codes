@@ -175,6 +175,9 @@ test('mSupply Search - ace', () => {
           res.data.entities.data.map((entity: { code: string }) => entity.code)
         ).toContain(expectedCode);
       }
+      for (const entity of res.data.entities.data) {
+        expect(entity.product.properties).toBeDefined();
+      }
     });
 });
 
@@ -286,7 +289,7 @@ test('filter-description-exact', () => {
   };
 
   const query = `{
-            entities(filter: { code: "" categories: ["drug"] description: "Albendazole",  match: "exact", type: "drug" orderBy: { field: "description" descending: false } } offset: 0 first: 25) {
+            entities(filter: { categories: ["drug"] description: "Albendazole",  match: "exact", type: "drug" orderBy: { field: "description" descending: false } } offset: 0 first: 25) {
                 data {
                     code
                     description
