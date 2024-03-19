@@ -10,6 +10,7 @@ use graphql_v1_core::loader::LoaderRegistry as LoaderRegistryV1;
 
 use graphql::config as graphql_config;
 use graphql_v1::config as graphql_v1_config;
+use listenfd::ListenFd;
 use log::{error, info};
 use middleware::{add_authentication_context, limit_content_length};
 use repository::{get_storage_connection_manager, run_db_migrations, StorageConnectionManager};
@@ -164,7 +165,13 @@ async fn run_server(
     })
     .disable_signals();
 
-    http_server = http_server.bind(config_settings.server.address())?;
+    let mut listenfd = ListenFd::from_env();
+
+    http_server = if let Some(listener) = listenfd.take_tcp_listener(0)? {
+        http_server.listen(listener)?
+    } else {
+        http_server.bind(config_settings.server.address())?
+    };
 
     let running_sever = http_server.run();
     let server_handle = running_sever.handle();

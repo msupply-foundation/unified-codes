@@ -45,3 +45,5 @@ android/app/src/main/jniLibs
 android/.idea
 /build/*
 !/build/.npmkeep
+
+.trigger
