@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 // Seems to mostly happen in tests, but in case this happens in production we'll retry a few times
 // Sounds like this could possibly be to do with updating the same index?
 const DEFAULT_RETRIES: usize = 3;
-const DEFAULT_RETRY_DELAY: u64 = 10;
+const DEFAULT_RETRY_DELAY: u64 = 20;
 
 #[derive(Clone)]
 pub struct DgraphClient {
