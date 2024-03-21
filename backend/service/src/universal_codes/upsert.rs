@@ -55,47 +55,37 @@ pub async fn upsert_entity(
         },
     };
 
-    let mut child_handles = vec![];
-    // First process any children
-    if let Some(children) = updated_entity.children.clone() {
-        for child in children {
-            // Using spawn_local partly to avoid errors with async recursion
-            // https://docs.rs/async-recursion/latest/async_recursion/ would be another approach, but this also gets us some parallelism
-            let result = tokio::task::spawn_local(upsert_entity(
-                sp.clone(),
-                user_id.clone(),
-                client.clone(),
-                child,
-            ));
-            child_handles.push(result);
-        }
-    }
-
-    // Wait for the children to finish
-    // Collect the codes of any children, as their codes might be generated in the recursion
-    let mut child_codes = vec![];
-    for handle in child_handles {
-        let result = handle.await;
-        let child_entity = match result {
-            Ok(child_entity) => child_entity?,
-            Err(e) => {
-                return Err(ModifyUniversalCodeError::InternalError(format!(
-                    "Failed to get child entity: {}",
-                    e
-                )))
-            }
-        };
-        child_codes.push(child_entity.code);
-    }
-
     // Validate
     let original_entity = validate(&client, &updated_entity).await?;
 
     // Generate
     let entity_input = generate(updated_entity.clone())?;
 
+    // Upsert this entity
     let _result = dgraph::upsert_entity(&client, entity_input.clone(), true).await?;
 
+    // Insert any child nodes
+    // Collect the codes of any children, as their codes might be generated in the recursion
+    let mut child_codes = vec![];
+    if let Some(children) = updated_entity.children.clone() {
+        for child in children {
+            // Using spawn_local to avoid errors with async recursion
+            // https://docs.rs/async-recursion/latest/async_recursion/ would be another approach
+            let handle = tokio::task::spawn_local(upsert_entity(
+                sp.clone(),
+                user_id.clone(),
+                client.clone(),
+                child,
+            ));
+            let child_entity = handle.await.map_err(|e| {
+                ModifyUniversalCodeError::InternalError(format!(
+                    "Join Error with spawn_local upsert_entity: {:?}",
+                    e
+                ))
+            })??;
+            child_codes.push(child_entity.code);
+        }
+    }
     // Link any children to the new entity
     for child_code in child_codes {
         dgraph::link_entities(&client, entity_input.code.clone(), child_code).await?;
