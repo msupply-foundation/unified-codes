@@ -1,22 +1,31 @@
-# This script needs to be run as root to access the dgraph export data
+#!/bin/bash
+# NOTE: Sadly this script needs to be run as root to access the dgraph export data
 # Print start date
 date
 
-# Read the environment file
-. /root/.backup-env
+HC_URL=https://healthchecks.msupply.org/ping/92702925-31fd-4c02-915c-2a65636e03a6
+LOCKFILE="/tmp/codes-backup.lock"
+
+# Check the script isn't already running
+if [ -e "${LOCKFILE}" ] && kill -0 `cat "${LOCKFILE}"`; then
+    echo "Already running."
+    exit 1
+fi
+
+# make sure the lockfile is removed when we exit and when we receive a signal
+trap "rm -f ${LOCKFILE}; exit" INT TERM EXIT
+echo $$ > "${LOCKFILE}"
+
 
 error_handler () {
   echo "ERROR Backing up"
-  # universal_codes CRONITOR OF THE ERROR
-  if [[ -z "${CRONITOR_URL}" ]]; then
-	  curl -s $CRONITOR_URL?state=fail
-  fi
+  # Notify Healthchecks OF THE ERROR
+  curl -m 10 --retry 5 ${HC_URL}/fail
   exit -1
 }
 
-
-echo "started backup"
-curl -s $CRONITOR_URL?state=run
+echo "Started backup"
+curl -s $HC_URL/start
 
 echo "sqlite snapshot"
 rm /root/backup/universal_codes.sqlite
@@ -42,5 +51,9 @@ then
   error_handler
 fi
 
-curl -s $CRONITOR_URL?state=complete
-echo "Completed
+# remove the lockfile so next back up runs successfully
+rm -f "${LOCKFILE}"
+
+# notify the healthchecks server that the backup is completed
+curl -s -m 10 --retry 5 $HC_URL
+echo "Completed"
